@@ -1,0 +1,47 @@
+# Hằng số của nghiên cứu (đăng ký trước). Đổi bất kỳ giá trị nào sau khi nộp OSF → ghi docs/DECISIONS.md
+# + addendum trong prereg/addenda/ + báo người dùng. Nguồn: docs/01_DE_CUONG.md.
+title_vi: "Chuẩn điều trị của ai? Sai lệch theo chuẩn nước ngoài và theo phiên bản cũ của LLM so với hướng dẫn chuyên môn của Bộ Y tế Việt Nam"
+title_en: "Whose Standard of Care? Jurisdictional Defaults, Guideline Staleness and Certified Abstention of LLMs on Vietnamese Ministry of Health Guidelines"
+dates:
+  fmc_abstract_deadline: 2026-09-30
+  fmc_notification_by: 2026-10-15
+  fmc_registration_by: 2026-11-30
+  fmc_conference: 2026-12-12
+  corpus_freeze: 2026-10-15
+  journal_submission_window: [2027-01-11, 2027-01-24]
+corpus:
+  n_current_guidelines: [25, 35]
+  max_ocr_documents: 10
+  official_hosts: [kcb.vn, moh.gov.vn, vncdc.gov.vn]
+  forbidden_hosts: [thuvienphapluat.vn]
+targets:
+  min_conflict_atoms: 400
+  min_conflict_families: 25
+  extraction_audit_n: 200            # 100 random + 100 conflict
+  extraction_precision_cp_lower: 0.90
+  counterpart_precision_audit_n: 100
+  clinician_vignettes_checked: 100     # ưu tiên bác sĩ; không có thì sinh viên kiểm và ghi rõ
+  parser_check_n: 500
+hypotheses:
+  primary: H1
+  secondary_family: [H2, H3, H4]     # Holm within family
+  H3_margin: 0.05
+  H4_rr_lower_bound: 2.0
+  ci_level: 0.95
+rq3:
+  groups: [agree, disagree]
+  coverages: [1.0, 0.75, 0.5, 0.25]
+  alpha: 0.10
+  delta: 0.10
+  alpha_fallback: 0.15               # only if a group has < 300 calibration atoms (label-free rule)
+  alpha_fallback_min_cal_atoms: 300
+  min_useful_coverage: 0.30
+  regime_b_splits: 500
+  regime_b_max_violation_rate: 0.20  # = 2 * delta
+  split_unit: atom
+  split_fractions: {ref: 0.2, cal: 0.4, test: 0.4}   # đề xuất; chốt trong bản OSF (T2.10)
+  split_seed: 20261001
+decision_rules_file: docs/02_KE_HOACH_TRIEN_KHAI.md  # DR1–DR10
+cut_order: [A5_A6, A4, frontier_to_1, cheap_api_to_1, open_models_to_3]
+journals: [JMIR Medical Informatics, International Journal of Medical Informatics]
+reporting: TRIPOD-LLM

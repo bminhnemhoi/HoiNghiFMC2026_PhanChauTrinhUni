@@ -1,0 +1,35 @@
+# Quy tắc chấm (đăng ký trước). grader_version tăng khi đổi bất kỳ thứ gì dưới đây → chấm lại toàn bộ.
+grader_version: "1.0.0"
+tolerance_rule: "half the minimum gap between the MoH value set and any other source value (foreign, superseded, decoy)"
+partial_overlap: wrong_in_primary_reported_separately
+multi_value_without_vn_designation: wrong_reported_separately
+llm_extraction_fallback: {used_only_when: "no ĐÁP ÁN/ANSWER line and >1 candidate values", manual_check_n: 500}
+drugs:            # INN chuẩn -> bí danh (không dấu, chữ thường sau chuẩn hóa). Mở rộng khi gặp thuốc mới + thêm test.
+  artemether-lumefantrine: [artemether-lumefantrin, coartem, riamet]
+  artemether: []
+  lumefantrine: [lumefantrin]
+  pyronaridine-artesunate: [pyronaridin-artesunat, pyramax]
+  pyronaridine: [pyronaridin]
+  artesunate: [artesunat]
+  dihydroartemisinin-piperaquine: [dihydroartemisinin-piperaquin, dha-ppq, arterakine, eurartesim]
+  primaquine: [primaquin]
+  tafenoquine: [tafenoquin, krintafel, arakoda]
+  quinine: [quinin]
+  clindamycin: [clindamycine]
+  chloroquine: [cloroquin, chloroquin]
+  adrenaline: [adrenalin, epinephrine, epinephrin]
+  bedaquiline: [bedaquilin]
+  pretomanid: []
+  linezolid: []
+  moxifloxacin: [moxifloxacine]
+  tenofovir-disoproxil: [tdf, tenofovir disoproxil fumarate]
+  tenofovir-alafenamide: [taf]
+  entecavir: [etv]
+  dolutegravir: [dtg]
+  lamivudine: [3tc, lamivudin]
+combos:
+  artemether-lumefantrine: [artemether, lumefantrine]
+  pyronaridine-artesunate: [pyronaridine, artesunate]
+  quinine+clindamycin: [quinine, clindamycin]
+  BPaLM: [bedaquiline, pretomanid, linezolid, moxifloxacin]
+  BPaL: [bedaquiline, pretomanid, linezolid]

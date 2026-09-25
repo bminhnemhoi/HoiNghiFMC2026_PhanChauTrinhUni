@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Wrapper for the task state machine: scripts/vs <init|next|start|done|block|unblock|skip|human-done|add|show|list|digest|todo|pause|resume|autopilot>
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PY="python3"; [ -x "$ROOT/.venv/bin/python" ] && PY="$ROOT/.venv/bin/python"
+cd "$ROOT"
+export PYTHONUTF8=1   # Windows: console/pipe codec is not UTF-8 by default
+PYTHONPATH="$ROOT/src${PYTHONPATH:+:$PYTHONPATH}" VNSOC_ROOT="$ROOT" exec "$PY" -m vnsoc.state "$@"

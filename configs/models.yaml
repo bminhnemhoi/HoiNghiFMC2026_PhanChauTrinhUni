@@ -1,0 +1,72 @@
+# Mô hình. KHÔNG đoán tên/ID: T0.4 (Kaggle) và T0.5 (API) xác minh và điền các ô FILL_*.
+# Ghi phiên bản thực tế (commit hash HF / ngày gọi API) vào results/model_versions.json khi chạy.
+open:
+  - key: qwen3_8b
+    hf_id: Qwen/Qwen3-8B-AWQ            # xác minh repo; bản gốc Qwen/Qwen3-8B
+    license: Apache-2.0
+    quantization: awq
+    dtype: half                          # T4 không có bf16
+    max_model_len: 8192
+    chat_template_kwargs: {enable_thinking: false}
+    gated: false
+    runs_A4: true
+  - key: llama31_8b
+    hf_id: meta-llama/Llama-3.1-8B-Instruct   # gated (HG0.3); cần bản 4-bit để vừa 1 T4 — T5.0 chọn AWQ/GPTQ có sẵn hoặc tự lượng tử
+    license: Llama 3.1 Community License
+    quantization: FILL_AT_T5.0
+    dtype: half
+    max_model_len: 8192
+    gated: true
+    runs_A4: true
+    note: "Không chính thức hỗ trợ tiếng Việt"
+  - key: sailor2_8b
+    hf_id: sail/Sailor2-8B-Chat
+    license: Apache-2.0
+    quantization: FILL_AT_T5.0           # ~8.9B tham số: fp16 không vừa 1 T4 → AWQ/GPTQ hoặc tensor_parallel=2
+    dtype: half
+    max_model_len: 4096                   # không chạy A4
+    gated: false
+    runs_A4: false
+  - key: vistral_7b
+    hf_id: Viet-Mistral/Vistral-7B-Chat
+    license: AFL-3.0 (phải đồng ý điều khoản trên HF — HG0.3)
+    quantization: FILL_AT_T5.0           # tự lượng tử bằng llm-compressor (AutoAWQ đã ngừng); không được thì fp16 trên 2 GPU
+    dtype: half
+    max_model_len: 8192
+    gated: true
+    runs_A4: false
+optional:
+  - key: medgemma_4b
+    hf_id: google/medgemma-4b-it
+    backend: hf_transformers_fp32_2gpu
+    note: "Tùy chọn, tập con; gemma3 không chạy fp16 trên vLLM"
+api_cheap:
+  - key: cheap_1
+    provider: google
+    model: FILL_AT_T0.5                  # ứng viên: Gemini 3.1 Flash-Lite
+    price_in: 0.25
+    price_out: 1.50
+    price_checked: 2026-09-25
+    max_tokens: 128
+    reasoning_allowance: 256
+    extra_generation: {}                 # điều khiển thinking tối thiểu — điền từ tài liệu chính thức ở T0.5
+  - key: cheap_2
+    provider: openai
+    model: FILL_AT_T0.5                  # hạng rẻ nhất
+    price_in: 0.20
+    price_out: 1.20
+    price_checked: 2026-09-25
+    max_tokens: 128
+    reasoning_allowance: 256
+    extra: {}                            # vd reasoning_effort tối thiểu — điền ở T0.5
+    endpoint: /v1/chat/completions
+api_frontier:
+  - key: frontier_1
+    provider: google
+    model: FILL_AT_T0.5                  # ứng viên: Gemini 3.1 Pro Preview
+    price_in: 2.0
+    price_out: 12.0
+    price_checked: 2026-09-25
+    max_tokens: 128
+    reasoning_allowance: 512
+    extra_generation: {}

@@ -1,0 +1,82 @@
+# Bộ xung đột hạt giống — chép từ bảng mục 3.3 đề cương (sau phản biện vòng 2).
+# CHƯA PHẢI DỮ LIỆU NGHIÊN CỨU: mọi dòng phải được đối chiếu lại với PDF chính thức (trích nguyên văn,
+# số trang, quần thể) trước khi dùng — task T1.1 (Claude soạn) + HG1.2 (người dùng kiểm tra trích dẫn).
+# Không có trường quote/page ở đây vì chưa kiểm; KHÔNG được tự điền từ trí nhớ.
+# pilot: dùng cho thí điểm tuần 0 (mục 5.7). status theo cột "Trạng thái sau vòng 2".
+rows:
+  - {row: 1, topic: "Dengue, sốc ở người lớn: tốc độ dịch đầu", vn_doc: "2760/2023", vn_locator: "mục C.2.1",
+     vn: "Ringer lactat hoặc NaCl 0,9% 15 ml/kg/giờ, rồi 10 ml/kg/giờ × 2 giờ", value_kind: num, unit: ml/kg/h,
+     foreign: [{system: WHO_global, source: "WHO 2009 dengue", value: "5–10 ml/kg/giờ trong 1 giờ"}],
+     superseded: [{doc: "3705/2019", value: "cần tra"}],
+     status: confirmed, pilot: true, note: "Đối chiếu thêm hướng dẫn arbovirus WHO 7/2025"}
+  - {row: 2, topic: "Dengue: truyền tiểu cầu", vn_doc: "2760/2023", vn: "< 5.000/mm³ (cân nhắc) hoặc < 50.000/mm³ kèm xuất huyết nặng hoặc cần chọc dịch",
+     value_kind: num, unit: /uL, foreign: [{system: WHO_global, source: "WHO 2009", value: "không truyền dự phòng khi huyết động ổn"}],
+     status: confirmed_complex, pilot: false, note: "Nhiều điều kiện; không dùng cho thí điểm"}
+  - {row: 3, topic: "Tay chân miệng: phân độ và thuốc", vn_doc: "292/2024", vn: "Độ 1/2a/2b/3/4; gammaglobulin 1 g/kg; phenobarbital; milrinon",
+     foreign: [{system: US, source: "CDC", value: "điều trị hỗ trợ"}], status: no_counterpart, pilot: false,
+     note: "Cần WHO khu vực 2011 làm mốc"}
+  - {row: 4, topic: "Dại: phác đồ sau phơi nhiễm, tiêm bắp", vn_doc: "1622/2014", vn: "N0-3-7-14-28", value_kind: schedule,
+     foreign: [{system: US, source: "CDC PEP", value: "0-3-7-14"}], status: confirmed, pilot: true}
+  - {row: 5, topic: "Dại: phác đồ sau phơi nhiễm, trong da", vn_doc: "1622/2014", vn: "N0-3-7-28", value_kind: schedule,
+     foreign: [{system: WHO_global, source: "WHO 2018 rabies position", value: "phác đồ trong da 1 tuần"}], status: confirmed, pilot: true}
+  - {row: 6, topic: "Tăng huyết áp: ngưỡng chẩn đoán đo tại phòng khám", vn_doc: "3192/2010", vn: "≥ 140/90 mmHg", value_kind: bp,
+     foreign: [{system: US, source: "AHA/ACC 2025", value: "≥ 130/80"}, {system: EU_UK, source: "ESC", value: "140/90"},
+               {system: WHO_global, source: "WHO", value: "140/90"}],
+     status: confirmed_us_only, pilot: true, note: "Câu hỏi phải nói rõ đo tại phòng khám (130/80 là ngưỡng đo lưu động của chính Bộ Y tế)"}
+  - {row: 7, topic: "Tăng huyết áp: mục tiêu ở người ≥ 65 tuổi", vn_doc: "5904/2019", vn: "130 đến < 140 mmHg (tâm thu)", value_kind: num, unit: mmHg,
+     foreign: [{system: US, source: "AHA/ACC", value: "< 130/80"}, {system: EU_UK, source: "ESC 2024", value: "120–129"}],
+     status: confirmed, pilot: true, note: "Ghi phiên bản ESC"}
+  - {row: 8, topic: "ĐTĐ: tuổi bắt đầu sàng lọc tất cả", vn_doc: "5481/2020", vn: "từ 45 tuổi", value_kind: num, unit: year,
+     foreign: [{system: US, source: "ADA 2025", value: "từ 35 tuổi"}], status: confirmed_low_stakes, pilot: false}
+  - {row: 9, topic: "ĐTĐ: mục tiêu huyết áp", vn_doc: "5481/2020", vn: "< 140/90; < 130/80 nếu có biến chứng thận hoặc nguy cơ cao", value_kind: bp,
+     foreign: [{system: US, source: "ADA 2025", value: "< 130/80 nếu an toàn"}], status: confirmed, pilot: true,
+     note: "Câu hỏi phải nói rõ: không có biến chứng thận, không nguy cơ cao"}
+  - {row: 10, topic: "ĐTĐ có bệnh tim mạch xơ vữa: mục tiêu LDL-C", vn_doc: "5481/2020", vn: "< 70 mg/dL, có thể < 50", value_kind: num, unit: mg/dL,
+     foreign: [{system: US, source: "ADA 2025", value: "< 55 mg/dL"}], status: fixed, pilot: true,
+     note: "Tập giá trị Việt Nam gồm cả < 50; analyte ldl"}
+  - {row: 11, topic: "ĐTĐ: ngưỡng bắt đầu insulin sớm", vn_doc: "5481/2020", vn: "A1C ≥ 9% hoặc glucose ≥ 300 mg/dL", value_kind: num, unit: "%",
+     foreign: [{system: US, source: "ADA", value: "A1C > 10% hoặc glucose ≥ 300"}], status: confirmed, pilot: true,
+     note: "Tách 2 mẩu: A1C (xung đột) và glucose (trùng)"}
+  - {row: 12, topic: "ĐTĐ: vị trí GLP-1 RA/SGLT2i", status: removed, pilot: false, note: "Khác mức khuyến cáo, không phải giá trị"}
+  - {row: 13, topic: "Béo phì: ngưỡng BMI", vn_doc: "2892/2022", vn: "thừa cân 23–24,9; béo phì độ I 25–29,9", value_kind: num, unit: kg/m2,
+     foreign: [{system: WHO_WPRO, source: "WHO châu Á", value: "trùng Việt Nam"}, {system: WHO_global, source: "WHO", value: "béo phì ≥ 30"}],
+     status: fixed_relabelled, pilot: false, note: "Trùng WHO khu vực; chỉ dùng nếu kịp đối chiếu lại"}
+  - {row: 14, topic: "Phản vệ: adrenalin tiêm bắp người lớn", status: removed, pilot: false, note: "0,5 mg nằm trong 0,5–1 mg — dùng làm ca kiểm thử 'đúng'"}
+  - {row: 15, topic: "Phản vệ: liều adrenalin trẻ khoảng 10 kg", vn_doc: "TT 51/2017", vn: "0,25 ml (250 µg) adrenalin 1 mg/ml", value_kind: num, unit: ug,
+     foreign: [{system: EU_UK, source: "RCUK 2021", value: "150 µg cho 6 tháng–6 tuổi"}, {system: OTHER, source: "WAO", value: "0,01 mg/kg"}],
+     status: confirmed, pilot: true, note: "Cần quy tắc cân nặng–tuổi: câu hỏi nêu cả tuổi và cân nặng; context mg_per_ml=1, weight_kg=10"}
+  - {row: 16, topic: "Sốt rét P. falciparum: thuốc đầu tay", vn_doc: "3377/2023", vn: "pyronaridin–artesunat 3 ngày + primaquin", value_kind: drugs,
+     foreign: [{system: US, source: "CDC", value: "artemether–lumefantrin"}, {system: WHO_global, source: "WHO", value: "chấp nhận cả hai"}],
+     status: confirmed_us_only, pilot: true}
+  - {row: 17, topic: "Sốt rét P. falciparum, 3 tháng đầu thai kỳ", vn_doc: "3377/2023", vn: "quinin 7 ngày + clindamycin 7 ngày", value_kind: drugs,
+     foreign: [{system: US, source: "CDC", value: "artemether–lumefantrin"}], status: confirmed, pilot: true}
+  - {row: 18, topic: "Primaquin liều đơn cho P. falciparum, ≥ 15 tuổi", vn_doc: "3377/2023", vn: "4 viên × 7,5 mg = 30 mg", value_kind: num, unit: mg,
+     foreign: [{system: WHO_global, source: "WHO", value: "0,25 mg/kg"}], status: fixed, pilot: false,
+     note: "Chỉ dùng nếu kịp đối chiếu; cần cân nặng trong câu hỏi; context mg_per_tablet=7.5"}
+  - {row: 19, topic: "P. vivax: điều trị tiệt căn (G6PD bình thường)", vn_doc: "3377/2023", vn: "primaquin 0,5 mg/kg/ngày × 7 ngày", value_kind: num, unit: mg/kg/day,
+     foreign: [{system: US, source: "CDC", value: "30 mg/ngày × 14 ngày hoặc tafenoquin 300 mg"}], status: confirmed, pilot: true,
+     note: "Có thể tách thành mẩu liều và mẩu thời gian"}
+  - {row: 20, topic: "Viêm gan B: chỉ định điều trị", vn_doc: "1740/2026", vn: "HBV DNA > 2.000 IU/mL và ALT > giới hạn trên (30 nam, 19 nữ)", value_kind: num, unit: U/L,
+     foreign: [{system: US, source: "AASLD 2025", value: "ALT ≥ 2× giới hạn trên (35/25) và HBV DNA theo HBeAg"}],
+     superseded: [{doc: "3310/2019", value: "cần tra"}], status: confirmed, pilot: true,
+     note: "Thêm mẩu riêng cho xơ hóa (APRI > 0,5 hoặc FibroScan > 7 kPa); PDF có trên kcb.vn/tai-lieu"}
+  - {row: 21, topic: "Viêm gan B: dự phòng lây mẹ sang con", vn_doc: "678/2025", status: unverified, pilot: false,
+     foreign: [{system: US, source: "AASLD", value: "tuần 28"}], note: "Có thể mâu thuẫn với 1740/2026"}
+  - {row: 22, topic: "Lao đa kháng: phác đồ", vn_doc: "162/2024", vn: "BPaL(M)", value_kind: drugs,
+     superseded: [{doc: "2760/2021", value: "cần tra"}], foreign: [{system: WHO_global, source: "WHO 2022", value: "BPaLM"}],
+     status: version_drift, pilot: true, note: "Dùng làm mẩu lệch phiên bản 2760/2021 → 162/2024"}
+  - {row: 23, topic: "Vắc-xin sởi: mũi đầu", vn_doc: "TT 10/2024", vn: "9 tháng tuổi", value_kind: num, unit: month,
+     foreign: [{system: US, source: "CDC", value: "12–15 tháng"}, {system: WHO_global, source: "WHO", value: "giống Việt Nam"}],
+     status: confirmed_us_only_not_rechecked, pilot: true}
+  - {row: 24, topic: "DTP: lịch cơ bản", vn_doc: "TT 10/2024", vn: "2, 3, 4 tháng", value_kind: schedule,
+     foreign: [{system: US, source: "CDC", value: "2, 4, 6 tháng"}], status: confirmed_low_stakes_not_rechecked, pilot: false}
+  - {row: 25, topic: "Sàng lọc ĐTĐ thai kỳ", vn_doc: "1470/2024", vn: "75 g một bước", value_kind: cat,
+     foreign: [{system: US, source: "ACOG", value: "ưu tiên hai bước"}], status: confirmed_low_stakes_not_rechecked, pilot: false}
+version_drift_pilot:
+  - {topic: "Viêm gan B", from: "3310/2019", to: "1740/2026"}
+  - {topic: "Dengue", from: "3705/2019", to: "2760/2023"}
+  - {topic: "Lao đa kháng", from: "2760/2021", to: "162/2024"}
+concordant_controls: [
+  "phân loại dengue và dấu hiệu cảnh báo", "HIV bậc một TDF + 3TC + DTG", "COPD theo GOLD", "hen theo GINA",
+  "tiêu sợi huyết trong 4,5 giờ", "artesunat cho sốt rét ác tính", "tiêu chuẩn chẩn đoán đái tháo đường",
+  "ngưỡng ĐTĐ thai kỳ 5,1/10,0/8,5 mmol/L", "điều trị bệnh Whitmore"]

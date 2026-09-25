@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: vnsoc
+Version: 0.1.0
+Summary: Whose Standard of Care? Auditing LLM deviations from Vietnamese MoH guidelines
+Requires-Python: >=3.10
+Requires-Dist: pyyaml>=6
+Requires-Dist: pydantic>=2.6
+Requires-Dist: numpy>=1.26
+Requires-Dist: scipy>=1.11
+Requires-Dist: pandas>=2.1
+Requires-Dist: pyarrow>=14
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: jinja2>=3.1
+Requires-Dist: tqdm>=4.66
+Requires-Dist: requests>=2.31
+Requires-Dist: pymupdf>=1.24
+Requires-Dist: pdfplumber>=0.11
+Requires-Dist: rapidfuzz>=3.6
+Requires-Dist: statsmodels>=0.14
+Requires-Dist: matplotlib>=3.8
+Provides-Extra: api
+Requires-Dist: openai>=1.40; extra == "api"
+Requires-Dist: google-genai>=1.0; extra == "api"
+Provides-Extra: kaggle
+Requires-Dist: kaggle>=1.6; extra == "kaggle"
+Provides-Extra: ocr
+Requires-Dist: pytesseract>=0.3.10; extra == "ocr"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: ruff>=0.5; extra == "dev"

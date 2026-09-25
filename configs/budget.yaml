@@ -1,0 +1,10 @@
+# Trần cứng API trả phí (USD). Không có ngoại lệ. Ngoài ra người dùng đặt giới hạn chi tiêu ở trang
+# quản trị của từng nhà cung cấp (HG0.3). Giá kiểm tra ngày 2026-09-25 — kiểm lại ở T0.5.
+cap_usd: 40
+safety_margin_usd: 2
+plan_usd:
+  pilot: 2
+  extraction_matching_qgen_translation: 6
+  cheap_api_runs: 12
+  frontier_runs: 16
+  reserve: 4

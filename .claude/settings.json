@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(scripts/vs *)",
+      "Bash(scripts/check_env.py*)",
+      "Bash(.venv/bin/python *)",
+      "Bash(.venv/bin/pip *)",
+      "Bash(.venv/bin/pytest *)",
+      "Bash(.venv/bin/ruff *)",
+      "Bash(python3 *)",
+      "Bash(make *)",
+      "Bash(Rscript *)",
+      "Bash(kaggle *)",
+      "Bash(.venv/bin/kaggle *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git init*)",
+      "Bash(ls *)",
+      "Bash(mkdir *)",
+      "Bash(sha256sum *)",
+      "Bash(shasum *)",
+      "Bash(wc *)",
+      "Bash(unzip *)",
+      "Bash(pdftotext *)",
+      "Bash(pdfinfo *)",
+      "Bash(curl -sSL -o data/raw/*)",
+      "Bash(curl -sSLI *)",
+      "Bash(jq *)",
+      "WebSearch",
+      "WebFetch(domain:kcb.vn)",
+      "WebFetch(domain:moh.gov.vn)",
+      "WebFetch(domain:vncdc.gov.vn)",
+      "WebFetch(domain:who.int)",
+      "WebFetch(domain:iris.who.int)",
+      "WebFetch(domain:cdc.gov)",
+      "WebFetch(domain:www.cdc.gov)",
+      "WebFetch(domain:ncbi.nlm.nih.gov)",
+      "WebFetch(domain:eutils.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:pubmed.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:arxiv.org)",
+      "WebFetch(domain:export.arxiv.org)",
+      "WebFetch(domain:api.crossref.org)",
+      "WebFetch(domain:api.datacite.org)",
+      "WebFetch(domain:doi.org)",
+      "WebFetch(domain:huggingface.co)",
+      "WebFetch(domain:www.kaggle.com)",
+      "WebFetch(domain:docs.vllm.ai)",
+      "WebFetch(domain:tapchiyhocvietnam.vn)",
+      "WebFetch(domain:www.equator-network.org)",
+      "WebFetch(domain:medinform.jmir.org)",
+      "WebFetch(domain:www.scimagojr.com)",
+      "WebFetch(domain:diabetesjournals.org)",
+      "WebFetch(domain:professional.diabetes.org)",
+      "WebFetch(domain:www.aasld.org)",
+      "WebFetch(domain:aasld.org)",
+      "WebFetch(domain:www.resus.org.uk)",
+      "WebFetch(domain:www.ahajournals.org)",
+      "WebFetch(domain:www.acc.org)",
+      "WebFetch(domain:www.escardio.org)",
+      "WebFetch(domain:academic.oup.com)",
+      "WebFetch(domain:www.acog.org)",
+      "WebFetch(domain:www.worldallergy.org)",
+      "WebFetch(domain:www.nice.org.uk)",
+      "WebFetch(domain:ginasthma.org)",
+      "WebFetch(domain:goldcopd.org)",
+      "WebFetch(domain:www.idsociety.org)",
+      "WebFetch(domain:www.who.int)",
+      "WebFetch(domain:apps.who.int)",
+      "WebFetch(domain:developers.openai.com)",
+      "WebFetch(domain:ai.google.dev)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:pypi.org)",
+      "WebFetch(domain:osf.io)",
+      "WebFetch(domain:zenodo.org)",
+      "WebFetch(domain:conference.pctu.edu.vn)"
+    ],
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*.local)",
+      "Read(~/.kaggle/kaggle.json)",
+      "WebFetch(domain:thuvienphapluat.vn)",
+      "Bash(sudo *)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)"
+    ]
+  },
+  "env": {
+    "PYTHONPATH": "src",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/session_start.py\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/user_prompt.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_bash.py\"",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "WebFetch",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_web.py\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/guard_files.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/post_edit.py\"",
+            "timeout": 60
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/stop_continue.py\"",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/precompact.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
