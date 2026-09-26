@@ -1,0 +1,155 @@
+{
+ "topic": "tbhiv",
+ "auditor": "B",
+ "reviewer_kind": "AI (integrity-auditor, vai kiểm toán viên B) — không phải người, không phải bác sĩ",
+ "date": "2026-09-26",
+ "method": "Đọc lớp chữ và ẢNH từng trang PDF Bộ Y tế (verify_span --page/--image) trước khi đọc giá trị trong checklist; mở nguồn nước ngoài từ bản đệm data/cache/foreign (sha256 tính lại khớp page_sha256 của mẩu, URL khớp index.json), tìm theo vị trí ghi. Không đọc data/runs/ và không đọc tbhiv_A.json.",
+ "atoms": [
+  {
+   "atom_id": "P-tbhiv-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 162/2024 trang PDF 53 (in 52), ảnh trang: bảng 'Phác đồ BPaL' — 'Đối tượng áp dụng - Kháng ít nhất với R và FQ, hoặc không dung nạp thuốc trong phác đồ điều trị lao đa kháng. - Tuổi từ đủ 14 tuổi trở lên.' Span nguyên văn đủ trên tr.53 (chữ lớp văn bản 'vӟi','vүn' = 'với','vẫn').",
+    "(b) Giá trị BPaL: tiêu đề 'Phác đồ BPaL' ở tr.53; dòng thành phần '6-9 BpaL (bedaquiline, pretomanid, linezolid)' và 'Thời gian điều trị từ 6 - 9 tháng (26 - 39 tuần)' ở tr.54 (in 53) — đúng; 'tr.54' đã ghi trong extraction.notes.",
+    "(b) Bản cũ 1314/2020 tr.60 (in 54): 'Phác đồ E1-TSFQ mới (Chỉ định cho người bệnh tiền siêu kháng FQ hoặc siêu kháng mới): Bdq Lzd Cfz Cs +1 thuốc nhóm C' — khớp.",
+    "(b) Bản cũ '2760/2021' tr.17 (in 58): 'Phác đồ E1-FQ mới (...): Bdq Lzd Cfz Cs +1 thuốc nhóm C' — khớp. Danh tính văn bản: số '2760' KHÔNG có trong PDF (--find = []); bìa: 'CẬP NHẬT HƯỚNG DẪN ĐIỀU TRỊ BỆNH LAO KHÁNG THUỐC (Nội dung này thay cho ... quyết định số 1314/QĐ-BYT ngày 24/3/2020- từ trang 43 đến trang 53)', ký bởi BV Phổi Trung ương, 'tháng 04 năm 2021'. Bằng chứng gián tiếp (mới, chưa ghi trong mẩu): 162/2024 tr.201 dẫn 'sơ đồ 3.1. 2 (QĐ 2760 của BYT)' và tài liệu này tr.37 có 'Sơ đồ 3.1.2. Hướng dẫn đối với kết quả “vết” trong thực hiện Xpert MTB/RIF Ultra' → khớp nhãn QĐ 2760; năm 2021 chỉ dựa vào bìa.",
+    "(b) moh_neighbour: BPaLM tr.52 span có nguyên văn ('Phác đồ BPaLM Đối tượng áp dụng - Lao đa kháng. - Tuổi từ đủ 14 tuổi trở lên.'); PĐ E tr.56 (in 55) 'Người bệnh kháng FQ không đủ tiêu chuẩn thu nhận phác đồ BpaL ... PĐ E: Bdq Lzd Cfz Cs +1 thuốc nhóm C' — khớp.",
+    "(c) Câu hỏi VI (≥14 tuổi, lao phổi không nặng, kháng R + FQ, chưa dùng thuốc hàng hai, không thai/cho bú, ≥35 kg, BMI ≥17, QTcF/men gan/thần kinh bình thường) nằm trong đối tượng + ngoài chống chỉ định tr.53–54. Sơ đồ 6 tr.48: 'Kháng FQs → Đủ điều kiện → PĐ BPaL'. Giá trị lân cận (BPaLM, PĐ E) đã ghi. Mục trẻ em tr.62 'Kháng FQ Bdq–Lzd–Cfz–Cs–(Dlm)' không nêu mốc tuổi — nhóm 14–15 tuổi vẫn chờ bác sĩ (đã có trong hg_decision).",
+    "(d) WHO 2026 Module 4 2nd ed. (sha a6092c81… khớp tệp đệm; URL khớp index): PDF tr.22 B1.1a = BPaL 6 tháng cho lao phổi tiền siêu kháng không nặng (NEW 2026); B1.2a = BDLC 6 tháng cho cùng quần thể (NEW 2026); tr.79, tr.120 lặp lại; tr.115: BPaL/M/C áp dụng từ 14 tuổi. version_date '2026-09-21' KHÔNG kiểm được: PDF không ghi ngày, metadata creationDate 2026-09-11, IRIS trả 403.",
+    "(d) WHO 2022 DR-TB update (sha 7fdfa0ba…, trang bìa '2022 update'): PDF tr.26 remark 1 — kháng FQ thì dùng BPaL (bỏ moxifloxacin). Khớp.",
+    "(d) ATS/CDC/ERS/IDSA 2025 (PMC11755361, sha 43ce9bbd…): câu hỏi BPaL cho ≥14 tuổi, lao phổi kháng R + kháng FQ → khuyến cáo BPaL 6 tháng (strong, very low); Table 1 mục Q3 = BPaL. Khớp.",
+    "(d) WHO 2020 DR-TB (sha 133ba15f…): PDF tr.17, tr.60 rec 4.1 BPaL 6–9 tháng chỉ trong nghiên cứu vận hành, tr.60 không áp dụng thường quy; quy tắc 'một hoặc hai thuốc nhóm A thì dùng cả hai thuốc nhóm B' tr.15, tr.40. Giá trị cycloserine gắn derived — đúng là suy ra, không nguyên văn.",
+    "(hệ thống, không đổi giá trị) Lớp chữ PDF 162/2024 dùng ký tự Cyrillic thay chữ Việt: U+04DF 'ӟ' = 'ớ' (1102 lần, vd 'vӟi'='với', 'hưӟng'='hướng'), U+04AF 'ү' = 'ẫ' (231 lần, vd 'vүn'='vẫn', 'dүn'='dẫn', 'mүu'='mẫu') — so ảnh trang: bản in là chữ Việt đúng. verify_span.norm() chỉ sửa ƣ/Ƣ, chưa sửa ӟ/ү, nên span và đoạn oracle A3 (data/interim/pilot_passages.jsonl) mang ký tự lạ tới mô hình."
+   ],
+   "proposed_fix": "Không cần sửa giá trị. Ghi thêm vào extraction.notes bằng chứng danh tính của 2760/2021 (162/2024 tr.201 'QĐ 2760 của BYT' ↔ tài liệu tr.37 'Sơ đồ 3.1.2'). Đánh dấu version_date WHO 2026 là 'chưa kiểm từ PDF' nếu không có nguồn IRIS. Sửa ký tự ӟ/ү theo mục hệ thống."
+  },
+  {
+   "atom_id": "P-tbhiv-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 162/2024 trang PDF 49 (in 48), ảnh trang: '2.2.2. Phác đồ điều trị cho người lớn a) Phác đồ ngắn ngày: Phác đồ C ... - Không kháng với FQ (phác đồ vẫn sử dụng được khi kháng thuốc tiêm).' Span có nguyên văn trên tr.49.",
+    "(b) Cùng trang: 'Phác đồ C1a: 4-6Bdq[6]-Lfx-Pto-E-Z-Hh-Cfz / 5 Lfx-Cfz-Z-E'; 'Phác đồ C2a: thay thế Pto bằng Lzd (4 tháng Pto bằng 2 tháng Lzd)' — khớp giá trị; khóa {bedaquiline} đúng.",
+    "(b) Bản cũ 1314/2020 tr.59 (in 53): 'Phác đồ chuẩn ngắn hạn điều trị lao đa kháng 4-6 Am Lfx Pto Cfz Z H liều cao E / 5 Lfx Cfz Z E' — khớp. Bản trung gian 2760/2021 tr.12 (in 53): 'Phác đồ ngắn hạn (PĐ C) 4-6Bdq[6]-Lfx-Pto-E-Z-Hh-Cfz / 5 Lfx[Mfx]-Cfz-Z-E' — cùng giá trị hiện hành, đúng như notes.",
+    "(c) Câu hỏi VI (người lớn, lao đa kháng còn nhạy FQ, chưa dùng thuốc hàng hai >1 tháng, không thể nặng, phác đồ chuẩn ngắn hạn 9–11 tháng) khớp đối tượng tr.49 và bảng thời gian tr.50. Giá trị khác cùng quần thể: BPaLM 6 tháng (tr.52) bị loại bởi '9–11 tháng'; C3 '9-11 Bdq [6] Lfx Lzd Cfz (Z)' (tr.49, khi kháng/không dung nạp H, E, Z) cũng có Bdq nên không đổi khóa.",
+    "(d) WHO 2026 (sha a6092c81…): PDF tr.22 B2.1 phác đồ 9 tháng toàn uống khi đã loại kháng FQ (Unchanged 2022); tr.140 remarks: bedaquiline 6 tháng + Lfx/Mfx, Eto, E, Hh, Z, Cfz 4 tháng (tới 6), rồi Lfx/Mfx, Cfz, E, Z 5 tháng; Eto có thể thay bằng 2 tháng linezolid; ký hiệu '4–6 Bdq[6]-Lfx[Mfx]-Eto-E-Z-Hh-Cfz / 5 Lfx[Mfx]-Cfz-Z-E' ở tr.73. Khớp.",
+    "(d) WHO 2019 (sha df14ea4b…): PDF tr.37 rec phác đồ ngắn hạn 9–12 tháng; tr.41 thành phần 4–6Km–Mfx–Cfz–Eto–Z–E–Hh/5Mfx–Cfz–Z–E; tr.42 điều kiện thay kanamycin bằng amikacin → khóa {amikacin} đúng.",
+    "(hệ thống, không đổi giá trị) Lớp chữ PDF 162/2024 dùng ký tự Cyrillic thay chữ Việt: U+04DF 'ӟ' = 'ớ' (1102 lần, vd 'vӟi'='với', 'hưӟng'='hướng'), U+04AF 'ү' = 'ẫ' (231 lần, vd 'vүn'='vẫn', 'dүn'='dẫn', 'mүu'='mẫu') — so ảnh trang: bản in là chữ Việt đúng. verify_span.norm() chỉ sửa ƣ/Ƣ, chưa sửa ӟ/ү, nên span và đoạn oracle A3 (data/interim/pilot_passages.jsonl) mang ký tự lạ tới mô hình."
+   ],
+   "proposed_fix": "Không. (Chỉ sửa ký tự ӟ/ү theo mục hệ thống.)"
+  },
+  {
+   "atom_id": "P-tbhiv-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "fail",
+   "d": "pass",
+   "verdict": "fix",
+   "evidence": [
+    "(a) 162/2024 trang PDF 44 (in 43), ảnh trang: 'Phác đồ A1: 2HRZE/4RHE (phác đồ 06 tháng – điều trị lao cho người lớn)' ... 'Giai đoạn duy trì: kéo dài 04 tháng, với 03 loại thuốc: R, H, E; dùng hàng ngày.' Span nguyên văn đủ trên tr.44.",
+    "(b) Giá trị 4RHE (HRE) khớp. moh_neighbour A2 tr.44 ('Phác đồ A2: 2HRZE/4RH ... trẻ em') và tr.71 (in 70) ('... phác đồ 06 tháng có Rifampicin (2HRZE/4HR) thường được sử dụng') đều có nguyên văn trên trang ghi.",
+    "(c) SÓT GIÁ TRỊ BỘ Y TẾ (chưa có trong moh_neighbour/notes; grep '2RHZ/4RH' trong pilot_atoms = 0): 162/2024 tr.69 (in 68) mục 3.1.4 'Người bệnh lao có suy thận - Phác đồ 2RHZ/4RH có thể áp dụng điều trị lao cho người bệnh suy thận.'; tr.70 (in 69) mục người bệnh lao kết hợp tiểu đường có suy thận: 'Phác đồ 2RHZ/4RH có thể áp dụng cho bệnh nhân lao thường.'; tr.101: 'Phác đồ 2RHZ/4RH có thể áp dụng điều trị cho người bệnh lao có suy thận.' → giai đoạn duy trì 4RH (= nhãn HR của WHO/Mỹ) cho người lớn suy thận; câu tr.70 'cho bệnh nhân lao thường' còn có thể đọc là áp dụng cho người bệnh lao nói chung → thêm một mâu thuẫn nội bộ (cùng hướng với tr.71). Câu hỏi VI/EN không nêu chức năng thận/gan.",
+    "(c) Phần còn lại khớp: câu hỏi (người lớn, lao phổi mới, không nghi kháng, không lao TKTW/xương khớp, không HIV, không thai, phác đồ chuẩn 6 tháng) nằm trong A1 và loại A1a 4 tháng. Chú ý nhỏ: population.hiv_pregnancy của mẩu ghi 'áp dụng cả người nhiễm HIV và phụ nữ mang thai' trong khi câu hỏi loại cả hai (câu hỏi hẹp hơn — không sai). Tr.69 còn các phác đồ cho viêm gan (9 HRE; 2 HRSE/6 RH; 6-9 RZE; 2 HES/10 HE) — không có 4RE nên mồi 4RE vẫn sạch với văn bản này.",
+    "(d) WHO 2026 (sha a6092c81…): PDF tr.19 A1.1 người bệnh mới lao phổi: 6 tháng rifampicin 2HRZE/4HR (Strong/high, Unchanged 2010); lặp tr.32, tr.35. Không có khuyến cáo HRE giai đoạn duy trì. Khớp.",
+    "(d) WHO 2017 (sha a7921931…): PDF tr.17 bảng khuyến cáo 2010 '2HRZE/4HR' còn hiệu lực; tr.19 phương án HRE giai đoạn duy trì ở quần thể kháng isoniazid cao (conditional, expert opinion) còn hiệu lực. Khớp cả hai giá trị.",
+    "(d) ATS/CDC/IDSA 2016 (sha 86123eb8…): PDF tr.4 giai đoạn duy trì 4 tháng INH + RIF; Bảng 2 phác đồ 1: INH RIF 126 liều (18 tuần). Khớp.",
+    "(d) ATS/CDC/ERS/IDSA 2025 (PMC11755361, sha 43ce9bbd…): câu hỏi PICO 1 nêu phác đồ chuẩn 6 tháng 2HRZE + 4HR được hướng dẫn ATS/CDC/ERS/IDSA công nhận (so sánh). Khớp.",
+    "(hệ thống, không đổi giá trị) Lớp chữ PDF 162/2024 dùng ký tự Cyrillic thay chữ Việt: U+04DF 'ӟ' = 'ớ' (1102 lần, vd 'vӟi'='với', 'hưӟng'='hướng'), U+04AF 'ү' = 'ẫ' (231 lần, vd 'vүn'='vẫn', 'dүn'='dẫn', 'mүu'='mẫu') — so ảnh trang: bản in là chữ Việt đúng. verify_span.norm() chỉ sửa ƣ/Ƣ, chưa sửa ӟ/ү, nên span và đoạn oracle A3 (data/interim/pilot_passages.jsonl) mang ký tự lạ tới mô hình."
+   ],
+   "proposed_fix": "Không đổi giá trị vn/foreign. (1) Thêm moh_neighbour: 162/2024 tr.69 (bối cảnh: người lớn lao có suy thận, 4RH, nhãn HR), tr.70 (tiểu đường có suy thận; ghi nguyên văn câu 'Phác đồ 2RHZ/4RH có thể áp dụng cho bệnh nhân lao thường.'), tr.101; ghi vào notes như mâu thuẫn nội bộ thứ hai (cạnh tr.71) để bác sĩ thật xem ở HG3.9. neighbour_overlap vốn đã True nên phân tích H1 bền vững không đổi. (2) Thêm vào câu hỏi VI/EN (trước khi đóng băng, không xem đầu ra mô hình) 'chức năng thận và gan bình thường, không đái tháo đường' / 'normal kidney and liver function, no diabetes'. (3) Có thể sửa population.hiv_pregnancy cho khớp câu hỏi. (4) Sửa ký tự ӟ/ү theo mục hệ thống."
+  },
+  {
+   "atom_id": "P-tbhiv-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 162/2024 trang PDF 44 (in 43), ảnh trang: 'Phác đồ A2: 2HRZE/4RH (phác đồ 06 tháng – điều trị lao cho trẻ em ) ... Lao trẻ em không có bằng chứng kháng thuốc hoặc không nghi ngờ kháng thuốc trên lâm sàng. Có thể sử dụng cho trẻ nhiễm HIV.' Span nguyên văn trên tr.44.",
+    "(b) 4RH khớp; tr.45 (in 44): 'Giai đoạn duy trì kéo dài 04 tháng với 02 loại thuốc: R, H; dùng hàng ngày.' moh_neighbour A1 (HRE) tr.44 khớp.",
+    "(c) Câu hỏi (trẻ 5 tuổi, lao phổi mới, không nghi kháng, không lao TKTW/xương khớp, không HIV, phác đồ chuẩn 6 tháng): A2 đúng; A2a 4 tháng (tr.45, trẻ 3 tháng–16 tuổi thể nhẹ) bị loại vì câu hỏi ghim 'phác đồ chuẩn 6 tháng'; 'Không chỉ định ... lao hệ thần kinh trung ương, lao xương khớp' (tr.44–45). Mục HIV tr.71 nhắc 2HRZ(E)/2HR 4 tháng cho trẻ thể nhẹ — cũng bị loại bởi '6 tháng'. Không thấy giá trị Bộ Y tế khác cho quần thể này.",
+    "(d) WHO 2026 (sha a6092c81…): PDF tr.20 A1.6a (HRZ 2 tháng → HR 4 tháng) và A1.6b (HRZE 2 tháng → HR 4 tháng), Unchanged 2010/2014/2022 → 4HR. Khớp. Ghi chú: A2.2 cùng trang khuyến cáo 4 tháng cho trẻ 3 tháng–16 tuổi thể không nặng — câu hỏi đã ghim 6 tháng.",
+    "(d) ATS/CDC/ERS/IDSA 2025 (PMC11755361, sha 43ce9bbd…): PICO 2 — trẻ/vị thành niên không đủ tiêu chuẩn thể không nặng dùng phác đồ chuẩn 6 tháng 2HRZE/4HR. Khớp.",
+    "Ký tự lạ: span mẩu này sạch, nhưng span moh_neighbour (A1) và đoạn oracle P-tbhiv-04#A3 có 'ӟ'/'ү' (xem mục hệ thống)."
+   ],
+   "proposed_fix": "Không. (Chỉ sửa ký tự ӟ/ү trong span lân cận và đoạn A3 theo mục hệ thống.)"
+  },
+  {
+   "atom_id": "P-tbhiv-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5968/2021 trang PDF 29 (in 29), ảnh trang: 'Bảng 3: Điều trị dự phòng sau phơi nhiễm HIV bằng thuốc ARV' — hàng 'Người trên 10 tuổi': 'Ưu tiên: TDF + 3TC (hoặc FTC) + DTG'; 'Thay thế: TDF + 3TC (hoặc FTC) + LPV/r hoặc TDF + 3TC (hoặc FTC) + RAL'. Span nguyên văn (lớp chữ 'tƣợng', 'Ƣu' = 'tượng', 'Ưu'; norm() đã quy đổi).",
+    "(b) Giá trị ưu tiên TDF + 3TC (hoặc FTC) + DTG khớp; khóa {tenofovir-disoproxil, dolutegravir} đúng.",
+    "(c) Câu hỏi (người lớn không thai, thận bình thường, quan hệ tình dục không bao cao su với người HIV chưa ARV, ngoài nghề nghiệp, đến trong 72 giờ): khớp Sơ đồ 4 tr.29 (≤72 giờ, nguồn HIV+ hoặc không rõ, người phơi nhiễm HIV(-) → chỉ định PEP) và hàng 'Người trên 10 tuổi'. Các trang khác nhắc PEP (tr.22, tr.31) không nêu phác đồ khác. Hàng 'Trẻ em ≤ 10 tuổi' là quần thể khác.",
+    "(d) WHO 2024 PEP (sha 56493a35…, bìa 'Guidelines for HIV post-exposure prophylaxis'): PDF tr.8 người lớn và vị thành niên — TDF + 3TC (hoặc FTC) là khung ưu tiên, DTG là thuốc thứ ba ưu tiên; lặp tr.14. Khớp.",
+    "(d) CDC 2025 nPEP (PMC12064164, sha 69b99dc9…): phần tóm tắt khuyến cáo và Bảng 'nPEP regimens' — ưu tiên cho người lớn/vị thành niên ≥12 tuổi: BIC/FTC/TAF, hoặc DTG + (TAF hoặc TDF) + (FTC hoặc 3TC). Khớp cả 3 bản ghi.",
+    "Không kiểm được: có văn bản Bộ Y tế nào mới hơn thay 5968/2021 không — tìm web không thấy văn bản thay thế; vaac.gov.vn lỗi chứng chỉ (certificate has expired).",
+    "Ngoài 4 tiêu chí: mồi TLE (efavirenz) trùng phương án thay thế của WHO 2014 PEP — đã ghi trong decoy_rule, chờ quyết định HG3.5; không đổi phán quyết."
+   ],
+   "proposed_fix": "Không (mồi TLE đã có hướng xử lý chờ người dùng/HG3.5)."
+  },
+  {
+   "atom_id": "P-tbhiv-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5968/2021 trang PDF 29, ảnh trang: '4. Thời gian điều trị dự phòng sau phơi nhiễm — Thời gian điều trị dự phòng sau phơi nhiễm với HIV: đủ 28 ngày liên tục.' Span nguyên văn.",
+    "(b) 28 ngày khớp; nhất quán với tr.31 'Bước 7: Kê đơn thuốc PEP cho 28 ngày' và tr.22 'Sử dụng PEP trong 28 ngày'.",
+    "(c) Câu hỏi (người lớn đã bắt đầu PEP sau phơi nhiễm có nguy cơ, tổng thời gian) khớp; không có giá trị thời gian khác trong văn bản.",
+    "(d) WHO 2024 PEP (sha 56493a35…): PDF tr.8 kê đơn 28 ngày. CDC 2025 (PMC12064164, sha 69b99dc9…): liệu trình nPEP khuyến cáo 28 ngày (có ghi chú có thể kê 30 ngày vì quy cách đóng gói, vẫn coi hoàn tất sau 28 ngày). Khớp."
+   ],
+   "proposed_fix": "Không."
+  },
+  {
+   "atom_id": "P-tbhiv-07",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 162/2024 trang PDF 59 (in 58), ảnh trang: ô 'Xét nghiệm trước khi thu nhận...' ('Cần tiến hành làm xét nghiệm GeneXpert để loại trừ kháng R trước khi điều trị phác đồ kháng H.' ...) rồi 'Thời gian điều trị 06 tháng.' Span nguyên văn trên tr.59.",
+    "(b) 6 tháng khớp. Tiêu đề 'd) Phác đồ kháng H nhạy R', 'Đối tượng áp dụng Kháng H: Kiểu kháng H (±S)', 'Thành phần phác đồ 6 R(H)ZELfx' ở tr.58 (in 57) — đúng như notes.",
+    "(c) Câu hỏi (người lớn, lao phổi kháng H ±S, nhạy R, không kháng FQ, tổn thương không rộng, âm hóa đúng hạn, không HIV, Lfx + R + E + Z) khớp; điều kiện kéo dài ở tr.59 ('tổn thương rộng hoặc âm hóa chậm có thể kéo dài'; HIV(+) 'không cần kéo dài'; lao ngoài phổi điều chỉnh) đã được câu hỏi loại. Phương án thay thế '6 RHZE' khi không dùng được Lfx (tr.58) cũng 6 tháng.",
+    "(d) WHO 2026 (sha a6092c81…): PDF tr.25 B4.1 Hr-TB: rifampicin, ethambutol, pyrazinamide, levofloxacin trong 6 tháng (Unchanged 2018); lặp tr.82, tr.196. Khớp.",
+    "(hệ thống, không đổi giá trị) Lớp chữ PDF 162/2024 dùng ký tự Cyrillic thay chữ Việt: U+04DF 'ӟ' = 'ớ' (1102 lần, vd 'vӟi'='với', 'hưӟng'='hướng'), U+04AF 'ү' = 'ẫ' (231 lần, vd 'vүn'='vẫn', 'dүn'='dẫn', 'mүu'='mẫu') — so ảnh trang: bản in là chữ Việt đúng. verify_span.norm() chỉ sửa ƣ/Ƣ, chưa sửa ӟ/ү, nên span và đoạn oracle A3 (data/interim/pilot_passages.jsonl) mang ký tự lạ tới mô hình."
+   ],
+   "proposed_fix": "Không. (Chỉ sửa ký tự ӟ theo mục hệ thống.)"
+  }
+ ],
+ "systemic": [
+  {
+   "issue": "Ký tự sai trong lớp chữ PDF 162/2024 (không phải OCR): U+04DF 'ӟ' thay 'ớ' (1102 lần), U+04AF 'ү' thay 'ẫ' (231 lần); ảnh trang in đúng chữ Việt.",
+   "affects": [
+    "P-tbhiv-01",
+    "P-tbhiv-02",
+    "P-tbhiv-03",
+    "P-tbhiv-07 (span)",
+    "P-tbhiv-04 (span moh_neighbour)",
+    "đoạn oracle A3 P-tbhiv-01..04, 07 trong data/interim/pilot_passages.jsonl"
+   ],
+   "proposed_fix": "Chủ mã: thêm vào vnsoc.extract.verify_span._GLYPH ánh xạ '\\u04df'→'ớ', '\\u04af'→'ẫ' (kèm test), rồi chạy lại verify_span và dựng lại đoạn A3 TRƯỚC khi đóng băng; kiểm các văn bản khác cùng lỗi phông. Không đổi giá trị nào."
+  }
+ ],
+ "summary": {
+  "ok": 6,
+  "fix": 1,
+  "error": 0,
+  "uncertain": 0
+ }
+}

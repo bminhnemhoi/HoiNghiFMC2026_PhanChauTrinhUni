@@ -1,0 +1,156 @@
+{
+ "topic": "controls",
+ "auditor": "B",
+ "auditor_note": "Kiểm toán tự động bởi AI (vai integrity-auditor B), không phải người kiểm. Không đọc data/runs/ và không đọc kết quả kiểm toán viên A. Không sửa file dữ liệu nào; bản 2131/2026 chỉ tải vào scratchpad để kiểm.",
+ "date": "2026-09-26",
+ "atoms": [
+  {
+   "atom_id": "P-controls-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict": "fix",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.12 (tr. in 11), lớp chữ (không OCR): span có nguyên văn; verify_span OK.",
+    "(b) «chỉ số FEV1/FVC < 70% sau test HPPQ» — đúng giá trị/đơn vị/dấu so sánh; cùng giá trị tr.13, tr.14, tr.83 (lưu đồ).",
+    "(c) quần thể người lớn, đo CNHH sau test HPPQ tại cơ sở có máy — khớp mục 1.2.2; không thấy giá trị Bộ Y tế khác cho cùng slot.",
+    "(d) GOLD 2026 (sha fa12e8e2…, bản đệm) PDF p.32 (tr. in 21): post-bronchodilator FEV1/FVC < 0.7 bắt buộc để chẩn đoán COPD — khớp giá trị, đơn vị (tỉ số 0,7 = 70%), quần thể.",
+    "HIỆU LỰC: 2767/2023 ĐÃ BỊ THAY. QĐ 2131/QĐ-BYT 14/7/2026 (bản đăng trên trang bệnh viện chính thức: https://bvdkbaclieu.gov.vn/upload/1000079/20260807/804_Quyet-dinh-2131-QD-BYT_3a0b4fb756.pdf ; sha256 3cdd2df54187a017a6fb06b54d66268e12e17cf41fde823c7eb7f9965d7f6c16; 130 trang; kiểm toán viên chỉ tải vào scratchpad, KHÔNG ghi vào data/raw) PDF tr.1 Điều 3: «Quyết định này có hiệu lực kể từ ngày ký, ban hành và thay thế Quyết định số 2767/QĐ-BYT ngày 04 tháng 07 năm 2023» (dấu ký số: '2131 14 7'). Manifest dòng 2131/2026 đang ghi 'CHƯA XÁC MINH … chưa thấy văn bản'.",
+    "Giá trị trong văn bản hiện hành 2131/2026 KHÔNG đổi: PDF tr.14 (tr. in 4) «Chẩn đoán xác định khi: rối loạn thông khí tắc nghẽn không hồi phục hoàn toàn sau test đáp ứng với thuốc giãn phế quản: chỉ số FEV1/(F)VC < 70%» (kèm câu mới: so với LLN chính xác hơn giá trị 70%)."
+   ],
+   "proposed_fix": "Đưa 2131/2026 vào kho (nguồn bệnh viện chính thức ở trên hoặc bản kcb.vn nếu có), cập nhật manifest (2131/2026 supersedes 2767/2023). Trích lại mẩu từ 2131/2026 PDF tr.14 (guideline, page, span, valid_from 2026-07-14); giữ giá trị < 70%; ghi 2767/2023 vào superseded (cùng giá trị). Làm lại đoạn A3 từ văn bản mới. Không đổi câu hỏi."
+  },
+  {
+   "atom_id": "P-controls-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict": "fix",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.23 (tr. in 22), lớp chữ: span nguyên văn mục 2.4.2; verify_span OK.",
+    "(b) «PaO2 ≤ 55 mmHg hoặc SaO2 ≤ 88% trên hai mẫu máu trong vòng 3 tuần» — đúng 55 mmHg, dấu ≤.",
+    "(c) cùng trang nhánh «PaO2 từ 56 - 59 mmHg … kèm thêm một trong các biểu hiện» (suy tim phải/đa hồng cầu/tăng áp phổi) — câu hỏi đã loại đúng các bệnh kèm này; quần thể khớp.",
+    "(d) GOLD 2026 PDF p.87 (tr. in 76): LTOT khi PaO2 ≤ 55 mmHg (7.3 kPa) hoặc SaO2 ≤ 88%, xác nhận 2 lần trong 3 tuần — khớp; nhánh 55–60 mmHg kèm tăng áp phổi/phù/đa hồng cầu tương ứng nhánh VN đã loại.",
+    "HIỆU LỰC: 2767/2023 ĐÃ BỊ THAY. QĐ 2131/QĐ-BYT 14/7/2026 (bản đăng trên trang bệnh viện chính thức: https://bvdkbaclieu.gov.vn/upload/1000079/20260807/804_Quyet-dinh-2131-QD-BYT_3a0b4fb756.pdf ; sha256 3cdd2df54187a017a6fb06b54d66268e12e17cf41fde823c7eb7f9965d7f6c16; 130 trang; kiểm toán viên chỉ tải vào scratchpad, KHÔNG ghi vào data/raw) PDF tr.1 Điều 3: «Quyết định này có hiệu lực kể từ ngày ký, ban hành và thay thế Quyết định số 2767/QĐ-BYT ngày 04 tháng 07 năm 2023» (dấu ký số: '2131 14 7'). Manifest dòng 2131/2026 đang ghi 'CHƯA XÁC MINH … chưa thấy văn bản'.",
+    "Giá trị trong 2131/2026 KHÔNG đổi: PDF tr.26 (tr. in 16) mục 2.5.2 «PaO2 ≤ 55 mmHg hoặc SaO2 ≤ 88% trên hai mẫu máu trong vòng 3 tuần, người bệnh trong giai đoạn ổn định» (số mục đổi 2.4.2 → 2.5.2)."
+   ],
+   "proposed_fix": "Trích lại từ 2131/2026 PDF tr.26, mục 2.5.2 (guideline/page/span/section/valid_from); giữ giá trị ≤ 55 mmHg; ghi 2767/2023 vào superseded (cùng giá trị); làm lại đoạn A3."
+  },
+  {
+   "atom_id": "P-controls-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "fail",
+   "d": "pass",
+   "currency": "fail",
+   "verdict": "error",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.31 (tr. in 30), lớp chữ: span nguyên văn; verify_span OK.",
+    "(b) theo văn bản ghi: «30-40 mg/ngày uống 1 lần vào buổi sáng trong 5-7 ngày» — 5–7 ngày đúng như 2767/2023.",
+    "HIỆU LỰC: 2767/2023 ĐÃ BỊ THAY. QĐ 2131/QĐ-BYT 14/7/2026 (bản đăng trên trang bệnh viện chính thức: https://bvdkbaclieu.gov.vn/upload/1000079/20260807/804_Quyet-dinh-2131-QD-BYT_3a0b4fb756.pdf ; sha256 3cdd2df54187a017a6fb06b54d66268e12e17cf41fde823c7eb7f9965d7f6c16; 130 trang; kiểm toán viên chỉ tải vào scratchpad, KHÔNG ghi vào data/raw) PDF tr.1 Điều 3: «Quyết định này có hiệu lực kể từ ngày ký, ban hành và thay thế Quyết định số 2767/QĐ-BYT ngày 04 tháng 07 năm 2023» (dấu ký số: '2131 14 7'). Manifest dòng 2131/2026 đang ghi 'CHƯA XÁC MINH … chưa thấy văn bản'.",
+    "GIÁ TRỊ HIỆN HÀNH KHÁC: 2131/2026 PDF tr.35 (tr. in 25), mục 3.4.3 Điều trị ngoại trú, c) Corticosteroid: «Prednisone hoặc prednisolone hoặc methylprednisolone: 30-40 mg/ngày uống 1 lần vào buổi sáng trong 5 ngày.» (đã so bằng ảnh trang). Nội trú 2131/2026 PDF tr.38 «Thời gian dùng: thường 5 ngày»; lưu đồ PDF tr.98 (tr. in 88) «Thời gian điều trị: 5 ngày, tránh sử dụng kéo dài». → giá trị Bộ Y tế hiện hành là 5 ngày, không phải 5–7.",
+    "(c) Bỏ sót trong CHÍNH 2767/2023: Hình 1 lưu đồ xử trí đợt cấp, PDF tr.85 (tr. in 84), nhánh 'Điều trị' (ngoại trú) có Corticosteroid***; chú thích «*** Corticosteroid: prednisolon (uống) 1mg/kg/ngày … Thời gian điều trị: tối thiểu 5 ngày hoặc đến khi cải thiện trên lâm sàng» (đã xem ảnh trang: dòng in nghiêng đậm, áp cho cả chú thích). Ghi chú mẩu không nhắc; ghi chú còn nói liều 1 mg/kg/ngày là khác biệt của bản 2018 (ứng viên lệch phiên bản) — sai, vì 2767/2023 tr.85 vẫn ghi 1 mg/kg/ngày.",
+    "(d) GOLD 2026 PDF p.114 (tr. in 103): 40 mg prednisone-tương đương/ngày trong 5 ngày; p.103: tối đa 5 ngày cho đợt cấp trung bình/nặng — khớp giá trị ghi (5 ngày)."
+   ],
+   "proposed_fix": "Trích lại từ 2131/2026 PDF tr.35 (mục 3.4.3 c): vn = 5 ngày (lo=hi=5). Chuyển 2767/2023 tr.31 (5–7 ngày) vào superseded → mẩu trở thành mẩu lệch phiên bản có tên (vẫn concordant với GOLD = 5). Sửa ghi chú: 1 mg/kg/ngày còn trong lưu đồ 2767/2023 tr.85 nên không phải khác biệt riêng của 4562/2018. Làm lại đoạn A3; câu hỏi giữ nguyên. Nếu không đưa được 2131/2026 vào kho trước ngày đóng băng thì loại mẩu (giá trị 5–7 không còn hiện hành)."
+  },
+  {
+   "atom_id": "P-controls-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict": "fix",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.23 (tr. in 22), lớp chữ: span nguyên văn; verify_span OK; vị trí cùng giá trị tr.21 và moh_neighbour ≥ 100 (tr.23) đều --find đúng trang.",
+    "(b) «Bệnh nhân có thể có đáp ứng tốt với ICS khi có bạch cầu ái toan máu ≥300 tế bào/µL» — đúng 300, đơn vị tế bào/µL, dấu ≥.",
+    "(c) câu hỏi thu hẹp về 1 đợt cấp trung bình khi đang đơn trị LABA/LAMA; bối cảnh 'còn đợt cấp sau điều trị ban đầu' ở cuối tr.22 — khớp.",
+    "(d) GOLD 2026: giá trị ≥ 300 tế bào/µL đúng tại PDF p.161 (tr. in 150, ngưỡng đỉnh quan hệ eos–ICS) và Figure 3.10 PDF p.78 (tr. in 67: ≥ 300 'strongly favors' thêm ICS; 100 đến < 300 'favors'). LOCATOR p.132 (tr. in 121) SAI BỐI CẢNH: thuộc mục COPD kèm giãn phế quản (bronchiectasis). Lưu ý: GOLD p.77 khuyến nghị đợt cấp khi đơn trị → LABA+LAMA (không có nhánh eos) — khác cách xử trí, không đổi slot ngưỡng.",
+    "HIỆU LỰC: 2767/2023 ĐÃ BỊ THAY. QĐ 2131/QĐ-BYT 14/7/2026 (bản đăng trên trang bệnh viện chính thức: https://bvdkbaclieu.gov.vn/upload/1000079/20260807/804_Quyet-dinh-2131-QD-BYT_3a0b4fb756.pdf ; sha256 3cdd2df54187a017a6fb06b54d66268e12e17cf41fde823c7eb7f9965d7f6c16; 130 trang; kiểm toán viên chỉ tải vào scratchpad, KHÔNG ghi vào data/raw) PDF tr.1 Điều 3: «Quyết định này có hiệu lực kể từ ngày ký, ban hành và thay thế Quyết định số 2767/QĐ-BYT ngày 04 tháng 07 năm 2023» (dấu ký số: '2131 14 7'). Manifest dòng 2131/2026 đang ghi 'CHƯA XÁC MINH … chưa thấy văn bản'.",
+    "Giá trị trong 2131/2026 KHÔNG đổi: PDF tr.25 (tr. in 15) «Nếu người bệnh đang được điều trị LABA hoặc LAMA đơn trị liệu và BCAT/máu ≥ 300 tế bào/µL thì cân nhắc nâng bậc lên ICS+LABA+LAMA»; tr.23 «BCAT ≥ 300 tế bào/µl, ngưỡng để nhận biết nhóm người bệnh có khả năng cao hưởng lợi … từ liệu pháp có chứa ICS». Nhánh ≥ 100 cho đơn trị (moh_neighbour hiện tại, 2767 tr.23) KHÔNG còn trong nhánh đơn trị của 2131 (≥ 100 chỉ còn ở nhánh LABA+LAMA và ICS+LABA)."
+   ],
+   "proposed_fix": "Trích lại từ 2131/2026 PDF tr.25 (mục 2.4.2 b) và tr.23; giữ ≥ 300 tế bào/µL; ghi 2767/2023 vào superseded (cùng giá trị); cập nhật moh_neighbour theo 2131 (≥ 100 thuộc nhánh LABA+LAMA — quần thể khác) và same_doc_locations; ghi chú ICS/LABA → ICS+LABA+LAMA. Sửa locator GOLD: thay p.132 bằng Figure 3.10 p.78 (tr. in 67), giữ p.161."
+  },
+  {
+   "atom_id": "P-controls-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.63 (tr. in 63), lớp chữ: span nguyên văn (ký tự gạch đầu dòng U+F02D giữ nguyên); verify_span OK.",
+    "(b) «Doxycyclin: liều 0,1 g x 2 viên uống chia 2 lần/ngày trong 5 ngày» → 2 viên 0,1 g/ngày chia 2 lần = 100 mg/lần; cách đọc khác (2 viên/lần) không hợp với 'chia 2 lần/ngày'.",
+    "(c) cùng trang: «Azithromycin … chỉ định cho phụ nữ có thai, trẻ dưới 10 tuổi, và những người có chống chỉ định với các thuốc tetracyclin và chloramphenicol» → quần thể loại trừ đúng; văn bản không có ngưỡng cân nặng (> 45 kg lấy từ CDC, không mâu thuẫn); không có liều doxycyclin khác cho cùng quần thể. Không tìm thấy hướng dẫn sốt mò mới hơn của Bộ Y tế (WebSearch 26/9/2026).",
+    "(d) CDC Clinical Overview of Scrub Typhus (mở bằng WebFetch 26/9/2026, không băm được): doxycycline 100 mg hai lần/ngày cho người lớn; trẻ < 45 kg 2,2 mg/kg; trang ghi cập nhật 15/5/2024 — khớp giá trị, quần thể, ngày phiên bản. Kiểm bằng bản tóm tắt WebFetch, không phải bản đệm có sha."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.84 (tr. in 84), lớp chữ: dòng bảng Burkholderia pseudomallei có nguyên văn (kể cả lỗi gốc 'Imipenem+cisplatin'); verify_span OK.",
+    "(b) «Ceftazidim 2 g/lần, tiêm tĩnh mạch chậm 8 giờ/lần» — 2 g = 2000 mg/lần.",
+    "(c) Kiểm chéo văn bản chuyên biệt hiện hành 6101/2019 (Hướng dẫn CĐ, ĐT bệnh Whitmore) PDF tr.4 (tr. in 3), lớp chữ bị lỗi mã hóa phông → so bằng ẢNH trang: «Ceftazidim (lựa chọn ưu tiên): 2g tiêm tĩnh mạch chậm, mỗi 6 - 8 giờ … tối đa 8g/ngày»; «Với những trường hợp bệnh nhân cần điều trị tại các đơn vị hồi sức tích cực nên lựa chọn kháng sinh nhóm carbapenem» → quần thể 'khoa thường, không ICU' đúng. 2147/2026 PDF tr.53: «Ceftazidim 2g TTM mỗi 6h» (viêm phổi do B. pseudomallei). Cả ba văn bản: 2 g/lần.",
+    "(d) NT Health Melioidosis Guideline (bản đệm sha 54cfa18f…) PDF p.4: ceftazidime (ward) 2 g IV 6-hourly ≥ 14 ngày; meropenem cho ICU; PDF p.11: Version 11.0, approved 10/2/24, review date 10/2/26 — khớp; URL vẫn trả bản v11.0 ngày 26/9/2026 (WebSearch không thấy bản mới hơn)."
+   ],
+   "proposed_fix": "Không bắt buộc. Gợi ý: cân nhắc dùng 6101/2019 (văn bản riêng cho bệnh Whitmore, mới hơn 5642/2015) làm nguồn chính khi làm được span (cần OCR/sidecar vì lớp chữ lỗi phông)."
+  },
+  {
+   "atom_id": "P-controls-07",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.29 (tr. in 29), lớp chữ: span nguyên văn; verify_span OK.",
+    "(b) «metronidazol 500 mg, truyền TM cách 6 - 8 giờ/lần» — 500 mg/lần.",
+    "(c) PDF tr.28: «người bệnh uốn ván nên được điều trị tại khoa hồi sức tích cực» — quần thể khớp; quét data/interim/text: không văn bản Bộ Y tế nào khác nêu kháng sinh điều trị uốn ván (metronidazol tr.85 của 5642/2015 thuộc nhiễm khuẩn kỵ khí, bệnh khác). Không tìm thấy hướng dẫn uốn ván mới hơn (WebSearch 26/9/2026).",
+    "(d) WHO/HSE/GAR/DCE/2010.2 (bản đệm sha 637bb6b9…) p.5, Antibiotic treatment: metronidazole 500 mg mỗi 6 giờ, TM hoặc uống; ngày ấn bản January 2010 (p.1) — khớp."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-08",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.29, lớp chữ: span nguyên văn; verify_span OK.",
+    "(b) «Globulin miễn dịch uốn ván từ người (HTIG) liều 3000 - 6000 đơn vị tiêm bắp» — 3000–6000 IU, tiêm bắp.",
+    "(c) quần thể điều trị bệnh uốn ván, sản phẩm HTIG (không phải SAT) — khớp; các moh_neighbour kiểm lại đúng trang: 3312/2015 tr.79 (HTIG 250 UI, SAT 1500 UI, dự phòng vết thương trẻ em), 5642/2015 tr.32 (SAT 1500 đơn vị dự phòng), tr.29 (test SAT 75 đơn vị); không có liều HTIG điều trị khác trong kho.",
+    "(d) WHO 2010 (sha 637bb6b9…) p.5 Immunotherapy: human TIG 500 units, tiêm bắp hoặc TM — khớp. CDC Tetanus Clinical Care (WebFetch 26/9/2026, không băm): một liều 500 IU TIG tiêm bắp; trang nêu 500 IU có vẻ hiệu quả như liều cao hơn 3.000–6.000 IU; last reviewed 8/9/2026 — khớp giá trị, quần thể, phiên bản."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-09",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "fail",
+   "verdict": "error",
+   "evidence": [
+    "(a) 5481/2020 PDF tr.11 (tr. in 9), lớp chữ: span nguyên văn; verify_span OK. 1353/2021 (sửa 5481/2020) chỉ bổ sung người biên soạn và sửa mục insulin tr.37 — không đụng tiêu chí BMI. Không tìm thấy văn bản thay 5481/2020 (WebSearch 26/9/2026).",
+    "(b) «a) Người trưởng thành ở bất kỳ tuổi nào có thừa cân hoặc béo phì (BMI ≥ 23 kg/m2) và có kèm một trong số các yếu tố nguy cơ sau» — ≥ 23 kg/m², dấu ≥. 3087/2020 tr.7 cùng câu (--find → [7]).",
+    "(c) quần thể người trưởng thành không triệu chứng, loại thai kỳ/HIV/ung thư — khớp. Rủi ro DR8 (3879/2014 ch.5 Bảng 2 tr.247 'Tăng cân 25 - 29,9', tr.249 áp dụng cả Bảng 2) đã được mẩu ghi và treo HG2.3; kiểm lại --find đúng trang.",
+    "(d) WHO fact sheet (bản đệm sha dc1d9d01…, ngày 8/12/2025): người lớn thừa cân BMI ≥ 25 — khớp. WPRO/IASO/IOTF 2000 (sha b1188634…) ảnh PDF p.19 (tr. in 18) Table 2.2: Overweight ≥ 23 ở người châu Á trưởng thành — khớp.",
+    "(d) USPSTF 2021-08-24 (sha c53c89e6…): giá trị 25 đúng cho quần thể CHUNG, nhưng cùng trang ghi ngưỡng thấp hơn BMI ≥ 23 cho người Mỹ gốc Á (Clinician Summary; Assessment of Risk). Quần thể của giá trị Bộ Y tế là người Việt Nam (châu Á; câu hỏi A1 có dấu hiệu Việt Nam) → giá trị USPSTF đúng quần thể là 23 (trùng Bộ Y tế). Ghi US = 25 là lệch quần thể: câu trả lời '25' sẽ bị quy là 'theo chuẩn Mỹ' dù chuẩn Mỹ cho người gốc Á là 23. Ghi chú của mẩu có nêu điều này nhưng vẫn giữ 25 → kiểm toán viên B không đồng ý."
+   ],
+   "proposed_fix": "Sửa bản ghi foreign US: hoặc (i) values = ≥ 23 kg/m² với quần thể 'người Mỹ gốc Á' (US thành concordant), hoặc (ii) bỏ bản ghi US; nguồn xung đột còn lại là WHO_global ≥ 25 (fact sheet không có ngưỡng theo sắc tộc). Cập nhật phương án trắc nghiệm vai 'foreign:US+WHO_global' → 'foreign:WHO_global'. Giữ mặc định hiện có: không đưa mẩu vào tập xung đột xác nhận cho tới khi HG2.3 quyết DR8 (3879/2014 Bảng 2)."
+  }
+ ]
+}

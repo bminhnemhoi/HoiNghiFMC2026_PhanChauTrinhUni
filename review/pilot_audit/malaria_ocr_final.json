@@ -1,0 +1,225 @@
+{
+ "topic": "malaria_ocr",
+ "role": "trọng tài (integrity-auditor + atom-extractor)",
+ "audited_by": "AI (Claude): kiểm toán viên A, kiểm toán viên B và trọng tài — KHÔNG phải người, KHÔNG phải bác sĩ. Người dùng giao HG1.2 cho kiểm toán tự động.",
+ "date": "2026-09-26",
+ "sources": [
+  "review/pilot_audit/malaria_ocr_A.json",
+  "review/pilot_audit/malaria_ocr_B.json",
+  "state/gates/HG1.2_decisions.md (mục A)"
+ ],
+ "blind_rule": "Không đọc/liệt kê data/runs/. Không chép đoạn văn hướng dẫn nước ngoài vào dữ liệu (chỉ giá trị + vị trí).",
+ "arbiter_method": "Trọng tài chỉ mở lại các tiêu chí có bất đồng hoặc fail/uncertain. Đã mở: ảnh 3377/2023 tr. PDF 11 và 15 cùng lớp chữ tr.15; 3312/2015 tr.517 và 521 (lớp chữ) cùng tiêu đề trong manifest; CDC bản đệm sha 78930525… p.1–2 (băm lại khớp); WHO 2026 bản đệm sha 4e2c67b2… p.20, 21, 201, 207 (băm lại khớp); câu hỏi thí điểm của 01, 02 và 07 (data/interim/pilot_questions.jsonl, chỉ đọc).",
+ "counts": {
+  "ok": 3,
+  "fixed": 5,
+  "excluded": 0,
+  "uncertain": 0
+ },
+ "counts_note": "Trong 5 mẩu đã sửa: 2 mẩu là lỗi giá trị/nguồn (02, 07); 1 mẩu đổi tập vn theo quyết định mặc định A.2 (01); 2 mẩu chỉ sửa vị trí/ghi chú (04, 05).",
+ "decisions_defaults_applied": [
+  "A.2 (P-malaria_ocr-01): KHÔNG — bỏ khỏi vn các mục chỉ dựa trên 315/2015; ghi extraction.decision_default",
+  "A.3 (P-malaria_ocr-07): không hợp 1,5 mg/kg/ngày của 3312/2015 tr.521; ghi extraction.decision_default"
+ ],
+ "arbiter_rules_for_DECISIONS": [
+  "Phạm vi 3312/2015: hướng dẫn nhi, chỉ áp cho quần thể trẻ em. Dòng 'Người lớn > 15 tuổi' là mốc liều tham chiếu, không phải khuyến cáo cho người lớn. Áp cho 01–07 (không đổi giá trị nào so với trước).",
+  "Giá trị trong cùng văn bản ở phụ lục/bảng không ghi ngoại lệ cho quần thể thì được hợp vào tập Bộ Y tế theo §1.2/DR8 và gắn [concordant_by_union] nếu điều đó làm mẩu thành concordant (P-malaria_ocr-07). Cách đọc 'quy định riêng thắng' chỉ dùng cho phân tích độ nhạy (khám phá).",
+  "Giá trị nước ngoài nằm ngoài slot của câu hỏi (P-malaria_ocr-02: AP không phải ACT) bị bỏ và lưu ở extraction.removed_foreign_values."
+ ],
+ "data_changes": [
+  "data/interim/pilot/malaria_ocr.jsonl: đã sửa P-malaria_ocr-01, -02, -04, -05, -07 (xem changed_fields). Không sửa 03, 06, 08. sha256 trước a57c7942a7546d1c…, sau 5406c4df54072d6f…"
+ ],
+ "backup": "C:/Users/Admin/AppData/Local/Temp/claude/d--phan-chau-trinh---y-khoa/1e1ea5eb-0832-473b-882a-b9921c8f5c59/scratchpad/audit/malaria_ocr_before.jsonl (sha256 a57c7942a7546d1c88f9657eb7d3b721798f5568dbba7c54977954ea5e3a3696)",
+ "fix_script": "C:/Users/Admin/AppData/Local/Temp/claude/d--phan-chau-trinh---y-khoa/1e1ea5eb-0832-473b-882a-b9921c8f5c59/scratchpad/audit/malaria_ocr_fix.py (idempotent: chạy lần 2 không thay đổi)",
+ "self_check": {
+  "verify_span": "OK 8/8 (python -m vnsoc.extract.verify_span data/interim/pilot/malaria_ocr.jsonl)",
+  "schema": "OK 8 dòng hợp lệ (python -m vnsoc.schemas atom)",
+  "pilot_merge": "--only malaria_ocr --no-checklist: trước sửa giữ 8 {conflict 5, indistinguishable 2, concordant 1}; sau sửa giữ 8 {conflict 4, indistinguishable 2, concordant 2}, loại 0. Thay đổi duy nhất về trạng thái: 07 conflict → concordant (có chủ đích). 03, 06, 08 giống hệt; 04, 05 chỉ đổi locator/chữ; mồi của 01, 03, 06 không đổi."
+ },
+ "open_items": [
+  "Người điều phối ghi docs/DECISIONS.md: áp A.2 (01), A.3 (07), quy tắc phạm vi 3312/2015, hợp nội bộ 2,4 mg/kg ở 07 kèm độ nhạy khám phá, bỏ AP ở 02.",
+  "Chạy lại pilot_merge đầy đủ (pilot_atoms.jsonl + checklist HG1.2); lượt này dùng --only nên chưa cập nhật tệp chung.",
+  "Bộ câu hỏi v1, dựng lại bằng qgen, không làm tay: trắc nghiệm 01 (tập vn nay chỉ một mục) có thể đủ điều kiện; trắc nghiệm 07 hết đủ điều kiện (mẩu concordant, ô 2,4 mg/kg nay là giá trị Bộ Y tế). Câu trả lời ngắn không cần sửa.",
+  "Hạn chế của lượt thí điểm đã chạy: 07 được chạy khi còn là conflict (có trắc nghiệm có ô 'foreign:US' 2,4), 01 được chạy khi vn còn 4 mục. Phân tích thí điểm phải dùng trạng thái đã tính lại.",
+  "Mức mã (ngoài tệp mẩu, đã ghi trong notes từ trước): bộ chấm đọc '2.4 mg/kg at 0, 12 and 24 hours' → nhãn 5; 'daily' không được đọc là '/ngày'; số viết bằng chữ ('seven days') → nhãn 6; drugs_cover bỏ qua thuốc thêm vào."
+ ],
+ "atoms": [
+  {
+   "atom_id": "P-malaria_ocr-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": false,
+    "d": true
+   },
+   "resolution": "(c) A pass, B uncertain: B chưa chắc 315/2015 tr.75 có áp cho thai 3 tháng đầu ở vùng kháng chloroquin không. Đây đúng là câu hỏi HG1.2_decisions A.2, người dùng đã giao Claude áp mặc định KHÔNG. Đã áp: bỏ khỏi vn 3 mục chỉ dựa trên 315/2015 (chloroquin, quinin đơn trị, SP), vn = {quinin + clindamycin} (3377/2023 tr.10, trùng 3312/2015 tr.520 và WHO 2015). Sau khi áp, (c) đạt. Trạng thái vẫn conflict (AL của WHO 2026 p.18 và CDC p.6 nằm ngoài tập). Mâu thuẫn 315/2015 ↔ 3377/2023 vẫn đếm là kết quả phụ DR8; phân tích với vn đầy đủ chỉ là độ nhạy (khám phá). Ghi thêm quy tắc phạm vi 3312/2015 (hướng dẫn nhi) vào dr8_sources[1]; giá trị không đổi vì trùng. Đổi giá trị ở đây là do quyết định mặc định, không phải lỗi trích.",
+   "changed_fields": [
+    "vn (bỏ 3 mục DR8 từ 315/2015: chloroquine, quinine, sulfadoxine-pyrimethamine)",
+    "extraction.decision_default (mới, A.2)",
+    "extraction.dr8_sources[0].merged_into_vn",
+    "extraction.dr8_sources[1].merged_into_vn",
+    "extraction.notes (thêm)",
+    "extraction.audit_fix (mới)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-malaria_ocr-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "fail",
+   "verdict_final": "error",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": false,
+    "d": false
+   },
+   "resolution": "(c) A pass, B uncertain về phạm vi 3312/2015. Trọng tài quyết: 3312/2015 là 'Hướng dẫn chẩn đoán và điều trị một số bệnh thường gặp ở trẻ em' (manifest; tr.517 là chương 'SỐT RÉT Ở TRẺ EM'). Dòng '+ Người lớn > 15 tuổi' ở tr.521 nằm dưới '3.2.3. Liều điều trị: trẻ em không dùng vượt quá liều người lớn', tức chỉ là mốc liều tham chiếu. Vì vậy không áp cho người lớn → PASS, không hợp DHA-PPQ. Quy tắc này áp nhất quán cho 01–07. (d) A fail, B pass (B có nêu ở (c) rằng AP nằm ngoài phạm vi câu hỏi). Trọng tài mở lại CDC bản đệm sha 78930525… p.1–2: Table 1 'Listed in order of preference', A = AL, B = AP. AP không phải ACT, trong khi câu hỏi VI/EN chỉ hỏi ACT lựa chọn đầu tiên → FAIL. Đã sửa bằng cách bỏ AP khỏi foreign[US].values (lưu ở extraction.removed_foreign_values) và sửa locator. Trạng thái vẫn indistinguishable, không ảnh hưởng H1/H2.",
+   "changed_fields": [
+    "foreign[US/CDC].values (bỏ 'B. atovaquon–proguanil')",
+    "foreign[US/CDC].locator",
+    "extraction.removed_foreign_values (mới)",
+    "extraction.notes (thêm)",
+    "extraction.audit_fix (mới)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-malaria_ocr-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. OCR '>' (ảnh '≥') và 'đề' (ảnh 'để') chỉ sai chữ, đã ghi ở ocr_visual_check. 3312/2015 tr.522 nằm ngoài quần thể theo quy tắc phạm vi nhi. Không đổi dữ liệu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-malaria_ocr-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass và cùng xếp fix: locator WHO 2026 ghi 'liều thấp 3,5 mg/kg (0,5 × 7) chỉ gợi ý cho tiểu lục địa Ấn Độ và châu Mỹ', không đầy đủ. Trọng tài mở lại WHO 2026 bản đệm sha 4e2c67b2… Ở p.20, khuyến cáo xét nghiệm G6PD 2024 (strong) cho người không thiếu G6PD dùng 0,5 mg/kg/ngày × 14 hoặc × 7 ngày. Ở p.201, nhánh bán định lượng > 70% chỉ liệt kê liều cao. Đã sửa locator và chữ của giá trị 0,5, thêm ghi chú: xung đột với WHO chỉ nằm ở phương án 1 mg/kg/ngày. Giá trị số, trạng thái conflict và mồi [] không đổi.",
+   "changed_fields": [
+    "foreign[WHO 2026].locator",
+    "foreign[WHO 2026].values[0,5].text",
+    "extraction.notes (thêm)",
+    "extraction.audit_fix (mới)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-malaria_ocr-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass và cùng xếp ok, mỗi bên có một gợi ý tùy chọn giống nhau: thêm WHO 2026 p.20 (liệu trình 7 ngày ở 0,5 mg/kg/ngày). Trọng tài áp gợi ý đó (locator + chữ của giá trị 7 ngày) để nhất quán với mẩu 04. Giá trị {14; 7} ngày và trạng thái indistinguishable không đổi.",
+   "changed_fields": [
+    "foreign[WHO 2026].locator",
+    "foreign[WHO 2026].values[7 ngày].text",
+    "extraction.notes (thêm)",
+    "extraction.audit_fix (mới)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-malaria_ocr-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. OCR '—' và 'gio' chỉ sai chữ, đã ghi. Không đổi dữ liệu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-malaria_ocr-07",
+   "a": "pass",
+   "b": "pass",
+   "c": "fail",
+   "d": "pass",
+   "verdict_final": "error",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "(c) A và B cùng fail. Trọng tài xem ảnh 3377/2023 tr. PDF 15 (Phụ lục I, Bảng 1 'Artesunat tiêm, lọ 60 mg'): «Liều tính theo cân nặng: Giờ đầu tiêm 2,4 mg/kg, tiêm nhắc lại 2,4 mg/kg vào giờ thứ 12». Dòng này không có ngoại lệ < 20 kg, và bảng theo tuổi cùng trang có hàng '< 1 tuổi'. Tr.11 trỏ tới Bảng 1 nhưng lại ghi 3 mg/kg/lần cho trẻ < 20 kg. A và B khác nhau ở cách xử lý: A nghiêng hợp giá trị, B nghiêng coi quy định riêng thắng. Trọng tài chọn HỢP, theo đề cương §1.2 và DR8 (đăng ký trước: mọi giá trị hiện hành cho đúng quần thể đều đúng, mâu thuẫn nội bộ báo cáo như kết quả phụ). Lý do thêm: đây là tiền lệ đã dùng khi hợp giá trị trong cùng văn bản (TT51 PL X ở P-anaphylaxis_ocr-01/-05), và cách này bảo thủ với H1. Kết quả: vn = {3; 2,4}. pilot_merge tính lại → concordant, mẩu rời tập H1 và được gắn [concordant_by_union] (không dùng làm đối chứng sạch). Độ nhạy khám phá: vn = {3} → conflict. Áp mặc định A.3: không hợp 1,5 mg/kg/ngày (3312/2015 tr.521). Mồi 3,6 bị bỏ vì quy tắc không cho mồi khi không còn giá trị nước ngoài xung đột; không chọn tay.",
+   "changed_fields": [
+    "vn (+2,4 mg/kg, 3377/2023 Phụ lục I Bảng 1 tr. PDF 15)",
+    "extraction.dr8_sources (+1 nguồn cùng văn bản 3377/2023 tr.15, kèm image_text/ocr_note)",
+    "extraction.dr8_sources[0].merged_into_vn (3312/2015, A.3)",
+    "extraction.decision_default (mới, A.3)",
+    "decoy ([3,6] → [])",
+    "extraction.decoy_rule",
+    "extraction.notes (thêm)",
+    "extraction.audit_fix (mới)",
+    "conflict_status (tính lại bởi pilot_merge: conflict → concordant)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-malaria_ocr-08",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. Bảng 1 tr.15 (2,4 mg/kg) nhất quán với span. Không đổi dữ liệu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  }
+ ]
+}

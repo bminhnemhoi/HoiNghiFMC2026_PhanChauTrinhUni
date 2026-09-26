@@ -1,0 +1,133 @@
+{
+ "topic": "immunization",
+ "audited_by": "AI (Claude): kiểm toán viên A, kiểm toán viên B và trọng tài — KHÔNG phải người, không phải bác sĩ",
+ "date": "2026-09-26",
+ "sources": [
+  "review/pilot_audit/immunization_A.json",
+  "review/pilot_audit/immunization_B.json"
+ ],
+ "blind_rule": "Không đọc/liệt kê data/runs/.",
+ "arbiter_method": "Trọng tài chỉ mở lại các điểm bất đồng: (1) hiệu lực TT52/2025 — ảnh TT13/2026 tr.18 và tr.3, cùng 3 WebSearch; (2) locator EU_UK của P-04 — bản đệm UKHSA sha 61db065b…, tìm mọi '[footnote 4]'; (3) locator WHO PP 2017 của P-01 — bản đệm sha 704cfe53… tr.1, đối chiếu Table 1 sha 9861c483… tr.8. Thêm: xem lại ảnh tr.18 cho span OCR của P-03. SHA-256 của các bản đệm, tính lại, đều khớp page_sha256. Không chép đoạn văn hướng dẫn nước ngoài vào dữ liệu (chỉ giá trị, vị trí và nhãn mô tả tự viết). Trích Bộ Y tế ≤ 200 ký tự.",
+ "counts": {
+  "ok": 1,
+  "fixed": 2,
+  "excluded": 3,
+  "uncertain": 0,
+  "note": "fixed và excluded chồng nhau: P-01 và P-04 được sửa locator (không đổi giá trị), đồng thời bị loại khỏi phân tích chính vì văn bản hết hiệu lực. Phán quyết cuối: ok 1 (P-03), error 3 (P-01, P-02, P-04; source_not_current), fix độc lập 0, uncertain 0."
+ },
+ "data_changes": [
+  "data/interim/pilot/immunization.jsonl, P-immunization-01: foreign[WHO_global PP 2017].locator, values[0].text (chỉ mô tả), extraction.audit_fix.",
+  "data/interim/pilot/immunization.jsonl, P-immunization-04: foreign[EU_UK].locator (bỏ đuôi footnote 4), extraction.audit_fix.",
+  "data/interim/pilot/immunization.jsonl, P-immunization-03: thêm vào extraction.notes (trạng thái pháp lý Mỹ, theo nguồn thứ cấp đã băm).",
+  "Không đổi giá trị nào: vn; foreign lo/hi/unit/cmp; moh_neighbour; decoy; tolerance; conflict_status; span; page; population. P-immunization-02 giống hệt từng byte.",
+  "Sao lưu trước khi sửa: C:/Users/Admin/AppData/Local/Temp/claude/d--phan-chau-trinh---y-khoa/1e1ea5eb-0832-473b-882a-b9921c8f5c59/scratchpad/audit/immunization_before.jsonl (sha256 bc49005b62fe6023a9c3fa8d872fd213ddec348474d2f90da754defaf608e51f).",
+  "Bản đệm mới: data/cache/foreign/3d3987fc34cbded4b77c.html (Medical Daily 15/9/2026, sha256 3d3987fc34cbded4b77c9365ca279f34323cc69b54d408942dbd54d451209fe1)."
+ ],
+ "self_check": "pilot_merge --only immunization --no-checklist: giữ 4 mẩu {conflict 2, concordant 2}, loại 0. Kết quả giống hệt lượt chạy trước khi sửa (cùng conflict_status, mồi, decoy_rule). Schema atom OK 4/4; verify_span OK 4/4. Cảnh báo OCR của P-03 đã xử lý: trọng tài đã so với ảnh trang 18.",
+ "decisions_defaults_applied": [
+  "A.1 (TT52/2025 hết hiệu lực): mặc định (c). P-immunization-01/-02/-04 loại khỏi phân tích chính, giữ báo cáo mô tả. Quyết định này đã có sẵn trong data/interim/pilot_analysis_exclusions.yaml mục descriptive. KHÔNG đổi dữ liệu mẩu, KHÔNG thêm vào pilot_exclusions.yaml."
+ ],
+ "open_items": [
+  "P-immunization-03: BẮT BUỘC kiểm lại lịch CDC (liều sơ sinh viêm gan B, mẹ HBsAg âm tính) sau phiên Tòa Khu vực 1 ngày 06/10/2026 và trước 15/10/2026. Nếu lịch 1/2026 được khôi phục, bản ghi US có thể đổi, kéo theo trạng thái concordant.",
+  "P-immunization-01/-02/-04: có thể chuyển sang A.1(a) nếu tìm được hướng dẫn chuyên môn lịch TCMR hiện hành của Cục Phòng bệnh trước 15/10/2026 (nhập kho qua corpus-librarian, HG2.3).",
+  "Mã (ngoài quyền trọng tài): hàm checklist() trong src/vnsoc/extract/pilot_merge.py không in valid_to, extraction.hg_block và moh_neighbour. B chỉ ra rằng người kiểm chỉ đọc checklist sẽ không thấy việc TT52/2025 đã hết hiệu lực. Đề xuất chủ mã thêm các trường này.",
+  "Trong bài báo: 3 mẩu tiêm chủng được báo cáo mô tả, kèm hạn chế 'chuẩn Bộ Y tế về lịch TCMR sau 01/7/2026 chưa được công bố'."
+ ],
+ "atoms": [
+  {
+   "atom_id": "P-immunization-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict_final": "error",
+   "error_type": "source_not_current (chép đúng; văn bản neo hết hiệu lực trước ngày đóng băng)",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "verdict_agreement": false,
+   "resolution": "A và B cùng pass (a)–(d). Bất đồng chỉ nằm ở phán quyết: A cho 'ok' vì coi hiệu lực là cờ chờ người quyết, không phải lỗi trích dẫn; B cho 'error' vì văn bản neo không còn hiệu lực. Về sự kiện, hai bên khớp nhau, và trọng tài đã xác nhận lại từ ảnh trang. Trọng tài tự xem ảnh TT13/2026. Trang PDF 18, Điều 27 khoản 2 điểm d: «Thông tư số 52/2025/TT-BYT ngày 31 tháng 12 năm 2025 … bắt buộc.» nằm trong danh sách hết hiệu lực từ 01/7/2026. Trang PDF 3, Điều 5 khoản 4: «Lịch tiêm chủng và cách dùng vắc xin, sinh phẩm: thực hiện theo hướng dẫn của nhà sản xuất, hướng dẫn chuyên môn của Cục Phòng bệnh.» 3 WebSearch ngày 26/9/2026 (loại trang luật tư nhân bị cấm) chỉ thấy tin báo về TT13/2026, không thấy văn bản lịch tiêm nào của Cục Phòng bệnh ban hành sau 01/7/2026. Quyết: 'error' loại source_not_current. Không sửa được giá trị nên đề xuất loại khỏi phân tích chính theo A.1(c). Sửa phụ (fix, không đổi giá trị): A và B đều nêu locator của bản ghi WHO PP 2017. Trọng tài đọc bản đệm sha 704cfe53… trang 1: điều kiện của mốc 9 tháng là nơi nguy cơ tử vong sởi ở nhũ nhi còn cao; trang này không dùng cụm 'ongoing transmission'. Đã sửa locator và values[0].text (chỉ phần mô tả). Locator Table 1 fn 9 (sha 9861c483…, PDF p.8) nêu cả hai điều kiện nên giữ nguyên.",
+   "changed_fields": [
+    "foreign[WHO_global, PP 2017 summary].locator",
+    "foreign[WHO_global, PP 2017 summary].values[0].text (chỉ mô tả; lo/hi/unit giữ 9–9 tháng)",
+    "extraction.audit_fix"
+   ],
+   "exclude": true,
+   "exclude_scope": "phân tích chính/xác nhận (H1–H4); giữ dữ liệu, báo cáo mô tả",
+   "exclude_reason": "Không sửa được chắc chắn vì không có văn bản Bộ Y tế hiện hành chứa lịch tiêm để neo lại: TT52/2025 hết hiệu lực 01/7/2026; TT13/2026 Điều 5.4 dẫn sang hướng dẫn của Cục Phòng bệnh, văn bản này chưa tìm thấy. Giá trị chép đúng từ TT52/2025 nhưng không xác minh được là giá trị hiện hành tại ngày đóng băng 15/10/2026. Áp mặc định HG1.2 A.1(c): LOẠI KHỎI PHÂN TÍCH CHÍNH/XÁC NHẬN, GIỮ dữ liệu để báo cáo mô tả (đúng như mục 'descriptive' đã có trong data/interim/pilot_analysis_exclusions.yaml). KHÔNG thêm vào data/interim/pilot_exclusions.yaml, vì làm vậy sẽ xóa mẩu khỏi pilot_atoms. Có thể đưa lại vào phân tích chính nếu tìm được hướng dẫn chuyên môn lịch TCMR hiện hành của Cục Phòng bệnh trước 15/10/2026 (A.1(a))."
+  },
+  {
+   "atom_id": "P-immunization-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict_final": "error",
+   "error_type": "source_not_current (chép đúng; văn bản neo hết hiệu lực trước ngày đóng băng)",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "verdict_agreement": false,
+   "resolution": "A và B cùng pass (a)–(d): TT52/2025 tr.3, 7 tuổi; mốc 18 tháng ở tr.2; CDC 4–6 tuổi; UKHSA 3 tuổi 4 tháng = 40 tháng; WHO 4–7 tuổi. Bất đồng chỉ ở phán quyết (A ok, B error), do hiệu lực văn bản. Trọng tài quyết như P-immunization-01: 'error' loại source_not_current, loại khỏi phân tích chính theo A.1(c). Không có sửa trích dẫn.",
+   "changed_fields": [],
+   "exclude": true,
+   "exclude_scope": "phân tích chính/xác nhận (H1–H4); giữ dữ liệu, báo cáo mô tả",
+   "exclude_reason": "Không sửa được chắc chắn vì không có văn bản Bộ Y tế hiện hành chứa lịch tiêm để neo lại: TT52/2025 hết hiệu lực 01/7/2026; TT13/2026 Điều 5.4 dẫn sang hướng dẫn của Cục Phòng bệnh, văn bản này chưa tìm thấy. Giá trị chép đúng từ TT52/2025 nhưng không xác minh được là giá trị hiện hành tại ngày đóng băng 15/10/2026. Áp mặc định HG1.2 A.1(c): LOẠI KHỎI PHÂN TÍCH CHÍNH/XÁC NHẬN, GIỮ dữ liệu để báo cáo mô tả (đúng như mục 'descriptive' đã có trong data/interim/pilot_analysis_exclusions.yaml). KHÔNG thêm vào data/interim/pilot_exclusions.yaml, vì làm vậy sẽ xóa mẩu khỏi pilot_atoms. Có thể đưa lại vào phân tích chính nếu tìm được hướng dẫn chuyên môn lịch TCMR hiện hành của Cục Phòng bệnh trước 15/10/2026 (A.1(a))."
+  },
+  {
+   "atom_id": "P-immunization-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "verdict_agreement": true,
+   "resolution": "A và B cùng pass cả 4 tiêu chí và cùng cho 'ok'. Trọng tài tự xem ảnh TT13/2026 trang PDF 18 (trang quét): span khớp từng chữ, số '24' và chữ 'giờ' đúng. Các lỗi OCR 'Điêu 26', 'co sở', 'sinh pham' nằm ngoài span. Văn bản còn hiệu lực từ 01/7/2026 (Điều 27.1, ảnh). Chỉ thêm ghi chú về tình trạng pháp lý lịch Mỹ, theo nguồn thứ cấp đã băm (Medical Daily 15/9/2026, sha 3d3987fc…): lệnh ngày 16/3/2026 vẫn chặn lịch 1/2026, kể cả phiếu ACIP 12/2025 về liều sơ sinh viêm gan B; Tòa Khu vực 1 nghe tranh luận ngày 06/10/2026. Giữ yêu cầu BẮT BUỘC kiểm lại sau 06/10 và trước 15/10/2026. Không đổi giá trị.",
+   "changed_fields": [
+    "extraction.notes (thêm ghi chú trạng thái pháp lý Mỹ; không đổi giá trị)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-immunization-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict_final": "error",
+   "error_type": "source_not_current (chép đúng; văn bản neo hết hiệu lực trước ngày đóng băng)",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "verdict_agreement": false,
+   "resolution": "A và B cùng pass (a)–(d). Bất đồng: A cho 'fix' vì locator EU_UK dẫn footnote 4; B cho rằng footnote có trên trang và cho 'error' vì hiệu lực văn bản. Trọng tài đọc lại bản đệm UKHSA (sha 61db065b…, khớp): '[footnote 4]' chỉ xuất hiện MỘT lần, gắn với dòng 'Babies born to women with hepatitis B infection' trong bảng Selective immunisation programmes, không thuộc lịch thường quy. Vậy A đúng. Đã bỏ phần footnote 4 khỏi locator. Giá trị 18 tháng vẫn đúng theo hàng 'Eighteen months old' (born on or after 1 July 2024). Về hiệu lực: như P-immunization-01, 'error' loại source_not_current, loại khỏi phân tích chính theo A.1(c).",
+   "changed_fields": [
+    "foreign[EU_UK].locator (bỏ \"; footnote 4 'also at 18 months'\")",
+    "extraction.audit_fix"
+   ],
+   "exclude": true,
+   "exclude_scope": "phân tích chính/xác nhận (H1–H4); giữ dữ liệu, báo cáo mô tả",
+   "exclude_reason": "Không sửa được chắc chắn vì không có văn bản Bộ Y tế hiện hành chứa lịch tiêm để neo lại: TT52/2025 hết hiệu lực 01/7/2026; TT13/2026 Điều 5.4 dẫn sang hướng dẫn của Cục Phòng bệnh, văn bản này chưa tìm thấy. Giá trị chép đúng từ TT52/2025 nhưng không xác minh được là giá trị hiện hành tại ngày đóng băng 15/10/2026. Áp mặc định HG1.2 A.1(c): LOẠI KHỎI PHÂN TÍCH CHÍNH/XÁC NHẬN, GIỮ dữ liệu để báo cáo mô tả (đúng như mục 'descriptive' đã có trong data/interim/pilot_analysis_exclusions.yaml). KHÔNG thêm vào data/interim/pilot_exclusions.yaml, vì làm vậy sẽ xóa mẩu khỏi pilot_atoms. Có thể đưa lại vào phân tích chính nếu tìm được hướng dẫn chuyên môn lịch TCMR hiện hành của Cục Phòng bệnh trước 15/10/2026 (A.1(a))."
+  }
+ ]
+}

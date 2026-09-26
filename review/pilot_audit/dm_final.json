@@ -1,0 +1,107 @@
+{
+  "topic": "dm",
+  "date": "2026-09-26",
+  "role": "trọng tài (AI, Claude — vai integrity-auditor + atom-extractor)",
+  "reviewer_kind": "Kiểm bởi AI (Claude): kiểm toán viên A, B và trọng tài đều là AI. KHÔNG phải người kiểm, KHÔNG phải bác sĩ.",
+  "inputs": ["review/pilot_audit/dm_A.json", "review/pilot_audit/dm_B.json"],
+  "method": "So từng tiêu chí (a)–(d) của A và B: không có tiêu chí nào khác nhau, không có fail/uncertain. Trọng tài tự mở lại nguồn cho mọi chỗ sẽ sửa dữ liệu: WHO 2013 (bản đệm sha256 70afa6fb… băm lại khớp) tr. PDF 4, 5, 36, 37; WHO/IDF 2006 (sha256 ae658daa… khớp) tr. PDF 7, 9; ảnh 1470/2024 tr. PDF 13, 14; lớp chữ 5481/2020 tr. PDF 56. Không đọc data/runs/. Sao lưu trước khi sửa: scratchpad/audit/dm_before.jsonl. Script sửa kiểm bất biến (span, trang, quần thể, giá trị vn/foreign/decoy, dung sai, trạng thái, cat_options không đổi). Tự kiểm: vnsoc.schemas atom OK 8/8; pilot_merge --only dm giữ 8, loại 0 (như trước khi sửa).",
+  "summary": {"ok": 5, "fixed": 3, "excluded": 0, "uncertain": 0},
+  "atoms": [
+    {
+      "atom_id": "P-dm-01",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass 4 tiêu chí, cùng 'ok'. 5481/2020 tr. PDF 25 (in 23) điểm f: «A1C ≥9%»; ADA 2026 slide 176 Rec 9.20 A1C > 10 %; ADA/EASD 2018 > 11 % (> 97 mmol/mol). Không sửa dữ liệu. Ghi nhận (ngoài 4 tiêu chí, cả A lẫn B): ở trắc nghiệm, phương án Bộ Y tế '≥ 9 %' là phương án duy nhất dùng '≥' (các phương án khác '>') → dấu hiệu hình thức; đề nghị question-writer đồng nhất ký hiệu so sánh TRƯỚC khi đóng băng bộ câu hỏi v1, không dựa vào đầu ra thí điểm.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-dm-02",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass, cùng 'ok'. «≥300 mg/dL (16.7 mmol/L)» tr. PDF 25; ADA 2026 Rec 9.20 (slide 176, chữ XML) ≥ 300 mg/dL (≥ 16,7 mmol/L). Cảnh báo pilot_merge 'không thấy 16.7 trong nguồn đã băm' là giới hạn của vnsoc.match.sources.cached_text (đọc .pptx như byte zip), không phải lỗi giá trị. Giá trị 180 mg/dL tr. PDF 39 là bệnh nhân nội trú nặng không nguy kịch (quần thể khác). Không sửa dữ liệu. Tùy chọn cho question-writer: thêm '(điều trị ngoại trú)' vào câu hỏi.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-dm-03",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass, cùng 'ok'. 5481 tr. PDF 12 mục 1.2.c «Tất cả mọi người từ 45 tuổi trở lên»; DR8 3087/2020 tr. 7 cùng 45; 3319/2017 cùng 45 (không lệch phiên bản); ADA 2026 slide 29 Rec 2.12b: 35 tuổi. Không sửa dữ liệu.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-dm-04",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass, cùng 'ok'. 5481 tr. PDF 34 6.1.1 ≥140; DR8 3879/2014 tr. 213 ≥130; ADA 2026 slide 200 Rec 10.1 ≥130; WHO fact sheet 2025 ≥140. Hiệu lực bài 'THA ở người bệnh ĐTĐ' của 3879/2014: theo điều khoản còn hiệu lực (A đọc ảnh Điều 3 QĐ 3319/2017, chỉ bãi bỏ bài ĐTĐ típ 2); còn hiệu lực TRÊN THỰC TẾ hay không là phán đoán khoa học, AI không quyết thay. Mẩu giữ cờ [concordant_by_union]: không dùng làm đối chứng sạch (statistician loại khỏi mẫu số độ chính xác đối chứng hoặc báo cáo riêng). Không sửa dữ liệu. Không áp đề xuất tùy chọn của A (thêm span DR8 5904/2019 tr. 25, cùng giá trị 140) vì không đổi tập VN.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-dm-05",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "fix",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "Tiêu chí đồng thuận; phán quyết mẩu khác nhau (A 'ok' kèm sửa tùy chọn, B 'fix') chỉ ở ghi chú vn[0].text '(và 1470/2024, chưa kiểm span)'. Trọng tài tự xem ảnh 1470/2024 tr. PDF 13 (trang in 8) mục 1.2.2: «Thực hiện tầm soát ĐTĐTK cho mọi thai phụ từ tuần thứ 24 - 28 … với nghiệm pháp dung nạp 75gram glucose» → chỉ 1 bước 75 g. Chọn 'fix': sửa ghi chú, không đổi nhãn/giá trị. OCR sidecar p013 sai chữ ('tằm soát', 'chuyền hóa', 'thai ky') nên KHÔNG ghi thành span máy kiểm. Nhãn two_step_allowed (DR8 3879/2014 bài ĐTĐ thai kỳ) giữ; cờ [concordant_by_union] giữ.",
+      "changed_fields": ["vn[0].text", "extraction.audit_fix"],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-dm-06",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "fix",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass, cùng 'ok'; A ghi chú locator WHO 2006 chưa chính xác. Trọng tài đọc lại bản đệm WHO/IDF 2006 (sha256 ae658daa… khớp): tr. PDF 7 là Recommendation 1 (văn bản), tr. PDF 9 là bảng; cả hai ghi FPG ≥ 7.0 mmol/l (126 mg/dl). Sửa locator cho chính xác, giá trị không đổi. ADA Bảng 2.1 (slide 19, ảnh) đã được A và B xem: FPG ≥ 126 mg/dL (7.0 mmol/L); verified_by giữ null (AI đọc ảnh, không phải người).",
+      "changed_fields": ["foreign[0].locator", "extraction.audit_fix"],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-dm-07",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass, cùng 'ok'. 5481 tr. PDF 11 «HbA1c ≥ 6,5% (48 mmol/mol)» + phương pháp chuẩn hóa quốc tế; WHO 2011 tr. PDF 3, 6: 6,5 %; ADA Bảng 2.1 (ảnh, A và B xem): ≥ 6,5 %. Không sửa dữ liệu (verified_by của ADA giữ null).",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-dm-08",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "fix",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng 'fix' cùng lỗi: locator WHO 2013 ghi 'khuyến cáo 2'. Trọng tài đọc lại bản đệm (sha256 70afa6fb… khớp): khuyến cáo 2 = 'Diabetes in pregnancy', FPG ≥ 7.0 mmol/l (tóm tắt tr. PDF 4; mục 4.2 tr. PDF 36 — A và B mỗi người trích một nơi, cả hai đúng); khuyến cáo 3 = ĐTĐ thai kỳ, FPG 5.1–6.9 mmol/l (92–125 mg/dl) ở tr. PDF 5 (tóm tắt) và tr. PDF 37 (mục 4.3). Sửa locator; giá trị 5,1 mmol/L / 92 mg/dL không đổi. Trọng tài xem lại ảnh 1470/2024 tr. PDF 14 Bảng 3: Đói ≥ 92 / ≥ 5.1 (khớp). Thêm ghi chú bối cảnh: 5481 tr. PDF 56 mục 2.3.1a '≥ 7 mmol/L' là 'ĐTĐ mang thai' (khe khác). Áp mặc định HG1.2 mục A.9: KHÔNG ghi WHO 1999 (ghi extraction.decision_default; không đổi dữ liệu chấm).",
+      "changed_fields": ["foreign[0].locator", "extraction.audit_fix", "extraction.decision_default"],
+      "exclude": false,
+      "exclude_reason": ""
+    }
+  ],
+  "data_changes": [
+    "P-dm-08 foreign[0].locator: 'tr. PDF 5 (khuyến cáo 2) và 37' → 'tr. PDF 5 (tóm tắt, khuyến cáo 3) và tr. PDF 37 (mục 4.3, Recommendation 3)'",
+    "P-dm-08 extraction.decision_default: HG1.2 A.9 mặc định — không ghi WHO 1999",
+    "P-dm-08 extraction.audit_fix: thêm ghi chú (kiểm ảnh 1470/2024 tr. 14, ADA Bảng 2.8, khe khác 5481 tr. 56)",
+    "P-dm-05 vn[0].text: '(và 1470/2024, chưa kiểm span)' → '(và 1470/2024 tr. PDF 13, trang in 8, mục 1.2.2: đã đối chiếu ảnh trang, kiểm toán AI 26/9/2026)'",
+    "P-dm-05 extraction.audit_fix: thêm ghi chú",
+    "P-dm-06 foreign[0].locator: 'tr. PDF 7 và 9 (bảng tiêu chuẩn chẩn đoán)' → 'tr. PDF 7 (Recommendation 1, phần tóm tắt) và tr. PDF 9 (bảng tóm tắt tiêu chuẩn chẩn đoán 2006)'",
+    "P-dm-06 extraction.audit_fix: thêm ghi chú"
+  ],
+  "not_changed_recommendations": [
+    "P-dm-01 (question-writer, trước khi đóng băng câu hỏi v1, không xem đầu ra): đồng nhất ký hiệu so sánh giữa các phương án trắc nghiệm ('≥ 9 %' đang là phương án duy nhất có '≥').",
+    "P-dm-02 (question-writer, tùy chọn): thêm '(điều trị ngoại trú)' vào câu hỏi VI/EN.",
+    "src/ (người giữ mã): vnsoc.match.sources.cached_text nên giải nén .pptx (ppt/slides/slide*.xml, thẻ a:t) để cảnh báo P-dm-02 không báo sai.",
+    "P-dm-04, P-dm-05: hiệu lực thực tế các bài THA–ĐTĐ và ĐTĐ thai kỳ của 3879/2014 là phán đoán khoa học; giữ cờ [concordant_by_union], không dùng làm đối chứng sạch."
+  ],
+  "self_check": "vnsoc.schemas atom data/interim/pilot/dm.jsonl: OK 8 dòng. pilot_merge --only dm --no-checklist: trước sửa giữ 8 {conflict 2, concordant 6}, loại 0; sau sửa giữ 8 {conflict 2, concordant 6}, loại 0; cảnh báo duy nhất (P-dm-02, pptx) có từ trước. So sánh mẩu gộp trước/sau: chỉ khác P-dm-05 vn[0].text, P-dm-06/08 foreign[0].locator, extraction.audit_fix (05, 06, 08), extraction.decision_default (08)."
+}

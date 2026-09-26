@@ -1,0 +1,160 @@
+{
+  "topic": "hbv",
+  "auditor": "B",
+  "audited_by": "AI (Claude, vai integrity-auditor, kiểm toán viên độc lập B) — KHÔNG phải người, không phải bác sĩ",
+  "audit_date": "2026-09-26",
+  "method": "Đọc lớp chữ và ẢNH trang PDF 1740/2026 (tr.11, 15, 18, 19, 20, 24, 37, 40) trước khi đọc giá trị trong checklist; dựng ảnh bản quét chính thức 3310/2019 (data/raw/3310_2019__c43006cb.pdf, tr.2, 4, 5, 6, 7, 8, 9, 16) và 5448/2014 (tr.4, 9) để so từng con số; kiểm sha256 của 3 PDF Bộ Y tế theo manifest và của 3 bản đệm nguồn nước ngoài (763a79fe…, e4423119…, e8ef75c1…) khớp page_sha256 ghi trong mẩu; mở nguồn nước ngoài tại đúng locator; chạy verify_span cho span chính, span moh_neighbour và span bản cũ có lớp chữ (tất cả True); quét toàn văn 1740 tìm mọi U/L, kPa, APRI, 2000/20.000, ULN, 'ngưng/ngừng' để tìm giá trị Bộ Y tế bị bỏ sót. Không đọc data/runs/, không đọc hbv_A.json. Không chép đoạn văn hướng dẫn nước ngoài (chỉ giá trị + vị trí).",
+  "atoms": [
+    {
+      "atom_id": "P-hbv-01",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 1740/2026 trang PDF 18 (in 7), lớp chữ gốc (không OCR), đúng ảnh trang: «ALT, AST có thể bình thường hoặc tăng (Giới hạn trên của mức bình thường đối với ALT được xác định là 30 U/L đối với nam và 19 U/L đối với nữ)»",
+        "(b) 30 U/L (nam) đúng ảnh tr.18; tr.15 (in 4, mục viêm gan B cấp) nhắc lại 'ULN đối với ALT: 30 U/L đối với nam, 19 U/L đối với nữ'. Bản cũ 3310/2019: ảnh bản quét tr.4 (in 2) «(ULN, ULN: 35 U/L đối với nam, 25 U/L đối với nữ)» — khớp 35 U/L. moh_neighbour: 19 U/L (tr.18) và 'quy ước ULN của AST là 40 U/L' (ảnh tr.37, in 26) — khớp.",
+        "(c) Người lớn nam, bối cảnh đánh giá/chỉ định điều trị viêm gan B mạn: đúng phạm vi tr.18. Ghi chú: trong 3310/2019, ULN 35/25 chỉ được định nghĩa ở mục viêm gan B CẤP (tr.4); phần mạn tính (tr.7) dùng 'ULN' không định nghĩa lại → áp dụng 35/25 cho mạn tính là suy luận hợp lý (1740 cũng dùng một ULN cho cả cấp và mạn), nhãn mục ghi trung thực.",
+        "(d) AASLD (bộ slide chính thức 'Practical Application of HBV Guidelines', sha 763a79fe… khớp): slide 4, 21, 25 — ULN ALT = 35 U/L ở nam (25 U/L ở nữ); slide 21/25 có dòng trích Ghany 2025. WHO 2024 (sha e4423119… khớp; bìa 'March 2024', đã gộp đính chính 21/02/2025 tr.5–8, không đổi giá trị nào): PDF tr.35 (in xxix) tiêu chí 2 và chú thích d — ULN ALT 30 U/L cho nam và bé trai; nhắc lại tr.24, 41, 83.",
+        "Quan sát không chặn: mồi 25 U/L trùng ULN NỮ của AASLD/3310 (quần thể lân cận khác giới) — mẩu đã tự ghi, là quyết định thiết kế cho người dùng, không phải lỗi giá trị."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-hbv-02",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Cùng span P-hbv-01, 1740/2026 trang PDF 18 (in 7), đúng nguyên văn và ảnh trang.",
+        "(b) '19 U/L đối với nữ' đúng ảnh tr.18 (và tr.15). Bản cũ 3310/2019 ảnh tr.4: '25 U/L đối với nữ' — khớp. moh_neighbour 30 U/L (nam, tr.18) và 40 U/L (ULN AST, tr.37) — khớp ảnh.",
+        "(c) Nữ người lớn, đúng phạm vi. Cùng ghi chú suy luận ULN 3310 từ mục viêm gan B cấp như P-hbv-01.",
+        "(d) AASLD slide 4, 21, 25: ULN ALT nữ = 25 U/L (khớp). WHO 2024 PDF tr.35 (in xxix) chú thích d: 19 U/L cho nữ và bé gái (khớp); tr.24, 41, 83 nhắc lại."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-hbv-03",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 1740/2026 trang PDF 20 (in 9): span = tiêu đề bảng lặp lại đầu trang + «Hoặc - Tải lượng HBV DNA > 2000 IU/mL và ALT > giới hạn trên của mức bình thường.» — đúng nguyên văn lớp chữ và ảnh trang (tiêu đề bảng thật sự được lặp ở đầu tr.20).",
+        "(b) '> 2000 IU/mL' đúng ảnh tr.20; nhất quán Phụ lục 5 tr.40 và Phụ lục 6 tr.41. Bản cũ 3310/2019 ảnh bản quét tr.7 (in 5): 'HBV DNA ≥ 20.000 IU/mL (≥ 10^5 copies/mL) nếu HBeAg dương tính' và nhánh 2 'Trên 30 tuổi với mức ALT cao hơn ULN kéo dài … và HBV DNA > 20.000 IU/ml, bất kể tình trạng HBeAg' — khớp. 5448/2014 ảnh tr.4 (in 3): '≥ 10^5 copies/ml (20.000 IU/ml) nếu HBeAg (+)' — khớp (lớp chữ ghi '105' do mất chỉ số trên; giá trị IU/ml dùng trong mẩu đúng). moh_neighbour: '≥200.000 IU/mL' (tr.41) và 'ngưỡng phát hiện thường <20 IU/mL' (tr.11) — span_on_page True.",
+        "(c) Người ≥ 18 tuổi, HBeAg dương tính, ALT ≥ 2×ULN, chưa ≥ F2, không yếu tố nguy cơ (danh sách tiêu chí 3 tr.20) → ngưỡng Bộ Y tế duy nhất > 2000 IU/mL; câu hỏi ngắn tiếng Việt nêu đủ các loại trừ. Gợi ý không chặn: câu hỏi chưa loại trừ thai kỳ (1740 tr.41: thai phụ HBeAg dương tính được dự phòng tenofovir không phụ thuộc HBV DNA; giá trị 200.000 đã ghi ở moh_neighbour) — nên thêm 'không mang thai' ở bản v1; nhóm 18–19 tuổi có thể là 'vị thành niên' (tr.20: ALT > ULN ít nhất 2 lần trong 6–12 tháng) nhưng không đổi ngưỡng HBV DNA.",
+        "(d) AASLD slide 21 (Figure 2, không xơ gan, HBeAg+): HBV DNA ≥ 20.000 IU/mL kèm ALT ≥ 2×ULN → điều trị (khớp '≥ 20,000'). WHO 2024 PDF tr.35 (in xxix) tiêu chí 2: HBV DNA > 2000 IU/mL kèm ALT > ULN, không phân HBeAg (khớp). WHO 2015 (sha e8ef75c1… khớp, bìa 'March 2015') PDF tr.22 (in xxii): > 20 000 IU/mL, nhấn mạnh > 30 tuổi, ALT bất thường kéo dài, bất kể HBeAg (khớp)."
+      ],
+      "proposed_fix": "Không bắt buộc (không đổi giá trị): ở bộ câu hỏi v1 thêm 'không mang thai' vào quần thể."
+    },
+    {
+      "atom_id": "P-hbv-04",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Cùng span tr.20 như P-hbv-03, đúng nguyên văn và ảnh.",
+        "(b) Giá trị Bộ Y tế 'ALT > giới hạn trên của mức bình thường' (tr.20) = 'ALT > ULN' (Phụ lục 5 tr.40, ảnh) → nhãn gt_1x_uln đúng. 3310/2019 ảnh tr.7: '(1) Tổn thương tế bào gan - AST, ALT > 2 lần ULN và/hoặc - Xơ hóa gan F ≥ 2' → gt_2x_uln đúng. 5448/2014 ảnh tr.4: 'ALT tăng trên 2 lần giá trị bình thường' → gt_2x_uln đúng.",
+        "(c) 18–30 tuổi, HBeAg+, HBV DNA 20.000–10.000.000 IU/mL, chưa ≥ F2, không yếu tố nguy cơ: với 1740 DNA > 2000 nên chỉ còn điều kiện ALT > ULN; giới hạn ≤ 30 tuổi loại đúng nhánh 2 của 3310 (> 30 tuổi, ALT > ULN kéo dài). Ghi chú: 18–19 tuổi có thể thuộc 'vị thành niên' → 1740 tr.20 yêu cầu ALT > ULN ít nhất 2 lần trong 6–12 tháng; bội số ULN không đổi (mẩu đã xử lý '2 lần trong 6–12 tháng' trong bộ chấm).",
+        "(d) AASLD slide 21: HBeAg+, không xơ gan — ALT ≥ 2×ULN + HBV DNA ≥ 20.000 → điều trị; ALT 1–<2×ULN + HBV DNA 20.000–10.000.000 → 'indeterminate', chỉ cân nhắc nếu ≥ 40 tuổi hoặc ≥ F2 → với 18–30 tuổi giá trị Mỹ = ≥ 2×ULN (khớp). WHO 2024 PDF tr.35 tiêu chí 2: ALT > ULN (khớp gt_1x)."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-hbv-05",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 1740/2026 trang PDF 19 (in 8), ô bảng 'Tiêu chuẩn điều trị…': «Xơ hóa gan đáng kể (≥F2: ví dụ APRI > 0,5, FibroScan > 7 kPa)» — đúng nguyên văn và ảnh.",
+        "(b) '> 7 kPa' đúng ảnh tr.19; nhất quán tr.18 'FibroScan >7 kPa', Phụ lục 2 ảnh tr.37 'F2: >7,0 và ≤ 9,5 Kpa', tr.40, tr.41. Bản cũ 3310/2019 ảnh bản quét tr.16 (in 15): 'F2 : xơ hóa trung bình(vừa) 7,0 - < 9,5 KPa' — khớp (≥ 7).",
+        "(c) Người lớn, đo đàn hồi thoáng qua, ≥ F2: tập con của phạm vi ≥ 12 tuổi của 1740 (tr.41 ghi '(người ≥ 12 tuổi)'). Ghi chú: 5448/2014 ảnh tr.9 có 'F2: 7,1-8,6kPa' — không ghi vào superseded (mẩu đã nêu lý do), không ảnh hưởng trạng thái concordant.",
+        "(d) WHO 2024 PDF tr.35 (in xxix) tiêu chí 1: đàn hồi thoáng qua > 7 kPa cho ≥ F2; tr.34, tr.46 (ghi kèm 'adults'), tr.80 (> 7.0 kPa) — khớp."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-hbv-06",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 1740/2026 trang PDF 40 (in 29), Phụ lục 5: span có nguyên văn trong lớp chữ. Ghi chú: trên ẢNH lưu đồ, 'HBV DNA > 2000 IU/ml và ALT > ULN' là ô tiêu chí 2 (trong 4 tiêu chí) còn ô 'ĐIỀU TRỊ THUỐC KHÁNG VI RUT ▪ Phác đồ ưu tiên: TDF hoặc TAF hoặc ETV' là ô riêng áp dụng cho mọi tiêu chí — span ghép 2 ô do thứ tự lớp chữ; không làm sai nghĩa mẩu.",
+        "(b) Ảnh tr.40: 'Phác đồ ưu tiên: TDF hoặc TAF hoặc ETV' — khớp {TDF, TAF, ETV}; tr.19 mục 4.2.2 'Lựa chọn ban đầu là các thuốc uống … (NAs) đơn trị liệu (xem bảng 3)'; Bảng 3 tr.22 có TDF 300 mg, ETV 0,5 mg, TAF 25 mg. 3310/2019 ảnh tr.8 (in 6): Bảng 1 có TDF, ETV, TAF; chú thích ** 'TAF … được lựa chọn ưu tiên trong các trường hợp: người bệnh > 60 tuổi, loãng xương, suy thận…' — khớp cách đọc tập 3310 = {TDF, ETV} cho quần thể này (cách đọc có tính diễn giải vì Bảng 1 không ghi 'ưu tiên' cho TDF/ETV; không ảnh hưởng trạng thái). 5448/2014 ảnh tr.4: 'Tenofovir (300mg/ngày) hoặc entecavir (0,5 mg/ngày)' — khớp.",
+        "(c) 18–60 tuổi, ≥ 50 kg, không mang thai, không HIV, chưa điều trị, không bệnh thận/loãng xương/THA/ĐTĐ/thuốc độc thận: loại đúng các nhóm có thuốc ưu tiên khác trong 1740 (tr.22: tránh TDF khi eGFR < 50, loãng xương, tuổi cao, nhẹ cân < 50 kg…; ETV 'Không dùng cho phụ nữ mang thai'; tr.26 thai phụ dùng TDF/TAF; tr.40 ưu tiên ETV/TAF cho bệnh thận, loãng xương, trẻ em, vị thành niên). Không thấy giá trị Bộ Y tế nào khác bị bỏ sót.",
+        "(d) WHO 2024 PDF tr.36 (in xxx) Chương 6: phác đồ ưu tiên TDF hoặc ETV; TAF chỉ cho người loãng xương/suy chức năng thận hoặc vị thành niên (phác đồ thay thế) → với quần thể này {TDF, ETV} (khớp). Mọi giá trị WHO nằm trong tập Việt Nam → 'concordant' đúng theo vnsoc.grade.conflict_status."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-hbv-07",
+      "a": "pass",
+      "b": "pass",
+      "c": "fail",
+      "d": "pass",
+      "verdict": "fix",
+      "evidence": [
+        "(a) 1740/2026 trang PDF 24 (in 13): «- Người viêm gan B mạn HBeAg âm tính: có thể ngưng điều trị khi tải lượng HBV DNA dưới ngưỡng phát hiện ít nhất 3- 4 năm và mức HBsAg định lượng thấp (<100 IU/ml);» — đúng nguyên văn và ảnh.",
+        "(b) 'ít nhất 3- 4 năm' → lo 3, hi 4, năm, cmp ≥: đúng. moh_neighbour 12 tháng (HBeAg dương tính, cùng trang) đúng. 5448/2014 ảnh tr.4: 'HBV-DNA dưới ngưỡng phát hiện trong 3 lần xét nghiệm liên tiếp cách nhau mỗi 6 tháng' → '≥ 1 năm' là suy ra đúng số học (0–6–12 tháng) và đã gắn derived: true. 3310/2019 ảnh tr.9 (in 7): HBeAg âm tính 'có thể ngưng điều trị khi tải lượng HBV DNA dưới ngưỡng và mất HBsAg' — không có số năm, mẩu không ghi giá trị số (đúng).",
+        "(c) LỖI NHỎ VỀ QUẦN THỂ (không đổi giá trị): cùng danh sách tiêu chuẩn tr.24 có hai đường ngừng thuốc khác cũng áp dụng được cho quần thể câu hỏi mà KHÔNG cần mốc 3–4 năm: (i) «Trường hợp có điều kiện xét nghiệm được HBcrAg: ngừng điều trị nếu HBcrAg < 2 logU/mL và tải lượng HBV DNA dưới ngưỡng phát hiện.» (không nêu thời gian); (ii) HBV DNA dưới ngưỡng + mất HBsAg tại 2 thời điểm cách nhau 6 tháng (nếu 'HBsAg định lượng < 100 IU/mL' được hiểu gồm cả đã mất HBsAg). Câu hỏi ngắn tiếng Việt không loại trừ hai trường hợp này. Các yếu tố khác khớp tr.24: HBeAg âm, không F3/F4, theo dõi được lâu dài, không suy giảm miễn dịch (câu hỏi có nêu).",
+        "(d) AASLD, bản đệm sha 763a79fe… slide 33 'Criteria for discontinuing antiviral therapy': HBV DNA không phát hiện tối thiểu 2 năm; HBsAg < 100 IU/mL; không đồng nhiễm HIV/HDV; không xơ gan/mất bù/HCC; đồng ý theo dõi; dành cho người rất muốn ngừng thuốc, quyết định chung — khớp giá trị, đơn vị và quần thể (mẩu có 'muốn ngừng thuốc'). Lưu ý: slide 33 không có dòng trích Ghany 2025; khuyến cáo chính (slide 32, Rec 5) là không ngừng NA cho tới khi mất HBsAg. Toàn văn Hepatology (journals.lww.com) trả 402, không đọc được; nguồn thứ cấp ACG Evidence-Based GI (gi.org/journals-publications/ebgi/duong_sierra_dec2025/, 12/2025) quy tiêu chí '≥ 2 năm HBV DNA không phát hiện' và 'HBsAg < 100 IU/mL' cho hướng dẫn AASLD/IDSA 2025 (mục ngừng NA, Bảng 1) → quy nguồn được củng cố gián tiếp; xung đột vẫn mong manh như mẩu đã ghi."
+      ],
+      "proposed_fix": "Không đổi giá trị. Siết quần thể mẩu và câu hỏi (bản v1, trước đóng băng): thêm 'HBsAg vẫn dương tính (định lượng < 100 IU/mL, chưa mất HBsAg)' và 'không có kết quả xét nghiệm HBcrAg (hoặc HBcrAg ≥ 2 logU/mL)'; ghi vào extraction.notes rằng 1740 tr.24 có nhánh HBcrAg < 2 logU/mL và nhánh mất HBsAg không yêu cầu mốc thời gian. Giữ ghi chú cần đối chiếu toàn văn Ghany 2025 khi truy cập được; có thể ghi thêm nguồn thứ cấp ACG EBGI làm bằng chứng củng cố (không thay nguồn chính)."
+    },
+    {
+      "atom_id": "P-hbv-08",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Cùng span tr.20 (in 9) như P-hbv-03, đúng nguyên văn và ảnh.",
+        "(b) '> 2000 IU/mL' đúng. 3310/2019 ảnh tr.7: 'HBV DNA ≥ 2.000 IU/mL (≥ 10^4 copies/mL) nếu HBeAg âm tính' (đi kèm AST, ALT > 2 lần ULN) và nhánh 2 '> 20.000 IU/ml' cho > 30 tuổi, ALT > ULN kéo dài — khớp cả hai giá trị ghi. 5448/2014 ảnh tr.4: '≥ 10^4 copies/ml (2.000 IU/ml) nếu HBeAg (-)' — khớp. moh_neighbour 200.000 (tr.41) và < 20 IU/mL (tr.11) — span_on_page True.",
+        "(c) ≥ 18 tuổi, HBeAg âm, ALT > ULN mọi mức, chưa ≥ F2, không yếu tố nguy cơ → ngưỡng Bộ Y tế duy nhất > 2000 IU/mL. Gợi ý không chặn như P-hbv-03 (chưa loại thai kỳ; 18–19 tuổi 'vị thành niên' không đổi ngưỡng DNA).",
+        "(d) AASLD slide 25 (Figure 3, HBeAg−, không xơ gan): HBV DNA ≥ 2.000 + ALT ≥ 2×ULN → điều trị; HBV DNA ≥ 2.000 + ALT < 2×ULN → 'indeterminate', cân nhắc điều trị theo quyết định chung (slide 24, Rec 4); HBV DNA < 2.000 → không điều trị → ngưỡng ≥ 2.000 ở cả hai tầng ALT (khớp). WHO 2024 PDF tr.35 tiêu chí 2: > 2000 (khớp). WHO 2015 PDF tr.22: > 20 000 IU/mL (khớp)."
+      ],
+      "proposed_fix": "Không bắt buộc (không đổi giá trị): ở bộ câu hỏi v1 thêm 'không mang thai' vào quần thể."
+    },
+    {
+      "atom_id": "P-hbv-09",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Cùng span tr.19 (in 8) như P-hbv-05: «…xơ hóa F4: ví dụ APRI > 1, FibroScan >12,5 kPa)…» — đúng nguyên văn và ảnh.",
+        "(b) '> 12,5 kPa' đúng ảnh tr.19; nhất quán tr.18 và Phụ lục 2 ảnh tr.37 'F4 : > 12,5 Kpa'. 3310/2019 ảnh tr.16: 'F4 : xơ gan ≥ 11 KPa' — khớp. 5448/2014 ảnh tr.9: 'F4: >14,6kPa' — khớp.",
+        "(c) Người lớn, đàn hồi thoáng qua, F4: đúng phạm vi. Không thấy ngưỡng F4 khác trong 1740.",
+        "(d) WHO 2024 PDF tr.35 (in xxix) tiêu chí 1: > 12.5 kPa cho xơ gan; tr.34, 80, 83; tr.78 nêu ngưỡng 'trung bình' 12.5 kPa dùng cho quyết định điều trị — khớp."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-hbv-10",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Cùng span tr.19 (in 8), đúng nguyên văn và ảnh.",
+        "(b) 'APRI > 1' đúng ảnh tr.19; Phụ lục 2 ảnh tr.37: 'F2 - F3 : > 0,5 và ≤ 1' và 'F4 : >1' (lớp chữ bị dàn trang nhưng ảnh rõ). 3310/2019 ảnh tr.16: 'F3 - F4 : 1- < 2,0' và 'F4 : ≥ 2' — giá trị ghi ≥ 2 cho F4 đúng. 5448/2014 ảnh tr.9: 'F4 : APRI >2' — khớp. moh_neighbour APRI > 0,5 (≥ F2, tr.19) đúng.",
+        "(c) Người lớn, chỉ số APRI, F4: đúng phạm vi (WHO 2015 cũng ghi ngưỡng cho người lớn).",
+        "(d) WHO 2024 PDF tr.35 tiêu chí 1: APRI > 1 cho xơ gan (khớp). WHO 2015 PDF tr.22 (in xxii): APRI > 2 ở người lớn cho xơ gan (khớp)."
+      ],
+      "proposed_fix": ""
+    }
+  ]
+}

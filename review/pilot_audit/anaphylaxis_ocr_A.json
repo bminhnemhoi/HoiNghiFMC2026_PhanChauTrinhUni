@@ -1,0 +1,114 @@
+{
+  "topic": "anaphylaxis_ocr",
+  "auditor": "A",
+  "audited_by": "AI (Claude, vai integrity-auditor) — KHÔNG phải người kiểm; không xem data/runs/",
+  "date": "2026-09-26",
+  "method": "Theo state/gates/HG1.2_checklist.md từng dòng. TT51/2017 là bản quét: xuất ẢNH trang (verify_span --image) tr.7, 8, 9, 19, 20 và so bằng mắt từng chữ số; đọc lớp chữ OCR tr.1–20 (văn bản chỉ có 20 trang) để tìm giá trị bỏ sót. Nguồn DR8/lân cận (3312/2015, 3942/2014, 3610/2015: có lớp chữ) đọc chữ từng trang; xuất thêm ảnh 3942 tr.13, tr.48 và 3312 tr.106. Quét độc lập bằng mã toàn bộ 62 PDF trong data/raw tìm adrenalin/epinephrin + phản vệ + liều. Chạy lại verify_atom + span_on_page cho span chính, dr8_sources và mọi moh_neighbour (tất cả True). Nguồn nước ngoài: mở bản đệm theo sha (RCUK 1c07e3dd…, thuật toán RCUK c7b75e76…, WAO 1d6a6919…, AAAAI a4177e78…, WHO e17581cf…, trang IRIS 98702ec0…), tới đúng trang/đoạn; kiểm phiên bản bằng web (resus.org.uk, tìm kiếm WHO/WAO).",
+  "atoms": [
+    {
+      "atom_id": "P-anaphylaxis_ocr-01",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Ảnh TT51 tr.9 (PDF 9 = trang in 9), PL III mục IV.1: «b) Trẻ khoảng 10 kg: 0,25ml (tương đương 1/4 ống).» — khớp từng ký tự với span.",
+        "(b) 0,25 ml × 1 mg/ml = 250 µg đúng (IV.1: «Thuốc adrenalin 1mg = 1ml = 1 ống, tiêm bắp»; OCR 'Img' = '1mg' trên ảnh). PL X ảnh tr.20 ô TIÊM BẮP «Trẻ em: 1/5-1/3 ống», ống 1mg/1ml → 200–333,3 µg đúng. 3312/2015 tr.106 (ảnh, trang in 106): «tiêm bắp Adrenalin 1/1000 (0,01 mg/kg), 0,01 ml/kg» → 100 µg ở 10 kg đúng. 3942/2014 tr.13 (ảnh, trang in 8, mục 4. Điều trị dị ứng thuốc, Bảng 3 bước 3): «0,01 ml/kg, tối đa không quá 0,3 ml /lần ở trẻ em» → 0,1 ml = 100 µg đúng.",
+        "(b) moh_neighbour: 17 span đều span_on_page=True; giá trị quy đổi đều đúng theo chữ trang: 3942 tr.48 0,15 mg (10–25 kg) và 0,3 mg (> 25 kg) SPV do thức ăn; 3610 tr.133 EpiPen 0,3 mg / EpiPen Jr. 0,15 mg (tiêm dưới da, dự phòng) và 0,3–0,5 ml dd 1/1000 (nhiều nốt ong đốt, tụt HA); 3610 tr.166 0,3–0,5 mg/lần (dứa); 3942 tr.77 người lớn 0,3–0,5 mg, trẻ em 0,01 mg/kg (côn trùng); 3942 tr.78 epipen trẻ em 0,15 mg (< 30 kg); 3942 tr.42 0,3–0,5 mg (phù Quincke, chỉ định ở tr.41); 3942 tr.13 người lớn 0,5–1 ml; 3312 tr.106 trẻ không biết cân nặng 0,3 ml; 3312 tr.81 0,3 ml TDD (ong đốt, tuyến cơ sở); TT51 tr.9 a) c) d) e); TT51 tr.20 người lớn 1/2 ống và tĩnh mạch chậm 0,5–1 ml (50–100 µg, ảnh ghi 'µg').",
+        "(c) TT51 PL III mục I.3 và III (ảnh tr.8): tiêm bắp ngay khi phản vệ từ độ II; phác đồ mục III áp cho 'độ II, III' → độ III có sốc/tụt HA (PL II tr.7, mục 3.d) nằm trong phạm vi. 10 kg không thuộc a) '< 10kg' → b) đúng. 3312 tr.103: phạm vi mọi nguyên nhân ('hàng đầu là thuốc'); 3942 tr.13 thuộc chương dị ứng thuốc → khớp nguyên nhân do thuốc. Câu hỏi VI nêu đủ: 18 tháng, 10 kg, độ III, do thuốc sau tiêm kháng sinh, cơ sở y tế, nhân viên y tế, ống 1 mg/1 ml, đơn vị µg.",
+        "(c) Không thấy giá trị bỏ sót: TT51 (20 trang) chỉ có liều tiêm bắp ở PL III IV.1 (tr.9) và PL X (tr.19, tr.20 — cùng 1/5–1/3 ống); quét 62 PDF chỉ thêm 3312 tr.30/32/55 '10 mcg/kg' (= 0,01 mg/kg, trùng tập VN).",
+        "(d) RCUK 2021 bản đệm sha 1c07e3dd…: PDF tr.29 bảng liều IM — '6 months – 6 years' = 150 µg (0,15 mL); thuật toán RCUK 2021 (sha c7b75e76…) cùng giá trị. Trang resus.org.uk hiện vẫn ghi bản May 2021 (kiểm web 2026-09-26). WAO 2020 (sha 1d6a6919…; WAO J 2020;13(10):100472, Cardona): đoạn trước Bảng 6 = 0,01 mg/kg, tối đa 0,5 mg; Bảng 6 dòng 'children aged 1-5 years' = 0,15 mg. AAAAI 2023 (sha a4177e78…): PDF tr.4 và tr.31 = 0,01 mg/kg, tối đa 0,3 mg trẻ em/thiếu niên (tr.19 cũng ghi 0,01 mg/kg dd 1 mg/mL). WHO Pocket Book 2nd ed. 2013 (sha e17581cf…, ISBN 9789241548373 khớp trang IRIS): §4.6.4 bắt đầu PDF tr.132, liều ở PDF tr.133 (trang in 109) = 0,15 ml dd 1:1000 tiêm bắp, nhắc lại mỗi 5–15 phút; tr.336 (phản ứng truyền máu) cùng 0,15 ml; tr.17 phạm vi 'young children'. Tìm web: không thấy bản thứ 3.",
+        "Ghi chú (không đổi phán quyết): trạng thái conflict phụ thuộc cách đọc DR8 (đã ghi ở extraction.dr8_reading_sensitivity; quyết định của người dùng). dr8_sources và moh_neighbour TT51 tr.20 chép lớp OCR 'TIEM BAP' — ảnh là 'TIÊM BẮP' (chỉ mất dấu, không sai chữ số)."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-anaphylaxis_ocr-02",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Ảnh TT51 tr.9, PL III IV.1: «b) Trẻ khoảng 10 kg: 0,25ml (tương đương 1/4 ống).» — khớp span.",
+        "(b) 250 µg; 1/5–1/3 ống = 200–333,3 µg (ảnh tr.20); 3312 tr.106 0,01 mg/kg = 100 µg ở 10 kg; 3942/2014 tr.48 (ảnh, trang in 43, chương dị ứng thức ăn mục 4.2): «Adrenaline: là thuốc quan trọng nhất trong điều trị SPV do thức ăn.» và «Trẻ em nặng 10-25kg: adrenaline 0,15mg tiêm bắp» → 150 µg đúng.",
+        "(c) Quần thể do thức ăn (lạc/sữa bò): 3312 tr.103 liệt kê thức ăn gồm 'sữa', 'lạc' trong nguyên nhân SPV trẻ em → 3312 áp dụng; 3942 tr.48 đúng nguyên nhân thức ăn, 10 kg nằm trong 10–25 kg; 3942 ch.1 (dị ứng thuốc) đúng là không áp (khác nguyên nhân, giá trị trùng 3312). Dứa (3610 tr.166, 0,3–0,5 mg/lần) loại có lý do vì câu hỏi nêu lạc. Câu hỏi VI: 18 tháng, 10 kg, độ III, do thức ăn sau ăn lạc (đậu phộng), cơ sở y tế, ống 1 mg/1 ml, µg — khớp.",
+        "(c) Không thấy giá trị Bộ Y tế bỏ sót cho trẻ 10 kg phản vệ do thức ăn (quét 62 PDF; 3312 không có bài dị ứng thức ăn có liều riêng).",
+        "(d) Như -01: RCUK tr.29 '6 months – 6 years' 150 µg; WAO 0,01 mg/kg và Bảng 6 '1-5 years' 0,15 mg; AAAAI tr.4/tr.31 0,01 mg/kg; WHO Pocket Book tr.133 0,15 ml dd 1:1000. Giá trị, đơn vị, quần thể, phiên bản đều khớp nguồn đệm.",
+        "Ghi chú: dr8_sources TT51 tr.20 chép lớp OCR 'TIEM BAP' (ảnh 'TIÊM BẮP')."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-anaphylaxis_ocr-03",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Ảnh TT51 tr.9: «e) Người lớn: 0,5-1ml (tương đương 1/2 - 1 ống).» — span 'e) Người lớn: 0,5-1ml' là phần đầu đúng nguyên văn; OCR đọc phần sau thành '1⁄2 - ] ống' (']' = '1' trên ảnh) nên span cắt trước ngoặc là hợp lý.",
+        "(b) 0,5–1 ml = 0,5–1 mg đúng; PL X ảnh tr.20 'Người lớn: 1/2 ống' = 0,5 mg (trong khoảng); 3942 tr.13 (ảnh) «0,5 - 1 ml ở người lớn» đúng.",
+        "(c) PL III mục III (ảnh tr.8) áp cho độ II, III → quần thể 'độ II hoặc độ III' đúng phạm vi đoạn. Cân nặng 'khoảng 60 kg (≥ 50 kg)' không có trong văn bản nhưng không làm đổi giá trị. Không thấy giá trị người lớn do thuốc khác trong TT51 hay văn bản DR8 (3942 tr.42/77/48, 3610 tr.133/166 khác bệnh cảnh/nguyên nhân — đã loại đúng). Câu hỏi VI khớp (đơn vị mg).",
+        "(d) RCUK tr.29 'Adult and child > 12 years' = 500 µg (0,5 mL); WAO Bảng 6 'teenagers and adults' 0,5 mg (0,01 mg/kg tối đa 0,5 mg); AAAAI tr.4/tr.31 tối đa 0,5 mg người lớn (60 kg → 0,5 mg). Đều khớp."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-anaphylaxis_ocr-04",
+      "a": "fail",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "fix",
+      "evidence": [
+        "(a) Nội dung và mọi chữ số của span có trên ảnh TT51 tr.20 (PDF 20 = trang in 20), PL X II. Sơ đồ tóm tắt, ô TIÊM BẮP: 'Người lớn: 1/2 ống - Trẻ em: 1/5-1/3 ống', 'Nhắc lại sau mỗi 3-5 phút cho đến khi hết các dấu hiệu về hô hấp và tiêu hóa, huyết động ổn định'. NHƯNG span chép lớp OCR nên KHÔNG đúng nguyên văn ở chữ: 'TIEM BAP' → ảnh là 'TIÊM BẮP'; '*' → ảnh là dấu chấm tròn '•'. Chỉ sai chữ/dấu, không sai chữ số. (Ký tự '6' OCR chèn trước 'ổn định' đã được cắt khỏi span — đúng.)",
+        "(b) 3–5 phút: ảnh tr.20 'Nhắc lại sau mỗi 3-5 phút' và ảnh tr.9 PL III IV.3 «Tiêm nhắc lại adrenalin liều như khoản 1 mục IV 3-5 phút/lần» (OCR 'phúVlần'). 5–15 phút: 3942 tr.13 (ảnh) «Tiêm nhắc lại sau mỗi 5-15 phút/lần (có thể sớm hơn 5 phút nếu cần)». Đúng.",
+        "(c) Người lớn, độ III, do thuốc: TT51 PL X/PL III áp dụng; 3942 tr.13 chương dị ứng thuốc, Bảng 3 áp cho mọi tuổi. Đã loại đúng: 3312 tr.106 '5 - 10 phút' (chỉ trẻ em), 3942 tr.48 (thức ăn), tr.77 '10 phút' (côn trùng), tr.42 '15 – 20 phút' (phù Quincke), 3610 tr.166 (dứa). TT51 IV.4a 'sau 3 phút' là tiêm tĩnh mạch chậm (bước khác); 'Theo dõi huyết áp 3-5 phút/lần' và PL X 'Mạch, huyết áp 5-10 phút/lần' là theo dõi, không phải khoảng tiêm. Câu hỏi VI khớp (người lớn, độ III, do thuốc, cơ sở y tế, chưa đáp ứng liều đầu, phút).",
+        "(d) RCUK 2021: PDF tr.7, tr.13, tr.29 — nhắc lại tiêm bắp sau 5 phút (cũng trong thuật toán RCUK 2021, sha c7b75e76…). WAO 2020: đoạn ngay trước Bảng 6 — nhắc lại mỗi 5–15 phút. Đúng. Không ghi Mỹ (AAAAI 2023 tr.29 chỉ hướng dẫn tại nhà, 10–20 phút, không có khoảng cố định cho cơ sở y tế) và WHO (chỉ trẻ em) — hợp lý."
+      ],
+      "proposed_fix": "Không đổi giá trị. Sửa chữ span theo ảnh tr.20: 'TIÊM BẮP - Người lớn: 1/2 ống - Trẻ em: 1/5-1/3 ống • Nhắc lại sau mỗi 3-5 phút cho đến khi hết các dấu hiệu về hô hấp và tiêu hóa, huyết động' — làm cùng lúc với việc sửa sidecar OCR data/interim/ocr/TT51_2017/p020.txt theo ảnh (việc S5 đã ghi trong notes), để verify_span vẫn qua. Cùng lỗi 'TIEM BAP' ở dr8_sources (-01,-02,-03,-05,-06) và moh_neighbour (-01,-05) sẽ hết khi sửa sidecar."
+    },
+    {
+      "atom_id": "P-anaphylaxis_ocr-05",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Ảnh TT51 tr.9: «c) Trẻ khoảng 20 kg: 0,3ml (tương đương 1/3 ống).» — khớp span; span ghi '1⁄3' bằng U+2044 (gạch phân số) theo lớp OCR, trên ảnh nhìn là '1/3'; không sai chữ số (nên chuẩn hóa thành '/' khi sửa sidecar tr.9).",
+        "(b) 0,3 ml = 300 µg; 1/5–1/3 ống = 200–333,3 µg (ảnh tr.20); 3312 tr.106 0,01 mg/kg = 200 µg ở 20 kg; 3942 tr.13 0,01 ml/kg (≤ 0,3 ml) → 0,2 ml = 200 µg. Đúng.",
+        "(c) 5 tuổi, 20 kg, độ III, do thuốc: 'Trẻ khoảng 20 kg' khớp; 3312 và 3942 ch.1 áp dụng. 3942 tr.48 'Trẻ em nặng 10-25kg: adrenaline 0,15mg' là SPV do THỨC ĂN → đúng là chỉ ghi ở moh_neighbour. Câu hỏi VI khớp. Không thấy giá trị bỏ sót.",
+        "(d) RCUK tr.29 '6 months – 6 years' 150 µg (5 tuổi nằm trong); WAO Bảng 6 '1-5 years' 0,15 mg và 0,01 mg/kg = 200 µg; AAAAI tr.4/tr.31 0,01 mg/kg (tối đa 0,3 mg) = 200 µg; WHO Pocket Book tr.133 0,15 ml dd 1:1000 = 150 µg. Đều khớp nguồn.",
+        "Ghi chú: conflict phụ thuộc cách đọc DR8 (đã ghi trong atom). dr8_sources/moh_neighbour TT51 tr.20 chép 'TIEM BAP' (ảnh 'TIÊM BẮP')."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-anaphylaxis_ocr-06",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Ảnh TT51 tr.9: «d) Trẻ > 30kg: 0,5ml (tương đương 1/2 ống).» — khớp span.",
+        "(b) 0,5 ml = 500 µg; 1/5–1/3 ống = 200–333,3 µg; 3312 tr.106 0,01 mg/kg = 350 µg ở 35 kg (trang 106 và tr.30/32/55 không ghi liều tối đa — kiểm lại chữ); 3942 tr.13 «0,01 ml/kg, tối đa không quá 0,3 ml /lần ở trẻ em» → 0,35 ml bị chặn còn 0,3 ml = 300 µg. Đúng.",
+        "(c) 10 tuổi, 35 kg, độ III, do thuốc: 'Trẻ > 30kg' khớp; 3942 ch.1 và 3312 áp cho trẻ em. 3942 tr.48 '> 25kg 0.3mg' (thức ăn) không áp. Câu hỏi VI khớp (chưa dậy thì, 35 kg, µg). Không thấy giá trị bỏ sót.",
+        "(d) RCUK tr.29 '6 – 12 years' 300 µg (0,3 mL) — chú thích dấu * (0,3 mL cho trẻ nhỏ/chưa dậy thì) chỉ áp cho trẻ > 12 tuổi, không ảnh hưởng; WAO Bảng 6 '6-12 years' 0,3 mg và 0,01 mg/kg = 350 µg; AAAAI tr.4/tr.31 tối đa 0,3 mg trẻ em/thiếu niên (tr.19: tối đa 0,3 mg ở trẻ chưa dậy thì) → 0,3 mg. Đều khớp.",
+        "Ghi chú: không ghi WHO Pocket Book là lựa chọn có lý do (sách cho 'young children', tr.17; bảng liều dừng ở 20–29 kg, tr.379); nếu người dùng cho rằng liều cố định 150 µg áp mọi trẻ thì mẩu thành conflict — đã cờ trong atom."
+      ],
+      "proposed_fix": ""
+    }
+  ],
+  "cross_cutting_notes": [
+    "QĐ 3942/2014 (Dị ứng – miễn dịch lâm sàng) được dùng làm nguồn DR8 ở cả 6 mẩu và là nguồn DUY NHẤT của một giá trị VN ở -02 (0,15 mg), -04 (5–15 phút), -06 (300 µg), nhưng KHÔNG có dòng trong data/interim/manifest.jsonl (75 dòng). manifest_parts/c4_resp_circulars_notes.md dòng 52 đã yêu cầu thêm dòng 3942/2014 với status 'partial', partially_amended_by ['1851/2020'] (1851/2020 bãi bỏ 2 bài hen). Cần thêm dòng manifest (sha256 4be16be0fe6812f4…, nguồn kcb.vn Mien-dich.rar) trước khi đóng băng kho — không đổi giá trị mẩu.",
+    "Dòng manifest TT51/2017 còn ghi text_layer=false, ocr=false, in_corpus=false và ghi chú 'KHÔNG kiểm span được, không tạo mẩu khi chưa OCR', trong khi mẩu dùng sidecar OCR data/interim/ocr/TT51_2017/ → metadata cũ, nên cập nhật.",
+    "Hiệu lực TT51/2017: Điều 7 (ảnh/OCR tr.3) chỉ làm hết hiệu lực TT08/1999; tìm web (loại trừ thuvienphapluat) không thấy văn bản thay thế; vbpl.vn không tải được nội dung nên tôi không tự xác nhận trạng thái pháp lý hiện tại (manifest ghi đã đọc TT47/2025 — không có TT51 trong danh sách bãi bỏ).",
+    "Nguồn nước ngoài — phiên bản: RCUK trang hướng dẫn phản vệ vẫn là bản May 2021 (RCUK Guidelines 2025 công bố 27/10/2025 không nêu thay bản phản vệ). WHO Pocket Book: không thấy bản thứ 3. WAO: có chương 'Overview of allergic disease: Anaphylaxis – WAO White Book on Allergy 2026 – 2.11' (World Allergy Organ J, 2026) — mở bị 403, chưa kiểm; là bài tổng quan, không phải bản guidance thay WAO 2020, nhưng nên có người xem trước khi đóng băng. AAAAI 2023 là bản JTFPP mới nhất tìm được.",
+    "AAAAI locator tr.4/tr.31 nằm trong phần bút tiêm (EAI); tr.19 ghi cùng liều 0,01 mg/kg cho dd 1 mg/mL (tối đa 0,5 mg người lớn, 0,3 mg trẻ chưa dậy thì) — hợp với bối cảnh ống 1 mg/ml tại cơ sở y tế hơn; đề nghị thêm tr.19 vào locator (ghi chú, không đổi giá trị).",
+    "Không phát hiện lỗi giá trị, đơn vị, quần thể hay nguồn ở 6 mẩu."
+  ]
+}

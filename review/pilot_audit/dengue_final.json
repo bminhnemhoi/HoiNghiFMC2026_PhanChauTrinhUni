@@ -1,0 +1,223 @@
+{
+ "topic": "dengue",
+ "role": "trọng tài (integrity-auditor + atom-extractor)",
+ "audited_by": "AI (Claude) — KHÔNG phải người, KHÔNG phải bác sĩ. Người dùng giao HG1.2 cho kiểm toán tự động.",
+ "date": "2026-09-26",
+ "inputs": [
+  "review/pilot_audit/dengue_A.json",
+  "review/pilot_audit/dengue_B.json",
+  "state/gates/HG1.2_checklist.md",
+  "data/interim/pilot/dengue.jsonl"
+ ],
+ "blind_rule": "Không đọc/liệt kê data/runs/. Không chép đoạn văn hướng dẫn nước ngoài (chỉ giá trị + vị trí).",
+ "sources_opened": [
+  "2760/2023 PDF p.11, 12, 63 (lớp chữ gốc)",
+  "3705/2019 PDF p.19, 45 (ảnh trang quét)",
+  "WHO 2025 bản đệm sha256 cbbe4513… p.15, 27, 47",
+  "WHO 2009 bản đệm sha256 f6f48811… p.37–40",
+  "CDC 2024 bản đệm sha256 20dad79a… p.2, 5 (ảnh), 7 (ảnh)",
+  "cdc.gov/dengue/hcp/clinical-signs/treatment.html → HTTP 404 (26/9/2026)"
+ ],
+ "atoms": [
+  {
+   "atom_id": "P-dengue-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B đồng ý cả 4 tiêu chí và phán quyết ok; không có fail/uncertain. Trọng tài xem thêm ảnh 3705 PDF p.19 (in 18): «Trong 1 giờ đầu … Ringer lactate hoặc NaCl 0,9% 15ml/kg/giờ» — bản cũ đúng. Ghi chú tùy chọn của A (2760 Phụ lục 21 PDF p.63, tuyến cơ sở khi có dịch: «RL hoặc NaCL 0,9% 20 ml/kg/giờ, trong 1 giờ (M nhanh, HA tụt hoặc kẹp)») — bối cảnh khác (tuyến cơ sở, trước chuyển viện, không ghi tuổi) so với câu hỏi (người lớn nhập cấp cứu); giá trị 20 ml/kg/giờ đã có trong moh_neighbour (p.15 trẻ em, p.18 thiếu niên) nên không đổi phân tích. Không sửa.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "uncertain",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng 'uncertain' ở (d) cho riêng bản ghi CDC 2024. Trọng tài tự mở bản đệm CDC (sha256 20dad79a…, khớp page_sha256) trang PDF 5, cả lớp chữ và ảnh: ô nhánh YES sau liều crystalloid đầu 20 mL/kg/15–30 phút in đúng '10mg/kg for 1-2 hrs' (sai đơn vị mg, không có '/hr'); có thể là 10 mL/kg/giờ hoặc 10 mL/kg trong 1–2 giờ → không xác nhận được, không đoán. Thử mở trang web CDC (cdc.gov/dengue/hcp/clinical-signs/treatment.html) ngày 26/9/2026: HTTP 404. Quyết định: bỏ bản ghi US/CDC khỏi foreign (lưu ở extraction.removed_foreign kèm lý do). WHO 2009 p.48 và WHO 2012 p.38 (5–7 ml/kg/giờ) được cả A và B xác nhận → giữ; trạng thái conflict và dung sai 1,5 không đổi (đã kiểm bằng pilot_merge). Giá trị Bộ Y tế 10 ml/kg/giờ × 2 giờ (2760 p.28; 3705 p.19 ảnh) không đổi. Việc 'P-dengue-02: giá trị CDC' ở HG1.2_decisions.md mục B không còn cần người mở.",
+   "changed_fields": [
+    "foreign[US/CDC 2024] (bỏ; chuyển sang extraction.removed_foreign)",
+    "extraction.removed_foreign (mới)",
+    "extraction.audit_fix (mới)",
+    "extraction.notes (thêm)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B đồng ý cả 4 tiêu chí và phán quyết ok; không có fail/uncertain nên không mở lại. Mâu thuẫn nội tại của 2760 (p.15 cao phân tử so với p.28 dịch tinh thể) đã ghi moh_neighbour và vẫn thuộc danh sách HG3.9 (bác sĩ thật).",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "fail",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": false,
+    "d": false
+   },
+   "resolution": "A: c pass/d fail/error; B: c fail/d pass/fix — cùng một vấn đề, cùng đề xuất thu hẹp quần thể. Trọng tài mở lại: WHO 2025 (bản đệm sha256 cbbe4513…, khớp) p.15 (Scope: bệnh nhân nhập viện = 'severe disease', khám ngoại trú = 'non-severe disease'; tóm tắt khuyến cáo metamizol cho non-severe), p.27 §2.7 (non-severe = không có đặc điểm bệnh nặng và xử trí được ngoại trú), p.47 §4.2.2 (khuyến cáo có điều kiện dùng metamizol cho non-severe) → GIÁ TRỊ WHO 'allowed' đúng, phiên bản đúng (d pass). Phía Bộ Y tế, 2760 p.11–12 mục IV.A: «Phần lớn các trường hợp đều được điều trị ngoại trú…»; «Không dùng aspirin (acetylsalicylic acid), analgin, ibuprofen…» → giá trị 'not_allowed' đúng. Lỗi nằm ở QUẦN THỂ của mẩu ('ngoại trú hoặc nội trú' rộng hơn phạm vi WHO) → (c) fail. Sửa được mà không đổi số: population.severity và condition → 'SXHD chưa có dấu hiệu cảnh báo (không nặng), điều trị ngoại trú' (phần giao của IV.A và non-severe); locator WHO thêm p.15/p.27. Giá trị, mồi, cat_options không đổi. CÒN VIỆC: 6 câu hỏi P-dengue-04 vẫn ghi 'ngoại trú hoặc nội trú' / 'outpatient or inpatient' → sửa trước khi đóng băng bộ câu hỏi v1; kết quả thí điểm của mẩu này dùng câu cũ (ghi làm hạn chế).",
+   "changed_fields": [
+    "population.severity",
+    "condition",
+    "foreign[WHO 2025].locator (thêm phạm vi p.15, p.27)",
+    "extraction.audit_fix (mới, có pending_questions)",
+    "extraction.notes (thêm)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "Tiêu chí đồng ý; phán quyết khác (A fix: thêm ghi chú; B ok). Trọng tài mở lại: 2760 PDF p.63 (Phụ lục 21, lớp chữ gốc) và 3705 PDF p.45 (Phụ lục 19, xem ảnh quét) đều có ô «RL hoặc NaCL 0,9% 20 ml/kg/15 phút (M=0, HA=0)» ở tuyến cơ sở khi có dịch (không ghi tuổi, trước chuyển viện). 3705 p.19 (ảnh): mục «C.2.1. Điều trị sốc sốt xuất huyết Dengue, sốc sốt xuất huyết Dengue nặng» với 15ml/kg/giờ giờ đầu → giá trị bản cũ 60 phút (phép tính) có cơ sở cho phác đồ người lớn tại bệnh viện. Ô tuyến cơ sở khác bối cảnh và thể tích (20 ml/kg) so với câu hỏi (người lớn nhập cấp cứu, liều 15 ml/kg) nên (c) pass, không thêm giá trị. Nhưng bản 2019 đã có bolus 15 phút ở tuyến cơ sở, nên câu 'Bộ Y tế đổi 60 → 15 phút' chỉ đúng cho phác đồ người lớn tại bệnh viện → thêm ghi chú (fix, không đổi giá trị).",
+   "changed_fields": [
+    "extraction.notes (thêm)",
+    "extraction.audit_fix (mới)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B đồng ý cả 4 tiêu chí và phán quyết ok; không có fail/uncertain. Không sửa.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-08",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B đồng ý cả 4 tiêu chí và phán quyết ok. Cả hai nêu cùng ghi chú không bắt buộc (2760 p.25: tránh paracetamol khi tổn thương gan trung bình–nặng) — liên quan việc có dùng paracetamol, không đổi liều mỗi lần; không sửa dữ liệu. Có thể thêm 'không có tổn thương gan' khi soạn câu hỏi v1.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-09",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B đồng ý cả 4 tiêu chí và phán quyết ok; không có fail/uncertain. Không sửa.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-dengue-10",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B đồng ý: giá trị đúng, locator WHO 2009 sai chương. Trọng tài mở bản đệm WHO 2009 (sha256 f6f48811…, khớp): Chương 2 bắt đầu PDF p.37 (in 25), §2.1.4 'Severe dengue' bắt đầu cuối p.39; giá trị hiệu áp ≤ 20 mm Hg ở trẻ em nằm ở p.40 (in 28) → sửa locator thành 'Ch.2 §2.1.4 Severe dengue (shock)'. CDC 2024 (sha256 20dad79a…): p.2 '< 20 mmHg' (sốc sớm/còn bù) đúng như mẩu ghi; ảnh p.7 bảng Hemodynamic Assessment ghi '≤ 20 mmHg' ở cột Hypotensive Shock (cột Compensated Shock không có số) → thêm vào locator, giá trị ghi không đổi.",
+   "changed_fields": [
+    "foreign[WHO 2009].locator",
+    "foreign[CDC 2024].locator (thêm p.7)",
+    "extraction.audit_fix (mới)",
+    "extraction.notes (thêm)"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  }
+ ],
+ "counts": {
+  "ok": 5,
+  "fixed": 4,
+  "excluded": 0,
+  "uncertain": 0
+ },
+ "defaults_applied": "Không có quyết định mặc định nào ở HG1.2_decisions.md mục A thuộc chủ đề dengue.",
+ "self_check": {
+  "verify_span": "OK 9/9 (python -m vnsoc.extract.verify_span data/interim/pilot/dengue.jsonl)",
+  "schema": "OK 9 dòng hợp lệ (python -m vnsoc.schemas atom)",
+  "pilot_merge": "--only dengue --no-checklist: giữ 9 mẩu {conflict 4, concordant 4, no_counterpart 1}, loại 0 — giống hệt lần chạy trước khi sửa; vn, superseded, decoy, decoy_rule, tolerance, conflict_status, moh_neighbour, span, page của cả 9 mẩu không đổi",
+  "idempotent": "chạy lại script sửa: không thay đổi"
+ },
+ "backup": "C:/Users/Admin/AppData/Local/Temp/claude/d--phan-chau-trinh---y-khoa/1e1ea5eb-0832-473b-882a-b9921c8f5c59/scratchpad/audit/dengue_before.jsonl (sha256 ff9643798a01d688…)",
+ "pending_outside_atoms": [
+  "P-dengue-04: sửa 6 câu hỏi (short vi/en, mcq vi/en o0/o1) trong bộ câu hỏi: bỏ 'hoặc nội trú' / 'or inpatient', ghi 'chưa có dấu hiệu cảnh báo, điều trị ngoại trú' / 'without warning signs, managed as an outpatient' — trước khi đóng băng câu hỏi v1 (không sửa trong lượt này).",
+  "Thí điểm đã chạy P-dengue-04 với câu có 'hoặc nội trú' → ghi hạn chế khi báo cáo kết quả thí điểm của mẩu này.",
+  "HG1.2_decisions.md mục B: dòng 'P-dengue-02: giá trị CDC' đã xử lý (bỏ bản ghi CDC), không cần người mở."
+ ]
+}

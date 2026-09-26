@@ -1,0 +1,100 @@
+{
+  "topic": "htn",
+  "date": "2026-09-26",
+  "role": "trọng tài (AI, Claude — vai integrity-auditor + atom-extractor)",
+  "reviewer_kind": "Kiểm bởi AI (Claude): kiểm toán viên A, B và trọng tài đều là AI. KHÔNG phải người kiểm, KHÔNG phải bác sĩ.",
+  "inputs": [
+    "review/pilot_audit/htn_A.json",
+    "review/pilot_audit/htn_B.json"
+  ],
+  "method": "So từng tiêu chí (a)–(d) của A và B. Chỉ có một chỗ khác nhau là P-htn-04 (d) (A pass, B uncertain); không có fail. Trọng tài tự mở lại nguồn cho chỗ khác nhau: bộ slide 2018 ESC/ESH (ESH, bản đệm data/cache/foreign/60b18b7c3f8b8c5dbffc.pdf, băm lại khớp), lớp chữ + ảnh slide 6, 62, 76, 77, 116. Ngoài ra trọng tài xem thêm ảnh 5904 tr. PDF 16 và ảnh slide ESC 2024 số 53, 92, 93 (B dựng từ EMF). Không đọc data/runs/. Sao lưu trước khi sửa: scratchpad/audit/htn_before.jsonl (sha256 59d739c6…). Script sửa (scratchpad/audit/fix_htn04.py) kiểm bất biến: chỉ foreign[1] và extraction.audit_fix của P-htn-04 đổi, hai mẩu kia giữ nguyên từng byte. Nguồn nước ngoài chỉ ghi giá trị + vị trí.",
+  "summary": {
+    "ok": 2,
+    "fixed": 1,
+    "excluded": 0,
+    "uncertain": 0
+  },
+  "atoms": [
+    {
+      "atom_id": "P-htn-01",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {
+        "a": true,
+        "b": true,
+        "c": true,
+        "d": true
+      },
+      "resolution": "A và B cùng pass 4 tiêu chí, cùng 'ok'. 3192/2010 tr. PDF 1 (lớp chữ gốc): «Tăng huyết áp là khi huyết áp tâm thu ≥ 140mmHg và/hoặc huyết áp tâm trương ≥ 90mmHg.» Trọng tài tự xem ảnh 5904/2019__9e6bbe13 tr. PDF 16 (Phụ lục 1.2, chữ chỉ có trong ảnh): «Huyết áp tại phòng khám đo đúng quy trình ≥ 140/90 mmHg»; «Tự đo tại nhà ≥ 135/85 mmHg»; nhánh «HA ≥ 180/110 mmHg» → Tăng huyết áp (bước khác, không đổi đáp án). Trọng tài xem ảnh slide ESC 2024 số 53 do B dựng từ EMF: hàng Hypertension, cột Office BP ≥140/90. AHA (≥130/80) và WHO fact sheet (≥140/90) A, B kiểm theo bản đệm, đồng thuận. Không sửa dữ liệu.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-htn-03",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {
+        "a": true,
+        "b": true,
+        "c": true,
+        "d": true
+      },
+      "resolution": "A và B cùng pass 4 tiêu chí, cùng 'ok'. 5904 tr. PDF 13 (trang in 4): «Khởi trị khi HA ≥ 140/90 mmHg ở người < 80 tuổi hoặc ≥ 160/90 mmHg ở người ≥ 80 tuổi» — A, B khớp lớp chữ và ảnh; B khớp thêm bản quét có chữ ký số. Quần thể 41–59 tuổi, nguy cơ thấp, THA độ 1: A và B cùng dẫn sơ đồ ảnh 5904 tr. 12 và 3192 Phụ lục 4 tr. 12. Trọng tài xem ảnh slide ESC 2024 số 92 (B dựng): ≥140/90 → thuốc bất kể nguy cơ (I-A); ≥130/80 chỉ khi nguy cơ đủ cao. ACC 2025 (≥130/80, PREVENT < 7,5 %), JNC8 (< 60 tuổi ≥140/90), WHO 2021 (tr. 9, 19) A, B đồng thuận. Không sửa dữ liệu.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-htn-04",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "fail",
+      "verdict_final": "error",
+      "agreement": {
+        "a": true,
+        "b": true,
+        "c": true,
+        "d": false
+      },
+      "resolution": "Bất đồng ở (d): A pass, B uncertain. Nghi vấn của B: bản ghi EU_UK 2018 ESC/ESH chỉ trích lại khuyến cáo chung qua slide 31 của bộ slide ESC 2024, có thể thiếu mục tiêu riêng theo tuổi. Trọng tài mở bộ slide chính thức 2018 ESC/ESH do European Society of Hypertension đăng (eshonline.org/esh-content/uploads/2018/10/Download-1.pdf; bản đệm sha256 60b18b7c3f8b8c5d… đã băm lại khớp; 119 trang; lớp chữ grep được). Slide 62: người < 65 tuổi đang dùng thuốc hạ áp, SBP 120–129 mmHg ở đa số (I-A). Slide 116 ghi cùng khuyến cáo là 120 đến < 130 (I-A), kèm mục tiêu đầu tiên < 140/90 cho mọi người bệnh rồi 130/80 hoặc thấp hơn nếu dung nạp (I-A). Slide 6, 76, 77 nhất quán (18–65 tuổi: đích 130 hoặc thấp hơn nếu dung nạp, không dưới 120). Đã xem ảnh 6, 62, 76, 77, 116. → B đúng: bản ghi bỏ sót giá trị cho đúng quần thể 18–59 tuổi, nên (d) = fail. Sửa được chắc chắn từ nguồn đã mở. Đã THÊM 120–129 mmHg; giữ < 140 và ≤ 130 (cả hai đều xác nhận ở slide 116); chuyển nguồn sang bộ slide 2018; verified_by đổi null → auto. conflict_status vẫn concordant (120–129 giao {120 đến < 130} của 5904). Các tiêu chí (a)–(c) và các bản ghi foreign khác: A, B đồng thuận pass. Trọng tài xem ảnh slide ESC 2024 số 93 (B dựng): 120–129 mmHg ở đa số người lớn nếu dung nạp (I-A).",
+      "changed_fields": [
+        "foreign[1].source",
+        "foreign[1].url",
+        "foreign[1].fetched_at",
+        "foreign[1].page_sha256",
+        "foreign[1].verified_by",
+        "foreign[1].locator",
+        "foreign[1].values (+ 120–129 mmHg)",
+        "extraction.audit_fix"
+      ],
+      "exclude": false,
+      "exclude_reason": ""
+    }
+  ],
+  "data_changes": [
+    "P-htn-04 foreign[1] (EU_UK 2018 ESC/ESH) values: thêm {lo 120, hi 129, mmHg} '120–129 mmHg (người < 65 tuổi đang dùng thuốc hạ áp)'; giữ {140, '<'} và {130, '<='}",
+    "P-htn-04 foreign[1] source/url/fetched_at/page_sha256/locator: từ 'as quoted in the 2024 ESC official slide set' (optimizely 033b7456…, sha256 c006bbb5…) → bộ slide chính thức 2018 ESC/ESH trên eshonline.org (sha256 60b18b7c…), slide 62 và 116 (6, 76, 77 nhất quán)",
+    "P-htn-04 foreign[1].verified_by: null → 'auto' (lớp chữ PDF, vnsoc.match.sources grep thấy 120-129, 120 to < 130, < 140/90)",
+    "P-htn-04 extraction.audit_fix: thêm (verdict error, đã sửa; ghi rõ AI, không phải người)"
+  ],
+  "not_changed_recommendations": [
+    "P-htn-01 (điều phối viên, moh_neighbour_pending): ảnh 5904 tr. PDF 16 (Phụ lục 1.2) ghi 'Tự đo tại nhà ≥ 135/85 mmHg'. Như vậy cặp 135/85 (tự đo tại nhà) của Bảng 1 3192 được văn bản Bộ Y tế thứ hai xác nhận. Cặp 130/80 (Holter 24 giờ) chỉ suy ra bằng loại trừ; nó trùng ESC 2024 slide 53 cột 24 h ABPM. Chữ nằm trong ảnh nên verify_span không kiểm được. Theo mặc định HG1.2 A.6, bối cảnh lân cận không tính trong phân tích chính, chỉ vào độ nhạy N1.",
+    "P-htn-01: nhánh 'HA ≥ 180/110 mmHg → Tăng huyết áp' (5904 tr. 16, ảnh) là bước sàng lọc khác. Không đổi đáp án, không ghi vào moh_neighbour.",
+    "P-htn-03 (tùy chọn, question-writer, trước khi đóng băng câu hỏi v1, không xem đầu ra): 3192 tr. 7 coi tuổi (nam > 55) là yếu tố nguy cơ. Vì vậy 'nam 56–59 tuổi không có yếu tố nguy cơ khác' tự mâu thuẫn. Có thể thu hẹp thành 41–55 tuổi hoặc nêu 'nữ'; đáp án mọi hệ không đổi.",
+    "P-htn-03: sơ đồ ảnh 5904 tr. 12 có ô 'THA độ II–III ≥ 160/100 mmHg → điều trị thuốc ngay'. Đây là bước khác, không có span lớp chữ nên không đưa vào moh_neighbour. Ghi cho người chấm HG3.5.",
+    "P-htn-04: ghi chú (3) trong notes nay chỉ còn đúng với WHO 2021 và JNC8. Nếu 3192/2010 không còn hiện hành, ESC/ESH 2018 vẫn giao tập 5904 nhờ 120–129.",
+    "P-htn-04: lỗi bộ chấm với cmp '<' (135 mmHg, < 120 bị nhãn 5) là việc của điều phối viên trước khi đóng băng, đã ghi trong notes. vn[0] mã hóa hi=130 cho '< 130'; với dung sai 5 thì không đổi nhãn.",
+    "P-htn-01/-03/-04, giá trị ESC 2024: slide là ảnh EMF. A và B mỗi người tự dựng ảnh và đọc, trọng tài xem lại ảnh slide 53, 92, 93, và cả ba khớp. verified_by vẫn để null vì người đọc là AI, không phải người. Mục B trong HG1.2_decisions (P-htn-01/-03) nay đã được AI kiểm, nhưng chưa có người kiểm.",
+    "src/ (người giữ mã): cảnh báo pilot_merge 'không thấy 140/90' ở P-htn-01/-03 là giới hạn của cached_text với pptx chứa EMF, không phải lỗi giá trị.",
+    "Checklist state/gates/HG1.2_checklist.md vẫn mô tả bản ghi 2018 cũ. Chạy lại pilot_merge có checklist khi gộp sẽ cập nhật."
+  ],
+  "self_check": "vnsoc.schemas atom data/interim/pilot/htn.jsonl: OK 3 dòng. pilot_merge --only htn --no-checklist: trước sửa giữ 3 {conflict 2, concordant 1}, loại 0, 3 cảnh báo (01, 03: ESC 2024 pptx; 04: bản ghi 2018 'không thấy 140' trong pptx); sau sửa giữ 3 {conflict 2, concordant 1}, loại 0, còn 2 cảnh báo (01, 03, có từ trước). So sánh mẩu gộp trước/sau: chỉ khác P-htn-04 foreign[1] (source, url, page_sha256, verified_by, locator, values) và extraction.audit_fix. conflict_status, mồi (01/03: 150/100 mmHg, 04: không có) và dung sai 5 không đổi."
+}

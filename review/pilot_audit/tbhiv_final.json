@@ -1,0 +1,94 @@
+{
+  "topic": "tbhiv",
+  "date": "2026-09-26",
+  "role": "trọng tài (AI, Claude — vai integrity-auditor + atom-extractor)",
+  "reviewer_kind": "Kiểm bởi AI (Claude): kiểm toán viên A, B và trọng tài đều là AI. KHÔNG phải người kiểm, KHÔNG phải bác sĩ.",
+  "inputs": ["review/pilot_audit/tbhiv_A.json", "review/pilot_audit/tbhiv_B.json"],
+  "method": "So từng tiêu chí (a)–(d) của A và B. Chỉ khác nhau ở P-tbhiv-03 (c): A pass, B fail. Không có tiêu chí uncertain. Trọng tài tự mở lại nguồn: 162/2024 lớp chữ tr. PDF 69, 70, 101 và ảnh trang tr. 69, 70 (--image, xem bằng mắt); --find '2RHZ/4RH' → [69, 70, 101], '4RH' → [44, 66, 69, 70, 71, 101], '4HR' → [71]; câu hỏi P-tbhiv-03 VI/EN trong data/interim/pilot_questions.jsonl (chỉ đọc). Cho các sửa phụ: WHO 2026 Module 4 bản 2 (bản đệm sha256 a6092c81… băm lại khớp) tr. PDF 73 và 140; bản đệm bản ghi IRIS 10665/387622 (sha256 7810f658…); 162/2024 tr. 201 và 2760/2021 tr. 1, 37. Không đọc data/runs/. Sao lưu trước khi sửa: scratchpad/audit/tbhiv_before.jsonl (sha256 cb91a511…). Script sửa (scratchpad/audit/tbhiv_fix.py) lấy span lân cận nguyên văn từ lớp chữ, kiểm span_on_page, và kiểm bất biến (span, trang, quần thể, cat_options, vn, giá trị foreign, superseded, decoy, dung sai, trạng thái không đổi). Tự kiểm: vnsoc.schemas atom OK 7/7; pilot_merge --only tbhiv giữ 7, loại 0, {conflict 3, indistinguishable 1, concordant 3}, giống hệt lần chạy trước khi sửa; neighbour_overlap và status_with_neighbours của cả 7 mẩu không đổi.",
+  "summary": {"ok": 4, "fixed": 3, "excluded": 0, "uncertain": 0},
+  "atoms": [
+    {
+      "atom_id": "P-tbhiv-01",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "fix",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass cả 4 tiêu chí, cùng 'ok'. Giá trị: tên phác đồ BPaL ở 162/2024 tr. PDF 53, thành phần và thời gian 6–9 tháng ở tr. 54. Bản cũ 1314/2020 tr. 60 và 2760/2021 tr. 17 cùng là 'Bdq Lzd Cfz Cs +1 thuốc nhóm C'. Nước ngoài: WHO 2026 tr. 22 (B1.1a BPaL, B1.2a BDLC), WHO 2022 tr. 26, ATS 2025 Q3 BPaL, WHO 2020 tr. 17/60. Chọn 'fix' vì trọng tài đã tự kiểm rồi áp đề xuất ghi chú của B, không đổi giá trị: (1) Bằng chứng danh tính gián tiếp của '2760/2021': 162/2024 tr. 201 dẫn 'sơ đồ 3.1. 2 (QĐ 2760 của BYT)'; tài liệu này tr. 37 (in 94) có 'Sơ đồ 3.1.2. Hướng dẫn đối với kết quả “vết” trong thực hiện Xpert MTB/RIF Ultra'. Năm 2021 chỉ dựa vào bìa; hiệu lực vẫn là suy luận. (2) B ghi version_date WHO 2026 '2026-09-21' là 'không kiểm được'. Trọng tài tìm được căn cứ: bản ghi IRIS 10665/387622 đã đệm có dc.date.issued = 2026-09-21 và trỏ tới đúng bitstream fb7951ad…, nên không sửa version_date (dùng chung cho 01/02/03/04/07). Ghi nhận không đổi dữ liệu: câu hỏi chưa nêu hết chống chỉ định BPaL ở tr. 54 (A); ranh giới 14–16 tuổi đã chuyển HG3.9.",
+      "changed_fields": ["extraction.notes", "extraction.audit_fix"],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-tbhiv-02",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "fix",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass cả 4 tiêu chí, cùng 'ok'. 162/2024 tr. PDF 49 có C1a '4-6Bdq[6]-Lfx-Pto-E-Z-Hh-Cfz / 5 Lfx-Cfz-Z-E' (có bedaquiline); bản cũ 1314/2020 tr. 59 có amikacin; WHO 2019 tr. 41/42. A và B cùng thấy ký hiệu phác đồ WHO 2026 ở PDF tr. 73 còn tr. 140 chỉ ghi thành phần bằng lời. Trọng tài mở lại bản đệm (sha256 a6092c81…): tr. 73 có ký hiệu 4–6 Bdq[6]-Lfx[Mfx]-Eto-E-Z-Hh-Cfz / 5 Lfx[Mfx]-Cfz-Z-E; tr. 140 có B2.1 và tên thuốc, không có ký hiệu. Đã thêm tr. 73 vào locator; không đổi giá trị. Ghi nhận: các phác đồ B2.2 của WHO 2026 (BLMZ, BLLfxCZ, BDLLfxZ) đều có bedaquiline nên không đổi tập khóa hay trạng thái.",
+      "changed_fields": ["foreign[0].locator", "extraction.audit_fix"],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-tbhiv-03",
+      "a": "pass", "b": "pass", "c": "fail", "d": "pass",
+      "verdict_final": "fix",
+      "agreement": {"a": true, "b": true, "c": false, "d": true},
+      "resolution": "Khác nhau ở (c): A pass (thấy câu suy thận tr. 69 nhưng coi là quần thể khác, sửa tùy chọn), B fail (bỏ sót giá trị Bộ Y tế). Trọng tài tự mở lớp chữ tr. 69, 70, 101 và ảnh tr. 69, 70. Nguyên văn: tr. 69 (in 68) mục 3.1.4 «Phác đồ 2RHZ/4RH có thể áp dụng điều trị lao cho người bệnh suy thận.»; tr. 70 (in 69), mục tiểu đường có biến chứng suy thận, «Phác đồ 2RHZ/4RH có thể áp dụng cho bệnh nhân lao thường.»; tr. 101 (in 100) mục 5.3.4 c) «Phác đồ 2RHZ/4RH có thể áp dụng điều trị cho người bệnh lao có suy thận.» Đó là giai đoạn duy trì 4RH, nhãn HR, trùng nhãn WHO/Mỹ, cho người lớn lao có suy thận. Câu hỏi VI/EN không nêu chức năng thận/gan hay đái tháo đường, và moh_neighbour chưa ghi các giá trị này. Kết luận: theo B, (c) = fail vì mẩu bỏ sót giá trị lân cận. Theo A, đây không phải lỗi giá trị: 4RHE (A1, tr. 44) đúng cho quần thể của mẩu; câu tr. 70 theo ngữ cảnh nói về nhóm tiểu đường có suy thận. Vì vậy chốt 'fix', không phải 'error'. Đã thêm 3 mục moh_neighbour (span nguyên văn lớp chữ, span_on_page = True) và ghi chú. neighbour_overlap vốn đã True (A2 tr. 44; HIV tr. 71), nên conflict_status (conflict), status_with_neighbours (indistinguishable) và N1 không đổi. Cách đọc rộng câu tr. 70 ('mọi người bệnh lao' → mâu thuẫn nội bộ thứ hai) để bác sĩ thật xem ở HG3.9; AI không kết luận. Ghi chú thêm: tr. 69 mục viêm gan có '2 HRSE/6 RH' (duy trì 6 tháng, không cùng khe 4 tháng, chỉ ghi chú); không có 4RE nên mồi RE vẫn sạch. Không áp đề xuất (3) của B (sửa population.hiv_pregnancy): trường này mô tả đúng phạm vi đoạn văn, câu hỏi hẹp hơn là không sai. Đề nghị question-writer làm trước khi đóng băng v1, không xem đầu ra mô hình: thêm 'chức năng thận và gan bình thường, không đái tháo đường' / 'normal kidney and liver function, no diabetes'.",
+      "changed_fields": ["moh_neighbour (+3 mục: 162/2024 tr. 69, 70, 101)", "extraction.notes", "extraction.audit_fix"],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-tbhiv-04",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass cả 4 tiêu chí, cùng 'ok'. Phác đồ A2 2HRZE/4RH (trẻ em) ở 162/2024 tr. PDF 44; duy trì 'R, H' ở tr. 45; 1314/2020 tr. 54 cùng giá trị. WHO 2026 tr. 20 A1.6a/b cho 4HR; ATS 2025 PICO 2. Câu hỏi ghim 'phác đồ chuẩn 6 tháng' nên loại A2a 4 tháng (tr. 45). Các giá trị suy thận tr. 69/70/101 (4RH) trùng giá trị Bộ Y tế của mẩu này nên không ảnh hưởng. Không sửa dữ liệu.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-tbhiv-05",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass cả 4 tiêu chí, cùng 'ok'. 5968/2021 tr. PDF 29 Bảng 3, hàng 'Người trên 10 tuổi': ưu tiên TDF + 3TC (hoặc FTC) + DTG. WHO 2024 PEP tr. 8/14; CDC 2025 nPEP tóm tắt và Bảng 4. Không sửa dữ liệu. Việc mồi TLE (efavirenz) trùng phương án thay thế của WHO 2014 PEP là quyết định HG1.2 mục A.7 (mặc định (a): đổi sang doravirine), không phải lỗi trích dẫn. Mục này không nằm trong danh sách mặc định được giao áp vào dữ liệu ở lượt này, nên trọng tài không chọn mồi tay. B không tìm được văn bản thay 5968/2021 (vaac.gov.vn lỗi chứng chỉ): ghi nhận, không đổi phán quyết.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-tbhiv-06",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass cả 4 tiêu chí, cùng 'ok'. 5968/2021 tr. PDF 29 mục 4: «đủ 28 ngày liên tục», nhất quán với tr. 22 và tr. 31. WHO 2024 PEP (28 ngày); CDC 2025 nPEP (28 ngày). Không sửa dữ liệu.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    },
+    {
+      "atom_id": "P-tbhiv-07",
+      "a": "pass", "b": "pass", "c": "pass", "d": "pass",
+      "verdict_final": "ok",
+      "agreement": {"a": true, "b": true, "c": true, "d": true},
+      "resolution": "A và B cùng pass cả 4 tiêu chí, cùng 'ok'. 162/2024 tr. PDF 59: thời gian điều trị «06 tháng»; tiêu đề và thành phần '6 R(H)ZELfx' ở tr. 58. 1314/2020 tr. 61 cùng giá trị. WHO 2026 tr. 25 B4.1 cho 6 tháng. Câu hỏi đã loại các trường hợp có thể kéo dài (tổn thương rộng, âm hóa chậm). Không sửa dữ liệu.",
+      "changed_fields": [],
+      "exclude": false,
+      "exclude_reason": ""
+    }
+  ],
+  "systemic": [
+    {
+      "issue": "Lớp chữ PDF 162/2024 (không phải OCR) dùng ký tự Cyrillic: U+04DF 'ӟ' thay 'ớ', U+04AF 'ү' thay 'ẫ'. Ảnh trang in đúng chữ Việt. verify_span.norm() mới quy đổi ƣ/Ƣ, chưa quy đổi ӟ/ү (trọng tài đã đọc _GLYPH trong src/vnsoc/extract/verify_span.py).",
+      "affects": ["span P-tbhiv-01, -02, -03, -07", "span moh_neighbour A1 (P-tbhiv-04), tr. 70 (P-tbhiv-03)", "đoạn oracle A3 lấy từ 162/2024 trong data/interim/pilot_passages.jsonl"],
+      "action": "Không sửa trong lượt này (việc của chủ mã, ngoài tệp mẩu). Cần thêm '\\u04df'→'ớ' và '\\u04af'→'ẫ' vào _GLYPH, kèm test. Sau đó chạy lại verify_span và dựng lại đoạn A3 trước khi đóng băng. Span hiện khớp lớp chữ; norm() áp cho cả hai phía nên span vẫn qua sau khi thêm ánh xạ. Khi trích trong bài hoặc supplement, viết theo chữ trên ảnh trang."
+    }
+  ],
+  "defaults_applied": "Không có mặc định HG1.2 mục A nào thuộc danh sách được giao áp dữ liệu cho chủ đề này (malaria_ocr-01/-07, hbv-04, dm-08, anaphylaxis). A.7 (mồi P-tbhiv-05) để nguyên dữ liệu.",
+  "for_question_writer_before_v1_freeze": [
+    "P-tbhiv-03: thêm 'chức năng thận và gan bình thường, không đái tháo đường' / 'normal kidney and liver function, no diabetes' (VI/EN, trả lời ngắn và trắc nghiệm).",
+    "P-tbhiv-01 (tùy chọn): thêm 'không có bệnh nền hoặc thuốc dùng kèm thuộc chống chỉ định khác của BPaL' (162/2024 tr. 54)."
+  ],
+  "self_check": "pilot_merge --only tbhiv --no-checklist: giữ 7, loại 0, {conflict 3, indistinguishable 1, concordant 3}, trước và sau sửa như nhau. vnsoc.schemas atom: 7/7 hợp lệ. sha256 data/interim/pilot/tbhiv.jsonl: cb91a511… (trước) → 837f0fa1… (sau)."
+}

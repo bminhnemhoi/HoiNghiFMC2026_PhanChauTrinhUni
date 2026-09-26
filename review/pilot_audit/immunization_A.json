@@ -1,0 +1,99 @@
+{
+  "topic": "immunization",
+  "auditor": "A",
+  "role": "integrity-auditor (AI) — kiểm bởi AI, không phải người",
+  "date": "2026-09-26",
+  "method": "Theo checklist state/gates/HG1.2_checklist.md từng dòng. MOH: verify_span (atoms, --page, --find) trên bản sao scratch của 4 mẩu + ảnh trang 150 dpi (--image) mở bằng mắt: TT52/2025 tr.1,2,3,4,7,9; TT13/2026 tr.3,18; TT10/2024 tr.1–3; QĐ 1740/2026 tr.41; QĐ 1327/2014 tr.6. Nguồn nước ngoài: bản đệm data/cache/foreign (SHA-256 tính lại khớp page_sha256), grep theo locator. Không đọc data/runs/, không đọc immunization_B.json, không sửa file dữ liệu.",
+  "atoms": [
+    {
+      "atom_id": "P-immunization-01",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "currency_flag": "UNRESOLVED — TT52/2025 hết hiệu lực từ 01/7/2026 (TT13/2026 Điều 27.2.d, tr.18, đã xem ảnh); TT13/2026 Điều 5.4 (tr.3, ảnh) chuyển lịch tiêm sang 'hướng dẫn chuyên môn của Cục Phòng bệnh' — văn bản đó chưa tìm thấy (kiểm toán viên A thử thêm 2 WebSearch + 2 WebFetch 26/9/2026: không có; trang tiemchungmorong.vn lich-tiem-chung-thuong-xuyen trả 404, hcdc.vn chỉ có bản 2024). hg_block của mẩu vẫn đúng; đây là quyết định (a)/(b)/(c), không phải lỗi trích dẫn.",
+      "evidence": [
+        "(a) TT52/2025 trang PDF 7 = trang in 7 (ảnh). Span khớp lớp chữ (verify_span OK) và ảnh: hàng TT 8 'Bệnh sởi', ô 'Vắc xin sởi đơn giá', 'Trẻ em', '- Tiêm khi trẻ đủ 9 tháng tuổi. - Trường hợp tiêm chủng không đúng theo lịch thì tiêm ngay khi có thể.' PDF có lớp chữ gốc (không OCR).",
+        "(b) vn: 9 tháng — ảnh tr.7 'Tiêm khi trẻ đủ 9 tháng tuổi' đúng số, đúng đơn vị. moh_neighbour: tr.7 hàng 'Vắc xin phối hợp có chứa thành phần sởi' – 'Tiêm nhắc lại khi trẻ đủ 18 tháng tuổi.' (--find → [7]) đúng 18 tháng. Hiệu lực TT52: tr.9 ảnh 'có hiệu lực thi hành kể từ ngày 15 tháng 02 năm 2026' → valid_from 2026-02-15 đúng; valid_to 2026-06-30 đúng theo TT13/2026 Điều 27.1–2.d (tr.18, ảnh).",
+        "(b) Ghi chú 'giá trị trùng TT10/2024': ảnh TT10/2024 tr.3 hàng 8 Bệnh sởi 'Tiêm khi trẻ đủ 9 tháng tuổi' và 'Tiêm khi trẻ đủ 18 tháng tuổi' — đúng. Manh mối QĐ 1327/2014 tr.6 (in 5), ảnh: '(mũi đầu tiên bắt buộc tiêm lúc 9 tháng tuổi)' — đúng như ghi chú.",
+        "(c) Quần thể 'mũi đầu tiên của bất kỳ vắc xin nào có chứa thành phần sởi', trẻ em, đúng lịch, loại trừ liều sớm/bổ sung: khớp đoạn văn (ô sởi đơn giá là mũi đầu, ô phối hợp là 'nhắc lại'). Câu ngắn VI/EN khớp quần thể. Không bỏ sót giá trị Bộ Y tế nào khác cho cùng quần thể trong TT52 (chỉ còn 'ngay khi có thể' = tiêm bù, bị loại; Điều 2 tr.8 là tiêm chống dịch, bị loại).",
+        "(d) US archive 2025 (sha 30712f92…, khớp): PDF p.10 Notes MMR, Routine: 2-dose series at 12-15 months → 12–15 tháng đúng; liều 6–11 tháng trước du lịch ở mục Special situations cùng trang (quần thể khác, đúng như ghi chú).",
+        "(d) US live 'revised 07/02/2025' (sha 96159043…, khớp; tr.1 in 'United States 2025 revised 07/02/2025'): PDF p.10 Notes MMR 12-15 months → đúng.",
+        "(d) Tình trạng pháp lý US: CRS R48982 (June 11, 2026; sha 66d7d66d… và ceef9216…) p.5: D. Mass. stay ngày 16/3/2026, lịch trở về 'version as of May 2025'; kháng cáo First Circuit 29/4/2026 → mô tả trong source đúng. CRS p.10: nhóm vắc xin 'consensus' (sởi, ho gà, bạch hầu…) phần lớn giữ nguyên trong lịch 2026 → giá trị MMR không phụ thuộc kết quả kiện.",
+        "(d) EU_UK UKHSA (sha 61db065b…, khớp): tiêu đề 'Complete routine immunisation schedule from 1 September 2026', 'Updated 24 September 2026'; hàng 'One year old (on or after the child's first birthday' — MMRV → 12 tháng đúng. (URL slug ghi 'from-1-july-2026' nhưng tiêu đề trang là 1 September 2026 — source ghi theo tiêu đề, chấp nhận.)",
+        "(d) WHO Table 1 (sha 9861c483…, khớp; tr.1 'updated: December 2025'): footnote 9 Measles p.8 — nước còn lây truyền, nguy cơ tử vong cao: MCV1 lúc 9 tháng → đúng; nước lây truyền thấp: MCV1 có thể 12 tháng (quần thể khác, ghi chú đúng).",
+        "(d) WHO measles PP summary April 2017 (sha 704cfe53…, khớp) p.1: nơi nguy cơ tử vong sởi ở nhũ nhi còn cao → MCV1 lúc 9 tháng → đúng. Ghi nhận nhỏ (không lỗi): locator viết 'countries with ongoing transmission', bản tóm tắt dùng cụm 'risk of measles mortality among infants remains high' (Table 1 fn 9 dùng cả hai) — cùng quần thể."
+      ],
+      "proposed_fix": "Không cần sửa trích dẫn. Tùy chọn: locator WHO PP 2017 ghi 'where risk of measles mortality among infants remains high' cho sát chữ nguồn. Việc chặn do hiệu lực (TT52 hết hiệu lực) vẫn chờ quyết định (a)/(b)/(c)."
+    },
+    {
+      "atom_id": "P-immunization-02",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "currency_flag": "UNRESOLVED — như P-immunization-01 (TT52/2025 hết hiệu lực 01/7/2026; lịch tiêm hiện hành của Cục Phòng bệnh chưa tìm thấy).",
+      "evidence": [
+        "(a) TT52/2025 trang PDF 3 = trang in 3 (ảnh). Hàng 3 'Bệnh bạch hầu' kéo dài từ tr.2 sang tr.3; ô 'Vắc xin phối hợp có chứa thành phần bạch hầu giảm liều' – 'Trẻ em' – '- Tiêm nhắc lại lần 2 khi trẻ đủ 7 tuổi. - Trường hợp tiêm chủng nhắc lại lần 2 không đúng theo lịch thì tiêm nhắc lại lần 2 khi trẻ từ 7 tuổi trở lên cách ít nhất 4 năm sau tiêm nhắc lại lần 1.' Span khớp nguyên văn (verify_span OK). Lớp chữ gốc.",
+        "(b) vn: 7 tuổi (year) — ảnh tr.3 đúng. Mốc quần thể 18 tháng: ảnh tr.2 cuối trang '- Tiêm nhắc lại lần 1 khi trẻ đủ 18 tháng tuổi.' đúng. Ghi chú 'uốn ván tr.4 cùng 7 tuổi': ảnh tr.4 'Tiêm nhắc lại lần 2 khi trẻ đủ 7 tuổi' đúng. TT10/2024 tr.1 (ảnh): bạch hầu giảm liều 'Tiêm nhắc lại khi trẻ đủ 7 tuổi' — trùng giá trị như ghi chú.",
+        "(c) Câu ngắn VI: 'Ở trẻ em đã tiêm mũi nhắc lại lần thứ nhất vắc xin có chứa thành phần bạch hầu lúc 18 tháng tuổi, mũi nhắc lại lần thứ hai … tuổi nào (năm tuổi)?' — khớp đoạn văn (nhắc lại lần 2 sau nhắc lại lần 1 lúc 18 tháng); không nêu 'giảm liều' là có chủ ý (nêu ra sẽ ánh xạ sang Tdap 11–12 tuổi của Mỹ — CDC p.14 xác nhận Tdap 11-12 years). Không có giá trị Bộ Y tế khác cho cùng quần thể trong TT52.",
+        "(d) US archive (sha 30712f92…) PDF p.7 Notes DTaP Routine: 5-dose series, boosters at 15-18 months and 4-6 years → 4–6 tuổi đúng; live (sha 96159043…) PDF p.8 cùng giá trị → đúng.",
+        "(d) EU_UK UKHSA (sha 61db065b…): hàng 'Eighteen months old' — trẻ sinh từ 1 July 2024 nhận DTaP/IPV/Hib/HepB; trẻ sinh ≤ 30 June 2024 'No appointment'. Hàng 'Three years four months old or soon after' — dTaP/IPV cho cả hai nhóm sinh (tách theo mốc 1 January 2025 chỉ để thêm MMRV). → với trẻ đã có mũi 18 tháng, mũi kế tiếp là 3 tuổi 4 tháng = 40 tháng; quy đổi đúng; locator đúng.",
+        "(d) WHO Table 1 (sha 9861c483…): p.1 hàng DTP-containing vaccine '2 boosters 12-23 months (DTPcv) and 4-7 years (Td/DT containing vaccine)'; footnote 5 p.6 nhắc lại mốc 4–7 tuổi, khoảng cách lý tưởng ≥ 4 năm giữa các mũi nhắc → 4–7 tuổi đúng.",
+        "(d) Tình trạng US: CRS R48982 p.5 (stay 16/3/2026 → version as of May 2025) và p.10 (vắc xin consensus giữ nguyên) → giá trị DTaP 4–6 tuổi bền với kết quả kiện.",
+        "Ghi nhận thiết kế (không phải lỗi trích dẫn, đã có trong ghi chú mẩu): phương án trắc nghiệm '4–6 tuổi' gán vai 'foreign:US+WHO_global' vì nằm trong khoảng WHO 4–7, trong khi WHO đồng thuận với Bộ Y tế ở 7 tuổi."
+      ],
+      "proposed_fix": "Không cần sửa. Việc chặn do hiệu lực văn bản vẫn chờ quyết định (a)/(b)/(c)."
+    },
+    {
+      "atom_id": "P-immunization-03",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "currency_flag": "MOH: hiện hành (TT13/2026, hiệu lực 01/7/2026). US: bản CDC live tải 26/9/2026 (sha 96159043…) vẫn là lịch 2025 'revised 07/02/2025' với 'within 24 hours' — ủng hộ giá trị US còn áp dụng tại ngày tải; tình trạng pháp lý sau 11/6/2026 (kháng cáo First Circuit) vẫn chưa kiểm bằng nguồn pháp lý đã băm → giữ nguyên yêu cầu kiểm lại trước 15/10/2026 như ghi chú mẩu.",
+      "evidence": [
+        "(a) TT13/2026 trang PDF 18 = trang in 18 (ảnh; trang quét, có cờ OCR). So từng chữ span với ảnh: 'Cơ sở khám bệnh, chữa bệnh có tổ chức hoạt động tiêm chủng ngoài việc thực hiện các quy định tại Điều 25 Thông tư này phải thực hiện: 1. Đối với các cơ sở khám bệnh, chữa bệnh có phòng sinh: tổ chức thực hiện việc tiêm chủng vắc xin viêm gan B trong vòng 24 giờ sau sinh' — khớp hoàn toàn; OCR đúng ở toàn bộ đoạn span (lỗi OCR chỉ ở ngoài span: tiêu đề 'Điêu 26…co sở' → ảnh 'Điều 26… cơ sở'; 'sinh pham' → 'sinh phẩm'). verify_span OK.",
+        "(b) Số '24' và đơn vị 'giờ' đúng trên ảnh tr.18; cmp '<=' phù hợp 'trong vòng'. valid_from 2026-07-01 đúng (Điều 27.1, tr.18 ảnh); ngày ký 16/5/2026 (OCR tr.1). Không có giá trị viêm gan B sơ sinh nào khác trong TT13 (--find 'viêm gan B' → [18]; các '24 giờ' ở tr.6,7,9 là theo dõi sau tiêm/báo cáo tai biến).",
+        "(b) Bản cũ cùng giá trị: TT52/2025 tr.1 (ảnh) '- Tiêm một lần cho trẻ sơ sinh (liều sơ sinh) trong vòng 24 giờ sau khi sinh.' — span prior_versions khớp (--find → [1]); TT10/2024 tr.1 (ảnh) 'Liều sơ sinh: tiêm trong vòng 24 giờ sau khi sinh' — khớp ghi chú.",
+        "(c) Đoạn văn Bộ Y tế áp dụng cho mọi trẻ sinh tại cơ sở KBCB có phòng sinh (không phân nhóm mẹ HBsAg/cân nặng) → giới hạn 'mẹ HBsAg âm tính, ≥ 2000 g, ổn định' là tập con hợp lệ; câu VI/EN nêu đủ các điều kiện, 'không phải tiêm bù'. Lưu ý nhỏ: đoạn văn thuộc Điều 26 (cơ sở KBCB 'có tổ chức hoạt động tiêm chủng'), câu hỏi viết 'cơ sở y tế có phòng sinh' — chấp nhận được.",
+        "(c) DR8 kiểm thêm: QĐ 1740/2026 (hướng dẫn VGB hiện hành) tr.34 'Phòng bệnh chủ động bằng vắc xin viêm gan B, thực hiện theo quy định hiện hành'; tr.41 Phụ lục 6 (ảnh): hộp 'TIÊM VẮC XIN VIÊM GAN B VÀ HUYẾT THANH KHÁNG VIÊM GAN B CHO TRẺ NGAY SAU KHI SINH TRONG VÒNG 24 GIỜ' thuộc nhánh mẹ HBsAg dương tính (nhánh âm tính không có mũi tên xuống) → không phải quần thể mẩu, nhưng cùng 24 giờ, không mâu thuẫn. QĐ 3310/2019 (bị thay) tr.8 'trong vòng 24h sau sinh' — cùng giá trị.",
+        "(d) US archive (sha 30712f92…) PDF p.8 Notes Hepatitis B Routine, mother HBsAg-negative, birth weight ≥2,000 g: 1 dose within 24 hours of birth if medically stable → đúng giá trị, đơn vị, quần thể; live (sha 96159043…) PDF p.9 cùng nội dung → đúng.",
+        "(d) US 2026: CRS R48982 p.7 — lịch 2026 đưa khuyến cáo ACIP 12/2025 (quyết định cá nhân cho trẻ có mẹ HBsAg âm tính); p.5 — bị D. Mass. đình chỉ 16/3/2026, trở về version as of May 2025; kháng cáo 29/4/2026 → mô tả trong source/notes đúng.",
+        "(d) WHO Table 1 (sha 9861c483…) footnote 3 p.5: mọi trẻ (kể cả nhẹ cân, non tháng) tiêm liều đầu càng sớm càng tốt sau sinh, ideally within 24 hours → đúng giá trị/quần thể. Ghi nhận: 'ideally' là mục tiêu, ghi thành cmp '<=' 24 h là cách đọc hợp lý cho mẩu đồng thuận.",
+        "(d) EU_UK không ghi: UKHSA (sha 61db065b…) chỉ có chương trình chọn lọc 'Babies born to women with hepatitis B infection — At birth and 4 weeks'; lịch thường quy dùng 6-trong-1 lúc 8/12/16 tuần → không có giá trị cho quần thể mẹ âm tính; ghi chú mẩu đúng."
+      ],
+      "proposed_fix": "Không cần sửa. Giữ việc kiểm lại tình trạng lịch CDC (kháng cáo First Circuit) trước 15/10/2026; có thể bổ sung vào ghi chú: bản CDC live tải 26/9/2026 (sha 96159043…) vẫn là lịch 2025 revised 07/02/2025."
+    },
+    {
+      "atom_id": "P-immunization-04",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "fix",
+      "currency_flag": "UNRESOLVED — như P-immunization-01 (TT52/2025 hết hiệu lực 01/7/2026; lịch tiêm hiện hành của Cục Phòng bệnh chưa tìm thấy).",
+      "evidence": [
+        "(a) TT52/2025 trang PDF 3 = trang in 3 (ảnh). Hàng 4 'Bệnh ho gà', ô vắc xin 'Vắc xin phối hợp có chứa thành phần ho gà' gộp cho hai dòng; dòng 1 'Trẻ em' – lịch 3 mũi cơ bản và tiêm bù; dòng 2 'Trẻ em' – '- Tiêm nhắc lại khi trẻ đủ 18 tháng tuổi.' Span (593 ký tự) khớp lớp chữ và thứ tự ô (verify_span OK). Lớp chữ gốc.",
+        "(b) vn: 18 tháng — ảnh tr.3 đúng. Ghi chú 'dòng bạch hầu (tr.2) và uốn ván (tr.4) ghi nhắc lại lần 1 lúc 18 tháng': ảnh tr.2 cuối trang và tr.4 — đúng. TT10/2024 tr.2 (ảnh) ho gà 'Tiêm nhắc lại khi trẻ đủ 18 tháng tuổi' — trùng giá trị như ghi chú.",
+        "(c) Câu VI 'đã tiêm đủ ba mũi cơ bản … mũi nhắc lại đầu tiên (mũi thứ tư) theo đúng lịch … (tháng tuổi)' khớp đoạn văn (3 mũi 'Tiêm lần 1–3' rồi 'Tiêm nhắc lại' 18 tháng). TT52 không có mũi nhắc ho gà thứ hai; không bỏ sót giá trị Bộ Y tế khác cho quần thể này.",
+        "(d) US archive (sha 30712f92…) PDF p.7 và live (sha 96159043…) PDF p.8 Notes DTaP Routine: booster doses at 15-18 months (dose 4) → 15–18 tháng đúng; trường hợp dose 4 sớm từ 12 tháng là 'prospectively/retrospectively' đặc biệt, loại bởi 'đúng lịch'.",
+        "(d) EU_UK UKHSA (sha 61db065b…): hàng 'Eighteen months old' — 'Born on or after 1 July 2024' — DTaP/IPV/Hib/HepB → 18 tháng đúng (trẻ sinh ≤ 30/6/2024: 'No appointment').",
+        "(d) LỖI NHỎ LOCATOR (không đổi giá trị): locator EU_UK viết \"footnote 4 'also at 18 months'\" như bằng chứng phụ cho hàng thường quy 18 tháng; trên trang, footnote 4 gắn với dòng chương trình CHỌN LỌC 'Babies born to women with hepatitis B infection [footnote 3] [footnote 4]' (nói hexavalent tiêm 8, 12, 16 tuần và cả 18 tháng cho nhóm trẻ đó), không thuộc bảng lịch thường quy. Giá trị 18 tháng vẫn đúng theo hàng 'Eighteen months old'.",
+        "(d) WHO Table 1 (sha 9861c483…) p.1 hàng DTP-containing vaccine: booster 12-23 months (DTPcv); footnote 5 p.6 cùng mốc → 12–23 tháng đúng.",
+        "(d) Tình trạng US: CRS R48982 p.5/p.10 → giá trị DTaP bền với kết quả kiện (vắc xin consensus giữ nguyên)."
+      ],
+      "proposed_fix": "Sửa locator bản ghi EU_UK: bỏ \"footnote 4 'also at 18 months'\" hoặc ghi rõ \"footnote 4 (thuộc chương trình chọn lọc viêm gan B cho trẻ có mẹ nhiễm, không phải bảng thường quy)\". Giá trị, đơn vị, quần thể giữ nguyên. Việc chặn do hiệu lực văn bản vẫn chờ quyết định (a)/(b)/(c)."
+    }
+  ],
+  "summary": {
+    "ok": 3,
+    "fix": 1,
+    "error": 0,
+    "uncertain": 0,
+    "blocking_note": "3/4 mẩu (01, 02, 04) trích đúng TT52/2025 nhưng văn bản này hết hiệu lực từ 01/7/2026; TT13/2026 không có lịch tiêm (Điều 5.4 dẫn sang hướng dẫn Cục Phòng bệnh, chưa tìm thấy). Đây là cờ hiệu lực (hg_block), không phải lỗi trích dẫn; kiểm toán HG1.2 không giải quyết được thay người quyết định (a)/(b)/(c)."
+  }
+}

@@ -1,0 +1,155 @@
+{
+ "topic": "controls",
+ "auditor": "A",
+ "auditor_kind": "AI (integrity-auditor, Claude) — không phải người; kiểm ngày 2026-09-26",
+ "method": "verify_span trên bản sao chỉ-đọc của 9 mẩu (tất cả OK, mọi trang chính là trang có lớp chữ, không OCR); xem ảnh trang cho 2767/2023 tr.23, tr.85; 5642/2015 tr.29, 63, 84; 5481/2020 tr.11; 6101/2019 tr.4; WPRO p.19; GOLD p.78; grep bản đệm theo sha cho GOLD, WHO 2010, NT Health, WHO fact sheet, USPSTF; WebFetch cho 2 trang CDC (curl 403). Không đọc data/runs/, không đọc file của kiểm toán viên B, không sửa file dữ liệu.",
+ "atoms": [
+  {
+   "atom_id": "P-controls-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.12 (trang in 11), trang có lớp chữ (không OCR); verify_span OK; span khớp nguyên văn: «Chẩn đoán xác định khi: rối loạn thông khí tắc nghẽn không hồi phục hoàn toàn sau test hồi phục phế quản: chỉ số FEV1/FVC < 70% sau test HPPQ.»",
+    "(b) Giá trị FEV1/FVC < 70% (sau test HPPQ), đơn vị % — đúng như trang.",
+    "(c) Người lớn, sau test HPPQ: đúng phạm vi. Cùng văn bản PDF tr.83 (lưu đồ phụ lục) «Đo CNHH: FEV1/FVC < 70% (sau test phục hồi phế quản)» — cùng giá trị. DR8: 5904/2019 PDF tr.45 «Chỉ số Gaensler (FEV1/FVC) < 70% sau nghiệm pháp giãn phế quản»; 4562/2018 PDF tr.16–18 cùng < 70%. Không bỏ sót giá trị khác cho quần thể này (1851/2020 là hen — bệnh khác).",
+    "(d) GOLD 2026 Report, bản đệm sha256 fa12e8e2…: PDF p.32 (trang in 21), Chapter 2 — spirometry: FEV1/FVC < 0,7 sau giãn phế quản là bắt buộc để chẩn đoán; cũng ở p.15, p.18, p.40. Giá trị 0,7 = 70%, quần thể người lớn nghi COPD — khớp. Phiên bản: nội dung ghi '2026 Report' (© 2025, 2026); chuỗi 'v1.3 / 8Dec2025' chỉ có trong tên tệp URL.",
+    "Ngoài 4 tiêu chí: hiệu lực 2767/2023 còn chờ HG2.3 (đề cương ghi 2131/QĐ-BYT 14/07/2026 thay thế nhưng manifest chưa tìm thấy văn bản); 4562/2018 (manifest 'current') có cùng giá trị nên DR8 không đổi."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.23 (trang in 22), lớp chữ; verify_span OK; đã xem ảnh trang (data/cache/page_images/2767_2023_p023.png): «PaO2 ≤ 55 mmHg hoặc SaO2 ≤ 88% trên hai mẫu máu trong vòng 3 tuần, bệnh nhân trong giai đoạn ổn định, ở trạng thái nghỉ ngơi, không thở oxy…»",
+    "(b) PaO2 ≤ 55 mmHg — đúng giá trị, dấu so sánh và đơn vị.",
+    "(c) Quần thể loại đúng nhánh thứ hai (tr.23–24: «PaO2 từ 56 - 59 mmHg hoặc SaO2 ≤ 88% kèm thêm một trong các biểu hiện» suy tim phải / đa hồng cầu / tăng áp phổi) nhờ điều kiện 'không tăng áp phổi, suy tim phải, đa hồng cầu' trong mẩu và câu hỏi. DR8: 4562/2018 PDF tr.28 cùng ≤ 55 mmHg; không thấy ngưỡng LTOT khác trong kho (5904/2019 tr.49 chỉ nêu 'đang phải thở oxy dài hạn tại nhà' như tiêu chí chuyển tuyến).",
+    "(d) GOLD 2026 bản đệm sha256 fa12e8e2…: PDF p.87 (trang in 76), Chapter 3 — Oxygen therapy: LTOT chỉ định khi COPD ổn định có PaO2 ≤ 55 mmHg (7,3 kPa) hoặc SaO2 ≤ 88%, xác nhận hai lần trong 3 tuần — khớp giá trị, đơn vị, quần thể.",
+    "Ngoài 4 tiêu chí: hiệu lực 2767/2023 còn chờ HG2.3 (đề cương ghi 2131/QĐ-BYT 14/07/2026 thay thế nhưng manifest chưa tìm thấy văn bản); 4562/2018 (manifest 'current') có cùng giá trị nên DR8 không đổi."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "fail",
+   "d": "pass",
+   "verdict": "error",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.31 (trang in 30), lớp chữ; verify_span OK. Tiêu đề mục ở cuối PDF tr.30: «3.4.2. Điều trị ngoại trú đợt cấp BPTNMT … Thuốc glucocorticoids:» → span đúng mục ngoại trú.",
+    "(b) «Prednisone hoặc prednisolone hoặc methylprednisolone: 30-40 mg/ngày uống 1 lần vào buổi sáng trong 5-7 ngày.» → 5–7 ngày: giá trị đã ghi đúng.",
+    "(c) BỎ SÓT giá trị cùng văn bản, cùng quần thể: 2767/2023 PDF tr.85 (trang in 84), Hình 1 'Lưu đồ xử trí đợt cấp BPTNMT' — nhánh 'Điều trị' (không nhập viện) gồm 'Corticosteroid***'; chú thích ***: «prednisolon (uống) 1mg/kg/ngày; hoặc methylprednisolon: 1mg/kg/ngày…» và dòng riêng in đậm nghiêng «Thời gian điều trị: tối thiểu 5 ngày hoặc đến khi cải thiện trên lâm sàng». Đã xem ảnh trang (data/cache/page_images/2767_2023_p085.png): dòng này tách riêng dưới toàn bộ chú thích *** (không chỉ nằm trong ý budesonide) → giá trị ≥ 5 ngày (mở trên) cho cùng quần thể ngoại trú.",
+    "(c) BỎ SÓT theo DR8: 5904/2019 (manifest: current) PDF tr.50 (trang in 41), «Bước 3: Xử trí đợt cấp BPTNMT … b) Corticoide: Prednisolone 1-2mg/kg/ngày, không nên kéo dài quá 7 ngày.» (tuyến xã, đợt cấp nhẹ; trung bình/nặng chuyển tuyến) → ≤ 7 ngày. Notes của mẩu chỉ nêu tr.34 (nội trú) và 4562/2018 tr.36/38.",
+    "(c) Hệ quả: tập VN hiện là {5–7}; nếu gộp đủ thì {5–7; ≥ 5; ≤ 7}. Trạng thái concordant KHÔNG đổi (GOLD 5 ngày nằm trong mọi giá trị) nhưng nhãn chấm đổi: ví dụ câu trả lời '10 ngày' hay '7–10 ngày' hiện bị chấm không khớp VN dù khớp 'tối thiểu 5 ngày' của Hình 1; '3 ngày' khớp '≤ 7' của 5904/2019.",
+    "(d) GOLD 2026 bản đệm sha256 fa12e8e2…: PDF p.114 (trang in 103), Chapter 4 — glucocorticoids: 40 mg prednisone-tương đương/ngày trong 5 ngày; PDF p.103 (trang in 92) key points: glucocorticoid toàn thân tối đa 5 ngày cho đợt cấp trung bình/nặng. Quần thể GOLD: đợt cấp nói chung (không riêng ngoại trú) — tương thích.",
+    "Ngoài 4 tiêu chí: hiệu lực 2767/2023 còn chờ HG2.3 (đề cương ghi 2131/QĐ-BYT 14/07/2026 thay thế nhưng manifest chưa tìm thấy văn bản); 4562/2018 (manifest 'current') có cùng giá trị nên DR8 không đổi."
+   ],
+   "proposed_fix": "Giá trị 5–7 ngày giữ nguyên (đúng nguyên văn). Bổ sung tập giá trị VN theo quy tắc nhiều giá trị/DR8: (1) 2767/2023 PDF tr.85 Hình 1 chú thích *** «Thời gian điều trị: tối thiểu 5 ngày hoặc đến khi cải thiện trên lâm sàng» → {lo:5, cmp:'>=', unit:'day'} (same_doc_locations hoặc vn); (2) 5904/2019 PDF tr.50 «Prednisolone 1-2mg/kg/ngày, không nên kéo dài quá 7 ngày» → {hi:7, cmp:'<=', unit:'day'} (dr8_sources). Nếu người quyết định (HG2.3) cho rằng dòng 'Thời gian điều trị' của Hình 1 chỉ áp cho budesonide thì ghi lý do vào notes và chuyển thành moh_neighbour thay vì vn. conflict_status giữ concordant; chạy lại verify_span và kiểm nhãn chấm cho '7–10 ngày', '10 ngày', '≤ 7 ngày'. Quyết định trước khi đóng băng, không xem đầu ra mô hình."
+  },
+  {
+   "atom_id": "P-controls-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "fail",
+   "verdict": "fix",
+   "evidence": [
+    "(a) 2767/2023 PDF tr.23 (trang in 22), lớp chữ; verify_span OK; đã xem ảnh trang: «ICS/LABA có thể chỉ định cho: + Bệnh nhân có tiền sử mắc hen. Bệnh nhân có thể có đáp ứng tốt với ICS khi có bạch cầu ái toan máu ≥300 tế bào/µL.»",
+    "(b) ≥ 300 tế bào/µL — đúng. moh_neighbour ≥ 100 (cùng trang) và same_doc_locations tr.21 (≥ 300, khởi trị nhóm D) đều verify_span OK.",
+    "(c) Quần thể đúng: cùng văn bản PDF tr.84 (trang in 83, lưu đồ chuyển đổi) — từ 'LABA hoặc LAMA' khi còn đợt cấp → ICS/LABA nếu «BCAT ≥300TB/µL» hoặc «BCAT ≥100TB/µL và ≥2 đợt cấp trung bình/ 1 đợt cấp nhập viện» → câu hỏi thu hẹp '1 đợt cấp trung bình, không nhập viện' loại đúng nhánh 100. DR8: 5904/2019 tr.47–48 ≥ 300/µl (khởi trị nhóm D) cùng giá trị; 4562/2018 không có số ở bước này. Không bỏ sót.",
+    "(d) Giá trị GOLD ≥ 300 tế bào/µL đúng (bản đệm sha256 fa12e8e2…), NHƯNG locator ghi sai chương: PDF p.161 (trang in 150) thuộc Appendix 3 'Overview of the evidence' (không phải Chapter 3); PDF p.132 (trang in 121) thuộc Chapter 5 'COPD and multimorbidity', mục giãn phế quản — bối cảnh COPD kèm giãn phế quản, khác quần thể của mẩu. p.75 (trang in 64, Chapter 3, khởi trị nhóm E nếu eos ≥ 300) đúng.",
+    "(d) Vị trí khớp quần thể nhất chưa được ghi: Figure 3.10 'Factors to consider when initiating ICS treatment', PDF p.78 (trang in 67): eos ≥ 300 = 'strongly favors use'; 1 đợt cấp trung bình/năm và eos 100 đến < 300 = 'favors use'. GOLD p.77 (Chapter 3) cũng nêu đáp ứng có lợi khi thêm ICS có thể thấy từ eos ≥ 100 (bối cảnh LABA+LAMA). Trạng thái concordant không đổi (300 có trong GOLD)."
+   ],
+   "proposed_fix": "Sửa locator GOLD: 'Chapter 3 — Figure 3.10, PDF p.78 (trang in 67): eos ≥ 300 strongly favors ICS; PDF p.75 (trang in 64): khởi trị nhóm E nếu ≥ 300; Appendix 3, PDF p.161 (trang in 150): ≥ 300 là đỉnh quan hệ eos–ICS'. Bỏ p.132 hoặc ghi rõ là Chapter 5 (COPD kèm giãn phế quản, khác bối cảnh). Thêm vào notes: GOLD Figure 3.10 xếp '1 đợt cấp trung bình/năm' và 'eos 100–< 300' là 'favors use' → câu trả lời 100 theo GOLD có cơ sở một phần (dùng cho phân tích độ nhạy/chấm). Không đổi giá trị."
+  },
+  {
+   "atom_id": "P-controls-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.63 (trang in 63), lớp chữ; verify_span OK; đã xem ảnh trang: «Doxycyclin: liều 0,1 g x 2 viên uống chia 2 lần/ngày trong 5 ngày.» (gạch đầu dòng là ký tự U+F02D trong lớp chữ, như mẩu ghi).",
+    "(b) Diễn giải 100 mg/lần × 2 lần/ngày hợp lý: 2 viên 0,1 g/ngày chia 2 lần → 0,1 g (100 mg) mỗi lần; đơn vị mg đúng. (Cách đọc khác '0,1 g × 2 viên mỗi lần' không phù hợp với 'chia 2 lần/ngày'.)",
+    "(c) Văn bản: azithromycin cho «phụ nữ có thai, trẻ dưới 10 tuổi, và những người có chống chỉ định với các thuốc tetracyclin và chloramphenicol» → doxycyclin cho người còn lại; mẩu thu hẹp thành người lớn > 45 kg, không mang thai, không CCĐ tetracyclin — nằm trong phạm vi. Không thấy liều doxycyclin sốt mò người lớn khác trong kho (3312/2015 là trẻ em). 'Không biến chứng' trong câu hỏi là thu hẹp thêm, không mâu thuẫn.",
+    "(d) CDC Clinical Overview of Scrub Typhus: curl trả 403; mở bằng WebFetch 2 lần (26/9/2026, hai câu hỏi khác nhau, kết quả nhất quán): mục Treatment — người lớn > 45 kg (100 lbs): 100 mg, 2 lần/ngày; trẻ < 45 kg: 2,2 mg/kg, 2 lần/ngày; ngày hiển thị 15/5/2024 — khớp giá trị, đơn vị, quần thể, phiên bản. Hạn chế: WebFetch đi qua mô hình tóm tắt, không có HTML thô/sha256 → đây là kiểm của AI, page_sha256 vẫn null."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.84 (trang in 84), lớp chữ; verify_span OK; đã xem ảnh: bảng, dòng Burkholderia pseudomallei — cột 'Kháng sinh đề nghị': «Ceftazidim 2 g/lần, tiêm tĩnh mạch chậm 8 giờ/lần.» và «Imipenem+cisplatin 1 g…»; cột 'thay thế': «Meropenem 500 mg/lần…». Span nối các ô theo thứ tự lớp chữ — khớp nguyên văn lớp chữ (lỗi 'cisplatin' có trong bản gốc).",
+    "(b) Ceftazidim 2 g/lần (2000 mg), mỗi 8 giờ — đúng. DR8: 2147/2026 PDF tr.53 (trang in 43) «Ceftazidim 2g TTM mỗi 6h» verify_span OK. 6101/2019 PDF tr.4 (bản quét) — tôi (AI) xem ảnh data/cache/page_images/6101_2019_p004.png: «Ceftazidim (lựa chọn ưu tiên): 2g tiêm tĩnh mạch chậm, mỗi 6 - 8 giờ (…) tối đa 8g/ngày»; «Meropenem: 1g truyền tĩnh mạch, mỗi 8 giờ»; ICU nên dùng carbapenem — khớp mục dr8_pending_ocr của mẩu. Mọi văn bản đều 2 g/lần.",
+    "(c) Quần thể người lớn, khoa thường, không ICU, không tổn thương TKTW phù hợp 6101/2019 (ICU → carbapenem) và nguồn nước ngoài; không thấy liều ceftazidim/lần khác cho B. pseudomallei trong kho.",
+    "(d) NT Health Melioidosis Guideline, bản đệm sha256 54cfa18f…: PDF p.4 — điều trị tấn công: ceftazidime (khoa thường) 2 g TM mỗi 6 giờ, ít nhất 14 ngày (trẻ 50 mg/kg tối đa 2 g); meropenem (ICU) 1 g mỗi 8 giờ; PDF p.11: version 11.0, approved 10/2/24, review date 10/2/26 (đã quá hạn — chưa rõ có bản mới). Trang CDC melioidosis clinical overview (WebFetch 26/9/2026, reviewed 30/9/2025) ghi ceftazidime mỗi 6–8 giờ, không nêu liều, và dẫn link tới tài liệu NT Health — khớp nhãn nguồn."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-07",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.29 (trang in 29), lớp chữ; verify_span OK; đã xem ảnh: «Kháng sinh diệt vi khuẩn uốn ván: metronidazol 500 mg, truyền TM cách 6 - 8 giờ/lần; hoặc penicillin G: 1 - 2 triệu đơn vị…»",
+    "(b) 500 mg/lần, mỗi 6–8 giờ, truyền TM — đúng.",
+    "(c) PDF tr.28 mục 4.1: «người bệnh uốn ván nên được điều trị tại khoa hồi sức tích cực» → bối cảnh hồi sức đúng; không thấy liều metronidazol điều trị uốn ván người lớn khác trong kho (3312/2015 là trẻ em; 1493/2015 không có bài uốn ván).",
+    "(d) WHO/HSE/GAR/DCE/2010.2 (01/2010), bản đệm sha256 637bb6b9…: p.5 Antibiotic treatment — metronidazole ưu tiên, 500 mg mỗi 6 giờ, TM hoặc uống — khớp giá trị/đơn vị. Phạm vi tài liệu: tình huống nhân đạo khẩn cấp; tôi không tìm bản WHO mới hơn."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-controls-08",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "fix",
+   "evidence": [
+    "(a) 5642/2015 PDF tr.29, lớp chữ; verify_span OK; đã xem ảnh: «Globulin miễn dịch uốn ván từ người (HTIG) liều 3000 - 6000 đơn vị tiêm bắp, hoặc huyết thanh kháng độc tố uốn ván từ ngựa (SAT)…»",
+    "(b) HTIG 3000–6000 đơn vị (IU), tiêm bắp — đúng. Các moh_neighbour đều verify_span OK: 3312/2015 tr.79 (HTIG 250 UI, SAT 1500UI), 5642/2015 tr.32 (SAT 1500 đơn vị), 5642/2015 tr.29 (test SAT 75 đơn vị).",
+    "(c) Quần thể người lớn, điều trị bệnh, HTIG (không SAT) — đúng; không có liều HTIG điều trị uốn ván khác trong kho. BỎ SÓT một giá trị lân cận (không cùng quần thể): 3610/2015 (manifest: current) PDF tr.133 (trang in 126), bài ong đốt: «Tiêm phòng uốn ván nếu vùng ong đốt bị nhiễm bẩn (SAT 2000 đv tiêm dưới da).» (verify_span --find → [133]). Câu trả lời '2000 IU' hiện chấm nhãn 2 (trong dung sai 1250 quanh 3000) nên cần cờ neighbour cho N1.",
+    "(d) WHO 2010 (sha256 637bb6b9…) p.5 Immunotherapy: TIG người 500 đơn vị, tiêm bắp hoặc TM tùy chế phẩm, 'nếu có' — khớp. CDC Tetanus Clinical Care: curl 403; WebFetch 2 lần 26/9/2026: mục 'Treatment recommendations' → 'Administer tetanus immune globulin (TIG)' → 'Dose': một liều 500 IU để điều trị uốn ván; 'Administration': tiêm bắp; CDC nêu liều này có vẻ hiệu quả như liều cao hơn 3.000–6.000 IU; last reviewed 8/9/2026 — khớp giá trị/đơn vị/quần thể. Tên mục trong locator ('TIG for tetanus treatment') không trùng tiêu đề thật. Không có sha256 (kiểm của AI)."
+   ],
+   "proposed_fix": "(1) Thêm moh_neighbour: 3610/2015 PDF tr.133 (trang in 126), bối cảnh 'dự phòng uốn ván sau ong đốt, SAT ngựa tiêm dưới da — không phải điều trị, không phải HTIG', span «Tiêm phòng uốn ván nếu vùng ong đốt bị nhiễm bẩn (SAT 2000 đv tiêm dưới da).», value {lo:2000, hi:2000, unit:'IU'}; cờ moh_neighbour_overlap cho N1 (2000 nằm trong dung sai của VN). (2) Sửa locator CDC thành 'Treatment recommendations → Administer tetanus immune globulin (TIG) → Dose / Administration'. Không đổi giá trị vn/foreign."
+  },
+  {
+   "atom_id": "P-controls-09",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) 5481/2020 PDF tr.11 (trang in 9), lớp chữ; verify_span OK; đã xem ảnh: «a) Người trưởng thành ở bất kỳ tuổi nào có thừa cân hoặc béo phì (BMI ≥ 23 kg/m2) và có kèm một trong số các yếu tố nguy cơ sau:»",
+    "(b) BMI ≥ 23 kg/m2 — đúng. dr8_sources 3087/2020 tr.7, moh_neighbour 3087/2020 tr.12 và 3879/2014 tr.247, mọi supporting_spans (3879/2014 tr.176, 247, 252; 2919/2014 tr.60; 5481/2020 tr.11) đều verify_span OK. 1353/2021 chỉ sửa điểm b mục 3 trang 37 (insulin) và bổ sung người biên soạn — không chạm mục 1.2.",
+    "(c) Quần thể (người trưởng thành không triệu chứng, loại thai kỳ/HIV/ung thư) khớp span và câu hỏi. Quét lại kho: tiêu chí BMI của chỉ định tầm soát ĐTĐ ở văn bản hiện hành đều là 23 (5481/2020 tr.11; 3087/2020 tr.7 và tr.12); 5904/2019 không có ngưỡng BMI tầm soát. Giá trị 25 chỉ ở bối cảnh khác, đã được mẩu ghi (3879/2014 ch.5 Bảng 2; 3087/2020 tr.12 béo phì; HIV, ung thư, thai kỳ; 2388/2024, 3908/2023). Thêm một chỗ 25 khác slot chưa ghi: 3087/2020 tr.10 «Chỉ định Metformin … BMI ≥ 25kg/m2» (chỉ định thuốc ở tiền ĐTĐ) — không đổi gì vì neighbour 25 đã có. Câu hỏi DR8 về 3879/2014 ch.5 Bảng 2 vẫn mở ở HG2.3; mặc định an toàn của mẩu (chưa đưa vào tập xung đột xác nhận) là hợp lý.",
+    "(d) WHO fact sheet (sha256 dc1d9d01…, ngày 8/12/2025): mục định nghĩa người lớn — thừa cân BMI ≥ 25, béo phì ≥ 30 — khớp. WPRO/IASO/IOTF (sha256 b1188634…, bìa 'February 2000'): tôi (AI) xem ảnh PDF p.19 (trang in 18) Table 2.2 — Overweight ≥ 23 (at risk 23–24,9; obese I 25–29,9; obese II ≥ 30); đoạn trên bảng nói đây là khuyến nghị tạm thời, không áp dụng cho người đảo Thái Bình Dương — khớp. USPSTF 24/8/2021 (sha256 c53c89e6…): Clinician Summary và Patient Population — thừa cân/béo phì BMI ≥ 25/≥ 30, người lớn 35–70 tuổi; ngưỡng ≥ 23 chỉ cho người Mỹ gốc Á (khác quần thể, đúng như mẩu ghi)."
+   ],
+   "proposed_fix": ""
+  }
+ ],
+ "summary": {
+  "ok": 6,
+  "fix": 2,
+  "error": 1,
+  "uncertain": 0
+ }
+}

@@ -1,0 +1,295 @@
+{
+ "topic": "controls",
+ "arbiter": "trọng tài HG1.2 tự động (AI — Claude, vai integrity-auditor + atom-extractor); không phải người, không phải bác sĩ",
+ "date": "2026-09-26",
+ "inputs": [
+  "review/pilot_audit/controls_A.json",
+  "review/pilot_audit/controls_B.json"
+ ],
+ "blind": "không đọc/liệt kê data/runs/",
+ "agreement_definition": "agreement.<tiêu chí> = kiểm toán viên A và B cho cùng phán quyết ở tiêu chí đó (trước khi trọng tài xét)",
+ "criteria_definition": "a/b/c/d là phán quyết của trọng tài về mẩu TRƯỚC khi sửa; currency = văn bản neo còn hiệu lực; verdict_final ∈ ok|fix|error|uncertain; action ∈ none|fixed|excluded",
+ "corpus_change": {
+  "data/raw/2131_2026.pdf": "thêm (fetch_pdf từ bvdkbaclieu.gov.vn — trang bệnh viện chính thức, nguồn loại 3 của skill corpus-acquisition)",
+  "data/interim/manifest_parts/c4_resp_circulars.jsonl": "2131/2026: đã xác minh, issued 2026-07-14, supersedes 2767/2023, sha/url/pages; 2767/2023: status superseded, superseded_by 2131/2026",
+  "data/interim/manifest.jsonl": "chạy lại vnsoc.extract.manifest_merge (chỉ 2 dòng COPD đổi; kèm results/tables/corpus_triage.csv và state/gates/HG2.3_missing.md sinh lại)"
+ },
+ "self_check": "verify_span data/interim/pilot/controls.jsonl: 9/9 OK; pilot_merge --only controls --no-checklist: giữ 9, loại 0, {'concordant': 7, 'conflict': 2} như trước; tolerance/conflict_status/mồi không đổi ở cả 9 mẩu; schemas atom OK; atom_flags check: 6 vấn đề y hệt trước khi sửa (việc của lúc đóng băng/HG3.5)",
+ "summary": {
+  "ok": 3,
+  "fix": 4,
+  "error": 2,
+  "uncertain": 0,
+  "fixed": 6,
+  "excluded": 0
+ },
+ "proposals_outside_topic_file": [
+  "P-controls-03: loại các câu điều kiện A3 của mẩu này khỏi phân tích A3/H3 thí điểm — đoạn oracle P-controls-03#A3 lấy từ 2767/2023 tr.31 và chứa giá trị bản cũ 5–7 ngày; dựng lại đoạn từ 2131/2026 tr.35 trước khi đóng băng câu hỏi.",
+  "P-controls-01/02/04: dựng lại đoạn A3 từ 2131/2026 trước khi đóng băng (giá trị không đổi nên không cần loại trong thí điểm; đoạn 04 còn câu ≥ 100 của bản cũ, đã được cờ neighbour).",
+  "P-controls-09: sửa option_roles của 4 câu trắc nghiệm trong data/interim/pilot_questions.jsonl 'foreign:US+WHO_global' → 'foreign:WHO_global' (mẩu đã ở mục descriptive).",
+  "HG2.3/T2.5: đưa 2131/2026 vào kho thay 2767/2023; quyết hiệu lực 4562/2018 (ảnh hưởng tín hiệu lệch phiên bản của P-controls-03).",
+  "Chủ đề htn (ngoài phạm vi): P-htn-01 dùng 5904/2019 (tuyến xã) làm dr8_sources — đề cương chỉ gộp DR8 trong cùng tuyến; cùng giá trị nên không đổi kết quả, chỉ nên ghi lại là neighbour/supporting."
+ ],
+ "atoms": [
+  {
+   "atom_id": "P-controls-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict_final": "fix",
+   "action": "fixed",
+   "resolution": "A và B đồng ý 4 tiêu chí. Khác nhau ở hiệu lực: B phát hiện 2767/2023 đã bị thay. Trọng tài tự kiểm lại: QĐ 2131/QĐ-BYT 14/7/2026 — bvdkbaclieu.gov.vn/upload/1000079/20260807/804_Quyet-dinh-2131-QD-BYT_3a0b4fb756.pdf, sha256 3cdd2df54187a017a6fb06b54d66268e12e17cf41fde823c7eb7f9965d7f6c16, 130 tr.; trọng tài tải lại bằng fetch_pdf (sha khớp bản của B) vào data/raw/2131_2026.pdf; ảnh PDF tr.1: 'Số: 2131 /QĐ-BYT', 'ngày 14 tháng 7 năm 2026', dấu Bộ Y tế; Điều 3 thay thế QĐ 2767/QĐ-BYT ngày 04/7/2023. 2131/2026 PDF tr.14 (tr. in 4) giữ nguyên 'FEV1/(F)VC < 70% sau test đáp ứng với thuốc giãn phế quản' (kèm câu mới: so với LLN chính xác hơn 70% — không phải giá trị số). Neo lại mẩu vào 2131/2026, giá trị không đổi.",
+   "changed_fields": [
+    "guideline",
+    "section",
+    "page (12→14)",
+    "span",
+    "valid_from (2023-07-04→2026-07-14)",
+    "vn[0].text",
+    "superseded (+2767/2023, cùng giá trị)",
+    "extraction.printed_page",
+    "extraction.same_doc_locations",
+    "extraction.notes",
+    "extraction.audit_fix"
+   ],
+   "verdict_A": "ok",
+   "verdict_B": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "fail",
+   "verdict_final": "fix",
+   "action": "fixed",
+   "resolution": "A và B đồng ý 4 tiêu chí; hiệu lực như mẩu 01. 2131/2026 PDF tr.26 (tr. in 16), mục 2.5.2 (cũ 2.4.2): 'PaO2 ≤ 55 mmHg hoặc SaO2 ≤ 88% trên hai mẫu máu trong vòng 3 tuần' — không đổi; nhánh 56–59 mmHg kèm suy tim phải/đa hồng cầu/tăng áp phổi cùng trang, câu hỏi đã loại. Neo lại, giá trị không đổi.",
+   "changed_fields": [
+    "guideline",
+    "section",
+    "page (23→26)",
+    "span",
+    "valid_from",
+    "superseded (+2767/2023, cùng giá trị)",
+    "extraction.printed_page",
+    "extraction.notes",
+    "extraction.audit_fix"
+   ],
+   "verdict_A": "ok",
+   "verdict_B": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-03",
+   "a": "pass",
+   "b": "fail",
+   "c": "fail",
+   "d": "pass",
+   "currency": "fail",
+   "verdict_final": "error",
+   "action": "fixed",
+   "resolution": "A: error (bỏ sót 2767/2023 tr.85 'tối thiểu 5 ngày' và 5904/2019 tr.50 'không nên kéo dài quá 7 ngày'). B: error (2767/2023 đã bị thay; giá trị hiện hành 5 ngày). Trọng tài: (1) xác nhận B — 2131/2026 PDF tr.35 (tr. in 25) mục 3.4.3 Điều trị ngoại trú, c) Corticosteroid: '30-40 mg/ngày uống 1 lần vào buổi sáng trong 5 ngày' (xem ảnh trang); nội trú tr.38 'thường 5 ngày'; lưu đồ Hình 9.2p tr.98 '5 ngày, tránh sử dụng kéo dài' (xem ảnh). → tiêu chí (b) fail: 5–7 ngày không còn là giá trị hiện hành. (2) Phát hiện 2767 tr.85 của A đúng với bản cũ nhưng nay không áp (2767 đã bị thay). (3) 5904/2019 tr.50 là hướng dẫn tuyến trạm y tế xã: đề cương đăng ký trước chỉ gộp DR8 trong cùng tuyến và xếp tuyến khác là bối cảnh lân cận → ghi moh_neighbour (≤ 7 ngày), không vào vn. SỬA (chắc chắn, nguyên văn đã verify_span): vn = {5 ngày} từ 2131/2026 tr.35; 2767/2023 tr.31 (5–7 ngày) vào superseded → mẩu thành lệch phiên bản có tên, vẫn concordant với GOLD 2026 (5 ngày). Còn treo HG2.3: nếu 4562/2018 còn hiệu lực ('thường không quá 5-7 ngày', tr.36) thì bản cũ không còn phân biệt được (extraction.dr8_pending).",
+   "changed_fields": [
+    "guideline",
+    "section (3.4.2→3.4.3)",
+    "page (31→35)",
+    "span",
+    "valid_from",
+    "vn (5–7 → 5 ngày)",
+    "superseded (+2767/2023: 5–7 ngày)",
+    "intervention",
+    "moh_neighbour (+5904/2019 tr.50, ≤ 7 ngày, tuyến xã)",
+    "extraction.same_doc_locations (2131 tr.98)",
+    "extraction.dr8_pending (4562/2018, HG2.3)",
+    "extraction.printed_page",
+    "extraction.notes",
+    "extraction.audit_fix"
+   ],
+   "verdict_A": "error",
+   "verdict_B": "error",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "fail",
+   "currency": "fail",
+   "verdict_final": "fix",
+   "action": "fixed",
+   "resolution": "A: d fail (locator GOLD p.132 thuộc Chapter 5 — COPD kèm giãn phế quản; p.161 thuộc Appendix 3); B: d pass nhưng cũng ghi p.132 sai bối cảnh; B thêm hiệu lực. Trọng tài mở bản đệm GOLD (sha fa12e8e2…): p.132 đúng là mục giãn phế quản; p.161 Appendix 3; xem ảnh p.78 = Figure 3.10 (eos ≥ 300 'strongly favors', 100 đến < 300 'favors'); p.75 khởi trị nhóm E nếu ≥ 300 → giá trị 300 đúng, locator sai một phần → d fail (sửa được). 2131/2026 PDF tr.25 (tr. in 15) mục 2.4.2 b: đơn trị LABA/LAMA còn đợt cấp, BCAT ≥ 300 → cân nhắc ICS+LABA+LAMA (< 300 → LABA+LAMA): giá trị không đổi. Nhánh ≥ 100 của đơn trị (2767 tr.23) không còn; ≥ 100 chỉ còn cho người đang LABA+LAMA/ICS+LABA → moh_neighbour mới.",
+   "changed_fields": [
+    "guideline",
+    "section",
+    "page (23→25)",
+    "span",
+    "valid_from",
+    "intervention (ICS/LABA → ICS+LABA+LAMA)",
+    "superseded (+2767/2023, cùng giá trị)",
+    "moh_neighbour (2767 tr.23 → 2131 tr.25, người đang LABA+LAMA)",
+    "foreign[GOLD].locator",
+    "extraction.same_doc_locations (2767 tr.21 → 2131 tr.23)",
+    "extraction.printed_page",
+    "extraction.notes",
+    "extraction.audit_fix"
+   ],
+   "verdict_A": "fix",
+   "verdict_B": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": false
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "pass",
+   "verdict_final": "ok",
+   "action": "none",
+   "resolution": "A và B cùng ok, không có fail/uncertain → không mở lại. Hạn chế giữ nguyên: nguồn CDC chỉ đọc qua WebFetch, page_sha256 = null.",
+   "changed_fields": [],
+   "verdict_A": "ok",
+   "verdict_B": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "pass",
+   "verdict_final": "ok",
+   "action": "none",
+   "resolution": "A và B cùng ok (cả hai xem ảnh 6101/2019 tr.4: ceftazidim 2 g mỗi 6–8 giờ). Gợi ý của B (dùng 6101/2019 làm nguồn chính khi có OCR) không bắt buộc.",
+   "changed_fields": [],
+   "verdict_A": "ok",
+   "verdict_B": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-07",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "pass",
+   "verdict_final": "ok",
+   "action": "none",
+   "resolution": "A và B cùng ok; không mở lại.",
+   "changed_fields": [],
+   "verdict_A": "ok",
+   "verdict_B": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-08",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "currency": "pass",
+   "verdict_final": "fix",
+   "action": "fixed",
+   "resolution": "Hai kiểm toán viên đồng ý cả 4 tiêu chí; A đề xuất fix: (1) thêm giá trị lân cận 3610/2015 tr.133 'SAT 2000 đv tiêm dưới da' (dự phòng sau ong đốt) — trọng tài verify_span --find → [133], văn bản hiện hành; 2000 IU nằm trong dung sai 1250 quanh 3000 → cần cờ lân cận cho N1; (2) locator CDC — trọng tài mở lại bằng WebFetch 26/9/2026: tiêu đề thật 'Treatment recommendations → Administer tetanus immune globulin (TIG) → Dose / Administration', một liều 500 IU tiêm bắp, last reviewed 8/9/2026. Không đổi giá trị/mồi (8500 IU giữ theo quy tắc).",
+   "changed_fields": [
+    "moh_neighbour (+3610/2015 tr.133, SAT 2000 đv)",
+    "foreign[US].locator",
+    "extraction.notes",
+    "extraction.audit_fix"
+   ],
+   "verdict_A": "fix",
+   "verdict_B": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-controls-09",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "fail",
+   "currency": "pass",
+   "verdict_final": "error",
+   "action": "fixed",
+   "resolution": "A: d pass (coi ngưỡng ≥ 23 cho người Mỹ gốc Á là quần thể khác). B: d fail. Trọng tài grep lại USPSTF 2021 (bản đệm sha c53c89e6…): Clinician Summary hướng dẫn tầm soát 'at a lower BMI (≥23) if the patient is Asian American'. Mẩu chỉ được diễn giải ở A1/A3 (người bệnh Việt Nam) → giá trị Mỹ đúng quần thể là ≥ 23 (trùng Bộ Y tế); ghi US = 25 là gán sai 'chuẩn Mỹ' cho câu trả lời 25 → theo B. SỬA: foreign US values ≥ 25 → ≥ 23 (url/sha/fetched_at giữ nguyên, locator viết lại). WHO_global ≥ 25 (fact sheet 8/12/2025, không có ngưỡng theo sắc tộc) vẫn xung đột → conflict_status và mồi 21 không đổi. Mặc định HG1.2 A4/A6 áp dụng (không đổi dữ liệu, ghi extraction.decision_default).",
+   "changed_fields": [
+    "foreign[US].values (≥ 25 → ≥ 23)",
+    "foreign[US].locator",
+    "extraction.notes",
+    "extraction.decision_default",
+    "extraction.audit_fix"
+   ],
+   "verdict_A": "ok",
+   "verdict_B": "error",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": false
+   },
+   "exclude": false,
+   "exclude_reason": ""
+  }
+ ]
+}

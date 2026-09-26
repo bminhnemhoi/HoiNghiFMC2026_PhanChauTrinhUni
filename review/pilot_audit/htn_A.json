@@ -1,0 +1,81 @@
+{
+  "topic": "htn",
+  "auditor": "A",
+  "auditor_kind": "AI (integrity-auditor, Claude) — KHÔNG phải người kiểm",
+  "date": "2026-09-26",
+  "method": "Đi theo state/gates/HG1.2_checklist.md từng dòng. (a) verify_span trên bản sao tạm của 3 mẩu (OK cả 3) + --page lớp chữ + --image xuất ảnh trang và xem bằng mắt (3192/2010 tr.1, 3, 12, 13; 5904/2019__9e6bbe13 tr.11, 12, 13, 16). Không trang nào có cờ OCR (3192: text_layer true, ocr false; 5904 bản __9e6bbe13 có lớp chữ, chỉ mất vài ký hiệu như '(≤'). (d) Nguồn nước ngoài mở từ bản đệm theo sha (vnsoc.match.sources grep); bộ slide ESC 2024 (pptx, sha256 c006bbb57dbbee77…, mỗi slide là một ảnh EMF) được AI tách EMF và DỰNG THÀNH ẢNH PNG bằng Pillow/Windows GDI (script scratchpad esc_slides.py) rồi xem bằng mắt các slide 31, 32, 33, 53, 92, 93; nguồn gốc file xác nhận bằng WebFetch trang escardio.org (link 'Slide Set' trỏ đúng URL optimizely 033b7456…). WHO 2021 PDF (sha256 57f6376d…) đọc bằng PyMuPDF. Không đọc data/runs/. Không sửa file dữ liệu nào.",
+  "atoms": [
+    {
+      "atom_id": "P-htn-01",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 3192/2010 trang PDF 1 (bản PDF chữ, không OCR): span khớp nguyên văn lớp chữ và ảnh trang: «1. ĐỊNH NGHĨA Tăng huyết áp là khi huyết áp tâm thu ≥ 140mmHg và/hoặc huyết áp tâm trương ≥ 90mmHg.» verify_span OK.",
+        "(a) supporting span Bảng 1 (tr.1) và dr8_sources 5904 tr.11 «Người trưởng thành (≥ 18 tuổi), có huyết áp ≥ 140/90 mmHg, phát hiện thông qua đo huyết áp tại cộng đồng hoặc khi đến khám tại trạm y tế;» khớp ảnh trang 11 (trang in 2).",
+        "(b) Giá trị 140/90 mmHg đúng: tr.1 định nghĩa + Bảng 1 dòng 'Cán bộ y tế đo theo đúng quy trình' ≥ 140 mmHg / ≥ 90 mmHg (ảnh trang). Bảng phân độ 5904 tr.11: 'THA độ 1 140 – 159 và/ hoặc 90 – 99' (ảnh) nhất quán.",
+        "(b) Giá trị lân cận đang chờ (moh_neighbour_pending): ảnh 3192 tr.1 cho thấy cột tâm thu thẳng dòng (140 / 130 / 135) còn cột tâm trương xếp dồn (90 / 80 / 85) — đúng như ghi chú. BẰNG CHỨNG MỚI hỗ trợ cách ghép theo thứ tự cột: 5904 Phụ lục 1.2 (trang PDF 16, trang in 7, chữ chỉ có trong ảnh sơ đồ) ghi 'Tự đo tại nhà ≥ 135/85 mmHg' → cặp tự đo tại nhà 135/85 được một văn bản Bộ Y tế hiện hành khác xác nhận; suy ra cặp 24 giờ = 130/80 (cũng trùng ESC 2024 slide 53: 24 h ABPM ≥130/80). Vẫn là quyết định của điều phối viên có đưa vào moh_neighbour hay không.",
+        "(c) Quần thể đúng: 3192 tr.1 §3.1 'Ngưỡng chẩn đoán THA thay đổi tùy theo từng cách đo' → câu hỏi đã nêu 'đo tại phòng khám', loại trừ Holter/tự đo tại nhà. 5904 PL1.2 (tr.16, ảnh) có ô «Huyết áp tại phòng khám đo đúng quy trình ≥ 140/90 mmHg» → khớp trực tiếp điều kiện đo của mẩu. Tuổi ≥ 18 lấy từ 5904 tr.11.",
+        "(c) Giá trị Bộ Y tế khác trong cùng/chung văn bản: 5904 PL1.2 (tr.16, ảnh) có nhánh 'HA ≥ 180/110 mmHg' → 'Tăng huyết áp' (chẩn đoán ngay từ lần phát hiện/sàng lọc, không qua bước đo lại tại phòng khám) — là bước khác, không phải ngưỡng đo tại phòng khám; không thay đổi đáp án, cách xa US 130/80 nên không ảnh hưởng overlap. 3192 Bảng 2 'Tiền tăng huyết áp 130 - 139 / 85 – 89' không phải ngưỡng chẩn đoán THA. Không thấy mẩu bỏ sót giá trị cho đúng quần thể.",
+        "(c) Hiệu lực: manifest ghi 3192/2010 current, 5904 Điều 3 chỉ bãi bỏ Phần 2 của 2919/2014; tìm web (không dùng thuvienphapluat) 2026-09-26 không thấy quyết định mới thay 3192.",
+        "(d) US — AHA newsroom (sha256 bbc83c2a…): ngày đăng 14/8/2025; ghi high BP ≥130/80 mm Hg và 'criteria remain the same as the 2017 guideline', stage 1 = 130–139 hoặc 80–89 mm Hg → giá trị ≥130/80 đúng. Lưu ý: là thông cáo báo chí (toàn văn 403), có nhắc đo tại nhà để 'confirm office diagnosis'.",
+        "(d) EU_UK — ESC 2024 slide set, slide 53 'Comparison of office, home, and ambulatory blood pressure measurement thresholds…' (AI dựng ảnh EMF và xem): dòng Hypertension, cột Office BP = ≥140/90 mmHg (Home ≥135/85, Daytime ABPM ≥135/85, 24 h ABPM ≥130/80, Night-time ≥120/70). Giá trị đúng; cảnh báo mã 'không thấy 140/90' chỉ do slide là ảnh EMF.",
+        "(d) WHO_global — WHO fact sheet Hypertension (sha256 2779af89…): ngày 25/9/2025; chẩn đoán khi đo hai ngày khác nhau, tâm thu ≥140 và/hoặc tâm trương ≥90 mmHg → đúng. WHO 2021 guideline PDF tr.14: tự ghi không đề cập đo HA hay chẩn đoán THA → lý do dùng fact sheet đúng như ghi."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Gợi ý (không bắt buộc): (1) ghi 5904 PL1.2 trang PDF 16 (ảnh sơ đồ: 'Huyết áp tại phòng khám đo đúng quy trình ≥ 140/90 mmHg'; 'Tự đo tại nhà ≥ 135/85 mmHg') vào extraction.notes làm bằng chứng cho điều kiện đo và cho cặp 135/85 của moh_neighbour_pending (verify_span không đọc được vì chữ nằm trong ảnh); (2) ghi chú nhánh '≥ 180/110 → THA' của 5904 PL1.2 như giá trị bước khác nếu điều phối viên muốn đầy đủ moh_neighbour; (3) bổ sung vào locator ESC: đã dựng ảnh slide 53 (AI) và đọc được ≥140/90 — verified_by vẫn để null/AI theo quy ước, không ghi là người."
+    },
+    {
+      "atom_id": "P-htn-03",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5904/2019 bản __9e6bbe13, trang PDF 13 (trang in 4, số '4' ở chân trang): span khớp lớp chữ và ảnh trang: «5. Thời điểm khởi trị THA: - Khởi trị khi HA ≥ 140/90 mmHg ở người < 80 tuổi hoặc ≥ 160/90 mmHg ở người ≥ 80 tuổi;…» verify_span OK. Không phải trang OCR.",
+        "(b) Giá trị 140/90 mmHg (người < 80 tuổi) đúng theo ảnh trang 13. moh_neighbour: 160/90 (người ≥ 80 tuổi) đúng chữ trang; 130/85 = cận dưới của 'Khi HA từ 130-139/85-89 mmHg … cân nhắc phối hợp với điều trị thuốc khi nguy cơ tim mạch rất cao' đúng.",
+        "(b) Mốc mồi: ảnh tr.13 có ô 'Đơn trị cho người THA độ I nguy cơ thấp (HATTh < 150mmHg) hoặc người rất già (≥ 80 tuổi) hoặc dễ tổn thương' — xác nhận ghi chú về mồi 150/100 (mốc chọn đơn trị, không phải ngưỡng khởi trị).",
+        "(c) Nhất quán cho quần thể nguy cơ thấp: 5904 tr.12 (trang in 3, sơ đồ ảnh) 'Tăng huyết áp độ I 140-159/90-99 mmHg' → 'Nguy cơ tim mạch thấp: Cân nhắc điều trị thuốc khi không kiểm soát được HA sau 1-3 tháng thay đổi lối sống'; 3192 PL4 tr.12 (ảnh) dòng 'Không có yếu tố nguy cơ tim mạch nào' × 'Tăng huyết áp Độ 1 (140-159 / 90-99)': 'Kiểm soát YTNC vài tháng + Dùng thuốc nếu không kiểm soát được huyết áp'; cột Tiền THA: 'Theo dõi huyết áp định kỳ'. → ngưỡng 140/90 cho đúng quần thể.",
+        "(c) Cận dưới 41 tuổi đúng: ảnh 5904 tr.12 Bước 4 'THA ở người trẻ (≤ 40 tuổi)' → chuyển tuyến trên (lớp chữ mất '(≤', ảnh có đủ).",
+        "(c) Lưu ý (không đổi đáp án): 3192 tr.7 liệt kê yếu tố nguy cơ 'Tuổi (nam > 55 tuổi, nữ > 65 tuổi)' → với nam 56–59 tuổi, 'không có yếu tố nguy cơ tim mạch khác' mâu thuẫn định nghĩa Bộ Y tế; nhưng 3192 PL4 dòng 1–2 YTNCTM × THA độ 1 vẫn 'Dùng thuốc nếu không kiểm soát được huyết áp' (ngưỡng 140/90), ESC 2024 ≥140/90 bất kể nguy cơ, Mỹ 130/80 ở cả nhóm PREVENT < 7,5% và ≥ 7,5% → đáp án mọi hệ không đổi. Đã ghi ở notes mục (5).",
+        "(c) Không thấy giá trị Bộ Y tế nào khác cho đúng quần thể bị bỏ sót: 5904 Phần 3 (lồng ghép THA–ĐTĐ, tr.24–29) chỉ áp dụng người có cả THA và ĐTĐ (bị loại bởi quần thể).",
+        "(d) US — ACC 'New in Clinical Guidance' (sha256 aea4b098…, bài Cardiology Magazine ngày 01/10/2025 tóm tắt guideline 2025): người lớn HA ≥130/80 và nguy cơ thấp (PREVENT < 7,5%) → bắt đầu thuốc nếu 3–6 tháng thay đổi lối sống không đưa HA < 130/80 → giá trị ≥130/80 đúng. Toàn văn 403 (như ghi).",
+        "(d) US — JNC 8 qua AAFP (Am Fam Physician 2014;90(7):503-504, sha256 c1c27f69…): Key points — người < 60 tuổi khởi trị khi ≥140/90; ≥ 60 tuổi ≥150/90 → giá trị ≥140/90 cho 41–59 tuổi đúng.",
+        "(d) EU_UK — ESC 2024 slide 92 'Recommendations for initiating blood pressure-lowering treatment' (AI dựng ảnh EMF): HA ≥140/90 đã xác nhận → thuốc bất kể nguy cơ (I-A); HA tăng (elevated) + nguy cơ thấp/trung bình (<10%/10 năm) → chỉ thay đổi lối sống (I-B); ≥130/80 chỉ khi nguy cơ đủ cao (I-A) → giá trị ≥140/90 cho quần thể nguy cơ thấp đúng.",
+        "(d) WHO_global — WHO 2021 guideline (sha256 57f6376d…): PDF tr.9 (tóm tắt, số in vii) và tr.19 §3.1: khởi trị khi đã chẩn đoán xác định và tâm thu ≥140 hoặc tâm trương ≥90 (khuyến cáo mạnh); 130–139 chỉ cho người có bệnh tim mạch hoặc nguy cơ cao/ĐTĐ/bệnh thận mạn (ngoài quần thể) → đúng."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Tùy chọn: nếu muốn câu hỏi không tự mâu thuẫn với định nghĩa yếu tố nguy cơ của 3192 tr.7 (nam > 55 tuổi), thu hẹp tuổi thành 41–55 hoặc thêm 'nữ' — đáp án không đổi, là quyết định của người giữ mẩu (đã nêu ở notes). Bổ sung vào locator ESC: đã dựng ảnh slide 92 (AI) và đọc được ≥140/90."
+    },
+    {
+      "atom_id": "P-htn-04",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5904/2019 bản __9e6bbe13, trang PDF 12 (trang in 3): span khớp lớp chữ và ảnh trang: «cụ thể mục tiêu về HA tại trạm y tế như sau: - HA tâm thu từ 120 đến < 130 mmHg (người < 65 tuổi) và từ 130 đến < 140 mmHg (người ≥ 65 tuổi), có thể thấp hơn nếu dung nạp được.» verify_span OK.",
+        "(a) dr8_sources 3192/2010 trang PDF 3: khớp lớp chữ và ảnh: «“Huyết áp mục tiêu” cần đạt là < 140/90 mmHg và thấp hơn nữa nếu người bệnh vẫn dung nạp được. Nếu nguy cơ tim mạch từ cao đến rất cao thì huyết áp mục tiêu cần đạt là < 130/80 mmHg.»",
+        "(b) vn[0] 120 đến < 130 mmHg (người < 65 tuổi) đúng theo ảnh 5904 tr.12; vn[1] < 140 mmHg (từ < 140/90) đúng theo ảnh 3192 tr.3. Đơn vị mmHg đúng.",
+        "(c) Quần thể 18–59 tuổi nằm trong nhánh 'người < 65 tuổi' của 5904 và nhánh '< 60' của JNC8; 'nguy cơ tim mạch không cao' loại đúng mục tiêu < 130/80 của 3192 (nguy cơ cao–rất cao); 'không ĐTĐ' loại đúng 5904 Phần 3 tr.28 (lồng ghép THA–ĐTĐ, mục tiêu < 130/80*, đối tượng 'Người mắc bệnh tăng huyết áp và đái tháo đường'); 'dung nạp tốt' khớp mệnh đề 'có thể thấp hơn nếu dung nạp được'. Câu hỏi VI nêu đủ các điều kiện này.",
+        "(c) Lưu ý (không đổi tập đáp án): 5904 tr.12 Bước 4 chuyển tuyến trên 'THA ở người trẻ (≤ 40 tuổi)' → nhóm 18–40 chỉ được quản lý tại trạm khi tuyến trên chuyển về (Bước 4.B.2); với nhóm này mục tiêu 3192 (< 140/90) chắc chắn áp dụng, và 120 đến < 130 vẫn nằm trong < 140 → tập hợp {120 đến < 130} ∪ {< 140} không đổi.",
+        "(d) EU_UK — ESC 2024 slide 93 'Recommendations for blood pressure targets with treatment' (AI dựng ảnh EMF): tâm thu khi điều trị 120–129 mmHg ở đa số người lớn nếu dung nạp tốt (I-A) → đúng.",
+        "(d) EU_UK — ESC/ESH 2018 qua slide 31 của bộ slide ESC 2024 (tiêu đề 'Revised recommendations (11)', cột 2018; AI dựng ảnh): mục tiêu đầu tiên < 140/90 ở mọi người bệnh, sau đó 130/80 hoặc thấp hơn ở đa số nếu dung nạp (I-A) → hai giá trị < 140 và ≤ 130 đúng. Slide 32–33 (cột 2018) chỉ trích dòng người ≥ 65 tuổi (130–139 mmHg), ngoài quần thể. Chưa kiểm toàn văn ESC/ESH 2018 (không có trong bộ đệm) xem có mục tiêu riêng theo tuổi cho < 65 tuổi hay không — nếu có thì chỉ thêm một giá trị vẫn giao với tập Bộ Y tế, không đổi trạng thái concordant.",
+        "(d) US — ACC key points (sha256 aea4b098…): mục tiêu chung < 130/80 mm Hg cho mọi người lớn → < 130 đúng; AHA newsroom (sha256 bbc83c2a…) cũng ghi mục tiêu tâm thu < 130. Toàn văn 403.",
+        "(d) US — JNC 8 qua AAFP (sha256 c1c27f69…): người < 60 tuổi mục tiêu tâm thu < 140 và tâm trương < 90 → đúng.",
+        "(d) WHO_global — WHO 2021 PDF tr.10 (số in viii) và tr.28 §3.6: mục tiêu < 140/90 cho mọi người THA không có bệnh đồng mắc (khuyến cáo mạnh); < 130 chỉ cho người có bệnh tim mạch hoặc nguy cơ cao/ĐTĐ/bệnh thận mạn → đúng cho quần thể.",
+        "(d) Trạng thái concordant đúng: mọi giá trị nước ngoài (120–129; < 140; ≤ 130; < 130) đều giao với {120 đến < 130} ∪ {< 140} — phụ thuộc DR8 như notes (3) đã nêu."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Gợi ý nhỏ: thêm số slide 31 vào locator của bản ghi ESC/ESH 2018 ('Revised recommendations (11)' = slide 31) và ghi đã dựng ảnh slide 31, 93 (AI). Lỗi bộ chấm với cmp '<' (135 → nhãn 5) đã ghi ở notes, không thuộc phạm vi kiểm dữ liệu."
+    }
+  ],
+  "summary": {
+    "ok": 3,
+    "fix": 0,
+    "error": 0,
+    "uncertain": 0,
+    "caveat": "Kiểm bởi AI (kiểm toán viên A), không phải người. Giá trị ESC đọc từ ảnh slide do AI dựng từ EMF — không phải người mở PowerPoint. Toàn văn AHA/ACC 2025 và ESC/ESH 2018 không mở được/không có trong bộ đệm; giá trị Mỹ lấy từ thông cáo AHA và bài tóm tắt ACC, giá trị ESC 2018 lấy từ bộ slide ESC 2024."
+  }
+}

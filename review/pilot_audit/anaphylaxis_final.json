@@ -1,0 +1,61 @@
+{
+ "topic": "anaphylaxis",
+ "role": "trọng tài (integrity-auditor + atom-extractor)",
+ "audited_by": "AI (Claude) — KHÔNG phải người, KHÔNG phải bác sĩ. Kiểm toán HG1.2 tự động theo ủy quyền của người dùng; báo cáo là 'kiểm bởi AI'.",
+ "date": "2026-09-26",
+ "inputs": [
+  "review/pilot_audit/anaphylaxis_A.json",
+  "review/pilot_audit/anaphylaxis_B.json",
+  "state/gates/HG1.2_checklist.md",
+  "state/gates/HG1.2_decisions.md"
+ ],
+ "blind_rule": "Không đọc/liệt kê data/runs/.",
+ "scope": "Checklist HG1.2 chỉ có một mẩu 'P-anaphylaxis-' là P-anaphylaxis-03. P-anaphylaxis-01/-02 có trong data/interim/pilot/anaphylaxis.jsonl nhưng pilot_merge loại có chủ đích từ trước (trùng P-anaphylaxis_ocr-03/-04), nên không vào pilot_atoms và không thuộc phạm vi kiểm này. P-anaphylaxis_ocr-* là chủ đề khác.",
+ "atoms": [
+  {
+   "atom_id": "P-anaphylaxis-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B đồng ý cả 4 tiêu chí (pass) và phán quyết 'fix'; không có fail/uncertain nên không bắt buộc mở lại. Trọng tài vẫn tự so lại các điểm sẽ sửa. (a) Ảnh TT51 trang PDF 9: «a) Trẻ sơ sinh hoặc trẻ < 10kg: 0,2ml (tương đương 1/5 ống).» khớp span từng ký tự. (b) Ảnh TT51 trang PDF 20, ô 'TIÊM BẮP': «- Trẻ em: 1/5-1/3 ống» (lớp chữ OCR ghi 'TIEM BAP'). Ảnh trang PDF 19 (PL X sơ đồ chi tiết): «- Trẻ em:1/5-1/3 ống». Ảnh 3312/2015 trang PDF 106: «tiêm bắp Adrenalin 1/1000 (0,01 mg/kg), 0,01 ml/kg». Ảnh 3942/2014 trang PDF 13 (số in 8), Bảng 3 dòng 3: «0,01 ml/kg, tối đa không quá 0,3 ml /lần ở trẻ em». (c) Mặc định A.5 (DR8 không phụ thuộc nguyên nhân) không thêm giá trị: 3942 tr.77 (côn trùng) 0,01 mg/kg trùng 60 µg; 3942 tr.48 (thức ăn) không có mức < 10 kg; 3312 tr.81 (ong đốt) 0,3 ml là TDD (tiêm dưới da), khác đường; 3610 tr.133/166 là liều không nêu tuổi hoặc người lớn, thuộc quần thể lân cận (a). 3312 tr.29/30/32/55 ghi 10 µg/kg tiêm bắp, cùng 60 µg (tr.29 lớp chữ dùng ký tự PUA thay µ, ảnh ghi 10µg/kg). Câu hỏi VI/EN nêu đủ 4 tháng, 6 kg (< 10 kg), độ II–III, sau tiêm kháng sinh, tiêm bắp, ống 1 mg/1 ml, cơ sở y tế, liều đầu tiên. (d) Bản đệm RCUK (sha 1c07e3dd…) trang PDF 29, dòng '< 6 months': 100–150 µg IM. Bản đệm WHO Pocket Book 2013 (sha e17581cf…) trang PDF 133: 0,15 ml 1:1000 IM (thể vừa và sốc nặng). Bản đệm US: trang 1 là 'article in press' 2023, doi:10.1016/j.anai.2023.09.015; Crossref xác nhận bản in chính thức Ann Allergy Asthma Immunol 2024;132(2):124–176, nên chữ '2024' trong source đúng. Không có giá trị nào phải đổi.",
+   "changed_fields": [
+    "extraction.dr8_sources[0].image_text (mới: 'TIÊM BẮP - Người lớn: 1/2 ống - Trẻ em: 1/5-1/3 ống' theo ảnh trang PDF 20; span giữ 'TIEM BAP' theo lớp chữ để verify_span qua)",
+    "extraction.dr8_sources[0].ocr_note (mới)",
+    "extraction.dr8_sources[0].same_value_locations (mới: TT51 PL X trang PDF 19)",
+    "extraction.dr8_sources[1].printed_page (mới: '106')",
+    "extraction.dr8_sources[1].same_value_locations (mới: 3312/2015 trang PDF 29, 30, 32, 55 — 10 µg/kg tiêm bắp)",
+    "extraction.dr8_sources[2].printed_page (mới: '8') + page_note + manifest_note",
+    "vn[1].text (ghi 'trang PDF 20' + vị trí cùng giá trị trang PDF 19; lo/hi/unit không đổi)",
+    "vn[2].text ('QĐ 3942/2014 trang PDF 13 (số in 8)'; lo/hi/unit không đổi)",
+    "foreign[US].locator (ghi bản đệm là 'article in press' 2023, DOI, bản in 2024;132(2):124–176 theo Crossref)",
+    "extraction.ocr_visual_check (nối ghi chú kiểm toán AI; vẫn ghi chưa có người so)",
+    "extraction.dr8_not_applied (nối kết quả kiểm theo mặc định A.5)",
+    "extraction.decision_default (mới: A.5 áp, không đổi dữ liệu)",
+    "extraction.audit_fix (mới)"
+   ],
+   "exclude": false,
+   "exclude_reason": null
+  }
+ ],
+ "counts": {
+  "ok": 0,
+  "fixed": 1,
+  "excluded": 0,
+  "uncertain": 0
+ },
+ "self_check": "pilot_merge --only anaphylaxis --no-checklist: giữ 1 mẩu {'conflict': 1}, loại 2 (P-anaphylaxis-01/-02, loại có chủ đích, giống hệt lượt chạy trước khi sửa). Với P-anaphylaxis-03, tolerance 20, conflict_status conflict, decoy [] và các lo/hi/unit của vn/foreign không đổi. verify_span: OK. schemas atom: hợp lệ.",
+ "backup": "C:/Users/Admin/AppData/Local/Temp/claude/d--phan-chau-trinh---y-khoa/1e1ea5eb-0832-473b-882a-b9921c8f5c59/scratchpad/audit/anaphylaxis_before.jsonl (sha256 4a092537…)",
+ "recommendations_outside_atom": [
+  "Đoạn oracle A3 P-anaphylaxis-03#A3 (data/interim/pilot_passages.jsonl, do src/vnsoc/qgen/build.py dựng) là chữ OCR có lỗi, đã xác nhận: 'Img' ×2 (ảnh: '1mg'), '1⁄2 - ]' (ảnh: '1/2 - 1 ống'), '> 90mmHg'/'> 70mmHg' (ảnh: '≥'), 'phúVlần' (ảnh: 'phút/lần'), 'Phác do', 'én định'/'on dinh', 'nước cat'. Dòng a) (giá trị chấm) đúng. Nên sửa theo ảnh trang 9 cho bộ v1 TRƯỚC khi đóng băng, không nhìn đầu ra mô hình. Không sửa trong kiểm toán này vì ngoài file được giao và lượt thí điểm đã dùng đoạn này.",
+  "Thêm dòng manifest cho QĐ 3942/2014 (sha256 4be16be0fe6812f4647faa0442477cec9baacb67af250d1da433cd7e8593e888, kcb.vn gói Mien-dich.rar, partially_amended_by ['1851/2020']). Đây là việc của kho; giá trị 60 µg vẫn có nguồn hiện hành 3312/2015.",
+  "docs/DECISIONS.md: ghi rằng mặc định A.5 đã áp cho mẩu này mà không đổi dữ liệu. Chuyển cho HG3.9 (bác sĩ thật): (1) dải 1/5–1/3 ống của PL X cho trẻ 6 kg; (2) áp DR8 từ văn bản viết cho 'sốc phản vệ' vào độ II; (3) 200 µg/6 kg ≈ 33 µg/kg."
+ ]
+}

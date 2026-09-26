@@ -1,0 +1,173 @@
+{
+ "topic": "dengue",
+ "auditor": "A",
+ "auditor_kind": "AI (Claude, vai integrity-auditor) — không phải người kiểm",
+ "date": "2026-09-26",
+ "method": "verify_span (span_on_page trên lớp chữ gốc 2760/2023; lớp OCR ghi đè của 3705/2019) + xem ảnh trang PNG (2760 tr.9, 12, 15, 16, 28, 30, 38, 42, 55, 56, 63; 3705 tr.6, 8, 9, 19, 39, 45) + grep bản đệm nguồn nước ngoài (sha256 khớp page_sha256 của mẩu) và đọc trang tại locator. Không đọc data/runs/.",
+ "atoms": [
+  {
+   "atom_id": "P-dengue-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 28 (trang in 27) của 2760/2023, lớp chữ gốc (không OCR); verify_atom ok; đã xem ảnh trang 28.",
+    "(b) 2760 tr.28: «...bằng Ringer lactate hoặc NaCl 0,9% 15ml/kg/giờ sau đó đánh giá lại lâm sàng, Hct.»; Phụ lục 16.1 tr.55 (ảnh): «RL hoặc NaCl 0,9% 15 ml/kg/giờ x 1 giờ».",
+    "(b) moh_neighbour: 3 span nguyên văn đúng trang (tr.28, tr.18, tr.15); giá trị 10/6/3/1,5 và 20 ml/kg/giờ đúng chữ.",
+    "(b) bản cũ 3705/2019 (bản quét, đã xem ảnh): tr.19 (in 18) câu 'Trong 1 giờ đầu ... 15ml/kg/giờ ...' đúng; Phụ lục 14 tr.39 ô dưới 'SỐC SXHD hoặc SỐC SXHD NẶNG': «RL hoặc NaCl 0,9% 15 ml/kg/giờ x 1 giờ». Chép bằng mắt trong superseded_spans khớp ảnh.",
+    "(c) Người lớn ≥ 16 tuổi: mục C.2 tr.28; BMI < 25 dùng cân nặng thực: tr.29 «a) BMI < 25 kg/m2: sử dụng CN thực.»; PNCT tr.34 «Truyền dịch chống sốc tương tự phụ nữ không mang thai». Câu hỏi VI/EN đúng phạm vi (sốc còn bù, chưa truyền dịch, nhập cấp cứu).",
+    "(c) Ghi nhận (không đổi phán quyết): Phụ lục 21 tr.63 (tuyến cơ sở khi có dịch, không ghi tuổi) «RL hoặc NaCL 0,9% 20 ml/kg/giờ, trong 1 giờ (M nhanh, HA tụt hoặc kẹp)» — bối cảnh khác (tuyến cơ sở, trước chuyển viện), mẩu chưa ghi; giá trị 20 đã có trong moh_neighbour (tr.15, tr.18) nên không đổi phân tích.",
+    "(d) WHO 2009 (sha256 f6f48811…, bản đệm data/cache/foreign): PDF tr.48 (in 36) sốc còn bù: dịch tinh thể đẳng trương 5–10 ml/kg/giờ trong 1 giờ, không phân tuổi; Fig 2.2 tr.49; tr.65 — khớp.",
+    "(d) WHO 2012 (sha256 b0ca1691…): PDF tr.38 (in 28) §2.2.3.1: 5–10 ml/kg/giờ trong 1 giờ ở người lớn (10–20 ở trẻ em) — khớp giá trị và quần thể."
+   ],
+   "proposed_fix": "Không bắt buộc. Có thể thêm vào extraction.notes: Phụ lục 21 (2760 PDF tr.63) 20 ml/kg/giờ trong 1 giờ ở tuyến cơ sở khi có dịch (bối cảnh khác)."
+  },
+  {
+   "atom_id": "P-dengue-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "uncertain",
+   "verdict": "fix",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 28 (in 27), lớp chữ gốc; đã xem ảnh trang.",
+    "(b) 2760 tr.28: «a) Nếu cải thiện lâm sàng (mạch giảm, HA bình thường, hiệu áp > 20 mmHg) Tiếp tục truyền Ringer lactate hoặc NaCl 0,9% tốc độ 10ml/kg/giờ x 2 giờ.»; Phụ lục 16.1 tr.55 (ảnh): «RL hoặc NaCl 0,9% 10 ml/kg/giờ x 2 giờ».",
+    "(b) bản cũ 3705 (ảnh): tr.19 (in 18) «a) Nếu cải thiện lâm sàng (mạch giảm, HA bình thường, hết kẹt) - Tiếp tục truyền Ringer lactate hoặc NaCl 0,9% tốc độ 10ml/kg/giờ x 2 giờ.»; Phụ lục 14 tr.39 «RL hoặc NaCl 0,9% 10 ml/kg/giờ x 2 giờ» — khớp.",
+    "(b) moh_neighbour: span tr.28 (x2) và tr.30 nguyên văn đúng; tr.30 «...chuyển sang truyền Ringer lactate hoặc NaCl 0,9% 15ml/kg/giờ x 1 giờ (xem Phụ lục 16.2)».",
+    "(c) Quần thể đúng (người lớn, sốc còn bù, cải thiện sau giờ đầu). Cùng văn bản: nhánh sau cao phân tử (tr.29 b.2) cũng 10 ml/kg/giờ trong 2 giờ (cùng giá trị); tái sốc C.2.3 tr.30 là 10 ml/kg/giờ x 1 giờ (quần thể khác). Câu hỏi VI/EN đúng.",
+    "(d) WHO 2009 (sha256 f6f48811…, bản đệm data/cache/foreign): PDF tr.48 (in 36): khi cải thiện giảm còn 5–7 ml/kg/giờ trong 1–2 giờ — khớp.",
+    "(d) WHO 2012 (sha256 b0ca1691…): PDF tr.38 (in 28): người lớn cải thiện → 5–7 ml/kg/giờ trong 1–2 giờ — khớp.",
+    "(d) CDC 2024 pocket guide (sha256 20dad79a…): PDF tr.5, Group C, ô sau liều crystalloid đầu 20 mL/kg/15–30 phút, nhánh cải thiện: nguồn in đúng chữ '10mg/kg for 1-2 hrs' (sai đơn vị mg, không có '/hr'); ô kế tiếp '5-7mL/kg/hr for 2-4 hrs'. Đọc thành 10 mL/kg/giờ là diễn giải, không xác nhận được từ nguồn (cũng có thể là 10 mL/kg trong 1–2 giờ) → uncertain cho riêng bản ghi CDC."
+   ],
+   "proposed_fix": "Bỏ bản ghi US/CDC khỏi foreign (hoặc giữ làm ghi chú không tính điểm, verified_by null). WHO 2009/2012 (5–7) đủ giữ trạng thái conflict; giá trị Bộ Y tế 10 ml/kg/giờ không đổi."
+  },
+  {
+   "atom_id": "P-dengue-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 15 (in 14), lớp chữ gốc; đã xem ảnh trang.",
+    "(b) 2760 tr.15: «...truyền dịch chống sốc như phác đồ điều trị sốc SXHD ở người lớn với liều chống sốc đầu tiên là cao phân tử 10 - 15ml/kg/giờ.»; Phụ lục 6 tr.42 (ảnh): «Có biểu hiện sốc: Chống sốc theo Phụ lục 16, với liều đầu là CPT 10-15ml/kg/giờ».",
+    "(b) bản cũ 3705 tr.8 (in 7, ảnh): cùng câu '...liều chống sốc đầu tiên là cao phân tử 10-15ml/kg/giờ.' — khớp (3705 gọi là Phụ lục 5).",
+    "(c) B2 người lớn ≥ 16 tuổi (2760 tr.14). Sơ đồ Phụ lục 6: nhánh sốc xuất phát sau RL/NaCl 6 → 3 → 1,5 ml/kg/giờ khi lâm sàng không ổn định → đúng quần thể 'đang truyền dịch, chưa bolus'. Mâu thuẫn nội tại với C.2.1.2 (vào viện vì sốc → dịch tinh thể, tr.28) đã ghi ở moh_neighbour (span tr.28 nguyên văn). Câu hỏi VI/EN giữ đúng bối cảnh.",
+    "(d) WHO 2025 (sha256 cbbe4513…): PDF tr.16 (in 2) và §5.1 tr.60 (in 46): gợi ý dịch tinh thể thay vì dịch keo, khuyến cáo có điều kiện, bệnh nặng (nhập viện); tr.60 lưu ý cá thể hóa nhất là lựa chọn dịch SAU hồi sức ban đầu (khe này là liều đầu). Bản © WHO 2025, ISBN 978-92-4-011111-0; tháng 07 không kiểm được từ PDF (ngày tạo file 2025-06-04).",
+    "(d) WHO 2009 (sha256 f6f48811…, bản đệm data/cache/foreign): PDF tr.48 (in 36) sốc còn bù: dịch tinh thể đẳng trương — khớp (sốc tụt HA tr.49: tinh thể hoặc keo — không thuộc quần thể).",
+    "(d) WHO 2012 (sha256 b0ca1691…): PDF tr.38 sốc còn bù: dịch tinh thể đẳng trương; tr.42 chú thích sơ đồ: ưu tiên keo nếu đã nhận bolus tinh thể; tr.37: sốc tụt HA ưu tiên keo → quần thể (còn bù, chưa bolus) đúng với giá trị crystalloid.",
+    "(d) CDC 2024 pocket guide (sha256 20dad79a…): tr.5 Group C liều đầu dịch tinh thể 20 mL/kg trong 15–30 phút; tr.6 và tr.2 dịch keo chỉ cho sốc kháng trị; tr.4 B2 xấu đi → xử trí như nhóm C — khớp."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-dengue-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "fail",
+   "verdict": "error",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 12 (in 11), lớp chữ gốc; đã xem ảnh trang.",
+    "(b) 2760 tr.12: «+ Không dùng aspirin (acetylsalicylic acid), analgin, ibuprofen để điều trị vì có thể gây xuất huyết, toan máu.»; bản cũ 3705 tr.6 (in 5, ảnh): cùng câu — khớp.",
+    "(c) Phía Bộ Y tế: lệnh cấm ở mục IV.A (SXHD, chủ yếu ngoại trú); B1/B2 chỉ ghi 'Điều trị triệu chứng: hạ sốt' (tr.13, tr.14); toàn văn bản chỉ nhắc analgin ở tr.12, không chỗ nào cho phép → giá trị 'không dùng' đúng.",
+    "(d) WHO 2025 (sha256 cbbe4513…): PDF tr.47 (in 33) §4.2.2: gợi ý dùng metamizol (dipyrone) cho đau và/hoặc sốt, khuyến cáo có điều kiện, bằng chứng thấp; tr.15 tóm tắt; tr.49 (in 35): lựa chọn thay thế paracetamol ở nước đã phê duyệt — giá trị 'allowed' khớp.",
+    "(d) QUẦN THỂ LỆCH: WHO 2025 (sha256 cbbe4513…) tr.15 (phạm vi) và tr.27 (in 13, §2.7) định nghĩa 'non-severe disease' = người bệnh quản lý NGOẠI TRÚ; người cần nhập viện được xếp là 'severe disease' (chương 5, không có khuyến cáo metamizol). Mẩu và câu hỏi VI/EN ghi 'không nặng (điều trị ngoại trú hoặc NỘI TRÚ)' → phần nội trú nằm ngoài phạm vi khuyến cáo WHO 2025, giá trị nước ngoài không áp dụng cho toàn bộ quần thể của mẩu.",
+    "(d) WHO 2009, WHO 2012, CDC 2024: không nhắc metamizol/dipyrone/analgin (grep 0) — đúng là không ghi."
+   ],
+   "proposed_fix": "Thu hẹp quần thể về ngoại trú: population.severity = 'SXHD không có dấu hiệu cảnh báo, điều trị ngoại trú'; sửa câu hỏi VI/EN (short và MCQ) bỏ 'hoặc nội trú' / 'or inpatient'. Giá trị Bộ Y tế (không dùng) và WHO 2025 (gợi ý dùng) giữ nguyên; trạng thái conflict giữ. Cần sửa trước khi đóng băng bộ câu hỏi."
+  },
+  {
+   "atom_id": "P-dengue-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "fix",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 30 (in 29), lớp chữ gốc; đã xem ảnh trang.",
+    "(b) 2760 tr.30: «...khẩn trương truyền nhanh Ringer lactate hoặc NaCl 0,9% 15ml/kg trong vòng 15 phút, rồi chuyển sang truyền cao phân tử 15ml/kg/giờ trong 1 giờ»; Phụ lục 16.2 tr.56 (ảnh): «Bolus RL hoặc NaCl 0,9% 15 ml/kg/15 phút».",
+    "(b) bản cũ 3705 (ảnh): tr.19 đề mục «C.2.1. Điều trị sốc sốt xuất huyết Dengue, sốc sốt xuất huyết Dengue nặng» và câu 15ml/kg/giờ giờ đầu; Phụ lục 14 tr.39 «SỐC SXHD hoặc SỐC SXHD NẶNG» → «RL hoặc NaCl 0,9% 15 ml/kg/giờ x 1 giờ». 60 phút là phép tính (đã ghi derived_values) — hợp lý cho phác đồ người lớn tại bệnh viện; 3705 tr.20 C.2.2 là 'Điều trị tái sốc' (không có mục sốc nặng người lớn riêng).",
+    "(c) Quần thể đúng (người lớn, M = 0, HA = 0 lúc nhập viện). Bỏ sót lân cận: 2760 Phụ lục 21 tr.63 (tuyến cơ sở khi có dịch, không giới hạn tuổi) «RL hoặc NaCL 0,9% 20 ml/kg/15 phút (M=0, HA=0)» — cùng 15 phút với giá trị hiện hành; và 3705/2019 Phụ lục 19 tr.45 (ảnh đã xem) có ĐÚNG ô này. Nghĩa là bản 2019 đã có bolus 15 phút cho sốc nặng ở tuyến cơ sở (20 ml/kg, mọi tuổi); lệch phiên bản 60 → 15 phút chỉ đúng cho phác đồ người lớn tại bệnh viện. Mẩu không ghi điều này.",
+    "(d) WHO 2009 (sha256 f6f48811…, bản đệm data/cache/foreign): PDF tr.49 (in 37) sốc tụt HA: bolus 20 ml/kg trong 15 phút (tinh thể hoặc keo) — thời gian khớp.",
+    "(d) WHO 2012 (sha256 b0ca1691…): PDF tr.41 (in 31) 'profound shock (hypotensive; undetectable pulse and BP)', mọi lứa tuổi: 20 ml/kg trong 15–30 phút; tóm tắt tr.34: bolus 15 phút — khớp.",
+    "(d) CDC 2024 pocket guide (sha256 20dad79a…): tr.5 Group C: 20 mL/kg trong 15–30 phút — khớp."
+   ],
+   "proposed_fix": "Thêm vào extraction.notes (và/hoặc moh_neighbour) ô 'RL hoặc NaCL 0,9% 20 ml/kg/15 phút (M=0, HA=0)' của 2760 Phụ lục 21 (PDF tr.63) và 3705 Phụ lục 19 (PDF tr.45); ghi rõ lệch phiên bản chỉ áp dụng phác đồ người lớn tại bệnh viện; giữ chữ 'nhập cấp cứu' (bệnh viện) trong câu hỏi. Người quyết định (HG) xác nhận giá trị bản cũ 60 phút (suy ra) còn dùng cho H2. Giá trị hiện hành 15 phút không đổi."
+  },
+  {
+   "atom_id": "P-dengue-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 16 (in 15), lớp chữ gốc; đã xem ảnh trang.",
+    "(b) 2760 tr.16: «Trường hợp không có Dextran 40, Dextran 70 hoặc 6% HES 200, có thể thay thế bằng dung dịch 6% HES 130 hoặc Gelatin, nhưng cần theo dõi sát...»; đây là lần duy nhất 'Gelatin' xuất hiện trong 2760.",
+    "(b) bản cũ 3705 tr.9 (in 8, ảnh): «Cao phân tử được chọn trong SXHD là Dextran 40, Dextran 70 hoặc 6% HES 200, không dùng Gelatin do hiệu quả kém.» — khớp.",
+    "(c) Trẻ em < 16 tuổi, mục C1.1.3 b.1 (Hct còn cao hoặc ≥ 40%), cơ sở không có Dextran/HES 200 — đúng. Thiếu niên 13–16 (tr.18) dùng cao phân tử 'với tốc độ như trẻ em' (không mâu thuẫn). Câu hỏi VI/EN đúng.",
+    "(d) no_counterpart hợp lý: WHO 2009 (sha256 f6f48811…, bản đệm data/cache/foreign) tr.62 và WHO 2012 (sha256 b0ca1691…) tr.121 chỉ liệt kê gelatin là một loại dịch keo (không khuyến cáo thay thế); WHO 2025 (sha256 cbbe4513…) tr.62 chỉ bảng bằng chứng; CDC không nhắc gelatin."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-dengue-08",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 12 (in 11), lớp chữ gốc; đã xem ảnh trang.",
+    "(b) 2760 tr.12: «...paracetamol đơn chất, liều dùng từ 10 - 15mg/kg cân nặng/lần, cách nhau mỗi 4 - 6 giờ.»; bản cũ 3705 tr.6 (in 5, ảnh): '10-15mg/kg cân nặng/lần, cách nhau mỗi 4-6 giờ' — khớp.",
+    "(c) Liều theo mg/kg, văn bản không giới hạn tuổi → trẻ em là tập con hợp lệ. Cùng văn bản: tr.27 paracetamol đặt hậu môn 10 - 15mg/kg/lần (SXHD thể não) — cùng giá trị. Lưu ý nhỏ: tr.25 «Tránh dùng dung dịch Ringer lactate, paracetamol trong trường hợp tổn thương gan mức độ trung bình, nặng» — câu hỏi không loại trừ tổn thương gan (không đổi giá trị).",
+    "(d) WHO 2025 (sha256 cbbe4513…): PDF tr.44 (in 30) Bảng 4-2, dòng trẻ em: 10–15 mg/kg mỗi 4–6 giờ (tối đa 60 mg/kg/ngày) — khớp.",
+    "(d) WHO 2012 (sha256 b0ca1691…): PDF tr.35 (in 25) §2.2.1: 10 mg/kg/liều, không quá 3–4 lần/24 giờ ở trẻ em; tr.116 thẻ chăm sóc tại nhà — khớp."
+   ],
+   "proposed_fix": "Không bắt buộc. Có thể thêm vào quần thể/câu hỏi 'không có tổn thương gan mức độ trung bình–nặng' (2760 tr.25)."
+  },
+  {
+   "atom_id": "P-dengue-09",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "ok",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 38 (Phụ lục 2, không đánh số trang in) — cột 'SXHD nặng' của bảng; đã xem ảnh trang.",
+    "(b) 2760 tr.38: «3. Suy các tạng - Gan: AST hoặc ALT ≥ 1000U/L.»; nhất quán tr.10 «men gan AST, ALT ≥ 1000U/L», tr.24 «Nặng hoặc suy gan cấp: AST, ALT ≥ 1000U/L», tr.65 (Phụ lục 22, trẻ em) «Suy gan: AST hoặc ALT ≥ 1000U/L».",
+    "(c) Mọi tuổi — đúng (Phụ lục 2 chung; Phụ lục 22 trẻ em cùng ngưỡng). Ngưỡng 400 U/L là dấu hiệu cảnh báo (khe khác).",
+    "(d) WHO 2009 (sha256 f6f48811…, bản đệm data/cache/foreign): PDF tr.23 (in 11) tiêu chuẩn SXHD nặng: AST or ALT >= 1000 — khớp.",
+    "(d) WHO 2012 (sha256 b0ca1691…): PDF tr.17 (in 7) phân loại (tái bản hình WHO/TDR 2009): AST or ALT >= 1000 — khớp.",
+    "(d) CDC 2024 pocket guide (sha256 20dad79a…): tr.1 Group C: ALT hoặc AST > 1000 IU (dấu '>'); tr.6 '≥1000 IU' là tiêu chí nhập viện — khớp với ghi chép của mẩu."
+   ],
+   "proposed_fix": ""
+  },
+  {
+   "atom_id": "P-dengue-10",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict": "fix",
+   "evidence": [
+    "(a) span khớp nguyên văn trang PDF 9 (in 8), lớp chữ gốc. Chữ 'vă' đã phóng to ảnh trang (400 dpi): dòng span in đúng 'vật vă' (lỗi gõ gốc), dòng khác in 'Vật vã' → giữ nguyên là đúng.",
+    "(b) 2760 tr.9: «...huyết áp kẹt (hiệu số huyết áp tối đa và tối thiểu ≤ 20mmHg hoặc tụt huyết áp...»; nhất quán Phụ lục 22 tr.65 (trẻ em) «Sốc SXHD: Mạch nhanh, HA tụt hoặc kẹt ≤ 20 mmHg», Phụ lục 8 tr.46 và Phụ lục 11 tr.50 «HA tụt hoặc kẹt ≤ 20 mmHg». moh_neighbour (25 mmHg) tr.46, tr.50, tr.14 nguyên văn đúng.",
+    "(c) Trẻ em < 16 tuổi là tập con hợp lệ. Lân cận chưa ghi (không đổi giá trị định nghĩa): tr.19 C1.2 trẻ em sốc nặng «hiệu áp ≤ 10mmHg thì phải xử trí rất khẩn trương»; tr.16 trẻ em không cải thiện «kẹt hiệu áp < 20mmHg» (dấu '<'); tr.62 mục tiêu hiệu áp ≥ 30mmHg.",
+    "(d) WHO 2009 (sha256 f6f48811…, bản đệm data/cache/foreign): giá trị ≤ 20 mmHg ở trẻ em đúng tại PDF tr.40 (in 28), NHƯNG thuộc Chương 2 §2.1.4 'Severe dengue', không phải 'Ch.1' như locator ghi.",
+    "(d) WHO 2012 (sha256 b0ca1691…): PDF tr.14 (in 4) §1.1.4.1: ≤ 20 mmHg ở trẻ em — khớp.",
+    "(d) CDC 2024 pocket guide (sha256 20dad79a…): tr.2 sốc sớm (còn bù): hiệu áp < 20 mmHg — khớp; ngoài ra tr.7 bảng đánh giá huyết động ghi 'Narrow pulse pressure (≤ 20 mmHg)' ở cột sốc tụt HA — locator chưa nêu."
+   ],
+   "proposed_fix": "Sửa locator WHO 2009 thành 'Ch.2 §2.1.4 Severe dengue, PDF p.40 (printed 28)'; thêm vào locator CDC 'p.7 bảng Hemodynamic Assessment: ≤ 20 mmHg ở cột hypotensive shock'; có thể thêm ghi chú lân cận 'hiệu áp ≤ 10 mmHg' (2760 tr.19, trẻ em sốc nặng). Giá trị không đổi."
+  }
+ ],
+ "summary": {
+  "ok": 5,
+  "fix": 3,
+  "error": 1,
+  "uncertain": 0
+ }
+}

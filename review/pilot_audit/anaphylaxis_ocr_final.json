@@ -1,0 +1,204 @@
+{
+ "topic": "anaphylaxis_ocr",
+ "arbiter": "AI (Claude, vai integrity-auditor + atom-extractor), KHÔNG phải người kiểm tay",
+ "date": "2026-09-26",
+ "inputs": [
+  "review/pilot_audit/anaphylaxis_ocr_A.json",
+  "review/pilot_audit/anaphylaxis_ocr_B.json"
+ ],
+ "method": "Trọng tài đọc hai kiểm toán, rồi tự mở lại nguồn ở mọi chỗ A và B khác nhau hoặc có fail. Nguồn đã mở: ảnh TT51/2017 tr.9 và tr.20 (verify_span --image); lớp chữ 3312/2015 tr.106, 3942/2014 tr.48 và tr.77; bản đệm WHO Pocket Book 2013 (PDF tr.17, 133, 379, 438), RCUK 2021 (PDF tr.29), AAAAI 2023 (PDF tr.4, 19, 31). Sửa bằng script có sao lưu; kiểm lại bằng schemas, verify_span, span_on_page cho mọi moh_neighbour, pilot_merge --only và pytest tests/test_pilot_atoms.py, test_decoys.py, test_grade_fixes.py (exit 0).",
+ "counts": {
+  "ok": 1,
+  "fixed": 5,
+  "excluded": 0,
+  "uncertain": 0
+ },
+ "atoms": [
+  {
+   "atom_id": "P-anaphylaxis_ocr-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "auditor_verdicts": {
+    "A": "ok",
+    "B": "fix"
+   },
+   "resolution": "Tiêu chí: A và B đều pass. Phán quyết khác (A ok, B fix): B đúng. Trọng tài đọc lớp chữ QĐ 3312/2015 tr.106 (span_on_page=True, không phải trang OCR): «Nếu HA hạ hoặc không đáp ứng liều ban đầu: Adrenalin 1/10.000 tiêm TM liều 0,1 mg/Kg (0,1 ml/Kg)». Đây là bước khác của phác đồ nguồn DR8, cùng quần thể trẻ em. Prereg §3 yêu cầu ghi giá trị Bộ Y tế của bước lân cận. Bước này không có trong moh_neighbour, cũng không có trong danh sách 'KHÔNG ghi'. Đã thêm với cả hai cách đọc: 0,1 mg/kg như chữ ghi (1000 µg ở 10 kg) và 0,1 ml/kg dd 1/10.000 = 0,01 mg/kg (100 µg). neighbour_overlap vẫn True, trạng thái vẫn conflict, không có mồi. Locator WHO bổ sung bảng thuốc PDF tr.379 (số in 355) và tr.438 (0,15 ml; 0,3 ml cho trẻ > 6 tuổi); trẻ 18 tháng vẫn 150 µg. Ảnh TT51 tr.9 do trọng tài xem: «b) Trẻ khoảng 10 kg: 0,25ml (tương đương 1/4 ống).» khớp span.",
+   "changed_fields": [
+    "moh_neighbour (+1: 3312/2015 tr.106 bước tiêm TM)",
+    "foreign[WHO_global].locator",
+    "foreign[WHO_global].values[0].text",
+    "extraction.audit_fix",
+    "extraction.decision_default"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-anaphylaxis_ocr-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "auditor_verdicts": {
+    "A": "ok",
+    "B": "ok"
+   },
+   "resolution": "A và B cùng ok, mọi tiêu chí pass. Trọng tài tự phát hiện: locator WHO có cùng thiếu sót B nêu ở -01/-05. Locator chỉ ghi 'bảng liều thuốc 3–29 kg', không nêu liều phản vệ tính theo tuổi (0,3 ml cho trẻ > 6 tuổi). Đã sửa locator và văn bản giá trị; giá trị 0,15 mg giữ nguyên (trẻ 18 tháng).",
+   "changed_fields": [
+    "foreign[WHO_global].locator",
+    "foreign[WHO_global].values[0].text",
+    "extraction.audit_fix",
+    "extraction.decision_default"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-anaphylaxis_ocr-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "auditor_verdicts": {
+    "A": "ok",
+    "B": "ok"
+   },
+   "resolution": "A và B cùng ok. Ảnh TT51 tr.9 do trọng tài xem: «e) Người lớn: 0,5-1ml (tương đương 1/2 - 1 ống).», span cắt trước ngoặc là đúng. RCUK tr.29 ghi người lớn 500 µg, bản đệm khớp. Dữ liệu không đổi, chỉ ghi thêm extraction.decision_default. Lưu ý: nếu áp mặc định A.5 thì tập vn thêm 0,3–0,5 mg (3942 tr.77).",
+   "changed_fields": [
+    "extraction.audit_fix",
+    "extraction.decision_default"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-anaphylaxis_ocr-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": false,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "auditor_verdicts": {
+    "A": "fix",
+    "B": "ok"
+   },
+   "resolution": "(a): A fail, B pass. Trọng tài chốt pass kèm sửa chữ. Trọng tài xem ảnh TT51 tr.20 (PDF 20 = trang in 20), ô 'TIÊM BẮP': «Người lớn: 1/2 ống - Trẻ em: 1/5-1/3 ống • Nhắc lại sau mỗi 3-5 phút cho đến khi hết các dấu hiệu về hô hấp và tiêu hóa, huyết động ổn định». Span đúng trang, mọi chữ số khớp. Chỉ khác chữ OCR: 'TIEM BAP' thay cho 'TIÊM BẮP', '*' thay cho '•'. Theo tiêu chí (a) cho trang OCR, cần ghi rõ chữ đúng. Span phải khớp lớp chữ để verify_span qua, nên span giữ nguyên. Đã thêm extraction.span_image_text (chữ đúng theo ảnh). Sửa gốc (sidecar OCR p020, việc S5) nằm ngoài file này. Tr.9 IV.3 «3-5 phút/lần» khớp ảnh. Đã thêm extraction.grading_caveat theo khuyến nghị của B: 3942 tr.13 ghi '(có thể sớm hơn 5 phút nếu cần)', tức cận dưới mở. Giá trị không đổi.",
+   "changed_fields": [
+    "extraction.span_image_text",
+    "extraction.grading_caveat",
+    "extraction.audit_fix",
+    "extraction.decision_default"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-anaphylaxis_ocr-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "auditor_verdicts": {
+    "A": "ok",
+    "B": "fix"
+   },
+   "resolution": "Tiêu chí: A và B đều pass. Phán quyết khác (A ok, B fix): B đúng, cùng lý do như -01. Đã thêm bước tiêm TM trẻ em của 3312/2015 tr.106 vào moh_neighbour (2000 µg hoặc 200 µg ở 20 kg). Locator WHO bổ sung tr.379/tr.438; trẻ 5 tuổi vẫn 0,15 ml. Ảnh TT51 tr.9 do trọng tài xem: «c) Trẻ khoảng 20 kg: 0,3ml (tương đương 1/3 ống).», trong khi span dùng '1⁄3' (U+2044) của lớp OCR. Chữ số đúng. Đã thêm extraction.span_image_text. Trạng thái vẫn conflict, không có mồi.",
+   "changed_fields": [
+    "moh_neighbour (+1: 3312/2015 tr.106 bước tiêm TM)",
+    "foreign[WHO_global].locator",
+    "foreign[WHO_global].values[0].text",
+    "extraction.span_image_text",
+    "extraction.audit_fix",
+    "extraction.decision_default"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-anaphylaxis_ocr-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "auditor_verdicts": {
+    "A": "ok",
+    "B": "fix"
+   },
+   "resolution": "Các bản ghi nước ngoài đã có đều đúng (A và B cùng pass (d)). Phán quyết khác: B đúng. Trọng tài mở bản đệm WHO Pocket Book 2013 (sha e17581cf…). PDF tr.379 (số in 355), dòng Adrenaline 'For anaphylaxis', và PDF tr.438 (Emergency drugs) đều ghi 0,15 ml dd 1:1000 tiêm bắp, 0,3 ml cho trẻ > 6 tuổi. Liều WHO cho trẻ 10 tuổi vì vậy là 300 µg, nằm trong tập VN. Hai ghi chú cũ đều sai: (1) 'không ghi WHO vì bảng dừng ở 20–29 kg'; (2) cờ 'nếu WHO áp mọi trẻ thì 150 µg → conflict'. Đã sửa ghi chú và thêm bản ghi WHO_global 0,3 mg (url, locator, fetched_at, page_sha256). Locator AAAAI thêm PDF tr.19 (tối đa 0,3 mg ở trẻ chưa dậy thì, dd 1 mg/mL), trọng tài đã mở. Trạng thái vẫn concordant; tolerance, tập vn và mồi không đổi (pilot_merge tính lại).",
+   "changed_fields": [
+    "foreign (+1: WHO_global 0,3 mg, trẻ > 6 tuổi)",
+    "foreign[US].locator",
+    "extraction.notes (câu WHO)",
+    "extraction.audit_fix",
+    "extraction.decision_default"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  }
+ ],
+ "merge_check": "pilot_merge --only anaphylaxis_ocr: giữ 6, loại 0, cả trước và sau sửa ({'conflict': 2, 'concordant': 4}). So với lần gộp gốc: conflict_status, tolerance, decoy, conflict_family và neighbour_overlap không đổi ở cả 6 mẩu; vn không đổi.",
+ "decision_default_A5": {
+  "default": "DR8 không phụ thuộc nguyên nhân + phạm vi lân cận (a)",
+  "applied_to_data": false,
+  "why": "Chỉ thị trọng tài ghi '(giữ nguyên)' cho phản vệ. Nhưng dữ liệu hiện mã hóa DR8 THEO NGUYÊN NHÂN: -01 ghi rõ 'cách đọc (a), theo câu chữ'. Vậy 'giữ nguyên' KHÔNG trùng với mặc định. Trọng tài không tự đổi tập vn (thay đổi khoa học, liên quan nhiều mẩu) và chuyển điều phối quyết. Đã ghi extraction.decision_default với applied_to_data=false ở cả 6 mẩu.",
+  "effect_if_applied": {
+   "P-anaphylaxis_ocr-01": "conflict → concordant (thêm 3942 tr.48 0,15 mg cho trẻ 10–25 kg)",
+   "P-anaphylaxis_ocr-05": "conflict → concordant (như trên, trẻ 20 kg)",
+   "P-anaphylaxis_ocr-03": "vn thêm 0,3–0,5 mg (3942 tr.77, người lớn, SPV côn trùng); vẫn concordant",
+   "P-anaphylaxis_ocr-02/-04/-06": "chỉ thêm nguồn trùng giá trị; không đổi"
+  },
+  "note": "Hai mẩu xung đột duy nhất của chủ đề này phụ thuộc quyết định này. Ghi chú trong mẩu nói chưa tính -01/-05 vào H1 cho tới khi có quyết định. Phải áp mặc định trước khi đóng băng hoặc chấm H1."
+ },
+ "open_items_not_changed": [
+  "manifest: thiếu dòng QĐ 3942/2014. Đây là nguồn DR8 của cả 6 mẩu, và là nguồn duy nhất của vn ở -02 (0,15 mg), -04 (5–15 phút), -06 (300 µg). Cần status 'partial', partially_amended_by ['1851/2020'] (A, B).",
+  "manifest: dòng TT51/2017 còn metadata cũ (text_layer=false, ocr=false, in_corpus=false) dù đã có sidecar OCR (A).",
+  "OCR: sửa sidecar data/interim/ocr/TT51_2017/p020.txt ('TIEM BAP' → 'TIÊM BẮP', '*' → '•') và p009 ('1⁄3' → '1/3', 'Img' → '1mg', ']' → '1'), rồi cập nhật span -04, -05, dr8_sources và moh_neighbour cùng lúc (việc S5).",
+  "superseded = [] ở cả 6 mẩu: TT08/1999 (bản bị TT51 thay) chưa lấy từ nguồn chính thức (HG2.3).",
+  "3312/2015 tr.106 mâu thuẫn nội tại: '0,1 mg/Kg (0,1 ml/Kg)' dd 1/10.000; cùng trang ghi 'Không sử dụng tiêm trực tiếp tĩnh mạch'. Chuyển bác sĩ thật xem (HG3.9).",
+  "WAO White Book on Allergy 2026, chương 2.11 (A): mở bị 403, chưa kiểm. Đây là tổng quan, không phải bản thay WAO 2020."
+ ],
+ "blind_rule_note": "Đầu phiên, trọng tài chạy một lệnh grep -r từ gốc repo tìm chuỗi 'dr8_reading'. Lệnh này có thể đã quét qua file dưới data/runs/ trước khi bị dừng (TaskStop). Không có tên file hay nội dung nào dưới data/runs/ được hiển thị: kết quả đã lọc bỏ data/runs và chỉ liệt kê 6 file ngoài data/runs. Sau đó mọi tìm kiếm chỉ giới hạn trong src, scripts, configs, state, docs, review."
+}

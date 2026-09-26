@@ -1,0 +1,216 @@
+{
+ "topic": "hbv",
+ "audited_by": "AI (Claude): kiểm toán viên A, kiểm toán viên B và trọng tài — KHÔNG phải người, không phải bác sĩ",
+ "date": "2026-09-26",
+ "sources": [
+  "review/pilot_audit/hbv_A.json",
+  "review/pilot_audit/hbv_B.json"
+ ],
+ "arbiter_method": "Trọng tài chỉ mở lại các tiêu chí có bất đồng hoặc fail/uncertain (P-hbv-07 c, d): ảnh + lớp chữ 1740/2026 tr.24; bản đệm slide AASLD sha 763a79fe35c57c68 slide 1, 2, 32, 33 (ảnh + chữ); thử toàn văn Ghany 2025 (journals.lww.com 402; PubMed chỉ cookie; aasld.org và idsociety.org chỉ trang tóm tắt); đệm nguồn thứ cấp ACG EBGI. Không đọc data/runs/. Không chép đoạn văn hướng dẫn nước ngoài vào dữ liệu (chỉ giá trị + vị trí).",
+ "counts": {
+  "ok": 9,
+  "fixed": 1,
+  "excluded": 0,
+  "uncertain": 0
+ },
+ "data_changes": [
+  "data/interim/pilot/hbv.jsonl: P-hbv-07 population (+hbsag_status, +hbcrag, +immune_status), extraction.audit_fix, extraction.notes; không đổi giá trị. Sao lưu trước sửa: scratchpad/audit/hbv_before.jsonl (sha256 37c75ba9...)."
+ ],
+ "self_check": "pilot_merge --only hbv: giữ 10 mẩu {indistinguishable 6, concordant 3, conflict 1}, loại 0 — giống hệt lượt trước sửa; schema atom OK 10/10; verify_span OK 10/10.",
+ "decisions_defaults_applied": [
+  "A.7 (P-hbv-01 mồi): loại khỏi phép so nước ngoài–mồi — ở bước phân tích, không đổi dữ liệu",
+  "A.8 (P-hbv-04): giữ cách chấm — không đổi dữ liệu"
+ ],
+ "open_items": [
+  "P-hbv-07: đối chiếu toàn văn Ghany 2025 khi truy cập được (HG1.2 mục B)",
+  "Bộ câu hỏi v1: P-hbv-07 thêm 'HBsAg vẫn dương tính', 'không có kết quả HBcrAg (hoặc ≥ 2 logU/mL)'; P-hbv-03/08 thêm 'không mang thai'"
+ ],
+ "atoms": [
+  {
+   "atom_id": "P-hbv-01",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. Mồi 25 U/L trùng ULN nữ của AASLD 2025/3310 (quần thể lân cận): theo HG1.2_decisions mục A.7 (mặc định: loại khỏi phép so nước ngoài–mồi) — xử lý ở bước phân tích, không đổi dữ liệu mẩu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-02",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-03",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. Gợi ý không chặn (B) cho bộ câu hỏi v1: thêm 'không mang thai' vào quần thể (1740 tr.41: dự phòng TDF cho thai phụ theo HBV DNA ≥ 200.000 IU/mL, đã ghi ở moh_neighbour). Không đổi dữ liệu mẩu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-04",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. HG1.2_decisions mục A.8: mặc định giữ cách chấm hiện tại (bội số ULN) — không đổi dữ liệu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-05",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-06",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. Ghi nhận: span nối ô tiêu chí 2 và ô phác đồ của lưu đồ Phụ lục 5 (tr.40) theo thứ tự lớp chữ, không sai nghĩa; trạng thái 'concordant' đúng theo vnsoc.grade.conflict_status (mọi giá trị WHO {TDF, ETV} nằm trong tập Việt Nam). Không đổi dữ liệu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-07",
+   "a": "pass",
+   "b": "pass",
+   "c": "fail",
+   "d": "pass",
+   "verdict_final": "fix",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": false
+   },
+   "resolution": "(c) A và B cùng fail; trọng tài mở lại ảnh + lớp chữ 1740/2026 tr.PDF 24 (in 13) và xác nhận: cùng danh sách 'VÀ có một trong các tiêu chuẩn' có lối ngừng không cần mốc 3–4 năm — 'Tải lượng HBV DNA dưới ngưỡng phát hiện và mất HBsAg ... tại 2 thời điểm cách nhau 6 tháng' và 'ngừng điều trị nếu HBcrAg < 2 logU/mL và tải lượng HBV DNA dưới ngưỡng phát hiện'; thêm 'người bệnh suy giảm miễn dịch ... không khuyến cáo ngừng'. Giá trị 'ít nhất 3- 4 năm' đúng. Đã sửa (fix): siết population (HBsAg vẫn dương tính; không có kết quả HBcrAg hoặc HBcrAg ≥ 2 logU/mL; không suy giảm miễn dịch). Không đổi giá trị. (d) A uncertain, B pass → trọng tài: PASS. Mở lại bản đệm sha 763a79fe35c57c68 (46 trang): slide 33 'Criteria for discontinuing antiviral therapy' ghi HBV DNA không phát hiện tối thiểu 2 năm, HBsAg < 100 IU/mL, không HIV/HDV, không xơ gan — khớp giá trị, đơn vị, quần thể; bộ slide ghi Copyright 2025 AASLD, tên 'Practical Application of HBV Guidelines', và trang IDSA của hướng dẫn 2025 liên kết bộ slide này là tài liệu giáo dục đi kèm. Slide 33 không có dòng trích Ghany 2025 (lý do A để uncertain), nhưng nguồn thứ cấp độc lập ACG Evidence-Based GI (Sierra & Duong, 17/12/2025; đệm sha256 e6d56791cd658b13) quy tiêu chí '≥ 2 năm HBV DNA không phát hiện, HBsAg < 100 IU/mL' cho hướng dẫn AASLD/IDSA 2025 (mục NA discontinuation và Bảng 1). Chuỗi nguồn trong mẩu đã ghi trung thực là 'đọc từ bộ slide, toàn văn chưa đọc'. Toàn văn Hepatology vẫn 402 ngày 2026-09-26 → còn mở mục HG1.2 B (đối chiếu toàn văn khi có). Lưu ý: xung đột vẫn mong manh — khuyến cáo chính AASLD (Rec 5, slide 32) là không ngừng NA tới khi mất HBsAg; mẩu đã ghi. Câu hỏi thí điểm đã chạy nên không sửa; siết câu hỏi VI/EN ở bộ v1.",
+   "changed_fields": [
+    "population.hbsag_status",
+    "population.hbcrag",
+    "population.immune_status",
+    "extraction.audit_fix",
+    "extraction.notes"
+   ],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-08",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí. Gợi ý không chặn (B) cho bộ câu hỏi v1: thêm 'không mang thai'. Không đổi dữ liệu mẩu.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-09",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  },
+  {
+   "atom_id": "P-hbv-10",
+   "a": "pass",
+   "b": "pass",
+   "c": "pass",
+   "d": "pass",
+   "verdict_final": "ok",
+   "agreement": {
+    "a": true,
+    "b": true,
+    "c": true,
+    "d": true
+   },
+   "resolution": "A và B cùng pass cả 4 tiêu chí.",
+   "changed_fields": [],
+   "exclude": false,
+   "exclude_reason": ""
+  }
+ ]
+}

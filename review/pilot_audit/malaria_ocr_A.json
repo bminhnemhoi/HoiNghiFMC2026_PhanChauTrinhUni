@@ -1,0 +1,149 @@
+{
+  "topic": "malaria_ocr",
+  "auditor": "A",
+  "atoms": [
+    {
+      "atom_id": "P-malaria_ocr-01",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "fix",
+      "evidence": [
+        "Kiểm bởi AI (integrity-auditor A), không phải người/bác sĩ. Nguồn: ảnh trang PDF (verify_span --image), lớp chữ (--page), bản đệm nguồn nước ngoài theo sha.",
+        "(a) 3377/2023 PDF tr.10 (in 9), so ảnh trang: span khớp từng chữ và số, gồm «+ Thuốc điều trị là quinin sulfat 7 ngày (xem Bảng 6) + clindamycin 7 ngày (xem Bảng 7).»; verify_span trên bản sao 8 mẩu: OK.",
+        "(b) Giá trị chính quinin sulfat 7 ngày + clindamycin 7 ngày đúng tr.10.",
+        "(b) DR8 315/2015 PDF tr.75 (in 74), so ảnh trang: «+ Chloroquin liều khởi đầu 10mg/kg cân nặng1 lần/ngày trong 2 ngày, sau đó 5mg/kg ngày thứ 3.» / «+ Sulfadoxin /pyrimethamin 3v uống liều duy nhất.» / «+ Muối quinine 10mg/kg cân nặng uống 3l/ngày trong 7 ngày» — cả 3 giá trị DR8 trong vn khớp; manifest: 315/2015 status current.",
+        "(b) DR8 3312/2015 PDF tr.520, Bảng 1 hàng «Phụ nữ có thai trong 3 tháng», cột Sốt rét do P. falciparum: «Quinin + Clindamycin» — trùng 3377/2023.",
+        "(c) Quần thể mẩu và câu hỏi VI (thai 3 tháng đầu, P. falciparum đơn thuần/phối hợp, chưa biến chứng, người trưởng thành, có sẵn mọi thuốc) đúng phạm vi mục 2.2.1(a). Câu AL «Trường hợp không có quinin sulfat» là dự phòng có điều kiện, câu hỏi nêu 'có sẵn mọi thuốc' nên loại AL là đúng.",
+        "(c) 315/2015 §2.1.4 'Sốt rét' (trong 'Sốt do các bệnh nội/ngoại khoa trong thời gian có thai') áp cho mọi sốt rét khi có thai (liệt kê cả thể không biến chứng và ác tính), không phân tam cá nguyệt, loài hay vùng kháng; 3 gạch '+' dưới 'Xử trí' là phương án ngang hàng không điều kiện → theo DR8 (đăng ký trước) và đề cương §1.2, hợp chloroquin, SP, quinin đơn trị là đúng theo chữ văn bản.",
+        "(c) Lưu ý an toàn (không đổi phán quyết theo chữ văn bản): WHO 2026 PDF tr.18 (nhắc lại tr.183), phần remark của khuyến cáo 3 tháng đầu: thuốc kháng folat và ACT chứa SP chống chỉ định trong 3 tháng đầu; CDC Table 4 PDF tr.6: chloroquin chỉ là lựa chọn thêm khi nhiễm ở vùng nhạy chloroquin; câu hỏi nêu vùng P. falciparum đa kháng thuốc.",
+        "(c) Không nhất quán nhỏ: 3312/2015 thuộc chương «SỐT RÉT Ở TRẺ EM» (PDF tr.517); mẩu 02–05 coi văn bản này ngoài phạm vi người lớn, nhưng mẩu 01 ghi nó là nguồn DR8 'trùng sẵn' cho phụ nữ có thai người lớn. Không ảnh hưởng tập giá trị (trùng quinin + clindamycin).",
+        "(d) WHO guidelines for malaria (sha 4e2c67b2…, ngày bản 10/9/2026) PDF tr.18: khuyến cáo 'Treatment in the first trimester of pregnancy (2022)', strong: artemether–lumefantrin trong 3 tháng đầu; ACT khác chỉ cân nhắc khi AL không có/không được khuyến cáo; nhắc lại tr.183 — giá trị, quần thể, năm khớp.",
+        "(d) CDC Treatment Tables (sha 78930525…) PDF tr.6, ghi 'Last Updated: June 26, 2026': Table 4 Pregnant women, P. falciparum, mọi tam cá nguyệt: AL đánh dấu preferred (quinin + clindamycin, mefloquin là phương án khác) — khớp giá trị và version_date 2026-06-26.",
+        "(d) WHO Guidelines for the treatment of malaria 3rd ed. 2015 (ISBN 978 92 4 154912 7, sha f1bab2b8…): Summary of recommendations, nhóm nguy cơ đặc biệt, first trimester: quinin + clindamycin 7 ngày, strong — khớp."
+      ],
+      "proposed_fix": "Không đổi giá trị. (1) Chốt các cờ 'HG1.2: …' trong vn[1].text, vn[3].text và dr8_sources[0].merged_into_vn: giữ hợp chloroquin, quinin đơn trị, SP theo DR8 + đề cương §1.2 (315/2015 tr.75 không giới hạn tam cá nguyệt, loài, vùng kháng; 3 phương án ngang hàng); ghi rõ 'quyết định bởi kiểm toán AI, không phải bác sĩ'. (2) Đề cương §1.2 yêu cầu giá trị Bộ Y tế chậm hơn bằng chứng được báo cáo có và không có: tiền định (trước đóng băng) phân tích độ nhạy cho mẩu này với vn = {quinin + clindamycin} (chỉ 3377/2023); cờ an toàn (SP trong 3 tháng đầu, chloroquin ở vùng kháng) chỉ báo như mâu thuẫn văn bản DR8, không viết 'gây hại' khi chưa có bác sĩ thật (HG3.9). (3) Sửa ghi chú dr8_sources[1]: 3312/2015 là chương 'Sốt rét ở trẻ em' → ngoài phạm vi người lớn theo cùng quy tắc của mẩu 02–05; trùng giá trị nên không đổi tập."
+    },
+    {
+      "atom_id": "P-malaria_ocr-02",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "fail",
+      "verdict": "error",
+      "evidence": [
+        "(a) 3377/2023 PDF tr.9 (in 8), so ảnh trang: «Pyronaridin tetraphosphat - artesunat (Pyramax) uống 3 ngày (xem Bảng 2 hoặc 3) và primaquin liều duy nhất (xem Bảng 4).» Span lớp OCR khớp sau khi sửa chữ không phải số: 'Sot'→'Sốt', 'P. Jalciparum'→'P. falciparum', 'uông 3 ngay'→'uống 3 ngày', 'Bang 2 hoic 3'→'Bảng 2 hoặc 3', 'va'→'và', 'liêu'→'liều' (đã ghi ở ocr_visual_check); số 3 và Bảng 2/3/4 đúng; verify_span OK.",
+        "(b) Giá trị pyronaridin tetraphosphat–artesunat 3 ngày + primaquin liều duy nhất đúng mục 2.1(a) 'Điều trị đặc hiệu ưu tiên'. Bản cũ 2699/2020 PDF tr.6: «Dihydroartemisinin - piperaquin phosphat uống 3 ngày (Bảng 3) và primaquin liều duy nhất (Bảng 5).» — khớp superseded.",
+        "(c) Quần thể (người lớn, không thai, không cho bú, P. falciparum ± P. malariae/P. knowlesi, chưa biến chứng) đúng; thuốc 2.1(b) có điều kiện «Trong trường hợp không có pyronaridin tetraphosphat - artesunat» nên loại khỏi slot đầu tay là đúng; Bảng 3 PDF tr.16 chống chỉ định 'Phụ nữ có thai' khớp quần thể không thai.",
+        "(c) DR8 xét: 3312/2015 PDF tr.520 Bảng 1 hàng «Từ 3 tuổi trở lên», cột P. falciparum «DHA-PPQ + Primaquin»; tr.521 dòng liều «+ Người lớn > 15 tuổi: Ngày 1: uống 4 viên chia 2 lần». Nhưng văn bản là chương «SỐT RÉT Ở TRẺ EM» (tr.517) và mục 3.2.3 ghi «trẻ em không dùng vượt quá liều người lớn» → dòng 'Người lớn > 15 tuổi' là mốc liều tham chiếu trong hướng dẫn nhi; loại khỏi quần thể người lớn là hợp lý (đây là điểm yếu nhất của quy tắc phạm vi, nên ghi DECISIONS).",
+        "(d) WHO 2026 (sha 4e2c67b2…) PDF tr.17 (nhắc lại tr.170): khuyến cáo 'Artemisinin-based combination therapy (2015)', strong: 6 ACT ngang hàng AL, AS+AQ, ASMQ, DHAP, AS+SP, ASPY (thêm 2022) — khớp.",
+        "(d) CDC (sha 78930525…) PDF tr.1, ghi 'Last Updated: August 11, 2026', Table 1 P. falciparum or species unknown, nhiễm ở mọi vùng, xếp theo thứ tự ưu tiên: A = artemether–lumefantrin (liệu trình 5 ngày), B = atovaquon–proguanil; chú thích 7 (tr.2) gọi AL/AP là phác đồ ưu tiên — giá trị đọc đúng từ nguồn.",
+        "(d) FAIL (mức nhẹ): intervention của mẩu và câu hỏi VI/EN hỏi riêng 'thuốc phối hợp có dẫn chất artemisinin (ACT) lựa chọn đầu tiên'. Atovaquon–proguanil không phải ACT và là mục B (thứ 2) trong bảng xếp thứ tự ưu tiên của CDC → nằm ngoài slot. Bất đối xứng: phía VN loại thuốc thay thế thứ 2 (artesunat–mefloquin), phía US lại ghi mục B. extraction.decoy_rule của chính mẩu cũng ghi thuốc không phải ACT 'bị chính câu dẫn loại'. Hệ quả: câu trả lời 'atovaquone-proguanil' (không đáp đúng câu hỏi) hiện được nhãn 4 (US)."
+      ],
+      "proposed_fix": "Xóa giá trị US 'B. atovaquon–proguanil (ưu tiên số 2)' khỏi foreign[0].values (giữ A = AL) và sửa locator bỏ phần 'B = atovaquon–proguanil'. Trạng thái vẫn indistinguishable (WHO chứa cả ASPY = VN và DHA-PPQ = bản cũ) nên không ảnh hưởng H1/H2; chỉ ảnh hưởng mô tả RQ1/RQ2. Ghi quy tắc phạm vi 3312/2015 (hướng dẫn nhi, không áp cho người lớn dù có dòng 'Người lớn > 15 tuổi') vào DECISIONS để nhất quán với mẩu 01, 03–05."
+    },
+    {
+      "atom_id": "P-malaria_ocr-03",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 3377/2023 PDF tr.16 (Phụ lục I tr.2), so ảnh trang: tiêu đề «Bảng 4. Primaquin (viên chứa 7,5 mg primaquin base)», hàng «≥ 15 tuổi | 4 viên | 4 viên/ngày | 2 viên/ngày», câu dưới bảng «- Đối với người bệnh nhiễm P. falciparum/ P. malariae/P. knowlesi: uống liều duy nhất vào ngày đầu tiên để diệt giao bào.» Span OCR khác ảnh 2 chỗ không đổi giá trị: '> 15 tuổi' (ảnh '≥ 15 tuổi'), 'đề' (ảnh 'để') — đã ghi ở ocr_visual_check; verify_span OK.",
+        "(b) Cột 'P. falciparum, P. knowlesi, P. malariae điều trị 1 lần' hàng ≥ 15 tuổi = 4 viên × 7,5 mg base = 30 mg — đúng. Bản cũ 2699/2020 PDF tr.15: 0,5 mg base/kg liều duy nhất; 'Từ 15 tuổi trở lên 4 viên uống 1 lần' → 30 mg ở 60 kg, trùng nên không có superseded là đúng.",
+        "(c) Quần thể người lớn ≥ 18 tuổi, 60 kg, không thai, không cho bú là tập con của hàng ≥ 15 tuổi; 3377/2023 tr.9 và tr.17 cấm primaquin cho phụ nữ có thai/cho con bú (con < 6 tháng) → phù hợp. Không có liều mg/kg riêng cho liều đơn trong 3377/2023. 3312/2015 tr.522 (0,6 mg base/kg, uống 1 ngày cuối) thuộc chương 'Sốt rét ở trẻ em' → ngoài quần thể.",
+        "(d) WHO 2026 (sha 4e2c67b2…) PDF tr.18: khuyến cáo 'Reducing the transmissibility of treated P. falciparum infections (2026)', strong: 0,25 mg/kg liều đơn cùng ACT ở vùng lan truyền thấp, không cần xét nghiệm G6PD, trừ phụ nữ có thai và trẻ < 1 tháng; tr.180 bảng liều thực hành: 50–100 kg → 15 mg base — khớp 0,25 mg/kg (= 15 mg ở 60 kg).",
+        "(d) Bản WHO cũ: WHO 2015 (sha f1bab2b8…) và WHO 2026 tr.180 đều gọi 0,75 mg/kg là liều khuyến cáo trước đây (thay bằng 0,25 mg/kg sau rà soát an toàn); WHO 2015 dẫn tài liệu chính sách WHO năm 2012 về primaquin liều đơn → mốc 'trước 2012' có căn cứ; năm chính xác không có trong nguồn đã băm, ghi 'chưa rõ' là đúng quy tắc không bịa.",
+        "(d) CDC 2026: Table 1 (PDF tr.1–2) không có primaquin cho P. falciparum → không có bản ghi US là đúng."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-malaria_ocr-04",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "fix",
+      "evidence": [
+        "(a) 3377/2023 PDF tr.17 (Phụ lục I tr.3), so ảnh trang: «- Bán thiếu G6PD (hoạt độ G6PD từ 30 - 70% hoạt độ G6PD ở người bình thường), liều primaquin: 0,25 mg/kg/ngày x 14 ngày.» «- Không thiếu G6PD: liều primaquin: 0,5 mg/kg/ngày x 7 ngày.» khớp từng số; verify_span OK.",
+        "(b) 0,5 mg/kg/ngày × 7 ngày đúng; Bảng 4 PDF tr.16 cột 'P. vivax, P. ovale điều trị 7 ngày' hàng ≥ 15 tuổi 4 viên/ngày = 30 mg/ngày = 0,5 mg/kg/ngày ở 60 kg — nhất quán. Bản cũ 2699/2020 PDF tr.15: «Điều trị P. vivax hoặc P. ovale liều 0,25 mg base/kg/ngày x 14 ngày» — khớp superseded.",
+        "(c) Quần thể (P. vivax/ovale, đã xét nghiệm, không thiếu G6PD > 70%, người lớn 60 kg, không thai, không cho bú) đúng nhánh a) 'Nếu có kết quả xét nghiệm G6PD'; nhánh b) không xét nghiệm (0,25 × 14) không thuộc quần thể. 3312/2015 tr.522 (0,6 mg base/kg/ngày, 14 ngày) thuộc chương nhi → ngoài quần thể.",
+        "(d) WHO 2026 (sha 4e2c67b2…) PDF tr.21 (nhắc lại tr.207): khuyến cáo 'Primaquine as anti-relapse therapy (2024)', strong: tổng liều cao 7 mg/kg = 0,5 mg/kg/ngày × 14 ngày hoặc 1 mg/kg/ngày × 7 ngày (1 mg/kg chỉ khi G6PD ≥ 70%) — khớp 2 giá trị đã ghi.",
+        "(d) Locator chưa đầy đủ: WHO 2026 PDF tr.20, khuyến cáo 'Qualitative near-patient G6PD tests (2024)' (strong): người không thiếu G6PD có thể dùng 0,5 mg/kg/ngày × 14 ngày hoặc 0,5 mg/kg/ngày × 7 ngày; 'Semi-quantitative near-patient G6PD tests (2024)': 1 mg/kg × 7 chỉ khi > 70%, còn > 30% dùng 0,5 × 14 hoặc 0,5 × 7. Locator/notes hiện ghi 0,5 × 7 'chỉ gợi ý cho tiểu lục địa Ấn Độ và châu Mỹ' (remark của tr.21) mà không nêu tr.20. Không đổi tập giá trị (0,5 đã có trong WHO).",
+        "(d) CDC (sha 78930525…) PDF tr.3–4, ghi 'Last Updated: June 26, 2026', Table 2, Anti-relapse (cần G6PD định lượng): primaquin 30 mg base/ngày × 14 ngày ở người lớn (≥ 70 kg chỉnh tổng 6 mg/kg), trẻ em 0,5 mg/kg/ngày × 14 ngày — khớp (= 0,5 mg/kg/ngày ở 60 kg).",
+        "(d) WHO 2015 (sha f1bab2b8…): liều điều trị primaquin 0,25–0,5 mg/kg/ngày × 14 ngày (phần primaquin, dẫn annex 5 A5.11) — khớp."
+      ],
+      "proposed_fix": "Không đổi giá trị. Sửa locator foreign[0] (và câu 'Xung đột thật là với WHO 2024+' trong notes): thêm 'WHO 2026 PDF tr.20 (khuyến cáo xét nghiệm G6PD 2024): người không thiếu G6PD có thể dùng 0,5 mg/kg/ngày × 14 hoặc × 7 ngày; 1 mg/kg × 7 chỉ khi > 70%'; bỏ chữ 'chỉ' trong 'liều thấp 3,5 mg/kg (0,5 × 7) chỉ gợi ý cho tiểu lục địa Ấn Độ và châu Mỹ' hoặc ghi rõ đó là remark của tr.21. Khi diễn giải: xung đột với WHO của mẩu này chỉ nằm ở phương án 1 mg/kg/ngày; phác đồ Bộ Y tế (0,5 × 7) cũng xuất hiện như phương án được phép ở WHO 2026 tr.20."
+    },
+    {
+      "atom_id": "P-malaria_ocr-05",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 3377/2023 PDF tr.17 (Phụ lục I tr.3), cùng span với mẩu 04, so ảnh trang khớp; verify_span OK.",
+        "(b) 7 ngày (0,5 mg/kg/ngày) đúng. Bản cũ 2699/2020 PDF tr.15: 0,25 mg base/kg/ngày × 14 ngày → 14 ngày — khớp superseded.",
+        "(c) Quần thể đúng (như mẩu 04). Trong cùng văn bản, PDF tr.9 mục 2.1(a) ghi cho P. vivax/P. ovale «primaquin uống 7 ngày hoặc 14 ngày (xem Bảng 4)»; chữ 'hoặc' được giải bởi Bảng 4 theo tình trạng G6PD (tr.16–17: không thiếu → 7 ngày; bán thiếu hoặc không xét nghiệm → 14 ngày) → 14 ngày không phải giá trị riêng cho người không thiếu G6PD, không bỏ sót. 3312/2015 tr.522 ('dùng 14 ngày') thuộc chương nhi → ngoài quần thể.",
+        "(d) WHO 2026 PDF tr.21 (nhắc lại tr.207): 14 ngày (0,5 mg/kg/ngày) hoặc 7 ngày (1 mg/kg/ngày, G6PD ≥ 70%) — khớp; tr.20 (2024) còn cho 7 ngày ở 0,5 mg/kg/ngày với người không thiếu G6PD — cùng giá trị 7 ngày, không đổi tập.",
+        "(d) CDC PDF tr.4 ('Last Updated: June 26, 2026'), Table 2: primaquin × 14 ngày — khớp. WHO 2015: liệu trình primaquin 14 ngày ở mọi mức lan truyền, strong — khớp.",
+        "Trạng thái indistinguishable đúng: 14 ngày (WHO/CDC/WHO 2015) trùng bản cũ 2699/2020."
+      ],
+      "proposed_fix": "Không bắt buộc: có thể thêm vào text giá trị WHO '7 ngày' ghi chú '(hoặc 0,5 mg/kg/ngày theo khuyến cáo xét nghiệm G6PD 2024, WHO 2026 PDF tr.20)'."
+    },
+    {
+      "atom_id": "P-malaria_ocr-06",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 3377/2023 PDF tr.19 (Phụ lục I tr.5), so ảnh trang: «Bảng 10. Artemether 40mg – lumefantrin 240mg - Uống 2 lần/ ngày, liên tục trong 3 ngày. Hai liều đầu tiên cách nhau 8 giờ.» Span OCR khác ảnh ở chữ không phải số: '—' (ảnh '–'), 'gio' (ảnh 'giờ') — đã ghi; số 40, 240, 2, 3, 8 đúng; verify_span OK.",
+        "(b) 3 ngày đúng; bảng liều hàng ≥ 35 kg: 2 viên mỗi ngày × 3 ngày (OCR đọc '>35kg').",
+        "(c) Quần thể (người lớn ≥ 35 kg, không thai, P. falciparum chưa biến chứng, dùng AL đường uống) đúng; mọi chỗ khác trong 3377/2023 nhắc AL (tr.9, 10, 12) đều 3 ngày; 2699/2020 không có lumefantrin (verify_span --find → []); DR8: 315/2015 và 3312/2015 không có AL.",
+        "(d) CDC (sha 78930525…) PDF tr.1, ghi 'Last Updated: August 11, 2026', Table 1 P. falciparum: AL liệu trình 5 ngày (ngày 1: liều đầu và liều thứ hai sau 8 giờ; ngày 2–5: 2 lần/ngày); chú thích 5 (tr.2) nêu lý do kéo dài — khớp 5 ngày. Table 2 (P. vivax/ovale, tr.3) vẫn 3 ngày → câu hỏi nêu P. falciparum là đúng.",
+        "(d) WHO 2026 PDF tr.17: khuyến cáo 'Duration of ACT treatment (2015)', strong: ACT 3 ngày — khớp."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-malaria_ocr-07",
+      "a": "pass",
+      "b": "pass",
+      "c": "fail",
+      "d": "pass",
+      "verdict": "error",
+      "evidence": [
+        "(a) 3377/2023 PDF tr.11 (in 10), so ảnh trang: «+ Trẻ em < 20kg liều sử dụng artesunat tiêm là 3mg/kg/lần, quy trình điều trị như trẻ > 20kg.» khớp từng số và dấu; verify_span OK.",
+        "(b) 3 mg/kg/lần đúng như trang ghi.",
+        "(c) FAIL — giá trị Bộ Y tế trong cùng văn bản bị bỏ sót: 3377/2023 PDF tr.15 (Phụ lục I), so ảnh trang: «Bảng 1. Artesunat tiêm, lọ 60 mg - Liều tính theo cân nặng: Giờ đầu tiêm 2,4 mg/kg, tiêm nhắc lại 2,4 mg/kg vào giờ thứ 12.», sau đó mỗi ngày 1 liều 2,4 mg/kg; KHÔNG có ngoại lệ < 20 kg. Bảng này rõ ràng áp cho trẻ em (bảng theo tuổi có hàng '< 1 tuổi', '1 - < 5 tuổi'; chú ý pha thêm 5 ml NaCl 0,9% là để chia liều cho người bệnh là trẻ em). Mục 2.3(b) tr.11 dẫn 'Artesunat tiêm (xem Bảng 1)'. Với trẻ 15 kg có cân: Bảng 1 cho 2,4 mg/kg, tr.11 cho 3 mg/kg → mâu thuẫn trong cùng văn bản; atom và notes không nhắc Bảng 1.",
+        "(c) Hệ quả: đề cương §1.2 — đáp án là tập 'nhiều giá trị cùng hợp lệ trong các văn bản Bộ Y tế hiện hành cho đúng quần thể'; mẩu chỉ có xung đột khi giá trị nước ngoài nằm ngoài tập VN. Theo cách dự án đã hợp giá trị cùng văn bản ở mẩu phản vệ (TT51 PL X, 'cùng văn bản'), tập VN = {3; 2,4} ⊇ US 2,4 và WHO 3 → mẩu KHÔNG còn là conflict.",
+        "(c) Bảng theo tuổi tr.15 ('nếu không có cân'; 1 - < 5 tuổi: 4 ml dung dịch sau pha) không áp vì câu hỏi cho cân nặng 15 kg.",
+        "(c) DR8: 3312/2015 PDF tr.521 (chương 'Sốt rét ở trẻ em'), so ảnh trang: «Trẻ em < 7 tuổi: 1,5 mg/kg/ngày, 7 ngày» ngay dưới mục artesunat tiêm lọ 60 mg — khớp dr8_sources. Đây là liều theo ngày trong phác đồ 7 ngày, không có liều giờ 12 và không ghi số lần/ngày → khác đại lượng với slot 'liều mỗi lần (giờ 0, giờ 12, rồi mỗi ngày)'; không hợp vào vn là hợp lý nhưng phải báo như kết quả phụ DR8.",
+        "(d) WHO 2026 (sha 4e2c67b2…) PDF tr.22 (nhắc lại tr.218): khuyến cáo 'Treating severe malaria in children (2015)', strong, dựa trên mô hình dược động học (không qua GRADE): trẻ < 20 kg 3 mg/kg/liều; trẻ lớn và người lớn 2,4 mg/kg/liều — khớp.",
+        "(d) CDC (sha 78930525…) PDF tr.7, ghi 'Last Updated: August 11, 2026', Table 5 Severe malaria: mỗi liều 2,4 mg/kg IV, 3 liều lúc 0, 12, 24 giờ; chú thích 2: trẻ < 20 kg hiện dùng 2,4 mg/kg (mô hình FDA), có nêu WHO khuyến cáo 3 mg/kg — khớp giá trị và version_date."
+      ],
+      "proposed_fix": "Phải quyết trước đóng băng (ghi docs/DECISIONS.md + báo người dùng). (A) Mặc định theo đề cương §1.2 và tiền lệ hợp giá trị cùng văn bản: thêm vào vn {lo 2.4, hi 2.4, unit mg/kg, text '2,4 mg/kg/lần — 3377/2023 Phụ lục I Bảng 1, PDF tr.15 (liều theo cân nặng, không có ngoại lệ < 20 kg)'}; tính lại conflict_status (dự kiến concordant vì US 2,4 và WHO 3 đều trong tập VN), tính lại tolerance và mồi (mồi 3,6 có thể không còn hợp lệ); ghi mâu thuẫn nội văn bản tr.11 và tr.15 như kết quả phụ; mẩu rời tập conflict của H1. (B) Nếu chọn quy tắc 'quy định riêng < 20 kg ở tr.11 thắng dòng chung của Bảng 1' thì phải ghi quyết định có lý do vào DECISIONS trước đóng băng, thêm Bảng 1 vào notes, và tiền định phân tích độ nhạy H1 loại mẩu 07. Đồng thời chốt dr8_sources[0].merged_into_vn từ 'không (chờ HG1.2)' thành 'không — khác đại lượng (mg/kg/ngày, phác đồ 7 ngày, không có liều giờ 12); báo cáo như kết quả phụ DR8'."
+    },
+    {
+      "atom_id": "P-malaria_ocr-08",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 3377/2023 PDF tr.11 (in 10), so ảnh trang: «+ Trẻ em > 20 kg và người lớn: Liều giờ đầu 2,4 mg/kg, tiêm nhắc lại 2,4 mg/kg vào giờ thứ 12 (ngày đầu).» Span OCR 'gio' (ảnh 'giờ') — đã ghi; số đúng; verify_span OK.",
+        "(b) 2,4 mg/kg giờ đầu, nhắc lại giờ 12, sau đó mỗi ngày 1 liều 2,4 mg/kg (cùng trang, ngay sau span) — đúng. Phụ lục I Bảng 1 PDF tr.15 cũng 2,4 mg/kg theo cân nặng — nhất quán. Bản cũ 2699/2020 PDF tr.8 cùng giá trị → không có superseded là đúng.",
+        "(c) Quần thể người lớn 60 kg, không thai đúng (PDF tr.12: sốt rét ác tính ở thai 3 tháng đầu dùng quinin dihydroclorid + clindamycin → cần loại thai). Bảng theo tuổi tr.15 (≥ 15 tuổi: 12 ml = 2 lọ) chỉ áp 'nếu không có cân' — câu hỏi có cân nặng. DR8: 3312/2015 chỉ có dòng 'Trẻ em < 7 tuổi'; 315/2015 không có artesunat.",
+        "(d) WHO 2026 PDF tr.22 (nhắc lại tr.218): 'Treating severe malaria in children (2015)': trẻ lớn và người lớn 2,4 mg/kg/liều — khớp. CDC PDF tr.7 ('Last Updated: August 11, 2026') Table 5: 2,4 mg/kg IV lúc 0, 12, 24 giờ — khớp."
+      ],
+      "proposed_fix": ""
+    }
+  ]
+}

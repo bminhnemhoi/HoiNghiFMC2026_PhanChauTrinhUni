@@ -1,0 +1,18 @@
+# HG1.2 — Kết quả kiểm trích dẫn mẩu thí điểm (KIỂM TOÁN TỰ ĐỘNG, không phải người)
+
+Ngày: 2026-09-26. Người dùng làm một mình và đã GIAO việc này cho Claude (tin nhắn 26/9/2026: "HG1.2 ... bạn làm tự động luôn phần này đi"). Thực hiện: mỗi chủ đề 2 kiểm toán viên AI độc lập (A: theo checklist; B: nghi ngờ mặc định, đọc trang PDF/ảnh trang trước) + 1 trọng tài AI; tiêu chí (a) nguyên văn, (b) giá trị/đơn vị, (c) quần thể/bối cảnh, (d) nguồn nước ngoài. KHÔNG có người hay bác sĩ kiểm; trong bài báo ghi rõ là kiểm toán bằng AI (hạn chế).
+
+- Mẩu kiểm: 65; phán quyết cuối: ok 33, sửa không đổi giá trị 24, lỗi thật 8 (đã sửa bằng nguồn đã mở hoặc chuyển sang chỉ mô tả).
+- Đồng thuận A–B theo tiêu chí (trước trọng tài): (a) 64/65, (b) 65/65, (c) 61/65, (d) 59/65.
+- Chi tiết từng mẩu: review/pilot_audit/<chủ đề>_final.md (+ _A.json, _B.json, _final.json).
+
+## Lỗi thật và cách xử lý
+
+- **P-controls-03** — đã sửa: guideline, section (3.4.2→3.4.3), page (31→35), span, valid_from, vn (5–7 → 5 ngày), superseded (+2767/2023: 5–7 ngày), intervention, moh_neighbour (+5904/2019 tr.50, ≤ 7 ngày, tuyến xã), extraction.same_doc_locations (2131 tr.98), extraction.dr8_pending (4562/2018, HG2.3), extraction.printed_page, extraction.notes, extraction.audit_fix
+- **P-controls-09** — đã sửa: foreign[US].values (≥ 25 → ≥ 23), foreign[US].locator, extraction.notes, extraction.decision_default, extraction.audit_fix
+- **P-htn-04** — đã sửa: foreign[1].source, foreign[1].url, foreign[1].fetched_at, foreign[1].page_sha256, foreign[1].verified_by, foreign[1].locator, foreign[1].values (+ 120–129 mmHg), extraction.audit_fix
+- **P-immunization-01** — chỉ mô tả (loại khỏi phân tích chính): Không sửa được chắc chắn vì không có văn bản Bộ Y tế hiện hành chứa lịch tiêm để neo lại: TT52/2025 hết hiệu lực 01/7/2026; TT13/2026 Điều 5.4 dẫn sang hướng dẫn của Cục Phòng bệnh, văn bản này chưa tìm thấy. Giá trị chép đúng từ TT52/2025 nhưng không xác minh được là giá trị hiện hành tại ngày đóng băng 15/10/2026. Áp mặc định HG1.2 A.1(c): LOẠI KHỎI PHÂN TÍCH CHÍNH/XÁC NHẬN, GIỮ dữ liệu để báo c
+- **P-immunization-02** — chỉ mô tả (loại khỏi phân tích chính): Không sửa được chắc chắn vì không có văn bản Bộ Y tế hiện hành chứa lịch tiêm để neo lại: TT52/2025 hết hiệu lực 01/7/2026; TT13/2026 Điều 5.4 dẫn sang hướng dẫn của Cục Phòng bệnh, văn bản này chưa tìm thấy. Giá trị chép đúng từ TT52/2025 nhưng không xác minh được là giá trị hiện hành tại ngày đóng băng 15/10/2026. Áp mặc định HG1.2 A.1(c): LOẠI KHỎI PHÂN TÍCH CHÍNH/XÁC NHẬN, GIỮ dữ liệu để báo c
+- **P-immunization-04** — chỉ mô tả (loại khỏi phân tích chính): Không sửa được chắc chắn vì không có văn bản Bộ Y tế hiện hành chứa lịch tiêm để neo lại: TT52/2025 hết hiệu lực 01/7/2026; TT13/2026 Điều 5.4 dẫn sang hướng dẫn của Cục Phòng bệnh, văn bản này chưa tìm thấy. Giá trị chép đúng từ TT52/2025 nhưng không xác minh được là giá trị hiện hành tại ngày đóng băng 15/10/2026. Áp mặc định HG1.2 A.1(c): LOẠI KHỎI PHÂN TÍCH CHÍNH/XÁC NHẬN, GIỮ dữ liệu để báo c
+- **P-malaria_ocr-02** — đã sửa: foreign[US/CDC].values (bỏ 'B. atovaquon–proguanil'), foreign[US/CDC].locator, extraction.removed_foreign_values (mới), extraction.notes (thêm), extraction.audit_fix (mới)
+- **P-malaria_ocr-07** — đã sửa: vn (+2,4 mg/kg, 3377/2023 Phụ lục I Bảng 1 tr. PDF 15), extraction.dr8_sources (+1 nguồn cùng văn bản 3377/2023 tr.15, kèm image_text/ocr_note), extraction.dr8_sources[0].merged_into_vn (3312/2015, A.3), extraction.decision_default (mới, A.3), decoy ([3,6] → []), extraction.decoy_rule, extraction.notes (thêm), extraction.audit_fix (mới), conflict_status (tính lại bởi pilot_merge: conflict → concor

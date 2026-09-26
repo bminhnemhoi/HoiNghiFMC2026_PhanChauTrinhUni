@@ -1,0 +1,137 @@
+{
+  "topic": "dm",
+  "auditor": "A",
+  "date": "2026-09-26",
+  "reviewer_kind": "AI (Claude, vai integrity-auditor A) — KHÔNG phải người kiểm; không phải bác sĩ",
+  "method": "Đi theo state/gates/HG1.2_checklist.md từng dòng. Văn bản Bộ Y tế: verify_span --page (lớp chữ) + --image (ảnh trang, xem bằng mắt) cho mọi trang trích; verify_span trên bản sao 8 mẩu (scratchpad): 8/8 OK. Nguồn nước ngoài: băm lại SHA-256 toàn bộ bản đệm data/cache/foreign (6/6 khớp page_sha256); PDF/HTML đọc bằng sources grep + pymupdf; bộ slide ADA 2026 (.pptx đệm, sha256 034f66ea…) đọc bằng giải nén ppt/slides/slideN.xml và xem ảnh bảng ppt/media/image26.png (Bảng 2.1, slide 19), image35.png (Bảng 2.8, slide 45). Hiệu lực DR8: tải trang QĐ 3319/QĐ-BYT từ kcb.vn vào scratchpad (sha256 ca840b6d… khớp manifest) và đọc ảnh Điều 3. Không đọc data/runs/. Không đọc kết quả của kiểm toán viên khác. Không sửa file dữ liệu nào.",
+  "summary": {"ok": 7, "fix": 1, "error": 0, "uncertain": 0},
+  "atoms": [
+    {
+      "atom_id": "P-dm-01",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5481/2020 tr. PDF 25 (trang in 23), mục 4.2 điểm f: đoạn trích khớp nguyên văn lớp chữ và ảnh trang (không phải trang OCR).",
+        "(b) Ảnh tr. PDF 25: «hoặc nếu mức A1C ≥9% hoặc mức glucose huyết rất cao ≥300 mg/dL (16.7 mmol/L)» → HbA1c ≥ 9 %, dấu ≥, đơn vị % đúng.",
+        "(c) Quần thể (người lớn ĐTĐ típ 2, không dị hóa/triệu chứng, chỉ dựa vào HbA1c) đúng phạm vi điểm f. Không có ngưỡng HbA1c khởi insulin nào khác trong 5481: Hình 2 (tr. PDF 23, ảnh) chỉ ghi 'Nếu HbA1c cao hơn mục tiêu'; Hình 3 (tr. PDF 26, ảnh) '<8%' là ngưỡng giảm liều insulin nền khi đã dùng insulin (quyết định khác). 1353/2021 chỉ sửa trang in 37 mục 3b (insulin cho bệnh nặng không nguy kịch) → không ảnh hưởng.",
+        "(c) Bản cũ: 3319/2017 lớp chữ và ảnh Hình 1 (tr. 8), Hình 2 (tr. 10) không có ngưỡng HbA1c khởi insulin → superseded [] đúng. 3879/2014 bài 'ĐTĐ típ 2' (bị Điều 3 QĐ 3319/2017 bãi bỏ) tr. 179: «Nếu HbA1C > 9,0% mà mức glucose máu lúc đói > 15,0 mmol/l có thể xét chỉ định dùng ngay insulin» — điều kiện kép, không khớp quần thể 'chỉ dựa vào HbA1c'; không bắt buộc ghi.",
+        "(d) ADA SoC 2026, bản .pptx đệm sha256 034f66ea…4f122b (khớp): slide 176, Rec 9.20 — A1C > 10 % (> 86 mmol/mol), người lớn ĐTĐ típ 2, khởi insulin; phiên bản 2026 (slide ghi Diabetes Care 2026;49 Suppl 1).",
+        "(d) ADA/EASD 2018 (Europe PMC PMC6245208 XML, sha256 4ad79df8… khớp): mục 'Choice of Glucose-Lowering Medication After Metformin', sau hộp khuyến cáo đồng thuận — HbA1c > 97 mmol/mol (> 11 %), insulin nền sớm; năm 2018.",
+        "Ngoài 4 tiêu chí (thiết kế trắc nghiệm): các phương án là '> 8 %', '> 10 %', '> 7 %', '≥ 9 %' — phương án Bộ Y tế là phương án DUY NHẤT dùng '≥' → dấu hiệu hình thức có thể giúp mô hình đoán đáp án."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Đề nghị (tùy chọn, việc của question-writer, trước khi đóng băng bộ câu hỏi): đồng nhất dấu so sánh giữa các phương án trắc nghiệm (vd. cùng '≥' hoặc bỏ dấu) để phương án Bộ Y tế không lộ ra bằng hình thức."
+    },
+    {
+      "atom_id": "P-dm-02",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) Cùng đoạn trích với P-dm-01, 5481/2020 tr. PDF 25 (in 23), 4.2.f: khớp lớp chữ và ảnh trang.",
+        "(b) Ảnh trang: «mức glucose huyết rất cao ≥300 mg/dL (16.7 mmol/L)» → 300 mg/dL và 16,7 mmol/L, dấu ≥ đúng (văn bản dùng dấu chấm thập phân '16.7').",
+        "(c) Quần thể (người lớn ĐTĐ típ 2, không mang thai, chỉ dựa vào glucose) đúng. Giá trị khác trong 5481 thuộc quần thể khác: tr. PDF 39 (in 37) Phần 5 bệnh nhân NỘI TRÚ nặng không nguy kịch, mục 3a «Điều trị bằng insulin bắt đầu khi có glucose máu ≥ 10,0 mmol/L (180 mg/dL) lặp lại». DR8: 5904/2019 tr. PDF 18 (in 9) «Glucose máu lúc đói > 16,7 mmol/L (hoặc 300mg/dL)» là tiêu chí CHUYỂN TUYẾN ở trạm y tế (khe khác, cùng số) → không đổi tập VN.",
+        "(d) ADA 2026 slide 176 Rec 9.20 (trích XML từ bản .pptx đệm, sha256 034f66ea… khớp): blood glucose ≥ 300 mg/dL (≥ 16,7 mmol/L). Cảnh báo trong checklist 'không thấy [16.7] trong nguồn đã băm' là lỗi của công cụ (cached_text đọc byte zip .pptx), không phải lỗi giá trị."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Tùy chọn: thêm '(điều trị ngoại trú)' vào câu hỏi ngắn VI/EN để loại hẳn cách hiểu theo ngưỡng 180 mg/dL của bệnh nhân nội trú (5481 tr. PDF 39)."
+    },
+    {
+      "atom_id": "P-dm-03",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5481/2020 tr. PDF 12 (in 10), mục 1.2 điểm c–d: «c) Tất cả mọi người từ 45 tuổi trở lên d) Nếu các kết quả bình thường, xét nghiệm sẽ được làm lại trong vòng 1- 3 năm…» khớp lớp chữ và ảnh.",
+        "(b) 45 tuổi, 'từ … trở lên' = ≥ 45 năm: đúng.",
+        "(c) Tiêu đề 1.2 (tr. PDF 11): tầm soát ở người lớn không có triệu chứng; 1.2.a đòi thừa cân/béo phì (BMI ≥ 23) KÈM yếu tố nguy cơ, 1.2.b là phụ nữ tiền sử ĐTĐ thai kỳ → quần thể của mẩu (không thừa cân, không YTNC, không tiền sử ĐTĐTK) chỉ thuộc 1.2.c. DR8 3087/2020 tr. PDF 7 (in 5) «3.1.3. Tất cả mọi người từ tuổi 45 trở lên» khớp. Bản cũ 3319/2017 tr. 3 II.4.b «bắt đầu thực hiện xét nghiệm phát hiện sớm đái tháo đường ở người ≥ 45 tuổi» → không lệch phiên bản. 5904/2019 phần ĐTĐ không nêu tuổi tầm soát.",
+        "(d) ADA 2026 slide 29 (XML từ .pptx đệm, sha khớp): Rec 2.12b — với mọi người còn lại (không thuộc nhóm thừa cân/béo phì có YTNC), tầm soát bắt đầu ở 35 tuổi; phiên bản 2026."
+      ],
+      "proposed_fix": ""
+    },
+    {
+      "atom_id": "P-dm-04",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5481/2020 tr. PDF 34 (in 32), mục 6.1.1: đoạn trích khớp lớp chữ và ảnh trang.",
+        "(b) 5481: «Chẩn đoán tăng huyết áp khi kiểm tra lại có huyết áp tâm thu ≥140 mmHg và/hay huyết áp tâm trương ≥90 mmHg» → 140 mmHg đúng. DR8 3879/2014 tr. PDF 213 (in 213), ảnh trang: «THA ở người bệnh ĐTĐ được chẩn đoán khi huyết áp (HA) tâm thu ≥ 130 mmHg và/ hoặc huyết áp tâm trương ≥ 80mmHg sau hai lần đo ở hai ngày khác nhau» → 130 mmHg đúng. Hai span DR8 của 5904/2019 (tr. PDF 11, in 2) khớp nguyên văn.",
+        "(b) Hiệu lực DR8: trang QĐ 3319/QĐ-BYT (kcb.vn, sha256 ca840b6d… khớp manifest), đọc ảnh Điều 3: chỉ bãi bỏ nội dung 'Hướng dẫn chẩn đoán và điều trị đái tháo đường típ 2' trong 3879/2014; 5481/2020 Điều 3 (tr. 1) chỉ thay thế 3319/2017 → theo quy tắc điều khoản, bài 'Tăng huyết áp ở người bệnh ĐTĐ' của 3879/2014 còn hiệu lực. Hiệu lực 'trên thực tế' là phán đoán khoa học, kiểm toán AI không quyết thay; mẩu đã được gắn [concordant_by_union] và đề nghị loại khỏi mẫu số đối chứng.",
+        "(c) Quần thể (người lớn ĐTĐ típ 2, đo tại phòng khám, kiểm tra lại ngày khác, tâm thu) khớp cả 5481 6.1.1 lẫn 3879 tr. 213. DR8 cụ thể hơn chưa được trích: 5904/2019 Phần 3 'lồng ghép THA và ĐTĐ' tr. PDF 25 (in 16), bảng phân độ: THA độ 1 = 140–159 và/hoặc 90–99 → cùng giá trị 140, không đổi tập VN.",
+        "(d) ADA 2026 slide 200 Rec 10.1 (XML từ .pptx đệm, sha khớp): THA khi SBP ≥ 130 mmHg hoặc DBP ≥ 80 mmHg, trung bình ≥ 2 lần đo ở ≥ 2 dịp; người ĐTĐ. WHO fact sheet Hypertension (bản đệm sha256 2779af89… khớp; đầu trang ghi 25 September 2025): chẩn đoán khi đo ở hai ngày khác nhau, SBP ≥ 140 và/hoặc DBP ≥ 90 mmHg; quần thể người lớn nói chung (đúng như đã ghi)."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Tùy chọn: thêm span DR8 5904/2019__9e6bbe13 tr. PDF 25 (Phần 3, lồng ghép THA–ĐTĐ, phân độ THA) vào dr8_sources vì đúng quần thể THA + ĐTĐ hơn span Phần 1 tr. 11."
+    },
+    {
+      "atom_id": "P-dm-05",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5481/2020 tr. PDF 12 (in 10), mục 1.3.c: đoạn trích khớp lớp chữ và ảnh trang.",
+        "(b) one_step_only: 5481 «Hiện tại ở Việt Nam có thể thực hiện phương pháp 1 bước như sau» + NPDNG 75 g, đo đói/1 giờ/2 giờ, tuần 24–28 → đúng. 1470/2024 (bản quét) — ẢNH tr. PDF 13 (in 8) mục 1.2.2: «Thực hiện tầm soát ĐTĐTK cho mọi thai phụ từ tuần thứ 24 - 28 … với nghiệm pháp dung nạp 75gram glucose»; sidecar OCR có sai chữ ('tằm soát', 'chuyền hóa') nhưng không sai số; grep OCR 31 trang không thấy 2 bước/50 g/100 g; 1470 Điều 3 (OCR tr. 1) chỉ thay 6173/2018.",
+        "(b) two_step_allowed (DR8): 3879/2014 tr. PDF 235 (in 235), ảnh: mục 2.1 'Tầm soát một bước' và 2.2 'Tầm soát hai bước' (50 gam rồi 100 gam, thai phụ tuần 24–28) — hai span khớp. Bản cũ 3319/2017 tr. PDF 4 mục II.5.c: «có thể thực hiện một trong 2 phương pháp sau: Phương pháp 1 bước (one-step strategy)» và đoạn 2 bước — khớp. 6173/2018 span hỗ trợ ở tr. 12 và 13 khớp; cả văn bản không có '2 bước', '50 gam', '100 gam'. Hiệu lực bài ĐTĐTK của 3879: như P-dm-04 (Điều 3 QĐ 3319 chỉ bãi bỏ bài ĐTĐ típ 2).",
+        "(c) Quần thể (thai phụ tuần 24–28, chưa chẩn đoán ĐTĐ) đúng. Ghi chú: 5481 dùng 'có thể thực hiện phương pháp 1 bước' (không nói 'chỉ'); nhãn one_step_only là cách hiểu hợp lý vì 5481 đã bỏ phương án 2 bước của 3319/2017 và 1470/2024 chỉ nêu 75 g. 5904/2019 tr. PDF 22 (Phụ lục 2.2) khuyến khích NPDNG 75 g cho thai phụ tuần 24–28: nhất quán.",
+        "(d) ADA 2026 slide 44 (XML): chẩn đoán ĐTĐTK bằng một trong hai chiến lược (1 bước 75 g hoặc 2 bước 50 g → 100 g); slide 45 = ảnh Bảng 2.8 (đã xem): có cả 'One-step strategy' và 'Two-step strategy' → two_step_allowed đúng; phiên bản 2026."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Tùy chọn: cập nhật chữ trong vn[0].text '(và 1470/2024, chưa kiểm span)' thành đã kiểm bằng ảnh tr. PDF 13 (trang in 8), mục 1.2.2; sidecar OCR data/interim/ocr/1470_2024 nay đã có."
+    },
+    {
+      "atom_id": "P-dm-06",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5481/2020 tr. PDF 11 (in 9), mục 1.1: đoạn trích khớp lớp chữ và ảnh trang.",
+        "(b) «a) Glucose huyết tương lúc đói ≥ 126 mg/dL (hay 7 mmol/L)» → ≥ 126 mg/dL và ≥ 7,0 mmol/L đúng.",
+        "(c) Cùng trang, phần Lưu ý: glucose đói đo khi nhịn ăn ít nhất 8 giờ; định lượng glucose huyết tương tĩnh mạch → khớp quần thể/bối cảnh đo. DR8 5904/2019 tr. PDF 18 (in 9) «≥ 7,0mmol/L (hay ≥ 126 mg/dL)» cùng giá trị; 3319/2017 tr. 1–2 cùng giá trị. 1470/2024 tr. PDF 13 '≥126 mg/dL (7,0 mmol/L)' là 'ĐTĐ mang thai' — quần thể khác, cùng số.",
+        "(d) WHO/IDF 2006 (bản đệm sha256 ae658daa… khớp; ISBN 978 92 4 159493 6, © 2006): tr. PDF 7 (Recommendation 1, tóm tắt) và tr. PDF 9 (bảng tiêu chuẩn) — FPG ≥ 7,0 mmol/L (126 mg/dL). Ghi chú nhỏ: locator ghi '(bảng tiêu chuẩn chẩn đoán)' cho cả hai trang, thực ra tr. 7 là văn bản khuyến cáo, bảng ở tr. 9.",
+        "(d) ADA 2026 Bảng 2.1 (slide 19 là ảnh; đã xem ppt/media/image26.png trong bản .pptx đệm sha khớp): FPG ≥ 126 mg/dL (≥ 7,0 mmol/L), người không mang thai, nhịn ăn ≥ 8 giờ → đúng; verified_by hiện là null, nay đã được kiểm toán viên A xem ảnh."
+      ],
+      "proposed_fix": "Không cần sửa giá trị. Tùy chọn: ghi vào ghi chú rằng giá trị ADA Bảng 2.1 đã được kiểm bằng ảnh (image26.png trong bản đệm 034f66ea…) bởi kiểm toán AI ngày 26/9/2026."
+    },
+    {
+      "atom_id": "P-dm-07",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "ok",
+      "evidence": [
+        "(a) 5481/2020 tr. PDF 11 (in 9), mục 1.1: khớp lớp chữ và ảnh trang.",
+        "(b) «c) HbA1c ≥ 6,5% (48 mmol/mol)» → ≥ 6,5 % đúng.",
+        "(c) Cùng câu: «Xét nghiệm HbA1c phải được thực hiện bằng phương pháp đã chuẩn hóa theo tiêu chuẩn quốc tế» → khớp khóa measurement. DR8 5904/2019 tr. PDF 18 «HbA1c ≥ 6,5% (hay ≥ 48mmol/mol)» cùng giá trị; 3319/2017 tr. 2 cùng giá trị.",
+        "(d) WHO 2011 (WHO/NMH/CHP/CPM/11.1, © 2011; bản đệm sha256 5a7d5574… khớp): tr. PDF 3 và 6 — HbA1c 6,5 % là điểm cắt chẩn đoán (kèm điều kiện xét nghiệm chuẩn hóa). ADA 2026 Bảng 2.1 (ảnh image26.png, đã xem): A1C ≥ 6,5 % (≥ 48 mmol/mol), phương pháp NGSP/DCCT."
+      ],
+      "proposed_fix": "Không cần sửa. Tùy chọn: ghi chú ADA Bảng 2.1 đã được kiểm bằng ảnh (như P-dm-06)."
+    },
+    {
+      "atom_id": "P-dm-08",
+      "a": "pass",
+      "b": "pass",
+      "c": "pass",
+      "d": "pass",
+      "verdict": "fix",
+      "evidence": [
+        "(a) 5481/2020 tr. PDF 12 (in 10), mục 1.3.c: đoạn trích khớp lớp chữ và ảnh trang.",
+        "(b) «- Lúc đói ≥ 92 mg/dL (5,1 mmol/L)» → đúng. 1470/2024 (hiện hành, bản quét) ẢNH tr. PDF 14 (in 9) Bảng 3 'NPDNG 75 gram 2 giờ': Đói ≥ 92 mg/dL, ≥ 5.1 mmol/L — khớp; sidecar OCR trang này đọc sai bảng ('Dai =z 25.1'), chữ đúng là 'Đói ≥ 92 | ≥ 5.1'. 3319/2017 tr. 4 và 3879/2014 tr. 235 mục 2.1 cùng 92 mg/dL (5,1 mmol/L).",
+        "(c) Quần thể (thai phụ tuần 24–28, NPDNG 75 g một bước, lúc đói) đúng. Giá trị khác trong CÙNG văn bản thuộc khe khác: 5481 tr. PDF 56 (in 54) mục 2.3.1a «ĐTĐ mang thai (Diabetes in pregnancy) được chẩn đoán theo tiêu chuẩn của WHO với glucose huyết tương lúc đói ≥ 7 mmol/L (126 mg/dL)» — là ĐTĐ rõ khi mang thai, không phải ĐTĐ thai kỳ → không phải giá trị bị bỏ sót, nhưng giải thích vì sao mô hình có thể trả lời 7,0; ghi chú của mẩu chưa nêu span này. 3879 tr. 235 Bảng 2 (WHO ≥ 7, EASD ≥ 6 mmol/L) là bảng thông tin, đồng ý không ghi.",
+        "(d) WHO 2013 (WHO/NMH/MND/13.2; bản đệm sha256 70afa6fb… khớp): tr. PDF 5 và tr. PDF 37 — ĐTĐTK khi FPG 5,1–6,9 mmol/L (92–125 mg/dL) → giá trị, đơn vị, quần thể, năm đúng. LỖI VỊ TRÍ: đây là Recommendation 3 (tr. 37 ghi rõ 'Recommendation 3'; tr. 5 đánh số '3.'); Recommendation 2 (tr. PDF 4) là 'Diabetes in pregnancy' với FPG ≥ 7,0 mmol/L — locator hiện ghi 'khuyến cáo 2' là sai và trỏ đúng vào khuyến cáo có giá trị 7,0.",
+        "(d) ADA 2026 Bảng 2.8 (slide 45 là ảnh; đã xem image35.png trong bản .pptx đệm sha khớp): one-step strategy, fasting 92 mg/dL (5,1 mmol/L) → đúng; verified_by hiện null."
+      ],
+      "proposed_fix": "Sửa locator của bản ghi foreign WHO 2013: 'tr. PDF 5 (khuyến cáo 2) và 37' → 'tr. PDF 5 và 37 (Recommendation 3)'. Giá trị không đổi. Tùy chọn: thêm vào ghi chú span 5481 tr. PDF 56 mục 2.3.1a (≥ 7 mmol/L là tiêu chuẩn 'ĐTĐ mang thai', khe khác) và ghi ADA Bảng 2.8 đã kiểm bằng ảnh."
+    }
+  ]
+}
