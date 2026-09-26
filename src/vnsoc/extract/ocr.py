@@ -34,6 +34,12 @@ def tesseract_bin() -> str | None:
     return next((c for c in CANDIDATES if Path(c).is_file()), None)
 
 
+def tessdata_dir(root=None) -> Path | None:
+    """Project model dir data/cache/tessdata (tessdata_best vie/eng/osd, downloaded 2026-09-26), else Tesseract's own."""
+    d = Path(os.environ.get("VNSOC_TESSDATA") or paths(root).root / "data" / "cache" / "tessdata")
+    return d if (d / "vie.traineddata").exists() else None
+
+
 def sidecar_dir(pdf: Path | str, root=None) -> Path:
     return paths(root).root / "data" / "interim" / "ocr" / Path(pdf).stem
 
@@ -63,7 +69,9 @@ def ocr_pdf(key: str, pages: str | None = None, dpi: int = 300, lang: str = "vie
     exe = tesseract_bin()
     if not exe:
         raise SystemExit("Chưa cài Tesseract (HG0.3): winget install --id UB-Mannheim.TesseractOCR -e -i (chọn Vietnamese)")
-    langs = subprocess.run([exe, "--list-langs"], capture_output=True, text=True).stdout
+    td = tessdata_dir(root)
+    base = [exe] + (["--tessdata-dir", str(td)] if td else [])
+    langs = subprocess.run(base + ["--list-langs"], capture_output=True, text=True).stdout
     if "vie" not in langs.split():
         raise SystemExit("Tesseract thiếu dữ liệu tiếng Việt (vie.traineddata)")
     import pymupdf as fitz
@@ -81,10 +89,12 @@ def ocr_pdf(key: str, pages: str | None = None, dpi: int = 300, lang: str = "vie
                 continue
             img = Path(tmp) / f"p{p}.png"
             doc[p - 1].get_pixmap(dpi=dpi).save(img)
-            r = subprocess.run([exe, str(img), "stdout", "-l", lang, "--psm", "3"], capture_output=True)
+            r = subprocess.run(base + [str(img), "stdout", "-l", lang, "--psm", "3"], capture_output=True)
             target.write_text(r.stdout.decode("utf-8", errors="replace"), encoding="utf-8")
             done.append(p)
+    models = {f.name: hashlib.sha256(f.read_bytes()).hexdigest()[:16] for f in sorted(td.glob("*.traineddata"))} if td else {}
     meta = {"key": key, "pdf": pdf.name, "pdf_sha256": hashlib.sha256(data).hexdigest(), "engine": version,
+            "tessdata": "tessdata_best (project copy)" if td else "tesseract default", "models": models,
             "lang": lang, "dpi": dpi, "psm": 3, "override_text_layer": override, "date": dt.date.today().isoformat(),
             "pages_done": sorted({int(f.stem[1:]) for f in out_dir.glob("p*.txt")})}
     (out_dir / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
