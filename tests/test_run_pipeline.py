@@ -65,3 +65,27 @@ def test_clopper_pearson():
     assert lo == 0.0 and hi == pytest.approx(0.3085, abs=1e-3)
     lo, hi = cp(5, 10)
     assert lo == pytest.approx(0.1871, abs=1e-3) and hi == pytest.approx(0.8129, abs=1e-3)
+
+
+def test_pilot_exclusions_and_h1_subset(tmp_path):
+    """Foreign-vs-decoy counts use only conflict atoms WITH a decoy; exclusions drop or re-group rows, never data."""
+    from vnsoc.analysis.pilot import apply_exclusions, load_exclusions
+
+    nodecoy = dict(ATOM, atom_id="P-t-02", decoy=[])
+    rows = [{"atom_id": a, "model": "m", "condition": "A1", "language": "vi", "format": f, "group": "conflict", "label": lab,
+             "decoy_match": dm, "foreign_any": lab == 4, "needs_llm": False}
+            for a, f, lab, dm in (("P-t-01", "short", 5, True), ("P-t-02", "short", 4, False),
+                                  ("P-t-01", "mcq", 4, False), ("P-t-02", "mcq", 5, False))]
+    atoms = {"P-t-01": ATOM, "P-t-02": nodecoy}
+    reg = register(rows, atoms)
+    assert reg["a1_vi_conflict_n"] == 2 and reg["a1_vi_foreign"] == 1          # all conflict atoms
+    assert reg["a1_vi_h1_n"] == 1 and reg["a1_vi_h1_foreign"] == 0 and reg["a1_vi_decoy"] == 1   # with a decoy
+    assert reg["a1_vi_decoy_scaled"] == 1 and reg["mcq_a1_vi_n"] == 1 and reg["mcq_a1_vi_foreign"] == 1
+    f = tmp_path / "ex.yaml"
+    f.write_text("atoms: {P-t-02: pending}\nmcq: {P-t-01: bad decoy}\ndescriptive: {}\n", encoding="utf-8")
+    kept = apply_exclusions(rows, load_exclusions(f))
+    assert [(r["atom_id"], r["format"]) for r in kept] == [("P-t-01", "short")]
+    f.write_text("descriptive: {P-t-01: descriptive only}\n", encoding="utf-8")
+    kept = apply_exclusions(rows, load_exclusions(f))
+    assert {r["group"] for r in kept if r["atom_id"] == "P-t-01"} == {"descriptive"}
+    assert load_exclusions(tmp_path / "missing.yaml") == {"atoms": {}, "mcq": {}, "descriptive": {}}

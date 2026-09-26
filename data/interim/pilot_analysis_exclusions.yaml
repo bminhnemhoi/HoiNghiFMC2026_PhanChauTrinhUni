@@ -1,0 +1,11 @@
+# Loại khỏi PHÂN TÍCH thí điểm (không xóa dữ liệu) — quyết trước khi chấm, mù với đầu ra (DECISIONS 2026-09-26T17:05).
+# atoms: bỏ mọi câu của mẩu · mcq: bỏ câu trắc nghiệm của mẩu · descriptive: giữ nhưng báo cáo riêng, ngoài mọi ô gộp.
+# Người dùng báo sai ở HG1.2 → thêm vào atoms (kèm lý do) TRƯỚC khi chạy vnsoc.analysis.pilot.
+atoms: {}
+mcq:
+  P-tbhiv-05: "mồi hiển thị TDF+3TC+EFV trùng phương án thay thế của WHO 2014 (phát hiện sau khi dựng câu, trước khi chấm) — không phải mồi hợp lệ"
+descriptive:
+  P-immunization-01: "neo TT 52/2025 đã hết hiệu lực 01/7/2026 — chuẩn tham chiếu chờ người dùng quyết (HG1.2 A1; mặc định (c))"
+  P-immunization-02: "như P-immunization-01"
+  P-immunization-04: "như P-immunization-01"
+  P-controls-09: "tập Bộ Y tế phụ thuộc cách đọc 3879/2014 Bảng 2 (HG1.2 A4); mặc định ngoài tập xung đột xác nhận"
