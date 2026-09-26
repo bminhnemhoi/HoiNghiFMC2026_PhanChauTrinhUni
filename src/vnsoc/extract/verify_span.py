@@ -41,7 +41,7 @@ def pdf_path(guideline: str, root=None) -> Path:
 
 @lru_cache(maxsize=32)
 def _pages(pdf: str, mtime: float) -> tuple[str, ...]:
-    import fitz  # PyMuPDF
+    import pymupdf as fitz
 
     with fitz.open(pdf) as doc:
         return tuple(norm(p.get_text("text")) for p in doc)

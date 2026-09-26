@@ -88,7 +88,7 @@ def html_to_text(raw: str) -> str:
 
 
 def pdf_to_text(data: bytes) -> str:
-    import fitz  # PyMuPDF
+    import pymupdf as fitz
 
     with fitz.open(stream=data, filetype="pdf") as doc:
         return "".join(PAGE_MARK.format(i) + p.get_text("text") for i, p in enumerate(doc, 1))
