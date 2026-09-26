@@ -1,0 +1,61 @@
+{"row": "P-dengue-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "B (dịch tinh thể đẳng trương)", "note": "MCQ chọn B: vai trò foreign US+WHO"}
+{"row": "P-dengue-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "D (dịch tinh thể đẳng trương)", "note": "MCQ chọn D: vai trò foreign US+WHO"}
+{"row": "P-dengue-03|short|en|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "500 mL dịch tinh thể đẳng trương", "note": "Dịch tinh thể = WHO/CDC; BYT là cao phân tử"}
+{"row": "P-dengue-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "200 mL/L", "note": "Dòng đáp án chỉ có thể tích vô nghĩa, không phải loại dịch; thân: tinh thể (nếu chấm thân: 4)"}
+{"row": "P-dengue-03|short|en|A3|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "Ringer lactate", "note": "Ringer lactate = dịch tinh thể: WHO/CDC; BYT là cao phân tử"}
+{"row": "P-dengue-03|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "1000 ml/giờ", "note": "Dòng đáp án chỉ có tốc độ, không khớp nguồn; thân: dịch đẳng trương (nếu chấm thân: 4)"}
+{"row": "P-dengue-03|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "1000 ml/giờ", "note": "Dòng đáp án chỉ có tốc độ, không khớp nguồn; thân: dịch đẳng trương (nếu chấm thân: 4)"}
+{"row": "P-dengue-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "cao phân tử 10–15 ml/kg/giờ", "note": "Khớp BYT hiện hành (cao phân tử 10–15 ml/kg/giờ)"}
+{"row": "P-dengue-04|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "B (không dùng metamizol)", "note": "MCQ chọn B: vai trò vn"}
+{"row": "P-dengue-04|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "C (có thể dùng metamizol)", "note": "MCQ chọn C: vai trò foreign WHO"}
+{"row": "P-dengue-04|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "B (không dùng metamizol)", "note": "MCQ chọn B: vai trò vn"}
+{"row": "P-dengue-04|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "C (có thể dùng metamizol)", "note": "MCQ chọn C: vai trò foreign WHO"}
+{"row": "P-dengue-04|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "No; 0 mg", "note": "Không dùng = BYT; '0 mg' đọc là không dùng"}
+{"row": "P-dengue-04|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "No; 0 mg", "note": "Không dùng = BYT; '0 mg' đọc là không dùng"}
+{"row": "P-dengue-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "No; 0 mg", "note": "Không dùng = BYT; '0 mg' đọc là không dùng"}
+{"row": "P-dengue-04|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "Có", "note": "Có dùng = WHO 2025; BYT cấm analgin"}
+{"row": "P-dengue-04|short|vi|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "Có", "note": "Có dùng = WHO 2025, gán sai cho BYT"}
+{"row": "P-dengue-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "Không", "note": "Không dùng = BYT hiện hành"}
+{"row": "P-dengue-05|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5 phút", "note": "Trong dung sai 22,5 phút quanh 15 phút BYT"}
+{"row": "P-dengue-05|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5 phút", "note": "Trong dung sai 22,5 phút quanh 15 phút BYT"}
+{"row": "P-dengue-05|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "15 phút", "note": "Đúng 15 phút BYT"}
+{"row": "P-dengue-05|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "30 phút", "note": "Trong dung sai 22,5 quanh 15 (cũng khớp WHO/CDC 15–30)"}
+{"row": "P-dengue-05|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10 phút", "note": "Trong dung sai 22,5 phút quanh 15 phút BYT"}
+{"row": "P-dengue-05|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "15 phút", "note": "Đúng 15 phút BYT"}
+{"row": "P-dengue-06|short|en|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "No", "note": "Không dùng gelatin = bản cũ 3705/2019"}
+{"row": "P-dengue-06|short|en|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "No", "note": "Không dùng gelatin = bản cũ 3705/2019"}
+{"row": "P-dengue-06|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "Yes", "note": "Được dùng gelatin thay thế = BYT hiện hành"}
+{"row": "P-dengue-06|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 ml/giờ", "note": "Dòng đáp án chỉ có tốc độ, không trả lời có/không; thân: Có (nếu chấm thân: 2)"}
+{"row": "P-dengue-06|short|vi|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "Không; 0 %", "note": "Không dùng gelatin = bản cũ 3705/2019"}
+{"row": "P-dengue-06|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "Có", "note": "Được dùng gelatin = BYT hiện hành"}
+{"row": "P-dengue-08|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10–15 mg/kg", "note": "Khớp BYT (trùng WHO, bản cũ)"}
+{"row": "P-dengue-08|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10–15 mg/kg", "note": "Khớp BYT (trùng WHO, bản cũ)"}
+{"row": "P-dengue-08|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10–15 mg/kg", "note": "Khớp BYT (trùng WHO, bản cũ)"}
+{"row": "P-dengue-08|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10–15 mg/kg/lần", "note": "Khớp BYT; không nêu nguồn nước ngoài"}
+{"row": "P-dengue-08|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10–15 mg/kg/lần", "note": "Khớp BYT"}
+{"row": "P-dengue-08|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10–15 mg/kg/lần", "note": "Khớp BYT"}
+{"row": "P-dengue-09|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 U/L", "note": "BYT ≥1000; không nguồn nào 100"}
+{"row": "P-dengue-09|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 U/L", "note": "BYT ≥1000; không nguồn nào 100"}
+{"row": "P-dengue-09|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "1000 U/L", "note": "Khớp BYT ≥1000"}
+{"row": "P-dengue-09|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 U/L", "note": "BYT ≥1000; không nguồn nào 100"}
+{"row": "P-dengue-09|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 U/L", "note": "BYT ≥1000; không nguồn nào 100"}
+{"row": "P-dengue-09|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "1000 U/L", "note": "Khớp BYT ≥1000"}
+{"row": "P-dengue-10|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "<30 mmHg", "note": "BYT ≤20; 30 không khớp nguồn nào, dung sai 0"}
+{"row": "P-dengue-10|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "<30 mmHg", "note": "BYT ≤20; 30 không khớp nguồn nào, dung sai 0"}
+{"row": "P-dengue-10|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "20 mmHg", "note": "Khớp BYT ≤20"}
+{"row": "P-dengue-10|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "20 mmHg", "note": "Khớp BYT ≤20; không nêu nguồn nước ngoài"}
+{"row": "P-dengue-10|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "20 mmHg", "note": "Khớp BYT ≤20"}
+{"row": "P-dengue-10|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "20 mmHg", "note": "Khớp BYT ≤20"}
+{"row": "P-dm-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "D (≥ 9 %)", "note": "MCQ chọn D: vai trò vn"}
+{"row": "P-dm-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "C (> 8 %)", "note": "MCQ chọn C: vai trò decoy"}
+{"row": "P-dm-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "D (≥ 9 %)", "note": "MCQ chọn D: vai trò vn"}
+{"row": "P-dm-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "C (> 8 %)", "note": "MCQ chọn C: vai trò decoy"}
+{"row": "P-dm-01|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9.0 %", "note": "Khớp BYT ≥9%"}
+{"row": "P-dm-01|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "8.5 %", "note": "Ở biên dung sai ±0,5 quanh 9; cách đều mồi 8 — ca giáp ranh"}
+{"row": "P-dm-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 %", "note": "Khớp BYT ≥9%"}
+{"row": "P-dm-01|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "6.5 %", "note": "Không khớp BYT 9, ADA 10/11, mồi 8"}
+{"row": "P-dm-01|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "8.5 %", "note": "Ở biên dung sai ±0,5 quanh 9; cách đều mồi 8 — ca giáp ranh"}
+{"row": "P-dm-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 %", "note": "Khớp BYT ≥9%"}
+{"row": "P-dm-02|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "250 mg/dL", "note": "BYT/ADA 300; 250 không khớp nguồn nào"}
+{"row": "P-dm-02|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "240 mg/dL", "note": "Dòng đáp án 240 (lúc đói); 300 chỉ ở thân"}
+{"row": "P-dm-02|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "300 mg/dL", "note": "Khớp BYT ≥300 (trùng ADA)"}

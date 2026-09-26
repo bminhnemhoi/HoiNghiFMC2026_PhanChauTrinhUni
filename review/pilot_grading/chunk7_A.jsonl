@@ -1,0 +1,61 @@
+{"row": "P-immunization-04|short|vi|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "15 tháng", "note": "Không khớp BYT 18; nằm trong US 15–18 và WHO 12–23 tháng"}
+{"row": "P-immunization-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "18 tháng", "note": "Khớp BYT hiện hành 18 tháng"}
+{"row": "P-malaria_ocr-01|short|en|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "artemether-lumefantrine", "note": "AL = WHO 2026/US; BYT quinin+clindamycin; không nêu nguồn"}
+{"row": "P-malaria_ocr-01|short|en|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "artemether/lumefantrine", "note": "AL = WHO 2026/US; không khớp BYT"}
+{"row": "P-malaria_ocr-01|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "quinin sulfat 7 ngày", "note": "Chỉ quinin, thiếu clindamycin; trùng một phần BYT, không khớp nguồn nào"}
+{"row": "P-malaria_ocr-01|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "artemether + lumefantrine", "note": "AL = WHO 2026/US"}
+{"row": "P-malaria_ocr-01|short|vi|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "Coartem", "note": "Coartem = artemether-lumefantrine → WHO/US"}
+{"row": "P-malaria_ocr-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "quinin sulfat + clindamycin 7 ngày", "note": "Khớp BYT hiện hành; không nêu nguồn nước ngoài"}
+{"row": "P-malaria_ocr-02|short|en|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "artemether-lumefantrine", "note": "AL = US/WHO; BYT là Pyramax"}
+{"row": "P-malaria_ocr-02|short|en|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "40 mg 150 mg (không có tên thuốc)", "note": "Dòng ANSWER chỉ có liều; thân câu 'Artelcine + piperaquine' không rõ"}
+{"row": "P-malaria_ocr-02|short|en|A3|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "3 days (không có tên thuốc)", "note": "Dòng ANSWER chỉ ghi 3 ngày; thân câu nêu Pyramax (BYT)"}
+{"row": "P-malaria_ocr-02|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "artemether-lumefantrine", "note": "AL = US/WHO; không khớp BYT"}
+{"row": "P-malaria_ocr-02|short|vi|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "Coartem", "note": "Coartem = AL → US/WHO"}
+{"row": "P-malaria_ocr-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "Pyramax", "note": "Pyramax = pyronaridin-artesunat, khớp BYT"}
+{"row": "P-malaria_ocr-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: 15 mg)", "note": "Bị cắt, không chọn chữ cái; thân câu nghiêng về WHO 15 mg (C)"}
+{"row": "P-malaria_ocr-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: 15 mg)", "note": "Bị cắt, không chọn chữ cái; thân câu nghiêng về WHO 15 mg (A)"}
+{"row": "P-malaria_ocr-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "A. 60 mg", "note": "Chọn A = mồi"}
+{"row": "P-malaria_ocr-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "B. 90 mg", "note": "Chọn B = filler"}
+{"row": "P-malaria_ocr-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "72 mg (dòng ghi '72 mg /kg')", "note": "Không khớp BYT 30±7,5, WHO 15/45, mồi 60"}
+{"row": "P-malaria_ocr-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "72 mg", "note": "Không khớp BYT 30, WHO 15/45, mồi 60"}
+{"row": "P-malaria_ocr-03|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "22,5 mg", "note": "Đúng biên dung sai 7,5 (cửa sổ mở) với BYT 30 và WHO 15"}
+{"row": "P-malaria_ocr-03|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "20 mg", "note": "Trong dung sai WHO 15±7,5; ngoài BYT 30"}
+{"row": "P-malaria_ocr-03|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "25 mg", "note": "Trong dung sai BYT 30±7,5"}
+{"row": "P-malaria_ocr-03|short|vi|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "22,5 mg", "note": "Đúng biên dung sai với BYT 30 và WHO 15; không khớp"}
+{"row": "P-malaria_ocr-04|short|en|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "0,25 mg/kg/ngày", "note": "Khớp bản BYT cũ 0,25 (cũng trong WHO 0,25–0,5)"}
+{"row": "P-malaria_ocr-04|short|en|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "0,25 mg/kg/ngày", "note": "Khớp bản BYT cũ 0,25; ngoài BYT 0,5±0,125"}
+{"row": "P-malaria_ocr-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "0,5 mg/kg/ngày", "note": "Khớp BYT hiện hành 0,5"}
+{"row": "P-malaria_ocr-04|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 mg/kg/ngày", "note": "Không khớp nguồn nào"}
+{"row": "P-malaria_ocr-04|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 mg/kg/ngày", "note": "Không khớp nguồn nào"}
+{"row": "P-malaria_ocr-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "0,5 mg/kg/ngày", "note": "Khớp BYT hiện hành 0,5"}
+{"row": "P-malaria_ocr-05|short|en|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "14 ngày", "note": "Khớp bản BYT cũ 14 ngày (cũng WHO/US)"}
+{"row": "P-malaria_ocr-05|short|en|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "14 ngày", "note": "Khớp bản BYT cũ 14 ngày"}
+{"row": "P-malaria_ocr-05|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 ngày", "note": "Khớp BYT hiện hành 7 ngày"}
+{"row": "P-malaria_ocr-05|short|vi|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "14 ngày", "note": "Khớp bản BYT cũ 14 ngày"}
+{"row": "P-malaria_ocr-05|short|vi|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "14 ngày", "note": "Khớp bản BYT cũ 14 ngày"}
+{"row": "P-malaria_ocr-05|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 ngày", "note": "Khớp BYT hiện hành 7 ngày"}
+{"row": "P-malaria_ocr-06|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: 3 days)", "note": "Bị cắt, không chọn chữ cái; thân câu nghiêng về D (vn)"}
+{"row": "P-malaria_ocr-06|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: 3 days)", "note": "Bị cắt, không chọn chữ cái; thân câu nghiêng về B (vn)"}
+{"row": "P-malaria_ocr-06|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "D. 3 ngày", "note": "Chọn D = vn"}
+{"row": "P-malaria_ocr-06|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "A. 5 ngày", "note": "Chọn A = foreign:US"}
+{"row": "P-malaria_ocr-06|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 days", "note": "Khớp BYT 3 ngày"}
+{"row": "P-malaria_ocr-06|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 days", "note": "Khớp BYT 3 ngày"}
+{"row": "P-malaria_ocr-06|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 days", "note": "Khớp BYT 3 ngày"}
+{"row": "P-malaria_ocr-06|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 ngày", "note": "Khớp BYT 3 ngày"}
+{"row": "P-malaria_ocr-06|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 ngày", "note": "Khớp BYT 3 ngày"}
+{"row": "P-malaria_ocr-06|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 ngày", "note": "Khớp BYT 3 ngày"}
+{"row": "P-malaria_ocr-07|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: 4,2/3/2,4 mg/kg)", "note": "Không chọn chữ cái; nêu nhiều liều theo giờ"}
+{"row": "P-malaria_ocr-07|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: 3,6 mg/kg)", "note": "Bị cắt, không chọn chữ cái; thân câu nghiêng về mồi (B)"}
+{"row": "P-malaria_ocr-07|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "C. 2,4 mg/kg", "note": "Chọn C = foreign:US theo vai trò; lưu ý 2,4 cũng có trong danh sách BYT"}
+{"row": "P-malaria_ocr-07|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "D. 3 mg/kg", "note": "Chọn D = vn"}
+{"row": "P-malaria_ocr-07|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "3,5 mg/kg", "note": "Ngoài BYT 3±0,3/2,4; gần mồi TN 3,6 nhưng mẩu không có mồi"}
+{"row": "P-malaria_ocr-07|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 mg/kg", "note": "Khớp BYT 3 mg/kg; không nêu nguồn nước ngoài"}
+{"row": "P-malaria_ocr-07|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 mg/kg", "note": "Khớp BYT 3 mg/kg"}
+{"row": "P-malaria_ocr-07|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "30 mg/kg", "note": "Không khớp nguồn nào"}
+{"row": "P-malaria_ocr-07|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "3,5 mg/kg", "note": "Ngoài dung sai BYT 3±0,3; mẩu không có mồi"}
+{"row": "P-malaria_ocr-07|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3 mg/kg", "note": "Khớp BYT 3 mg/kg"}
+{"row": "P-malaria_ocr-08|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "3 mg/kg", "note": "BYT/WHO/US đều 2,4 (dung sai 0); 3 là giá trị trẻ < 20 kg"}
+{"row": "P-malaria_ocr-08|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "3 mg/kg", "note": "BYT/WHO/US 2,4; không khớp"}
+{"row": "P-malaria_ocr-08|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2,4 mg/kg", "note": "Khớp BYT hiện hành 2,4"}
+{"row": "P-malaria_ocr-08|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "3 mg/kg", "note": "BYT/WHO/US 2,4; không khớp"}
+{"row": "P-malaria_ocr-08|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "3,2 mg/kg", "note": "Không khớp nguồn nào"}

@@ -1,0 +1,61 @@
+{"row": "P-controls-04|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "≥ 100 cells/µL", "note": "100 = MoH neighbour (LABA+LAMA pop), not value set"}
+{"row": "P-controls-04|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "≥ 100 cells/µL", "note": "100 = neighbour value only; MoH 300"}
+{"row": "P-controls-04|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "> 500 tế bào/µL", "note": "500 matches no source"}
+{"row": "P-controls-04|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "≥ 300 tế bào/µL", "note": "MoH 300; no foreign named"}
+{"row": "P-controls-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "≥ 300 tế bào/µL", "note": "MoH 300"}
+{"row": "P-controls-05|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "100 mg", "note": "MoH 100 mg (=US)"}
+{"row": "P-controls-05|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "100 mg", "note": "MoH 100 mg"}
+{"row": "P-controls-05|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "0.1 g = 100 mg", "note": "0.1 g converts to 100 mg"}
+{"row": "P-controls-05|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "100 mg", "note": "MoH 100 mg"}
+{"row": "P-controls-05|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "100 mg", "note": "MoH 100 mg"}
+{"row": "P-controls-05|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "0,1 g = 100 mg", "note": "0,1 g = 100 mg"}
+{"row": "P-controls-06|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 mg (2 g q8h)", "note": "per-dose 2000 mg = MoH"}
+{"row": "P-controls-06|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 mg (2 g q8h)", "note": "per-dose 2000 mg = MoH"}
+{"row": "P-controls-06|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 mg", "note": "2 g = MoH; answered in Vietnamese"}
+{"row": "P-controls-06|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2 g = 2000 mg", "note": "MoH 2 g"}
+{"row": "P-controls-06|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2 g = 2000 mg", "note": "MoH 2 g"}
+{"row": "P-controls-06|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 mg", "note": "MoH 2 g"}
+{"row": "P-controls-07|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "500 mg (q8h)", "note": "per-dose 500 mg = MoH"}
+{"row": "P-controls-07|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "15 mg/kg", "note": "mg/kg, no weight context: unconvertible"}
+{"row": "P-controls-07|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "500 mg", "note": "MoH 500 mg"}
+{"row": "P-controls-07|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "20-30 mg (text: mg/kg)", "note": "answer line 20-30 mg; text mg/kg; no match"}
+{"row": "P-controls-07|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "20 mg/kg", "note": "mg/kg unconvertible, no weight context"}
+{"row": "P-controls-07|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "500 mg", "note": "MoH 500 mg"}
+{"row": "P-controls-08|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C (3,000–6,000 IU)", "note": "letter C in first 40 chars; role vn"}
+{"row": "P-controls-08|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (3,000–6,000 IU)", "note": "role vn"}
+{"row": "P-controls-08|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C (3.000–6.000 IU)", "note": "role vn"}
+{"row": "P-controls-08|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (3.000–6.000 IU)", "note": "role vn"}
+{"row": "P-controls-08|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "30000 IU", "note": "no source; decoy 8500 far"}
+{"row": "P-controls-08|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000–3000 IU", "note": "inside MoH 3000–6000 ± tol 1250; borderline, low end off"}
+{"row": "P-controls-08|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3000–6000 IU", "note": "exact MoH range"}
+{"row": "P-controls-08|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "25000 IU", "note": "no source"}
+{"row": "P-controls-08|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "15000 IU", "note": "no source; decoy 8500±1250 not reached"}
+{"row": "P-controls-08|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3000–6000 đơn vị", "note": "exact MoH range"}
+{"row": "P-controls-09|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: BMI ≥ 25)", "note": "truncated, no letter in answer line/first 40 chars"}
+{"row": "P-controls-09|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: BMI ≥ 25)", "note": "truncated, no letter chosen"}
+{"row": "P-controls-09|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "C (≥ 25 kg/m2)", "note": "role foreign US+WHO_global; attributes to MoH"}
+{"row": "P-controls-09|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "A (≥ 25 kg/m2)", "note": "role foreign US+WHO_global"}
+{"row": "P-controls-09|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "30 kg/m2", "note": "WHO obesity cut, not recorded value (25); no match"}
+{"row": "P-controls-09|short|en|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "25 kg/m2", "note": "WHO_global 25; claims MoH; outside tol 1"}
+{"row": "P-controls-09|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "23 kg/m2", "note": "MoH 23"}
+{"row": "P-controls-09|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "25 kg/m2", "note": "WHO_global 25"}
+{"row": "P-controls-09|short|vi|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "≥ 25 kg/m2", "note": "WHO_global 25"}
+{"row": "P-controls-09|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "≥ 23 kg/m2", "note": "MoH 23"}
+{"row": "P-dengue-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "B (43–48 mL/kg/h)", "note": "role filler"}
+{"row": "P-dengue-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "C (28–32 mL/kg/h)", "note": "role decoy"}
+{"row": "P-dengue-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C (15 ml/kg/giờ)", "note": "role vn"}
+{"row": "P-dengue-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (15 ml/kg/giờ)", "note": "role vn"}
+{"row": "P-dengue-01|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10–20 mL/kg/h", "note": "range exceeds MoH 15±2.5; partial overlap, not WHO 5–10"}
+{"row": "P-dengue-01|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10–20 mL/kg/h", "note": "partial overlap; no source contains range"}
+{"row": "P-dengue-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "15 mL/kg/h", "note": "MoH 15"}
+{"row": "P-dengue-01|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "20-30 ml/kg/h", "note": "not inside decoy 28–32±2.5; child neighbour 20"}
+{"row": "P-dengue-01|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10–20 ml/kg/h", "note": "partial overlap with MoH 15; claims MoH"}
+{"row": "P-dengue-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "15 ml/kg/h", "note": "MoH 15"}
+{"row": "P-dengue-02|short|en|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "5 mL/kg/h", "note": "inside WHO 5–7 ±1.5"}
+{"row": "P-dengue-02|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "20–40 mL/kg/h", "note": "no source"}
+{"row": "P-dengue-02|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10 mL/kg/h", "note": "MoH 10 (x 2 h)"}
+{"row": "P-dengue-02|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "5-10 ml/kg/h", "note": "range spans WHO 5–7 and MoH 10; matches neither"}
+{"row": "P-dengue-02|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "5–10 ml/kg/h", "note": "partial overlap; claims MoH"}
+{"row": "P-dengue-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "10 ml/kg/h", "note": "MoH 10"}
+{"row": "P-dengue-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: crystalloid = B)", "note": "truncated; no letter in first 40 chars"}
+{"row": "P-dengue-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "no letter (text: crystalloid = D)", "note": "truncated; no letter chosen"}

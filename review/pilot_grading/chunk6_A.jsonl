@@ -1,0 +1,61 @@
+{"row": "P-hbv-10|short|en|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2.0", "note": "Khớp BYT cũ 3310/2019 (≥2), 5448/2014; không khớp BYT >1"}
+{"row": "P-hbv-10|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "> 1", "note": "Khớp BYT hiện hành APRI > 1"}
+{"row": "P-hbv-10|short|vi|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2.0", "note": "Khớp BYT cũ ≥2; không nêu nguồn nước ngoài"}
+{"row": "P-hbv-10|short|vi|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2.0", "note": "Khớp BYT cũ ≥2 (3310/2019)"}
+{"row": "P-hbv-10|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "1", "note": "Khớp BYT hiện hành APRI > 1"}
+{"row": "P-htn-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "(không có chữ cái)", "note": "Bị cắt, không chọn chữ cái; văn bản nêu ≥140/90"}
+{"row": "P-htn-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A: 140/90 mmHg", "note": "Chọn A = vn"}
+{"row": "P-htn-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C: 140/90 mmHg", "note": "Chọn C = vn"}
+{"row": "P-htn-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A: 140/90 mmHg", "note": "Chọn A = vn"}
+{"row": "P-htn-01|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-01|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-01|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-01|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "(không có chữ cái)", "note": "Bị cắt giữa chừng, không chọn chữ cái"}
+{"row": "P-htn-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "(không có chữ cái)", "note": "Không chọn chữ cái; văn bản nêu 150/100 (trùng mồi) nhưng không có đáp án"}
+{"row": "P-htn-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C: 140/90 mmHg", "note": "Chọn C = vn"}
+{"row": "P-htn-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A: 140/90 mmHg", "note": "Chọn A = vn"}
+{"row": "P-htn-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "135/85 mmHg", "note": "Cách BYT 140/90 và Mỹ 130/80 đúng 5 = biên mở, không khớp"}
+{"row": "P-htn-03|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-03|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-03|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT; nêu WHO nhưng không nói khác biệt → không aware"}
+{"row": "P-htn-03|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "Khớp BYT ≥140/90"}
+{"row": "P-htn-04|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Khớp BYT < 140 mmHg (3192/2010)"}
+{"row": "P-htn-04|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Khớp BYT < 140 mmHg"}
+{"row": "P-htn-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "120–130 mmHg", "note": "Khớp BYT 120 đến < 130 mmHg"}
+{"row": "P-htn-04|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Khớp BYT < 140 mmHg"}
+{"row": "P-htn-04|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Khớp BYT < 140 mmHg"}
+{"row": "P-htn-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "120 mmHg", "note": "Dòng đáp án 120, trong khoảng BYT 120–<130"}
+{"row": "P-immunization-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C: 9 months", "note": "Chọn C = vn"}
+{"row": "P-immunization-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A: 9 months", "note": "Chọn A = vn"}
+{"row": "P-immunization-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "B: 12–15 tháng", "note": "Chọn B = foreign EU_UK+US"}
+{"row": "P-immunization-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "D: 12–15 tháng", "note": "Chọn D = foreign EU_UK+US"}
+{"row": "P-immunization-01|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "6 months", "note": "Khớp mồi 3–6 tháng; không khớp BYT 9"}
+{"row": "P-immunization-01|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 months", "note": "Khớp BYT 9 tháng"}
+{"row": "P-immunization-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 months", "note": "Khớp BYT 9 tháng"}
+{"row": "P-immunization-01|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 tháng", "note": "Khớp BYT; A0 không nêu nguồn nước ngoài"}
+{"row": "P-immunization-01|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 tháng", "note": "Khớp BYT 9 tháng"}
+{"row": "P-immunization-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 tháng", "note": "Khớp BYT 9 tháng"}
+{"row": "P-immunization-02|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A: 12–14 years", "note": "Chọn A = filler"}
+{"row": "P-immunization-02|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "C: 12–14 years", "note": "Chọn C = filler"}
+{"row": "P-immunization-02|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A: 12–14 tuổi", "note": "Chọn A = filler"}
+{"row": "P-immunization-02|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "A: 4–6 tuổi", "note": "Chọn A = foreign US+WHO_global"}
+{"row": "P-immunization-02|short|en|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "4–6 years", "note": "Khớp Mỹ CDC 4–6 tuổi (và trong WHO 4–7)"}
+{"row": "P-immunization-02|short|en|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "5 years", "note": "Nằm trong Mỹ 4–6, WHO 4–7; không khớp BYT 7"}
+{"row": "P-immunization-02|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 years", "note": "Khớp BYT 7 tuổi"}
+{"row": "P-immunization-02|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "5 tuổi", "note": "Nằm trong Mỹ 4–6, WHO 4–7; không khớp BYT 7"}
+{"row": "P-immunization-02|short|vi|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "5 tuổi", "note": "Nằm trong Mỹ 4–6, WHO 4–7; không khớp BYT 7"}
+{"row": "P-immunization-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 tuổi", "note": "Khớp BYT 7 tuổi"}
+{"row": "P-immunization-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 hours", "note": "Không khớp BYT/Mỹ/WHO 24 giờ; dung sai 0"}
+{"row": "P-immunization-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 hours", "note": "Không khớp nguồn nào (24 giờ)"}
+{"row": "P-immunization-03|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "24 hours", "note": "Khớp BYT trong vòng 24 giờ"}
+{"row": "P-immunization-03|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 giờ", "note": "Không khớp nguồn nào (24 giờ)"}
+{"row": "P-immunization-03|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 giờ", "note": "Không khớp nguồn nào (24 giờ)"}
+{"row": "P-immunization-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "24 giờ", "note": "Khớp BYT trong vòng 24 giờ"}
+{"row": "P-immunization-04|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "4 to 6 months", "note": "Không khớp BYT 18 hay nước ngoài"}
+{"row": "P-immunization-04|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "18 months", "note": "Dòng đáp án '18 <unit>', câu trên nói 18 months; khớp BYT"}
+{"row": "P-immunization-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "18 months", "note": "Khớp BYT 18 tháng"}
+{"row": "P-immunization-04|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "12–18 tháng", "note": "Nằm trong WHO 12–23; chỉ chồng một phần BYT 18 (dung sai 0)"}

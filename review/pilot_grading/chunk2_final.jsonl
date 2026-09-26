@@ -1,0 +1,61 @@
+{"row": "P-controls-04|short|en|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; 100 = MoH neighbour value (other population), not in value set"}
+{"row": "P-controls-04|short|en|A3|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; 100 = MoH neighbour value (other population), not in value set"}
+{"row": "P-controls-04|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-04|short|vi|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-04|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-05|short|en|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-05|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-05|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-05|short|vi|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-05|short|vi|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-05|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-06|short|en|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-06|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-06|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-06|short|vi|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-06|short|vi|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-06|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-07|short|en|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-07|short|en|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; mg/kg without weight context -> unit_mismatch, 5"}
+{"row": "P-controls-07|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-07|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; answer line 20-30 mg (body mg/kg, no weight context) -> no match"}
+{"row": "P-controls-07|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; mg/kg without weight context -> unit_mismatch, 5"}
+{"row": "P-controls-07|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|mcq|en|o0|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; no answer line, letter C read within first 40 chars ('The correct answer is: **C.'), role vn"}
+{"row": "P-controls-08|mcq|en|o1|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|mcq|vi|o0|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|mcq|vi|o1|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; borderline by design: 2000–3000 lies inside MoH 3000–6000 widened by tolerance 1250 (open bounds 1750–7250), so label 2 follows the registered tolerance rule although the low end is below the MoH range"}
+{"row": "P-controls-08|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-08|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-09|mcq|en|o0|A1|qwen3_8b_local|0#0", "rule": 6, "A": 6, "B": 6, "final": 6, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; output truncated before any letter, no answer line, no letter in first 40 chars -> 6 (text favours foreign option C)"}
+{"row": "P-controls-09|mcq|en|o1|A1|qwen3_8b_local|0#0", "rule": 6, "A": 6, "B": 6, "final": 6, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; output truncated before any letter -> 6 (text favours foreign option A)"}
+{"row": "P-controls-09|mcq|vi|o0|A1|qwen3_8b_local|0#0", "rule": 4, "A": 4, "B": 4, "final": 4, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-09|mcq|vi|o1|A1|qwen3_8b_local|0#0", "rule": 4, "A": 4, "B": 4, "final": 4, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-09|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; 30 = WHO obesity cut-off, recorded WHO item is 25 (tol 1) -> no source match"}
+{"row": "P-controls-09|short|en|A1|qwen3_8b_local|0#0", "rule": 4, "A": 4, "B": 4, "final": 4, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-09|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-09|short|vi|A0|qwen3_8b_local|0#0", "rule": 4, "A": 4, "B": 4, "final": 4, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-09|short|vi|A1|qwen3_8b_local|0#0", "rule": 4, "A": 4, "B": 4, "final": 4, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-controls-09|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; letter B = filler option"}
+{"row": "P-dengue-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": true, "final_decoy": true, "cause": "agree", "note": "agree; letter C = decoy option"}
+{"row": "P-dengue-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-01|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; range 10–20 partially overlaps MoH 15 (tol 2.5), matches no source fully -> partial, 5"}
+{"row": "P-dengue-01|short|en|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; range 10–20 partially overlaps MoH 15 (tol 2.5) -> partial, 5"}
+{"row": "P-dengue-01|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-01|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; 20–30 matches no source"}
+{"row": "P-dengue-01|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-01|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-02|short|en|A0|qwen3_8b_local|0#0", "rule": 4, "A": 4, "B": 4, "final": 4, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; 5 inside WHO 5–7 (tol 1.5) -> foreign"}
+{"row": "P-dengue-02|short|en|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-02|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-02|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; range 5–10 spans WHO 5–7 and MoH 10 (tol 1.5), inside neither -> partial, 5"}
+{"row": "P-dengue-02|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; range 5–10 attributed to MoH but not inside MoH 10±1.5 nor WHO 5–7±1.5 -> partial, 5"}
+{"row": "P-dengue-02|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree"}
+{"row": "P-dengue-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "rule": 6, "A": 6, "B": 6, "final": 6, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; output truncated before any letter -> 6 (text favours foreign option B, crystalloid)"}
+{"row": "P-dengue-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "rule": 6, "A": 6, "B": 6, "final": 6, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "agree; output truncated before any letter -> 6 (text favours foreign option D, crystalloid)"}

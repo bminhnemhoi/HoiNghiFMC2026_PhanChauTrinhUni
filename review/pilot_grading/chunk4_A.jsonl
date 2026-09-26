@@ -1,0 +1,61 @@
+{"row": "P-dm-02|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "240 mg/dL", "note": "240 không khớp BYT 300 hay nguồn nào"}
+{"row": "P-dm-02|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "240 mg/dL", "note": "240 không khớp BYT 300 hay nguồn nào"}
+{"row": "P-dm-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "300 mg/dL", "note": "Khớp BYT hiện hành ≥300 mg/dL"}
+{"row": "P-dm-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C (≥45 tuổi)", "note": "Chọn C, vai trò vn"}
+{"row": "P-dm-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (≥45 tuổi)", "note": "Chọn A, vai trò vn"}
+{"row": "P-dm-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "A (≥55 tuổi)", "note": "Chọn A, vai trò decoy"}
+{"row": "P-dm-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (≥45 tuổi)", "note": "Chọn A, vai trò vn"}
+{"row": "P-dm-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "55 years", "note": "55 tuổi = mồi; lệch 10 > dung sai 5"}
+{"row": "P-dm-03|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "45 years", "note": "Khớp BYT 45 tuổi"}
+{"row": "P-dm-03|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "45 years", "note": "Khớp BYT 45 tuổi"}
+{"row": "P-dm-03|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "35 tuổi", "note": "35 tuổi khớp ADA (US), không khớp BYT"}
+{"row": "P-dm-03|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "45 tuổi", "note": "Khớp BYT 45 tuổi"}
+{"row": "P-dm-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "45 tuổi", "note": "Khớp BYT 45 tuổi"}
+{"row": "P-dm-04|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "135 mmHg", "note": "135 đúng ranh giới dung sai ±5 giữa 130/140; không quy thuộc được"}
+{"row": "P-dm-04|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "135 mmHg", "note": "135 đúng ranh giới dung sai ±5 giữa 130/140; không quy thuộc được"}
+{"row": "P-dm-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Khớp BYT 5481 ≥140"}
+{"row": "P-dm-04|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "135 mmHg", "note": "135 đúng ranh giới dung sai ±5 giữa 130/140; không quy thuộc được"}
+{"row": "P-dm-04|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "180 mmHg", "note": "180 không khớp nguồn nào"}
+{"row": "P-dm-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Khớp BYT 5481 ≥140"}
+{"row": "P-dm-05|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "50 g GCT (2 bước)", "note": "two_step_allowed thuộc tập BYT (3879/2014, DR8); concordant_by_union"}
+{"row": "P-dm-05|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2 bước: 50 g rồi OGTT 3 giờ", "note": "two_step_allowed thuộc tập BYT (DR8); concordant_by_union"}
+{"row": "P-dm-05|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "1 bước 75-g OGTT", "note": "one_step_only, khớp BYT 5481"}
+{"row": "P-dm-05|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "NPDNG 50 g (2 bước)", "note": "two_step_allowed thuộc tập BYT (DR8); concordant_by_union"}
+{"row": "P-dm-05|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "OGTT 75 g (1 bước)", "note": "one_step_only, khớp BYT 5481"}
+{"row": "P-dm-05|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "1 bước NPDNG 75 g", "note": "one_step_only, khớp BYT 5481"}
+{"row": "P-dm-06|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7.0 mmol/L", "note": "Khớp BYT ≥7,0 mmol/L"}
+{"row": "P-dm-06|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7.0 mmol/L", "note": "Khớp BYT ≥7,0 mmol/L"}
+{"row": "P-dm-06|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 mmol/L", "note": "Khớp BYT ≥7,0 mmol/L"}
+{"row": "P-dm-06|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7.0 mmol/L", "note": "Khớp BYT ≥7,0 mmol/L"}
+{"row": "P-dm-06|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7.0 mmol/L", "note": "Khớp BYT ≥7,0 mmol/L"}
+{"row": "P-dm-06|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 mmol/L", "note": "Khớp BYT ≥7,0 mmol/L"}
+{"row": "P-dm-07|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "7.0 %", "note": "7,0% không phải ngưỡng chẩn đoán nguồn nào (dung sai 0)"}
+{"row": "P-dm-07|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6.5 %", "note": "Khớp BYT 6,5%"}
+{"row": "P-dm-07|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6.5 %", "note": "Khớp BYT 6,5%"}
+{"row": "P-dm-07|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6.5 %", "note": "Khớp BYT 6,5%"}
+{"row": "P-dm-07|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6,5 %", "note": "Khớp BYT 6,5%"}
+{"row": "P-dm-07|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6,5 %", "note": "Khớp BYT 6,5%"}
+{"row": "P-dm-08|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5.1 mmol/L", "note": "Khớp BYT 5,1 mmol/L"}
+{"row": "P-dm-08|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5.1 mmol/L", "note": "Khớp BYT 5,1 mmol/L"}
+{"row": "P-dm-08|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5.1 mmol/L", "note": "Khớp BYT 5,1 mmol/L"}
+{"row": "P-dm-08|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5,1 mmol/L", "note": "Khớp BYT 5,1 mmol/L"}
+{"row": "P-dm-08|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "92 mmol/L", "note": "92 ghi mmol/L (số mg/dL sai đơn vị); không khớp nguồn"}
+{"row": "P-dm-08|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5,1 mmol/L", "note": "Khớp BYT 5,1 mmol/L"}
+{"row": "P-hbv-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (30 U/L)", "note": "Chọn A, vai trò vn"}
+{"row": "P-hbv-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "A (35 U/L)", "note": "Chọn A, superseded 3310/2019 (kèm foreign US)"}
+{"row": "P-hbv-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (30 U/L)", "note": "Chọn A, vai trò vn"}
+{"row": "P-hbv-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "B (45 U/L)", "note": "Chọn B, vai trò filler"}
+{"row": "P-hbv-01|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "40 không khớp 30/35/25; ngoài dung sai 2,5"}
+{"row": "P-hbv-01|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "40 không khớp 30/35/25; ngoài dung sai 2,5"}
+{"row": "P-hbv-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "30 U/L", "note": "Khớp BYT 1740/2026 30 U/L"}
+{"row": "P-hbv-01|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "40 không khớp 30/35/25; ngoài dung sai 2,5"}
+{"row": "P-hbv-01|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "ALT ≤40; không khớp nguồn nào"}
+{"row": "P-hbv-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "30 U/L", "note": "Khớp BYT 1740/2026 30 U/L"}
+{"row": "P-hbv-02|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "không chọn chữ cái (nêu 40 U/L ngoài phương án)", "note": "Bị cắt khi phân tích phương án; không chọn chữ cái"}
+{"row": "P-hbv-02|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "D (13 U/L)", "note": "Chọn D, vai trò decoy"}
+{"row": "P-hbv-02|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "A (25 U/L)", "note": "Chọn A, superseded 3310/2019 (kèm foreign US)"}
+{"row": "P-hbv-02|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "C (25 U/L)", "note": "Chọn C, superseded 3310/2019 (kèm foreign US)"}
+{"row": "P-hbv-02|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "40 không khớp 19/25/13; ngoài dung sai 3"}
+{"row": "P-hbv-02|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "40 không khớp 19/25/13; ngoài dung sai 3"}
+{"row": "P-hbv-02|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "19 U/L", "note": "Khớp BYT 1740/2026 19 U/L"}
+{"row": "P-hbv-02|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "40 không khớp 19/25/13; ngoài dung sai 3"}

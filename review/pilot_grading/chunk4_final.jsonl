@@ -1,0 +1,61 @@
+{"row": "P-dm-02|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-02|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-02|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": true, "final_decoy": true, "cause": "agree", "note": ""}
+{"row": "P-dm-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": true, "final_decoy": true, "cause": "agree", "note": ""}
+{"row": "P-dm-03|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|short|vi|A0|qwen3_8b_local|0#0", "rule": 4, "A": 4, "B": 4, "final": 4, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|short|vi|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-03|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "đuôi '/no_think' trong dòng đáp án không ảnh hưởng"}
+{"row": "P-dm-04|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 2, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "adjudicator_error", "note": "135 mmHg nằm đúng biên dung sai (tol 5) của cả hai giá trị BYT 130 và 140; prereg §6.2 quy định cửa sổ dung sai là khoảng MỞ (125,135) và (135,145) nên 135 không khớp mục BYT nào, cũng không khớp ADA 130/WHO 140; chồng lấn một phần → partial, không đồng thuận (§6.3 luật 9) → nhãn 5. B chấm 2 dù tự ghi 'đúng biên, cần xét' (hiểu dung sai là khoảng đóng) → B sai. Bộ chấm quy tắc và A đúng. Góp phần: brief cho người chấm chỉ ghi 'trong dung sai', không nói biên mở. 135 là ngưỡng HA tại nhà, không phải ngưỡng đo tại phòng khám mà câu hỏi hỏi."}
+{"row": "P-dm-04|short|en|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 2, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "adjudicator_error", "note": "135 mmHg nằm đúng biên dung sai (tol 5) của cả hai giá trị BYT 130 và 140; prereg §6.2 quy định cửa sổ dung sai là khoảng MỞ (125,135) và (135,145) nên 135 không khớp mục BYT nào, cũng không khớp ADA 130/WHO 140; chồng lấn một phần → partial, không đồng thuận (§6.3 luật 9) → nhãn 5. B chấm 2 dù tự ghi 'đúng biên, cần xét' (hiểu dung sai là khoảng đóng) → B sai. Bộ chấm quy tắc và A đúng. Góp phần: brief cho người chấm chỉ ghi 'trong dung sai', không nói biên mở. 135 là ngưỡng HA tại nhà, không phải ngưỡng đo tại phòng khám mà câu hỏi hỏi."}
+{"row": "P-dm-04|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-04|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 2, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "adjudicator_error", "note": "135 mmHg nằm đúng biên dung sai (tol 5) của cả hai giá trị BYT 130 và 140; prereg §6.2 quy định cửa sổ dung sai là khoảng MỞ (125,135) và (135,145) nên 135 không khớp mục BYT nào, cũng không khớp ADA 130/WHO 140; chồng lấn một phần → partial, không đồng thuận (§6.3 luật 9) → nhãn 5. B chấm 2 dù tự ghi 'đúng biên, cần xét' (hiểu dung sai là khoảng đóng) → B sai. Bộ chấm quy tắc và A đúng. Góp phần: brief cho người chấm chỉ ghi 'trong dung sai', không nói biên mở. 135 là ngưỡng HA tại nhà, không phải ngưỡng đo tại phòng khám mà câu hỏi hỏi."}
+{"row": "P-dm-04|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-04|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-05|short|en|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "P-dm-05 concordant_by_union: 2 bước (50 g) khớp 3879/2014 (DR8) trong tập BYT hiện hành"}
+{"row": "P-dm-05|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "P-dm-05 concordant_by_union: 2 bước khớp 3879/2014 (DR8)"}
+{"row": "P-dm-05|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-05|short|vi|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "P-dm-05 concordant_by_union: 50 g (2 bước) khớp 3879/2014 (DR8)"}
+{"row": "P-dm-05|short|vi|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-05|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-06|short|en|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-06|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-06|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-06|short|vi|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-06|short|vi|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-06|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-07|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-07|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-07|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-07|short|vi|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-07|short|vi|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-07|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-08|short|en|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-08|short|en|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-08|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-08|short|vi|A0|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-dm-08|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "92 ghi đơn vị mmol/L: giá trị theo nguyên văn là 92 mmol/L, không khớp 5,1 mmol/L; không suy diễn lỗi đơn vị"}
+{"row": "P-dm-08|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "rule": 3, "A": 3, "B": 3, "final": 3, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|short|en|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|short|vi|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-01|short|vi|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-02|mcq|en|o0|A1|qwen3_8b_local|0#0", "rule": 6, "A": 6, "B": 6, "final": 6, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": "MCQ: không chọn chữ cái nào (mô hình nói 40 U/L không có trong lựa chọn, đầu ra dừng giữa chừng) → 6"}
+{"row": "P-hbv-02|mcq|en|o1|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": true, "final_decoy": true, "cause": "agree", "note": ""}
+{"row": "P-hbv-02|mcq|vi|o0|A1|qwen3_8b_local|0#0", "rule": 3, "A": 3, "B": 3, "final": 3, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-02|mcq|vi|o1|A1|qwen3_8b_local|0#0", "rule": 3, "A": 3, "B": 3, "final": 3, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-02|short|en|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-02|short|en|A1|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-02|short|en|A3|qwen3_8b_local|0#0", "rule": 2, "A": 2, "B": 2, "final": 2, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}
+{"row": "P-hbv-02|short|vi|A0|qwen3_8b_local|0#0", "rule": 5, "A": 5, "B": 5, "final": 5, "rule_decoy": false, "final_decoy": false, "cause": "agree", "note": ""}

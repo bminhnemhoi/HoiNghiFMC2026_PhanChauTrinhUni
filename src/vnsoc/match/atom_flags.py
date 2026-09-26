@@ -10,6 +10,7 @@ of the atom (and, where stated, of the MoH issue date or a frozen atom pool), so
   neighbour_overlap          conflicting foreign value within 2·tolerance of an MoH value of a neighbouring context
   strict_tolerance           'exact match' tolerance (sensitivity B.18)
   moh_older_than_counterpart code surrogate for 'MoH lags evidence' when no clinician is available (DR12)
+  knowable_foreign           foreign systems whose conflicting value predates a model's knowledge cutoff (R1.4)
   foreign_direction          more / less aggressive than MoH, by the registered slot convention
   conflict_kind              'moh_differs' vs 'moh_silent' (drug / category atoms, by moh_scope)
   acuity_suggestion          registered high-acuity topic list (student confirms)
@@ -22,11 +23,13 @@ registered sensitivity analysis.
 """
 from __future__ import annotations
 
+import calendar
 import hashlib
 import json
 import math
 import re
 import sys
+from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
@@ -279,6 +282,72 @@ def moh_older_than_counterpart(atom: dict, moh_issued: str | None, sources: list
                  if any(not it.get("derived") and all(_gap(v, it, atom) > 0 for v in vn) for it in f["values"])]
     keys = [k for k in (_date_key(d) for d in dates) if k is not None]
     return None if not keys else any(k > mk for k in keys)
+
+
+# ------------------------------------------------------------------ knowledge cutoff of a model (review M1, R1.4)
+_ISO_PREFIX = re.compile(r"\s*(\d{4})(?:-(\d{1,2}))?(?:-(\d{1,2}))?(?!\d)")
+_BEFORE_YEAR = re.compile(r"(?:trước|before)\s+(?:năm\s+)?(\d{4})(?!\d)", re.I)
+
+
+def _iso_parts(s) -> tuple[int, int | None, int | None] | None:
+    if isinstance(s, date):
+        return s.year, s.month, s.day
+    m = _ISO_PREFIX.match(str(s)) if s else None
+    if not m:
+        return None
+    return int(m.group(1)), int(m.group(2)) if m.group(2) else None, int(m.group(3)) if m.group(3) else None
+
+
+def version_end(s) -> date | None:
+    """LAST day a foreign version_date can denote (conservative for 'the model could know it'): 'YYYY' -> 31 Dec,
+    'YYYY-MM' -> last day of the month, 'YYYY-MM-DD' -> that day; a text 'trước YYYY' / 'before YYYY' (a value known
+    to predate year YYYY or an update made in it) -> 31 Dec of YYYY. None when the date is unknown ('chưa rõ')."""
+    p = _iso_parts(s)
+    if p is None:
+        m = _BEFORE_YEAR.search(str(s or ""))
+        return date(int(m.group(1)), 12, 31) if m else None
+    y, mo, d = p
+    if mo is None:
+        return date(y, 12, 31)
+    return date(y, mo, d if d is not None else calendar.monthrange(y, mo)[1])
+
+
+def cutoff_start(s) -> date | None:
+    """FIRST day a model's knowledge cutoff can denote (conservative): 'December 2023' recorded as '2023-12' ->
+    2023-12-01, '2025' -> 2025-01-01. None when not an ISO-like date."""
+    p = _iso_parts(s)
+    return None if p is None else date(p[0], p[1] or 1, p[2] or 1)
+
+
+def _has_conflicting(rec: dict, atom: dict) -> bool:
+    vn = atom.get("vn") or []
+    return any(not it.get("derived") and all(_gap(v, it, atom) > 0 for v in vn) for it in rec.get("values") or [])
+
+
+def foreign_timing(atom: dict, cutoff) -> list[dict]:
+    """One row per foreign record: system, source, version_date, version_end (ISO or None), conflicting (has a
+    verbatim value outside the MoH set — the conflicting_items rule), knowable (version_end <= cutoff_start; None when
+    the version date is unknown)."""
+    c = cutoff_start(cutoff)
+    if c is None:
+        raise ValueError(f"ngày cắt dữ liệu không hợp lệ: {cutoff!r}")
+    rows = []
+    for f in atom.get("foreign") or []:
+        end = version_end(f.get("version_date"))
+        rows.append({"system": f["system"], "source": f.get("source"), "version_date": f.get("version_date"),
+                     "version_end": end.isoformat() if end else None, "conflicting": _has_conflicting(f, atom),
+                     "knowable": None if end is None else end <= c})
+    return rows
+
+
+def knowable_foreign(atom: dict, cutoff) -> list[str]:
+    """Foreign systems (sorted, unique) with a conflicting value in a recorded version dated on or before a model's
+    knowledge cutoff. A value counts as knowable only if the version containing it predates the cutoff, both taken
+    conservatively: the version at the LAST day its date can denote (year only -> 31 Dec), the cutoff at the FIRST day
+    (year-month -> day 1). Undated versions never count. Pass the release date as cutoff when a model's cutoff is
+    not documented (configs/models.yaml local_main.cutoff_basis); knowability is then an upper bound. Only the
+    versions recorded in the atom are seen: a value first published in an older, unrecorded edition is not found."""
+    return sorted({r["system"] for r in foreign_timing(atom, cutoff) if r["conflicting"] and r["knowable"]})
 
 
 def foreign_direction(atom: dict) -> str | None:

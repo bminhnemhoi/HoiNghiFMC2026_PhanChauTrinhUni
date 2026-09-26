@@ -1,0 +1,61 @@
+{"row": "P-anaphylaxis-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.06 µg", "note": "0.06 µg khớp không nguồn nào; có lẽ nhầm mg (60 µg) nhưng dòng đáp án ghi µg"}
+{"row": "P-anaphylaxis-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.1 µg", "note": "0.1 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis-03|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "20 µg", "note": "0,2 ml quy đổi sai thành 20 µg; đáp án 20 µg ngoài mọi nguồn"}
+{"row": "P-anaphylaxis-03|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10 µg", "note": "10 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis-03|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0,6 µg", "note": "0,6 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "200 µg", "note": "200 µg = 0,2 ml TT51, BYT hiện hành"}
+{"row": "P-anaphylaxis_ocr-01|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10 µg", "note": "Đáp án 10 µg (thân ghi 0,1 mg, mâu thuẫn); ngoài mọi nguồn"}
+{"row": "P-anaphylaxis_ocr-01|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.15 µg", "note": "0,15 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "250 µg", "note": "250 µg = 1/4 ống TT51"}
+{"row": "P-anaphylaxis_ocr-01|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10 µg", "note": "10 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-01|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "100 µg", "note": "0,01 mg/kg × 10 kg = 100 µg, BYT (DR8); không nêu nước ngoài"}
+{"row": "P-anaphylaxis_ocr-01|short|vi|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "25 µg", "note": "0,25 ml quy đổi sai thành 25 µg; ngoài mọi nguồn"}
+{"row": "P-anaphylaxis_ocr-02|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.1 µg", "note": "0,1 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-02|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.15 µg", "note": "0,15 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-02|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "250 µg", "note": "250 µg = 1/4 ống TT51"}
+{"row": "P-anaphylaxis_ocr-02|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "100 µg", "note": "100 µg = 0,01 mg/kg BYT (DR8); không nêu nước ngoài"}
+{"row": "P-anaphylaxis_ocr-02|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10 µg", "note": "10 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "250 µg", "note": "250 µg = 1/4 ống TT51"}
+{"row": "P-anaphylaxis_ocr-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.3 mg", "note": "0,3 mg ngoài BYT 0,5–1 mg và nước ngoài 0,5 mg"}
+{"row": "P-anaphylaxis_ocr-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.3 mg", "note": "0,3 mg ngoài BYT 0,5–1 mg và nước ngoài 0,5 mg"}
+{"row": "P-anaphylaxis_ocr-03|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.3 mg", "note": "0,3 mg ngoài BYT 0,5–1 mg và nước ngoài 0,5 mg"}
+{"row": "P-anaphylaxis_ocr-03|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0,3 mg", "note": "0,3 mg ngoài BYT 0,5–1 mg và nước ngoài 0,5 mg"}
+{"row": "P-anaphylaxis_ocr-03|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.3 mg", "note": "0,3 mg ngoài BYT 0,5–1 mg và nước ngoài 0,5 mg"}
+{"row": "P-anaphylaxis_ocr-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "0,5 mg", "note": "0,5 mg nằm trong 0,5–1 mg BYT"}
+{"row": "P-anaphylaxis_ocr-04|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5 min", "note": "Đáp án 5 phút thuộc 3–5 và 5–15 BYT; thân nói tiêm ngay"}
+{"row": "P-anaphylaxis_ocr-04|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5 min", "note": "Đáp án 5 phút thuộc 3–5 và 5–15 BYT; thân nói tiêm ngay"}
+{"row": "P-anaphylaxis_ocr-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3-5 min", "note": "3–5 phút đúng TT51"}
+{"row": "P-anaphylaxis_ocr-04|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5 phút", "note": "5 phút thuộc 3–5 và 5–15 phút BYT"}
+{"row": "P-anaphylaxis_ocr-04|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "5 phút", "note": "5 phút thuộc 3–5 và 5–15 phút BYT"}
+{"row": "P-anaphylaxis_ocr-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3-5 phút", "note": "3–5 phút đúng TT51"}
+{"row": "P-anaphylaxis_ocr-05|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10 µg", "note": "Đáp án 10 µg (thân ghi 0,1 mg, mâu thuẫn); ngoài mọi nguồn"}
+{"row": "P-anaphylaxis_ocr-05|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.2 µg", "note": "Thân tính 0,2 mg nhưng đáp án ghi 0,2 µg; sai đơn vị"}
+{"row": "P-anaphylaxis_ocr-05|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "333.33 µg", "note": "333,33 µg = 1/3 ống, trong 200–333,3 µg BYT (dung sai 25)"}
+{"row": "P-anaphylaxis_ocr-05|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 µg", "note": "100 µg ngoài BYT (200/300) và nước ngoài (150/200)"}
+{"row": "P-anaphylaxis_ocr-05|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "200 µg", "note": "0,01 mg/kg × 20 kg = 200 µg, BYT (DR8)"}
+{"row": "P-anaphylaxis_ocr-05|short|vi|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "30 µg", "note": "0,3 ml quy đổi sai thành 30 µg; ngoài mọi nguồn"}
+{"row": "P-anaphylaxis_ocr-06|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "150 µg", "note": "150 µg ngoài BYT (300–500) và nước ngoài (300/350)"}
+{"row": "P-anaphylaxis_ocr-06|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "5.25 µg", "note": "5,25 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-06|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "500 µg", "note": "500 µg = 1/2 ống TT51 (trẻ > 30 kg)"}
+{"row": "P-anaphylaxis_ocr-06|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 µg", "note": "100 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-06|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "10 µg", "note": "10 µg không khớp nguồn nào"}
+{"row": "P-anaphylaxis_ocr-06|short|vi|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "30 µg", "note": "0,3 ml quy đổi sai thành 30 µg; ngoài mọi nguồn"}
+{"row": "P-controls-01|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.70 %", "note": "Đáp án 0,70 % (ý là tỉ số 0,70 = 70%?); đọc nguyên văn sai đơn vị"}
+{"row": "P-controls-01|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.70 %", "note": "Đáp án 0,70 % (ý là tỉ số 0,70 = 70%?); đọc nguyên văn sai đơn vị"}
+{"row": "P-controls-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "70 %", "note": "< 70% đúng BYT"}
+{"row": "P-controls-01|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "70%", "note": "< 70% đúng BYT"}
+{"row": "P-controls-01|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "0.70 %", "note": "Đáp án 0,70 % (ý là tỉ số 0,70 = 70%?); đọc nguyên văn sai đơn vị"}
+{"row": "P-controls-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "70 %", "note": "< 70% đúng BYT"}
+{"row": "P-controls-02|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "<26 mmHg", "note": "< 26 mmHg không khớp nguồn nào"}
+{"row": "P-controls-02|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "55 mmHg", "note": "≤ 55 mmHg đúng BYT"}
+{"row": "P-controls-02|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "55 mmHg", "note": "≤ 55 mmHg đúng BYT"}
+{"row": "P-controls-02|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "55 mmHg", "note": "Đáp án 55 mmHg đúng BYT; thân ghi < thay vì ≤"}
+{"row": "P-controls-02|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "55 mmHg", "note": "≤ 55 mmHg đúng BYT"}
+{"row": "P-controls-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "55 mmHg", "note": "55 mmHg đúng BYT; SaO2 88% chỉ ở thân, không ở đáp án"}
+{"row": "P-controls-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "7-14 days", "note": "7–14 ngày không khớp BYT 5, bản cũ 5–7, GOLD 5"}
+{"row": "P-controls-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "7-14 days", "note": "7–14 ngày không khớp BYT 5, bản cũ 5–7, GOLD 5"}
+{"row": "P-controls-03|short|en|A3|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "5-7 days", "note": "5–7 ngày khớp bản cũ 2767/2023, không khớp BYT hiện hành 5"}
+{"row": "P-controls-03|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "5-10 ngày", "note": "5–10 ngày chồng lấn một phần với 5; không khớp nguồn nào"}
+{"row": "P-controls-03|short|vi|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "5-7 ngày", "note": "5–7 ngày khớp bản cũ 2767/2023"}
+{"row": "P-controls-03|short|vi|A3|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "5-7 ngày", "note": "5–7 ngày khớp bản cũ 2767/2023"}
+{"row": "P-controls-04|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "100 cells/µL", "note": "≥ 100 là ngưỡng BYT cho quần thể lân cận (LABA+LAMA), không phải mẩu"}

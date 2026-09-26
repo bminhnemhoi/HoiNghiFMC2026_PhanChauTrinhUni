@@ -1,0 +1,61 @@
+{"row": "P-hbv-10|short|en|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2.0", "note": "APRI 2.0 matches superseded 3310/2019 (>=2)/5448/2014; MoH >1"}
+{"row": "P-hbv-10|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "> 1", "note": "APRI >1 = MoH current"}
+{"row": "P-hbv-10|short|vi|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2.0", "note": "APRI 2.0 = superseded 3310/2019; MoH is >1"}
+{"row": "P-hbv-10|short|vi|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2.0", "note": "APRI 2.0 = superseded 3310/2019; MoH is >1"}
+{"row": "P-hbv-10|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "1", "note": "APRI 1 = MoH current"}
+{"row": "P-htn-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "140/90 in text, no letter", "note": "No answer line/letter; text states 140/90 (option C); output cut off"}
+{"row": "P-htn-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (140/90)", "note": "A = vn"}
+{"row": "P-htn-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C (140/90)", "note": "C = vn"}
+{"row": "P-htn-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (140/90)", "note": "A = vn"}
+{"row": "P-htn-01|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-01|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-01|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-01|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 90 mmHg", "note": "Answer line '140 90' read as 140/90 (body: >=140 or >=90)"}
+{"row": "P-htn-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 90 mmHg", "note": "Answer line '140 90' read as 140/90 (body: >=140 and/or >=90)"}
+{"row": "P-htn-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "none (cut at '14')", "note": "No letter; truncated before any value/option"}
+{"row": "P-htn-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "150/100 in text, no letter", "note": "No letter chosen; text states 150/100 = decoy option C; cut off"}
+{"row": "P-htn-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C (140/90)", "note": "C = vn"}
+{"row": "P-htn-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (140/90)", "note": "A = vn"}
+{"row": "P-htn-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "135/85 mmHg", "note": "Gap 5 to MoH 140/90 and US 130/80; tol 5 open bounds, no match"}
+{"row": "P-htn-03|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-03|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-03|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH value; attributes to WHO, no contrast stated -> not aware"}
+{"row": "P-htn-03|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140/90 mmHg", "note": "MoH 140/90"}
+{"row": "P-htn-04|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Matches MoH item <140 (3192/2010)"}
+{"row": "P-htn-04|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Matches MoH item <140 (3192/2010)"}
+{"row": "P-htn-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "120-130 mmHg", "note": "Matches MoH 120 to <130 (5904/2019)"}
+{"row": "P-htn-04|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Matches MoH item <140 (3192/2010)"}
+{"row": "P-htn-04|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "140 mmHg", "note": "Matches MoH item <140 (3192/2010)"}
+{"row": "P-htn-04|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "120 mmHg", "note": "Answer line 120 inside MoH 120-<130; body gives full range"}
+{"row": "P-immunization-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C (9 months)", "note": "C = vn"}
+{"row": "P-immunization-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A (9 months)", "note": "A = vn"}
+{"row": "P-immunization-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "B (12-15 months)", "note": "B = foreign EU_UK+US"}
+{"row": "P-immunization-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "D (12-15 months)", "note": "D = foreign EU_UK+US"}
+{"row": "P-immunization-01|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "6 months", "note": "6 within decoy 3-6 months; not MoH 9 (tol 1.5)"}
+{"row": "P-immunization-01|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 months", "note": "MoH 9 months"}
+{"row": "P-immunization-01|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 months", "note": "MoH 9 months"}
+{"row": "P-immunization-01|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 months", "note": "MoH 9 months"}
+{"row": "P-immunization-01|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 months", "note": "MoH 9 months"}
+{"row": "P-immunization-01|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "9 months", "note": "MoH 9 months"}
+{"row": "P-immunization-02|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A (12-14 years)", "note": "A = filler"}
+{"row": "P-immunization-02|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "C (12-14 years)", "note": "Answer line C = filler"}
+{"row": "P-immunization-02|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A (12-14 years)", "note": "A = filler; explanation cut off"}
+{"row": "P-immunization-02|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "A (4-6 years)", "note": "A = foreign US+WHO_global"}
+{"row": "P-immunization-02|short|en|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "4-6 years", "note": "Matches US 4-6 (also within WHO 4-7); MoH is 7"}
+{"row": "P-immunization-02|short|en|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "5 years", "note": "5 in US 4-6 and WHO 4-7; not MoH 7 (tol 0.5)"}
+{"row": "P-immunization-02|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 years", "note": "MoH 7 years"}
+{"row": "P-immunization-02|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "5 years", "note": "5 in US 4-6 and WHO 4-7; not MoH 7"}
+{"row": "P-immunization-02|short|vi|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "5 years", "note": "5 in US 4-6 and WHO 4-7; not MoH 7"}
+{"row": "P-immunization-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 years", "note": "MoH 7 years"}
+{"row": "P-immunization-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 hours", "note": "MoH/US/WHO 24 h; tol 0; 12 h matches no source"}
+{"row": "P-immunization-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 hours", "note": "MoH/US/WHO 24 h; tol 0; 12 h matches no source"}
+{"row": "P-immunization-03|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "24 hours", "note": "MoH 24 h"}
+{"row": "P-immunization-03|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 hours", "note": "MoH/US/WHO 24 h; tol 0; 12 h matches no source"}
+{"row": "P-immunization-03|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "12 hours", "note": "MoH/US/WHO 24 h; tol 0; 12 h matches no source"}
+{"row": "P-immunization-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "24 hours", "note": "MoH 24 h"}
+{"row": "P-immunization-04|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "4-6 months", "note": "Matches no source (MoH 18, US 15-18, WHO 12-23)"}
+{"row": "P-immunization-04|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "18 (months assumed)", "note": "Answer '18 <unit>', body says 18 months = MoH"}
+{"row": "P-immunization-04|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "18 months", "note": "MoH 18 months"}
+{"row": "P-immunization-04|short|vi|A0|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "12-18 months", "note": "Range only partially overlaps MoH 18; lies within WHO 12-23"}

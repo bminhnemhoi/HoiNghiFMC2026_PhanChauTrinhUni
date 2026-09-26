@@ -244,3 +244,55 @@ def test_strict_tolerance_is_in_decades_for_log_scale():
          "foreign": [{"system": "US", "values": [{"lo": 20000, "hi": 20000}]}]}
     a["tolerance"] = compute_tolerance(a)                           # 0.5 decade
     assert math.isclose(af.strict_tolerance(a), math.log10(1 + 0.5 / 2000))
+
+
+def test_version_end_and_cutoff_start_are_conservative():
+    from datetime import date
+
+    assert af.version_end("2023") == date(2023, 12, 31)                   # year only -> last day of the year
+    assert af.version_end("2024-02") == date(2024, 2, 29)                 # month only -> last day of the month
+    assert af.version_end("2025-05-08") == date(2025, 5, 8)
+    assert af.version_end("chưa rõ (trước 2012)") == date(2012, 12, 31)    # 'before YYYY' -> end of YYYY (upper bound)
+    assert af.version_end("chưa rõ") is None and af.version_end(None) is None and af.version_end("") is None
+    assert af.cutoff_start("2023-12") == date(2023, 12, 1)                # 'December 2023' -> its first day
+    assert af.cutoff_start("2025") == date(2025, 1, 1) and af.cutoff_start("2025-04-29") == date(2025, 4, 29)
+    assert af.cutoff_start(date(2024, 8, 1)) == date(2024, 8, 1)
+    assert af.cutoff_start("chưa rõ") is None
+
+
+def test_knowable_foreign_uses_version_dates_against_the_cutoff():
+    # R1.4 (review/M1/response.md): a conflicting foreign value is knowable only if its version predates the cutoff
+    assert af.knowable_foreign(DENGUE1, "2023-12") == ["WHO_global"]           # WHO 2009 < Dec 2023
+    assert af.knowable_foreign(DM4, "2025-04-29") == []                        # ADA 2026 after the cutoff
+    y = atom(value_kind="num", unit="mg", vn=[{"lo": 10, "hi": 10}],
+             foreign=[{"system": "US", "source": "s", "version_date": "2023", "values": [{"lo": 5, "hi": 5}]}])
+    assert af.knowable_foreign(y, "2023-12-31") == ["US"]                      # on the cutoff day counts (<=)
+    assert af.knowable_foreign(y, "2023-12-30") == []                          # year-only version = 31 Dec
+    assert af.knowable_foreign(y, "2023-12") == []                             # cutoff month = its first day
+    m = atom(value_kind="num", unit="mg", vn=[{"lo": 10, "hi": 10}],
+             foreign=[{"system": "WHO_global", "source": "s", "version_date": "2025-07",
+                       "values": [{"lo": 5, "hi": 5}]}])
+    assert af.knowable_foreign(m, "2025-07-31") == ["WHO_global"] and af.knowable_foreign(m, "2025-07-30") == []
+    with pytest.raises(ValueError):
+        af.knowable_foreign(m, "chưa rõ")
+
+
+def test_knowable_foreign_ignores_agreeing_derived_and_undated_values():
+    a = atom(value_kind="num", unit="mg", vn=[{"lo": 10, "hi": 10}],
+             foreign=[{"system": "EU_UK", "source": "agrees", "version_date": "2010", "values": [{"lo": 10, "hi": 10}]},
+                      {"system": "US", "source": "derived", "version_date": "2010",
+                       "values": [{"lo": 40, "hi": 40, "derived": True}]},
+                      {"system": "OTHER", "source": "undated", "version_date": "chưa rõ",
+                       "values": [{"lo": 5, "hi": 5}]},
+                      {"system": "WHO_global", "source": "old", "version_date": "chưa rõ (trước 2012)",
+                       "values": [{"lo": 5, "hi": 5}]},
+                      {"system": "WHO_global", "source": "new", "version_date": "2026-09-10",
+                       "values": [{"lo": 5, "hi": 5}]}])
+    assert af.knowable_foreign(a, "2023-12") == ["WHO_global"]                 # listed once, via the old version
+    assert af.knowable_foreign(a, "2011-06") == []                             # 'before 2012' may be 2012
+    assert af.knowable_foreign(af.with_derived(a), "2023-12") == ["US", "WHO_global"]
+    rows = {r["source"]: r for r in af.foreign_timing(a, "2023-12")}
+    assert rows["agrees"]["conflicting"] is False and rows["agrees"]["knowable"] is True
+    assert rows["undated"]["knowable"] is None and rows["undated"]["version_end"] is None
+    assert rows["new"]["knowable"] is False and rows["new"]["version_end"] == "2026-09-10"
+    assert rows["derived"]["conflicting"] is False

@@ -77,6 +77,75 @@ Nguồn: ba mục DECISIONS 2026-09-26T15:55 (trắc nghiệm/đoạn A3; bộ c
 - **D16. Phía thử trước của filler: đồng xu có seed** (prereg §2.6, §6.5, §5.6 A.2). Mặc định: đồng xu theo atom_id (seed 20260926) chọn thử phía ô neo hay phía mồi trước; ghi `option_rank`; báo độ nhạy Δ_MCQ theo tầng vị trí biên. Phương án khác: luôn phản chiếu qua giá trị nước ngoài trước (quy tắc cũ). Lý do: quy tắc cũ đặt mồi ở biên trong 15/20 câu num/bp thí điểm (xu hướng né phương án cực trị có lợi cho H1); với đồng xu, nước ngoài ở biên 12/20, mồi 8/20.
 - **D17. Lần nhắc điều kiện/dự phòng ở mẩu phân loại (cat)** (prereg §6.3 quy tắc 3; bộ chấm 1.2.0, DECISIONS 2026-09-26T19:50 mục 1). Mặc định (phương án b): câu điều kiện hoặc dự phòng ("A; nếu không đáp ứng thì B", "A; B chỉ dùng khi…", "B only if refractory") là giá trị thứ hai, với mọi nhãn, mọi thứ tự, mọi dạng, nên chấm theo quy tắc nhiều giá trị (nhãn 5, hoặc 1 nếu mọi giá trị quy thuộc nguồn rõ; cờ `multi` để báo riêng). Phương án a: lần nhắc dự phòng không phải đáp án (chỉ tính nhãn nêu chính); cần sửa cả mã lẫn mẩu. Lý do: phương án b dùng một luật cho mọi nhãn, không phải đoán "nhãn chính", nên không đọc nào (Bộ Y tế hay nước ngoài) được ưu ái; trước 1.2.0 chỉ cần câu có nhãn Bộ Y tế là ra nhãn 2.
 
+## Quyết định bổ sung 27/9/2026 sau hội đồng M1 (R1.5, R1.6) (Decisions added 2026-09-27 after review M1)
+
+Nguồn: review/M1/response.md (R1.5, R1.6); `prereg/addenda/2026-09-27_addendum_1.md` (Addendum 1). Phương án mặc định đã viết vào bản đăng ký và đánh dấu "[pending author confirmation, see review/prereg/response.md Dxx]". Người dùng xác nhận hoặc chọn phương án khác **trước HG2.9**.
+
+Tình trạng hai mục cũ:
+- **D10 KHÔNG đạt.** Đầu ra thí điểm đã được mở và chấm tối 26/9, chậm nhất là 22:42 (commit 0f3604c), trong khi bản đăng ký chưa tải lên OSF. Addendum 1 khai việc này.
+- **D11 được thay bằng D18** (phần lựa chọn foreknowledge). Việc đối chiếu Holm (1979) vẫn giữ nguyên.
+
+- **D18. Lựa chọn "Foreknowledge" trên OSF** (§1.2).
+  - Mặc định: "Authors have observed the data, but have not performed the proposed analyses" (phương án 6; câu chữ đọc từ API OSF ngày 27/9).
+  - Phương án khác: giữ phương án 5 "limited observation … could not influence" như bản cũ.
+  - Lý do: đầu ra thí điểm đã dẫn tới bộ chấm 1.3.0, và mẩu thí điểm vẫn ở bộ chính nên không cam kết được phương án 5. Chưa phân tích xác nhận nào chạy trên dữ liệu.
+- **D19. Kiểm bộ chấm trên tập giữ riêng trước đóng băng** (§3.1 mục 7, §2.6, §5.4).
+  - Mặc định:
+    - mẫu: 20 mẩu không thuộc thí điểm cho mỗi tầng (xung đột / lệch phiên bản / còn lại), chọn bằng seed 20261003;
+    - câu trả lời: trả lời ngắn của qwen3_8b ở A1, A3 × VI/EN (khoảng 240 câu), nhãn tham chiếu do kiểm toán AI kép;
+    - ngưỡng: độ chính xác ≥ 0,90 **và** cận dưới Clopper–Pearson có hiệu ứng thiết kế (cụm = mẩu) ≥ 0,85;
+    - nếu trượt: sửa, tăng phiên bản, kiểm lại một lần trên mẫu mới;
+    - các mẩu này bị loại khỏi H1–H4, DR3 và RQ3.
+  - Phương án khác: sinh câu trả lời kiểm bằng một mô hình KHÔNG thuộc bộ phân tích để giữ các mẩu này trong phân tích xác nhận; hoặc đặt thêm ngưỡng riêng cho tầng xung đột (rev-methods#5).
+  - Lý do: ở thí điểm, bộ chấm đã được sửa theo chính đầu ra thí điểm; đầu ra tham lam của mô hình chính trên mẩu kiểm sẽ trùng đầu ra chính, nên loại các mẩu này là cách sạch nhất. Với 240 câu và hiệu ứng thiết kế bằng 1, độ chính xác 0,90 cho cận dưới 0,855 (tính bằng scipy).
+- **D20. Mẩu thí điểm** (§1.3, §5.1.7, §5.4, B.1).
+  - Mặc định: không bao giờ dùng để kiểm bộ chấm; loại khỏi mọi tập chia, lần chia lại và phép so sánh của RQ3; vẫn ở H1–H4; B.1 báo ngay cạnh H1 và H3.
+  - Phương án khác: loại mẩu thí điểm khỏi cả H1–H3 chính (chặt hơn nhưng mất 23 mẩu xung đột).
+  - Lý do: đúng yêu cầu của rev-methods#6 mà vẫn giữ lực kiểm định.
+- **D21. Phạm vi "mô hình mở chạy tại chỗ"** (Mô tả, §1.1, §6.9).
+  - Mặc định: nêu phạm vi này trong mô tả, câu hỏi nghiên cứu và phần hạn chế; không đánh giá mô hình thương mại; tiêu đề giữ nguyên (xem D8).
+  - Phương án khác: thêm "Locally Run Open-Weight" vào tiêu đề; hoặc thêm nhánh khám phá miễn phí với mô hình thương mại (rev-editor#7a). Nhánh này trái quyết định 20:40 nên cần người dùng quyết.
+  - Lý do: quyết định của người dùng ngày 26/9, lúc 20:40.
+- **D22. Tỉ lệ lỗi quy được nguồn là kết cục mô tả chính, báo cùng H1** (§4.3, §5.1.2).
+  - Mặc định: AS = (nhãn 3 + 4)/(nhãn 3–5), tính trên tập H1; kèm phần không quy được nguồn, phần trùng mồi và AS_c đã trừ phần trùng ngẫu nhiên (k_i·D); khoảng tin cậy cụm theo nhóm; không kiểm định.
+  - Phương án khác: mẫu số tính cả nhãn 6, hoặc tính trên mọi mẩu xung đột.
+  - Lý do: rev-editor#7. Nhãn 6 là từ chối chứ không phải lỗi (§1.1).
+  - Lưu ý: đề xuất này có SAU khi thấy kết quả thí điểm, đã khai trong Addendum 1.
+- **D23. Phân tích "giá trị biết được" theo ngày cắt dữ liệu** (§4.2, §4.3, B.26, C.8).
+  - Mặc định:
+    - `cutoff_used` lấy từ models.yaml local_main; với Qwen3, Sailor2, Vistral đây là cận trên;
+    - thêm trường `first_version_date` có trích dẫn và vị trí;
+    - H1/H3 trên các cặp biết được là phân tích độ nhạy B.26, đặt cạnh kết quả chính;
+    - nhãn 4 ở cặp không biết được báo thành một hàng khám phá.
+  - Phương án khác: dùng làm phân tích CHÍNH của H1 (rev-clinician#9).
+  - Lý do: 3/4 ngày cắt chỉ là cận trên và `first_version_date` chưa có, nên chưa đủ chắc để làm tập chính.
+- **D24. Kế hoạch diễn giải khi H1/H3 không được ủng hộ** (§5.3).
+  - Mặc định:
+    - không đổi giả thuyết hay tập phân tích;
+    - H1 đọc theo E so với ngưỡng 0,10 (âm tính chính xác hay chưa kết luận được) và báo AS;
+    - H3 âm tính chính xác khi mọi cận trên < 0,05;
+    - phân tích độ nhạy không lật được quyết định; không nâng phân tích hậu kiểm thành xác nhận.
+  - Phương án khác: không đăng ký trước cách diễn giải (không khuyến nghị).
+  - Lý do: rev-novelty#8. Tín hiệu thí điểm cho thấy nguy cơ âm tính.
+- **D25. Chi tiết quy trình kiểm toán AI thay kiểm tay** (§3.1 "AI audit protocol", §2.3, §6.10).
+  - Mặc định:
+    - lượt A theo checklist, lượt B hoài nghi và đọc trang/ảnh trang trước; trọng tài AI;
+    - báo đồng thuận (phần trăm kèm KTC Clopper–Pearson, và κ);
+    - kiểm bằng mã không dùng LLM trên 100% mẩu;
+    - bỏ lượt kiểm lại sau một tuần (thay bằng hai lượt độc lập).
+  - Phương án khác: người dùng tự kiểm một mẫu nhỏ có seed (rev-feasibility#11: 50 mẩu, khoảng 2 giờ, chỉ so số trên ảnh trang).
+  - Lý do: người dùng đã giao việc (20:40). Việc thay kiểm tay là quyết định của người dùng; các chi tiết trên là lựa chọn của Claude.
+- **D26. Thiết lập chạy trên laptop và các quy tắc DR6/DR10/DR11** (§2.5, §3.1 mục 6, §3.4, §4.1, §5.1.9, §6.7, B.6).
+  - Mặc định:
+    - Ollama với GGUF 4-bit (Q4_K_M; Vistral dùng Q4_0), num_ctx 4096;
+    - trắc nghiệm tối đa 384 token (R1.3; dựa trên việc 53/92 câu thí điểm bị cắt);
+    - DR6 kích hoạt khi dự báo > 80 giờ GPU laptop hoặc trễ > 1 tuần; thứ tự cắt A5/A6 → A4 → còn 3 mô hình;
+    - DR10 chuyển sang bản lượng tử 4-bit gần nhất;
+    - B.6 so Q8_0 với 4-bit trên 300 câu;
+    - Gemma 4 E4B (dự phòng Gemma 3 4B) là mô hình khám phá; bỏ MedGemma.
+  - Phương án khác: ngưỡng giờ khác 80 (con số 80 là của Kaggle cũ); ràng buộc đầu ra trắc nghiệm bằng JSON enum hoặc num_predict ≤ 8 (rev-feasibility#8); chỉ lấy 5 mẫu A2 trên tập con (R1.3, chưa áp vì đổi đầu vào RQ3).
+  - Lý do: quyết định 20:40 (không Kaggle, không API) và số đo của R1.3, R1.4.
+
 ## Bàn giao cho task khác (không làm trong task này, có lý do)
 
 - **T1.1 / T3.x (mẩu):** ghi `moh_neighbour` cho các mẩu (ví dụ P-dengue-01, P-dengue-02, P-dm-04, P-tbhiv-01, kèm trang/span mà rev-clinician nêu, sau khi mở PDF gốc); gắn `derived: true` cho US 40–80 ml/kg/giờ (P-dengue-01) và "60 phút — suy ra" (P-dengue-05); trích lại mẩu mục tiêu HA 5904/2019 tr.12 (P-htn-02, nay là P-htn-04) mã hóa "có thể thấp hơn nếu dung nạp được"; điền `required_terms`, `moh_scope`, `acuity`, `valid_from`. Tôi không sửa dữ liệu thí điểm vì agent T1.1 đang sửa song song và mọi giá trị phải được đối chiếu PDF (quy tắc cứng 1).

@@ -1,0 +1,61 @@
+{"row": "P-hbv-02|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "40 U/L", "note": "Không khớp BYT 19/nước ngoài 25/cũ 25/mồi 13; trùng giá trị lân cận ULN AST"}
+{"row": "P-hbv-02|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "19 U/L", "note": "Khớp BYT hiện hành 19 U/L"}
+{"row": "P-hbv-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A: ≥ 2,000,000 IU/mL", "note": "Chọn A = filler"}
+{"row": "P-hbv-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "A: ≥ 20,000 IU/mL", "note": "Chọn A = superseded (kèm foreign) → temporal"}
+{"row": "P-hbv-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A: ≥ 2.000.000 IU/mL", "note": "Chọn A = filler"}
+{"row": "P-hbv-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "A: ≥ 20.000 IU/mL", "note": "Chọn A = superseded (kèm foreign) → temporal"}
+{"row": "P-hbv-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "2,000,000 IU/mL", "note": "2e6 cách mọi nguồn > 0,5 log10; không khớp"}
+{"row": "P-hbv-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "200,000 IU/mL", "note": "Không khớp nguồn; trùng giá trị lân cận dự phòng mẹ-con"}
+{"row": "P-hbv-03|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 IU/mL", "note": "Khớp BYT > 2.000 IU/mL"}
+{"row": "P-hbv-03|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 IU/mL", "note": "Khớp BYT; A0 nhưng không nêu khác biệt nước ngoài"}
+{"row": "P-hbv-03|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 IU/mL", "note": "Khớp BYT > 2.000 IU/mL"}
+{"row": "P-hbv-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "> 2000 IU/mL", "note": "Khớp BYT > 2.000 IU/mL"}
+{"row": "P-hbv-04|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A: ALT > 5×ULN", "note": "Chọn A = filler"}
+{"row": "P-hbv-04|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 6, "decoy": false, "value_read": "(không có)", "note": "Bị cắt giữa chừng, không có dòng ANSWER/chữ cái"}
+{"row": "P-hbv-04|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "A: ALT > 5×ULN", "note": "Chọn A = filler"}
+{"row": "P-hbv-04|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "A: ALT > 2×ULN", "note": "Chọn A = superseded (kèm foreign US) → temporal"}
+{"row": "P-hbv-04|short|en|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2×ULN", "note": "Khớp bản cũ >2×ULN (cả US); BYT hiện hành >1×ULN"}
+{"row": "P-hbv-04|short|en|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2×ULN", "note": "Khớp bản cũ >2×ULN; không khớp BYT hiện hành"}
+{"row": "P-hbv-04|short|en|A3|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2×ULN", "note": "Dòng ANSWER 2×ULN → bản cũ; thân câu mơ hồ (ALT>ULN 2 lần)"}
+{"row": "P-hbv-04|short|vi|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2×ULN", "note": "Khớp bản cũ >2×ULN; không khớp BYT hiện hành"}
+{"row": "P-hbv-04|short|vi|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2×ULN", "note": "Khớp bản cũ >2×ULN; không khớp BYT hiện hành"}
+{"row": "P-hbv-04|short|vi|A3|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "2×ULN", "note": "ĐÁP ÁN 2 lần/ULN → bản cũ; thân câu mơ hồ (ALT>ULN 2 lần)"}
+{"row": "P-hbv-05|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7.0 kPa", "note": "Khớp BYT > 7 kPa; A0 không nêu khác biệt"}
+{"row": "P-hbv-05|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7.0 kPa", "note": "Khớp BYT > 7 kPa"}
+{"row": "P-hbv-05|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 kPa", "note": "Khớp BYT > 7 kPa"}
+{"row": "P-hbv-05|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "7.1 kPa", "note": "Dung sai 0: 7,1 ≠ 7; không khớp nguồn nào"}
+{"row": "P-hbv-05|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "7.1 kPa", "note": "Dung sai 0: 7,1 ≠ 7; không khớp nguồn nào"}
+{"row": "P-hbv-05|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "7 kPa", "note": "Khớp BYT > 7 kPa"}
+{"row": "P-hbv-06|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "TDF", "note": "TDF thuộc tập BYT {TDF,TAF,ETV}"}
+{"row": "P-hbv-06|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "TDF hoặc TAF", "note": "Cả hai thuộc tập BYT"}
+{"row": "P-hbv-06|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "TDF", "note": "ANSWER TDF thuộc tập BYT"}
+{"row": "P-hbv-06|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "TDF + lamivudine", "note": "Phối hợp TDF+3TC không thuộc nguồn nào; câu hỏi đơn trị"}
+{"row": "P-hbv-06|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "TDF + lamivudine", "note": "Phối hợp TDF+3TC không thuộc nguồn nào"}
+{"row": "P-hbv-06|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "TDF hoặc TAF hoặc ETV", "note": "Cả ba thuộc tập BYT"}
+{"row": "P-hbv-07|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "B: ≥ 7 years", "note": "Chọn B = filler"}
+{"row": "P-hbv-07|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "A: ≥ 5 years", "note": "Chọn A = decoy"}
+{"row": "P-hbv-07|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "B: ≥ 7 năm", "note": "Chọn B = filler"}
+{"row": "P-hbv-07|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "A: ≥ 5 năm", "note": "Chọn A = decoy"}
+{"row": "P-hbv-07|short|en|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "12 months (1 year)", "note": "Khớp bản cũ 5448/2014 ≥ 1 năm"}
+{"row": "P-hbv-07|short|en|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "1 year", "note": "Khớp bản cũ 5448/2014 ≥ 1 năm"}
+{"row": "P-hbv-07|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3-4 years", "note": "Khớp BYT 3–4 năm"}
+{"row": "P-hbv-07|short|vi|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "6 tháng (0,5 năm)", "note": "Cách bản cũ 1 năm đúng 0,5 = dung sai (biên); nếu dung sai mở → 5"}
+{"row": "P-hbv-07|short|vi|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "6 tháng (0,5 năm)", "note": "Cách bản cũ 1 năm đúng 0,5 = dung sai (biên); nếu dung sai mở → 5"}
+{"row": "P-hbv-07|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "3-4 năm", "note": "Khớp BYT 3–4 năm"}
+{"row": "P-hbv-08|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C: > 2,000 IU/mL", "note": "Chọn C = vn"}
+{"row": "P-hbv-08|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A: > 2,000 IU/mL", "note": "Chọn A = vn"}
+{"row": "P-hbv-08|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C: > 2.000 IU/mL", "note": "Chọn C = vn"}
+{"row": "P-hbv-08|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "A: > 2.000 IU/mL", "note": "Chọn A = vn"}
+{"row": "P-hbv-08|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "2,000,000 IU/mL", "note": "2e6 không khớp nguồn nào (> 0,5 log10)"}
+{"row": "P-hbv-08|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "200,000 IU/mL", "note": "Không khớp nguồn; trùng giá trị lân cận mẹ-con"}
+{"row": "P-hbv-08|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 IU/mL", "note": "Khớp BYT > 2.000 IU/mL"}
+{"row": "P-hbv-08|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 IU/mL", "note": "Khớp BYT; A0 không nêu khác biệt"}
+{"row": "P-hbv-08|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2000 IU/mL", "note": "Khớp BYT > 2.000 IU/mL"}
+{"row": "P-hbv-08|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "> 2000 IU/mL", "note": "Khớp BYT > 2.000 IU/mL"}
+{"row": "P-hbv-09|short|en|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "14.5 kPa", "note": "Trong dung sai 0,75 của bản cũ 5448/2014 > 14,6"}
+{"row": "P-hbv-09|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "15.5 kPa", "note": "Cách 14,6 là 0,9 > 0,75; không khớp nguồn"}
+{"row": "P-hbv-09|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "12.5 kPa", "note": "Khớp BYT > 12,5 kPa"}
+{"row": "P-hbv-09|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "26 kPa", "note": "Không khớp nguồn nào"}
+{"row": "P-hbv-09|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "12 kPa", "note": "Cách 12,5 là 0,5 ≤ dung sai 0,75 → BYT"}
+{"row": "P-hbv-09|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "12,5 kPa", "note": "Khớp BYT > 12,5 kPa"}
+{"row": "P-hbv-10|short|en|A0|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "APRI 2.0", "note": "Khớp bản cũ APRI ≥2/>2 (kèm WHO 2015); BYT >1"}

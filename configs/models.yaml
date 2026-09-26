@@ -79,3 +79,99 @@ local_pilot:                           # DECISIONS 2026-09-26: thí điểm cụ
     think: false                       # tương đương enable_thinking=False
     max_model_len: 8192
     backend: ollama
+local_main:                            # R1.4 (review/M1/response.md; review/M1/R1.4_cutoffs.md): ứng viên nghiên cứu chính, chạy cục bộ
+  # Laptop RTX 4050 6 GB qua Ollama (DECISIONS 2026-09-26T20:40). Nguồn tra 27/9/2026. cutoff_used là ngày đưa vào
+  # vnsoc.match.atom_flags.knowable_foreign: knowledge_cutoff khi tác giả công bố (lấy NGÀY ĐẦU của tháng), nếu không
+  # thì ngày phát hành/tải trọng số làm CẬN TRÊN (cutoff_basis: release_upper_bound → 'biết được' là cận trên).
+  # size_gb = dung lượng bản tải theo trang ollama.com / Hugging Face (GB thập phân như trang ghi), không phải VRAM đo.
+  - key: qwen3_8b
+    role: core
+    name: Qwen3-8B (non-thinking)
+    ollama_tag: "qwen3:8b"             # = qwen3:8b-q4_K_M, digest 500a1f067a9f (đã dùng ở thí điểm)
+    base_hf_id: Qwen/Qwen3-8B
+    license: Apache-2.0
+    quantization: GGUF Q4_K_M
+    size_gb: 5.2
+    release_date: "2025-04-29"
+    release_source: https://qwenlm.github.io/blog/qwen3/          # blog đề ngày "April 29, 2025"; HF tải trọng số 2025-04-28
+    knowledge_cutoff: chưa rõ
+    cutoff_source: https://huggingface.co/Qwen/Qwen3-8B            # model card, blog và báo cáo kỹ thuật arXiv 2505.09388 không nêu
+    cutoff_used: "2025-04-29"
+    cutoff_basis: release_upper_bound
+    think: false
+    note: "Hỗ trợ tiếng Việt theo blog Qwen3 (nhóm Austroasiatic: 'Vietnamese, Khmer')."
+  - key: llama31_8b
+    role: core
+    name: Llama-3.1-8B-Instruct
+    ollama_tag: "llama3.1:8b"          # = llama3.1:8b-instruct-q4_K_M, digest 46e0c10c039e
+    base_hf_id: meta-llama/Llama-3.1-8B-Instruct
+    license: Llama 3.1 Community License
+    quantization: GGUF Q4_K_M
+    size_gb: 4.9
+    release_date: "2024-07-23"
+    release_source: https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct   # "Model Release Date: July 23, 2024."
+    knowledge_cutoff: "2023-12"
+    cutoff_source: https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct    # "The pretraining data has a cutoff of December 2023."
+    cutoff_used: "2023-12"
+    cutoff_basis: stated
+    note: "Tiếng Việt KHÔNG nằm trong danh sách ngôn ngữ hỗ trợ chính thức (model card: English, German, French, Italian, Portuguese, Hindi, Spanish, Thai)."
+  - key: sailor2_8b
+    role: core
+    name: Sailor2-8B-Chat
+    ollama_tag: "sailor2:8b"           # = sailor2:8b-chat-q4_K_M, digest f08f378f040a (thư viện chính thức ollama.com)
+    base_hf_id: sail/Sailor2-8B-Chat
+    license: Apache-2.0
+    quantization: GGUF Q4_K_M
+    size_gb: 5.2
+    release_date: "2024-12-03"
+    release_source: https://huggingface.co/api/models/sail/Sailor2-8B-Chat/commits/main   # tải trọng số 2024-12-03T07:51Z; blog đề "December 2, 2024"
+    knowledge_cutoff: chưa rõ
+    cutoff_source: https://sea-sailor.github.io/blog/sailor2/      # chỉ dữ liệu tiền huấn luyện tiếp tục cho ngôn ngữ ĐNA: "up-to-date knowledge until the end of 2023"; mô hình nền Qwen2.5-7B: chưa kiểm
+    cutoff_used: "2024-12-03"
+    cutoff_basis: release_upper_bound
+    note: "Mở rộng từ Qwen2.5-7B, ~8B tham số; model card không nêu ngày cắt. Không chạy A4 (max_model_len cũ 4096)."
+  - key: vistral_7b
+    role: core
+    name: Vistral-7B-Chat
+    hf_gguf: "hf.co/uonlp/Vistral-7B-Chat-gguf:Q4_0"   # file ggml-vistral-7B-chat-q4_0.gguf (4.145.139.360 byte); thay thế: ollama ontocord/vistral:q4_0 (4.1 GB)
+    base_hf_id: Viet-Mistral/Vistral-7B-Chat
+    license: AFL-3.0
+    quantization: GGUF Q4_0              # KHÔNG có bản Q4_K_M công khai; muốn Q4_K_M phải tự lượng tử từ bản f16 (14,6 GB)
+    size_gb: 4.15
+    release_date: "2024-01-14"
+    release_source: https://huggingface.co/api/models/Viet-Mistral/Vistral-7B-Chat   # createdAt 2024-01-14; repo gated nên không xem được lịch sử commit
+    knowledge_cutoff: chưa rõ
+    cutoff_source: https://huggingface.co/Viet-Mistral/Vistral-7B-Chat   # model card không nêu; báo cáo kỹ thuật chưa công bố theo model card
+    cutoff_used: "2024-01-23"
+    cutoff_basis: release_upper_bound    # ngày tải bản GGUF Q4_0 (commit uonlp 2024-01-23T21:14Z), muộn hơn createdAt bản gốc
+    note: "Mở rộng từ Mistral-7B-v0.1. Bản gốc gated (đồng ý điều khoản trên HF). Phải kiểm chat template: repo GGUF kèm template_chat.json riêng; có thể cần Modelfile TEMPLATE."
+  - key: gemma4_e4b
+    role: optional
+    name: Gemma 4 E4B-it (QAT)
+    ollama_tag: "gemma4:e4b-it-qat"    # digest ee6656371218; 5,2 GB mô hình Q4_0 + 992 MB projector BF16
+    base_hf_id: google/gemma-4-E4B-it
+    license: Apache-2.0
+    quantization: GGUF Q4_0 (QAT)        # gemma4:e4b-it-q4_K_M nặng 9,6 GB, quá 6 GB
+    size_gb: 6.1
+    release_date: "2026-04-02"
+    release_source: https://blog.google/innovation-and-ai/technology/developers-tools/gemma-4/   # "Apr 02, 2026"
+    knowledge_cutoff: "2025-01"
+    cutoff_source: https://ai.google.dev/gemma/docs/core/model_card_4   # "... with a cutoff date of January 2025."
+    cutoff_used: "2025-01"
+    cutoff_basis: stated
+    note: "Tùy chọn (mô hình thứ 5, xét theo DR6/R1.3). 4,5B hiệu dụng (8B kể cả embedding); đa phương thức; 6,1 GB > 6 GB VRAM → một phần chạy CPU. Cần Ollama đủ mới hỗ trợ gemma4 (chưa kiểm trên máy)."
+  - key: gemma3_4b
+    role: optional
+    name: Gemma 3 4B-it
+    ollama_tag: "gemma3:4b"            # = gemma3:4b-it-q4_K_M, digest a2af6cc3eb7f
+    base_hf_id: google/gemma-3-4b-it
+    license: gemma                      # trường license của google/gemma-3-4b-it trên HF (repo gated)
+    quantization: GGUF Q4_K_M
+    size_gb: 3.3
+    release_date: "2025-03-12"
+    release_source: https://blog.google/technology/developers/gemma-3/   # "Mar 12, 2025"
+    knowledge_cutoff: "2024-08"
+    cutoff_source: https://ai.google.dev/gemma/docs/core/model_card_3   # "The knowledge cutoff date for the training data was August 2024."
+    cutoff_used: "2024-08"
+    cutoff_basis: stated
+    note: "Phương án dự phòng cho gemma4_e4b nếu không vừa máy; nhỏ hơn (4B) nên không cùng cỡ với nhóm 7–9B."

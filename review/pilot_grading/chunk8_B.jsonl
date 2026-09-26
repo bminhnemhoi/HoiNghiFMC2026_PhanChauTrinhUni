@@ -1,0 +1,55 @@
+{"row": "P-malaria_ocr-08|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "2,4 mg/kg", "note": "khớp BYT 2,4 mg/kg"}
+{"row": "P-tbhiv-01|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "B: Bdq+Lzd+Cfz+Cs", "note": "chọn B, vai trò superseded"}
+{"row": "P-tbhiv-01|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 5, "decoy": true, "value_read": "A: Bdq+Pa+Z (BPaZ)", "note": "chọn A, vai trò decoy"}
+{"row": "P-tbhiv-01|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 3, "decoy": false, "value_read": "B: Bdq+Lzd+Cfz+Cs", "note": "chọn B, vai trò superseded"}
+{"row": "P-tbhiv-01|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C: BPaL", "note": "chọn C, vai trò vn"}
+{"row": "P-tbhiv-01|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "Lzd+Mfx+Z+E+Cs+PAS", "note": "phác đồ không khớp nguồn nào"}
+{"row": "P-tbhiv-01|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "Lzd+E+Z+Cs+Pto 2 tháng, rồi 10 tháng", "note": "không có dòng ANSWER; phác đồ không khớp nguồn nào"}
+{"row": "P-tbhiv-01|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "BPaLM (Bdq+Pa+Lzd+Mfx)", "note": "BPaLM là mục lân cận (nhạy FQ), không phải BPaL"}
+{"row": "P-tbhiv-01|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "R+H+Z+E", "note": "phác đồ lao nhạy cảm, không khớp nguồn nào"}
+{"row": "P-tbhiv-01|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "H+R+E+Z+S", "note": "phác đồ HRZES, không khớp nguồn nào"}
+{"row": "P-tbhiv-01|short|vi|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "6 BPaLM", "note": "khớp mục lân cận (nhạy FQ), không phải BPaL"}
+{"row": "P-tbhiv-02|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "ANSWER '2 / 3'; thân: R+H+Z+E+FQ", "note": "đáp án vô nghĩa; thân nêu phác đồ không khớp nguồn"}
+{"row": "P-tbhiv-02|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "H+R+Z+E+Lfx", "note": "ANSWER '5 drugs'; phác đồ không khớp nguồn nào"}
+{"row": "P-tbhiv-02|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "E+Z+R+Lfx", "note": "có rifampicin, không khớp nguồn nào"}
+{"row": "P-tbhiv-02|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "R+H+Z+E+FQ", "note": "không khớp nguồn nào"}
+{"row": "P-tbhiv-02|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "H+R+E+Z+Lfx", "note": "ĐÁP ÁN '5 thuốc'; thân không khớp nguồn"}
+{"row": "P-tbhiv-02|short|vi|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "Bdq+FQ+Lzd+Cfz+Z+E+R", "note": "gần C2a nhưng có R thay Hh; không khớp"}
+{"row": "P-tbhiv-03|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "B: 4HR", "note": "chọn B, vai trò foreign US+WHO"}
+{"row": "P-tbhiv-03|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "D: 4HR", "note": "chọn D, vai trò foreign US+WHO"}
+{"row": "P-tbhiv-03|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 4, "decoy": false, "value_read": "B: 4HR", "note": "chọn B, vai trò foreign US+WHO"}
+{"row": "P-tbhiv-03|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "C: 4HRE", "note": "chọn C, vai trò vn"}
+{"row": "P-tbhiv-03|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "R+H+Z+E", "note": "4HRZE giai đoạn duy trì, không khớp nguồn"}
+{"row": "P-tbhiv-03|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "Z+E+H", "note": "không khớp nguồn nào"}
+{"row": "P-tbhiv-03|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "R H E", "note": "khớp 4RHE BYT"}
+{"row": "P-tbhiv-03|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "ĐÁP ÁN '4 tháng'; thân H+R+Z+E", "note": "đáp án là thời gian; thân HRZE không khớp"}
+{"row": "P-tbhiv-03|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "ĐÁP ÁN '4 tháng'; thân H+R+Z+E", "note": "đáp án là thời gian; thân HRZE không khớp"}
+{"row": "P-tbhiv-03|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "R H E", "note": "khớp 4RHE BYT"}
+{"row": "P-tbhiv-04|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "R+H", "note": "trẻ em: khớp 4RH BYT"}
+{"row": "P-tbhiv-04|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "R+H+Z", "note": "không khớp nguồn nào"}
+{"row": "P-tbhiv-04|short|en|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "R H E", "note": "trẻ em: RHE là mục lân cận người lớn, không khớp"}
+{"row": "P-tbhiv-04|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "ĐÁP ÁN '4 tháng'; thân H+R+Z+E", "note": "đáp án là thời gian; thân HRZE không khớp"}
+{"row": "P-tbhiv-04|short|vi|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "ĐÁP ÁN '4 tháng'; thân H+R+Z+E", "note": "đáp án là thời gian; thân HRZE không khớp"}
+{"row": "P-tbhiv-04|short|vi|A3|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "R H E (thân có 2HRZE/4RH)", "note": "ĐÁP ÁN RHE = mục lân cận người lớn; mâu thuẫn với 4RH"}
+{"row": "P-tbhiv-05|mcq|en|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "D: TDF+3TC+DTG", "note": "chọn D, vai trò vn"}
+{"row": "P-tbhiv-05|mcq|en|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "B: TDF+3TC+DTG", "note": "chọn B, vai trò vn"}
+{"row": "P-tbhiv-05|mcq|vi|o0|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "D: TDF+3TC+DTG", "note": "chọn D, vai trò vn"}
+{"row": "P-tbhiv-05|mcq|vi|o1|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "B: TDF+3TC+DTG", "note": "chọn B, vai trò vn"}
+{"row": "P-tbhiv-05|short|en|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "TDF+FTC+DRV+RTV", "note": "không khớp nguồn nào"}
+{"row": "P-tbhiv-05|short|en|A1|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "TDF/FTC + DRV/r", "note": "không khớp nguồn nào"}
+{"row": "P-tbhiv-05|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "TDF+3TC+DTG, 28 ngày", "note": "khớp BYT"}
+{"row": "P-tbhiv-05|short|vi|A0|qwen3_8b_local|0#0", "label": 5, "decoy": false, "value_read": "TDF/FTC + rifabutin", "note": "rifabutin không phải ARV; không khớp"}
+{"row": "P-tbhiv-05|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "TDF+3TC+DTG", "note": "khớp BYT"}
+{"row": "P-tbhiv-05|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "TDF+3TC+DTG", "note": "khớp BYT"}
+{"row": "P-tbhiv-06|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "28 ngày", "note": "khớp BYT; không nêu khác biệt nước ngoài"}
+{"row": "P-tbhiv-06|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "28 ngày", "note": "khớp BYT"}
+{"row": "P-tbhiv-06|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "28 ngày", "note": "khớp BYT"}
+{"row": "P-tbhiv-06|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "28 ngày", "note": "khớp BYT; không nêu khác biệt nước ngoài"}
+{"row": "P-tbhiv-06|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "28 ngày", "note": "khớp BYT"}
+{"row": "P-tbhiv-06|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "28 ngày", "note": "khớp BYT"}
+{"row": "P-tbhiv-07|short|en|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6 tháng", "note": "khớp BYT; không nêu khác biệt nước ngoài"}
+{"row": "P-tbhiv-07|short|en|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6 tháng", "note": "khớp BYT"}
+{"row": "P-tbhiv-07|short|en|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6 tháng", "note": "khớp BYT"}
+{"row": "P-tbhiv-07|short|vi|A0|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6 tháng", "note": "khớp BYT; không nêu khác biệt nước ngoài"}
+{"row": "P-tbhiv-07|short|vi|A1|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "6 tháng", "note": "khớp BYT"}
+{"row": "P-tbhiv-07|short|vi|A3|qwen3_8b_local|0#0", "label": 2, "decoy": false, "value_read": "06 tháng", "note": "khớp BYT"}

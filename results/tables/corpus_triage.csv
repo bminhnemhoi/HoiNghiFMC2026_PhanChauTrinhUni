@@ -21,7 +21,7 @@ doc_key,kind,disease,status,issued,official_pdf,host,text_layer,scanned,pages,on
 1911/2021,QĐ,Tiền sản giật,superseded,2021-04-19,False,,,False,,False,,1154/2024,Hướng dẫn sàng lọc và điều trị dự phòng tiền sản giật
 2065/2021,QĐ,Viêm gan vi rút C,superseded,,False,,,False,,False,,,"[tiêu đề chưa xác nhận] Hướng dẫn chẩn đoán, điều trị bệnh viêm gan vi rút C"
 2078/2011,QĐ,Cúm mùa,current,2011-06-23,True,benhvienhatrung.vn,True,False,5,False,,,Hướng dẫn chẩn đoán và điều trị cúm mùa
-2131/2026,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),current,,False,,,False,,False,,,"Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính [CHƯA XÁC MINH: số hiệu, tiêu đề và ngày theo đề cương §3.1; chưa thấy văn bản]"
+2131/2026,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),current,2026-07-14,True,bvdkbaclieu.gov.vn,True,False,130,False,2767/2023,,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính
 2147/2026,QĐ,Viêm phổi mắc phải cộng đồng ở người lớn,current,2026-07-15,True,kcb.vn,True,False,93,False,4815/2020,,Hướng dẫn chẩn đoán và điều trị viêm phổi mắc phải cộng đồng ở người lớn
 2187/2019,QĐ,hội chứng mạch vành cấp,current,2019-06-03,False,,,False,,False,,,Hướng dẫn chẩn đoán và xử trí hội chứng mạch vành cấp
 2388/2024,QĐ,Bệnh thận mạn và một số bệnh lý thận,current,2024-08-12,True,kcb.vn,True,False,192,False,,,Hướng dẫn chẩn đoán và điều trị bệnh thận mạn và một số bệnh lý thận
@@ -30,7 +30,7 @@ doc_key,kind,disease,status,issued,official_pdf,host,text_layer,scanned,pages,on
 2699/2020,QĐ,Sốt rét,superseded,2020-06-26,True,quantri.impe-qn.org.vn,True,False,30,False,4845/2016,3377/2023,"Hướng dẫn chẩn đoán, điều trị bệnh Sốt rét"
 2760/2021,QĐ,Lao kháng thuốc,superseded,,True,cms-chonglao.benhvienphoitrunguong.vn,True,False,53,False,,,Cập nhật hướng dẫn điều trị bệnh lao kháng thuốc (tài liệu kèm quyết định; số hiệu 2760/QĐ-BYT chưa xác nhận từ PDF)
 2760/2023,QĐ,Sốt xuất huyết Dengue,current,2023-07-04,True,file.medinet.gov.vn,True,False,104,False,3705/2019,,Hướng dẫn chẩn đoán và điều trị Sốt xuất huyết Dengue
-2767/2023,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),current,2023-07-04,True,kcb.vn,True,False,87,False,3874/2018,,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính
+2767/2023,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),superseded,2023-07-04,True,kcb.vn,True,False,87,False,3874/2018,2131/2026,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính
 2855/2024,QĐ,Viêm gan vi rút C,current,,False,,,False,,False,,,[tiêu đề chưa xác nhận] Hướng dẫn chẩn đoán và điều trị bệnh viêm gan vi rút C
 2892/2022,QĐ,Béo phì,current,,False,,,False,,False,,,"[chưa xác minh] Hướng dẫn về béo phì (số hiệu lấy từ bảng §3.1 đề cương, chưa thấy văn bản)"
 2919/2014,QĐ,"Khám, chữa bệnh tại trạm y tế xã (nhiều bệnh; Phần 2 bệnh mạn tính gồm THA, ĐTĐ)",partial,2014-08-06,True,benhvienhatrung.vn,False,True,408,False,,,"Tài liệu chuyên môn Hướng dẫn khám, chữa bệnh tại trạm y tế xã, phường"
