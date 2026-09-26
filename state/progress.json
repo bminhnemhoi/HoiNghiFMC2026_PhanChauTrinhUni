@@ -1,7 +1,7 @@
 {
  "plan_sha256": "a62c451abcebfb0aff1d9af6a4988b96fb1bc1969468e863c5dc8f512604acbc",
  "created": "2026-09-26T03:13:15+07:00",
- "updated": "2026-09-26T03:13:15+07:00",
+ "updated": "2026-09-26T10:23:13+07:00",
  "order": [
   "T0.1",
   "T0.2",
@@ -117,12 +117,17 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "in_progress",
+   "status": "done",
    "history": [
     {
      "t": "2026-09-26T03:13:15+07:00",
      "event": "start",
      "note": ""
+    },
+    {
+     "t": "2026-09-26T10:21:29+07:00",
+     "event": "done",
+     "note": "bootstrap: 96 file trích (SHA-256 khớp), 100/100 test, 88 task; Windows+Git Bash (DECISIONS ENV-WIN)"
     }
    ],
    "note": "",
@@ -151,8 +156,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T10:21:50+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T10:23:13+07:00",
+     "event": "done",
+     "note": "core+pdf OK (Python 3.12.6 venv, PyMuPDF, pdfplumber, pdftotext). THIẾU cho HG0.3: kaggle_creds, API keys, HF_TOKEN, R+lme4/glmmTMB/sandwich/boot, tesseract+vie, OSF/ZENODO tokens. Hướng dẫn Windows: state/gates/HG0.3_windows.md"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []

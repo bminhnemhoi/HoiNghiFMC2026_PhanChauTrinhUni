@@ -37,9 +37,15 @@ def dotenv_keys() -> set[str]:
     return keys
 
 
+def venv_bin(name: str) -> Path:
+    """.venv/bin/<name>, or <name>.exe on Windows (where .venv/bin is a junction to .venv/Scripts)."""
+    p = ROOT / ".venv" / "bin" / name
+    return p if p.exists() or not p.with_suffix(".exe").exists() else p.with_suffix(".exe")
+
+
 def check(item: str, keys: set[str]) -> bool:
     kind, _, what = item.partition(":")
-    py = ROOT / ".venv" / "bin" / "python"
+    py = venv_bin("python")
     if item == "python>=3.10":
         return sys.version_info >= (3, 10)
     if item == "venv":
@@ -57,7 +63,7 @@ def check(item: str, keys: set[str]) -> bool:
                 return True
         return False
     if kind == "bin":
-        return shutil.which(what) is not None or (ROOT / ".venv" / "bin" / what).exists()
+        return shutil.which(what) is not None or venv_bin(what).exists()
     if kind == "env":
         return any(k in keys for k in what.split("|"))
     if kind == "tesseract":
