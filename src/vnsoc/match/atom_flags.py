@@ -30,7 +30,7 @@ import sys
 from decimal import Decimal
 from pathlib import Path
 
-from vnsoc.grade import _gap, compute_tolerance, conflict_status
+from vnsoc.grade import _gap, compute_tolerance, conflict_status, log_scale
 # roundness(x) and round_to(x, step): one definition in vnsoc.match.decoys, shared with the decoy rule
 from vnsoc.match.decoys import below, check_decoy, in_atom_unit, num_item, roundness
 from vnsoc.match.decoys import round_to as _round_to
@@ -233,7 +233,8 @@ def status_with_neighbours(atom: dict) -> str:
 
 def strict_tolerance(atom: dict) -> float:
     """'Exact match' tolerance (prereg §5.6 B.18): half a unit of the last recorded decimal place of the MoH values
-    (num: 0.5 for integers; bp: 0.5), never wider than the registered tolerance; 0 for other kinds."""
+    (num: 0.5 for integers; bp: 0.5; log-scale atoms: the same half unit expressed in decades), never wider than the
+    registered tolerance; 0 for other kinds."""
     kind = atom["value_kind"]
     reg = float(atom.get("tolerance") if atom.get("tolerance") is not None else compute_tolerance(atom))
     if kind == "bp":
@@ -246,6 +247,10 @@ def strict_tolerance(atom: dict) -> float:
             e = Decimal(str(float(x))).normalize().as_tuple().exponent
             nd = max(nd, -e if isinstance(e, int) and e < 0 else 0)
     t = 0.5 * 10 ** (-nd)
+    if log_scale(atom):                       # tolerance of a log-scale atom is in decades (vnsoc.grade.log_scale)
+        pos = [float(v["lo"]) for v in atom["vn"] if float(v["lo"]) > 0]
+        if pos:
+            t = min(math.log10(1 + t / x) for x in pos)
     return min(t, reg) if reg > 0 else t
 
 

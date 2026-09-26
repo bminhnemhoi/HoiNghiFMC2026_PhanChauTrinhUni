@@ -234,3 +234,13 @@ def test_roundness_helpers_have_one_definition():
     assert af.roundness is decoys.roundness and af._round_to is decoys.round_to
     assert decoys.round_to(0.25, 0.1) == 0.3 and decoys.round_to(383.3333333333333, 50) == 400.0
     assert decoys.round_to(0.1 * 3, 0.1) == 0.3                     # no binary noise (0.30000000000000004)
+
+
+def test_strict_tolerance_is_in_decades_for_log_scale():
+    import math
+
+    from vnsoc.grade import compute_tolerance
+    a = {"atom_id": "T-vl", "value_kind": "num", "unit": "IU/mL", "vn": [{"lo": 2000, "hi": 2000}],
+         "foreign": [{"system": "US", "values": [{"lo": 20000, "hi": 20000}]}]}
+    a["tolerance"] = compute_tolerance(a)                           # 0.5 decade
+    assert math.isclose(af.strict_tolerance(a), math.log10(1 + 0.5 / 2000))

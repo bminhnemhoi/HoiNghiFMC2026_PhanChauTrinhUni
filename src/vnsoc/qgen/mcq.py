@@ -37,7 +37,7 @@ from __future__ import annotations
 import hashlib
 import random
 
-from vnsoc.grade import _gap, compute_tolerance
+from vnsoc.grade import _gap, below, compute_tolerance
 from vnsoc.match.decoys import _decimals, in_atom_unit, log_scale
 from vnsoc.qgen.render import nice_round, render_value, round_exp, sig_exp
 
@@ -169,7 +169,7 @@ def filler_issues(item: dict, atom: dict) -> list[str]:
         if n.lo <= 0:
             return ["filler ≤ 0"]
     close = [it for it in recorded_values(atom)
-             if not (_gap(it, item, atom) > 0 and round(_gap(it, item, atom), 9) >= round(need, 9))]
+             if not (_gap(it, item, atom) > 0 and not below(_gap(it, item, atom), need))]
     if close:
         what = "trùng" if any(_gap(it, item, atom) == 0 for it in close) else f"cách < 2·dung sai ({need:g})"
         return [f"filler {item.get('text') or _short(item)} {what} một giá trị đã ghi của mẩu"]

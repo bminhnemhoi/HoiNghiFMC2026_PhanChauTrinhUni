@@ -248,6 +248,7 @@ class GradeRecord(Strict):
     partial: bool
     unit_assumed: bool
     needs_llm: bool
+    underspecified: bool = False               # drug class without its form, members disagree (grader 1.1.0)
     grader_version: str
 
 

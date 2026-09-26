@@ -46,7 +46,8 @@ rq3:
 authors:                             # FMC/journal byline; người dùng sửa họ tên đầy đủ + thêm đồng tác giả (HG1.9, HG7.10)
   - {name: "Bình Minh", affiliation: "Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, Việt Nam"}
 qgen:
-  mcq_order_seed: 20260926           # seeded shuffle for MCQ order 0; order 1 = reverse (vnsoc.qgen.mcq)
+  mcq_order_seed: 20260926           # seeded shuffle for MCQ order 0; order 1 = order 0 rotated by 2 (i -> (i+2) mod 4);
+                                     # also seeds the filler-side coin (vnsoc.qgen.mcq.orders, filler_side)
 decision_rules_file: docs/02_KE_HOACH_TRIEN_KHAI.md  # DR1–DR10
 cut_order: [A5_A6, A4, frontier_to_1, cheap_api_to_1, open_models_to_3]
 journals: [JMIR Medical Informatics, International Journal of Medical Informatics]

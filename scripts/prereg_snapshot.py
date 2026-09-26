@@ -29,6 +29,8 @@ BEGIN, END = "<!-- HASHES:BEGIN (scripts/prereg_snapshot.py; do not edit by hand
 FILES = [
     "src/vnsoc/analysis/confirmatory.py", "src/vnsoc/ltt.py", "src/vnsoc/grade.py", "src/vnsoc/normalize_vi.py",
     "src/vnsoc/match/decoys.py", "src/vnsoc/match/atom_flags.py", "src/vnsoc/qgen/mcq.py", "src/vnsoc/qgen/qc.py",
+    "src/vnsoc/qgen/build.py", "src/vnsoc/qgen/render.py", "src/vnsoc/qgen/passages.py", "src/vnsoc/run/prompts.py",
+    "configs/drug_display.yaml",
     "src/vnsoc/extract/corpus_priority.py", "src/vnsoc/analysis/extractor_check.py", "src/vnsoc/schemas.py",
     "configs/project.yaml", "configs/conditions.yaml", "configs/grading.yaml", "configs/models.yaml",
     "tests/test_prereg_code.py", "tests/test_atom_flags.py", "tests/test_grade_review.py",
