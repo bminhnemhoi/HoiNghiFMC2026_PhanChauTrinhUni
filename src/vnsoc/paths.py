@@ -41,8 +41,10 @@ def paths(root: Path | str | None = None) -> SimpleNamespace:
 
 
 def python_bin(root: Path | str | None = None) -> str:
-    venv = paths(root).root / ".venv" / "bin" / "python"
+    r = paths(root).root
+    venv = r / ".venv" / "bin" / "python"
     for cand in (venv, venv.with_suffix(".exe")):   # Windows venv: python.exe (.venv/bin is a junction to Scripts)
         if cand.exists():
-            return str(cand)
+            # Task checks expand $PY unquoted with cwd = project root; a root containing spaces would word-split.
+            return ".venv/bin/python" if any(ch.isspace() for ch in str(r)) else str(cand)
     return "python3"
