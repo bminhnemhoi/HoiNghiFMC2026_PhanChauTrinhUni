@@ -175,7 +175,7 @@ def test_compound_age_guards():
     ("5-7 mL/kg per hour", "en", Num(5, 7, "ml/kg/h")), ("15 ml/kg mỗi giờ", "vi", Num(15, 15, "ml/kg/h")),
     ("0,5 mg/kg mỗi ngày", "vi", Num(0.5, 0.5, "mg/kg/day")), ("0,5 mg/kg cân nặng/ngày", "vi", Num(0.5, 0.5, "mg/kg/day")),
     ("60mg/kg cân nặng/24 giờ", "vi", Num(60, 60, "mg/kg/day")), ("10 - 15mg/kg cân nặng/lần", "vi", Num(10, 15, "mg/kg")),
-    ("10 mg/kg/h", "en", Num(10, 10, "mg/kg")),                          # no mg/kg/h unit: not rewritten
+    ("10 mg/kg/h", "en", Num(10, 10, "mg/kg/h")),                   # grader 1.3.1: mg/kg/h is a unit (was mg/kg)
 ])
 def test_unit_phrases_in_words(text, lang, want):
     assert parse_nums(text, lang)[0] == want
@@ -663,3 +663,227 @@ def test_blood_pressure_forms_after_review(text, bp):
                                   "HA tâm thu ≥ 140 mmHg 30 phút sau nghỉ", "SBP 140 mmHg, 150 mmHg DBP"])
 def test_no_blood_pressure_after_review(text):
     assert parse_bps(text) == []
+
+
+# ================================================================== grader 1.3.1: reader inventory of the corpus
+# Strings are SELF-WRITTEN, modelled on the wording of the 25 corpus documents (source in the comment); no model output.
+# Inventory: review/extraction_calibration/reader_inventory.md.
+@pytest.mark.parametrize("text,want", [
+    ("Thở oxy cannula 2-6 lít/phút", Num(2, 6, "L/min")),                                   # 1019/2025 tr.15
+    ("oxy 8-10l/ph", Num(8, 10, "L/min")), ("6 l/min", Num(6, 6, "L/min")),                  # 3610/2015
+    ("Áp lực: 4 - 6 cm H2O", Num(4, 6, "cmH2O")), ("tối đa 10 cmH2O", Num(10, 10, "cmH2O", "<=")),
+    ("PEEP 5 cmH₂O", Num(5, 5, "cmH2O")),                                                     # subscript digit
+    ("IgG < 3g/L", Num(3, 3, "g/L", "<")), ("albumin < 30 g/L", Num(30, 30, "g/L", "<")),    # 1019/2025, 2388/2024
+    ("Hb < 13,0 g/dL", Num(13, 13, "g/dL", "<")), ("CRP > 100 mg/L", Num(100, 100, "mg/L", ">")),
+    ("đường huyết > 160 mg%", Num(160, 160, "mg/dL", ">")),                                   # 292/2024
+    ("creatinin 26,5 µmol/L", Num(26.5, 26.5, "umol/L")), ("26,5 umol/l", Num(26.5, 26.5, "umol/L")),
+    ("Natri máu < 125mEq/l", Num(125, 125, "mEq/L", "<")),                                    # 2760/2023
+    ("không quá 0,5 mEq/l/giờ", Num(0.5, 0.5, "mEq/L/h", "<=")),                              # 1019/2025 tr.15
+    ("tăng 8 - 10 mmol/L/24 giờ", Num(8, 10, "mmol/L/day")), ("0,5 mmol/L/giờ", Num(0.5, 0.5, "mmol/L/h")),
+    ("sốt > 38,5oC", Num(38.5, 38.5, "°C", ">")), ("trên 39°C", Num(39, 39, "°C", ">")),     # 1019/2025, 162/2024
+    ("37,5 - 38 độ C", Num(37.5, 38, "°C")), ("Đầu cao 30°", Num(30, 30, "°")),              # 2760/2023
+    ("nằm đầu cao 30 độ", Num(30, 30, "°")), ("39 °F", Num(39, 39, "°F")),
+    ("Dobutamine 2 – 20 µg/kg/min", Num(2, 20, "ug/kg/min")),                                  # 1857/2022 Bảng 8
+    ("0,1 - 0,3 µg/kg/phút", Num(0.1, 0.3, "ug/kg/min")), ("0,1 mcg/kg/ph", Num(0.1, 0.1, "ug/kg/min")),
+    ("0,05 mcg/kg/phút", Num(0.05, 0.05, "ug/kg/min")), ("1 µg/kg/giờ", Num(1, 1, "ug/kg/h")),
+    ("20 mg/kg/giờ", Num(20, 20, "mg/kg/h")), ("5 mg/phút", Num(5, 5, "mg/min")), ("10 mg/giờ", Num(10, 10, "mg/h")),
+    ("truyền 20 ml/giờ", Num(20, 20, "ml/h")), ("nước tiểu ≥ 100 mL/h", Num(100, 100, "ml/h", ">=")),
+    ("5 ml/kg/phút", Num(5, 5, "ml/kg/min")), ("20 giọt/phút", Num(20, 20, "drops/min")),
+    ("0,1 đơn vị/kg/giờ", Num(0.1, 0.1, "IU/kg/h")), ("0,1 UI/kg/h", Num(0.1, 0.1, "IU/kg/h")),  # 5481/2020 DKA
+    ("insulin 4 đơn vị/giờ", Num(4, 4, "IU/h")), ("50 UI/kg", Num(50, 50, "IU/kg")),
+    ("nhịp thở trên 30 lần/phút", Num(30, 30, "/min", ">")), ("> 70 ck/phút", Num(70, 70, "/min", ">")),
+    ("nhịp tim 60 nhịp/phút", Num(60, 60, "/min")),                                           # 162/2024, 1857/2022
+    ("MLCT < 30 ml/phút/1,73m2", Num(30, 30, "mL/min/1.73m2", "<")),                          # 2388/2024
+    ("eGFR ≥ 60 ml/phút/1,73 m2", Num(60, 60, "mL/min/1.73m2", ">=")),
+    ("eGFR < 30 mL/min/1.73 m2", Num(30, 30, "mL/min/1.73m2", "<")), ("CrCl < 50 ml/ph", Num(50, 50, "ml/min", "<")),
+    ("giảm > 5 ml/phút/năm", Num(5, 5, "mL/min/year", ">")),
+    ("CD4 < 200 tế bào/mm3", Num(200, 200, "/uL", "<")), ("CD4 dưới 100 tb/mm3", Num(100, 100, "/uL", "<")),
+    ("Tiểu cầu < 100 G/L", Num(100, 100, "10^9/L", "<")), ("Bạch cầu < 4 G/l", Num(4, 4, "10^9/L", "<")),  # 3312, 5642
+    ("QRS ≥ 150 ms", Num(150, 150, "ms", ">=")), ("nín thở 10 giây", Num(10, 10, "s")),
+    ("UACR ≥ 30 mg/g", Num(30, 30, "mg/g", ">=")), ("ACR > 3 mg/mmol", Num(3, 3, "mg/mmol", ">")),
+    ("NT-proBNP ≥ 125 pg/mL", Num(125, 125, "pg/mL", ">=")), ("ferritin < 100 µg/L", Num(100, 100, "ug/L", "<")),
+    ("áp lực thẩm thấu > 320 mOsm/kg", Num(320, 320, "mOsm/kg", ">")),
+    ("giảm ≥ 1 log10 IU/mL", Num(1, 1, "log10 IU/mL", ">=")),
+    ("10 - 15 kcal/kg", Num(10, 15, "kcal/kg")), ("25 kcal/kg/ngày", Num(25, 25, "kcal/kg/day")),
+    ("giảm 2 - 3 kg/tháng", Num(2, 3, "kg/month")),                                           # 2892/2022
+    ("tối thiểu 5 ngày/tuần", Num(5, 5, "days/week", ">=")), ("150 phút/tuần", Num(150, 150, "min/week")),
+    ("30 phút/ngày", Num(30, 30, "min/day")),
+    ("tăng 1 lần/năm", Num(1, 1, "times/year")), ("2 liều/ngày", Num(2, 2, "times/day")),
+    ("1‰", Num(1, 1, "‰")), ("xịt 2 nhát", Num(2, 2, "puff")), ("1 gói", Num(1, 1, "sachet")),
+    ("vòng bụng ≥ 90 cm", Num(90, 90, "cm", ">=")), ("hạt Koplik 0,5 - 1 mm", Num(0.5, 1, "mm")),
+    ("≥ 95th percentile", Num(95, 95, "percentile", ">=")),
+    ("IVIG 0,25 g/kg/ngày", Num(0.25, 0.25, "g/kg/day")), ("0,5 - 1 g/kg", Num(0.5, 1, "g/kg")),
+    ("muối dưới 5g/ngày", Num(5, 5, "g/day", "<")), ("2 g/24 giờ", Num(2, 2, "g/day")),        # 2892/2022
+    ("NVP 200 mg/m2", Num(200, 200, "mg/m2")), ("700 mg/m2/24h", Num(700, 700, "mg/m2/day")),
+    ("vitamin A 200.000 UI/ngày", Num(200000, 200000, "IU/day")),
+    ("2 viên/ngày", Num(2, 2, "tablet/day")), ("2 viên/ ngày", Num(2, 2, "tablet/day")),
+    ("Benzathin penicillin 2,4 triệu đơn vị", Num(2.4, 2.4, "MIU")), ("2,4 triệu U", Num(2.4, 2.4, "MIU")),  # 678, 5968
+    ("Penicilin G 2 MIU", Num(2, 2, "MIU")),                                                  # 2147/2026
+    ("1 lan/ngay", Num(1, 1, "times/day")), ("< 12 tuôi", Num(12, 12, "year", "<")),           # no diacritics / OCR
+    ("2 vién/ngay", Num(2, 2, "tablet/day")),                                                 # 3377/2023 OCR
+])
+def test_units_of_the_corpus(text, want):
+    got = parse_nums(text, "vi")
+    assert got[0] == want, got
+
+
+@pytest.mark.parametrize("variants,want", [
+    (["60mg/ngày", "60mg/ ngày", "60 mg /ngày", "60 mg / ngày", "60 mg/ngày"], Num(60, 60, "mg/day")),    # 1840/2025
+    (["10 mg/kg/ngày", "10 mg/kg/ ngày", "10 mg / kg / ngày"], Num(10, 10, "mg/kg/day")),
+    (["2 lần/ngày", "2 lần/ ngày", "2 lần /ngày"], Num(2, 2, "times/day")),
+    (["1 lần/tuần", "1 lần/ tuần"], Num(1, 1, "times/week")),
+    (["5 ml/giờ", "5 ml/ giờ", "5 ml / giờ"], Num(5, 5, "ml/h")),
+])
+def test_space_around_slash_is_read(variants, want):
+    for v in variants:
+        assert parse_nums(v, "vi") == [want], v
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    ("500 mg/lần", "vi", Num(500, 500, "mg")), ("10 mg/kg/lần", "vi", Num(10, 10, "mg/kg")),   # per dose
+    ("15 mg/kg/liều", "vi", Num(15, 15, "mg/kg")), ("100 mcg/liều", "vi", Num(100, 100, "ug")),
+    ("75mg/ngày", "vi", Num(75, 75, "mg/day")), ("0,125 mg/24h", "vi", Num(0.125, 0.125, "mg/day")),  # per day
+    ("8 giờ/lần", "vi", Num(8, 8, "h")), ("3 tháng/lần", "vi", Num(3, 3, "month")),              # an interval
+    ("500 mg/12h", "vi", Num(500, 500, "mg")),                                                  # dose + interval
+    ("50 mg daily", "en", Num(50, 50, "mg")),     # known limitation (unchanged): 'daily' alone does not make mg/day
+])
+def test_per_dose_and_per_day_forms(text, lang, want):
+    assert parse_nums(text, lang)[0] == want
+
+
+@pytest.mark.parametrize("frm,to,ctx,value,want", [
+    ("g/L", "mmol/L", {"analyte": "glucose"}, 1.26, 1260 / 10 / 18.016),        # glucose 1,26 g/l = 7 mmol/L
+    ("mg/dL", "umol/L", {"analyte": "creatinine"}, 1.0, 88.4),                  # creatinine 113.12 g/mol
+    ("mEq/L", "mmol/L", {"analyte": "sodium"}, 125, 125), ("mEq/L/h", "mmol/L/h", {"analyte": "sodium"}, 0.5, 0.5),
+    ("mEq/L", "mmol/L", {"analyte": "magnesium"}, 4, 2),                        # divalent
+    ("g/dL", "g/L", {}, 13, 130), ("mg/L", "mg/dL", {}, 100, 10), ("ug/mL", "mg/L", {}, 5, 5),
+    ("ng/mL", "ug/L", {}, 100, 100), ("pg/mL", "ng/L", {}, 125, 125), ("umol/L", "mmol/L", {}, 300, 0.3),
+    ("L/min", "ml/min", {}, 2, 2000), ("ml/min", "ml/h", {}, 1, 60), ("ml/day", "ml/h", {}, 2400, 100),
+    ("ug/kg/min", "mg/kg/h", {}, 5, 0.3), ("ug/kg/min", "ug/min", {"weight_kg": 70}, 0.1, 7),
+    ("mg/kg/h", "mg/kg/day", {}, 1, 24), ("g/day", "mg/day", {}, 2, 2000), ("mmol/L/day", "mmol/L/h", {}, 12, 0.5),
+    ("mg", "mg/day", {"doses_per_day": 1}, 75, 75), ("mg", "mg/day", {"doses_per_day": 2}, 500, 1000),
+    ("tablet/day", "mg/day", {"mg_per_tablet": 300}, 2, 600), ("MIU", "IU", {}, 2.4, 2.4e6),
+    ("‰", "%", {}, 1, 0.1), ("°", "°C", {}, 38.5, 38.5), ("mm", "cm", {}, 10, 1), ("s", "min", {}, 30, 0.5),
+    ("ms", "s", {}, 150, 0.15),
+])
+def test_exact_conversion_edges(frm, to, ctx, value, want):
+    assert convert(value, frm, to, ctx) == pytest.approx(want, rel=1e-3)
+
+
+@pytest.mark.parametrize("frm,to,ctx", [
+    ("mg", "mg/day", {}),                          # per dose -> per day only with the atom's doses_per_day
+    ("mEq/L", "mmol/L", {}),                       # valence depends on the analyte
+    ("mg/dL", "umol/L", {}),                       # molar mass depends on the analyte
+    ("cmH2O", "mmHg", {}), ("°F", "°C", {}),       # not a factor / affine scale
+    ("ml/min", "mL/min/1.73m2", {}),               # clearance vs eGFR normalised to 1.73 m2: different quantities
+    ("days/week", "times/week", {}), ("min/day", "min/week", {}), ("kg/month", "kg/week", {}),
+    ("mL/min/1.73m2/year", "mL/min/1.73m2", {}),   # a slope is not a level
+    ("drops/min", "ml/h", {}), ("mg/g", "mg/mmol", {}), ("IU/day", "IU", {}),
+])
+def test_no_inexact_conversion(frm, to, ctx):
+    assert convert(1.0, frm, to, ctx) is None
+
+
+@pytest.mark.parametrize("text,want", [
+    ("0,0625 mg", [Num(0.0625, 0.0625, "mg")]),                                  # 1857/2022: digoxin 62,5 µg
+    ("Sacubitril/valsartan 49/51 mg", [Num(49, 49, "mg"), Num(51, 51, "mg")]),     # 1857/2022 Bảng 6
+    ("Hydralazine/ISDN 37.5mg/20mg", [Num(37.5, 37.5, "mg"), Num(20, 20, "mg")]),
+    ("TDF/3TC/DTG 300/300/50 mg", [Num(300, 300, "mg"), Num(300, 300, "mg"), Num(50, 50, "mg")]),
+    ("co-trimoxazol 800/160 mg", [Num(800, 800, "mg"), Num(160, 160, "mg")]),
+    ("250 mg/5 ml", [Num(250, 250, "mg")]),                                        # a concentration: not a pair
+    ("Tăng huyết áp 140/90 mmHg", [Num(140, 140, None)]),                          # not a dose pair (parse_bps)
+    ("liều 3.125 mg", [Num(3125, 3125, "mg")]),     # known limitation: Vietnamese '.' + 3 digits = thousands
+    ("có 4 triệu chứng", [Num(4, 4, None)]),                                       # bare 'triệu' is not a unit
+])
+def test_numbers_and_dose_pairs(text, want):
+    assert parse_nums(text, "vi") == want
+
+
+def test_units_of_the_pilot_style_are_unchanged():
+    """Readings that existed before 1.3.1 stay (regression)."""
+    for text, want in [("15 ml/kg/giờ", Num(15, 15, "ml/kg/h")), ("0,01 mg/kg", Num(0.01, 0.01, "mg/kg")),
+                       ("100.000/mm3", Num(100000, 100000, "/uL")), ("2 lần/ngày", Num(2, 2, "times/day")),
+                       ("≥ 7,0 mmol/L", Num(7, 7, "mmol/L", ">=")), ("100 × 10^9/L", Num(100, 100, "10^9/L")),
+                       ("25 kg/m2", Num(25, 25, "kg/m2")), ("2.000 IU/mL", Num(2000, 2000, "IU/mL")),
+                       ("3 tuổi 4 tháng", Num(40, 40, "month")), ("0,15 mg", Num(0.15, 0.15, "mg"))]:
+        assert parse_nums(text, "vi")[0] == want, text
+
+
+# ------------------------------------------------------------------ 1.3.1 drug table (configs/grading.yaml)
+def _cfg_tables():
+    from vnsoc.extract.verify_span import drug_tables
+
+    return drug_tables()
+
+
+@pytest.mark.parametrize("text,names", [
+    ("Kháng sinh ban đầu: Amoxicillin hoặc Amoxicillin-acid clavulanic uống", {"amoxicillin", "amoxicillin-clavulanate"}),
+    ("Amoxicillin – acid clavulanic (Uống) hoặc Cefotaxim hoặc Ceftriaxon (TM)",
+     {"amoxicillin-clavulanate", "cefotaxime", "ceftriaxone"}),                                   # 1019/2025 tr.14
+    ("amoxicillin + acid clavulanic", {"amoxicillin-clavulanate"}),                               # combos collapse
+    ("co-amoxiclav", {"amoxicillin-clavulanate"}), ("Amx-Clv", {"amoxicillin-clavulanate"}),
+    ("Ciprofloxacin hoặc Ofloxacin hoặc Levofloxacin", {"ciprofloxacin", "ofloxacin", "levofloxacin"}),
+    ("Oxacillin (TM) hoặc Cloxacillin (TM) hoặc Vancomycin (TM)", {"oxacillin", "cloxacillin", "vancomycin"}),
+    ("Nystatin uống", {"nystatin"}), ("Chống co giật: Diazepam", {"diazepam"}),
+    ("Natriclorua 3% hoặc Mannitol 20%", {"sodium-chloride", "mannitol"}),
+    ("Paracetamol hoặc Ibuprofen", {"paracetamol", "ibuprofen"}), ("Oresol", {"oral-rehydration-salts"}),
+    ("sacubitril/valsartan", {"sacubitril-valsartan"}), ("sacubitril + valsartan", {"sacubitril-valsartan"}),
+    ("ARNI", {"sacubitril-valsartan"}), ("valsartan", {"valsartan"}),
+    ("dapagliflozin hoặc empagliflozin", {"dapagliflozin", "empagliflozin"}),                     # 1857/2022 tr.12
+    ("carvedilol, metoprolol succinat, bisoprolol, nebivolol", {"carvedilol", "metoprolol", "bisoprolol", "nebivolol"}),
+    ("furosemid", {"furosemide"}), ("Noradrenalin ưu thế hơn dopamin", {"noradrenaline", "dopamine"}),
+    ("orlistat và liraglutide 3,0 mg", {"orlistat", "liraglutide"}),                              # 2892/2022 tr.16
+    ("Oseltamivir hoặc zanamivir hoặc baloxavir marboxil", {"oseltamivir", "zanamivir", "baloxavir"}),  # 1840/2025
+    ("sulfamethoxazol + trimethoprim", {"co-trimoxazole"}), ("Cotrimoxazole", {"co-trimoxazole"}),
+    ("Ipm-Cln hoặc Mpm", {"imipenem", "meropenem"}), ("imipenem/cilastatin", {"imipenem"}),
+    ("4-6 Km-Lfx-Pto-Cfz-Z-H", {"kanamycin", "levofloxacin", "prothionamide", "clofazimine", "pyrazinamide",
+                                "isoniazid"}),
+    ("Magie sulphat 4 g", {"magnesium-sulfate"}), ("MgSO4 15%", {"magnesium-sulfate"}),           # 1154/2024
+    ("labetalol hoặc nifedipin hoặc hydralazin", {"labetalol", "nifedipine", "hydralazine"}),
+    ("Calcium gluconate 10%", {"calcium-gluconate"}), ("kali chloride (KCl)", {"potassium-chloride"}),
+    ("natri bicarbonate uống", {"sodium-bicarbonate"}),
+    ("than hoạt + sorbitol", {"activated-charcoal", "sorbitol"}), ("PAM và atropin", {"pralidoxime", "atropine"}),
+    ("N-acetylcystein", {"acetylcysteine"}), ("Naloxon 0,4mg", {"naloxone"}),
+    ("xanh methylen", {"methylthioninium-chloride"}), ("huyết thanh kháng nọc rắn", {"snake-antivenom"}),
+    ("CaNa2EDTA", {"sodium-calcium-edetate"}), ("Vitamin A", {"retinol"}), ("vitamin K1", {"phytomenadione"}),
+    ("Pyridoxine (vitamin B6)", {"pyridoxine"}),
+    ("SOF/VEL", {"sofosbuvir", "velpatasvir"}), ("SOF/DAC", {"sofosbuvir", "daclatasvir"}),       # 2855/2024
+    ("SOF/LED", {"sofosbuvir", "ledipasvir"}), ("Epclusa", {"sofosbuvir", "velpatasvir"}),
+    ("3HP", {"isoniazid", "rifapentine"}), ("Berodual", {"fenoterol", "ipratropium"}),
+    ("Insulin glargine", {"insulin"}), ("insulin NPH", {"insulin"}), ("Penicillin G", {"benzylpenicillin"}),
+    ("Benzathin penicilin G", {"benzathine-benzylpenicillin"}), ("Procain penicillin", {"procaine-benzylpenicillin"}),
+    ("Heparin không phân đoạn", {"heparin"}), ("heparin trọng lượng phân tử thấp", {"enoxaparin|nadroparin"}),
+    ("LMWH", {"enoxaparin|nadroparin"}), ("enoxaparin", {"enoxaparin"}),
+    ("ABC + 3TC + DTG", {"abacavir", "lamivudine", "dolutegravir"}),
+    ("TDF + 3TC + RAL", {"tenofovir-disoproxil", "lamivudine", "raltegravir"}),
+    ("Glucagon 1 mg tiêm bắp", {"glucagon"}), ("IVIG", {"human-normal-immunoglobulin"}),
+    ("HBIG", {"hepatitis-b-immunoglobulin"}),
+])
+def test_drugs_of_the_corpus(text, names):
+    syn, combos = _cfg_tables()
+    assert set(parse_drugs(text, syn, combos).names) == names
+
+
+@pytest.mark.parametrize("text", [
+    "Đánh giá ABC, adrenalin",               # 'ABC' (airway) next to one drug is not abacavir
+    "GLP-1 RA (glucagon-like peptide-1)",    # a drug name inside a non-drug term
+    "tình trạng kháng insulin", "đề kháng insulin", "insulin resistance", "tiết insulin",
+    "kali máu < 3,5 mmol/L", "calci máu", "magie máu", "glucose máu", "albumin máu < 30 g/L",   # analytes
+    "đậm đặc", "kém", "sắt", "nấc cụt", "4 triệu chứng", "thuốc chẹn beta", "statin",           # words, classes
+])
+def test_not_drugs(text):
+    syn, combos = _cfg_tables()
+    names = set(parse_drugs(text, syn, combos).names)
+    assert names <= {"adrenaline"}, (text, names)
+
+
+def test_new_aliases_are_no_vietnamese_word():
+    """No alias of one token is an accent-free Vietnamese word ('đặc' -> 'dac', 'kẽm' -> 'kem', 'nấc' -> 'nac' would
+    read ordinary words as drugs)."""
+    from vnsoc.normalize_vi import _norm_drug_text
+
+    syn, _ = _cfg_tables()
+    vn = {"dac", "kem", "nac", "sat", "than", "kali", "calci", "canxi", "magie", "natri", "dung", "can", "mau", "la",
+          "co", "cho", "tu", "vi", "sau", "da", "an", "ho", "hoa", "son", "tien", "phan", "hat", "bot", "tim", "gan"}
+    single = {_norm_drug_text(a) for c, al in syn.items() for a in [c, *al] if not a.startswith("~")}
+    assert not single & vn

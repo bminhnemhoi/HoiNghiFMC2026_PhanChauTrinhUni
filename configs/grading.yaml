@@ -138,11 +138,48 @@
 #     không thêm (nền của mẩu đã phủ primaquine).
 #   - Kiểm hồi quy lặp lại: render 644 phép lỗi 2→2, 0 đổi; text mục thuốc 0 đổi; trắc nghiệm 368 phương án lỗi 8→8,
 #     0 đổi; tolerance/conflict_status 65/65; missing_vn_values rỗng; 390 câu ngắn thí điểm: bản nháp → bản sửa 0 đổi.
-grader_version: "1.3.0"
+# 1.3.1 (27/9/2026, TRƯỚC đóng băng; nghiên cứu chính; thí điểm vẫn 1.2.0). Nguồn: hiệu chỉnh trích mẩu 4 văn bản
+#   (review/extraction_calibration) — 20–35% khuyến cáo bị bỏ vì bộ đọc không đọc được thuốc/đơn vị. Kiểm kê MỘT lần trên
+#   lớp chữ (kể cả OCR) của 25 văn bản in_corpus: review/extraction_calibration/reader_inventory.md. Mù với đầu ra mô hình;
+#   câu thử tự viết theo cách viết của kho (tests/test_normalize.py, tests/test_grade_fixes.py, mục 1.3.1).
+#   - thuốc: +418 INN đơn, 9 phác đồ có tên, 1 lớp (LMWH), 970 bí danh (947 trên khóa mới, 23 thêm vào khóa cũ), 8 tổ hợp
+#     cố định (combos: amoxicillin-clavulanate, co-trimoxazole = SMX + TMP, sacubitril-valsartan, piperacillin-/ceftolozane-
+#     tazobactam, ampicillin-/cefoperazone-sulbactam, ceftazidime-avibactam); bí danh đầu = cách viết tiếng Việt nhiều
+#     nhất trong kho; 396 thuốc đọc được trong kho, 22 không (18 thuốc cùng nhóm để câu trả lời nêu chúng là giá trị, nhãn
+#     5, không phải từ chối — tiền lệ 1.3.0 E5; 4 chỉ có dạng kho không đọc được: 'BAL', 'sulbac tam', 'canxi' trơn…). Mã chuỗi 3 chữ HOA phân biệt hoa-thường, ≥ 2 thuốc khác: ~ABC@2,
+#     ~RAL@2, ~PAS@2 ('ABC' đánh giá đường thở ≠ abacavir); ~km, ~cm (lao). 'SOF/DAC', 'SOF/LED' là bí danh phác đồ ('DAC'
+#     đứng riêng = đặc). Không đọc: tên chất xét nghiệm trơn (kali, calci, magie, glucose, albumin), nhóm thuốc (statin,
+#     SGLT2i, ACEi…), 'glucagon-like', 'kháng insulin' (normalize_vi.NOT_DRUG_RE), 'triệu' trơn ('4 triệu chứng').
+#   - adjunct_drugs (mới): thuốc hỗ trợ không phải key_drugs của mục nào của mẩu thuộc mọi phác đồ (grade.regimen_drugs):
+#     giữ nhãn 1.3.0 của 'TDF + 3TC + DTG + vitamin B6', 'AL + paracetamol' (trước đây các thuốc này vô hình).
+#   - normalize_vi: 412 cách viết đơn vị mới → 96 đơn vị chuẩn mới (L/min, cmH2O, g/L, g/dL, mg/L, µmol/L, mEq/L,
+#     mEq/L/h, mmol/L/h, °C/°, µg/kg/min, mg/kg/h, mL/h, mL/min, mL/min/1.73m2, drops/min, IU/kg/h, /min, ms, s, mm, ‰,
+#     kcal, percentile, MIU…); khoảng trắng quanh '/' được đọc ('mg/ ngày' = 'mg/ngày'); dạng mỗi liều giữ đơn vị mỗi liều
+#     ('mg/lần' = mg), dạng mỗi ngày là /day ('g/ngày'); cạnh quy đổi CHỈ khi chính xác (tiền tố SI, thời gian, định nghĩa;
+#     mol↔khối lượng và mEq↔mmol chỉ khi context.analyte nêu chất; mg↔mg/day chỉ khi context.doses_per_day); không có cạnh
+#     ml/min↔mL/min/1.73m2, days/week↔times/week, cmH2O↔mmHg, °F↔°C. 'G/L' (G hoa) = 10^9/L; '0,0625' là một số; liều tổ
+#     hợp '49/51 mg', '37,5 mg/20 mg' = mỗi phần một giá trị; '2,4 triệu đơn vị' = 2,4 MIU; chữ số chỉ số dưới ('cmH₂O').
+#   - Kiểm hồi quy: 65 mẩu thí điểm — render mọi giá trị (VI+EN) 0 đổi nhãn/vai trò; chấm text mọi mục 0 đổi;
+#     tolerance/conflict_status 65/65; missing_vn_values rỗng; trắc nghiệm 368 phương án (chấm như câu ngắn): 4 đổi,
+#     đều là phương án gây nhiễu 'metamizol xen kẽ paracetamol' 6 → 5 'unlisted' (đúng vai trò), lệch vai trò 8 → 4.
+#     317 mẩu hiệu chỉnh: missing_vn_values đổi ở 24 mẩu, TẤT CẢ là mẩu ghi đơn vị thay thế vì bộ đọc cũ (l cho L/min, cm cho
+#     cmH2O, g cho g/L, ug/kg cho µg/kg/phút, mg cho 'mg/ ngày', IU cho 'UI/ngày', day cho 'ngày/tuần'…); cả 24 qua khi đặt
+#     đúng đơn vị thật (người trích phải sửa unit trước khi gộp).
+grader_version: "1.3.1"
 tolerance_rule: "half the minimum gap between the MoH value set and any other source value (foreign, superseded, decoy)"
 partial_overlap: wrong_in_primary_reported_separately
 multi_value_without_vn_designation: wrong_reported_separately
 llm_extraction_fallback: {used_only_when: "no ĐÁP ÁN/ANSWER line and (>1 candidate values, or no value but a number (cat: or a stated drug name / TB code) in the text; 1.3.0)", manual_check_n: 500}
+# adjunct_drugs (1.3.1): thuốc hỗ trợ/triệu chứng. Trong mẩu thuốc, một thuốc ở danh sách này mà KHÔNG là key_drugs của mục
+#   nào của mẩu (Bộ Y tế/nước ngoài/bản cũ/mồi) được coi như thuốc nền (grade.regimen_drugs): 'TDF + 3TC + DTG + vitamin B6',
+#   'AL + paracetamol' giữ nhãn của phác đồ (trước 1.3.1 các thuốc này không có trong bảng nên không được đọc; bảng lớn hơn
+#   không được biến câu trả lời thành "phác đồ khác" = nhãn 5). Là key_drugs của một mục thì tính như mọi thuốc. Không có
+#   NSAID (ibuprofen chống chỉ định trong SXHD), kháng sinh, thuốc đặc hiệu. Mẩu cat: không đổi (nêu thuốc ngoài hạng mục = 5).
+adjunct_drugs: [paracetamol, retinol, pyridoxine, thiamine, cyanocobalamin, ascorbic-acid, vitamin-d, folic-acid, zinc,
+                oral-rehydration-salts, ferrous-sulfate, ferrous-fumarate, ferrous-gluconate, calcium-carbonate,
+                sodium-chloride, ringer-lactate, omeprazole, esomeprazole, pantoprazole, ranitidine, famotidine, cimetidine,
+                ondansetron, metoclopramide, domperidone, diphenhydramine, chlorpheniramine, cetirizine, loratadine,
+                promethazine, lactulose]
 # drugs: khóa chuẩn -> bí danh (so khớp không dấu, chữ thường sau chuẩn hóa). Mở rộng khi gặp thuốc mới + thêm test.
 #   - Khóa là một INN: bí danh đầu tiên là tên hiển thị tiếng Việt (qgen.render), nên để cách viết tiếng Việt/INN
 #     trước viết tắt. Không dùng viết tắt 1–2 chữ (H, R, Z, E, Pa, Am, Cs) — quá mơ hồ; viết tắt ≥ 3 chữ.
@@ -155,7 +192,8 @@ llm_extraction_fallback: {used_only_when: "no ĐÁP ÁN/ANSWER line and (>1 cand
 #   - Bí danh bắt đầu "~" (mã lao 1–2 chữ: Cs, Am, E, Z, H, Hh): chỉ đọc trong chuỗi phác đồ có ≥ 3 thuốc khác đã
 #     nhận ("Bdq Lzd Cfz Cs", "4-6 Am-Lfx-Pto-Cfz-Z-H"); không bao giờ đọc đứng riêng. "~ma@n": ngưỡng n
 #     thay cho 3; mã có chữ hoa so khớp phân biệt hoa-thường (1.2.0: "~Pa@2" — "Bdq, Pa, Lzd" = BPaL; "X-quang PA,
-#     Bdq, Lzd" không đọc PA).
+#     Bdq, Lzd" không đọc PA). 1.3.1: mã 3 chữ viết HOA mơ hồ ngoài chuỗi thuốc cũng theo luật này, luôn @2 trở lên
+#     ("~ABC@2": "ABC + 3TC + DTG" = abacavir; "Đánh giá ABC, adrenalin" không đọc ABC; "~RAL@2", "~PAS@2").
 #   - Phác đồ có tên đánh vần rời từng chữ ("B-Pa-L", "B Pa L M") đọc khi các chữ ghép lại đúng một bí danh của khóa
 #     "a+b+c" (normalize_vi._spelled_regimens); không nới luật "~".
 #   - Quy ước đối xứng: thêm viết tắt phác đồ cho một nguồn nước ngoài thì thêm viết tắt tương ứng của mồi/bản cũ.
@@ -168,11 +206,11 @@ drugs:
   artesunate: [artesunat]
   dihydroartemisinin-piperaquine: [dihydroartemisinin-piperaquin, dha-ppq, dha-piperaquine, dha-piperaquin, arterakine,
                                    eurartesim]                   # 'DHA-piperaquine' (1.3.0 after review)
-  primaquine: [primaquin]
+  primaquine: [primaquin, pimaquin]
   tafenoquine: [tafenoquin, krintafel, arakoda]
   quinine: [quinin]
   clindamycin: [clindamycine]
-  chloroquine: [cloroquin, chloroquin]
+  chloroquine: [cloroquin, chloroquin, chloroquine phosphate, chloroquin phosphat, cloroquin phosphat]
   adrenaline: [adrenalin, epinephrine, epinephrin]
   bedaquiline: [bedaquilin, bdq]
   pretomanid: [~Pa@2]
@@ -188,9 +226,9 @@ drugs:
   # added 26/9/2026 (pre-freeze) from pilot-agent reports; no 1–2 letter abbreviations (H, R, Z, E) — too ambiguous
   emtricitabine: [emtricitabin, ftc]
   efavirenz: [efavirenz, efv]
-  isoniazid: [izoniazid, inh, ~h, ~hh]
+  isoniazid: [izoniazid, isoniazide, inh, ~h, ~hh]
   rifampicin: [rifampin, rifampicine]
-  pyrazinamide: [pyrazinamid, pza, ~z]
+  pyrazinamide: [pyrazinamid, pyrazynamid, pza, ~z]
   ethambutol: [emb, ~e]
   rifapentine: [rifapentin, rpt]
   levofloxacin: [levofloxacine, lfx]
@@ -201,16 +239,18 @@ drugs:
   atovaquone-proguanil: [atovaquon-proguanil, malarone]
   atovaquone: [atovaquon]
   proguanil: []
-  doxycycline: [doxycyclin]
+  doxycycline: [doxycyclin, doxycillin]
   alteplase: [rt-pa, actilyse]
   tenecteplase: [tnk-tpa]
   ceftazidime: [ceftazidim]
-  meropenem: []
-  co-trimoxazole: [cotrimoxazol, co-trimoxazol, trimethoprim-sulfamethoxazole, tmp-smx, bactrim]
+  meropenem: [mpm]                                                 # 1.3.1: TB code Mpm
+  co-trimoxazole: [cotrimoxazol, co-trimoxazol, trimethoprim-sulfamethoxazole, tmp-smx, bactrim, cotrimoxazole,
+                   sulfamethoxazole-trimethoprim, sulfamethoxazol-trimethoprim, trimethoprim-sulfamethoxazol,
+                   smx-tmp, trimoxazol, trimoxazole]                    # 1.3.1: + spellings; combos (SMX + TMP)
   azithromycin: [azithromycine, azithromycin]
   chloramphenicol: [cloramphenicol]
   # added 26/9/2026 (grader 1.1.0) from tbhiv_review.md / hbv_review.md
-  amikacin: [~am]
+  amikacin: [amikacine, ~am]                                       # 1.3.1: amikacine
   prothionamide: [prothionamid, pto]
   ethionamide: [ethionamid, eto]
   bictegravir: [bic]
@@ -223,23 +263,489 @@ drugs:
   # counterpart of Truvada (Descovy) are added with DRV/r and Truvada; streptomycin and kanamycin (older TB drugs,
   # full names only, no 1–2 letter codes).
   rifabutin: [rifabutine, rfb]
-  streptomycin: [streptomycine]
-  kanamycin: [kanamycine]
+  streptomycin: [streptomycine, streptomicin, streptomicine, steptomycin, steptomycine]   # 1.3.1: corpus typos
+  kanamycin: [kanamycine, ~km]                                     # 1.3.1: TB code Km
   darunavir: [drv]
   ritonavir: [rtv]
   lopinavir: [lpv]
   atazanavir: [atv]
   # 1.3.0 after review: other ARVs an answer may name instead of a recorded regimen (full names; AZT/ZDV/RPV only: no
   # 'ABC'/'RAL', ambiguous in other contexts). Read so that such an answer is a value (5), not an abstention (6).
-  raltegravir: [raltegravir]
+  raltegravir: [raltegravir, ~RAL@2]        # 1.3.1: 'RAL' only in a chain with 2 other drugs ('TDF + 3TC + RAL')
   zidovudine: [zidovudin, azt, zdv]
-  abacavir: [abacavir]
+  abacavir: [abacavir, ~ABC@2]              # 1.3.1: 'ABC' (capital) only in a chain with 2 other drugs ('ABC + 3TC +
+                                             # DTG'); 'ABC' (airway) alone or next to one drug ('ABC, adrenalin') no
   rilpivirine: [rilpivirin, rpv]
   # WHO ACTs named in P-malaria_ocr-02 (key_drugs had no entry here, so these foreign values were never matched)
   artesunate-amodiaquine: [artesunat-amodiaquin, as-aq, asaq]
   amodiaquine: [amodiaquin]
   artesunate-mefloquine: [artesunat-mefloquin, as-mq, asmq]
   sulfadoxine-pyrimethamine: [sulfadoxin-pyrimethamin, fansidar]
+  # added 27/9/2026 (grader 1.3.1) from the reader inventory of the 25 corpus documents
+  # (review/extraction_calibration/reader_inventory.md): every drug the corpus names in a recommendation context,
+  # plus same-class alternatives an answer may name (a value, label 5, not an abstention; precedent 1.3.0 E5).
+  # First alias = the Vietnamese spelling most often written in the corpus. No 1–2 letter aliases; 3-letter
+  # abbreviations only where no Vietnamese word (accent-free) has that spelling ('sof', 'vel', 'ors', 'kcl');
+  # ambiguous capitals ('ABC', 'RAL', 'DAC', 'LED', 'PAS') only as chain codes. Bare analytes ('kali', 'calci',
+  # 'magie', 'glucose', 'albumin') and drug classes (statin, SGLT2i, ACEi...) are NOT drugs here.
+  # -- antibacterials (incl. TB second-line codes; beta-lactamase inhibitor combinations collapse via combos)
+  amoxicillin: [amoxicillin, amoxicilin, amoxycillin, amoxicillin trihydrate, amoxycilin]
+  clavulanic-acid: [acid clavulanic, axit clavulanic, clavulanic acid, clavulanat, clavulanate, clavulanic,
+                    kali clavulanat, potassium clavulanate]
+  amoxicillin-clavulanate: [amoxicillin-acid clavulanic, amoxicilin-acid clavulanic, amoxicillin-axit clavulanic,
+                            amoxicillin-clavulanic acid, amoxicillin-clavulanat, amoxicilin-clavulanat,
+                            amoxicillin clavulanic, co-amoxiclav, amoxiclav, augmentin, amx-clv]
+  ampicillin: [ampicillin, ampicilin, ampixilin]
+  sulbactam: []
+  ampicillin-sulbactam: [ampicillin-sulbactam, ampicilin-sulbactam, unasyn]
+  benzylpenicillin: [penicillin g, penicilin g, benzyl penicillin, benzylpenicilin, benzyl penicilin, penicillin,
+                     penicilin, penicillin g natri, penicillin g kali, crystalline penicillin]
+  benzathine-benzylpenicillin: [benzathine penicillin, benzathin penicilin, benzathin penicillin,
+                                benzathine penicillin g, penicillin g benzathine, benzathin benzylpenicilin,
+                                benzathine benzylpenicillin, benzathin penicilin g, extencillin, extencilin]
+  procaine-benzylpenicillin: [procaine penicillin, procain penicilin, penicillin g procaine, procain penicillin]
+  phenoxymethylpenicillin: [penicillin v, penicilin v, phenoxymethylpenicilin]
+  oxacillin: [oxacilin]
+  cloxacillin: [cloxacillin, cloxacilin]
+  dicloxacillin: [dicloxacillin, dicloxacilin]
+  nafcillin: [nafcillin, nafcilin]
+  piperacillin: [piperacillin, piperacilin]
+  tazobactam: []
+  piperacillin-tazobactam: [piperacillin-tazobactam, piperacilin-tazobactam, pip-tazo, tazocin]
+  cefalexin: [cephalexin, cefalexine, cephalexine]
+  cefazolin: [cefazolin, cephazolin, cefazoline]
+  cefuroxime: [cefuroxim, cefuroxime axetil]
+  cefaclor: []
+  cefprozil: []
+  cefoxitin: [cefoxitin, cefoxitine]
+  cefotaxime: [cefotaxim]
+  ceftriaxone: [ceftriaxon, ceftriazon, ceftrixone, ceftrixon]
+  cefepime: [cefepim]
+  cefixime: [cefixim]
+  cefpodoxime: [cefpodoxim, cefpodoxime proxetil]
+  cefdinir: []
+  cefditoren: [cefditoren, cefditoren pivoxil]
+  cefoperazone: [cefoperazon]
+  cefoperazone-sulbactam: [cefoperazon-sulbactam]
+  ceftaroline: [ceftarolin, ceftaroline fosamil]
+  ceftolozane: [ceftolozan]
+  ceftolozane-tazobactam: [ceftolozan-tazobactam]
+  avibactam: []
+  ceftazidime-avibactam: [ceftazidim-avibactam]
+  cefpirome: [cefpirom]
+  imipenem: [imipenem, imipenem-cilastatin, imipenem cilastatin, imipenem-cilastatine, ipm-cln, imp-cln, tienam]
+  ertapenem: []
+  doripenem: []
+  aztreonam: []
+  gentamicin: [gentamicin, gentamycin, gentamicine]
+  tobramycin: [tobramycin, tobramycine]
+  netilmicin: [netilmicine, neltimicin]
+  capreomycin: [capreomycin, capreomycine, "~cm"]
+  clarithromycin: [clarithromycin, clarithromycine, clarythomycin]
+  erythromycin: [erythromycin, erythromycine, erythromicin]
+  roxithromycin: [roxithromycin, roxithromycine]
+  spiramycin: [spiramycin, spiramycine]
+  tetracycline: [tetracyclin]
+  minocycline: [minocycline, minocyclin]
+  tigecycline: [tigecycline, tigecyclin]
+  ciprofloxacin: [ciprofloxacin, ciprofloxacine]
+  ofloxacin: [ofloxacin, ofloxacine]
+  norfloxacin: [norfloxacin, norfloxacine]
+  pefloxacin: [pefloxacin, pefloxacine]
+  gatifloxacin: [gatifloxacin, gatifloxacine, gfx]
+  nalidixic-acid: [acid nalidixic, nalidixic acid, axit nalidixic]
+  vancomycin: [vancomycin, vancomycine]
+  teicoplanin: [teicoplanin, teicoplanine]
+  daptomycin: [daptomycin, daptomycine]
+  colistin: [colistin, colistine, colimycin, polymyxin e, colistimethate, colistimethat]
+  polymyxin-b: [polymyxin b]
+  fosfomycin: [fosfomycin, fosfomycine]
+  nitrofurantoin: [nitrofurantoine]
+  metronidazole: [metronidazol]
+  tinidazole: [tinidazole, tinidazol]
+  trimethoprim: [trimethoprim, trimethoprime]
+  sulfamethoxazole: [sulfamethoxazole, sulfamethoxazol, smx]
+  sulfadiazine: [sulfadiazine, sulfadiazin]
+  terizidone: [terizidone, terizidon, trd]
+  para-aminosalicylic-acid: [para-aminosalicylic-acid, para-aminosalicylic acid, acid para-aminosalicylic, p-aminosalicylic acid,
+                             axit para-aminosalicylic, "~PAS@2"]
+  # -- antivirals (influenza, herpes, HCV DAAs + named HCV regimens, older ARVs)
+  oseltamivir: [oseltamivir, tamiflu, oseltamivir phosphate]
+  zanamivir: []
+  baloxavir: [baloxavir, baloxavir marboxil]
+  peramivir: []
+  aciclovir: [acyclovir]
+  valaciclovir: [valaciclovir, valacyclovir]
+  famciclovir: []
+  ganciclovir: [ganciclovir, gancyclovir]
+  valganciclovir: []
+  ribavirin: [ribavirin, ribavirine, rbv]
+  sofosbuvir: [sofosbuvir, sof, sovaldi]
+  velpatasvir: [velpatasvir, vel]
+  daclatasvir: [daclatasvir, dcv, daklinza]
+  ledipasvir: [ledipasvir, ldv]
+  glecaprevir: [glecaprevir, gle]
+  pibrentasvir: [pibrentasvir, pib]
+  voxilaprevir: [voxilaprevir, vox]
+  elbasvir: [elbasvir, ebr]
+  grazoprevir: [grazoprevir, gzr, gazoprevir]
+  interferon-alfa: [interferon alfa, interferon alpha, ifn-alfa, ifn alpha]   # not bare 'interferon' (IGRA)
+  peginterferon-alfa: [peginterferon alfa, peginterferon, peg-interferon, peg-ifn, pegylated interferon,
+                       interferon pegylat, peg ifn alfa]
+  stavudine: [stavudine, stavudin, d4t]
+  etravirine: [etravirin]
+  elvitegravir: []
+  tipranavir: []
+  saquinavir: []
+  # -- antifungals, antiparasitics
+  fluconazole: [fluconazole, fluconazol]
+  itraconazole: [itraconazole, itraconazol]
+  voriconazole: [voriconazole, voriconazol]
+  posaconazole: [posaconazol]
+  ketoconazole: [ketoconazole, ketoconazol]
+  amphotericin-b: [amphotericin b, amphotericine b, amphotericin, amphotericin b deoxycholate,
+                   liposomal amphotericin b, amphotericin b liposome, amphotericin b liposomal]
+  flucytosine: [flucytosine, flucytosin]
+  nystatin: [nystatin, nystatine]
+  clotrimazole: [clotrimazole, clotrimazol, clitrimazole]
+  miconazole: [miconazole, miconazol, micronazole]
+  albendazole: [albendazol]
+  mebendazole: [mebendazol]
+  praziquantel: []
+  ivermectin: [ivermectin, ivermectine]
+  pyrimethamine: [pyrimethamine, pyrimethamin]
+  folinic-acid: [acid folinic, axit folinic, folinic acid, calci folinat, calcium folinate, leucovorin]
+  # -- cardiovascular, anticoagulants and reversal agents
+  sacubitril: []
+  valsartan: []
+  sacubitril-valsartan: [sacubitril/valsartan, arni, entresto]
+  losartan: [losartan, losartan kali, losartan potassium, losatan]
+  irbesartan: []
+  candesartan: []
+  telmisartan: []
+  olmesartan: []
+  captopril: []
+  enalapril: []
+  lisinopril: []
+  perindopril: []
+  ramipril: []
+  imidapril: []
+  benazepril: []
+  quinapril: []
+  trandolapril: []
+  bisoprolol: []
+  carvedilol: []
+  metoprolol: [metoprolol, metoprolol succinat, metoprolol succinate, metoprolol tartrat, metoprolol tartrate]
+  nebivolol: []
+  atenolol: []
+  propranolol: [propranolol, propanolol]
+  labetalol: []
+  esmolol: []
+  acebutolol: []
+  nadolol: []
+  sotalol: []
+  amlodipine: [amlodipine, amlodipin]
+  nifedipine: [nifedipine, nifedipin, nifedipine retard, nifedipin retard]
+  felodipine: [felodipin]
+  lercanidipine: [lercanidipin]
+  lacidipine: [lacidipine, lacidipin]
+  nicardipine: [nicardipine, nicardipin]
+  nimodipine: [nimodipine, nimodipin]
+  diltiazem: []
+  verapamil: []
+  methyldopa: [methyldopa, alpha-methyldopa, alpha methyldopa, metyldopa, aldomet]
+  clonidine: [clonidine, clonidin]
+  hydralazine: [hydralazine, hydralazin]
+  urapidil: []
+  nitroprusside: [natri nitroprussid, nitroprussid, sodium nitroprusside, natri nitroprusiat]
+  isosorbide-dinitrate: [isosorbid dinitrat, isosorbide dinitrate, isdn]
+  isosorbide-mononitrate: [isosorbid mononitrat, isosorbide mononitrate, ismn]
+  nitroglycerin: [nitroglycerin, nitroglycerine, glyceryl trinitrate, trinitrin]
+  furosemide: [furosemide, furosemid, lasix]
+  bumetanide: [bumetanide, bumetanid]
+  torasemide: [torsemide, torasemid, torsemid]
+  spironolactone: [spironolactone, spironolacton]
+  eplerenone: [eplerenon]
+  hydrochlorothiazide: [hydrochlorothiazide, hydroclorothiazid, hydrochlorothiazid, hctz]
+  indapamide: [indapamide, indapamid]
+  chlortalidone: [chlorthalidone, chlorthalidon, clorthalidon, chlortalidon]
+  acetazolamide: [acetazolamide, acetazolamid]
+  tolvaptan: []
+  dapagliflozin: []
+  empagliflozin: []
+  canagliflozin: []
+  ertugliflozin: []
+  digoxin: [digoxin, digoxine]
+  ivabradine: [ivabradin]
+  milrinone: [milrinone, milrinon]
+  levosimendan: []
+  vasopressin: [vasopressin, vasopressine]
+  noradrenaline: [noradrenalin, norepinephrine, norepinephrin, nor-adrenalin, levophed]
+  dopamine: [dopamin]
+  dobutamine: [dobutamin]
+  amiodarone: [amiodaron, cordarone, cordaron]
+  lidocaine: [lidocain, xylocain, xylocaine, lignocaine, lignocain]
+  atropine: [atropin, atropin sulfat, atropine sulfate, atropin sulphat]
+  ranolazine: [ranolazin]
+  atorvastatin: []
+  rosuvastatin: []
+  simvastatin: []
+  pravastatin: []
+  fluvastatin: []
+  lovastatin: []
+  pitavastatin: []
+  ezetimibe: [ezetimibe, ezetimib]
+  fenofibrate: [fenofibrate, fenofibrat]
+  gemfibrozil: []
+  aspirin: [aspirin, acid acetylsalicylic, acetylsalicylic acid, axit acetylsalicylic, aspirine, aspégic]
+  clopidogrel: []
+  ticagrelor: [ticargrelor]
+  prasugrel: []
+  cilostazol: []
+  dipyridamole: [dipyridamole, dipyridamol]
+  heparin: [heparin, heparine, unfractionated heparin, heparin không phân đoạn, heparin tiêu chuẩn, ufh]
+  enoxaparin: [enoxaparin, enoxaparine, lovenox]
+  nadroparin: [nadroparin, fraxiparin, fraxiparine, nadroparine]
+  fondaparinux: []
+  warfarin: [warfarin, wafarin, warrfarin, coumadin]
+  acenocoumarol: [acenocoumarol, sintrom, acenocoumarin]
+  dabigatran: [dabigatran, dabigatran etexilate, dabigatran etexilat]
+  rivaroxaban: []
+  apixaban: []
+  edoxaban: [edoxaban, endoxaban]
+  protamine: [protamine, protamin, protamin sulfat, protamine sulfate, protamin sulphat]
+  idarucizumab: []
+  andexanet-alfa: [andexanet alfa, andexanet]
+  prothrombin-complex-concentrate: [prothrombin-complex-concentrate, prothrombin complex concentrate, phức hợp prothrombin, pcc,
+                                    phức hợp prothrombin cô đặc, 4f-pcc]
+  phytomenadione: [vitamin k1, phytonadione, phytomenadion, phytonadion]
+  tranexamic-acid: [acid tranexamic, axit tranexamic, tranexamic acid, transamin]
+  # -- diabetes, obesity, thyroid, gout (all insulins read as ONE drug 'insulin')
+  insulin: [insulin, insulin người, human insulin, insulin thường, regular insulin, insulin regular, insulin nph, nph,
+            insulin isophane, isophane insulin, insulin glargine, glargine, insulin detemir, detemir,
+            insulin degludec, degludec, insulin aspart, insulin lispro, lispro, insulin glulisine, glulisine,
+            insulin analog, insulin analogue, glargin, glulisin]
+  metformin: [metformin, metformine, metformin hcl, metformin xr]
+  gliclazide: [gliclazide, gliclazid, gliclazide mr, gliclazid mr]
+  glimepiride: [glimepiride, glimepirid]
+  glibenclamide: [glyburide, glibenclamid, glyburid]
+  glipizide: [glipizide, glipizid]
+  repaglinide: [repaglinide, repaglinid]
+  acarbose: [acarbose, acarbos]
+  pioglitazone: [pioglitazone, pioglitazon]
+  sitagliptin: []
+  vildagliptin: [vildagligtin]
+  saxagliptin: []
+  linagliptin: [linagliptin, linaglipin]
+  alogliptin: []
+  liraglutide: [liraglutide, liraglutid]
+  dulaglutide: [dulaglutid]
+  semaglutide: [semaglutid]
+  exenatide: [exenatid]
+  orlistat: []
+  phentermine: [phentermine, phentermin]
+  levothyroxine: [levothyroxine, levothyroxin, l-thyroxin, l-thyroxine]
+  allopurinol: []
+  febuxostat: []
+  colchicine: [colchicin]
+  # -- respiratory (bronchodilators, inhaled corticosteroids, mucolytics; named inhaler combinations)
+  salbutamol: [salbutamol, albuterol, ventolin]
+  terbutaline: [terbutaline, terbutalin]
+  fenoterol: []
+  ipratropium: [ipratropium, ipratropium bromide, ipratropium bromid]
+  tiotropium: [tiotropium, tiotropium bromide, tiotropium bromid, spiriva]
+  umeclidinium: []
+  glycopyrronium: [glycopyronium, glycopyrronium bromide, glycopyrrolate, glycopyrrolat]
+  aclidinium: []
+  indacaterol: []
+  olodaterol: []
+  vilanterol: []
+  formoterol: []
+  salmeterol: []
+  budesonide: [budesonide, budesonid, pulmicort]
+  fluticasone: [fluticasone propionate, fluticason, fluticason propionat, fluticasone furoate, fluticason furoat]
+  beclometasone: [beclomethasone, beclometason, beclomethason, beclometasone dipropionate]
+  theophylline: [theophylline, theophyllin, theophylin]
+  aminophylline: [aminophylline, aminophyllin, diaphyllin]
+  doxofylline: [doxofyllin]
+  roflumilast: []
+  acetylcysteine: [n-acetylcystein, acetylcystein, n-acetylcysteine, n-acetyl cystein, n acetylcystein]
+  carbocisteine: [carbocystein, carbocistein, carbocysteine]
+  montelukast: [montelukeast]
+  # -- corticosteroids, analgesics, anaesthetics, anticonvulsants, antihistamines
+  prednisolone: [prednisolon]
+  prednisone: [prednisone, prednison]
+  methylprednisolone: [methylprednisolon, methylprednisone, solu-medrol, methyl prednisolon, methylprednison, solumedrol, methyprednisolon]
+  hydrocortisone: [hydrocortison, hydrocortison hemisuccinat, hydrocortisone hemisuccinate,
+                   hydrocortisone sodium succinate]
+  dexamethasone: [dexamethasone, dexamethason, dexamethasone phosphate, dexamethason phosphat, dexamathasone]
+  betamethasone: [betamethasone, betamethason]
+  paracetamol: [paracetamol, acetaminophen, paracetamon]
+  ibuprofen: []
+  diclofenac: []
+  morphine: [morphin, morphin sulfat, morphine sulfate]
+  fentanyl: []
+  tramadol: []
+  codeine: [codein]
+  ketamine: [ketamin]
+  propofol: []
+  thiopental: [thiopental, thiopental natri, thiopentone, thiopenton]
+  diazepam: [diazepam, seduxen]
+  midazolam: [midazolam, medazolam, mydazolam]
+  lorazepam: []
+  clonazepam: []
+  phenobarbital: [phenobarbital, phenobarbitan, gardenal, luminal]
+  phenytoin: [phenytoin, phenytoine]
+  valproate: [valproic acid, acid valproic, axit valproic, natri valproat, sodium valproate, valproat]
+  levetiracetam: []
+  carbamazepine: [carbamazepin]
+  haloperidol: []
+  diphenhydramine: [diphenhydramin, dimedrol, dimedron]
+  chlorpheniramine: [chlorpheniramine, chlorpheniramin, clorpheniramin, chlorphenamine, chlorphenamin]
+  promethazine: [promethazin, pipolphen, pipolphene]
+  cetirizine: [cetirizin]
+  loratadine: [loratadin]
+  # -- gastrointestinal, oral rehydration, zinc
+  omeprazole: [omeprazole, omeprazol]
+  esomeprazole: [esomeprazol]
+  pantoprazole: [pantoprazol]
+  ranitidine: [ranitidin]
+  famotidine: [famotidin]
+  cimetidine: [cimetidin]
+  metoclopramide: [metoclopramid, primperan]
+  domperidone: [domperidon]
+  ondansetron: []
+  lactulose: [lactulose, lactulos]
+  oral-rehydration-salts: [oral-rehydration-salts, oresol, ors, oral rehydration salts, oral rehydration solution,
+                           dung dịch bù nước điện giải, ors nồng độ thấp, ors giảm áp lực thẩm thấu]
+  zinc: [zinc, kẽm gluconat, kẽm sulfat, zinc sulfate, zinc gluconate, zinc sulphate]
+  # -- kidney disease, anaemia, immunosuppressants, immunoglobulins, albumin
+  sevelamer: [sevelamer, sevelamer carbonat, sevelamer carbonate]
+  calcium-carbonate: [calci carbonat, canxi carbonat, calcium carbonate]
+  cinacalcet: []
+  calcitriol: []
+  alfacalcidol: []
+  sodium-polystyrene-sulfonate: [natri polystyren sulfonat, sodium polystyrene sulfonate, kayexalate,
+                                 natripolystyren sulfonat, kayexalat]
+  calcium-polystyrene-sulfonate: [calci polystyren sulfonat, calcium polystyrene sulfonate, kalimate, kalimat]
+  sodium-zirconium-cyclosilicate: [natri zirconium cyclosilicat, sodium zirconium cyclosilicate, lokelma]
+  patiromer: []
+  epoetin: [erythropoietin, epoetin alfa, epoetin beta, epoetin alpha, rhu-epo, rhuepo]
+  darbepoetin-alfa: [darbepoetin alfa, darbepoetin]
+  methoxy-polyethylene-glycol-epoetin-beta: [methoxy polyethylene glycol-epoetin beta, mircera]
+  iron-sucrose: [sắt sucrose, iron sucrose, sắt sucrose tĩnh mạch]
+  ferrous-sulfate: [sắt sulfat, ferrous sulfate, "sắt (ii) sulfat", ferrous sulphate]
+  ferrous-fumarate: [sắt fumarat, ferrous fumarate]
+  ferrous-gluconate: [sắt gluconat, ferrous gluconate]
+  folic-acid: [acid folic, axit folic, folic acid]
+  cyclophosphamide: [cyclophosphamide, cyclophosphamid, cyclophosphamide iv, endoxan, cyclophophamide]
+  mycophenolate-mofetil: [mycophenolat mofetil, mycophenolate mofetil, mmf, cellcept, mycophenolate, mycophenolat]
+  mycophenolic-acid: [acid mycophenolic, mycophenolic acid, mycophenolat natri, mycophenolate sodium, myfortic]
+  tacrolimus: []
+  ciclosporin: [cyclosporine, cyclosporin, ciclosporine, cyclosporin a]
+  azathioprine: [azathioprine, azathioprin]
+  rituximab: []
+  hydroxychloroquine: [hydroxychloroquin, hydroxycloroquin]
+  human-normal-immunoglobulin: [human-normal-immunoglobulin, immunoglobulin, immunoglobuline, globulin miễn dịch, gammaglobulin, gamma globulin,
+                                ivig, immune globulin, immunoglobulin tĩnh mạch, globulin miễn dịch tĩnh mạch]
+  hepatitis-b-immunoglobulin: [hepatitis-b-immunoglobulin, hbig, globulin miễn dịch viêm gan b, immunoglobulin viêm gan b,
+                               hepatitis b immunoglobulin, hepatitis b immune globulin]
+  tetanus-immunoglobulin: [tetanus-immunoglobulin, tig, htig, globulin miễn dịch kháng độc tố uốn ván, tetanus immunoglobulin,
+                           tetanus immune globulin, human tetanus immunoglobulin]
+  tetanus-antitoxin: [tetanus-antitoxin, huyết thanh kháng độc tố uốn ván, tetanus antitoxin, huyết thanh chống uốn ván]
+  human-albumin: [albumin người, human albumin, "albumin 20%", "albumin 5%", "albumin 25%"]
+  # -- fluids and electrolytes (bare 'kali', 'calci', 'magie', 'glucose', 'albumin' are analytes: not read)
+  sodium-chloride: [natri clorid, natri clorua, natriclorua, natriclorid, nacl, sodium chloride, normal saline,
+                    nước muối sinh lý, muối sinh lý, dung dịch muối sinh lý]
+  ringer-lactate: [ringer lactat, ringer lactate, "ringer's lactate", ringerlactat, ringerlactate, lactated ringer,
+                   "lactated ringer's", dung dịch ringer lactat, hartmann]
+  mannitol: [mannitol, manitol]
+  potassium-chloride: [kali clorid, kali chlorid, kali chloride, kali clorua, kcl, potassium chloride]
+  sodium-bicarbonate: [natri bicarbonat, natri bicarbonate, natribicarbonat, natribicarbonate, natri hydrocarbonat,
+                       sodium bicarbonate, nahco3, bicarbonat natri]
+  calcium-gluconate: [calci gluconat, calcium gluconate, canxi gluconat, calcium gluconat, gluconat calci]
+  calcium-chloride: [calci clorid, calcium chloride, canxi clorid, calciclorua, calci clorua, canxi clorua,
+                     calcium clorid]
+  magnesium-sulfate: [magie sulphat, magie sulfat, magnesi sulfat, magnesi sulphat, magnesium sulfate,
+                      magnesium sulphate, mgso4, magie sunfat, magnesium sulfat]
+  hydroxyethyl-starch: [hydroxyethyl-starch, hydroxyethyl starch, hes, hydroxyethyl tinh bột]
+  dextran: [dextran, dextran 40, dextran 70]
+  gelatin: [gelatin, gelatine, gelofusine, gelatin succinyl, gelofusin]
+  # -- antidotes and poisoning treatment, vitamins
+  activated-charcoal: [than hoạt tính, than hoạt, activated charcoal, antipois]
+  sorbitol: []
+  pralidoxime: [pralidoxim, pam, 2-pam, pralidoxim clorid, pralidoxime chloride]
+  naloxone: [naloxon]
+  flumazenil: [flumazenil, anexate, anexat]
+  fomepizole: [fomepizole, fomepizol, 4-methylpyrazole]
+  ethanol: [ethanol, "ethanol 40%", "ethanol 10%"]
+  methylthioninium-chloride: [xanh methylen, xanh methylene, methylene blue, xanh metylen, methylthioninium chloride]
+  hydroxocobalamin: [hydroxocobalamin, hydroxocobalamine, cyanokit]
+  sodium-thiosulfate: [natri thiosulfat, sodium thiosulfate, natri thiosulphat, thiosulfat natri, thiosulfate,
+                       thiosulfat]
+  sodium-nitrite: [natri nitrit, sodium nitrite]
+  amyl-nitrite: [amyl nitrit, amyl nitrite]
+  dimercaprol: [dimercaprol, british anti-lewisite]
+  succimer: [succimer, dmsa, acid dimercaptosuccinic, dimercaptosuccinic acid]
+  unithiol: [unithiol, dmps, sodium dimercaptopropanesulphonate, dimercaptopropanesulphonate, dimercaptopropanesulphonat]
+  sodium-calcium-edetate: [cana2edta, calci dinatri edta, edetate calcium disodium, calcium disodium edta, ca-edta,
+                           edta calci]
+  penicillamine: [penicillamin, d-penicillamin, d-penicillamine]
+  glucagon: []
+  octreotide: [octreotide, octreotid]
+  neostigmine: [neostigmin, prostigmin, prostigmine]
+  pyridoxine: [pyridoxine, pyridoxin, vitamin b6, pyridoxin hydroclorid]
+  thiamine: [vitamin b1, thiamin]
+  silibinin: [silibinin, silybin]
+  silymarin: []
+  snake-antivenom: [huyết thanh kháng nọc rắn, huyết thanh kháng nọc, kháng nọc rắn, antivenom, snake antivenom,
+                    htknr, htkn]
+  lipid-emulsion: [nhũ dịch lipid, lipid emulsion, intralipid, lipofundin, "intralipid 20%"]
+  retinol: [vitamin a, retinol palmitat, retinyl palmitate]
+  # -- single mentions before a dose (final pass of the inventory)
+  indometacin: [indometacin, indomethacin, indomethacine]
+  naproxen: []
+  metolazone: [metolazon]
+  amiloride: [amilorid]
+  relebactam: []
+  lixisenatide: [lixisenatid]
+  canakinumab: []
+  pancuronium: []
+  probenecid: []
+  bisacodyl: []
+  amobarbital: []
+  chlorpromazine: [chlorpromazin, clorpromazin, aminazin]
+  pethidine: [pethidin, meperidine, meperidin, dolargan, dolosal]
+  # -- other drugs of the corpus; LMWH class (so 'heparin trọng lượng phân tử thấp' is not read as heparin)
+  vitamin-d: [vitamin d, vitamin d3, vitamin d2, cholecalciferol, colecalciferol, ergocalciferol]
+  ascorbic-acid: [vitamin c, acid ascorbic, axit ascorbic, ascorbic acid]
+  cyanocobalamin: [vitamin b12, cyanocobalamine, mecobalamin]
+  citicoline: [citicoline, citicolin]
+  cerebrolysin: []
+  piracetam: []
+  vinpocetine: [vinpocetine, vinpocetin]
+  memantine: [memantine, memantin]
+  donepezil: []
+  desmopressin: [desmopressin, desmopressine]
+  roxadustat: []
+  daprodustat: []
+  icodextrin: [icodextrin, icodextrine]
+  methotrexate: [methotrexate, methotrexat]
+  nicotine: [nicotin, liệu pháp thay thế nicotin, nicotine replacement therapy, miếng dán nicotin]
+  bupropion: []
+  metamizole: [analgin, metamizol, novalgin, dipyrone, dipyron]
+  vecuronium: []
+  pipecuronium: [pipercuronium]
+  everolimus: []
+  anakinra: []
+  quetiapine: [quetiapine, quetiapin]
+  gabapentin: []
+  pregabalin: []
+  duloxetine: [duloxetin]
+  amitriptyline: [amitriptyline, amitriptylin]
+  fluoxetine: [fluoxetin]
+  tizanidine: [tizanidin]
+  baclofen: []
   # named regimens (expand to member INNs; `combos` may collapse them again)
   bedaquiline+pretomanid+linezolid: [bpal]
   bedaquiline+pretomanid+linezolid+moxifloxacin: [bpalm]
@@ -254,8 +760,21 @@ drugs:
   darunavir+ritonavir: [drv/r]                                     # 1.3.0 ('DRV/r' = darunavir boosted by ritonavir)
   lopinavir+ritonavir: [lpv/r, kaletra, aluvia]                    # 1.3.0 (symmetry: DRV/r)
   atazanavir+ritonavir: [atv/r]                                    # 1.3.0 (symmetry: DRV/r)
+  # 1.3.1: named HCV regimens (brand names; 'SOF/VEL' is read drug by drug), inhaler pairs, TB preventive 3HP/1HP
+  sofosbuvir+velpatasvir: [epclusa]
+  sofosbuvir+ledipasvir: [harvoni, sof/led]                        # 'SOF/LED' (2855/2024)
+  sofosbuvir+daclatasvir: [sof/dac]                                # 'SOF/DAC' (2855/2024); 'DAC' alone = đặc
+  glecaprevir+pibrentasvir: [mavyret, maviret]
+  sofosbuvir+velpatasvir+voxilaprevir: [vosevi]
+  elbasvir+grazoprevir: [zepatier]
+  fenoterol+ipratropium: [berodual]
+  ipratropium+salbutamol: [combivent]
+  isoniazid+rifapentine: [3hp, 1hp]
   # drug classes (a class name satisfies ONE item that needs one member)
   tenofovir-disoproxil|tenofovir-alafenamide: [tenofovir]
+  # 1.3.1: low molecular weight heparins (before: 'heparin trọng lượng phân tử thấp' was read as heparin)
+  enoxaparin|nadroparin: [lmwh, heparin trọng lượng phân tử thấp, heparin tlpt thấp, heparin phân tử lượng thấp,
+                          low molecular weight heparin, low-molecular-weight heparin]
 combos:           # tổ hợp -> INN thành phần; gộp khi có đủ thành phần (tổ hợp lớn gộp trước)
   artemether-lumefantrine: [artemether, lumefantrine]
   pyronaridine-artesunate: [pyronaridine, artesunate]
@@ -266,3 +785,12 @@ combos:           # tổ hợp -> INN thành phần; gộp khi có đủ thành 
   artesunate-amodiaquine: [artesunate, amodiaquine]
   artesunate-mefloquine: [artesunate, mefloquine]
   artesunate+sulfadoxine-pyrimethamine: [artesunate, sulfadoxine-pyrimethamine]
+  # 1.3.1: fixed-dose combinations (the parts collapse into the product: 'amoxicillin + acid clavulanic')
+  amoxicillin-clavulanate: [amoxicillin, clavulanic-acid]
+  ampicillin-sulbactam: [ampicillin, sulbactam]
+  piperacillin-tazobactam: [piperacillin, tazobactam]
+  cefoperazone-sulbactam: [cefoperazone, sulbactam]
+  ceftazidime-avibactam: [ceftazidime, avibactam]
+  ceftolozane-tazobactam: [ceftolozane, tazobactam]
+  sacubitril-valsartan: [sacubitril, valsartan]
+  co-trimoxazole: [sulfamethoxazole, trimethoprim]

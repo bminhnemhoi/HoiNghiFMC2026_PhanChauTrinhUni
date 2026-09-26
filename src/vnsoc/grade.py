@@ -39,6 +39,12 @@ Grader 1.3.0 (from the AI check of the pilot grading; the pilot itself stays rep
     answer line whose whole list is not in the MoH set is read piece by piece for rule 6 (_drug_segments_multi).
   - normalize_vi: template slots ('<unit>' dropped, '<TDF>' kept as text), 'N /ULN', 'S mmHg / D mmHg', 'S D mmHg',
     'S by D', '≥S mmHg or ≥D mmHg', mixed split forms, 'R H E', TB code letter order, more negation words.
+
+Grader 1.3.1 (reader inventory of the 25 corpus documents, review/extraction_calibration/reader_inventory.md): the drug
+table and the unit reader cover the corpus (configs/grading.yaml, normalize_vi). A larger table must not change what
+an answer means: supportive drugs listed in configs/grading.yaml `adjunct_drugs` (paracetamol, vitamins, iron, zinc,
+ORS, fluids, acid suppression, antiemetics, antihistamines) that are the key drug of no recorded item of the atom belong
+to every regimen (regimen_drugs), so 'TDF + 3TC + DTG + vitamin B6' keeps the label of 'TDF + 3TC + DTG'.
 """
 from __future__ import annotations
 
@@ -290,6 +296,19 @@ def _tables(synonyms, combos) -> tuple[dict, dict]:
     return synonyms, combos or {}
 
 
+@lru_cache(maxsize=1)
+def adjunct_drugs() -> frozenset:
+    """configs/grading.yaml `adjunct_drugs` (grader 1.3.1): supportive drugs (antipyretic, vitamins, iron, zinc, ORS,
+    fluids, acid suppression, antiemetics, antihistamines) that do not make a drug answer another regimen when they are
+    the key drug of no recorded item of the atom (see regimen_drugs)."""
+    import yaml
+
+    from vnsoc.paths import paths
+
+    cfg = yaml.safe_load((paths().configs / "grading.yaml").read_text(encoding="utf-8")) or {}
+    return frozenset(cfg.get("adjunct_drugs") or [])
+
+
 def _item_drugs(item: dict, synonyms: dict, combos: dict) -> frozenset:
     """Single drugs of one recorded item: its key drugs and the drugs named in its text (cached per text, key and table
     objects; the tables are kept alive). A class token in the text names the item's own key member, else every member."""
@@ -328,9 +347,17 @@ def background_drugs(atom: dict, synonyms=None, combos=None) -> frozenset:
 
 def regimen_drugs(item: dict, atom: dict, synonyms=None, combos=None) -> set:
     """Single drugs of the regimen a drug item stands for: key drugs and text drugs of the item and of every recorded
-    item at gap 0, plus the atom's background (see the section comment above)."""
+    item at gap 0, plus the atom's background (see the section comment above), plus (grader 1.3.1) the adjunct drugs
+    of configs/grading.yaml that are the key drug of no recorded item of the atom: before 1.3.1 these supportive drugs
+    were not in the drug table, so 'TDF + 3TC + DTG + vitamin B6' or 'AL + paracetamol' kept the label of the regimen;
+    the larger table must not turn such an answer into another regimen (label 5). Same rule for every source."""
     syn, cmb = _tables(synonyms, combos)
     out: set = set(background_drugs(atom, syn, cmb))
+    adj = adjunct_drugs()
+    if adj:
+        items = _recorded(atom)
+        keys = set().union(*(nv.drug_leaves(it["key_drugs"], cmb, classes="members") for it in items)) if items else set()
+        out |= adj - keys
     for it in [x for x in _recorded(atom) if _gap(x, item, atom) == 0] or [item]:
         out |= _item_drugs(it, syn, cmb)
     return out

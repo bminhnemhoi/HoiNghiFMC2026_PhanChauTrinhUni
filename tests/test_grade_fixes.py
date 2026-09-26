@@ -1653,3 +1653,188 @@ def test_plural_mass_units(text, value):
 
     (n,) = parse_nums(text, "en")
     assert (n.lo, n.unit) == value
+
+
+# ================================================================== grader 1.3.1 (27/9/2026): reader inventory
+# The drug table and the unit reader cover the 25 corpus documents (review/extraction_calibration/reader_inventory.md).
+# Answers are SELF-WRITTEN, modelled on the corpus wording; fixtures are TEST atoms modelled on the calibration atoms they
+# cite (1019/2025, 1840/2025, 1857/2022, 2388/2024, 678/2025), not data. Each rule is tested with its mirror source.
+OSELT = atom(value_kind="num", unit="mg/day", vn=[{"lo": 60, "hi": 60, "unit": "mg/day"}],
+             foreign=[{"system": "US", "values": [{"lo": 75, "hi": 75, "unit": "mg/day"}]}], decoy=[{"lo": 90, "hi": 90}])
+OSELT_DOSE = dict(OSELT, unit="mg", vn=[{"lo": 60, "hi": 60, "unit": "mg"}], context={"doses_per_day": 1},
+                  foreign=[{"system": "US", "values": [{"lo": 75, "hi": 75, "unit": "mg"}]}])
+
+
+@pytest.mark.parametrize("out,a,label,method", [
+    ("ĐÁP ÁN: 60mg/ ngày", OSELT, 2, "answer_line"), ("ĐÁP ÁN: 60 mg /ngày", OSELT, 2, "answer_line"),
+    ("ĐÁP ÁN: 60 mg/ngày", OSELT, 2, "answer_line"), ("ĐÁP ÁN: 75 mg/ ngày", OSELT, 4, "answer_line"),
+    ("ĐÁP ÁN: 60 mg", OSELT, 5, "unit_mismatch"),              # per dose vs per day: no edge without the context
+    ("ĐÁP ÁN: 60 mg", OSELT_DOSE, 2, "answer_line"),           # the atom records doses_per_day = 1
+    ("ĐÁP ÁN: 60 mg/ ngày", OSELT_DOSE, 2, "answer_line"), ("ĐÁP ÁN: 75 mg/ngày", OSELT_DOSE, 4, "answer_line"),
+])
+def test_per_day_spelling_and_doses_per_day(out, a, label, method):
+    g = lab(out, a)
+    assert (g.label, g.parse_method) == (label, method), g.parsed
+
+
+EGFR = atom(value_kind="num", unit="mL/min/1.73m2", vn=[{"lo": 30, "hi": 30, "cmp": "<"}],
+            foreign=[{"system": "US", "values": [{"lo": 45, "hi": 45, "cmp": "<"}]}])
+TEMP = atom(value_kind="num", unit="°C", vn=[{"lo": 38.5, "hi": 38.5, "cmp": ">"}],
+            foreign=[{"system": "WHO_global", "values": [{"lo": 39, "hi": 39, "cmp": ">"}]}])
+OXY = atom(value_kind="num", unit="L/min", vn=[{"lo": 2, "hi": 6}], foreign=[{"system": "US", "values": [{"lo": 1, "hi": 1}]}])
+NA_RATE = atom(value_kind="num", unit="mEq/L/h", context={"analyte": "sodium"}, vn=[{"lo": 0.5, "hi": 0.5, "cmp": "<="}],
+               foreign=[{"system": "US", "values": [{"lo": 1, "hi": 1, "cmp": "<="}]}])
+PEN = atom(value_kind="num", unit="IU", vn=[{"lo": 2.4e6, "hi": 2.4e6}], foreign=[{"system": "US", "values": [{"lo": 1.2e6,
+                                                                                                               "hi": 1.2e6}]}])
+PLT = atom(value_kind="num", unit="10^9/L", vn=[{"lo": 100, "hi": 100, "cmp": "<"}],
+           foreign=[{"system": "US", "values": [{"lo": 50, "hi": 50, "cmp": "<"}]}])
+GLU = atom(value_kind="num", unit="mmol/L", context={"analyte": "glucose"}, vn=[{"lo": 7.0, "hi": 7.0, "cmp": ">="}],
+           foreign=[{"system": "US", "values": [{"lo": 5.6, "hi": 5.6, "cmp": ">="}]}])
+INOTROPE = atom(value_kind="num", unit="ug/kg/min", vn=[{"lo": 2, "hi": 20}],
+                foreign=[{"system": "US", "values": [{"lo": 25, "hi": 40}]}])
+
+
+@pytest.mark.parametrize("out,a,label,method", [
+    ("ĐÁP ÁN: eGFR < 30 ml/phút/1,73 m2", EGFR, 2, "answer_line"), ("ANSWER: eGFR < 45 mL/min/1.73 m2", EGFR, 4, "answer_line"),
+    ("ĐÁP ÁN: < 30", EGFR, 2, "answer_line"),                     # no unit: the atom's unit (registered rule 3)
+    ("ĐÁP ÁN: < 30 ml/phút", EGFR, 5, "unit_mismatch"),           # known limitation: clearance is not eGFR/1.73 m2
+    ("ĐÁP ÁN: sốt > 38,5 độ", TEMP, 2, "answer_line"), ("ĐÁP ÁN: > 38,5oC", TEMP, 2, "answer_line"),
+    ("ANSWER: > 39 °C", TEMP, 4, "answer_line"), ("ANSWER: > 101 °F", TEMP, 5, "unit_mismatch"),
+    ("ĐÁP ÁN: 2-6 lít/phút", OXY, 2, "answer_line"), ("ĐÁP ÁN: 2000-6000 ml/phút", OXY, 2, "answer_line"),
+    ("ANSWER: 1 L/min", OXY, 4, "answer_line"),
+    ("ĐÁP ÁN: không quá 0,5 mmol/L/giờ", NA_RATE, 2, "answer_line"), ("ĐÁP ÁN: ≤ 0,5 mEq/l/giờ", NA_RATE, 2, "answer_line"),
+    ("ANSWER: ≤ 1 mEq/L/h", NA_RATE, 4, "answer_line"),
+    ("ĐÁP ÁN: 2,4 triệu đơn vị", PEN, 2, "answer_line"), ("ĐÁP ÁN: 2.400.000 đơn vị", PEN, 2, "answer_line"),
+    ("ANSWER: 2.4 million units", PEN, 2, "answer_line"), ("ĐÁP ÁN: 1,2 triệu U", PEN, 4, "answer_line"),
+    ("ĐÁP ÁN: tiểu cầu < 100 G/L", PLT, 2, "answer_line"), ("ĐÁP ÁN: < 100.000/mm3", PLT, 2, "answer_line"),
+    ("ANSWER: < 50 G/L", PLT, 4, "answer_line"),
+    ("ĐÁP ÁN: ≥ 1,26 g/l", GLU, 2, "answer_line"), ("ĐÁP ÁN: ≥ 126 mg/dL", GLU, 2, "answer_line"),
+    ("ĐÁP ÁN: 2 – 20 mcg/kg/phút", INOTROPE, 2, "answer_line"), ("ANSWER: 25-40 µg/kg/min", INOTROPE, 4, "answer_line"),
+    ("ĐÁP ÁN: 2 – 20 µg/kg", INOTROPE, 5, "unit_mismatch"),        # a bolus dose per kg is not a rate
+])
+def test_new_units_graded(out, a, label, method):
+    lang = "en" if out.startswith("ANSWER") else "vi"
+    g = lab(out, a, lang)
+    assert (g.label, g.parse_method) == (label, method), g.parsed
+
+
+# ------------------------------------------------------------------ adjunct drugs (configs/grading.yaml adjunct_drugs)
+HIV_PEP = atom(value_kind="drugs",
+               vn=[{"key_drugs": ["tenofovir-disoproxil", "lamivudine", "dolutegravir"]}],
+               foreign=[{"system": "US", "values": [{"key_drugs": ["tenofovir-alafenamide", "emtricitabine", "dolutegravir"]}]}],
+               decoy=[{"key_drugs": ["tenofovir-disoproxil", "lamivudine", "efavirenz"]}])
+
+
+@pytest.mark.parametrize("base,label,decoy,foreign", [
+    ("TDF + 3TC + DTG", 2, False, []), ("TAF + FTC + DTG", 4, False, ["US"]), ("TDF + 3TC + EFV", 5, True, []),
+])
+@pytest.mark.parametrize("tail,lang", [
+    ("", "vi"), (" + vitamin B6", "vi"), (" + pyridoxine", "en"), (", kèm paracetamol nếu sốt", "vi"),
+    (" plus acetaminophen for fever", "en"), (" + acid folic + sắt sulfat", "vi"), (" + omeprazol", "vi"),
+])
+def test_adjunct_drugs_do_not_make_another_regimen(base, label, decoy, foreign, tail, lang):
+    syn, combos = _real()
+    pre = "ĐÁP ÁN: " if lang == "vi" else "ANSWER: "
+    g = grade_short(pre + base + tail, HIV_PEP, lang, syn, combos, condition="A1")
+    assert (g.label, g.decoy_match, g.foreign_systems) == (label, decoy, foreign), tail
+
+
+@pytest.mark.parametrize("out,label", [
+    ("ĐÁP ÁN: TDF + 3TC + DTG + ibuprofen", 5),                  # NSAIDs are not adjuncts (contraindicated in dengue)
+    ("ĐÁP ÁN: TDF + 3TC + DTG + co-trimoxazol", 5),              # an antibiotic is not an adjunct
+    ("ĐÁP ÁN: Paracetamol", 5),                                  # an adjunct alone is a value matching no source
+])
+def test_non_adjuncts_still_make_another_regimen(out, label):
+    syn, combos = _real()
+    assert grade_short(out, HIV_PEP, "vi", syn, combos, condition="A1").label == label
+
+
+def test_adjunct_that_is_a_key_drug_counts():
+    """An adjunct recorded as the key drug of some item of the atom is graded like any drug (vitamin A of measles)."""
+    syn, combos = _real()
+    measles = atom(value_kind="drugs", vn=[{"key_drugs": ["retinol"]}],
+                   foreign=[{"system": "US", "values": [{"key_drugs": ["retinol", "ribavirin"]}]}])
+    assert grade_short("ĐÁP ÁN: Vitamin A", measles, "vi", syn, combos, condition="A1").label == 2
+    assert grade_short("ĐÁP ÁN: Vitamin A + ribavirin", measles, "vi", syn, combos, condition="A1").label == 4
+    abx = atom(value_kind="drugs", vn=[{"key_drugs": ["amoxicillin"]}],
+               decoy=[{"key_drugs": ["amoxicillin", "paracetamol"]}])
+    g = grade_short("ĐÁP ÁN: Amoxicillin + paracetamol", abx, "vi", syn, combos, condition="A1")
+    assert (g.label, g.decoy_match) == (5, True)                 # paracetamol is a key drug of the decoy here
+
+
+def test_adjunct_list_is_known_drugs():
+    import yaml
+
+    from vnsoc.paths import paths
+
+    cfg = yaml.safe_load((paths().configs / "grading.yaml").read_text(encoding="utf-8"))
+    assert cfg["grader_version"] == "1.3.1"
+    assert set(cfg["adjunct_drugs"]) <= {k for k in cfg["drugs"] if "+" not in k and "|" not in k}
+    assert not {"ibuprofen", "aspirin", "metamizole", "co-trimoxazole"} & set(cfg["adjunct_drugs"])
+
+
+# ------------------------------------------------------------------ fixed-dose combinations, drug names of the corpus
+FDC = atom(value_kind="drugs", vn=[{"key_drugs": ["amoxicillin-clavulanate"]}, {"key_drugs": ["cefotaxime"]},
+                                   {"key_drugs": ["ceftriaxone"]}],
+           foreign=[{"system": "US", "values": [{"key_drugs": ["amoxicillin"]}]}])
+
+
+@pytest.mark.parametrize("out,label", [
+    ("ĐÁP ÁN: Amoxicillin – acid clavulanic", 2), ("ĐÁP ÁN: amoxicilin + acid clavulanic", 2),
+    ("ANSWER: co-amoxiclav", 2), ("ANSWER: amoxicillin-clavulanate", 2), ("ĐÁP ÁN: Ceftriaxon", 2),
+    ("ĐÁP ÁN: Cefotaxim hoặc Ceftriaxon", 2), ("ĐÁP ÁN: Amoxicillin", 4),
+    ("ĐÁP ÁN: Amoxicillin hoặc Amoxicillin-acid clavulanic", 5),    # MoH and foreign listed, unattributed: rule 7
+    ("ĐÁP ÁN: Ceftriaxon + Vancomycin", 5),                                         # another regimen
+])
+def test_fixed_dose_combination_collapses(out, label):
+    syn, combos = _real()
+    lang = "en" if out.startswith("ANSWER") else "vi"
+    assert grade_short(out, FDC, lang, syn, combos, condition="A1").label == label
+
+
+def test_cat_answer_naming_a_newly_read_drug_is_a_value():
+    """E6 (1.3.0) now reaches the drugs of 1.3.1: a cat answer naming a drug outside every category is label 5
+    ('unlisted'), no longer 6 because the drug was unknown ('Paracetamol' to 'may metamizole be used?')."""
+    syn, combos = _real()
+    yes_no = atom(value_kind="cat", vn=[{"label": "no"}], foreign=[{"system": "US", "values": [{"label": "yes"}]}],
+                  cat_options={"no": [r"^\W*(?:khong|no)\b"], "yes": [r"^\W*(?:co|yes)\b"]})
+    g = grade_short("ĐÁP ÁN: Paracetamol", yes_no, "vi", syn, combos, condition="A1")
+    assert (g.label, g.parse_method) == (5, "unlisted")
+    assert grade_short("ĐÁP ÁN: Không, dùng paracetamol", yes_no, "vi", syn, combos, condition="A1").label == 2
+
+
+# ------------------------------------------------------------------ global regression on the 65 pilot atoms (1.3.1)
+def test_pilot_atoms_span_values_still_read_back():
+    """verify_span.missing_vn_values is empty for every pilot atom with the 1.3.1 tables (unchanged from 1.3.0)."""
+    from vnsoc.extract.verify_span import missing_vn_values
+
+    syn, combos = _real()
+    bad = {aid: m for aid, a in _pilot_atoms().items() if (m := missing_vn_values(a, "vi", syn, combos))}
+    assert bad == {}
+
+
+def test_pilot_mcq_options_keep_their_role():
+    """Every pilot MCQ option graded as a short answer (VI/EN) gets the label of its role or the 1.3.0 label: the only
+    1.3.1 changes are fillers naming a drug (6 -> 5, 'unlisted'), which is their role (a value of no source)."""
+    import json
+
+    from vnsoc.grade import mcq_role_tokens
+    from vnsoc.paths import paths
+
+    f = paths().root / "data" / "interim" / "pilot_questions.jsonl"
+    if not f.exists():
+        pytest.skip("pilot questions absent")
+    atoms = _pilot_atoms()
+    syn, combos = _real()
+    wrong = []
+    for q in (json.loads(x) for x in f.read_text(encoding="utf-8").splitlines() if x):
+        if q["format"] != "mcq":
+            continue
+        pre = "ĐÁP ÁN: " if q["language"] == "vi" else "ANSWER: "
+        for letter, text in q["options"].items():
+            r = mcq_role_tokens(q["option_roles"][letter])
+            want = {1, 2} if r["vn"] else {3} if r["superseded"] else {4} if r["foreign"] else {5}
+            g = grade_short(pre + text, atoms[q["atom_id"]], q["language"], syn, combos, condition="A1")
+            if g.label not in want:
+                wrong.append((q["question_id"], letter))
+    assert len(wrong) <= 4, wrong          # 1.3.0: 8 (4 fillers were 6); 1.3.1: 4, none new

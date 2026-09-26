@@ -29,6 +29,15 @@ Conventions
   are one code string in parse_cats; drug_leaves gives the single drugs behind combinations; a drug named only to be
   excluded is not read (stated_drugs_text, the negation rules of parse_cats) and a "+" list is flagged as one
   combination; TB phase codes are found by tb_codes.
+- Grader 1.3.1 (reader inventory of the 25 corpus documents, review/extraction_calibration/reader_inventory.md): a space
+  around "/" in a unit is read ("mg/ ngày" = "mg /ngày" = "mg/ngày"); new units (L/min, cmH2O, g/L, g/dL, mg/L, µmol/L,
+  mEq/L, mEq/L/h, mmol/L/h, °C, µg/kg/min, mg/kg/h, mL/h, mL/min, mL/min/1.73m2, drops/min, IU/kg/h, /min, mm, ms,
+  s, ‰, kcal, percentile...) with exact conversion edges only (mass per volume, per time, per kg; analyte-gated
+  molar and mEq conversions; atom context doses_per_day for mg <-> mg/day); "G/L" (capital G) is 10^9/L; a number
+  with 4+ decimals ("0,0625") is one number; two or three doses of a fixed combination ("49/51 mg", "37,5 mg/20 mg",
+  "300/300/50 mg") are one value each; million units ("2,4 triệu đơn vị", "2 MIU") are MIU (= 10^6 IU); subscript
+  digits ("cmH₂O") are digits; drug names used in non-drug terms ("glucagon-like peptide", "kháng insulin") are not
+  drugs.
 """
 from __future__ import annotations
 
@@ -41,6 +50,7 @@ from dataclasses import dataclass, field
 DASHES = "‐‑‒–—―−"
 FRACTIONS = {"½": 0.5, "¼": 0.25, "¾": 0.75, "⅓": 1 / 3}
 SUPERSCRIPTS = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹⁻", "0123456789-")
+SUBSCRIPTS = str.maketrans("₀₁₂₃₄₅₆₇₈₉", "0123456789")      # grader 1.3.1: "cmH₂O", "SpO₂", "MgSO₄"
 # Angle-bracket slots of the answer template (grader 1.3.0, revised after review). The template words themselves
 # (configs/conditions.yaml: "<giá trị> <đơn vị>", "<value> <unit>", "<chữ cái>", "<letter>") and markup tags ("<b>",
 # "</b>", "<br/>") are dropped: "2 <unit> /ULN" reads "2 /ULN". Any other text in a slot is what the model filled in
@@ -62,7 +72,7 @@ ULN_SLASH_RE = re.compile(r"(?<=\d)\s*(?:(?:lần|x|×|times?)(?![^\W\d_])\s*)?/
 
 
 def clean(text: str) -> str:
-    t = unicodedata.normalize("NFC", text or "")
+    t = unicodedata.normalize("NFC", text or "").translate(SUBSCRIPTS)
     for d in DASHES:
         t = t.replace(d, "-")
     t = t.replace(" ", " ").replace(" ", " ").replace("μ", "µ")
@@ -81,7 +91,9 @@ def strip_accents(s: str) -> str:
 
 
 # ------------------------------------------------------------------------------------ numbers
-NUM_RE = r"(?<![\w.,/^])(?:\d{1,3}(?:[.,]\d{3})+(?:[.,]\d+)?|\d+(?:[.,]\d+)?|[½¼¾⅓])"
+# grader 1.3.1: a thousands group is not followed by another digit, so "0,0625" (4 decimals) is one number (before:
+# "0,062" and a stray "5"); "1.000.000", "5.000,5" are read as before.
+NUM_RE = r"(?<![\w.,/^])(?:\d{1,3}(?:[.,]\d{3})+(?!\d)(?:[.,]\d+)?|\d+(?:[.,]\d+)?|[½¼¾⅓])"
 
 
 def parse_number(tok: str, lang: str = "vi") -> float:
@@ -144,21 +156,179 @@ UNIT_ALIASES = {
     "copies/ml": "copies/mL", "copy/ml": "copies/mL", "cp/ml": "copies/mL", "bản sao/ml": "copies/mL",
     "cps/ml": "copies/mL", "copies per ml": "copies/mL", "iu per ml": "IU/mL", "ui per ml": "IU/mL",
 }
-_UNIT_KEYS = sorted(UNIT_ALIASES, key=len, reverse=True)
-UNIT_RE = "(?:" + "|".join(re.escape(u) for u in _UNIT_KEYS) + r")(?![^\W\d_])"
+# Grader 1.3.1: units and spellings found next to numbers in the 25 corpus documents (reader inventory,
+# review/extraction_calibration/reader_inventory.md). Before 1.3.1 these were read as another unit ("lít/phút" -> l,
+# "cmH2O" -> none, "g/L" -> g, "µg/kg/phút" -> ug/kg, "mg/kg/giờ" -> mg/kg, "lần/phút" -> times, "ml/phút/1,73m2" -> ml)
+# or not at all, so an atom could not record its real unit. Per-dose forms keep the per-dose unit ("mg/lần" = mg,
+# "mg/kg/liều" = mg/kg); per-day forms are per day ("g/ngày" = g/day). A bare degree sign or "độ" is "°", equal to °C
+# (Celsius is the only temperature scale of the corpus; °F has no edge: an affine scale is not a factor).
+UNIT_ALIASES.update({
+    # per day, per dose, per interval
+    "mg/d": "mg/day", "mg/ngay": "mg/day", "mg/24 h": "mg/day", "mg/24hr": "mg/day",
+    "g/ngày": "g/day", "g/ngay": "g/day", "g/day": "g/day", "g/24 giờ": "g/day", "g/24h": "g/day", "g/24 h": "g/day",
+    "gam/ngày": "g/day", "gram/ngày": "g/day",
+    "µg/ngày": "ug/day", "mcg/ngày": "ug/day", "ug/ngày": "ug/day", "µg/day": "ug/day", "mcg/day": "ug/day",
+    "ug/day": "ug/day", "µg/24 giờ": "ug/day", "mcg/24h": "ug/day",
+    "ml/ngày": "ml/day", "ml/ngay": "ml/day", "ml/day": "ml/day", "ml/24 giờ": "ml/day", "ml/24h": "ml/day",
+    "ml/24 h": "ml/day",
+    "iu/ngày": "IU/day", "ui/ngày": "IU/day", "đơn vị/ngày": "IU/day", "đv/ngày": "IU/day", "iu/day": "IU/day",
+    "ui/day": "IU/day", "units/day": "IU/day",
+    "viên/ngày": "tablet/day", "viên/24 giờ": "tablet/day", "tablet/day": "tablet/day", "tablets/day": "tablet/day",
+    "lần/24 giờ": "times/day", "lần/24h": "times/day", "liều/ngày": "times/day", "doses/day": "times/day",
+    "lần/năm": "times/year", "times/year": "times/year",
+    "mg/lần": "mg", "mg/liều": "mg", "mg/dose": "mg", "mg/1 lần": "mg", "mg/kg/lần": "mg/kg", "mg/kg/liều": "mg/kg",
+    "mg/kg/dose": "mg/kg", "g/lần": "g", "g/liều": "g", "g/kg/lần": "g/kg", "ml/lần": "ml", "ml/liều": "ml",
+    "µg/lần": "ug", "mcg/lần": "ug", "µg/liều": "ug", "mcg/liều": "ug", "viên/lần": "tablet", "ui/lần": "IU",
+    "đơn vị/lần": "IU",
+    "giờ/lần": "h", "phút/lần": "min", "ngày/lần": "day", "tuần/lần": "week", "tháng/lần": "month", "năm/lần": "year",
+    # rates
+    "mg/giờ": "mg/h", "mg/gio": "mg/h", "mg/h": "mg/h", "mg/hr": "mg/h", "mg/hour": "mg/h",
+    "mg/phút": "mg/min", "mg/ph": "mg/min", "mg/min": "mg/min",
+    "g/giờ": "g/h", "g/h": "g/h", "g/hr": "g/h",
+    "µg/giờ": "ug/h", "mcg/giờ": "ug/h", "ug/giờ": "ug/h", "µg/h": "ug/h", "mcg/h": "ug/h", "ug/h": "ug/h",
+    "µg/phút": "ug/min", "mcg/phút": "ug/min", "ug/phút": "ug/min", "µg/min": "ug/min", "mcg/min": "ug/min",
+    "ug/min": "ug/min",
+    "mg/kg/giờ": "mg/kg/h", "mg/kg/gio": "mg/kg/h", "mg/kg/h": "mg/kg/h", "mg/kg/hr": "mg/kg/h", "mg/kg/hour": "mg/kg/h",
+    "mg/kg/phút": "mg/kg/min", "mg/kg/min": "mg/kg/min",
+    "µg/kg/phút": "ug/kg/min", "mcg/kg/phút": "ug/kg/min", "ug/kg/phút": "ug/kg/min", "µg/kg/ph": "ug/kg/min",
+    "mcg/kg/ph": "ug/kg/min", "ug/kg/ph": "ug/kg/min", "µg/kg/min": "ug/kg/min", "mcg/kg/min": "ug/kg/min",
+    "ug/kg/min": "ug/kg/min", "microgram/kg/min": "ug/kg/min", "micrograms/kg/min": "ug/kg/min",
+    "µg/kg/giờ": "ug/kg/h", "mcg/kg/giờ": "ug/kg/h", "ug/kg/giờ": "ug/kg/h", "µg/kg/h": "ug/kg/h", "mcg/kg/h": "ug/kg/h",
+    "ug/kg/h": "ug/kg/h",
+    "ng/kg/phút": "ng/kg/min", "ng/kg/min": "ng/kg/min", "pg/kg/phút": "pg/kg/min", "pg/kg/min": "pg/kg/min",
+    "ml/giờ": "ml/h", "ml/gio": "ml/h", "ml/h": "ml/h", "ml/hr": "ml/h", "ml/hour": "ml/h",
+    "ml/phút": "ml/min", "ml/ph": "ml/min", "ml/min": "ml/min", "ml/1 phút": "ml/min",
+    "ml/kg/phút": "ml/kg/min", "ml/kg/min": "ml/kg/min",
+    "l/phút": "L/min", "lít/phút": "L/min", "lit/phut": "L/min", "l/ph": "L/min", "lít/ph": "L/min", "l/min": "L/min",
+    "lít/min": "L/min", "lpm": "L/min", "liters/min": "L/min", "litres/min": "L/min",
+    "giọt/phút": "drops/min", "giọt/ph": "drops/min", "drops/min": "drops/min", "gtt/min": "drops/min",
+    "giọt": "drop", "drop": "drop", "drops": "drop",
+    "ui/giờ": "IU/h", "ui/h": "IU/h", "iu/h": "IU/h", "đơn vị/giờ": "IU/h", "đv/giờ": "IU/h", "units/h": "IU/h",
+    "u/h": "IU/h",
+    "ui/kg/giờ": "IU/kg/h", "ui/kg/h": "IU/kg/h", "iu/kg/h": "IU/kg/h", "đơn vị/kg/giờ": "IU/kg/h", "đv/kg/giờ": "IU/kg/h",
+    "units/kg/h": "IU/kg/h", "u/kg/h": "IU/kg/h",
+    "iu/kg/ngày": "IU/kg/day", "ui/kg/ngày": "IU/kg/day", "đơn vị/kg/ngày": "IU/kg/day", "đv/kg/ngày": "IU/kg/day",
+    "iu/kg/day": "IU/kg/day", "u/kg": "IU/kg", "đv/kg": "IU/kg", "units/kg": "IU/kg", "đv": "IU",
+    "lần/phút": "/min", "lần/ph": "/min", "nhịp/phút": "/min", "nhịp/ph": "/min", "nhịp thở/phút": "/min",
+    "lần thở/phút": "/min", "ck/phút": "/min", "chu kỳ/phút": "/min", "chu kì/phút": "/min", "/phút": "/min",
+    "/min": "/min", "bpm": "/min", "beats/min": "/min", "breaths/min": "/min",
+    "ngày/tuần": "days/week", "days/week": "days/week", "days per week": "days/week",
+    "phút/ngày": "min/day", "min/day": "min/day", "phút/tuần": "min/week", "min/week": "min/week",
+    "giờ/ngày": "h/day", "h/day": "h/day", "giờ/tuần": "h/week", "h/week": "h/week",
+    "kg/tháng": "kg/month", "kg/month": "kg/month", "kg/tuần": "kg/week", "kg/week": "kg/week",
+    "kcal": "kcal", "kcal/ngày": "kcal/day", "kcal/day": "kcal/day",   # bare "calo" is not read: "CNLT × 20 calo" = per kg
+    "kcalo/ngày": "kcal/day", "calo/ngày": "kcal/day", "kcal/kg": "kcal/kg", "kcalo/kg": "kcal/kg", "calo/kg": "kcal/kg",
+    "kcal/kg/ngày": "kcal/kg/day", "kcal/kg/day": "kcal/kg/day", "kcalo/kg/ngày": "kcal/kg/day",
+    "calo/kg/ngày": "kcal/kg/day",
+    "g/kg/ngày": "g/kg/day", "g/kg/day": "g/kg/day", "g/kg/24h": "g/kg/day", "g/kg/24 giờ": "g/kg/day",
+    "mg/m2": "mg/m2", "mg/m2 da": "mg/m2", "mg/m2/lần": "mg/m2", "mg/m2/liều": "mg/m2", "mg/m2/ngày": "mg/m2/day",
+    "mg/m2/24h": "mg/m2/day", "mg/m2/24 giờ": "mg/m2/day", "mg/m2/day": "mg/m2/day",
+    # electrolytes and laboratory values
+    "meq/l": "mEq/L", "meq/l/giờ": "mEq/L/h", "meq/l/h": "mEq/L/h", "meq/l/hr": "mEq/L/h", "meq/l/24 giờ": "mEq/L/day",
+    "meq/l/24h": "mEq/L/day", "meq/l/ngày": "mEq/L/day", "meq/l/day": "mEq/L/day",
+    "mmol/l/giờ": "mmol/L/h", "mmol/l/h": "mmol/L/h", "mmol/l/hr": "mmol/L/h", "mmol/l/24 giờ": "mmol/L/day",
+    "mmol/l/24h": "mmol/L/day", "mmol/l/ngày": "mmol/L/day", "mmol/l/day": "mmol/L/day",
+    "meq": "mEq", "mmol": "mmol", "meq/kg": "mEq/kg", "mmol/kg": "mmol/kg", "meq/giờ": "mEq/h", "meq/h": "mEq/h",
+    "mmol/giờ": "mmol/h", "mmol/h": "mmol/h",
+    "µmol/l": "umol/L", "umol/l": "umol/L", "micromol/l": "umol/L", "mcmol/l": "umol/L",
+    "mosm/kg": "mOsm/kg", "mosmol/kg": "mOsm/kg", "mosm/l": "mOsm/L", "mosmol/l": "mOsm/L",
+    "g/l": "g/L", "g/dl": "g/dL", "g%": "g/dL", "mg%": "mg/dL", "mg/l": "mg/L",
+    "µg/l": "ug/L", "ug/l": "ug/L", "mcg/l": "ug/L", "µg/ml": "ug/mL", "ug/ml": "ug/mL", "mcg/ml": "ug/mL",
+    "µg/dl": "ug/dL", "ug/dl": "ug/dL", "mcg/dl": "ug/dL", "ng/ml": "ng/mL", "ng/l": "ng/L", "pg/ml": "pg/mL",
+    "miu/ml": "mIU/mL", "mui/ml": "mIU/mL", "miu/l": "mIU/L", "mui/l": "mIU/L",
+    "mg/g": "mg/g", "mg/mmol": "mg/mmol", "g/g": "g/g",
+    "ml/phút/1,73m2": "mL/min/1.73m2", "ml/phút/1,73 m2": "mL/min/1.73m2", "ml/phút/1.73m2": "mL/min/1.73m2",
+    "ml/phút/1.73 m2": "mL/min/1.73m2", "ml/ph/1,73m2": "mL/min/1.73m2", "ml/ph/1,73 m2": "mL/min/1.73m2",
+    "ml/min/1.73m2": "mL/min/1.73m2", "ml/min/1.73 m2": "mL/min/1.73m2", "ml/min/1,73m2": "mL/min/1.73m2",
+    "ml/min/1,73 m2": "mL/min/1.73m2", "ml/min per 1.73 m2": "mL/min/1.73m2", "ml/min per 1.73m2": "mL/min/1.73m2",
+    "log10": "log10", "log": "log10", "log10 iu/ml": "log10 IU/mL", "log10 ui/ml": "log10 IU/mL",
+    "log iu/ml": "log10 IU/mL", "log10 copies/ml": "log10 copies/mL", "log copies/ml": "log10 copies/mL",
+    "tb/mm3": "/uL", "tế bào/mm3": "/uL", "tế bào/µl": "/uL", "tế bào/ul": "/uL", "tế bào/microlit": "/uL",
+    "tb/µl": "/uL", "tb/ul": "/uL", "cells/mm3": "/uL", "cells/µl": "/uL", "cells/ul": "/uL", "cell/mm3": "/uL",
+    "l/kg": "L/kg",
+    # temperature, pressure, length, time, counts
+    "°c": "°C", "° c": "°C", "ºc": "°C", "º c": "°C", "oc": "°C", "độ c": "°C", "degrees c": "°C", "degree c": "°C",
+    "°": "°", "º": "°", "độ": "°", "degrees": "°", "degree": "°", "°f": "°F", "ºf": "°F", "độ f": "°F",
+    "cmh2o": "cmH2O", "cm h2o": "cmH2O", "cmh20": "cmH2O", "cm h20": "cmH2O", "cm nước": "cmH2O",
+    "mm": "mm", "cm2": "cm2", "m2": "m2", "mét": "m",
+    "ms": "ms", "msec": "ms", "mili giây": "ms", "miligiây": "ms", "giây": "s", "sec": "s", "secs": "s",
+    "second": "s", "seconds": "s",
+    "‰": "‰",
+    "nhát": "puff", "nhát xịt": "puff", "lần xịt": "puff", "xịt": "puff", "puff": "puff", "puffs": "puff",
+    "gói": "sachet", "sachet": "sachet", "sachets": "sachet",
+    "ngay": "day", "tuan": "week", "thang": "month", "tuoi": "year", "phut": "min", "wk": "week", "wks": "week",
+    "yr": "year", "yrs": "year", "mos": "month", "mins": "min", "tuần tuổi": "week", "ngày tuổi": "day",
+    "năm tuổi": "year", "tiếng đồng hồ": "h",
+    "th percentile": "percentile", "percentile": "percentile", "th centile": "percentile", "centile": "percentile",
+    "bách phân vị": "percentile",
+    # million units ("Benzathin penicillin 2,4 triệu đơn vị", "2,4 triệu U", "Penicilin G 2 MIU"): before 1.3.1 "2,4" was
+    # read without unit, i.e. 2.4 in the atom's unit. Bare "triệu" is not read ("4 triệu chứng" = 4 symptoms).
+    "triệu đơn vị": "MIU", "triệu đv": "MIU", "triệu u": "MIU", "triệu ui": "MIU", "triệu iu": "MIU", "miu": "MIU",
+    "mu": "MIU", "million units": "MIU", "million iu": "MIU", "million international units": "MIU",
+    "triệu đơn vị/ngày": "MIU/day", "miu/ngày": "MIU/day", "miu/day": "MIU/day",
+    # further spellings of the corpus (eGFR slope, BSA dose per week, sodium per day, counts per day)
+    "ml/ph/1.73m2": "mL/min/1.73m2", "ml/ph/1.73 m2": "mL/min/1.73m2", "ml/phút/năm": "mL/min/year",
+    "ml/min/year": "mL/min/year", "ml/phút/1,73m2/năm": "mL/min/1.73m2/year", "ml/phút/1,73 m2/năm": "mL/min/1.73m2/year",
+    "ml/min/1.73m2/year": "mL/min/1.73m2/year", "mg/m2/tuần": "mg/m2/week", "mmol/ngày": "mmol/day",
+    "mmol/day": "mmol/day", "meq/phút": "mEq/min", "đv/l": "U/L", "đơn vị/l": "U/L", "xịt/24 giờ": "puff/day",
+    "xịt/ngày": "puff/day", "nhát/ngày": "puff/day", "nhát/24 giờ": "puff/day", "nhát/lần": "puff",
+    # spellings of OCR pages and of answers written without diacritics ("lan/ngay"; "vién", "tuôi", "giò" in the OCR
+    # layer of 3377/2023, 2855/2024, 3610/2015). "tuân" is not read ("6 Tuân thủ": a list number before "tuân thủ").
+    "lan/ngay": "times/day", "lân/ngày": "times/day", "lan/tuan": "times/week", "vién": "tablet",
+    "vién/ngay": "tablet/day", "vién/ngày": "tablet/day", "tuôi": "year", "giò": "h",
+})
 
-# (from, to): factor  value_to = value_from * factor
+
+def _unit_key(u: str) -> str:
+    """A unit spelling as a lookup key: cleaned, lower case, no space around '/' (grader 1.3.1: "mg/ ngày" = "mg/ngày"),
+    single spaces elsewhere."""
+    return re.sub(r"\s+", " ", re.sub(r"\s*/\s*", "/", clean(u).lower())).strip()
+
+
+UNIT_ALIASES = {_unit_key(k): v for k, v in UNIT_ALIASES.items()}
+_UNIT_KEYS = sorted(UNIT_ALIASES, key=len, reverse=True)
+
+
+def _unit_alt(k: str) -> str:
+    """Pattern of one unit key: any space around '/' (grader 1.3.1) and one or more spaces for a space."""
+    return "".join(r"\s*/\s*" if c == "/" else r"\s+" if c == " " else re.escape(c) for c in k)
+
+
+UNIT_RE = "(?:" + "|".join(_unit_alt(u) for u in _UNIT_KEYS) + r")(?![^\W\d_])"
+
+# (from, to): factor  value_to = value_from * factor. Exact factors only (SI prefixes, time, definitions).
 STATIC_EDGES = {
     ("ug", "mg"): 1e-3, ("g", "mg"): 1e3, ("l", "ml"): 1e3, ("ug/kg", "mg/kg"): 1e-3, ("g/kg", "mg/kg"): 1e3,
     ("/uL", "10^9/L"): 1e-3, ("min", "h"): 1 / 60, ("day", "h"): 24.0, ("week", "day"): 7.0, ("month", "year"): 1 / 12,
+    # grader 1.3.1
+    ("g/day", "mg/day"): 1e3, ("ug/day", "mg/day"): 1e-3,
+    ("mg/h", "mg/day"): 24.0, ("mg/min", "mg/h"): 60.0, ("g/h", "mg/h"): 1e3, ("ug/h", "mg/h"): 1e-3,
+    ("ug/min", "ug/h"): 60.0,
+    ("g/kg/day", "mg/kg/day"): 1e3, ("mg/kg/h", "mg/kg/day"): 24.0, ("mg/kg/min", "mg/kg/h"): 60.0,
+    ("ug/kg/min", "mg/kg/min"): 1e-3, ("ug/kg/min", "ug/kg/h"): 60.0, ("ug/kg/h", "mg/kg/h"): 1e-3,
+    ("ng/kg/min", "ug/kg/min"): 1e-3, ("pg/kg/min", "ng/kg/min"): 1e-3,
+    ("ml/day", "ml/h"): 1 / 24, ("ml/min", "ml/h"): 60.0, ("L/min", "ml/min"): 1e3, ("ml/kg/min", "ml/kg/h"): 60.0,
+    ("IU/h", "IU/day"): 24.0, ("IU/kg/h", "IU/kg/day"): 24.0,
+    ("g/L", "mg/L"): 1e3, ("g/dL", "g/L"): 10.0, ("mg/dL", "mg/L"): 10.0, ("ug/mL", "mg/L"): 1.0,
+    ("mg/L", "ug/L"): 1e3, ("ug/dL", "ug/L"): 10.0, ("ng/mL", "ug/L"): 1.0, ("ug/L", "ng/L"): 1e3,
+    ("pg/mL", "ng/L"): 1.0, ("mIU/mL", "mIU/L"): 1e3, ("g/g", "mg/g"): 1e3,
+    ("umol/L", "mmol/L"): 1e-3, ("mmol/L/day", "mmol/L/h"): 1 / 24, ("mEq/L/day", "mEq/L/h"): 1 / 24,
+    ("s", "min"): 1 / 60, ("ms", "s"): 1e-3, ("mm", "cm"): 0.1, ("‰", "%"): 0.1, ("°", "°C"): 1.0,
+    ("MIU", "IU"): 1e6, ("MIU/day", "IU/day"): 1e6,
 }
-ANALYTE_MGDL_PER_MMOL = {"glucose": 18.016, "ldl": 38.67, "cholesterol": 38.67, "hdl": 38.67, "triglyceride": 88.57}
+# mg/dL per mmol/L = molar mass (g/mol) / 10; read only when the atom context names the analyte.
+ANALYTE_MGDL_PER_MMOL = {"glucose": 18.016, "ldl": 38.67, "cholesterol": 38.67, "hdl": 38.67, "triglyceride": 88.57,
+                         # grader 1.3.1 (creatinine 113.12 g/mol, uric acid 168.11, Ca 40.078, P 30.974, Mg 24.305)
+                         "creatinine": 11.312, "uric_acid": 16.811, "calcium": 4.0078, "phosphate": 3.0974,
+                         "magnesium": 2.4305}
+# grader 1.3.1: mEq = mmol x valence, for the analyte the atom context names (sodium, potassium... are monovalent).
+ANALYTE_VALENCE = {"sodium": 1, "potassium": 1, "chloride": 1, "bicarbonate": 1, "calcium": 2, "magnesium": 2}
 
 
 def canon_unit(u: str | None) -> str | None:
     if not u:
         return None
-    return UNIT_ALIASES.get(clean(u).lower(), clean(u))
+    return UNIT_ALIASES.get(_unit_key(u), clean(u))
 
 
 def _edges(ctx: dict) -> dict:
@@ -166,18 +336,34 @@ def _edges(ctx: dict) -> dict:
     a = (ctx or {}).get("analyte")
     if a in ANALYTE_MGDL_PER_MMOL:
         e[("mmol/L", "mg/dL")] = ANALYTE_MGDL_PER_MMOL[a]
+    if a in ANALYTE_VALENCE:                                 # grader 1.3.1: "0,5 mEq/L/giờ" = "0,5 mmol/L/h" of Na
+        v = float(ANALYTE_VALENCE[a])
+        for x, y in (("mmol/L", "mEq/L"), ("mmol/L/h", "mEq/L/h"), ("mmol/L/day", "mEq/L/day"), ("mmol", "mEq"),
+                     ("mmol/kg", "mEq/kg"), ("mmol/h", "mEq/h")):
+            e[(x, y)] = v
     if (ctx or {}).get("weight_kg"):
         w = float(ctx["weight_kg"])
         e[("mg/kg", "mg")] = w
         e[("ug/kg", "ug")] = w
         e[("mg/kg/day", "mg/day")] = w
+        e[("mg/kg/h", "mg/h")] = w                           # grader 1.3.1: rates per kg
+        e[("ug/kg/min", "ug/min")] = w
+        e[("ug/kg/h", "ug/h")] = w
     if (ctx or {}).get("mg_per_ml"):
         e[("ml", "mg")] = float(ctx["mg_per_ml"])
         e[("ml/kg", "mg/kg")] = float(ctx["mg_per_ml"])      # "0,01 ml/kg" of a 1 mg/ml solution = 0,01 mg/kg
     if (ctx or {}).get("mg_per_tablet"):
         e[("tablet", "mg")] = float(ctx["mg_per_tablet"])
+        e[("tablet/day", "mg/day")] = float(ctx["mg_per_tablet"])
     if (ctx or {}).get("mg_per_ampoule"):
         e[("ampoule", "mg")] = float(ctx["mg_per_ampoule"])
+    if (ctx or {}).get("doses_per_day"):
+        # grader 1.3.1: a per-dose amount of a regimen given n times a day is n x that amount per day (the atom records
+        # n; never guessed from the answer). Calibration 1857/2022 G3, 1840/2025 S2.
+        n = float(ctx["doses_per_day"])
+        for x, y in (("mg", "mg/day"), ("mg/kg", "mg/kg/day"), ("g", "g/day"), ("ug", "ug/day"), ("ml", "ml/day"),
+                     ("IU", "IU/day"), ("tablet", "tablet/day")):
+            e[(x, y)] = n
     both = {}
     for (a_, b_), f in e.items():
         both[(a_, b_)] = f
@@ -346,6 +532,30 @@ CONC_RE = re.compile(
     r"ml(?![^\W\d_])", re.I)
 
 
+# Grader 1.3.1: the doses of a fixed combination written with "/" ("49/51 mg" sacubitril/valsartan, "37,5 mg/20 mg"
+# hydralazine/ISDN, "300/300/50 mg" TDF/3TC/DTG, "800/160 mg" co-trimoxazole) are one value each, in the mass unit
+# written after them (a part without a unit takes the next unit written). Before, only the first number was read, without
+# its unit. Mass units only: "250 mg/5 ml" (a concentration), "500 mg/12h" (an interval) and "10/20 mg/kg" (per kg) are
+# not pairs.
+_MASS = r"(?:mg|g|gam|gram|µg|mcg|ug)"
+_PNUM = r"(?:\d{1,3}(?:[.,]\d{3})+(?!\d)(?:[.,]\d+)?|\d+(?:[.,]\d+)?)"
+DOSE_PAIR_RE = re.compile(
+    rf"(?<![\w.,/^])(?P<a>{_PNUM})\s*(?P<ua>{_MASS})?\s*/\s*(?P<b>{_PNUM})\s*(?P<ub>{_MASS})?"
+    rf"(?:\s*/\s*(?P<c>{_PNUM})\s*(?P<uc>{_MASS})?)?(?![^\W\d_])(?!\s*/)", re.I)
+
+
+def _dose_pair(m: re.Match) -> list[tuple[str, str]] | None:
+    """[(number, unit)] of a dose pair/triple (see DOSE_PAIR_RE); None when the last part has no unit."""
+    parts = [(m.group(k), m.group("u" + k)) for k in ("a", "b", "c") if m.group(k)]
+    if not parts[-1][1]:
+        return None
+    out, unit = [], None
+    for num, u in reversed(parts):
+        unit = u or unit
+        out.append((num, unit))
+    return out[::-1]
+
+
 def _frac(tok: str, lang: str) -> float:
     if "/" in tok:
         n, d = tok.split("/")
@@ -353,7 +563,13 @@ def _frac(tok: str, lang: str) -> float:
     return parse_number(tok, lang)
 
 
+# Grader 1.3.1: a cell count in "G/L" (capital G, giga: "Bạch cầu > 16 G/L", "tiểu cầu < 100 G/L") is 10^9/L; "g/L" (small
+# g) is grams per litre ("albumin < 30 g/L"). Case-sensitive, after a number only.
+GIGA_PER_L_RE = re.compile(r"(?<=\d)\s*G\s*/\s*[lL](?![^\W\d_])")
+
+
 def _unit_phrases(t: str) -> str:
+    t = GIGA_PER_L_RE.sub(" x10^9/l", t)
     t = KG_M2_RE.sub("kg/m2", t)
     t = MG_BASE_RE.sub("mg", t)
     t = HYPHEN_UNIT_RE.sub(lambda m: f"{m.group('n')} {m.group('u')}", t)
@@ -638,6 +854,14 @@ def _parse_nums(t: str, lang: str) -> list[Num]:
         v = _frac(re.sub(r"\s+", "", m.group("f")), lang) + int(m.group("w") or 0)
         found.append((m.start(), Num(v, v, canon_unit(m.group("u")))))
         taken.append(m.span())
+    for m in DOSE_PAIR_RE.finditer(t):                 # grader 1.3.1: "49/51 mg", "37,5 mg/20 mg"
+        parts = _dose_pair(m)
+        if not parts or not free(*m.span()):
+            continue
+        for k, (num, u) in zip(("a", "b", "c"), parts):
+            v = parse_number(num, lang)
+            found.append((m.start(k), Num(v, v, canon_unit(u))))
+        taken.append(m.span())
     for m in RANGE_RE.finditer(t):
         if not free(*m.span()):
             continue
@@ -845,8 +1069,18 @@ def parse_schedules(text: str, min_len: int = 3) -> list[Schedule]:
     return out
 
 
+# Grader 1.3.1: a drug name inside a non-drug term is not a drug ("GLP-1 (glucagon-like peptide-1)", "kháng insulin" =
+# insulin resistance, "tiết insulin"); read on accent-free lower-case text, separators space or hyphen.
+_NOT_DRUG_SRC = (r"(?<![a-z0-9])(?:glucagon[\s-]+like|insulin[\s-]+like|(?:de[\s-]+)?khang[\s-]+insulin|"
+                 r"insulin[\s-]+resistan\w*|resistan\w*[\s-]+to[\s-]+insulin|tiet[\s-]+insulin|insulin[\s-]+secretion|"
+                 r"(?:do[\s-]+)?nhay[\s-]+(?:cam[\s-]+)?(?:voi[\s-]+)?insulin|insulin[\s-]+sensitivity|"
+                 r"insulin[\s-]+noi[\s-]+sinh|endogenous[\s-]+insulin)(?![a-z0-9])")
+NOT_DRUG_RE = re.compile(_NOT_DRUG_SRC)
+
+
 def _norm_drug_text(s: str) -> str:
     s = strip_accents(clean(s).lower())
+    s = NOT_DRUG_RE.sub(" ", s)                                            # grader 1.3.1
     s = re.sub(r"(?<![a-z0-9])([a-z]{2,5})[1-9](?![a-z0-9])", r"\1", s)   # table footnotes: "DTG1", "TAF2" -> "dtg", "taf"
     return re.sub(r"\s*(?:-|/|\+)\s*", "-", s)
 
@@ -857,26 +1091,43 @@ def _alias_pattern(alias: str) -> str:
     return r"(?<![a-z0-9])" + "[ -]".join(re.escape(p) for p in re.split(r"[ -]", alias)) + r"(?![a-z0-9])"
 
 
+_CHAIN: dict[tuple, tuple] = {}
+
+
+def _chain_tables(synonyms: dict[str, list[str]]) -> tuple[dict, dict, dict]:
+    """(chain codes, exact-case codes, anchors) of a drug table, computed once per table (grader 1.3.1; same content as
+    before, see _chain_codes)."""
+    sig = tuple((c, tuple(al)) for c, al in synonyms.items())
+    hit = _CHAIN.get(sig)
+    if hit is None:
+        chain, exact = {}, {}
+        for c, al in synonyms.items():
+            for a in al:
+                if a.startswith("~"):
+                    code, _, n = a[1:].partition("@")
+                    (chain if code == code.lower() else exact)[code] = (c, int(n) if n else 3)
+        anchor = {}
+        for c, al in synonyms.items():
+            for a in [c, *al]:
+                k = _norm_drug_text(a)
+                if not a.startswith("~") and re.fullmatch(r"[a-z0-9]+", k):
+                    anchor[k] = c
+        hit = (chain, exact, anchor)
+        if len(_CHAIN) > 16:
+            _CHAIN.clear()
+        _CHAIN[sig] = hit
+    return hit
+
+
 def _chain_codes(text: str, synonyms: dict[str, list[str]]) -> set[str]:
     """INNs named by 1–2 letter TB codes (aliases '~cs', '~am', '~e'... in configs/grading.yaml), read ONLY inside a
     regimen chain holding ≥ 3 other recognised drugs ('Bdq Lzd Cfz Cs', '4-6 Am-Lfx-Pto-Cfz-Z-H'). A chain is a run
     of drug codes and numbers; any other word ends it. Accents are kept, so 'âm tính' is never 'Am'. '~code@n' sets
     the minimum to n, and a code written with a capital letter is matched case-sensitively (grader 1.2.0: '~Pa@2', so
     'Bdq, Pa, Lzd' reads pretomanid while 'X-quang PA, Bdq, Lzd' does not)."""
-    chain, exact = {}, {}
-    for c, al in synonyms.items():
-        for a in al:
-            if a.startswith("~"):
-                code, _, n = a[1:].partition("@")
-                (chain if code == code.lower() else exact)[code] = (c, int(n) if n else 3)
+    chain, exact, anchor = _chain_tables(synonyms)
     if not chain and not exact:
         return set()
-    anchor = {}
-    for c, al in synonyms.items():
-        for a in [c, *al]:
-            k = _norm_drug_text(a)
-            if not a.startswith("~") and re.fullmatch(r"[a-z0-9]+", k):
-                anchor[k] = c
     t = re.sub(r"\([^)]*\)|\[[^\]]*\]", " ", clean(text))                 # case kept for the exact codes
     t = re.sub(r"(?<![^\W_])([^\W\d_]{2,5})[1-9](?![^\W_])", r"\1", t)
 
@@ -905,10 +1156,13 @@ SPELLED_RE = re.compile(r"(?<![^\W_])[A-Z][a-z]?(?:\s*[-+/\s]\s*[A-Z][a-z]?)+(?!
 
 
 def _spelled_regimens(text: str, synonyms: dict[str, list[str]]) -> set[str]:
+    ms = list(SPELLED_RE.finditer(clean(text)))
+    if not ms:
+        return set()
     names = {_norm_drug_text(a): c for c, al in synonyms.items() if "+" in c and "|" not in c
              for a in al if not a.startswith("~")}
     out: set[str] = set()
-    for m in SPELLED_RE.finditer(clean(text)):
+    for m in ms:
         toks = re.findall(r"[A-Z][a-z]?", m.group(0))
         for i in range(len(toks)):
             for j in range(i + 2, len(toks) + 1):
@@ -918,6 +1172,24 @@ def _spelled_regimens(text: str, synonyms: dict[str, list[str]]) -> set[str]:
     return out
 
 
+_PAIRS: dict[tuple, list] = {}
+
+
+def _alias_pairs(synonyms: dict[str, list[str]]) -> list[tuple[re.Pattern, str]]:
+    """(compiled alias pattern, canonical name), longest alias first (grader 1.3.1: compiled once per drug table; the
+    table has > 1000 aliases, beyond the re module cache). Same order and patterns as before."""
+    sig = tuple((c, tuple(al)) for c, al in synonyms.items())
+    hit = _PAIRS.get(sig)
+    if hit is None:
+        pairs = sorted(((_norm_drug_text(a), c) for c, al in synonyms.items() for a in [c, *al]
+                        if not a.startswith("~")), key=lambda x: len(x[0]), reverse=True)
+        hit = [(re.compile(_alias_pattern(a)), c) for a, c in pairs]
+        if len(_PAIRS) > 16:
+            _PAIRS.clear()
+        _PAIRS[sig] = hit
+    return hit
+
+
 def parse_drugs(text: str, synonyms: dict[str, list[str]], combos: dict[str, list[str]] | None = None) -> Drugs:
     """synonyms: canonical INN -> aliases; combos: combination -> component INNs (collapsed, largest first, so
     BPaL + moxifloxacin reads as BPaLM, not BPaL). Two canonical forms carry structure (configs/grading.yaml):
@@ -925,14 +1197,11 @@ def parse_drugs(text: str, synonyms: dict[str, list[str]], combos: dict[str, lis
     ('tenofovir') kept as one token that stands for ONE of its members (see drugs_cover). Aliases starting with '~'
     are TB chain codes (see _chain_codes); a regimen spelled letter by letter ('B-Pa-L') is read (_spelled_regimens)."""
     t = " " + _norm_drug_text(text) + " "
-    pairs = sorted(((_norm_drug_text(a), c) for c, al in synonyms.items() for a in [c, *al] if not a.startswith("~")),
-                   key=lambda x: len(x[0]), reverse=True)
     found = _chain_codes(text, synonyms) | _spelled_regimens(text, synonyms)
-    for alias, canon in pairs:
-        pat = _alias_pattern(alias)
-        if re.search(pat, t):
+    for pat, canon in _alias_pairs(synonyms):
+        if pat.search(t):
             found.update(canon.split("+") if "+" in canon and "|" not in canon else [canon])
-            t = re.sub(pat, " ", t)
+            t = pat.sub(" ", t)
     found -= {n for n in found if "|" in n and set(n.split("|")) & found}   # "tenofovir (TDF)" names TDF only
     return Drugs(frozenset(_collapse(found, combos)))
 
@@ -1294,6 +1563,8 @@ def stated_drugs_text(text: str, synonyms: dict[str, list[str]]) -> tuple[str, b
     free, s, lex = _lex_for(c)
     spans: list[tuple[int, int]] = []
     used = bytearray(len(free))
+    for m in NOT_DRUG_RE.finditer(free):                  # grader 1.3.1: "glucagon-like peptide" names no drug
+        used[m.start():m.end()] = b"\x01" * (m.end() - m.start())
     for pat in _alias_regexes(synonyms):
         for m in pat.finditer(free):
             a, b = m.span()

@@ -73,3 +73,425 @@ meropenem: {vi: meropenem, en: meropenem}
 co-trimoxazole: {vi: co-trimoxazole, en: co-trimoxazole}
 azithromycin: {vi: azithromycin, en: azithromycin}
 chloramphenicol: {vi: chloramphenicol, en: chloramphenicol}
+# grader 1.3.1 (27/9/2026): drugs added from the reader inventory of the 25 corpus documents. vi = the spelling most
+# often written in the corpus (counted on the page text, review/extraction_calibration/reader_inventory.md); brand
+# names, abbreviations and typos are never a display name ('lovenox', 'endoxaban' -> enoxaparin, edoxaban). Drugs not
+# in the corpus: the Vietnamese pharmacopoeia style of their group. en: INN (tiếng Anh).
+amoxicillin: {vi: amoxicillin, en: amoxicillin}
+clavulanic-acid: {vi: acid clavulanic, en: clavulanic acid}
+amoxicillin-clavulanate: {vi: amoxicillin-acid clavulanic, en: amoxicillin-clavulanate}
+ampicillin: {vi: ampicillin, en: ampicillin}
+sulbactam: {vi: sulbactam, en: sulbactam}
+ampicillin-sulbactam: {vi: ampicillin-sulbactam, en: ampicillin-sulbactam}
+benzylpenicillin: {vi: "penicillin G", en: "benzylpenicillin (penicillin G)"}
+benzathine-benzylpenicillin: {vi: benzathine penicillin, en: benzathine benzylpenicillin}
+procaine-benzylpenicillin: {vi: procaine penicillin, en: procaine benzylpenicillin}
+phenoxymethylpenicillin: {vi: penicillin v, en: phenoxymethylpenicillin}
+oxacillin: {vi: oxacilin, en: oxacillin}
+cloxacillin: {vi: cloxacillin, en: cloxacillin}
+dicloxacillin: {vi: dicloxacillin, en: dicloxacillin}
+nafcillin: {vi: nafcillin, en: nafcillin}
+piperacillin: {vi: piperacillin, en: piperacillin}
+tazobactam: {vi: tazobactam, en: tazobactam}
+piperacillin-tazobactam: {vi: piperacillin-tazobactam, en: piperacillin-tazobactam}
+cefalexin: {vi: cephalexin, en: cefalexin}
+cefazolin: {vi: cefazolin, en: cefazolin}
+cefuroxime: {vi: cefuroxim, en: cefuroxime}
+cefaclor: {vi: cefaclor, en: cefaclor}
+cefprozil: {vi: cefprozil, en: cefprozil}
+cefoxitin: {vi: cefoxitin, en: cefoxitin}
+cefotaxime: {vi: cefotaxim, en: cefotaxime}
+ceftriaxone: {vi: ceftriaxon, en: ceftriaxone}
+cefepime: {vi: cefepim, en: cefepime}
+cefixime: {vi: cefixim, en: cefixime}
+cefpodoxime: {vi: cefpodoxim, en: cefpodoxime}
+cefdinir: {vi: cefdinir, en: cefdinir}
+cefditoren: {vi: cefditoren, en: cefditoren}
+cefoperazone: {vi: cefoperazon, en: cefoperazone}
+cefoperazone-sulbactam: {vi: cefoperazon-sulbactam, en: cefoperazone-sulbactam}
+ceftaroline: {vi: ceftarolin, en: ceftaroline}
+ceftolozane: {vi: ceftolozan, en: ceftolozane}
+ceftolozane-tazobactam: {vi: ceftolozan-tazobactam, en: ceftolozane-tazobactam}
+avibactam: {vi: avibactam, en: avibactam}
+ceftazidime-avibactam: {vi: ceftazidim-avibactam, en: ceftazidime-avibactam}
+cefpirome: {vi: cefpirom, en: cefpirome}
+imipenem: {vi: imipenem, en: imipenem}
+ertapenem: {vi: ertapenem, en: ertapenem}
+doripenem: {vi: doripenem, en: doripenem}
+aztreonam: {vi: aztreonam, en: aztreonam}
+gentamicin: {vi: gentamicin, en: gentamicin}
+tobramycin: {vi: tobramycin, en: tobramycin}
+netilmicin: {vi: netilmicine, en: netilmicin}
+capreomycin: {vi: capreomycin, en: capreomycin}
+clarithromycin: {vi: clarithromycin, en: clarithromycin}
+erythromycin: {vi: erythromycin, en: erythromycin}
+roxithromycin: {vi: roxithromycin, en: roxithromycin}
+spiramycin: {vi: spiramycin, en: spiramycin}
+tetracycline: {vi: tetracyclin, en: tetracycline}
+minocycline: {vi: minocycline, en: minocycline}
+tigecycline: {vi: tigecycline, en: tigecycline}
+ciprofloxacin: {vi: ciprofloxacin, en: ciprofloxacin}
+ofloxacin: {vi: ofloxacin, en: ofloxacin}
+norfloxacin: {vi: norfloxacin, en: norfloxacin}
+pefloxacin: {vi: pefloxacin, en: pefloxacin}
+gatifloxacin: {vi: gatifloxacin, en: gatifloxacin}
+nalidixic-acid: {vi: acid nalidixic, en: nalidixic acid}
+vancomycin: {vi: vancomycin, en: vancomycin}
+teicoplanin: {vi: teicoplanin, en: teicoplanin}
+daptomycin: {vi: daptomycin, en: daptomycin}
+colistin: {vi: colistin, en: colistin}
+polymyxin-b: {vi: "polymyxin B", en: "polymyxin B"}
+fosfomycin: {vi: fosfomycin, en: fosfomycin}
+nitrofurantoin: {vi: nitrofurantoine, en: nitrofurantoin}
+metronidazole: {vi: metronidazol, en: metronidazole}
+tinidazole: {vi: tinidazole, en: tinidazole}
+trimethoprim: {vi: trimethoprim, en: trimethoprim}
+sulfamethoxazole: {vi: sulfamethoxazole, en: sulfamethoxazole}
+sulfadiazine: {vi: sulfadiazine, en: sulfadiazine}
+terizidone: {vi: terizidone, en: terizidone}
+para-aminosalicylic-acid: {vi: "acid para-aminosalicylic (PAS)", en: "para-aminosalicylic acid (PAS)"}
+oseltamivir: {vi: oseltamivir, en: oseltamivir}
+zanamivir: {vi: zanamivir, en: zanamivir}
+baloxavir: {vi: baloxavir, en: baloxavir}
+peramivir: {vi: peramivir, en: peramivir}
+aciclovir: {vi: acyclovir, en: aciclovir}
+valaciclovir: {vi: valaciclovir, en: valaciclovir}
+famciclovir: {vi: famciclovir, en: famciclovir}
+ganciclovir: {vi: ganciclovir, en: ganciclovir}
+valganciclovir: {vi: valganciclovir, en: valganciclovir}
+ribavirin: {vi: ribavirin, en: ribavirin}
+sofosbuvir: {vi: sofosbuvir, en: sofosbuvir}
+velpatasvir: {vi: velpatasvir, en: velpatasvir}
+daclatasvir: {vi: daclatasvir, en: daclatasvir}
+ledipasvir: {vi: ledipasvir, en: ledipasvir}
+glecaprevir: {vi: glecaprevir, en: glecaprevir}
+pibrentasvir: {vi: pibrentasvir, en: pibrentasvir}
+voxilaprevir: {vi: voxilaprevir, en: voxilaprevir}
+elbasvir: {vi: elbasvir, en: elbasvir}
+grazoprevir: {vi: grazoprevir, en: grazoprevir}
+peginterferon-alfa: {vi: peginterferon alfa, en: peginterferon alfa}
+stavudine: {vi: stavudine, en: stavudine}
+etravirine: {vi: etravirin, en: etravirine}
+elvitegravir: {vi: elvitegravir, en: elvitegravir}
+tipranavir: {vi: tipranavir, en: tipranavir}
+saquinavir: {vi: saquinavir, en: saquinavir}
+fluconazole: {vi: fluconazole, en: fluconazole}
+itraconazole: {vi: itraconazole, en: itraconazole}
+voriconazole: {vi: voriconazole, en: voriconazole}
+posaconazole: {vi: posaconazol, en: posaconazole}
+ketoconazole: {vi: ketoconazole, en: ketoconazole}
+amphotericin-b: {vi: "amphotericin B", en: "amphotericin B"}
+flucytosine: {vi: flucytosine, en: flucytosine}
+nystatin: {vi: nystatin, en: nystatin}
+clotrimazole: {vi: clotrimazole, en: clotrimazole}
+miconazole: {vi: miconazole, en: miconazole}
+albendazole: {vi: albendazol, en: albendazole}
+mebendazole: {vi: mebendazol, en: mebendazole}
+praziquantel: {vi: praziquantel, en: praziquantel}
+ivermectin: {vi: ivermectin, en: ivermectin}
+pyrimethamine: {vi: pyrimethamine, en: pyrimethamine}
+folinic-acid: {vi: acid folinic, en: folinic acid}
+sacubitril: {vi: sacubitril, en: sacubitril}
+valsartan: {vi: valsartan, en: valsartan}
+sacubitril-valsartan: {vi: sacubitril/valsartan, en: sacubitril/valsartan}
+losartan: {vi: losartan, en: losartan}
+irbesartan: {vi: irbesartan, en: irbesartan}
+candesartan: {vi: candesartan, en: candesartan}
+telmisartan: {vi: telmisartan, en: telmisartan}
+olmesartan: {vi: olmesartan, en: olmesartan}
+captopril: {vi: captopril, en: captopril}
+enalapril: {vi: enalapril, en: enalapril}
+lisinopril: {vi: lisinopril, en: lisinopril}
+perindopril: {vi: perindopril, en: perindopril}
+ramipril: {vi: ramipril, en: ramipril}
+imidapril: {vi: imidapril, en: imidapril}
+benazepril: {vi: benazepril, en: benazepril}
+quinapril: {vi: quinapril, en: quinapril}
+trandolapril: {vi: trandolapril, en: trandolapril}
+bisoprolol: {vi: bisoprolol, en: bisoprolol}
+carvedilol: {vi: carvedilol, en: carvedilol}
+metoprolol: {vi: metoprolol, en: metoprolol}
+nebivolol: {vi: nebivolol, en: nebivolol}
+atenolol: {vi: atenolol, en: atenolol}
+propranolol: {vi: propranolol, en: propranolol}
+labetalol: {vi: labetalol, en: labetalol}
+esmolol: {vi: esmolol, en: esmolol}
+acebutolol: {vi: acebutolol, en: acebutolol}
+nadolol: {vi: nadolol, en: nadolol}
+sotalol: {vi: sotalol, en: sotalol}
+amlodipine: {vi: amlodipine, en: amlodipine}
+nifedipine: {vi: nifedipine, en: nifedipine}
+felodipine: {vi: felodipin, en: felodipine}
+lercanidipine: {vi: lercanidipin, en: lercanidipine}
+lacidipine: {vi: lacidipine, en: lacidipine}
+nicardipine: {vi: nicardipine, en: nicardipine}
+nimodipine: {vi: nimodipine, en: nimodipine}
+diltiazem: {vi: diltiazem, en: diltiazem}
+verapamil: {vi: verapamil, en: verapamil}
+methyldopa: {vi: methyldopa, en: methyldopa}
+clonidine: {vi: clonidine, en: clonidine}
+hydralazine: {vi: hydralazine, en: hydralazine}
+urapidil: {vi: urapidil, en: urapidil}
+nitroprusside: {vi: natri nitroprussid, en: nitroprusside}
+isosorbide-dinitrate: {vi: isosorbid dinitrat, en: isosorbide dinitrate}
+isosorbide-mononitrate: {vi: isosorbid mononitrat, en: isosorbide mononitrate}
+nitroglycerin: {vi: nitroglycerin, en: nitroglycerin}
+furosemide: {vi: furosemide, en: furosemide}
+bumetanide: {vi: bumetanide, en: bumetanide}
+torasemide: {vi: torsemide, en: torasemide}
+spironolactone: {vi: spironolactone, en: spironolactone}
+eplerenone: {vi: eplerenon, en: eplerenone}
+hydrochlorothiazide: {vi: hydrochlorothiazide, en: hydrochlorothiazide}
+indapamide: {vi: indapamide, en: indapamide}
+chlortalidone: {vi: chlorthalidone, en: chlortalidone}
+acetazolamide: {vi: acetazolamide, en: acetazolamide}
+tolvaptan: {vi: tolvaptan, en: tolvaptan}
+dapagliflozin: {vi: dapagliflozin, en: dapagliflozin}
+empagliflozin: {vi: empagliflozin, en: empagliflozin}
+canagliflozin: {vi: canagliflozin, en: canagliflozin}
+ertugliflozin: {vi: ertugliflozin, en: ertugliflozin}
+digoxin: {vi: digoxin, en: digoxin}
+ivabradine: {vi: ivabradin, en: ivabradine}
+milrinone: {vi: milrinone, en: milrinone}
+levosimendan: {vi: levosimendan, en: levosimendan}
+vasopressin: {vi: vasopressin, en: vasopressin}
+noradrenaline: {vi: noradrenalin, en: "norepinephrine (noradrenaline)"}
+dopamine: {vi: dopamin, en: dopamine}
+dobutamine: {vi: dobutamin, en: dobutamine}
+amiodarone: {vi: amiodaron, en: amiodarone}
+lidocaine: {vi: lidocain, en: lidocaine}
+atropine: {vi: atropin, en: atropine}
+ranolazine: {vi: ranolazin, en: ranolazine}
+atorvastatin: {vi: atorvastatin, en: atorvastatin}
+rosuvastatin: {vi: rosuvastatin, en: rosuvastatin}
+simvastatin: {vi: simvastatin, en: simvastatin}
+pravastatin: {vi: pravastatin, en: pravastatin}
+fluvastatin: {vi: fluvastatin, en: fluvastatin}
+lovastatin: {vi: lovastatin, en: lovastatin}
+pitavastatin: {vi: pitavastatin, en: pitavastatin}
+ezetimibe: {vi: ezetimibe, en: ezetimibe}
+fenofibrate: {vi: fenofibrate, en: fenofibrate}
+gemfibrozil: {vi: gemfibrozil, en: gemfibrozil}
+aspirin: {vi: aspirin, en: aspirin}
+clopidogrel: {vi: clopidogrel, en: clopidogrel}
+ticagrelor: {vi: ticagrelor, en: ticagrelor}
+prasugrel: {vi: prasugrel, en: prasugrel}
+cilostazol: {vi: cilostazol, en: cilostazol}
+dipyridamole: {vi: dipyridamole, en: dipyridamole}
+heparin: {vi: heparin, en: heparin}
+enoxaparin: {vi: enoxaparin, en: enoxaparin}
+nadroparin: {vi: nadroparin, en: nadroparin}
+fondaparinux: {vi: fondaparinux, en: fondaparinux}
+warfarin: {vi: warfarin, en: warfarin}
+acenocoumarol: {vi: acenocoumarol, en: acenocoumarol}
+dabigatran: {vi: dabigatran, en: dabigatran}
+rivaroxaban: {vi: rivaroxaban, en: rivaroxaban}
+apixaban: {vi: apixaban, en: apixaban}
+edoxaban: {vi: edoxaban, en: edoxaban}
+protamine: {vi: protamine, en: protamine}
+idarucizumab: {vi: idarucizumab, en: idarucizumab}
+andexanet-alfa: {vi: andexanet alfa, en: andexanet alfa}
+prothrombin-complex-concentrate: {vi: "phức hợp prothrombin cô đặc (PCC)", en: "prothrombin complex concentrate (PCC)"}
+phytomenadione: {vi: "vitamin K1", en: "phytomenadione (vitamin K1)"}
+tranexamic-acid: {vi: acid tranexamic, en: tranexamic acid}
+insulin: {vi: insulin, en: insulin}
+metformin: {vi: metformin, en: metformin}
+gliclazide: {vi: gliclazide, en: gliclazide}
+glimepiride: {vi: glimepiride, en: glimepiride}
+glibenclamide: {vi: glyburide, en: glibenclamide}
+glipizide: {vi: glipizide, en: glipizide}
+repaglinide: {vi: repaglinide, en: repaglinide}
+acarbose: {vi: acarbose, en: acarbose}
+pioglitazone: {vi: pioglitazone, en: pioglitazone}
+sitagliptin: {vi: sitagliptin, en: sitagliptin}
+vildagliptin: {vi: vildagliptin, en: vildagliptin}
+saxagliptin: {vi: saxagliptin, en: saxagliptin}
+linagliptin: {vi: linagliptin, en: linagliptin}
+alogliptin: {vi: alogliptin, en: alogliptin}
+liraglutide: {vi: liraglutide, en: liraglutide}
+dulaglutide: {vi: dulaglutid, en: dulaglutide}
+semaglutide: {vi: semaglutid, en: semaglutide}
+exenatide: {vi: exenatid, en: exenatide}
+orlistat: {vi: orlistat, en: orlistat}
+phentermine: {vi: phentermine, en: phentermine}
+levothyroxine: {vi: levothyroxine, en: levothyroxine}
+allopurinol: {vi: allopurinol, en: allopurinol}
+febuxostat: {vi: febuxostat, en: febuxostat}
+colchicine: {vi: colchicin, en: colchicine}
+salbutamol: {vi: salbutamol, en: salbutamol}
+terbutaline: {vi: terbutaline, en: terbutaline}
+fenoterol: {vi: fenoterol, en: fenoterol}
+ipratropium: {vi: ipratropium, en: ipratropium}
+tiotropium: {vi: tiotropium, en: tiotropium}
+umeclidinium: {vi: umeclidinium, en: umeclidinium}
+glycopyrronium: {vi: glycopyronium, en: glycopyrronium}
+aclidinium: {vi: aclidinium, en: aclidinium}
+indacaterol: {vi: indacaterol, en: indacaterol}
+olodaterol: {vi: olodaterol, en: olodaterol}
+vilanterol: {vi: vilanterol, en: vilanterol}
+formoterol: {vi: formoterol, en: formoterol}
+salmeterol: {vi: salmeterol, en: salmeterol}
+budesonide: {vi: budesonide, en: budesonide}
+fluticasone: {vi: fluticasone propionate, en: fluticasone}
+beclometasone: {vi: beclomethasone, en: beclometasone}
+theophylline: {vi: theophylline, en: theophylline}
+aminophylline: {vi: aminophylline, en: aminophylline}
+doxofylline: {vi: doxofyllin, en: doxofylline}
+roflumilast: {vi: roflumilast, en: roflumilast}
+acetylcysteine: {vi: "N-acetylcystein", en: acetylcysteine}
+carbocisteine: {vi: carbocystein, en: carbocisteine}
+montelukast: {vi: montelukast, en: montelukast}
+prednisolone: {vi: prednisolon, en: prednisolone}
+prednisone: {vi: prednisone, en: prednisone}
+methylprednisolone: {vi: methylprednisolon, en: methylprednisolone}
+hydrocortisone: {vi: hydrocortison, en: hydrocortisone}
+dexamethasone: {vi: dexamethasone, en: dexamethasone}
+betamethasone: {vi: betamethasone, en: betamethasone}
+paracetamol: {vi: paracetamol, en: paracetamol}
+ibuprofen: {vi: ibuprofen, en: ibuprofen}
+diclofenac: {vi: diclofenac, en: diclofenac}
+morphine: {vi: morphin, en: morphine}
+fentanyl: {vi: fentanyl, en: fentanyl}
+tramadol: {vi: tramadol, en: tramadol}
+codeine: {vi: codein, en: codeine}
+ketamine: {vi: ketamin, en: ketamine}
+propofol: {vi: propofol, en: propofol}
+thiopental: {vi: thiopental, en: thiopental}
+diazepam: {vi: diazepam, en: diazepam}
+midazolam: {vi: midazolam, en: midazolam}
+lorazepam: {vi: lorazepam, en: lorazepam}
+phenobarbital: {vi: phenobarbital, en: phenobarbital}
+phenytoin: {vi: phenytoin, en: phenytoin}
+valproate: {vi: valproic acid, en: valproate}
+levetiracetam: {vi: levetiracetam, en: levetiracetam}
+carbamazepine: {vi: carbamazepin, en: carbamazepine}
+haloperidol: {vi: haloperidol, en: haloperidol}
+diphenhydramine: {vi: diphenhydramin, en: diphenhydramine}
+chlorpheniramine: {vi: chlorpheniramine, en: chlorpheniramine}
+promethazine: {vi: promethazin, en: promethazine}
+cetirizine: {vi: cetirizin, en: cetirizine}
+loratadine: {vi: loratadin, en: loratadine}
+omeprazole: {vi: omeprazole, en: omeprazole}
+esomeprazole: {vi: esomeprazol, en: esomeprazole}
+pantoprazole: {vi: pantoprazol, en: pantoprazole}
+ranitidine: {vi: ranitidin, en: ranitidine}
+famotidine: {vi: famotidin, en: famotidine}
+cimetidine: {vi: cimetidin, en: cimetidine}
+metoclopramide: {vi: metoclopramid, en: metoclopramide}
+domperidone: {vi: domperidon, en: domperidone}
+ondansetron: {vi: ondansetron, en: ondansetron}
+lactulose: {vi: lactulose, en: lactulose}
+oral-rehydration-salts: {vi: "oresol (ORS)", en: "oral rehydration salts (ORS)"}
+zinc: {vi: kẽm, en: zinc}
+sevelamer: {vi: sevelamer, en: sevelamer}
+calcium-carbonate: {vi: calci carbonat, en: calcium carbonate}
+cinacalcet: {vi: cinacalcet, en: cinacalcet}
+calcitriol: {vi: calcitriol, en: calcitriol}
+alfacalcidol: {vi: alfacalcidol, en: alfacalcidol}
+sodium-polystyrene-sulfonate: {vi: natri polystyren sulfonat, en: sodium polystyrene sulfonate}
+calcium-polystyrene-sulfonate: {vi: calci polystyren sulfonat, en: calcium polystyrene sulfonate}
+sodium-zirconium-cyclosilicate: {vi: natri zirconium cyclosilicat, en: sodium zirconium cyclosilicate}
+patiromer: {vi: patiromer, en: patiromer}
+epoetin: {vi: erythropoietin, en: epoetin}
+darbepoetin-alfa: {vi: darbepoetin alfa, en: darbepoetin alfa}
+methoxy-polyethylene-glycol-epoetin-beta: {vi: methoxy polyethylene glycol-epoetin beta, en: methoxy polyethylene glycol-epoetin beta}
+iron-sucrose: {vi: sắt sucrose, en: iron sucrose}
+ferrous-sulfate: {vi: sắt sulfat, en: ferrous sulfate}
+ferrous-fumarate: {vi: sắt fumarat, en: ferrous fumarate}
+ferrous-gluconate: {vi: sắt gluconat, en: ferrous gluconate}
+folic-acid: {vi: acid folic, en: folic acid}
+cyclophosphamide: {vi: cyclophosphamide, en: cyclophosphamide}
+mycophenolate-mofetil: {vi: mycophenolat mofetil, en: mycophenolate mofetil}
+mycophenolic-acid: {vi: acid mycophenolic, en: mycophenolic acid}
+tacrolimus: {vi: tacrolimus, en: tacrolimus}
+ciclosporin: {vi: cyclosporine, en: ciclosporin}
+azathioprine: {vi: azathioprine, en: azathioprine}
+rituximab: {vi: rituximab, en: rituximab}
+hydroxychloroquine: {vi: hydroxychloroquin, en: hydroxychloroquine}
+human-normal-immunoglobulin: {vi: "immunoglobulin (IVIG)", en: "human normal immunoglobulin (IVIG)"}
+hepatitis-b-immunoglobulin: {vi: "globulin miễn dịch viêm gan B (HBIG)", en: "hepatitis B immunoglobulin (HBIG)"}
+tetanus-immunoglobulin: {vi: "globulin miễn dịch kháng độc tố uốn ván (TIG)", en: "tetanus immunoglobulin (TIG)"}
+tetanus-antitoxin: {vi: "huyết thanh kháng độc tố uốn ván (SAT)", en: tetanus antitoxin}
+human-albumin: {vi: albumin người, en: human albumin}
+sodium-chloride: {vi: natri clorid, en: sodium chloride}
+ringer-lactate: {vi: "Ringer lactat", en: "Ringer's lactate"}
+mannitol: {vi: mannitol, en: mannitol}
+potassium-chloride: {vi: kali clorid, en: potassium chloride}
+sodium-bicarbonate: {vi: natri bicarbonat, en: sodium bicarbonate}
+calcium-gluconate: {vi: calci gluconat, en: calcium gluconate}
+calcium-chloride: {vi: calci clorid, en: calcium chloride}
+magnesium-sulfate: {vi: magie sulphat, en: magnesium sulfate}
+hydroxyethyl-starch: {vi: "HES (hydroxyethyl starch)", en: "hydroxyethyl starch (HES)"}
+dextran: {vi: dextran, en: dextran}
+gelatin: {vi: gelatin, en: gelatin}
+activated-charcoal: {vi: than hoạt tính, en: activated charcoal}
+sorbitol: {vi: sorbitol, en: sorbitol}
+pralidoxime: {vi: pralidoxim, en: pralidoxime}
+naloxone: {vi: naloxon, en: naloxone}
+flumazenil: {vi: flumazenil, en: flumazenil}
+fomepizole: {vi: fomepizole, en: fomepizole}
+ethanol: {vi: ethanol, en: ethanol}
+methylthioninium-chloride: {vi: xanh methylen, en: "methylthioninium chloride (methylene blue)"}
+hydroxocobalamin: {vi: hydroxocobalamin, en: hydroxocobalamin}
+sodium-thiosulfate: {vi: natri thiosulfat, en: sodium thiosulfate}
+sodium-nitrite: {vi: natri nitrit, en: sodium nitrite}
+amyl-nitrite: {vi: amyl nitrit, en: amyl nitrite}
+dimercaprol: {vi: "dimercaprol (BAL)", en: "dimercaprol (BAL)"}
+succimer: {vi: succimer, en: "succimer (DMSA)"}
+unithiol: {vi: "DMPS", en: "unithiol (DMPS)"}
+sodium-calcium-edetate: {vi: "CaNa2EDTA", en: "sodium calcium edetate (CaNa2EDTA)"}
+penicillamine: {vi: penicillamin, en: penicillamine}
+glucagon: {vi: glucagon, en: glucagon}
+octreotide: {vi: octreotide, en: octreotide}
+neostigmine: {vi: neostigmin, en: neostigmine}
+pyridoxine: {vi: pyridoxine, en: "pyridoxine (vitamin B6)"}
+thiamine: {vi: "vitamin B1", en: "thiamine (vitamin B1)"}
+silibinin: {vi: silibinin, en: silibinin}
+silymarin: {vi: silymarin, en: silymarin}
+snake-antivenom: {vi: huyết thanh kháng nọc rắn, en: snake antivenom}
+lipid-emulsion: {vi: nhũ dịch lipid, en: lipid emulsion}
+retinol: {vi: "vitamin A", en: "vitamin A (retinol)"}
+vitamin-d: {vi: "vitamin D", en: "vitamin D"}
+ascorbic-acid: {vi: "vitamin C", en: "ascorbic acid (vitamin C)"}
+cyanocobalamin: {vi: "vitamin B12", en: "cyanocobalamin (vitamin B12)"}
+citicoline: {vi: citicoline, en: citicoline}
+cerebrolysin: {vi: cerebrolysin, en: cerebrolysin}
+piracetam: {vi: piracetam, en: piracetam}
+vinpocetine: {vi: vinpocetine, en: vinpocetine}
+memantine: {vi: memantine, en: memantine}
+donepezil: {vi: donepezil, en: donepezil}
+desmopressin: {vi: desmopressin, en: desmopressin}
+roxadustat: {vi: roxadustat, en: roxadustat}
+daprodustat: {vi: daprodustat, en: daprodustat}
+icodextrin: {vi: icodextrin, en: icodextrin}
+methotrexate: {vi: methotrexate, en: methotrexate}
+nicotine: {vi: nicotin, en: nicotine}
+bupropion: {vi: bupropion, en: bupropion}
+metamizole: {vi: analgin, en: metamizole}
+vecuronium: {vi: vecuronium, en: vecuronium}
+pipecuronium: {vi: pipecuronium, en: pipecuronium}
+everolimus: {vi: everolimus, en: everolimus}
+anakinra: {vi: anakinra, en: anakinra}
+quetiapine: {vi: quetiapine, en: quetiapine}
+gabapentin: {vi: gabapentin, en: gabapentin}
+pregabalin: {vi: pregabalin, en: pregabalin}
+duloxetine: {vi: duloxetin, en: duloxetine}
+amitriptyline: {vi: amitriptyline, en: amitriptyline}
+fluoxetine: {vi: fluoxetin, en: fluoxetine}
+tizanidine: {vi: tizanidin, en: tizanidine}
+baclofen: {vi: baclofen, en: baclofen}
+clonazepam: {vi: clonazepam, en: clonazepam}
+interferon-alfa: {vi: interferon alfa, en: interferon alfa}
+indometacin: {vi: indomethacin, en: indometacin}
+naproxen: {vi: naproxen, en: naproxen}
+metolazone: {vi: metolazone, en: metolazone}
+amiloride: {vi: amiloride, en: amiloride}
+relebactam: {vi: relebactam, en: relebactam}
+lixisenatide: {vi: lixisenatide, en: lixisenatide}
+canakinumab: {vi: canakinumab, en: canakinumab}
+pancuronium: {vi: pancuronium, en: pancuronium}
+probenecid: {vi: probenecid, en: probenecid}
+bisacodyl: {vi: bisacodyl, en: bisacodyl}
+amobarbital: {vi: amobarbital, en: amobarbital}
+chlorpromazine: {vi: clorpromazin, en: chlorpromazine}
+pethidine: {vi: pethidin, en: pethidine}

@@ -137,7 +137,10 @@ def test_grading_config_aliases_unambiguous():
         for a in [inn, *aliases]:
             if a.startswith("~"):                # TB chain code (1–2 letters), read only inside a regimen chain
                 code, _, n = a[1:].partition("@")   # '~Pa@2': minimum of other drugs (grader 1.2.0), default 3
-                assert code.isalpha() and len(code) <= 2 and "+" not in inn and "|" not in inn, a
+                # grader 1.3.1: a 3-letter code only in capitals (case-sensitive) with a minimum of ≥ 2 other drugs
+                # ('~ABC@2', '~RAL@2', '~PAS@2': 'ABC' of airway assessment is not abacavir)
+                three = len(code) == 3 and code.isupper() and n.isdigit() and int(n) >= 2
+                assert code.isalpha() and (len(code) <= 2 or three) and "+" not in inn and "|" not in inn, a
                 assert not n or (n.isdigit() and int(n) >= 2), a
                 assert chain.setdefault(code.lower(), inn) == inn, f"{a} trỏ tới {chain[code.lower()]} và {inn}"
                 continue
