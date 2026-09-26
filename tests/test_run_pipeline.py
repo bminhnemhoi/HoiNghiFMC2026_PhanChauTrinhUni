@@ -101,3 +101,20 @@ def test_grading_validation_kappa_and_summary():
             {"rule": 6, "final": 6, "A": 6, "B": 5, "cause": "adjudicator_error"}]
     s = summary(rows)
     assert s["n"] == 3 and s["agree"] == 2 and s["causes"] == {"grader_error": 1} and s["ab_agree"] == 2
+
+
+def test_independent_check_on_a_pilot_atom():
+    """Non-LLM cross-check runs on a real pilot atom (skipped when the PDFs are not present)."""
+    import json
+    from pathlib import Path
+
+    from vnsoc.analysis.independent_check import check_atoms
+
+    f = Path("data/interim/pilot_atoms.jsonl")
+    if not f.exists():
+        pytest.skip("không có mẩu thí điểm")
+    a = next(json.loads(x) for x in f.read_text(encoding="utf-8").splitlines() if '"P-dengue-01"' in x)
+    if not Path("data/raw").exists():
+        pytest.skip("không có PDF")
+    r = check_atoms([a])[0]
+    assert r["span_on_page"] and r["values_parsed"] and r["foreign_found"] <= r["foreign_records"]

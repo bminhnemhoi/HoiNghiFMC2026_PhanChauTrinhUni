@@ -2376,6 +2376,55 @@
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 390
  },
+ "pilot.indep_agree_a": {
+  "display": "65",
+  "generated": "2026-09-26T23:21:38+07:00",
+  "note": "kiểm bằng mã, không dùng mô hình ngôn ngữ; tiêu chí quần thể (c) chỉ có kiểm bằng AI",
+  "source": "src/vnsoc/analysis/independent_check.py",
+  "value": 65
+ },
+ "pilot.indep_agree_b": {
+  "display": "64",
+  "generated": "2026-09-26T23:21:38+07:00",
+  "note": "kiểm bằng mã, không dùng mô hình ngôn ngữ; tiêu chí quần thể (c) chỉ có kiểm bằng AI",
+  "source": "src/vnsoc/analysis/independent_check.py",
+  "value": 64
+ },
+ "pilot.indep_foreign_found": {
+  "display": "147",
+  "generated": "2026-09-26T23:21:38+07:00",
+  "note": "kiểm bằng mã, không dùng mô hình ngôn ngữ; tiêu chí quần thể (c) chỉ có kiểm bằng AI",
+  "source": "src/vnsoc/analysis/independent_check.py",
+  "value": 147
+ },
+ "pilot.indep_foreign_records": {
+  "display": "152",
+  "generated": "2026-09-26T23:21:38+07:00",
+  "note": "kiểm bằng mã, không dùng mô hình ngôn ngữ; tiêu chí quần thể (c) chỉ có kiểm bằng AI",
+  "source": "src/vnsoc/analysis/independent_check.py",
+  "value": 152
+ },
+ "pilot.indep_n": {
+  "display": "65",
+  "generated": "2026-09-26T23:21:38+07:00",
+  "note": "kiểm bằng mã, không dùng mô hình ngôn ngữ; tiêu chí quần thể (c) chỉ có kiểm bằng AI",
+  "source": "src/vnsoc/analysis/independent_check.py",
+  "value": 65
+ },
+ "pilot.indep_span_ok": {
+  "display": "65",
+  "generated": "2026-09-26T23:21:38+07:00",
+  "note": "kiểm bằng mã, không dùng mô hình ngôn ngữ; tiêu chí quần thể (c) chỉ có kiểm bằng AI",
+  "source": "src/vnsoc/analysis/independent_check.py",
+  "value": 65
+ },
+ "pilot.indep_values_ok": {
+  "display": "65",
+  "generated": "2026-09-26T23:21:38+07:00",
+  "note": "kiểm bằng mã, không dùng mô hình ngôn ngữ; tiêu chí quần thể (c) chỉ có kiểm bằng AI",
+  "source": "src/vnsoc/analysis/independent_check.py",
+  "value": 65
+ },
  "pilot.mcq_a1_en_decoy": {
   "display": "4",
   "generated": "2026-09-26T23:13:30+07:00",
