@@ -18,7 +18,6 @@ import os
 import re
 import sys
 import tempfile
-from pathlib import Path
 from urllib.parse import urlparse
 
 from vnsoc.extract.verify_span import pdf_path
