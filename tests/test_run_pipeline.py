@@ -118,3 +118,17 @@ def test_independent_check_on_a_pilot_atom():
         pytest.skip("không có PDF")
     r = check_atoms([a])[0]
     assert r["span_on_page"] and r["values_parsed"] and r["foreign_found"] <= r["foreign_records"]
+
+
+def test_collect_records_finish_reason_and_options():
+    """done_reason and backend options are carried into RunRecords; 'length' inferred when not reported."""
+    idx = {"r1": {"model_key": "m", "atom_id": "P-t-01", "question_id": "q", "format": "short", "language": "vi",
+                  "condition": "A1", "sample_idx": 0, "temperature": 0.0, "max_tokens": 128, "prompt_hash": "h"},
+           "r2": {"model_key": "m", "atom_id": "P-t-01", "question_id": "q", "format": "mcq", "language": "vi",
+                  "condition": "A1", "sample_idx": 0, "temperature": 0.0, "max_tokens": 128, "prompt_hash": "h"}}
+    raw = [{"request_id": "r1", "outputs": ["x"], "tokens_out": [10], "done_reason": ["stop"],
+            "options": {"seed": 0, "num_ctx": 4096}},
+           {"request_id": "r2", "outputs": ["y"], "tokens_out": [128]}]
+    recs = collect.records(idx, raw, "v", "ollama", "2026-09-27")
+    assert recs[0]["finish_reason"] == "stop" and recs[0]["options"]["num_ctx"] == 4096
+    assert recs[1]["finish_reason"] == "length" and recs[1]["options"] == {}

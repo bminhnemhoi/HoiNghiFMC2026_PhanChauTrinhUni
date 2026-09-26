@@ -59,12 +59,13 @@ def run(requests_path: str, model_key: str, tag: str, out: str, num_ctx: int = 8
             try:
                 res = _post("/api/chat", body)
                 text, err = (res.get("message") or {}).get("content", ""), None
-                tin, tout = res.get("prompt_eval_count"), res.get("eval_count")
+                tin, tout, why = res.get("prompt_eval_count"), res.get("eval_count"), res.get("done_reason")
             except Exception as e:  # noqa: BLE001
-                text, err, tin, tout = None, f"{type(e).__name__}: {str(e)[:300]}", None, None
+                text, err, tin, tout, why = None, f"{type(e).__name__}: {str(e)[:300]}", None, None, None
             n_out += tout or 0
             f.write(json.dumps({"request_id": r["request_id"], "outputs": [text], "tokens_in": tin, "tokens_out": [tout],
                                 "cum_logprob": [None], "model_key": model_key, "error": err,
+                                "done_reason": [why], "options": body["options"],
                                 "engine": f"ollama {info['ollama']} {tag} {info['quantization']} {info['digest'][:12]}"},
                                ensure_ascii=False) + "\n")
             f.flush()

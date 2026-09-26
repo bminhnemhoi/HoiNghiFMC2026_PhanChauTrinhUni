@@ -228,6 +228,7 @@ class RunRecord(Strict):
     tokens_out: int | None = None
     logprob_answer: float | None = None
     finish_reason: str | None = None          # 'stop' | 'length' (truncated at max_tokens) | ...
+    options: dict = {}                        # backend decoding options actually sent (seed, num_ctx, ...)
     backend: Literal["vllm", "hf", "openai_batch", "gemini_batch", "api_sync", "ollama"]
     error: str | None = None
 

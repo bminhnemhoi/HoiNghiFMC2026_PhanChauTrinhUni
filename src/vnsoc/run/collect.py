@@ -18,6 +18,16 @@ from pathlib import Path
 from vnsoc.schemas import RunRecord
 
 
+def _finish(reason, tokens_out, max_tokens) -> str | None:
+    """Backend stop reason ('stop' | 'length'); when the backend did not report it (e.g. the pilot run), 'length'
+    is inferred from tokens_out reaching max_tokens."""
+    if reason:
+        return str(reason)
+    if tokens_out is not None and max_tokens and tokens_out >= max_tokens:
+        return "length"
+    return None
+
+
 def records(index: dict[str, dict], raw_rows: list[dict], model_version: str, backend: str, date: str) -> list[dict]:
     out = []
     for r in raw_rows:
@@ -28,6 +38,8 @@ def records(index: dict[str, dict], raw_rows: list[dict], model_version: str, ba
         touts = r.get("tokens_out")
         touts = touts if isinstance(touts, list) else [touts] * len(texts)
         lps = r.get("cum_logprob") or [None] * len(texts)
+        whys = r.get("done_reason") or r.get("finish_reason") or [None] * len(texts)
+        whys = whys if isinstance(whys, list) else [whys] * len(texts)
         for k, text in enumerate(texts):
             rec = {"run_id": f"{r['request_id']}#{k}", "model": meta["model_key"], "model_version": model_version,
                    "date": date, "atom_id": meta["atom_id"], "question_id": meta["question_id"],
@@ -37,6 +49,9 @@ def records(index: dict[str, dict], raw_rows: list[dict], model_version: str, ba
                    "retrieved_ids": meta.get("retrieved_ids") or [], "raw_output": text or "",
                    "tokens_in": r.get("tokens_in"), "tokens_out": touts[k] if k < len(touts) else None,
                    "logprob_answer": lps[k] if k < len(lps) else None, "backend": backend,
+                   "finish_reason": _finish(whys[k] if k < len(whys) else None, touts[k] if k < len(touts) else None,
+                                            meta["max_tokens"]),
+                   "options": r.get("options") or {},
                    "error": r.get("error") or (None if text is not None else "no output")}
             out.append(RunRecord.model_validate(rec).model_dump())
     return out
