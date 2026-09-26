@@ -1,0 +1,12 @@
+{
+ "model_key": "qwen3_8b_local",
+ "tag": "qwen3:8b",
+ "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41",
+ "quantization": "Q4_K_M",
+ "parameter_size": "8.2B",
+ "format": "gguf",
+ "ollama": "0.34.4",
+ "requests": 3,
+ "tokens_out": 49,
+ "seconds": 43.8
+}
