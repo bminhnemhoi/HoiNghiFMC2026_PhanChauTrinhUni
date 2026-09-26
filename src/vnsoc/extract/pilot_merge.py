@@ -148,10 +148,15 @@ def main(argv=None) -> int:
             probs.append("atom_id trùng")
         seen.add(a["atom_id"])
         (bad if probs else keep).append((a, probs))
+    for a, _ in keep:                                   # OCR pages: every number must be checked against the image
+        if verify_atom(a, None, syn, combos).get("ocr"):
+            a["extraction"] = dict(a.get("extraction") or {}, ocr=True)
     out = P.root / "data" / "interim" / "pilot_atoms.jsonl"
     out.write_text("".join(json.dumps(a, ensure_ascii=False) + "\n" for a, _ in keep), encoding="utf-8")
     (P.state / "gates").mkdir(parents=True, exist_ok=True)
-    warns = {a["atom_id"]: source_warnings(a, blocks) for a, _ in keep}
+    warns = {a["atom_id"]: (["trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)"]
+                            if (a.get("extraction") or {}).get("ocr") else []) + source_warnings(a, blocks)
+             for a, _ in keep}
     (P.state / "gates" / "HG1.2_checklist.md").write_text(checklist([a for a, _ in keep], warns), encoding="utf-8")
     rej = P.root / "data" / "interim" / "pilot_merge_rejects.jsonl"
     rej.write_text("".join(json.dumps({"atom_id": a.get("atom_id"), "problems": p}, ensure_ascii=False) + "\n"
