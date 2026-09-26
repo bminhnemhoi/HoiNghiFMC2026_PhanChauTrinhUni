@@ -145,3 +145,7 @@ def test_dr8_secondary_sources_verified_on_their_own_pages(proj):
     a["extraction"]["dr8_sources"][0]["page"] = 2
     r = verify_atom(a, proj, {}, {})
     assert not r["ok"] and "DR8" in r["reason"]
+
+
+def test_symbol_font_pua_mapped():
+    assert norm("F  2 và  5") == "F ≥ 2 và ≤ 5"

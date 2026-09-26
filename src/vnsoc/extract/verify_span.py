@@ -30,7 +30,9 @@ _WS = re.compile(r"\s+")
 _INVISIBLE = dict.fromkeys(map(ord, "­​‌‍﻿"), None)   # soft hyphen, zero-width chars
 
 
-_GLYPH = str.maketrans({"\u01a3": "\u01b0", "\u01a2": "\u01af"})   # "ƣ/Ƣ" glyphs some Vietnamese PDFs emit for "ư/Ư"
+_GLYPH = str.maketrans({"\u01a3": "\u01b0", "\u01a2": "\u01af",   # ƣ/Ƣ -> ư/Ư
+                        "\uf0b3": "\u2265", "\uf0a3": "\u2264",   # Symbol-font PUA: ≥ ≤
+                        "\uf0b1": "\u00b1", "\uf0b4": "\u00d7"})  # ± ×
 
 
 def norm(s: str | None) -> str:
