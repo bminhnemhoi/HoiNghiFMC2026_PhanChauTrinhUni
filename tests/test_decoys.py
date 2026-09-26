@@ -39,3 +39,11 @@ def test_no_conflict_no_decoy():
          "foreign": [{"system": "EU_UK", "values": [{"lo": 0.5, "hi": 0.5}]}]}
     assert mirror_decoy(a) == (None, "không có giá trị nước ngoài xung đột")
     assert finalize(a)["conflict_status"] == "concordant"
+
+
+def test_mirror_converts_units_first():
+    # found by the anaphylaxis pilot agent: foreign 0.01 mg/kg vs MoH µg for a 10 kg child
+    a = {"value_kind": "num", "unit": "ug", "context": {"weight_kg": 10, "mg_per_ml": 1},
+         "vn": [{"lo": 250, "hi": 250}], "foreign": [{"system": "OTHER", "values": [{"lo": 0.01, "hi": 0.01, "unit": "mg/kg"}]}]}
+    d, rule = mirror_decoy(a)
+    assert rule == "mirror_arith" and (d["lo"], d["hi"]) == (400, 400) and d["unit"] == "ug"   # 250 + (250 - 100)

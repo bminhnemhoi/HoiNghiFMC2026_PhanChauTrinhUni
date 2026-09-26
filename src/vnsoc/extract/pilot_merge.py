@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 from vnsoc.extract.verify_span import drug_tables, pdf_path, verify_atom
-from vnsoc.match.decoys import check_decoy, finalize
+from vnsoc.match.decoys import check_decoy, finalize, mirror_decoy
 from vnsoc.paths import paths
 from vnsoc.schemas import Atom
 
@@ -84,6 +84,23 @@ def check(atom: dict, syn, combos, root=None) -> list[str]:
     return probs
 
 
+def enforce_decoy_rule(atom: dict) -> dict:
+    """num/bp conflict atoms: the decoy is whatever the fixed rule gives (vnsoc.match.decoys.mirror_decoy);
+    a stored decoy that differs is replaced and the change noted in extraction.decoy_rule."""
+    if atom.get("value_kind") not in ("num", "bp"):
+        return atom
+    d, rule = mirror_decoy(atom)
+    if d is None:
+        return atom
+    a = dict(atom)
+    old = list(atom.get("decoy") or [])
+    a["decoy"] = [d]
+    ex = dict(a.get("extraction") or {})
+    ex["decoy_rule"] = rule + ("" if old == [d] else " (đặt lại khi gộp)")
+    a["extraction"] = ex
+    return a
+
+
 def _vals(items: list[dict]) -> str:
     return "; ".join(str(it.get("text") or {k: v for k, v in it.items() if v is not None}) for it in items) or "—"
 
@@ -123,7 +140,7 @@ def main(argv=None) -> int:
 
     syn, combos = drug_tables()
     blocks = block_hashes()
-    atoms = [finalize(a) for a in load_topics(P.root / "data" / "interim" / "pilot")]
+    atoms = [finalize(enforce_decoy_rule(a)) for a in load_topics(P.root / "data" / "interim" / "pilot")]
     seen, keep, bad = set(), [], []
     for a in atoms:
         probs = check(a, syn, combos)

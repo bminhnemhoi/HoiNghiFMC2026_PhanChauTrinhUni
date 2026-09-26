@@ -34,6 +34,12 @@ def render_value(item: dict, atom: dict, lang: str, synonyms: dict | None = None
     if kind == "num":
         u = _unit(item.get("unit") or atom.get("unit"), lang)
         lo, hi = float(item["lo"]), float(item["hi"])
+        if item.get("unit") and atom.get("unit") and item["unit"] != atom["unit"]:
+            from vnsoc.match.decoys import in_atom_unit
+
+            n = in_atom_unit(item, atom)                 # e.g. 0.01 mg/kg x 10 kg -> 100 ug, same unit as the stem
+            if n is not None:
+                lo, hi, u = round(n.lo, 6), round(n.hi, 6), _unit(atom["unit"], lang)
         body = fmt_num(lo, lang) if lo == hi else f"{fmt_num(lo, lang)}–{fmt_num(hi, lang)}"
         return f"{CMP.get(item.get('cmp') or '=', '')}{body} {u}".strip()
     if kind == "bp":

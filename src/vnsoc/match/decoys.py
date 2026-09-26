@@ -28,6 +28,14 @@ def _decimals(*xs: float) -> int:
     return d
 
 
+def in_atom_unit(item: dict, atom: dict):
+    """A num ValueItem as nv.Num in the atom's unit (context: weight_kg, mg_per_ml, analyte...), or None."""
+    from vnsoc import normalize_vi as nv
+
+    unit = atom.get("unit")
+    return nv.Num(float(item["lo"]), float(item["hi"]), item.get("unit") or unit).to(unit, atom.get("context") or {})
+
+
 def _conflicting(atom: dict) -> list[dict]:
     vn = atom.get("vn") or []
     return [it for f in atom.get("foreign") or [] for it in f["values"] if all(_gap(v, it, atom) > 0 for v in vn)]
@@ -47,8 +55,11 @@ def mirror_decoy(atom: dict) -> tuple[dict | None, str]:
     if kind != "num":
         return None, f"value_kind={kind}: mồi do người/agent đề xuất rồi check_decoy"
     unit = atom.get("unit")
-    cv, cf, w = (v["lo"] + v["hi"]) / 2, (f["lo"] + f["hi"]) / 2, f["hi"] - f["lo"]
-    nd = _decimals(v["lo"], v["hi"], f["lo"], f["hi"])
+    vv, ff = in_atom_unit(v, atom), in_atom_unit(f, atom)
+    if vv is None or ff is None:
+        return None, "không quy đổi được về đơn vị của mẩu"
+    cv, cf, w = (vv.lo + vv.hi) / 2, (ff.lo + ff.hi) / 2, ff.hi - ff.lo
+    nd = _decimals(vv.lo, vv.hi, ff.lo, ff.hi)
     c, rule = 2 * cv - cf, "mirror_arith"
     if c - w / 2 <= 0:
         if cf <= 0:

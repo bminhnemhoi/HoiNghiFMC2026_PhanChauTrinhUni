@@ -64,3 +64,8 @@ def test_qc_checks():
     assert numbers("0,5 mg và 5.000 IU", "vi") == numbers("0.5 mg and 5,000 IU", "en") == [0.5, 5000.0]
     assert translation_issues("Trẻ 10 kg không sốc", "A 10 kg child without shock") == []
     assert translation_issues("Trẻ 10 kg", "A 12 kg child") and translation_issues("Trẻ không sốc", "A child in shock")
+
+
+def test_render_converts_to_atom_unit():
+    a = {"value_kind": "num", "unit": "ug", "context": {"weight_kg": 10}}
+    assert render_value({"lo": 0.01, "hi": 0.01, "unit": "mg/kg"}, a, "vi") == "100 µg"

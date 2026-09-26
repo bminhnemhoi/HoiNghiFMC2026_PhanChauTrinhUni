@@ -8,6 +8,7 @@ import hashlib
 import random
 
 from vnsoc.grade import _gap
+from vnsoc.match.decoys import in_atom_unit
 from vnsoc.qgen.render import render_value
 
 LETTERS = "ABCD"
@@ -41,8 +42,11 @@ def rule_filler(atom: dict, foreign_item: dict) -> dict | None:
             if s > 0 and d > 0:
                 return {"sys": s, "dia": d}
         elif atom["value_kind"] == "num":
-            cv, ca = (v["lo"] + v["hi"]) / 2, (a["lo"] + a["hi"]) / 2
-            w = a["hi"] - a["lo"]
+            vv, aa = in_atom_unit(v, atom), in_atom_unit(a, atom)
+            if vv is None or aa is None:
+                continue
+            cv, ca = (vv.lo + vv.hi) / 2, (aa.lo + aa.hi) / 2
+            w = aa.hi - aa.lo
             c = 2 * ca - cv
             if c - w / 2 > 0:
                 return {"lo": round(c - w / 2, 4), "hi": round(c + w / 2, 4), "unit": atom.get("unit")}
