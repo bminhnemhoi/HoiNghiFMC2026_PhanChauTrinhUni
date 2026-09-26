@@ -11,7 +11,6 @@ from __future__ import annotations
 import collections
 import json
 import sys
-from pathlib import Path
 
 from vnsoc.analysis.pilot import cp, pct
 from vnsoc.numbers import put
