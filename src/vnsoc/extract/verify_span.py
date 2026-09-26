@@ -81,10 +81,13 @@ def _resolved(pdf: str, mtime: float, smtime: float) -> tuple[tuple[str, ...], f
         meta = sidecar_meta(pdf) or {}
         if meta.get("pdf_sha256") == hashlib.sha256(Path(pdf).read_bytes()).hexdigest():
             for i in range(len(base)):
-                if meta.get("override_text_layer") or len(base[i]) < 50:
-                    t = sidecar_page(pdf, i + 1)
-                    if t is not None:
-                        base[i], _ = norm(t), ocr.add(i + 1)
+                t = sidecar_page(pdf, i + 1)
+                if t is None:
+                    continue
+                t = norm(t)
+                # scanned pages often carry only a digital-signature / watermark line in their text layer
+                if meta.get("override_text_layer") or (len(base[i]) < 200 and len(t) > 2 * len(base[i])):
+                    base[i], _ = t, ocr.add(i + 1)
     return tuple(base), frozenset(ocr)
 
 

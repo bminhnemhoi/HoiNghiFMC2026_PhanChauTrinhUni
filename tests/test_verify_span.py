@@ -105,3 +105,24 @@ def test_pdf_choice_overrides_default_file(proj):
     f.write_text(json.dumps({"5904/2019": {"file": "5904_2019__9e6bbe13.pdf", "reason": "text layer"}}), encoding="utf-8")
     assert pdf_path("5904/2019", proj).name == "5904_2019__9e6bbe13.pdf"
     assert pdf_path("2760/2023", proj).name == "2760_2023.pdf"
+
+
+def test_ocr_used_when_only_a_watermark_line(proj):
+    import hashlib
+    import json
+
+    fitz = pytest.importorskip("pymupdf")
+    doc = fitz.open()
+    doc.new_page().insert_text((72, 72), "syt_thanhhoa_vt_So Y te Thanh Hoa_30/08/2023 10:10:01")   # stamp only
+    p = pdf_path("7777/2099", proj)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    doc.save(p)
+    from vnsoc.extract.ocr import sidecar_dir
+    from vnsoc.extract.verify_span import ocr_pages, page_text
+
+    d = sidecar_dir(p, proj)
+    d.mkdir(parents=True)
+    body = "Phụ nữ có thai 3 tháng đầu: quinin 7 ngày phối hợp clindamycin 7 ngày. " * 3
+    (d / "p001.txt").write_text(body, encoding="utf-8")
+    (d / "meta.json").write_text(json.dumps({"pdf_sha256": hashlib.sha256(p.read_bytes()).hexdigest()}), encoding="utf-8")
+    assert ocr_pages(p) == {1} and "clindamycin" in page_text(p, 1)
