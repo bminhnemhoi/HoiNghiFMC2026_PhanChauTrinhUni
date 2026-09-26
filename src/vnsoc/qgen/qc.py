@@ -44,10 +44,33 @@ def leak_issues(text: str, atom: dict, lang: str, synonyms=None, combos=None) ->
     return sorted(set(out))
 
 
+POP_NUMERIC_KEYS = re.compile(r"^(?:age|tuoi|tuổi|weight|weight_kg|can_nang|cân_nặng|gestational_age|gestation|trimester|"
+                              r"pregnancy_week|age_months|age_years)$", re.I)
+
+
+def _value_numbers(atom: dict) -> set[float]:
+    """Numbers of every recorded value (MoH, foreign, superseded, decoy): never demanded in a question (would leak)."""
+    items = list(atom.get("vn") or []) + list(atom.get("decoy") or [])
+    items += [it for f in atom.get("foreign") or [] for it in f["values"]]
+    items += [it for s in atom.get("superseded") or [] for it in s["values"]]
+    out = set()
+    for it in items:
+        for k in ("lo", "hi", "sys", "dia"):
+            if it.get(k) is not None:
+                out.add(round(float(it[k]), 6))
+        out |= {round(float(x), 6) for x in it.get("seq") or []}
+    return out
+
+
 def population_issues(text: str, atom: dict, lang: str, pop_lang: str = "vi") -> list[str]:
+    """Numbers of the QUANTITATIVE population keys (age, weight, gestational age...) must appear in the question.
+    Descriptive keys (severity, setting, history...) often quote incidental numbers or even the answer, so they are
+    checked by `required_terms` and by the reviewer, not here; numbers equal to a recorded value are never demanded."""
     want = set()
-    for v in (atom.get("population") or {}).values():
-        want |= set(numbers(str(v), pop_lang))
+    for k, v in (atom.get("population") or {}).items():
+        if POP_NUMERIC_KEYS.match(str(k)):
+            want |= set(numbers(str(v), pop_lang))
+    want -= _value_numbers(atom)
     have = set(numbers(text, lang))
     missing = sorted(want - have)
     return [f"thiếu số của quần thể {missing}"] if missing else []
