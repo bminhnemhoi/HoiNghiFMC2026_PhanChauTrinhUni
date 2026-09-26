@@ -48,6 +48,41 @@ def summary(rows: list[dict]) -> dict:
             "ab_agree": sum(x == y for x, y in zip(a, b)), "ab_n": len(a), "causes": dict(causes)}
 
 
+def pilot_extras(root=None) -> dict:
+    """Counts the manuscript reports about the pilot's checking (all from files on disk, no model outputs re-read
+    except token counts): citation-audit verdicts, label-6 counts before/after AI adjudication, grader error rate by
+    atom group on short answers, AI decoy-plausibility ratings, MCQ outputs that hit the token cap."""
+    import pandas as pd
+
+    P = paths(root)
+    out = {}
+    verdicts = collections.Counter()
+    for f in sorted((P.root / "review" / "pilot_audit").glob("*_final.json")):
+        for a in json.loads(f.read_text(encoding="utf-8"))["atoms"]:
+            verdicts[a.get("verdict_final")] += 1
+    out.update(audit_confirmed=verdicts["ok"], audit_corrected=verdicts["fix"], audit_errors=verdicts["error"])
+    rows = load(root)
+    out["rule_label6_n"] = sum(1 for r in rows if int(r["rule"]) == 6)
+    out["adj_label6_n"] = sum(1 for r in rows if int(r["final"]) == 6)
+    g = pd.read_parquet(P.root / "data" / "processed" / "pilot_grades.parquet")
+    meta = {rid: (fmt, grp) for rid, fmt, grp in zip(g["run_id"], g["format"], g["group"])}
+    for grp in ("conflict", "concordant"):
+        sel = [r for r in rows if meta.get(r["row"]) == ("short", grp)]
+        err = sum(1 for r in sel if int(r["rule"]) != int(r["final"]))
+        out[f"grader_err_{grp}_n"] = len(sel)
+        out[f"grader_err_{grp}"] = err
+    f = P.root / "review" / "decoy_plausibility" / "pilot_final.jsonl"
+    rated = [json.loads(x) for x in f.read_text(encoding="utf-8").splitlines() if x.strip()] if f.exists() else []
+    out["decoy_rated"] = len(rated)
+    out["decoy_plausible"] = sum(1 for r in rated if r.get("plausible") is True)
+    recs = [json.loads(x) for x in (P.root / "data" / "runs" / "pilot" / "records" / "qwen3_8b_local.jsonl")
+            .read_text(encoding="utf-8").splitlines() if x.strip()]
+    mcq = [r for r in recs if r["format"] == "mcq"]
+    out["mcq_total"] = len(mcq)
+    out["mcq_truncated"] = sum(1 for r in mcq if (r.get("tokens_out") or 0) >= (r.get("max_tokens") or 10**9))
+    return out
+
+
 def main(argv=None) -> int:
     s = summary(load())
     if not s["n"]:
@@ -74,6 +109,13 @@ def main(argv=None) -> int:
     adj = adjudicated_cells(load())
     for k, v in adj.items():                   # sensitivity: key pilot cells with the resolved reference labels
         put(f"pilot.adj_{k}", v, str(v), "nhãn tham chiếu sau trọng tài (độ nhạy); " + NOTE)
+    ex = pilot_extras()
+    for k, v in ex.items():
+        put(f"pilot.{k}", v, str(v), NOTE)
+    for grp in ("conflict", "concordant"):
+        n, k = ex[f"grader_err_{grp}_n"], ex[f"grader_err_{grp}"]
+        if n:
+            put(f"pilot.grader_err_{grp}_pct", k / n, pct(k / n), "trả lời ngắn; " + NOTE)
     print(json.dumps({**s, "adjudicated": adj}, ensure_ascii=False))
     return 0
 

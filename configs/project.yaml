@@ -22,6 +22,19 @@ targets:
   counterpart_precision_audit_n: 100
   clinician_vignettes_checked: 100     # ưu tiên bác sĩ; không có thì sinh viên kiểm và ghi rõ
   parser_check_n: 500
+registered:                          # hằng số đã đăng ký (prereg §3.1 mục 6–7, §5.1; Addendum 1) — design.* trong registry
+  alpha_one_sided: 0.025             # mức một phía của mọi kiểm định xác nhận (§5.1.6)
+  bootstrap_b: 10000                 # số lần lặp bootstrap (§5.1.1)
+  small_cluster_min: 20              # < 20 cụm: jackknife-t / sign-flip (§5.1.1, §5.1.3)
+  gv_atoms_per_stratum: 20           # kiểm bộ chấm trên tập giữ riêng: mẩu mỗi tầng (§3.1 mục 7)
+  gv_responses_approx: 240           # số câu trả lời xấp xỉ của kiểm bộ chấm giữ riêng
+  gv_acc_min: 0.90                   # ngưỡng độ chính xác chấp nhận bộ chấm (D19)
+  gv_lcl_min: 0.85                   # ngưỡng cận dưới KTC (D19)
+  label1_check_n: 200                # số câu nhãn 1 được kiểm (§3.1 mục 7)
+  mcq_max_tokens: 384                # max token trắc nghiệm (Addendum 1 C5; chờ D26)
+  num_ctx: 4096                      # cửa sổ ngữ cảnh Ollama A0–A3 (chờ D26)
+  run_valid_min_pct: 0.98            # ngưỡng hoàn tất ô chạy (§3.1 mục 6)
+  dr6_hours: 80                      # ngưỡng giờ laptop kích hoạt DR6
 hypotheses:
   primary: H1
   secondary_family: [H2, H3, H4]     # Holm within family

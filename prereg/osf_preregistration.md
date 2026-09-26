@@ -862,7 +862,7 @@ The analyses are implemented in `src/vnsoc/analysis/confirmatory.py` (Python; nu
 
 <!-- HASHES:BEGIN (scripts/prereg_snapshot.py; do not edit by hand) -->
 
-Snapshot 2026-09-27T03:26:11+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
+Snapshot 2026-09-27T03:28:38+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
 
 | File | SHA-256 |
 | --- | --- |
@@ -882,7 +882,7 @@ Snapshot 2026-09-27T03:26:11+07:00. SHA-256 of the registered analysis package (
 | `src/vnsoc/extract/corpus_priority.py` | `b1212886ede6c451ad352c0433b5f07cc98f4375cd3a079e2b58e60f7e739520` |
 | `src/vnsoc/analysis/extractor_check.py` | `537314307496dfa243d4d65b7ca7065c6a19e07af3558eabbf387d609a6d75e4` |
 | `src/vnsoc/schemas.py` | `b967e50e4660a0d7a24a68fa0cd13e6588a0be6a80d080f03d4b40f2bf3e2630` |
-| `configs/project.yaml` | `2e46c57f293f7d39722b09a430207a65c8999016dc3d207701206b8d028cc273` |
+| `configs/project.yaml` | `46ed6af49ba87cc6ae63599e4a448ba747de94a5becb915dbee745f9767f3343` |
 | `configs/conditions.yaml` | `9636da8651f0f0f57d99474ce4e72e3853a6d321f24d77c8f3543f3d88da0597` |
 | `configs/grading.yaml` | `34fddff2c0dadce7186cf0c5cb6bb4e76de71b2bbdf3fc78c27f844c2919e466` |
 | `configs/models.yaml` | `a6df01228f85880a8138aea37746708a7aebd1029e3f5d7160b2fd446e88182b` |

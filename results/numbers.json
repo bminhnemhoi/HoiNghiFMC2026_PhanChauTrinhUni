@@ -1,105 +1,189 @@
 {
+ "design.alpha_one_sided": {
+  "display": "0,025",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 0.025
+ },
+ "design.bootstrap_b": {
+  "display": "10.000",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 10000
+ },
+ "design.ci_pct": {
+  "display": "95%",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 0.95
+ },
+ "design.dr6_hours": {
+  "display": "80",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 80
+ },
+ "design.gv_acc_min": {
+  "display": "0,90",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 0.9
+ },
+ "design.gv_atoms_per_stratum": {
+  "display": "20",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 20
+ },
+ "design.gv_lcl_min": {
+  "display": "0,85",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 0.85
+ },
+ "design.gv_responses_approx": {
+  "display": "240",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 240
+ },
+ "design.label1_check_n": {
+  "display": "200",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 200
+ },
+ "design.mcq_max_tokens": {
+  "display": "384",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 384
+ },
  "design.n_labels": {
   "display": "6",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "số nhãn chấm (vnsoc.grade.LABELS, đề cương §1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 6
  },
+ "design.num_ctx": {
+  "display": "4.096",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 4096
+ },
  "design.pdf_atoms": {
   "display": "65",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 65
  },
  "design.pdf_concordant": {
-  "display": "31",
-  "generated": "2026-09-26T13:25:00+07:00",
+  "display": "32",
+  "generated": "2026-09-27T03:27:49+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
-  "value": 31
+  "value": 32
  },
  "design.pdf_conflict_families": {
-  "display": "20",
-  "generated": "2026-09-26T13:25:00+07:00",
+  "display": "21",
+  "generated": "2026-09-27T03:27:49+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
-  "value": 20
+  "value": 21
  },
  "design.pdf_conflicts": {
-  "display": "24",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "display": "23",
+  "generated": "2026-09-27T03:27:49+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
-  "value": 24
+  "value": 23
  },
  "design.pdf_foreign_systems": {
   "display": "5",
-  "generated": "2026-09-26T13:25:00+07:00",
+  "generated": "2026-09-27T03:27:49+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 5
  },
  "design.pdf_guidelines": {
   "display": "13",
-  "generated": "2026-09-26T13:25:00+07:00",
+  "generated": "2026-09-27T03:27:49+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 13
  },
  "design.pdf_seed_rows_confirmed": {
   "display": "11",
-  "generated": "2026-09-26T13:25:00+07:00",
+  "generated": "2026-09-27T03:27:49+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 11
  },
  "design.pdf_version_drift": {
-  "display": "23",
-  "generated": "2026-09-26T13:25:00+07:00",
+  "display": "27",
+  "generated": "2026-09-27T03:27:49+07:00",
   "note": "mẩu thí điểm đã khớp nguyên văn PDF chính thức bằng mã (verify_span); chưa có người kiểm ngữ cảnh (HG1.2)",
   "source": "src/vnsoc/analysis/design_counts.py",
-  "value": 23
+  "value": 27
+ },
+ "design.run_valid_min_pct": {
+  "display": "98%",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 0.98
  },
  "design.seed_concordant_topics": {
   "display": "9",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 9
  },
  "design.seed_conflict_rows": {
   "display": "20",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 20
  },
  "design.seed_foreign_systems": {
   "display": "5",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 5
  },
  "design.seed_guidelines": {
   "display": "11",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 11
  },
  "design.seed_pilot_rows": {
   "display": "15",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 15
  },
  "design.seed_rows": {
   "display": "25",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 25
@@ -134,17 +218,24 @@
  },
  "design.seed_us_only_rows": {
   "display": "3",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 3
  },
  "design.seed_version_drift_pairs": {
   "display": "3",
-  "generated": "2026-09-26T13:24:59+07:00",
+  "generated": "2026-09-27T03:27:48+07:00",
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 3
+ },
+ "design.small_cluster_min": {
+  "display": "20",
+  "generated": "2026-09-27T03:27:48+07:00",
+  "note": "hằng số đăng ký trước, configs/project.yaml registered",
+  "source": "src/vnsoc/analysis/design_counts.py",
+  "value": 20
  },
  "pilot.a0_en_concordant_abstain": {
   "display": "0",
@@ -1742,549 +1833,577 @@
  },
  "pilot.adj_a0_en_concordant_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a0_en_concordant_correct": {
   "display": "10",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 10
  },
  "pilot.adj_a0_en_concordant_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a0_en_concordant_n": {
   "display": "21",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 21
  },
  "pilot.adj_a0_en_concordant_unattributed": {
   "display": "11",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 11
  },
  "pilot.adj_a0_en_conflict_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a0_en_conflict_correct": {
   "display": "4",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 4
  },
  "pilot.adj_a0_en_conflict_decoy": {
   "display": "1",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 1
  },
  "pilot.adj_a0_en_conflict_foreign": {
   "display": "3",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 3
  },
  "pilot.adj_a0_en_conflict_h1_foreign": {
   "display": "2",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 2
  },
  "pilot.adj_a0_en_conflict_h1_n": {
   "display": "15",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 15
  },
  "pilot.adj_a0_en_conflict_n": {
   "display": "20",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 20
  },
  "pilot.adj_a0_en_conflict_unattributed": {
   "display": "12",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 12
  },
  "pilot.adj_a0_vi_concordant_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a0_vi_concordant_correct": {
   "display": "11",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 11
  },
  "pilot.adj_a0_vi_concordant_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a0_vi_concordant_n": {
   "display": "21",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 21
  },
  "pilot.adj_a0_vi_concordant_unattributed": {
   "display": "10",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 10
  },
  "pilot.adj_a0_vi_conflict_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a0_vi_conflict_correct": {
   "display": "3",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 3
  },
  "pilot.adj_a0_vi_conflict_decoy": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a0_vi_conflict_foreign": {
   "display": "4",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 4
  },
  "pilot.adj_a0_vi_conflict_h1_foreign": {
   "display": "4",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 4
  },
  "pilot.adj_a0_vi_conflict_h1_n": {
   "display": "15",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 15
  },
  "pilot.adj_a0_vi_conflict_n": {
   "display": "20",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 20
  },
  "pilot.adj_a0_vi_conflict_unattributed": {
   "display": "13",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 13
  },
  "pilot.adj_a1_en_concordant_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_en_concordant_correct": {
   "display": "10",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 10
  },
  "pilot.adj_a1_en_concordant_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_en_concordant_n": {
   "display": "21",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 21
  },
  "pilot.adj_a1_en_concordant_unattributed": {
   "display": "11",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 11
  },
  "pilot.adj_a1_en_conflict_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_en_conflict_correct": {
   "display": "6",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 6
  },
  "pilot.adj_a1_en_conflict_decoy": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_en_conflict_foreign": {
   "display": "1",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 1
  },
  "pilot.adj_a1_en_conflict_h1_foreign": {
   "display": "1",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 1
  },
  "pilot.adj_a1_en_conflict_h1_n": {
   "display": "15",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 15
  },
  "pilot.adj_a1_en_conflict_n": {
   "display": "20",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 20
  },
  "pilot.adj_a1_en_conflict_unattributed": {
   "display": "12",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 12
  },
  "pilot.adj_a1_vi_concordant_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_vi_concordant_correct": {
   "display": "9",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 9
  },
  "pilot.adj_a1_vi_concordant_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_vi_concordant_n": {
   "display": "21",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 21
  },
  "pilot.adj_a1_vi_concordant_unattributed": {
   "display": "12",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 12
  },
  "pilot.adj_a1_vi_conflict_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_vi_conflict_correct": {
   "display": "8",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 8
  },
  "pilot.adj_a1_vi_conflict_decoy": {
   "display": "0",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a1_vi_conflict_foreign": {
   "display": "2",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 2
  },
  "pilot.adj_a1_vi_conflict_h1_foreign": {
   "display": "2",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 2
  },
  "pilot.adj_a1_vi_conflict_h1_n": {
   "display": "15",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 15
  },
  "pilot.adj_a1_vi_conflict_n": {
   "display": "20",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 20
  },
  "pilot.adj_a1_vi_conflict_unattributed": {
   "display": "10",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:33+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 10
  },
  "pilot.adj_a3_en_concordant_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_en_concordant_correct": {
   "display": "19",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 19
  },
  "pilot.adj_a3_en_concordant_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_en_concordant_n": {
   "display": "21",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 21
  },
  "pilot.adj_a3_en_concordant_unattributed": {
   "display": "2",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 2
  },
  "pilot.adj_a3_en_conflict_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_en_conflict_correct": {
   "display": "15",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 15
  },
  "pilot.adj_a3_en_conflict_decoy": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_en_conflict_foreign": {
   "display": "1",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 1
  },
  "pilot.adj_a3_en_conflict_h1_foreign": {
   "display": "1",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 1
  },
  "pilot.adj_a3_en_conflict_h1_n": {
   "display": "15",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 15
  },
  "pilot.adj_a3_en_conflict_n": {
   "display": "20",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 20
  },
  "pilot.adj_a3_en_conflict_unattributed": {
   "display": "4",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 4
  },
  "pilot.adj_a3_vi_concordant_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_vi_concordant_correct": {
   "display": "19",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 19
  },
  "pilot.adj_a3_vi_concordant_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_vi_concordant_n": {
   "display": "21",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 21
  },
  "pilot.adj_a3_vi_concordant_unattributed": {
   "display": "2",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 2
  },
  "pilot.adj_a3_vi_conflict_abstain": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_vi_conflict_correct": {
   "display": "16",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 16
  },
  "pilot.adj_a3_vi_conflict_decoy": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_vi_conflict_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_vi_conflict_h1_foreign": {
   "display": "0",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0
  },
  "pilot.adj_a3_vi_conflict_h1_n": {
   "display": "15",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 15
  },
  "pilot.adj_a3_vi_conflict_n": {
   "display": "20",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 20
  },
  "pilot.adj_a3_vi_conflict_unattributed": {
   "display": "4",
-  "generated": "2026-09-26T23:13:36+07:00",
+  "generated": "2026-09-27T03:27:34+07:00",
   "note": "nhãn tham chiếu sau trọng tài (độ nhạy); người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 4
+ },
+ "pilot.adj_label6_n": {
+  "display": "17",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 17
+ },
+ "pilot.audit_confirmed": {
+  "display": "33",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 33
+ },
+ "pilot.audit_corrected": {
+  "display": "24",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 24
+ },
+ "pilot.audit_errors": {
+  "display": "8",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 8
  },
  "pilot.ci_level": {
   "display": "95%",
@@ -2293,16 +2412,30 @@
   "source": "src/vnsoc/analysis/pilot.py",
   "value": 0.95
  },
+ "pilot.decoy_plausible": {
+  "display": "9",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 9
+ },
+ "pilot.decoy_rated": {
+  "display": "23",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 23
+ },
  "pilot.grader_agree": {
   "display": "441",
-  "generated": "2026-09-26T23:13:34+07:00",
+  "generated": "2026-09-27T03:27:31+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 441
  },
  "pilot.grader_agree_ci": {
   "display": "88,6%–93,8%",
-  "generated": "2026-09-26T23:13:34+07:00",
+  "generated": "2026-09-27T03:27:31+07:00",
   "note": "Clopper–Pearson 95%, người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": [
@@ -2312,42 +2445,84 @@
  },
  "pilot.grader_agree_pct": {
   "display": "91,5%",
-  "generated": "2026-09-26T23:13:34+07:00",
+  "generated": "2026-09-27T03:27:31+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0.9149377593360996
  },
+ "pilot.grader_err_concordant": {
+  "display": "5",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 5
+ },
+ "pilot.grader_err_concordant_n": {
+  "display": "132",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 132
+ },
+ "pilot.grader_err_concordant_pct": {
+  "display": "3,8%",
+  "generated": "2026-09-27T03:27:35+07:00",
+  "note": "trả lời ngắn; người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 0.03787878787878788
+ },
+ "pilot.grader_err_conflict": {
+  "display": "22",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 22
+ },
+ "pilot.grader_err_conflict_n": {
+  "display": "138",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 138
+ },
+ "pilot.grader_err_conflict_pct": {
+  "display": "15,9%",
+  "generated": "2026-09-27T03:27:35+07:00",
+  "note": "trả lời ngắn; người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 0.15942028985507245
+ },
  "pilot.grader_kappa_ab": {
   "display": "0,96",
-  "generated": "2026-09-26T23:13:34+07:00",
+  "generated": "2026-09-27T03:27:31+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0.9609864018994172
  },
  "pilot.grader_kappa_rule_final": {
   "display": "0,87",
-  "generated": "2026-09-26T23:13:34+07:00",
+  "generated": "2026-09-27T03:27:31+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0.8710641351862727
  },
  "pilot.grader_n": {
   "display": "482",
-  "generated": "2026-09-26T23:13:34+07:00",
+  "generated": "2026-09-27T03:27:31+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 482
  },
  "pilot.grader_short_agree": {
   "display": "349",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 349
  },
  "pilot.grader_short_agree_ci": {
   "display": "86,0%–92,3%",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "Clopper–Pearson 95%, người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": [
@@ -2357,21 +2532,21 @@
  },
  "pilot.grader_short_agree_pct": {
   "display": "89,5%",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0.8948717948717949
  },
  "pilot.grader_short_kappa": {
   "display": "0,83",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 0.8326495583371709
  },
  "pilot.grader_short_n": {
   "display": "390",
-  "generated": "2026-09-26T23:13:35+07:00",
+  "generated": "2026-09-27T03:27:32+07:00",
   "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
   "source": "src/vnsoc/analysis/grading_validation.py",
   "value": 390
@@ -2467,6 +2642,20 @@
   "source": "src/vnsoc/analysis/pilot.py",
   "value": 26
  },
+ "pilot.mcq_total": {
+  "display": "92",
+  "generated": "2026-09-27T03:27:35+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 92
+ },
+ "pilot.mcq_truncated": {
+  "display": "53",
+  "generated": "2026-09-27T03:27:35+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 53
+ },
  "pilot.n_atoms": {
   "display": "65",
   "generated": "2026-09-26T23:13:29+07:00",
@@ -2536,5 +2725,12 @@
   "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
   "source": "src/vnsoc/analysis/pilot.py",
   "value": 1
+ },
+ "pilot.rule_label6_n": {
+  "display": "53",
+  "generated": "2026-09-27T03:27:34+07:00",
+  "note": "người chấm là AI (hai người chấm mù + trọng tài), không phải người; thí điểm chọn tay",
+  "source": "src/vnsoc/analysis/grading_validation.py",
+  "value": 53
  }
 }

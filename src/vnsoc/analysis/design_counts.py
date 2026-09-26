@@ -55,12 +55,35 @@ def pilot_counts(atoms: list[dict]) -> dict:
     }
 
 
+def registered_constants(root=None) -> dict:
+    """The registered design constants of configs/project.yaml `registered`, plus the CI level as a percentage."""
+    import yaml
+
+    from vnsoc.paths import paths
+
+    cfg = yaml.safe_load((paths(root).configs / "project.yaml").read_text(encoding="utf-8"))
+    out = dict(cfg.get("registered") or {})
+    out["ci_pct"] = cfg["hypotheses"]["ci_level"]
+    return out
+
+
+def fmt_constant(key: str, v) -> str:
+    """Vietnamese display: 0.025 -> '0,025'; 10000 -> '10.000'; percentages as '98%' / '95%'."""
+    if key in ("run_valid_min_pct", "ci_pct"):
+        return f"{round(v * 100):d}%"
+    if isinstance(v, int):
+        return f"{v:,}".replace(",", ".")
+    return (f"{v:.2f}" if round(v, 2) == v else f"{v:g}").replace(".", ",")     # thresholds keep 2 decimals: 0,90
+
+
 def main() -> int:
     P = paths()
     seed = yaml.safe_load((P.root / "data" / "seed" / "seed_conflicts.yaml").read_text(encoding="utf-8"))
     for k, v in seed_counts(seed).items():
         put(f"design.{k}", v, str(v), NOTE_SEED)
     put("design.n_labels", len(LABELS), str(len(LABELS)), "số nhãn chấm (vnsoc.grade.LABELS, đề cương §1.2)")
+    for k, v in registered_constants().items():
+        put(f"design.{k}", v, fmt_constant(k, v), "hằng số đăng ký trước, configs/project.yaml registered")
     f = P.root / "data" / "interim" / "pilot_atoms.jsonl"
     if f.exists():
         atoms = [json.loads(line) for line in f.read_text(encoding="utf-8").splitlines() if line.strip()]
