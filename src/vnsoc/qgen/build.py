@@ -89,12 +89,15 @@ def main(argv=None) -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--passages", required=True)
     ap.add_argument("--qc", required=True)
+    ap.add_argument("--only-drafted", action="store_true", help="chỉ xử lý mẩu có bản nháp (agent tự kiểm phần mình)")
     a = ap.parse_args(argv)
     P = paths()
     cfg = yaml.safe_load((P.configs / "project.yaml").read_text(encoding="utf-8"))
     cond = yaml.safe_load((P.configs / "conditions.yaml").read_text(encoding="utf-8"))
     atoms = _jsonl(a.atoms)
     drafts = {d["atom_id"]: d for d in _jsonl(a.drafts)}
+    if a.only_drafted:
+        atoms = [x for x in atoms if x["atom_id"] in drafts]
     qs, ps, qc = build_all(atoms, drafts, int(cfg["qgen"]["mcq_order_seed"]), tuple(cond["a3_passage_words"]))
     for path, rows in ((a.out, qs), (a.passages, ps)):
         Path(path).parent.mkdir(parents=True, exist_ok=True)
