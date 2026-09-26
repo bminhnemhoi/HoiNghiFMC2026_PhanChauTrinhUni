@@ -25,7 +25,49 @@
 #     months", "3 yrs 4 mos", "3 tuổi rưỡi", khoảng "3 tuổi 4 tháng – 5 tuổi"; HA tách: thứ tự ngược, "HATTh",
 #     "≥ 140 mmHg (tâm thu)"; cạnh đổi đơn vị ngày = 24 giờ (chính xác); repr Drugs/Cat sắp xếp (tái lập theo byte).
 #   - grade_mcq: token vai trò lạ/sai hình thức → ValueError (trước: im lặng nhãn 5).
-grader_version: "1.1.0"
+# 1.2.0 (26/9/2026, TRƯỚC đóng băng; MÙ với đầu ra thí điểm đã niêm phong — mọi ca thử là câu tự viết; ghi DECISIONS):
+#   - cat: một câu trả lời nêu NHIỀU nhãn = nhiều giá trị (quy tắc nhiều giá trị như num/drugs: tất cả thuộc tập Bộ Y
+#     tế → 2; không thì 5, hoặc 1 nếu quy thuộc nguồn rõ). Câu điều kiện "A; nếu không đáp ứng thì B" = hai giá trị
+#     (không coi nhãn nêu trước là đáp án). Nhãn bị phủ định trong mệnh đề của nó ("không dùng X", "thay vì X",
+#     "X rather than"... ; "X không được khuyến cáo") không tính — cùng một luật cho mọi nhãn (normalize_vi.parse_cats).
+#   - HA: "140 over 90", "140 trên 90", "≥140/≥90"; "140 và 90 mmHg" (cần ngữ cảnh HA: mmHg sau số thứ hai hoặc
+#     HA/huyết áp/BP trước; tâm trương ≤ 130, hiệu ≥ 20); khoảng "130–139/80–89" (cả dạng tách tâm thu/tâm trương) đọc
+#     theo CẬN DƯỚI, BP(130, 80, '>=') — kiểu HA không có khoảng, mọi mẩu bp thí điểm là ngưỡng.
+#   - bộ nối HA tách: thêm "hay", "và/hay", "hoặc là".
+#   - đơn vị: "kg/m^2", "kg/m 2", "kg per m2", "kg·m-2" = kg/m2; "mg base" = mg (VI/EN); "18-month", "7-day" gắn đơn
+#     vị; lũy thừa 10 ("2 x 10^3", "2×10³", "10^4 IU/mL", "2.10^4", "2e3") = một số ("× 10^9/L" vẫn là đơn vị);
+#     copies/mL là đơn vị riêng, KHÔNG quy đổi sang IU/mL (hệ số tùy xét nghiệm) → câu trả lời copies/mL ở mẩu IU/mL
+#     là unit_mismatch (nhãn 5).
+#   - số viết bằng chữ trước đơn vị (VI/EN, ≤ 999): "bảy ngày", "mười lăm phút", "two weeks"; "twice daily" không là
+#     giá trị; "mg/kg once daily", "mg/kg 1 lần/ngày" = mg/kg/day ("twice daily" không đổi).
+#   - số thứ tự/nhãn liều-lượt không phải giá trị ("mũi 1", "mũi thứ 2", "liều 2", "lần 1", "dose 1", "18-month
+#     visit", "mũi 18 tháng"): bị che khi câu còn giá trị khác; đứng một mình thì vẫn đọc. "2 liều", "liều 2 mg" giữ.
+#   - thuốc: adefovir (ADV), telbivudine (LdT); bí danh "bpaz"; mã "~Pa@2" (đúng chữ hoa "Pa", đọc trong chuỗi có
+#     ≥ 2 thuốc khác); phác đồ đánh vần rời "B-Pa-L", "B Pa L M" đọc khi ghép đúng một bí danh phác đồ.
+#   - ghi nhận, KHÔNG đổi: mục tiêu dạng ngưỡng '< 140' với câu trả lời điểm '135' vẫn nhãn 5 (hạn chế).
+#   Sau phản biện độc lập bộ chấm (cùng ngày, vẫn 1.2.0 vì chưa chấm đầu ra nào bằng bản trung gian; mù):
+#   - cat, phủ định (normalize_vi.parse_cats): đọc từ phủ định trên chữ CÒN DẤU ("chứa" ≠ "chưa", "nó" ≠ "no",
+#     "bộ" ≠ "bỏ"; câu không dấu đọc dạng không dấu); bộ từ phủ định VI↔EN theo cặp (không còn/no longer, không phải
+#     lựa chọn đầu tay/not first-line, không khuyến cáo/not recommended, bỏ/dropping...); mệnh đề cắt thêm ở " - ",
+#     "vì", "because", "since"; không xét phủ định cho lần khớp tự chứa từ phủ định hoặc là câu có/không trơn
+#     ("Không - metamizol không nên dùng" = không); mẫu neo "^" khớp qua nhiều mệnh đề: nhãn đứng trừ khi lần nhắc
+#     của mệnh đề cuối bị phủ định VÀ mẫu không nhận lần nhắc nào ở các mệnh đề trước; mẫu nhắc (không neo) khớp trong
+#     một câu/mệnh đề ';'; dung môi ("trong", "in", "pha trong"...) chỉ khi đã nêu nhãn khác trước đó cùng mệnh đề.
+#     Câu điều kiện/dự phòng ("chỉ dùng khi…", "only if…", "nếu không đáp ứng thì…") VẪN là giá trị thứ hai, mọi nhãn,
+#     mọi thứ tự (mẫu colloid của P-dengue-03 còn nhánh làm lệch — chủ mẩu phải sửa, xem DECISIONS).
+#   - tên mũi theo tuổi ("mũi 9 tháng", "the 9-month dose") là GIÁ TRỊ; chỉ che khi là mốc tham chiếu ("sau mũi 18
+#     tháng", "kể từ", "after/following/since the 18-month dose").
+#   - tần suất ("once a day", "twice daily", "ngày một lần", "1 lần/ngày") = một giá trị times/day (không phải thời
+#     gian: "a day" không còn là 1 ngày); đếm "twice" = "hai lần" = "2 lần" (times); "một lần"/"once" đứng riêng không
+#     đọc; "mười năm ngày" không đọc "năm" hai lần.
+#   - HA: "120–129/<80" (đầu khoảng tâm thu, tâm trương không khoảng) và cặp so sánh ngược chiều ("≥140/<90",
+#     "tâm thu ≥ 140 và tâm trương < 90") không phải một giá trị HA.
+#   - số: "2*10^3" = 2×10³ (trước: 210 → mồi 200); khoảng lũy thừa "10^4–10^5 copies/mL", "từ 10^4 đến 10^5" = một
+#     khoảng một đơn vị (trước: 10^4 đọc theo IU/mL của mẩu); "cps/mL", "copies per mL", "IU per mL"; tính từ giữa số
+#     và đơn vị (EN) "three consecutive days" = "ba ngày liên tiếp"; "a hundred"; "năm tuổi"/"năm năm" = 5 (trừ "(năm
+#     tuổi)", "năm tuổi thứ N"); "một/one" mở đầu MỆNH ĐỀ ("Theo Bộ Y tế: một tuần" = "Per MoH: one week"); "đợt/chu
+#     kỳ 1" = "round/cycle 1" là số thứ tự. Mẫu neo đọc lại tối đa 50 mệnh đề (đầu ra lặp thoái hóa).
+grader_version: "1.2.0"
 tolerance_rule: "half the minimum gap between the MoH value set and any other source value (foreign, superseded, decoy)"
 partial_overlap: wrong_in_primary_reported_separately
 multi_value_without_vn_designation: wrong_reported_separately
@@ -40,7 +82,11 @@ llm_extraction_fallback: {used_only_when: "no ĐÁP ÁN/ANSWER line and >1 candi
 #     grade_short chấm lại với từng thành viên (trung lập, xem grade.py). Mọi nơi đọc `drugs` như danh sách INN phải
 #     bỏ khóa có "+" hoặc "|".
 #   - Bí danh bắt đầu "~" (mã lao 1–2 chữ: Cs, Am, E, Z, H, Hh): chỉ đọc trong chuỗi phác đồ có ≥ 3 thuốc khác đã
-#     nhận ("Bdq Lzd Cfz Cs", "4-6 Am-Lfx-Pto-Cfz-Z-H"); không bao giờ đọc đứng riêng.
+#     nhận ("Bdq Lzd Cfz Cs", "4-6 Am-Lfx-Pto-Cfz-Z-H"); không bao giờ đọc đứng riêng. "~ma@n": ngưỡng n
+#     thay cho 3; mã có chữ hoa so khớp phân biệt hoa-thường (1.2.0: "~Pa@2" — "Bdq, Pa, Lzd" = BPaL; "X-quang PA,
+#     Bdq, Lzd" không đọc PA).
+#   - Phác đồ có tên đánh vần rời từng chữ ("B-Pa-L", "B Pa L M") đọc khi các chữ ghép lại đúng một bí danh của khóa
+#     "a+b+c" (normalize_vi._spelled_regimens); không nới luật "~".
 #   - Quy ước đối xứng: thêm viết tắt phác đồ cho một nguồn nước ngoài thì thêm viết tắt tương ứng của mồi/bản cũ.
 drugs:
   artemether-lumefantrine: [artemether-lumefantrin, coartem, riamet]
@@ -57,7 +103,7 @@ drugs:
   chloroquine: [cloroquin, chloroquin]
   adrenaline: [adrenalin, epinephrine, epinephrin]
   bedaquiline: [bedaquilin, bdq]
-  pretomanid: []
+  pretomanid: [~Pa@2]
   linezolid: [lzd]
   moxifloxacin: [moxifloxacine, mfx]
   tenofovir-disoproxil: [tenofovir disoproxil, tenofovir disoproxil fumarate, tenofovir disoproxil fumarat, tenofovir df,
@@ -97,6 +143,9 @@ drugs:
   ethionamide: [ethionamid, eto]
   bictegravir: [bic]
   nevirapine: [nevirapin, nvp]
+  # added 26/9/2026 (grader 1.2.0) from hbv_review.md: 'adefovir' at P-hbv-06 was abstain (6) instead of 5
+  adefovir: [adefovir dipivoxil, adv]
+  telbivudine: [telbivudin, ldt]
   # WHO ACTs named in P-malaria_ocr-02 (key_drugs had no entry here, so these foreign values were never matched)
   artesunate-amodiaquine: [artesunat-amodiaquin, as-aq, asaq]
   amodiaquine: [amodiaquin]
@@ -106,7 +155,8 @@ drugs:
   bedaquiline+pretomanid+linezolid: [bpal]
   bedaquiline+pretomanid+linezolid+moxifloxacin: [bpalm]
   bedaquiline+delamanid+linezolid+clofazimine: [bdlc]
-  bedaquiline+pretomanid+moxifloxacin+pyrazinamide: [bpamz]        # decoy of P-tbhiv-01 (symmetry with BDLC)
+  bedaquiline+pretomanid+moxifloxacin+pyrazinamide: [bpamz]        # former decoy of P-tbhiv-01 (kept: SimpliciTB)
+  bedaquiline+pretomanid+pyrazinamide: [bpaz]                      # BPaZ, decoy of P-tbhiv-01 (symmetry: BDLC)
   tenofovir-disoproxil+lamivudine+dolutegravir: [tld]
   tenofovir-disoproxil+lamivudine+efavirenz: [tle]
   bictegravir+emtricitabine+tenofovir-alafenamide: [biktarvy]

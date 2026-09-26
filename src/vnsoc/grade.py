@@ -16,6 +16,14 @@ Atoms are dicts (see schemas.Atom). Value items by kind:
 
 A drug class named without its form ('tenofovir') is graded once per member (grader 1.1.0, neutral rule): the label
 all members agree on, 2 when they only disagree between 1 and 2, otherwise 5 with underspecified=True.
+
+A cat answer naming several categories is several values (grader 1.2.0; parse_values): all in the MoH set -> 2,
+otherwise the multi-value rule (5, or 1 with source attribution). A conditional next step ('Ringer lactate; nếu không
+đáp ứng chuyển cao phân tử', 'colloid; crystalloid only if unavailable') is not read as "first line = the first
+category": it is two values, whichever category comes first and whichever form the condition takes (neither the MoH
+nor the foreign reading is credited; multi=True lets the analysis report such answers separately). A category that is
+named but negated or only a vehicle is not a value (normalize_vi.parse_cats). An atom's own pattern must not read a
+conditional mention differently for one category (P-dengue-03 colloid: DECISIONS 1.2.0, owner fix pending).
 """
 from __future__ import annotations
 
@@ -130,8 +138,12 @@ def parse_values(text: str, atom: dict, lang: str, synonyms=None, combos=None, r
             d = nv.resolve_classes(d, resolve, combos)
         return [("ok", d)] if d.names else []
     if kind == "cat":
+        # one value per category named (grader 1.2.0): "Ringer lactate hoặc cao phân tử", "4HR hoặc 4HRE" and the
+        # conditional "Ringer lactate; nếu không đáp ứng chuyển cao phân tử" are several values, graded by the
+        # multi-value rule like num/drugs (label 5, or 1 when each value is attributed to its source); before 1.2.0
+        # one Cat holding every label was label 2 whenever the MoH label was among them.
         c = nv.parse_cats(text, atom.get("cat_options") or {})
-        return [("ok", c)] if c.labels else []
+        return [("ok", nv.Cat(frozenset([lab]))) for lab in sorted(c.labels)]
     raise ValueError(f"value_kind lạ: {kind}")
 
 

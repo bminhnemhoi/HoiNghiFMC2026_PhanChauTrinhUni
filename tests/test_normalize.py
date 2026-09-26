@@ -257,3 +257,281 @@ def test_tb_chain_codes_and_alias_separators(text, names):
 def test_drug_repr_is_sorted():
     d = parse_drugs("DTG + 3TC + TDF", SYN_TB)
     assert repr(d) == "Drugs(names=frozenset({'dolutegravir', 'lamivudine', 'tenofovir-disoproxil'}))"
+
+
+# ================================================================== grader 1.2.0 (26/9/2026, pre-freeze): parse level
+def test_clean_keeps_powers_of_ten():
+    from vnsoc.normalize_vi import clean
+
+    assert clean("2×10³ IU/mL") == "2×10^3 IU/mL" and clean("10⁻³") == "10^-3"
+    assert clean("23 kg/m²") == "23 kg/m2" and clean("1000 mm³") == "1000 mm3"   # unit exponents unchanged
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    ("2 x 10^3 IU/mL", "en", Num(2000, 2000, "IU/mL")), ("2×10³ IU/mL", "en", Num(2000, 2000, "IU/mL")),
+    ("2 · 10^3 IU/mL", "en", Num(2000, 2000, "IU/mL")), ("> 10^4 IU/mL", "en", Num(1e4, 1e4, "IU/mL", ">")),
+    ("2.10^4 IU/mL", "vi", Num(2e4, 2e4, "IU/mL")), ("2,5.10^4 IU/mL", "vi", Num(2.5e4, 2.5e4, "IU/mL")),
+    ("2,5 x 10^4 IU/mL", "vi", Num(2.5e4, 2.5e4, "IU/mL")), ("2.5 x 10^4 IU/mL", "en", Num(2.5e4, 2.5e4, "IU/mL")),
+    ("2e3 IU/mL", "en", Num(2000, 2000, "IU/mL")), ("2E+03 IU/mL", "en", Num(2000, 2000, "IU/mL")),
+    ("10^4 copies/mL", "en", Num(1e4, 1e4, "copies/mL")),             # own unit, never converted to IU/mL
+    ("100 x 10^9/L", "en", Num(100, 100, "10^9/L")),                  # still the platelet unit
+    ("150 × 10³/µL", "en", Num(1.5e5, 1.5e5, "/uL")),
+])
+def test_powers_of_ten(text, lang, want):
+    assert parse_nums(text, lang) == [want]
+
+
+def test_copies_are_not_iu():
+    assert convert(1e4, "copies/mL", "IU/mL") is None
+
+
+@pytest.mark.parametrize("text", ["23 kg/m^2", "23 kg/m²", "23 kg/m 2", "23 kg / m2", "23 kg per m2", "23 kg per m^2",
+                                  "23 kg per square metre", "23 kg/sq m", "23 kg·m-2", "23 kg m−2"])
+def test_bmi_unit_spellings(text):
+    assert parse_nums(text, "en") == [Num(23, 23, "kg/m2")]
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    ("0.5 mg base/kg/day", "en", Num(0.5, 0.5, "mg/kg/day")), ("0,5 mg base/kg/ngày", "vi", Num(0.5, 0.5, "mg/kg/day")),
+    ("0.5 mg base/kg daily", "en", Num(0.5, 0.5, "mg/kg/day")), ("15 mg base", "en", Num(15, 15, "mg")),
+    ("10 mg/kg once daily", "en", Num(10, 10, "mg/kg/day")), ("10 mg/kg once a day", "en", Num(10, 10, "mg/kg/day")),
+    ("10 mg/kg 1 lần/ngày", "vi", Num(10, 10, "mg/kg/day")), ("10 mg/kg một lần mỗi ngày", "vi", Num(10, 10, "mg/kg/day")),
+    ("18-month", "en", Num(18, 18, "month")), ("5-year-old", "en", Num(5, 5, "year")),
+    ("7-day course", "en", Num(7, 7, "day")), ("30-minute", "en", Num(30, 30, "min")),
+])
+def test_unit_spellings_1_2_0(text, lang, want):
+    assert parse_nums(text, lang) == [want]
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    ("ba ngày", "vi", Num(3, 3, "day")), ("bảy ngày", "vi", Num(7, 7, "day")), ("hai tuần", "vi", Num(2, 2, "week")),
+    ("mười lăm phút", "vi", Num(15, 15, "min")), ("hai mươi bốn giờ", "vi", Num(24, 24, "h")),
+    ("hai mươi mốt ngày", "vi", Num(21, 21, "day")), ("ba mươi phút", "vi", Num(30, 30, "min")),
+    ("một trăm năm mươi phút", "vi", Num(150, 150, "min")), ("năm ngày", "vi", Num(5, 5, "day")),
+    ("mười năm", "vi", Num(10, 10, "year")), ("hai năm", "vi", Num(2, 2, "year")),
+    ("three days", "en", Num(3, 3, "day")), ("seven days", "en", Num(7, 7, "day")), ("two weeks", "en", Num(2, 2, "week")),
+    ("fifteen minutes", "en", Num(15, 15, "min")), ("twenty-four hours", "en", Num(24, 24, "h")),
+    ("one hundred and fifty minutes", "en", Num(150, 150, "min")),
+])
+def test_numbers_in_words(text, lang, want):
+    assert parse_nums(text, lang) == [want]
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    ("100 mg twice daily", "en", [Num(100, 100, "mg"), Num(2, 2, "times/day")]),   # a frequency, never a dose
+    ("10 mg/kg twice daily", "en", [Num(10, 10, "mg/kg"), Num(2, 2, "times/day")]),  # per dose: not a daily dose
+    ("hai lần mỗi ngày", "vi", [Num(2, 2, "times/day")]),                # a frequency unit (dropped by the grader)
+    ("(năm tuổi)", "vi", []),                                            # 'năm' = year here, not 5
+    ("7 năm tuổi", "vi", [Num(7, 7, "year")]),
+    ("15 phút, sau một giờ", "vi", [Num(15, 15, "min")]),                # 'một'/'one'/'a' yield to a real value
+    ("15 minutes, after an hour", "en", [Num(15, 15, "min")]),
+    ("một tuần", "vi", [Num(1, 1, "week")]), ("a week", "en", [Num(1, 1, "week")]),   # alone: read
+    ("sau một tuần", "vi", [Num(1, 1, "week")]), ("Not sure; consult a doctor within a day", "en", []),  # hedge
+    ("Không rõ, nên tái khám trong vòng một ngày", "vi", []),
+    ("half an ampoule", "en", [Num(0.5, 0.5, "ampoule")]),               # not '1 ampoule'
+])
+def test_number_word_guards(text, lang, want):
+    assert parse_nums(text, lang) == want
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    ("9 tháng (mũi 1)", "vi", [Num(9, 9, "month")]), ("mũi 1 lúc 9 tháng", "vi", [Num(9, 9, "month")]),
+    ("mũi thứ 2: 18 tháng", "vi", [Num(18, 18, "month")]), ("lần 1, 2 và 3 lúc 2, 3, 4 tháng", "vi",
+                                                          [Num(2, 2), Num(3, 3), Num(4, 4, "month")]),
+    ("Tiêm nhắc lại lần 2 sau 5 phút", "vi", [Num(5, 5, "min")]),
+    ("9 months (MMR dose 1)", "en", [Num(9, 9, "month")]), ("Dose #2 at 4-6 years", "en", [Num(4, 6, "year")]),
+    ("4–6 years (after the 18-month visit)", "en", [Num(4, 6, "year")]),
+    ("7 tuổi (sau mũi 18 tháng)", "vi", [Num(7, 7, "year")]),
+    ("At the 18-month visit", "en", [Num(18, 18, "month")]),             # a name alone is still read
+    ("mũi 18 tháng", "vi", [Num(18, 18, "month")]),
+    ("liều 2 mg", "vi", [Num(2, 2, "mg")]), ("2 liều", "vi", [Num(2, 2)]), ("liều 1-2 viên", "vi", [Num(1, 2, "tablet")]),
+    ("liều 0,5 ml", "vi", [Num(0.5, 0.5, "ml")]), ("liều 2", "vi", [Num(2, 2)]),
+])
+def test_ordinals_yield_to_values(text, lang, want):
+    assert parse_nums(text, lang) == want
+
+
+@pytest.mark.parametrize("text,bp", [
+    ("140 over 90 mmHg", BP(140, 90)), ("at least 130 over 80 mmHg", BP(130, 80, ">=")), ("140 trên 90 mmHg", BP(140, 90)),
+    ("≥140/≥90 mmHg", BP(140, 90, ">=")), ("140/≥90", BP(140, 90, ">=")),
+    ("140 và 90 mmHg", BP(140, 90)), ("HA 140 và 90", BP(140, 90)), ("≥ 130 and/or ≥ 80 mmHg", BP(130, 80, ">=")),
+    ("130–139/80–89 mmHg", BP(130, 80, ">=")), ("140-159/90-99", BP(140, 90, ">=")),
+    ("130-139 systolic or 80-89 diastolic", BP(130, 80, ">=")),
+    ("tâm thu 140–159 và/hoặc tâm trương 90–99", BP(140, 90, ">=")),
+    ("HA tâm thu ≥ 140 và/hay tâm trương ≥ 90", BP(140, 90, ">=")), ("tâm thu ≥ 140 hay tâm trương ≥ 90", BP(140, 90, ">=")),
+    ("tâm thu ≥ 140 hoặc là tâm trương ≥ 90", BP(140, 90, ">=")),
+])
+def test_blood_pressure_forms_1_2_0(text, bp):
+    assert parse_bps(text) == [bp]
+
+
+@pytest.mark.parametrize("text", ["140 và 130 mmHg", "140 và 90", "140 hoặc 90 mmHg", "tâm thu 140-90 và tâm trương 90"])
+def test_blood_pressure_word_guards(text):
+    assert parse_bps(text) == []
+
+
+CAT_OPTS = {"colloid": ["cao phan tu", r"\bcolloid", r"\bhes\b"], "crystalloid": ["ringer", r"\bnacl\b", r"\bsaline\b", "crystalloid"],
+            "HRE": [r"(?<![a-z])hre(?![a-z])"], "HR": [r"(?<![a-z])hr(?![a-z])"]}
+
+
+@pytest.mark.parametrize("text,labels", [
+    ("Ringer lactate hoặc cao phân tử", {"colloid", "crystalloid"}),                    # both named: both kept
+    ("Ringer lactate; nếu không đáp ứng chuyển cao phân tử", {"colloid", "crystalloid"}),
+    ("cao phân tử, không dùng Ringer lactate", {"colloid"}), ("Ringer lactate, không dùng cao phân tử", {"crystalloid"}),
+    ("cao phân tử thay vì Ringer", {"colloid"}), ("Ringer thay vì cao phân tử", {"crystalloid"}),
+    ("colloid rather than crystalloid", {"colloid"}), ("crystalloid rather than colloid", {"crystalloid"}),
+    ("colloid, not crystalloid", {"colloid"}), ("avoid colloid; use crystalloid", {"crystalloid"}),
+    ("cao phân tử; Ringer lactate không được dùng", {"colloid"}), ("colloid; Ringer's lactate is not recommended", {"colloid"}),
+    ("HES 6% in 0.9% saline", {"colloid"}), ("HES 6% pha trong NaCl 0,9%", {"colloid"}),   # a vehicle is no choice
+    ("a 10 ml/kg bolus in Ringer lactate", {"crystalloid"}),                   # ... but only after another category
+    ("4HRE chứ không phải 4HR", {"HRE"}), ("không dùng 4HR; dùng 4HRE", {"HRE"}),
+    ("không có kháng thuốc: 4HRE", {"HRE"}), ("nếu không kháng isoniazid thì 4HR", {"HR"}),
+    ("4HR, không dùng ethambutol", {"HR"}),
+])
+def test_cats_negated_or_vehicle_mentions(text, labels):
+    assert parse_cats(text, CAT_OPTS).labels == labels
+
+
+SYN_PA = dict(SYN_TB, pretomanid=["~Pa@2"], moxifloxacin=["mfx"], **{
+    "bedaquiline+pretomanid+linezolid": ["bpal"], "bedaquiline+pretomanid+pyrazinamide": ["bpaz"],
+    "bedaquiline+pretomanid+linezolid+moxifloxacin": ["bpalm"]})
+BPAL = {"bedaquiline", "pretomanid", "linezolid"}
+
+
+@pytest.mark.parametrize("text,names", [
+    ("Bdq, Pa, Lzd", BPAL), ("Bdq-Pa-Lzd-Mfx", BPAL | {"moxifloxacin"}), ("B-Pa-L", BPAL), ("B Pa L", BPAL),
+    ("B + Pa + L + M", BPAL | {"moxifloxacin"}), ("B-Pa-Z", {"bedaquiline", "pretomanid", "pyrazinamide"}),
+    ("Or B-Pa-L", BPAL),
+    ("Bdq Pa", {"bedaquiline"}), ("Pa", set()), ("X-quang PA, Bdq, Lzd", {"bedaquiline", "linezolid"}),
+    ("H R Z E", set()),                                                   # spelled letters that are no regimen alias
+])
+def test_pretomanid_code_and_spelled_regimens(text, names):
+    assert parse_drugs(text, SYN_PA).names == frozenset(names)
+
+
+# ============================================ grader 1.2.0 after the independent grader review (26/9/2026, blind)
+# Self-written strings only; each case is a regression test for one review finding (CHẶN-1..5, NÊN SỬA).
+@pytest.mark.parametrize("text,lang,want", [
+    # frequencies are one value in times/day|week (never a duration): digits, words and adverbs alike
+    ("once a day", "en", [Num(1, 1, "times/day")]), ("once daily", "en", [Num(1, 1, "times/day")]),
+    ("twice a day", "en", [Num(2, 2, "times/day")]), ("3 times a day", "en", [Num(3, 3, "times/day")]),
+    ("three times daily", "en", [Num(3, 3, "times/day")]), ("3x/day", "en", [Num(3, 3, "times/day")]),
+    ("twice weekly", "en", [Num(2, 2, "times/week")]),
+    ("ngày một lần", "vi", [Num(1, 1, "times/day")]), ("ngày 1 lần", "vi", [Num(1, 1, "times/day")]),
+    ("mỗi ngày uống 2 lần", "vi", [Num(2, 2, "times/day")]), ("1 lần/ngày", "vi", [Num(1, 1, "times/day")]),
+    ("một lần mỗi ngày", "vi", [Num(1, 1, "times/day")]), ("2 lần mỗi tuần", "vi", [Num(2, 2, "times/week")]),
+    # ... so 'a day' of 'once a day' is not 1 day, and the opening 'a week' is still read
+    ("Primaquine once a day for a week", "en", [Num(1, 1, "times/day"), Num(1, 1, "week")]),
+    ("Primaquin ngày một lần trong một tuần", "vi", [Num(1, 1, "times/day"), Num(1, 1, "week")]),
+    ("3 days, once daily", "en", [Num(3, 3, "day"), Num(1, 1, "times/day")]),
+    ("3 ngày 1 lần", "vi", [Num(3, 3, "day"), Num(1, 1, "times")]),          # 'every 3 days': not 'ngày 1 lần'
+    # a bare count is a count in both languages; 'once' / 'một lần' alone are adverbs
+    ("Repeat twice", "en", [Num(2, 2, "times")]), ("Nhắc lại hai lần", "vi", [Num(2, 2, "times")]),
+    ("Repeat two times", "en", [Num(2, 2, "times")]), ("Nhắc lại 2 lần", "vi", [Num(2, 2, "times")]),
+    ("Repeat once", "en", []), ("Nhắc lại một lần", "vi", []), ("once stable", "en", []),
+    # a number word used as the unit of the number before it is not read again
+    ("mười năm ngày", "vi", [Num(10, 10, "year")]),
+])
+def test_frequencies_and_counts(text, lang, want):
+    assert parse_nums(text, lang) == want
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    # CHẶN-4: a dose named by its age is a value unless it is introduced as a reference point
+    ("the 9-month dose; some countries give it at 12 months", "en", [Num(9, 9, "month"), Num(12, 12, "month")]),
+    ("mũi 9 tháng; một số nước tiêm lúc 12 tháng", "vi", [Num(9, 9, "month"), Num(12, 12, "month")]),
+    ("9 months vaccine, or 12-15 months", "en", [Num(9, 9, "month"), Num(12, 15, "month")]),
+    ("Mũi 18 tháng, hoặc 15 tháng", "vi", [Num(18, 18, "month"), Num(15, 15, "month")]),
+    ("Booster at 7 years (after the 18-month dose)", "en", [Num(7, 7, "year")]),
+    ("Mũi nhắc lại 7 tuổi (sau mũi 18 tháng)", "vi", [Num(7, 7, "year")]),
+    ("7 years, following the 18 month booster", "en", [Num(7, 7, "year")]),
+    ("7 tuổi, kể từ mũi 18 tháng", "vi", [Num(7, 7, "year")]),
+])
+def test_age_named_doses(text, lang, want):
+    assert parse_nums(text, lang) == want
+
+
+@pytest.mark.parametrize("text,lang,want", [
+    # powers of ten: '*' as the times sign (was '210', the decoy 200 on a log scale); a range of powers; copies spellings
+    ("> 2*10^3 IU/mL", "en", [Num(2000, 2000, "IU/mL", ">")]),
+    ("HBV DNA 10^4–10^5 copies/mL", "en", [Num(1e4, 1e5, "copies/mL")]),      # was 10^4 read in the atom's IU/mL
+    ("từ 10^4 đến 10^5 bản sao/mL", "vi", [Num(1e4, 1e5, "copies/mL")]),
+    ("10^3 IU/mL - 10^4 IU/mL", "en", [Num(1e3, 1e4, "IU/mL")]),
+    ("10^5 cps/mL", "en", [Num(1e5, 1e5, "copies/mL")]), ("10^5 copies per mL", "en", [Num(1e5, 1e5, "copies/mL")]),
+    ("2000 IU per mL", "en", [Num(2000, 2000, "IU/mL")]),
+    # English adjective between number and unit = Vietnamese adjective after the unit
+    ("three consecutive days", "en", [Num(3, 3, "day")]), ("3 consecutive days", "en", [Num(3, 3, "day")]),
+    ("ba ngày liên tiếp", "vi", [Num(3, 3, "day")]), ("a hundred days", "en", [Num(100, 100, "day")]),
+    # 'năm' is 5 except in a unit hint or 'năm tuổi thứ N' ("năm tuổi" = "five years")
+    ("năm tuổi", "vi", [Num(5, 5, "year")]), ("năm năm", "vi", [Num(5, 5, "year")]), ("(năm tuổi)", "vi", []),
+    ("lúc 7 tuổi (năm tuổi thứ 7)", "vi", [Num(7, 7, "year"), Num(7, 7)]),
+    # a source name before the opening 'một/one' does not count as words of its clause
+    ("Theo Bộ Y tế: một tuần", "vi", [Num(1, 1, "week")]), ("According to the Vietnam MoH, one week", "en",
+                                                          [Num(1, 1, "week")]),
+    # 'đợt 1' = 'round 1', 'chu kỳ 1' = 'cycle 1' are ordinals
+    ("9 months (round 1)", "en", [Num(9, 9, "month")]), ("9 tháng (đợt 1)", "vi", [Num(9, 9, "month")]),
+    ("21 ngày (chu kỳ 1)", "vi", [Num(21, 21, "day")]), ("21 days (cycle 1)", "en", [Num(21, 21, "day")]),
+])
+def test_value_spellings_after_review(text, lang, want):
+    assert parse_nums(text, lang) == want
+
+
+@pytest.mark.parametrize("text", [
+    "120–129/<80 mmHg", "Elevated BP 120-129/<80", "≥140/<90 mmHg",                  # range end; opposite comparators
+    "tâm thu ≥ 140 và tâm trương < 90 mmHg", "SBP ≥ 140 and DBP < 90", "≥ 140 và < 90 mmHg"])
+def test_blood_pressure_not_a_threshold_pair(text):
+    assert parse_bps(text) == []
+
+
+def test_fold_keeps_accents_aligned():
+    from vnsoc.normalize_vi import _fold
+
+    free, kept = _fold("Phác đồ CHỨA HRE; nó là 4HR (Bộ Y tế)")
+    assert free == "phac do chua hre; no la 4hr (bo y te)" and len(kept) == len(free)
+    assert kept == "phác đồ chứa hre; nó là 4hr (bộ y tế)"
+
+
+FLUID_OPTS = {"colloid": [r"(?s)^(?!.*(?:khong dung|not)\s+(?:cao phan tu|colloid|dextran|\bhes\b))"
+                          r".*(?:cao phan tu|colloid|dextran|\bhes\b|starch|gelatin)"],        # anchored, whole answer
+              "crystalloid": ["ringer", r"\bnacl\b", r"\bsaline\b", "crystalloid"]}
+YES_NO_OPTS = {"no": [r"^\s*(?:khong|no)\b"], "yes": [r"^\s*(?:co|yes)\b"]}
+
+
+@pytest.mark.parametrize("text,opts,labels", [
+    # CHẶN-1: a yes/no answer word is never negated by what follows (P-dengue-04)
+    ("Không - metamizol không nên dùng", YES_NO_OPTS, {"no"}), ("No — metamizole is not recommended", YES_NO_OPTS, {"no"}),
+    ("Không vì metamizol không được dùng", YES_NO_OPTS, {"no"}), ("No metamizole should be avoided", YES_NO_OPTS, {"no"}),
+    ("Có - gelatin có thể dùng", YES_NO_OPTS, {"yes"}),
+    # CHẶN-2: an anchored whole-answer pattern across clauses stands unless its only mention is dismissed
+    ("Colloid (dextran 40); HES is not recommended", FLUID_OPTS, {"colloid"}),
+    ("Dextran 40 (HES không được khuyến cáo)", FLUID_OPTS, {"colloid"}),
+    ("Cao phân tử, HES không nên dùng", FLUID_OPTS, {"colloid"}),
+    ("Colloid such as gelatin; starches should be avoided", FLUID_OPTS, {"colloid"}),
+    ("Dextran 40 không được khuyến cáo", FLUID_OPTS, set()), ("Ringer lactate không được khuyến cáo", FLUID_OPTS, set()),
+    ("Truyền dịch; HES không được dùng", FLUID_OPTS, set()),
+    ("Truyền dịch; Ringer lactate không được dùng", FLUID_OPTS, set()),
+    ("HES không được dùng; dùng Ringer lactate", FLUID_OPTS, {"crystalloid"}),
+    ("Ringer lactate không được dùng; dùng HES", FLUID_OPTS, {"colloid"}),
+    # CHẶN-3: accents are kept for the negation words ('chứa' is not 'chưa', 'nó' is not 'no')
+    ("Phác đồ chứa HRE", CAT_OPTS, {"HRE"}), ("Phác đồ duy trì chứa 4HR", CAT_OPTS, {"HR"}),
+    ("Dung dịch có chứa Ringer lactate", CAT_OPTS, {"crystalloid"}),
+    ("Truyền Ringer lactate vì nó là dịch đẳng trương", CAT_OPTS, {"crystalloid"}),
+    ("chưa dùng 4HR; dùng 4HRE", CAT_OPTS, {"HRE"}), ("4HRE, bỏ 4HR", CAT_OPTS, {"HRE"}),
+    ("khong dung 4HR; dung 4HRE", CAT_OPTS, {"HRE"}), ("Phac do chua HRE", CAT_OPTS, {"HRE"}),   # no diacritics
+    ("Bo Y te: 4HRE", CAT_OPTS, {"HRE"}),
+    # mention patterns read one sentence or ';'-clause (P-dengue-06 not_used crossed a ';')
+    ("gelatin có thể dùng; không dùng albumin", {"sub": ["gelatin[^.]{0,40}co the dung"],
+                                               "not": ["gelatin[^.]{0,40}khong dung"]}, {"sub"}),
+    # the vehicle's clause keeps parentheses
+    ("Cao phân tử (Dextran 40) pha trong NaCl 0,9%", CAT_OPTS | {"colloid": ["cao phan tu", "dextran"]}, {"colloid"}),
+])
+def test_cat_mentions_after_review(text, opts, labels):
+    assert parse_cats(text, opts).labels == labels
+
+
+def test_anchored_pattern_reread_is_bounded():
+    # a degenerate (repeated) output: at most _MAX_CLAUSES clauses are re-read, then the pattern's reading stands
+    from vnsoc.normalize_vi import _MAX_CLAUSES
+
+    assert parse_cats("Truyền dịch; " + "HES không được dùng; " * 10, FLUID_OPTS).labels == set()
+    assert parse_cats("Truyền dịch; " + "HES không được dùng; " * (_MAX_CLAUSES + 5), FLUID_OPTS).labels == {"colloid"}

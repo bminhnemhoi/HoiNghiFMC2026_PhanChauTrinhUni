@@ -442,3 +442,558 @@ def test_linear_units_unchanged():
     a = _vl_atom(unit="U/L")
     a["vn"][0]["unit"] = a["foreign"][0]["values"][0]["unit"] = "U/L"
     assert not log_scale(a) and _gap(a["vn"][0], a["foreign"][0]["values"][0], a) == 18000
+
+
+# ================================================================== grader 1.2.0 (26/9/2026, pre-freeze)
+# Blind to the sealed pilot outputs: every answer below is self-written; atoms are fixtures modelled on P-dengue-03,
+# P-tbhiv-03, P-htn-01, P-controls-09, P-hbv-03/06, P-tbhiv-01, P-immunization-01/02, P-malaria_ocr-04/05/06.
+
+# ------------------------------------------------------------------ R1: a cat answer naming several categories
+FLUID_CAT = atom(value_kind="cat", vn=[{"label": "colloid"}], foreign=[{"system": "WHO_global", "values": [
+    {"label": "crystalloid"}]}], decoy=[{"label": "albumin"}],
+    cat_options={"colloid": ["cao phan tu", r"\bcolloid", "dextran", r"\bhes\b"],
+                 "crystalloid": ["ringer", r"\bnacl\b", "crystalloid", "tinh the", r"\bsaline\b"],
+                 "albumin": ["albumin"]})
+HRE_CAT = atom(value_kind="cat", vn=[{"label": "HRE"}], foreign=[{"system": "US", "values": [{"label": "HR"}]}],
+               decoy=[{"label": "RE"}],
+               cat_options={"HRE": [r"(?<![a-z])(?:hre|rhe)(?![a-z])"], "HR": [r"(?<![a-z])(?:hr|rh)(?![a-z])"],
+                            "RE": [r"(?<![a-z])re(?![a-z])"]})
+
+
+@pytest.mark.parametrize("a,out,lang,label,multi", [
+    (FLUID_CAT, "ĐÁP ÁN: Dung dịch cao phân tử (dextran)", "vi", "correct", False),
+    (FLUID_CAT, "ĐÁP ÁN: Ringer lactate", "vi", "foreign", False),
+    (FLUID_CAT, "ĐÁP ÁN: Ringer lactate hoặc cao phân tử", "vi", "unattributed", True),      # was 2 (MoH first)
+    (FLUID_CAT, "ANSWER: Ringer's lactate or a colloid", "en", "unattributed", True),
+    # a conditional next step is two values, whichever comes first (neither reading is credited)
+    (FLUID_CAT, "ĐÁP ÁN: Ringer lactate; nếu không đáp ứng chuyển cao phân tử", "vi", "unattributed", True),  # was 2
+    (FLUID_CAT, "ĐÁP ÁN: Cao phân tử; nếu không đáp ứng chuyển Ringer lactate", "vi", "unattributed", True),
+    (FLUID_CAT, "ANSWER: Ringer's lactate; if no response, switch to a colloid", "en", "unattributed", True),
+    (FLUID_CAT, "ĐÁP ÁN: Theo Bộ Y tế Việt Nam: cao phân tử; theo WHO: Ringer lactate", "vi", "correct_aware", True),
+    (HRE_CAT, "ĐÁP ÁN: 4HR hoặc 4HRE", "vi", "unattributed", True),                          # was 2
+    (HRE_CAT, "ANSWER: 4HR; 4HRE if high isoniazid resistance", "en", "unattributed", True),
+    (HRE_CAT, "ĐÁP ÁN: 2RHZE/4RHE", "vi", "correct", False),
+])
+def test_cat_several_categories_are_several_values(a, out, lang, label, multi):
+    g = lab(out, a, lang)
+    assert (g.label_name, g.multi) == (label, multi)
+
+
+def test_cat_all_moh_categories_is_correct():
+    both = atom(value_kind="cat", vn=[{"label": "one_step"}, {"label": "two_step"}],
+                foreign=[{"system": "US", "values": [{"label": "two_step"}]}],
+                cat_options={"one_step": ["mot buoc", "one-step"], "two_step": ["hai buoc", "two-step"]})
+    g = lab("ĐÁP ÁN: một bước hoặc hai bước", both)
+    assert (g.label_name, g.multi, len(g.parsed)) == ("correct", False, 2)
+
+
+def test_cat_decoy_among_several_is_flagged():
+    g = lab("ĐÁP ÁN: cao phân tử hoặc albumin", FLUID_CAT)
+    assert (g.label_name, g.multi, g.decoy_match) == ("unattributed", True, True)
+
+
+@pytest.mark.parametrize("a,out,lang,label", [
+    # a negated or vehicle mention is not a second category — the same rule for every label (symmetric pairs)
+    (FLUID_CAT, "ĐÁP ÁN: Cao phân tử, không dùng Ringer lactate", "vi", "correct"),
+    (FLUID_CAT, "ĐÁP ÁN: Ringer lactate, không dùng cao phân tử", "vi", "foreign"),
+    (FLUID_CAT, "ĐÁP ÁN: Dùng cao phân tử thay vì Ringer lactate", "vi", "correct"),
+    (FLUID_CAT, "ĐÁP ÁN: Ringer lactate thay vì cao phân tử", "vi", "foreign"),
+    (FLUID_CAT, "ĐÁP ÁN: Cao phân tử (không phải dịch tinh thể)", "vi", "correct"),
+    (FLUID_CAT, "ANSWER: A colloid, not crystalloid", "en", "correct"),
+    (FLUID_CAT, "ANSWER: Colloid rather than Ringer's lactate", "en", "correct"),
+    (FLUID_CAT, "ANSWER: Crystalloid rather than colloid", "en", "foreign"),
+    (FLUID_CAT, "ĐÁP ÁN: Cao phân tử; Ringer lactate không được khuyến cáo", "vi", "correct"),
+    (FLUID_CAT, "ĐÁP ÁN: Ringer lactate; cao phân tử không được khuyến cáo", "vi", "foreign"),
+    (FLUID_CAT, "ANSWER: Colloid; Ringer's lactate is not recommended", "en", "correct"),
+    (FLUID_CAT, "ĐÁP ÁN: HES 6% pha trong NaCl 0,9%", "vi", "correct"),
+    (FLUID_CAT, "ANSWER: 6% HES in 0.9% saline", "en", "correct"),
+    (HRE_CAT, "ĐÁP ÁN: 4HRE, không phải 4HR", "vi", "correct"),
+    (HRE_CAT, "ĐÁP ÁN: 4HRE thay vì 4HR", "vi", "correct"),
+    (HRE_CAT, "ANSWER: 4HR rather than 4HRE", "en", "foreign"),                           # was 2
+    (HRE_CAT, "ĐÁP ÁN: 4HR, không dùng ethambutol", "vi", "foreign"),                     # the negation is not on HR
+    (HRE_CAT, "ĐÁP ÁN: Không có kháng thuốc: 4HRE", "vi", "correct"),                     # other clause
+])
+def test_cat_negated_mention_is_not_a_value(a, out, lang, label):
+    g = lab(out, a, lang)
+    assert (g.label_name, g.multi) == (label, False)
+
+
+def test_cat_real_pilot_atoms():
+    import json
+
+    from vnsoc.paths import paths
+
+    f = paths().root / "data" / "interim" / "pilot_atoms.jsonl"
+    atoms = {}
+    if f.exists():
+        atoms = {json.loads(x)["atom_id"]: json.loads(x) for x in f.read_text(encoding="utf-8").splitlines() if x}
+    if not {"P-dengue-03", "P-tbhiv-03"} <= set(atoms):
+        pytest.skip("pilot atoms absent")
+    d, t = atoms["P-dengue-03"], atoms["P-tbhiv-03"]
+    for out, a, lang, want in [("ĐÁP ÁN: Ringer lactate hoặc cao phân tử", d, "vi", (5, True)),
+                               ("ĐÁP ÁN: Ringer lactate; nếu không đáp ứng chuyển cao phân tử", d, "vi", (5, True)),
+                               ("ĐÁP ÁN: Cao phân tử, không dùng Ringer lactate", d, "vi", (2, False)),
+                               ("ANSWER: 6% HES in 0.9% saline", d, "en", (2, False)),
+                               ("ĐÁP ÁN: Ringer lactate", d, "vi", (4, False)),
+                               ("ĐÁP ÁN: 4HR hoặc 4HRE", t, "vi", (5, True)),
+                               ("ANSWER: 4HR rather than 4HRE", t, "en", (4, False)),
+                               ("ĐÁP ÁN: 2RHZE/4RHE", t, "vi", (2, False))]:
+        g = grade_short(out, a, lang, condition="A1")
+        assert (g.label, g.multi) == want, out
+
+
+# ------------------------------------------------------------------ R2 + R5: blood pressure forms and joiners
+@pytest.mark.parametrize("out,lang,label", [
+    ("ANSWER: 140 over 90 mmHg", "en", "correct"), ("ANSWER: at least 130 over 80 mmHg", "en", "foreign"),
+    ("ĐÁP ÁN: 140 trên 90 mmHg", "vi", "correct"),
+    ("ANSWER: ≥140/≥90 mmHg", "en", "correct"), ("ĐÁP ÁN: ≥130/≥80 mmHg", "vi", "foreign"),
+    ("ĐÁP ÁN: 140 và 90 mmHg", "vi", "correct"), ("ANSWER: 130 and 80 mmHg", "en", "foreign"),
+    ("ĐÁP ÁN: HA ≥ 140 và/hoặc ≥ 90 mmHg", "vi", "correct"),
+    # a range is read at its lower bounds (every pilot bp atom is a threshold), the same way for every source
+    ("ANSWER: 130–139/80–89 mmHg", "en", "foreign"), ("ĐÁP ÁN: 140–159/90–99 mmHg", "vi", "correct"),
+    ("ANSWER: 130-139 systolic or 80-89 diastolic", "en", "foreign"),
+    ("ĐÁP ÁN: tâm thu 140–159 và/hoặc tâm trương 90–99 mmHg", "vi", "correct"),
+    # R5: 'hay', 'và/hay', 'hoặc là' join the split form
+    ("ĐÁP ÁN: HA tâm thu ≥ 140 mmHg hay HA tâm trương ≥ 90 mmHg", "vi", "correct"),
+    ("ĐÁP ÁN: HA tâm thu ≥ 140 và/hay tâm trương ≥ 90 mmHg", "vi", "correct"),
+    ("ĐÁP ÁN: tâm thu ≥ 130 mmHg hoặc là tâm trương ≥ 80 mmHg", "vi", "foreign"),
+])
+def test_blood_pressure_forms_1_2_0(out, lang, label):
+    g = lab(out, HTN, lang)
+    assert (g.label_name, len(g.parsed)) == (label, 1)
+
+
+def test_two_bare_systolic_values_are_not_a_blood_pressure():
+    assert lab("ĐÁP ÁN: 140 và 130 mmHg", HTN).label_name == "abstain"            # unchanged: no BP read
+    assert lab("ĐÁP ÁN: 140 và 90", HTN).label_name == "abstain"                  # no mmHg, no HA: not read
+
+
+# ------------------------------------------------------------------ R3: units and powers of ten
+BMI = atom(value_kind="num", unit="kg/m2", vn=[{"lo": 23, "hi": 23, "cmp": ">="}],
+           foreign=[{"system": "WHO_global", "values": [{"lo": 25, "hi": 25, "cmp": ">="}]}],
+           decoy=[{"lo": 21, "hi": 21}])
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    ("ANSWER: BMI ≥ 23 kg/m^2", "en", "correct"), ("ANSWER: 25 kg/m^2", "en", "foreign"),   # was unit_mismatch
+    ("ĐÁP ÁN: 23 kg/m²", "vi", "correct"), ("ĐÁP ÁN: 23 kg/m 2", "vi", "correct"),
+    ("ANSWER: 23 kg per m2", "en", "correct"), ("ANSWER: 25 kg per square metre", "en", "foreign"),
+    ("ANSWER: 23 kg·m-2", "en", "correct"),
+])
+def test_bmi_unit_spellings(out, lang, label):
+    g = lab(out, BMI, lang)
+    assert (g.label_name, g.parse_method) == (label, "answer_line")
+
+
+@pytest.mark.parametrize("out,lang,label,method", [
+    ("ANSWER: > 2 x 10^3 IU/mL", "en", "correct", "answer_line"),                       # was 5 (2 and 10)
+    ("ANSWER: > 2×10³ IU/mL", "en", "correct", "answer_line"),
+    ("ĐÁP ÁN: > 2.10^3 IU/mL", "vi", "correct", "answer_line"),                         # Vietnamese dot = times
+    ("ĐÁP ÁN: > 2,0.10^3 IU/mL", "vi", "correct", "answer_line"),
+    ("ANSWER: > 2e3 IU/mL", "en", "correct", "answer_line"),
+    ("ANSWER: > 2 x 10^4 IU/mL", "en", "foreign", "answer_line"),
+    ("ANSWER: > 10^4 IU/mL", "en", "foreign", "answer_line"),                           # nearer 20.000 in log10
+    # copies/mL is not converted to IU/mL (assay-dependent factor): an unconvertible unit, as for every source
+    ("ANSWER: > 10^4 copies/mL", "en", "unattributed", "unit_mismatch"),                # was 10 IU/mL
+    ("ĐÁP ÁN: > 10.000 copies/mL", "vi", "unattributed", "unit_mismatch"),
+])
+def test_powers_of_ten_and_copies(out, lang, label, method):
+    g = lab(out, _vl_atom(), lang)
+    assert (g.label_name, g.parse_method) == (label, method)
+
+
+# ------------------------------------------------------------------ R4: drugs
+def test_new_drugs_and_regimen_spellings():
+    syn, combos = _real()
+    hbv = grade_short("ĐÁP ÁN: adefovir", HBV_NA, "vi", syn, combos)
+    assert (hbv.label_name, hbv.parse_method) == ("unattributed", "answer_line")      # was abstain (not read)
+    assert parse_drugs("adefovir dipivoxil (ADV)", syn, combos).names == {"adefovir"}
+    assert parse_drugs("LdT", syn, combos).names == {"telbivudine"}
+    tb = atom(value_kind="drugs", vn=[{"key_drugs": ["BPaL"]}],
+              foreign=[{"system": "WHO_global", "values": [{"key_drugs": ["delamanid", "clofazimine"]}]}],
+              decoy=[{"key_drugs": ["pretomanid", "pyrazinamide"]}])
+    for out in ("ĐÁP ÁN: BPaZ", "ĐÁP ÁN: B-Pa-Z", "ANSWER: B + Pa + Z"):
+        g = grade_short(out, tb, "vi", syn, combos)
+        assert (g.label_name, g.decoy_match) == ("unattributed", True), out
+    for out in ("ĐÁP ÁN: Bdq, Pa, Lzd", "ĐÁP ÁN: B-Pa-L", "ANSWER: B Pa L", "ĐÁP ÁN: Bdq + Pa + Lzd (6 tháng)"):
+        assert grade_short(out, tb, "vi", syn, combos).label_name == "correct", out   # was 5 (Pa not read)
+    # 'PA' (chest X-ray view) is not pretomanid: the code is matched case-sensitively
+    assert "pretomanid" not in parse_drugs("X-quang PA, Bdq, Lzd", syn, combos).names
+    assert parse_drugs("Pa", syn, combos).names == frozenset()                        # never alone
+
+
+# ------------------------------------------------------------------ R6: ordinals and dose/visit names
+MEASLES = atom(value_kind="num", unit="month", vn=[{"lo": 9, "hi": 9}],
+               foreign=[{"system": "US", "values": [{"lo": 12, "hi": 15}]}], decoy=[{"lo": 3, "hi": 6}])
+DTP18 = atom(value_kind="num", unit="month", vn=[{"lo": 18, "hi": 18}],
+             foreign=[{"system": "US", "values": [{"lo": 15, "hi": 18}]},
+                      {"system": "WHO_global", "values": [{"lo": 12, "hi": 23}]}])
+
+
+@pytest.mark.parametrize("a,out,lang,label", [
+    (MEASLES, "ĐÁP ÁN: 9 tháng (mũi 1)", "vi", "correct"),                                 # was 5 (9 and 1)
+    (MEASLES, "ĐÁP ÁN: mũi 1 lúc 9 tháng tuổi", "vi", "correct"),
+    (MEASLES, "ĐÁP ÁN: mũi thứ 1: 9 tháng", "vi", "correct"),
+    (MEASLES, "ANSWER: 9 months (MMR dose 1)", "en", "correct"),
+    (MEASLES, "ANSWER: Dose 1 at 12–15 months", "en", "foreign"),
+    (MEASLES, "ĐÁP ÁN: lần 1 lúc 12-15 tháng", "vi", "foreign"),
+    (BOOSTER, "ANSWER: 4–6 years (after the 18-month visit)", "en", "foreign"),           # was 5 (18 years)
+    (BOOSTER, "ĐÁP ÁN: 7 tuổi (sau mũi 18 tháng)", "vi", "correct"),
+    (BOOSTER, "ANSWER: 7 years (after the 18 month dose)", "en", "correct"),
+    (DTP18, "ANSWER: At the 18-month visit", "en", "correct"),                            # a name alone is read
+    (DTP18, "ĐÁP ÁN: mũi 18 tháng", "vi", "correct"),
+])
+def test_ordinals_and_visit_names_are_not_values(a, out, lang, label):
+    g = lab(out, a, lang)
+    assert (g.label_name, g.multi) == (label, False)
+
+
+def test_real_values_next_to_dose_words_are_kept():
+    mg = atom(value_kind="num", unit="mg", vn=[{"lo": 2, "hi": 2}],
+              foreign=[{"system": "US", "values": [{"lo": 4, "hi": 4}]}])
+    assert lab("ĐÁP ÁN: liều 2 mg", mg).label_name == "correct"
+    assert lab("ĐÁP ÁN: liều 2", mg).label_name == "correct"                              # alone: still the value
+    tab = atom(value_kind="num", unit="tablet", vn=[{"lo": 1, "hi": 2}],
+               foreign=[{"system": "US", "values": [{"lo": 4, "hi": 4}]}])
+    assert lab("ĐÁP ÁN: liều 1-2 viên", tab).label_name == "correct"                     # a range, not 'liều 1'
+
+
+# ------------------------------------------------------------------ R7: numbers in words, 'daily', 'mg base'
+DAYS3 = atom(value_kind="num", unit="day", vn=[{"lo": 3, "hi": 3}],
+             foreign=[{"system": "US", "values": [{"lo": 5, "hi": 5}]}], decoy=[{"lo": 1, "hi": 1}])
+DAYS7 = atom(value_kind="num", unit="day", vn=[{"lo": 7, "hi": 7}],
+             foreign=[{"system": "US", "values": [{"lo": 14, "hi": 14}]}])
+MIN15 = atom(value_kind="num", unit="min", vn=[{"lo": 15, "hi": 15}],
+             foreign=[{"system": "US", "values": [{"lo": 30, "hi": 30}]}])
+
+
+@pytest.mark.parametrize("a,out,lang,label", [
+    (DAYS3, "ĐÁP ÁN: ba ngày", "vi", "correct"), (DAYS3, "ANSWER: three days", "en", "correct"),   # were 6
+    (DAYS3, "ĐÁP ÁN: năm ngày", "vi", "foreign"), (DAYS3, "ANSWER: five days", "en", "foreign"),
+    (DAYS3, "ĐÁP ÁN: một ngày", "vi", "unattributed"), (DAYS3, "ANSWER: one day", "en", "unattributed"),
+    (DAYS7, "ĐÁP ÁN: bảy ngày", "vi", "correct"), (DAYS7, "ANSWER: seven days", "en", "correct"),
+    (DAYS7, "ĐÁP ÁN: một tuần", "vi", "correct"), (DAYS7, "ANSWER: one week", "en", "correct"),
+    (DAYS7, "ANSWER: a week", "en", "correct"),
+    (DAYS7, "ĐÁP ÁN: hai tuần", "vi", "foreign"), (DAYS7, "ANSWER: two weeks", "en", "foreign"),
+    (MIN15, "ĐÁP ÁN: mười lăm phút", "vi", "correct"), (MIN15, "ANSWER: fifteen minutes", "en", "correct"),
+    (MIN15, "ĐÁP ÁN: ba mươi phút", "vi", "foreign"), (MIN15, "ANSWER: thirty minutes", "en", "foreign"),
+    # 'một'/'one'/'a' before a unit yield to a real value (articles), in both languages
+    (MIN15, "ĐÁP ÁN: 15 phút, đánh giá lại sau một giờ", "vi", "correct"),
+    (MIN15, "ANSWER: 15 minutes, reassess after an hour", "en", "correct"),
+    (MIN15, "ANSWER: 15 minutes, reassess after one hour", "en", "correct"),
+    # ... and are read alone only when they open the answer: a hedge is not a value (DAYS3's decoy is 1 day)
+    (DAYS3, "ANSWER: Not sure; consult a doctor within a day", "en", "abstain"),
+    (DAYS3, "ĐÁP ÁN: Không rõ, nên tái khám trong vòng một ngày", "vi", "abstain"),
+    (DAYS3, "ANSWER: within a day", "en", "unattributed"),
+])
+def test_numbers_in_words(a, out, lang, label):
+    g = lab(out, a, lang)
+    assert (g.label_name, g.multi) == (label, False)
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    ("ANSWER: 0.5 mg base/kg/day", "en", "correct"),            # was unit_mismatch (VI 'mg base/kg/ngày' was 2)
+    ("ANSWER: 0.5 mg base/kg daily", "en", "correct"),
+    ("ĐÁP ÁN: 0,5 mg base/kg/ngày", "vi", "correct"),
+    ("ANSWER: 0.5 mg/kg once daily", "en", "correct"),
+    ("ĐÁP ÁN: 0,5 mg/kg 1 lần/ngày", "vi", "correct"),
+    ("ANSWER: 1 mg/kg once a day", "en", "foreign"),
+])
+def test_daily_and_mg_base(out, lang, label):
+    assert lab(out, PQ_DAY, lang).label_name == label
+
+
+def test_twice_daily_is_not_a_value_nor_a_daily_dose():
+    per_dose = atom(value_kind="num", unit="mg", vn=[{"lo": 100, "hi": 100}],
+                    foreign=[{"system": "US", "values": [{"lo": 200, "hi": 200}]}])
+    g = lab("ANSWER: 100 mg twice daily", per_dose, "en")
+    assert (g.label_name, g.multi) == ("correct", False)
+    g = lab("ANSWER: 0.25 mg/kg twice daily", PQ_DAY, "en")         # 0.25 mg/kg per dose is not 0.25 mg/kg/day
+    assert (g.label_name, g.parse_method) == ("unattributed", "unit_mismatch")
+
+
+# ------------------------------------------------------------------ R8: recorded, NOT changed
+def test_threshold_target_with_point_answer_is_unchanged():
+    # known limitation (DECISIONS 1.1.0 and 1.2.0): '135' against a '< 140' target is not read as inside it
+    target = atom(value_kind="num", unit="mmHg", vn=[{"lo": 140, "hi": 140, "cmp": "<"}],
+                  foreign=[{"system": "US", "values": [{"lo": 130, "hi": 130, "cmp": "<"}]}])
+    assert lab("ĐÁP ÁN: 135 mmHg", target).label_name == "unattributed"
+
+
+# ============================================ grader 1.2.0 after the independent grader review (26/9/2026, blind)
+# Regression tests for the review findings (CHẶN-1..5 and NÊN SỬA). Self-written answers; fixtures modelled on
+# P-dengue-03/04/06, P-tbhiv-03, P-immunization-01/04, P-malaria_ocr-05/06, P-htn-01. Every case that concerns one
+# source has its mirror for the other source (the rule must not lean towards the MoH or the foreign value).
+NSAID = atom(value_kind="cat", vn=[{"label": "not_allowed"}], foreign=[{"system": "WHO_global", "values": [
+    {"label": "allowed"}]}], cat_options={
+    "not_allowed": [r"(?s)^(\s*(?:khong|no)\b|.*metamizol\w*[^.]{0,40}(?:khong (?:duoc |nen )?dung|not recommended))"],
+    "allowed": [r"(?s)^(\s*(?:co|yes)\b|.*metamizol\w*[^.]{0,40}(?<!khong )(?:co the dung|can be used))"]})
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    # CHẶN-1: the answer word 'Không'/'No' is not negated by the clause that explains it (was abstain)
+    ("ĐÁP ÁN: Không - metamizol không nên dùng", "vi", "correct"),
+    ("ĐÁP ÁN: Không – metamizol không được dùng trong sốt xuất huyết", "vi", "correct"),
+    ("ĐÁP ÁN: Không vì metamizol không được dùng", "vi", "correct"),
+    ("ANSWER: No — metamizole is not recommended", "en", "correct"),
+    ("ANSWER: No - metamizole should not be used in dengue", "en", "correct"),
+    ("ANSWER: No - it is not recommended", "en", "correct"),
+    ("ANSWER: No metamizole should be avoided", "en", "correct"),
+    ("ĐÁP ÁN: Có - metamizol có thể dùng", "vi", "foreign"), ("ANSWER: Yes - metamizole can be used", "en", "foreign"),
+])
+def test_yes_no_answer_is_not_negated_by_its_explanation(out, lang, label):
+    g = lab(out, NSAID, lang)
+    assert (g.label_name, g.multi) == (label, False)
+
+
+FLUID_ANCHORED = atom(value_kind="cat", vn=[{"label": "colloid"}], foreign=[{"system": "WHO_global", "values": [
+    {"label": "crystalloid"}]}], cat_options={
+    "colloid": [r"(?s)^(?!.*(?:khong dung|not|avoid)\s+(?:cao phan tu|colloid|dextran|\bhes\b))"
+                r".*(?:cao phan tu|colloid|dextran|\bhes\b|starch|gelatin)"],
+    "crystalloid": ["ringer", r"\bnacl\b", "crystalloid", r"\bsaline\b"]})
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    # CHẶN-2: a whole-answer (anchored) pattern is not dismissed by a negation of its LAST mention only (was abstain)
+    ("ĐÁP ÁN: Dung dịch cao phân tử (Dextran 40); HES không được dùng", "vi", "correct"),
+    ("ĐÁP ÁN: Dextran 40 (HES không được khuyến cáo)", "vi", "correct"),
+    ("ANSWER: Colloid (dextran 40); HES is not recommended", "en", "correct"),
+    ("ANSWER: Colloid such as gelatin; starches should be avoided", "en", "correct"),
+    ("ĐÁP ÁN: Cao phân tử, HES không nên dùng", "vi", "correct"),
+    ("ĐÁP ÁN: Ringer lactate, NaCl 0,9% không nên dùng", "vi", "foreign"),                  # mirror (simple pattern)
+    # ... but a single mention, or the only accepted one, is checked like any mention (mirrors give the same label)
+    ("ĐÁP ÁN: Dextran 40 không được khuyến cáo", "vi", "abstain"),
+    ("ĐÁP ÁN: Ringer lactate không được khuyến cáo", "vi", "abstain"),
+    ("ĐÁP ÁN: Truyền dịch; HES không được dùng", "vi", "abstain"),
+    ("ĐÁP ÁN: Truyền dịch; Ringer lactate không được dùng", "vi", "abstain"),
+    ("ĐÁP ÁN: HES không được dùng; dùng Ringer lactate", "vi", "foreign"),
+    ("ĐÁP ÁN: Ringer lactate không được dùng; dùng HES", "vi", "correct"),
+])
+def test_anchored_whole_answer_pattern(out, lang, label):
+    g = lab(out, FLUID_ANCHORED, lang)
+    assert (g.label_name, g.multi) == (label, False)
+
+
+@pytest.mark.parametrize("a,out,label", [
+    # CHẶN-3: 'chứa' (contains) is not 'chưa' (not yet); 'nó' is not 'no' (was abstain)
+    (HRE_CAT, "ĐÁP ÁN: Phác đồ chứa HRE", "correct"), (HRE_CAT, "ĐÁP ÁN: Phác đồ duy trì chứa 4HR", "foreign"),
+    (FLUID_CAT, "ĐÁP ÁN: Dung dịch chứa natri clorid 0,9% (NaCl)", "foreign"),
+    (FLUID_CAT, "ĐÁP ÁN: Dung dịch có chứa Ringer lactate", "foreign"),
+    (FLUID_CAT, "ĐÁP ÁN: Dịch keo chứa HES 6%", "correct"),
+    (FLUID_CAT, "ĐÁP ÁN: Truyền Ringer lactate vì nó là dịch đẳng trương", "foreign"),
+    (HRE_CAT, "ĐÁP ÁN: chưa dùng 4HR; dùng 4HRE", "correct"),                   # accented negation still read
+    (HRE_CAT, "ĐÁP ÁN: khong dung 4HR; dung 4HRE", "correct"),                  # unaccented answer: unaccented words
+    (HRE_CAT, "ĐÁP ÁN: Phac do chua HRE", "correct"),                          # 'chua' is ambiguous: not a negation
+])
+def test_accents_of_negation_words(a, out, label):
+    g = lab(out, a)
+    assert (g.label_name, g.multi) == (label, False)
+
+
+# NÊN SỬA: every negation phrase has its English (Vietnamese) counterpart; each pair gets the same label, and the
+# mirror (MoH negated instead of foreign) gets the mirrored label.
+NEG_PAIRS = [
+    ("4HRE; 4HR không còn được khuyến cáo", "4HRE; 4HR is no longer recommended"),
+    ("4HRE; 4HR không phải lựa chọn đầu tay", "4HRE; 4HR is not first-line"),
+    ("4HRE; 4HR không phải là lựa chọn đầu tiên", "4HRE; 4HR is not the first choice"),
+    ("4HRE; không khuyến cáo 4HR", "4HRE; do not recommend 4HR"),
+    ("4HRE; 4HR không khuyến cáo", "4HRE; 4HR not recommended"),
+    ("4HRE; 4HR không được khuyến khích", "4HRE; 4HR is discouraged"),
+    ("4HRE, bỏ 4HR", "4HRE, dropping 4HR"),
+    ("4HRE; 4HR không cần thiết", "4HRE; 4HR is not necessary"),
+    ("4HRE; 4HR nên tránh", "4HRE; 4HR should be avoided"),
+    ("4HRE; 4HR bị chống chỉ định", "4HRE; 4HR is contraindicated"),
+    ("4HRE; 4HR bị cấm", "4HRE; 4HR is prohibited"),
+    ("4HRE, không bao giờ dùng 4HR", "4HRE, never use 4HR"),
+    ("4HRE thay cho 4HR", "4HRE in place of 4HR"),
+    ("4HRE thay vì 4HR", "4HRE instead of 4HR"),
+    ("4HRE chứ không phải 4HR", "4HRE, not 4HR"),
+    ("4HR không được ưu tiên; 4HRE", "4HR is not preferred; 4HRE"),
+    ("4HRE; 4HR hiện không còn dùng", "4HRE; 4HR is currently no longer used"),
+    ("4HRE; 4HR không nên", "4HRE; 4HR should not"),
+    ("4HRE; tránh dùng 4HR", "4HRE; avoid using 4HR"),
+    ("4HRE, ngoại trừ 4HR", "4HRE, except 4HR"),
+    ("4HRE, không kèm 4HR", "4HRE, without 4HR"),
+    ("4HRE - không dùng 4HR", "4HRE - do not use 4HR"),
+    ("Không dùng 4HR vì nguy cơ kháng; dùng 4HRE", "Do not use 4HR because of resistance; use 4HRE"),
+]
+
+
+def _mirror(text: str) -> str:
+    return text.replace("4HRE", "@").replace("4HR", "4HRE").replace("@", "4HR")
+
+
+@pytest.mark.parametrize("vi,en", NEG_PAIRS)
+def test_negation_pairs_are_symmetric(vi, en):
+    for v, e, want in ((vi, en, "correct"), (_mirror(vi), _mirror(en), "foreign")):
+        gv, ge = lab("ĐÁP ÁN: " + v, HRE_CAT, "vi"), lab("ANSWER: " + e, HRE_CAT, "en")
+        assert (gv.label_name, gv.multi) == (ge.label_name, ge.multi) == (want, False), (v, e)
+
+
+@pytest.mark.parametrize("vi,en,label", [
+    # NÊN SỬA (vehicle): 'trong' and 'in' alike, and only after ANOTHER category in the same clause
+    ("HES 6% trong NaCl 0,9%", "6% HES in 0.9% saline", "correct"),
+    ("Dextran 40 pha trong NaCl 0,9%", "Dextran 40 diluted in 0.9% saline", "correct"),
+    ("Cao phân tử (Dextran 40) pha trong NaCl 0,9%", "Colloid (dextran 40) diluted in 0.9% saline", "correct"),
+    ("Bolus 10 ml/kg trong Ringer lactate", "A 10 mL/kg bolus in Ringer's lactate", "foreign"),     # was abstain
+    ("Ringer lactate không phải lựa chọn đầu tiên; dùng cao phân tử", "Normal saline is not first-line; use colloid",
+     "correct"),
+    ("Cao phân tử không phải lựa chọn đầu tiên; dùng Ringer lactate", "Colloid is not first-line; use normal saline",
+     "foreign"),
+])
+def test_vehicle_and_first_line_pairs(vi, en, label):
+    gv, ge = lab("ĐÁP ÁN: " + vi, FLUID_CAT, "vi"), lab("ANSWER: " + en, FLUID_CAT, "en")
+    assert (gv.label_name, gv.multi) == (ge.label_name, ge.multi) == (label, False)
+
+
+@pytest.mark.parametrize("colloid_first,crystalloid_first,lang", [
+    # CHẶN-5 (grader side): a conditional or fallback mention is a second value for EVERY category, in both orders
+    ("Cao phân tử; Ringer lactate chỉ dùng khi sốc kháng trị", "Ringer lactate; cao phân tử chỉ dùng khi sốc kháng trị",
+     "vi"),
+    ("Cao phân tử; nếu không đáp ứng chuyển Ringer lactate", "Ringer lactate; nếu không đáp ứng chuyển cao phân tử", "vi"),
+    ("Colloid; crystalloid only if colloid is unavailable", "Crystalloid; colloid only if refractory", "en"),
+    ("Colloid first; Ringer's lactate if no response", "Ringer's lactate first; colloid if no response", "en"),
+])
+def test_conditional_mentions_are_second_values_both_ways(colloid_first, crystalloid_first, lang):
+    pre = "ĐÁP ÁN: " if lang == "vi" else "ANSWER: "
+    for out in (colloid_first, crystalloid_first):
+        g = lab(pre + out, FLUID_CAT, lang)
+        assert (g.label_name, g.multi) == ("unattributed", True), out
+
+
+def _pilot_atoms() -> dict:
+    import json
+
+    from vnsoc.paths import paths
+
+    f = paths().root / "data" / "interim" / "pilot_atoms.jsonl"
+    if not f.exists():
+        pytest.skip("pilot atoms absent")
+    return {json.loads(x)["atom_id"]: json.loads(x) for x in f.read_text(encoding="utf-8").splitlines() if x}
+
+
+@pytest.mark.parametrize("aid,out,lang,want", [
+    # the reviewer's reproductions on the real pilot atoms (self-written answers): (label, multi)
+    ("P-dengue-04", "ĐÁP ÁN: Không - metamizol không nên dùng", "vi", (2, False)),
+    ("P-dengue-04", "ĐÁP ÁN: Không vì metamizol không được dùng", "vi", (2, False)),
+    ("P-dengue-04", "ANSWER: No — metamizole is not recommended", "en", (2, False)),
+    ("P-dengue-04", "ANSWER: No metamizole should be avoided", "en", (2, False)),
+    ("P-dengue-03", "ANSWER: Colloid (dextran 40); HES is not recommended", "en", (2, False)),
+    ("P-dengue-03", "ĐÁP ÁN: Dextran 40 (HES không được khuyến cáo)", "vi", (2, False)),
+    ("P-dengue-03", "ĐÁP ÁN: Cao phân tử, HES không nên dùng", "vi", (2, False)),
+    ("P-dengue-03", "ĐÁP ÁN: Dung dịch có chứa Ringer lactate", "vi", (4, False)),
+    ("P-dengue-03", "ĐÁP ÁN: HES 6% trong NaCl 0,9%", "vi", (2, False)),
+    ("P-dengue-03", "ANSWER: Give a 10 mL/kg bolus in Ringer's lactate", "en", (4, False)),
+    ("P-dengue-03", "ĐÁP ÁN: Ringer lactate không phải lựa chọn đầu tiên; dùng cao phân tử", "vi", (2, False)),
+    ("P-dengue-03", "ĐÁP ÁN: Truyền dịch; HES không được dùng", "vi", (6, False)),
+    ("P-dengue-06", "ĐÁP ÁN: Có, gelatin có thể dùng thay thế; không dùng albumin", "vi", (2, False)),
+    ("P-tbhiv-03", "ĐÁP ÁN: Phác đồ chứa HRE", "vi", (2, False)),
+    ("P-tbhiv-03", "ĐÁP ÁN: Phác đồ duy trì chứa 4HR", "vi", (4, False)),
+    ("P-tbhiv-03", "ANSWER: 4HRE; 4HR is no longer recommended", "en", (2, False)),
+    ("P-tbhiv-03", "ĐÁP ÁN: 4HRE; 4HR không khuyến cáo", "vi", (2, False)),
+    ("P-tbhiv-03", "ĐÁP ÁN: 4HRE (4HR chỉ dùng khi ...)", "vi", (5, True)),
+    ("P-tbhiv-03", "ANSWER: 4HRE (4HR only if ...)", "en", (5, True)),
+    ("P-tbhiv-04", "ĐÁP ÁN: Phác đồ chứa HR", "vi", (2, False)),
+    ("P-hbv-04", "ANSWER: ALT above the ULN; 2×ULN is no longer required", "en", (2, False)),
+    ("P-hbv-04", "ĐÁP ÁN: ALT > ULN; mức > 2 lần ULN không còn được yêu cầu", "vi", (2, False)),
+    ("P-immunization-01", "ANSWER: the 9-month dose; some countries give it at 12 months", "en", (5, True)),
+    ("P-immunization-01", "ĐÁP ÁN: mũi 9 tháng; một số nước tiêm lúc 12 tháng", "vi", (5, True)),
+    ("P-immunization-04", "ĐÁP ÁN: Mũi 18 tháng, hoặc 15 tháng", "vi", (5, True)),
+    ("P-immunization-04", "ANSWER: The 18-month booster, or 15 months", "en", (5, True)),
+    ("P-immunization-02", "ĐÁP ÁN: Mũi nhắc lại 7 tuổi (sau mũi 18 tháng)", "vi", (2, False)),
+    ("P-malaria_ocr-05", "ANSWER: Primaquine once a day for a week", "en", (2, False)),
+    ("P-malaria_ocr-05", "ĐÁP ÁN: Primaquin ngày một lần trong một tuần", "vi", (2, False)),
+    ("P-htn-01", "ANSWER: 120–129/<80 mmHg", "en", (6, False)),
+    ("P-hbv-03", "ANSWER: HBV DNA 10^4–10^5 copies/mL", "en", (5, False)),    # was 3 (10^4 read in IU/mL)
+    ("P-hbv-03", "ANSWER: > 2*10^3 IU/mL", "en", (2, False)),                  # was 5 with decoy_match (210)
+    ("P-immunization-02", "ĐÁP ÁN: năm tuổi", "vi", (4, False)), ("P-immunization-02", "ANSWER: five years", "en",
+                                                                  (4, False)),
+    ("P-malaria_ocr-05", "ĐÁP ÁN: Theo Bộ Y tế: một tuần", "vi", (2, False)),
+    ("P-malaria_ocr-05", "ANSWER: Per MoH: one week", "en", (2, False)),
+    ("P-malaria_ocr-06", "ANSWER: three consecutive days", "en", (2, False)),
+    ("P-malaria_ocr-06", "ĐÁP ÁN: ba ngày liên tiếp", "vi", (2, False)),
+])
+def test_review_reproductions_on_pilot_atoms(aid, out, lang, want):
+    g = grade_short(out, _pilot_atoms()[aid], lang, condition="A1")
+    assert (g.label, g.multi) == want
+
+
+@pytest.mark.parametrize("out,lang", [("ANSWER: ACT once a day", "en"), ("ĐÁP ÁN: Uống ngày một lần", "vi"),
+                                      ("ĐÁP ÁN: Uống ngày 1 lần", "vi"), ("ANSWER: twice daily", "en")])
+def test_frequency_is_not_the_one_day_decoy(out, lang):
+    # NÊN SỬA (WEAK_ONE): 'a day' of 'once a day' is no duration; P-malaria_ocr-06's decoy is 1 day. A frequency
+    # alone is a value in an unconvertible unit, like '1 lần/ngày' in 1.1.0 (label 5, no decoy flag)
+    for a in (DAYS3, _pilot_atoms().get("P-malaria_ocr-06", DAYS3)):
+        g = lab(out, a, lang)
+        assert (g.label_name, g.parse_method, g.decoy_match) == ("unattributed", "unit_mismatch", False)
+
+
+@pytest.mark.parametrize("a,out,label", [
+    (DAYS7, "ANSWER: Primaquine once a day for a week", "correct"),                     # was 5 ('a day' = 1 day)
+    (DAYS7, "ĐÁP ÁN: Primaquin ngày một lần trong một tuần", "correct"),
+    (DAYS3, "ANSWER: 3 days, once daily", "correct"), (DAYS3, "ĐÁP ÁN: 3 ngày, ngày 1 lần", "correct"),
+    (DAYS3, "ANSWER: 5 days, twice a day", "foreign"), (DAYS3, "ĐÁP ÁN: 5 ngày, ngày 2 lần", "foreign"),
+])
+def test_duration_next_to_a_frequency(a, out, label):
+    g = lab(out, a, "en" if out.startswith("ANSWER") else "vi")
+    assert (g.label_name, g.multi, g.decoy_match) == (label, False, False)
+
+
+INTERVAL = atom(value_kind="num", unit="min", vn=[{"lo": 5, "hi": 15}], foreign=[{"system": "EU_UK", "values": [
+    {"lo": 5, "hi": 5}]}])
+
+
+@pytest.mark.parametrize("out,lang,label,method", [
+    # a count is a count in both languages ('twice' = 'hai lần' = '2 lần'); 'once' / 'một lần' alone are adverbs
+    ("ANSWER: Repeat twice", "en", "unattributed", "unit_mismatch"),
+    ("ANSWER: Repeat two times", "en", "unattributed", "unit_mismatch"),
+    ("ĐÁP ÁN: Nhắc lại hai lần", "vi", "unattributed", "unit_mismatch"),
+    ("ĐÁP ÁN: Nhắc lại 2 lần", "vi", "unattributed", "unit_mismatch"),                  # as in 1.1.0
+    ("ANSWER: Repeat once", "en", "abstain", "answer_line"), ("ĐÁP ÁN: Nhắc lại một lần", "vi", "abstain", "answer_line"),
+    ("ĐÁP ÁN: 5–15 phút, tối đa hai lần", "vi", "correct", "answer_line"),
+    ("ANSWER: every 5-15 minutes, up to twice", "en", "correct", "answer_line"),
+])
+def test_counts_read_alike(out, lang, label, method):
+    g = lab(out, INTERVAL, lang)
+    assert (g.label_name, g.parse_method) == (label, method)
+
+
+@pytest.mark.parametrize("a,out,label,multi", [
+    # CHẶN-4: a dose named by its age is a value (was masked: the foreign 12 months was left alone -> label 4)
+    (MEASLES, "ANSWER: the 9-month dose; some countries give it at 12 months", "unattributed", True),
+    (MEASLES, "ĐÁP ÁN: mũi 9 tháng; một số nước tiêm lúc 12 tháng", "unattributed", True),
+    (MEASLES, "ANSWER: 9 months vaccine, or 12-15 months", "unattributed", True),
+    (MEASLES, "ĐÁP ÁN: mũi 12 tháng; một số nước tiêm lúc 9 tháng", "unattributed", True),      # mirror
+    (DTP18, "ĐÁP ÁN: Mũi 18 tháng, hoặc 15 tháng", "unattributed", True),
+    (DTP18, "ANSWER: The 18-month booster, or 15 months", "unattributed", True),
+    (DTP18, "ANSWER: The 15-month booster, or 18 months", "unattributed", True),                  # mirror
+    (MEASLES, "ANSWER: the 9-month dose", "correct", False), (MEASLES, "ĐÁP ÁN: mũi 12 tháng", "foreign", False),
+    # ... unless it is introduced as a reference point ("sau", "kể từ", "after", "following", "since")
+    (BOOSTER, "ĐÁP ÁN: Mũi nhắc lại 7 tuổi (sau mũi 18 tháng)", "correct", False),                 # was 5
+    (BOOSTER, "ANSWER: Booster at 7 years (after the 18-month dose)", "correct", False),
+    (BOOSTER, "ANSWER: 4–6 years, following the 18 month booster", "foreign", False),
+])
+def test_age_named_doses_are_values(a, out, label, multi):
+    g = lab(out, a, "en" if out.startswith("ANSWER") else "vi")
+    assert (g.label_name, g.multi) == (label, multi)
+
+
+@pytest.mark.parametrize("out,lang", [
+    ("ANSWER: 120–129/<80 mmHg", "en"), ("ANSWER: Elevated BP 120-129/<80", "en"),     # was 4 (read as 129/80)
+    ("ANSWER: ≥140/<90 mmHg", "en"), ("ĐÁP ÁN: tâm thu ≥ 140 và tâm trương < 90 mmHg", "vi"),
+])
+def test_bp_category_is_not_a_threshold(out, lang):
+    assert lab(out, HTN, lang).label_name == "abstain"
+
+
+def test_pilot_conditional_mentions_symmetric():
+    """P-dengue-03: a conditional mention is a second value whichever source comes first (atom colloid branch fixed
+    2026-09-26, blind to outputs; DECISIONS grader 1.2.0)."""
+    d3 = _pilot_atoms()["P-dengue-03"]
+    for x, y, lang in [("Cao phân tử; Ringer lactate chỉ dùng khi sốc kháng trị",
+                        "Ringer lactate; cao phân tử chỉ dùng khi sốc kháng trị", "vi"),
+                       ("Colloid; crystalloid only if colloid is unavailable", "Crystalloid; colloid only if refractory",
+                        "en")]:
+        pre = "ĐÁP ÁN: " if lang == "vi" else "ANSWER: "
+        assert grade_short(pre + x, d3, lang).label == grade_short(pre + y, d3, lang).label == 5
+
