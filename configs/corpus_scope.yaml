@@ -1,0 +1,34 @@
+# Phạm vi kho đăng ký (đề cương §3.1: bảng bệnh/chủ đề + đoạn "Ngoài bảng trên" của bộ hạt giống), dùng bởi
+# vnsoc.extract.corpus_priority. Quyết định 27/9/2026 (docs/DECISIONS.md; D28 chờ người dùng xác nhận trước HG2.9):
+# chỉ văn bản hiện hành thuộc các họ bệnh dưới đây được chọn vào kho (theo thứ tự tầng đăng ký); văn bản ngoài phạm vi
+# là DỰ PHÒNG DR2 — chỉ thêm, theo đúng thứ tự tầng, khi T3.3 đếm < 400 mẩu xung đột hoặc < 25 nhóm xung đột.
+# Lý do: bổ sung văn bản mới vào danh mục (Nipah, Mpox, COVID, dinh dưỡng ung thư...) đã đẩy suy tim khỏi kho
+# theo quy tắc "mới nhất trước" — trái mục đích "bệnh giàu xung đột" của §3.1. Mỗi họ liệt kê văn bản hiện hành và
+# văn bản sửa đổi một phần (partially_amended_by) của nó.
+families:
+  dengue: ["2760/2023"]
+  tay_chan_mieng: ["292/2024"]
+  lao: ["162/2024"]
+  sot_ret: ["3377/2023"]
+  viem_gan_b: ["1740/2026"]
+  viem_gan_c: ["2855/2024"]
+  hiv: ["5968/2021"]
+  viem_phoi_cong_dong: ["2147/2026"]
+  copd: ["2131/2026"]
+  cum_mua: ["1840/2025"]
+  soi: ["1019/2025"]
+  dai_thao_duong_tip2: ["5481/2020", "1353/2021"]
+  tang_huyet_ap: ["3192/2010"]
+  suy_tim: ["1857/2022"]
+  dot_quy: ["3312/2024"]
+  benh_than_man: ["2388/2024"]
+  tien_san_giat: ["1154/2024"]
+  beo_phi: ["2892/2022"]
+  phan_ve: ["TT51/2017"]
+  truyen_nhiem_tong_hop: ["5642/2015", "6101/2019", "3610/2015"]
+  dai: ["1622/2014"]
+  dai_thao_duong_thai_ky: ["1470/2024"]
+  du_phong_me_con: ["678/2025"]
+  khong_lay_nhiem_tram_y_te: ["5904/2019"]
+excluded:                            # trong phạm vi §3.1 nhưng không có giá trị khuyến cáo để trích (ghi lý do)
+  TT13/2026: "quy định hoạt động tiêm chủng; Điều 5.4 giao lịch tiêm cho hướng dẫn của Cục Phòng bệnh (chưa tìm thấy) — không có bảng lịch tiêm (HG1.2 A1, mặc định (c))"

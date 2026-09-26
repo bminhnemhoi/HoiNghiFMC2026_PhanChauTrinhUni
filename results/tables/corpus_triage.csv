@@ -1,13 +1,14 @@
 doc_key,kind,disease,status,issued,official_pdf,host,text_layer,scanned,pages,only_private_site,supersedes,superseded_by,title
 1003/2012,QĐ,Tay chân miệng,superseded,2012-03-30,False,,,False,,True,,292/2024,"Hướng dẫn chẩn đoán, điều trị bệnh tay chân miệng"
-1019/2025,QĐ,Sởi,current,,False,,,False,,False,,,"[CHƯA XÁC MINH] văn bản sởi số 1019/2025 theo đề cương §3.1 — chưa thấy văn bản, tiêu đề chưa rõ"
+1005/2023,QĐ,Bệnh phổi mô kẽ,current,2023-02-22,True,bvdkbaclieu.gov.vn,True,False,205,False,,,Hướng dẫn chẩn đoán và điều trị Bệnh phổi mô kẽ
+1019/2025,QĐ,Sởi,current,2025-03-26,True,t5g.org.vn,True,False,21,False,1327/2014,,Hướng dẫn chẩn đoán và điều trị bệnh Sởi
 1154/2024,QĐ,"Tăng huyết áp thai kỳ, tiền sản giật, sản giật",current,2024-05-04,True,drive.google.com,True,False,33,False,1911/2021,,"Hướng dẫn sàng lọc, chẩn đoán và xử trí tăng huyết áp ở phụ nữ mang thai, tiền sản giật và sản giật"
 1314/2020,QĐ,Lao,superseded,2020-03-24,True,www.bvbnd.vn,True,False,142,False,3126/2018,162/2024,"Quyết định 1314/QĐ-BYT về việc ban hành Hướng dẫn chẩn đoán, điều trị và dự phòng bệnh lao"
-1327/2014,QĐ,Sởi,current,2014-04-18,True,benhvienhatrung.vn,False,True,14,False,476/2009,,"Hướng dẫn chẩn đoán, điều trị bệnh Sởi"
+1327/2014,QĐ,Sởi,superseded,2014-04-18,True,benhvienhatrung.vn,False,True,14,False,476/2009,1019/2025,"Hướng dẫn chẩn đoán, điều trị bệnh Sởi"
 1353/2021,QĐ,Đái tháo đường típ 2,current,2021-02-23,True,benhviendakhoabaria.vn,True,False,1,False,,,"Quyết định về việc sửa đổi, bổ sung một số nội dung của “Hướng dẫn chẩn đoán và điều trị đái tháo đường típ 2” được ban hành tại Quyết định số 5481/QĐ-BYT ngày "
 1470/2024,QĐ,Đái tháo đường thai kỳ,current,2024-05-29,True,bvdkbaclieu.gov.vn,False,True,31,False,6173/2018,,Hướng dẫn quốc gia về sàng lọc và quản lý đái tháo đường thai kỳ
 1493/2015,QĐ,"hồi sức tích cực (sốc nhiễm khuẩn, suy hô hấp, ...)",current,2015-04-22,True,kcb.vn,True,False,217,False,,,Hướng dẫn chẩn đoán và xử trí hồi sức tích cực
-1494/2015,QĐ,"bệnh lý huyết học (thiếu máu thiếu sắt, ...)",current,2015-04-22,True,kcb.vn,True,False,236,False,,,Hướng dẫn chẩn đoán và điều trị một số bệnh lý huyết học
+1494/2015,QĐ,"bệnh lý huyết học (thiếu máu thiếu sắt, ...)",superseded,2015-04-22,True,kcb.vn,True,False,236,False,,1832/2022,Hướng dẫn chẩn đoán và điều trị một số bệnh lý huyết học
 1530/2023,QĐ,loét bàn chân do đái tháo đường,current,2023-03-24,True,kcb.vn,True,False,43,False,,,Hướng dẫn chẩn đoán và điều trị Loét bàn chân do đái tháo đường
 162/2024,QĐ,Lao (kể cả lao kháng thuốc),current,,True,bvtn.org.vn,True,False,213,False,1314/2020,,"Quyết định 162/QĐ-BYT về việc ban hành tài liệu chuyên môn “Hướng dẫn Chẩn đoán, điều trị và dự phòng bệnh Lao”"
 1622/2014,QĐ,Bệnh dại,current,2014-05-08,False,,,False,,False,,,"Hướng dẫn giám sát, phòng chống bệnh dại trên người"
@@ -15,61 +16,70 @@ doc_key,kind,disease,status,issued,official_pdf,host,text_layer,scanned,pages,on
 1760/2024,QĐ,đái tháo đường típ 1 trẻ em và thanh thiếu niên,current,2024-06-21,True,kcb.vn,True,False,64,False,,,Hướng dẫn chẩn đoán và điều trị bệnh đái tháo đường típ 1 ở trẻ em và thanh thiếu niên
 1762/2020,QĐ,Suy tim mạn tính,superseded,2020-04-17,True,kcb.vn,True,False,22,False,,1857/2022,Hướng dẫn chẩn đoán và điều trị suy tim mạn tính
 1768/2026,QĐ,dinh dưỡng cho người bệnh ung thư,current,2026-06-18,True,kcb.vn,True,False,86,False,,,Hướng dẫn chẩn đoán và điều trị dinh dưỡng cho người bệnh ung thư
-1840/2025,QĐ,Cúm mùa,current,,False,,,False,,False,,,"[CHƯA XÁC MINH] văn bản cúm mùa số 1840/2025 theo đề cương §3.1 — chưa thấy văn bản, tiêu đề chưa rõ"
+1832/2022,QĐ,Bệnh lý huyết học,current,2022-07-01,True,syt.gialai.gov.vn,True,False,528,False,1494/2015,,Hướng dẫn chẩn đoán và điều trị một số bệnh lý huyết học
+1840/2025,QĐ,Cúm mùa,current,2025-06-03,True,bvdkbaclieu.gov.vn,True,False,12,False,2078/2011,,Hướng dẫn chẩn đoán và điều trị cúm mùa
 1851/2020,QĐ,Hen phế quản (người lớn và trẻ em ≥ 12 tuổi),current,2020-04-24,True,kcb.vn,True,False,48,False,4776/2009,,Hướng dẫn chẩn đoán và điều trị hen phế quản người lớn và trẻ em ≥ 12 tuổi
 1857/2022,QĐ,Suy tim (cấp và mạn),current,2022-07-05,True,kcb.vn,True,False,27,False,1762/2020,,Hướng dẫn chẩn đoán và điều trị suy tim cấp và mạn
-1911/2021,QĐ,Tiền sản giật,superseded,2021-04-19,False,,,False,,False,,1154/2024,Hướng dẫn sàng lọc và điều trị dự phòng tiền sản giật
-2065/2021,QĐ,Viêm gan vi rút C,superseded,,False,,,False,,False,,,"[tiêu đề chưa xác nhận] Hướng dẫn chẩn đoán, điều trị bệnh viêm gan vi rút C"
-2078/2011,QĐ,Cúm mùa,current,2011-06-23,True,benhvienhatrung.vn,True,False,5,False,,,Hướng dẫn chẩn đoán và điều trị cúm mùa
+1911/2021,QĐ,Tiền sản giật,superseded,2021-04-19,True,syt.gialai.gov.vn,True,False,16,False,,1154/2024,Hướng dẫn Sàng lọc và điều trị dự phòng tiền sản giật
+2065/2021,QĐ,Viêm gan vi rút C,superseded,2021-04-29,True,syt.gialai.gov.vn,True,False,23,False,5012/2016,2855/2024,"Hướng dẫn chẩn đoán, điều trị bệnh viêm gan vi rút C"
+2078/2011,QĐ,Cúm mùa,superseded,2011-06-23,True,benhvienhatrung.vn,True,False,5,False,,1840/2025,Hướng dẫn chẩn đoán và điều trị cúm mùa
 2131/2026,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),current,2026-07-14,True,bvdkbaclieu.gov.vn,True,False,130,False,2767/2023,,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính
 2147/2026,QĐ,Viêm phổi mắc phải cộng đồng ở người lớn,current,2026-07-15,True,kcb.vn,True,False,93,False,4815/2020,,Hướng dẫn chẩn đoán và điều trị viêm phổi mắc phải cộng đồng ở người lớn
-2187/2019,QĐ,hội chứng mạch vành cấp,current,2019-06-03,False,,,False,,False,,,Hướng dẫn chẩn đoán và xử trí hội chứng mạch vành cấp
+2187/2019,QĐ,hội chứng mạch vành cấp,current,2019-06-03,True,benhvienhatrung.vn,True,False,36,False,,,Hướng dẫn chẩn đoán và xử trí hội chứng mạch vành cấp
+2248/2023,QĐ,Hội chứng mạch vành mạn,current,2023-05-19,True,bvdkbaclieu.gov.vn,True,False,38,False,,,Hướng dẫn chẩn đoán và điều trị Hội chứng mạch vành mạn
+2323/2025,QĐ,"Sơ sinh (chăm sóc, điều trị trẻ sơ sinh)",current,2025-07-14,True,bvdkbaclieu.gov.vn,True,False,670,False,,,Hướng dẫn quốc gia các dịch vụ chăm sóc và điều trị trẻ sơ sinh
+2341/2024,QĐ,Xử trí lồng ghép chăm sóc trẻ bệnh (IMCI),current,2024-08-07,True,syt.gialai.gov.vn,False,True,28,False,,,Hướng dẫn triển khai Xử trí lồng ghép chăm sóc trẻ bệnh
 2388/2024,QĐ,Bệnh thận mạn và một số bệnh lý thận,current,2024-08-12,True,kcb.vn,True,False,192,False,,,Hướng dẫn chẩn đoán và điều trị bệnh thận mạn và một số bệnh lý thận
-250/2022,QĐ,COVID-19,current,2022-01-28,False,,,False,,False,,,Hướng dẫn chẩn đoán và điều trị COVID-19 (phiên bản lần thứ 8)
+250/2022,QĐ,COVID-19,superseded,2022-01-28,True,www.camau.gov.vn,True,False,143,False,4689/2021;5666/2021,2671/2023,Hướng dẫn chẩn đoán và điều trị COVID-19
 2558/2022,QĐ,bệnh võng mạc đái tháo đường,current,2022-09-20,True,kcb.vn,True,False,25,False,,,"Hướng dẫn chẩn đoán, điều trị và quản lý Bệnh võng mạc đái tháo đường"
+2671/2023,QĐ,COVID-19,current,2023-06-26,True,syt.gialai.gov.vn,True,False,147,False,250/2022,,Hướng dẫn chẩn đoán và điều trị COVID-19
 2699/2020,QĐ,Sốt rét,superseded,2020-06-26,True,quantri.impe-qn.org.vn,True,False,30,False,4845/2016,3377/2023,"Hướng dẫn chẩn đoán, điều trị bệnh Sốt rét"
 2760/2021,QĐ,Lao kháng thuốc,superseded,,True,cms-chonglao.benhvienphoitrunguong.vn,True,False,53,False,,,Cập nhật hướng dẫn điều trị bệnh lao kháng thuốc (tài liệu kèm quyết định; số hiệu 2760/QĐ-BYT chưa xác nhận từ PDF)
 2760/2023,QĐ,Sốt xuất huyết Dengue,current,2023-07-04,True,file.medinet.gov.vn,True,False,104,False,3705/2019,,Hướng dẫn chẩn đoán và điều trị Sốt xuất huyết Dengue
 2767/2023,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),superseded,2023-07-04,True,kcb.vn,True,False,87,False,3874/2018,2131/2026,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính
-2855/2024,QĐ,Viêm gan vi rút C,current,,False,,,False,,False,,,[tiêu đề chưa xác nhận] Hướng dẫn chẩn đoán và điều trị bệnh viêm gan vi rút C
-2892/2022,QĐ,Béo phì,current,,False,,,False,,False,,,"[chưa xác minh] Hướng dẫn về béo phì (số hiệu lấy từ bảng §3.1 đề cương, chưa thấy văn bản)"
+2855/2024,QĐ,Viêm gan vi rút C,current,2024-09-25,True,bvdkbaclieu.gov.vn,False,True,33,False,2065/2021,,Hướng dẫn chẩn đoán và điều trị bệnh viêm gan vi rút C
+2892/2022,QĐ,Béo phì,current,2022-10-22,True,syt.gialai.gov.vn,True,False,28,False,,,Hướng dẫn chẩn đoán và điều trị bệnh béo phì
 2919/2014,QĐ,"Khám, chữa bệnh tại trạm y tế xã (nhiều bệnh; Phần 2 bệnh mạn tính gồm THA, ĐTĐ)",partial,2014-08-06,True,benhvienhatrung.vn,False,True,408,False,,,"Tài liệu chuyên môn Hướng dẫn khám, chữa bệnh tại trạm y tế xã, phường"
 292/2024,QĐ,Tay chân miệng,current,2024-02-06,True,benhvienhatrung.vn,False,True,24,False,1003/2012,,Hướng dẫn chẩn đoán và điều trị bệnh tay chân miệng
+2959/2023,QĐ,COVID-19 (trẻ em),current,2023-07-24,True,bvdkbaclieu.gov.vn,True,False,70,False,405/2022,,Hướng dẫn chẩn đoán và điều trị COVID-19 ở trẻ em
 2989/2026,QĐ,suy dinh dưỡng cấp tính trẻ em 0–59 tháng,current,2026-09-22,True,kcb.vn,True,False,44,False,4487/2016,,Hướng dẫn chẩn đoán và điều trị bệnh suy dinh dưỡng cấp tính ở trẻ em từ 0 đến 59 tháng tuổi
 3087/2020,QĐ,tiền đái tháo đường,current,2020-07-16,True,kcb.vn,True,False,19,False,,,Hướng dẫn chẩn đoán và điều trị tiền đái tháo đường
-3126/2018,QĐ,lao,superseded,2018-05-23,True,kcb.vn,False,True,1,False,4263/2015,1314/2020,"Hướng dẫn chẩn đoán, điều trị và dự phòng bệnh lao"
+3126/2018,QĐ,lao,superseded,2018-05-23,True,syt.gialai.gov.vn,True,False,139,False,4263/2015,1314/2020,"Hướng dẫn chẩn đoán, điều trị và dự phòng bệnh lao"
 315/2015,QĐ,"sản phụ khoa (tiền sản giật, thiếu máu thai kỳ, ...)",current,2015-01-29,True,kcb.vn,True,False,285,False,,,Hướng dẫn chẩn đoán và điều trị các bệnh sản phụ khoa
 3192/2010,QĐ,Tăng huyết áp,current,2010-08-31,True,kcb.vn,True,False,19,False,,,Hướng dẫn chẩn đoán và điều trị tăng huyết áp
 3280/2011,QĐ,Đái tháo đường típ 2,current,2011-09-09,True,kcb.vn,True,False,18,False,,,Hướng dẫn chẩn đoán và điều trị bệnh đái tháo đường týp 2
 3310/2019,QĐ,Viêm gan vi rút B,superseded,2019-07-29,True,admin.medinet.gov.vn,False,True,18,False,5448/2014,1740/2026,"Quyết định 3310/QĐ-BYT về việc ban hành Hướng dẫn chẩn đoán, điều trị bệnh viêm gan vi rút B"
 3312/2015,QĐ,Nhi khoa tổng hợp; có bài 'Hen phế quản trẻ em' (trang PDF 685) và 'Xử trí cơn hen phế quản cấp ở trẻ em' (trang PDF 694),current,2015-08-07,True,kcb.vn,True,False,807,False,,,Hướng dẫn chẩn đoán và điều trị một số bệnh thường gặp ở trẻ em
-3312/2024,QĐ,Đột quỵ não,current,,False,,,False,,False,,,"[chưa xác minh] Hướng dẫn về đột quỵ (số hiệu lấy từ bảng §3.1 đề cương, chưa thấy văn bản)"
+3312/2024,QĐ,Đột quỵ não,current,2024-11-05,True,bvtn.org.vn,True,False,148,False,5331/2020,,Hướng dẫn chẩn đoán và điều trị đột quỵ não
 3319/2017,QĐ,Đái tháo đường típ 2,superseded,2017-07-19,True,kcb.vn,True,False,37,False,,5481/2020,Hướng dẫn chẩn đoán và điều trị đái tháo đường típ 2
 3377/2023,QĐ,Sốt rét,current,2023-08-30,True,benhvienhatrung.vn,False,True,23,False,2699/2020,,Hướng dẫn chẩn đoán và điều trị bệnh Sốt rét
+3510/2025,QĐ,Bệnh thần kinh đái tháo đường,current,2025-11-11,True,bvdkbaclieu.gov.vn,True,False,40,False,,,Hướng dẫn chẩn đoán và điều trị bệnh thần kinh đái tháo đường
 361/2014,QĐ,"bệnh cơ xương khớp (loãng xương, gút, ...)",current,2014-01-25,True,kcb.vn,True,False,218,False,,,Hướng dẫn chẩn đoán và điều trị các bệnh cơ xương khớp
 3610/2015,QĐ,Ngộ độc (gồm rắn độc cắn),current,2015-08-31,True,kcb.vn,True,False,228,False,,,Hướng dẫn chẩn đoán và xử trí ngộ độc
+3651/2024,QĐ,Nấm Aspergillus phổi mạn tính,current,2024-12-03,True,bvdkbaclieu.gov.vn,True,False,79,False,,,Hướng dẫn chẩn đoán và điều trị bệnh nấm Aspergillus phổi mạn tính
 3705/2019,QĐ,Sốt xuất huyết Dengue,superseded,2019-08-22,True,file.medinet.gov.vn,False,True,75,False,458/2011,2760/2023,"Hướng dẫn chẩn đoán, điều trị sốt xuất huyết Dengue"
 3874/2018,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),superseded,2018-06-26,False,,,False,,False,,2767/2023;4562/2018,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính
-3879/2014,QĐ,"nội tiết – chuyển hóa (tuyến giáp, rối loạn lipid máu, đái tháo đường, ...)",current,2014-09-30,True,kcb.vn,True,False,275,False,,,Hướng dẫn chẩn đoán và điều trị bệnh nội tiết - chuyển hóa
+3879/2014,QĐ,"nội tiết – chuyển hóa (tuyến giáp, rối loạn lipid máu, đái tháo đường, ...)",partial,2014-09-30,True,kcb.vn,True,False,275,False,,,Hướng dẫn chẩn đoán và điều trị bệnh nội tiết - chuyển hóa
 3908/2023,QĐ,dự phòng thuyên tắc huyết khối tĩnh mạch,current,2023-10-20,True,kcb.vn,True,False,81,False,,,Hướng dẫn điều trị dự phòng thuyên tắc huyết khối tĩnh mạch
 3931/2015,QĐ,Bệnh thận – tiết niệu,partial,2015-09-21,True,kcb.vn,True,False,202,False,,,Hướng dẫn chẩn đoán và điều trị một số bệnh về thận - tiết niệu
 4121/2009,QĐ,tiêu chảy cấp trẻ em,current,2009-10-28,True,kcb.vn,False,True,53,False,,,Tài liệu hướng dẫn xử trí tiêu chảy ở trẻ em
 4263/2015,QĐ,lao,superseded,2015-10-13,True,kcb.vn,True,False,108,False,979/2009,3126/2018,"Hướng dẫn chẩn đoán, điều trị và dự phòng bệnh lao"
-4562/2018,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),current,2018-07-19,True,kcb.vn,True,False,86,False,2866/2015;3874/2018,,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính (Bản cập nhật năm 2018)
-458/2011,QĐ,Sốt xuất huyết Dengue,superseded,2011-02-16,False,,,False,,False,,3705/2019,"Hướng dẫn chẩn đoán, điều trị sốt xuất huyết Dengue"
-4815/2020,QĐ,Viêm phổi mắc phải cộng đồng ở người lớn,superseded,2020-11-20,False,,,False,,False,,2147/2026,Hướng dẫn chẩn đoán và điều trị viêm phổi mắc phải cộng đồng ở người lớn
-4845/2016,QĐ,Sốt rét,superseded,2016-09-08,False,,,False,,False,,2699/2020,"Hướng dẫn chẩn đoán, điều trị bệnh Sốt rét"
+4562/2018,QĐ,Bệnh phổi tắc nghẽn mạn tính (COPD),superseded,2018-07-19,True,kcb.vn,True,False,86,False,2866/2015;3874/2018,,Hướng dẫn chẩn đoán và điều trị bệnh phổi tắc nghẽn mạn tính (Bản cập nhật năm 2018)
+458/2011,QĐ,Sốt xuất huyết Dengue,superseded,2011-02-16,True,www.quangninhcdc.vn,False,True,23,False,794/2009,3705/2019,"Hướng dẫn chẩn đoán, điều trị sốt xuất huyết Dengue"
+465/2024,QĐ,Mpox,current,2024-02-29,True,syt.gialai.gov.vn,True,False,16,False,2099/2022,,"Hướng dẫn chẩn đoán, điều trị và phòng bệnh Mpox (Đậu mùa khỉ) ở người"
+4815/2020,QĐ,Viêm phổi mắc phải cộng đồng ở người lớn,superseded,2020-11-20,True,www.benhviencaosudautieng.vn,True,False,67,False,,2147/2026,Hướng dẫn chẩn đoán và điều trị viêm phổi mắc phải cộng đồng ở người lớn
+4845/2016,QĐ,Sốt rét,superseded,2016-09-08,True,drive.google.com,False,True,31,False,3232/2013,2699/2020,"Hướng dẫn chẩn đoán, điều trị bệnh Sốt rét"
 493/2026,QĐ,bệnh do vi rút Nipah,current,2026-02-13,True,kcb.vn,True,False,10,False,,,Hướng dẫn chẩn đoán và điều trị bệnh do vi rút Nipah
-5331/2020,QĐ,Đột quỵ não,current,2020-12-23,True,bvdksadec.vn,True,False,71,False,,,Hướng dẫn chẩn đoán và xử trí đột quỵ não
+5331/2020,QĐ,Đột quỵ não,superseded,2020-12-23,True,bvdksadec.vn,True,False,71,False,,3312/2024,Hướng dẫn chẩn đoán và xử trí đột quỵ não
 5448/2014,QĐ,Viêm gan vi rút B,superseded,2014-12-30,True,kcb.vn,True,False,10,False,,3310/2019,"Quyết định 5448/QĐ-BYT về việc ban hành Hướng dẫn chẩn đoán, điều trị bệnh viêm gan vi rút B"
 5456/2019,QĐ,HIV/AIDS,superseded,2019-11-20,True,vaac.gov.vn,,False,,False,,5968/2021,Quyết định 5456/QĐ-BYT về việc ban hành Hướng dẫn điều trị và chăm sóc HIV/AIDS
 5481/2020,QĐ,Đái tháo đường típ 2,current,2020-12-30,True,benhviendakhoabaria.vn,True,False,77,False,3319/2017,,Hướng dẫn chẩn đoán và điều trị đái tháo đường típ 2
 5642/2015,QĐ,"Một số bệnh truyền nhiễm (uốn ván, thương hàn, sốt mò, nhiễm khuẩn huyết, cúm mùa, sốt rét kháng thuốc…)",current,2015-12-31,True,kcb.vn,True,False,86,False,,,Hướng dẫn chẩn đoán và điều trị một số bệnh truyền nhiễm
-5904/2019,QĐ,"Bệnh không lây nhiễm tại trạm y tế xã (tăng huyết áp, đái tháo đường, lồng ghép THA–ĐTĐ, COPD, hen phế quản người lớn)",current,2019-12-20,True,benhvienquynhon.gov.vn,False,True,22,False,,,"Hướng dẫn chẩn đoán, điều trị và quản lý một số bệnh không lây nhiễm tại trạm y tế xã"
+5904/2019,QĐ,"Bệnh không lây nhiễm tại trạm y tế xã (tăng huyết áp, đái tháo đường, lồng ghép THA–ĐTĐ, COPD, hen phế quản người lớn)",current,2019-12-20,True,benhvienhatrung.vn,True,False,68,False,,,"Hướng dẫn chẩn đoán, điều trị và quản lý một số bệnh không lây nhiễm tại trạm y tế xã"
 5968/2021,QĐ,HIV/AIDS,current,2021-12-31,True,soyte.laichau.gov.vn,True,False,145,False,5456/2019,,Quyết định 5968/QĐ-BYT về việc ban hành Hướng dẫn Điều trị và chăm sóc HIV/AIDS
 6101/2019,QĐ,Bệnh Whitmore (melioidosis),current,2019-12-30,True,benhvienhatrung.vn,False,True,6,False,,,"Hướng dẫn chẩn đoán, điều trị bệnh Whitmore"
 6173/2018,QĐ,Đái tháo đường thai kỳ,superseded,2018-10-12,True,benhvienhatrung.vn,True,False,31,False,,1470/2024,Hướng dẫn quốc gia về dự phòng và kiểm soát đái tháo đường thai kỳ
-678/2025,QĐ,"Dự phòng lây truyền mẹ–con (HIV, giang mai, viêm gan B)",current,,False,,,False,,False,,,"[tiêu đề chưa xác nhận] Hướng dẫn dự phòng lây truyền HIV, giang mai, viêm gan B từ mẹ sang con"
+678/2025,QĐ,"Dự phòng lây truyền mẹ–con (HIV, giang mai, viêm gan B)",current,2025-02-26,True,syt.gialai.gov.vn,True,False,26,False,2834/2019,,"Hướng dẫn kỹ thuật các can thiệp dự phòng lây truyền HIV, viêm gan B và giang mai từ mẹ sang con"
 TT10/2024,TT,"Tiêm chủng (danh mục bệnh, đối tượng, lịch tiêm chủng mở rộng)",superseded,2024-06-13,True,datafiles.chinhphu.vn,False,True,5,False,TT38/2017,TT52/2025,"Ban hành danh mục bệnh truyền nhiễm, đối tượng và phạm vi phải sử dụng vắc xin, sinh phẩm y tế bắt buộc"
 TT13/2026,TT,Tiêm chủng (hoạt động tiêm chủng; không chứa bảng lịch tiêm),current,2026-05-16,True,bcp.cdnchinhphu.vn,False,True,19,False,TT05/2020;TT24/2018;TT34/2018;TT52/2025,,Quy định về hoạt động tiêm chủng
 TT51/2017,TT,Phản vệ,current,2017-12-29,True,kcb.vn,False,True,20,False,TT08/1999,,"Hướng dẫn phòng, chẩn đoán và xử trí phản vệ"

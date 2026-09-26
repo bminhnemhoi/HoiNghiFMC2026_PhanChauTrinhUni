@@ -162,3 +162,4 @@ Tình trạng hai mục cũ:
 - Chưa commit git (các agent khác đang commit song song trên cùng repo; để orchestrator commit).
 
 - **D27 (27/9/2026) — Đồng tác giả và việc kiểm tay trên mẫu.** Mặc định: hai đồng tác giả (sinh viên Y, Răng Hàm Mặt — không phải bác sĩ) kiểm tay một mẫu mẩu xung đột, câu tình huống và nhãn chấm bằng gói review_pack; báo đồng thuận người–AI; kiểm toán AI kép vẫn làm 100%. Phương án khác: không có kiểm tay (chỉ AI) — ghi là hạn chế. Lý do: hội đồng M1 nêu 'không có người kiểm' là điểm yếu lớn nhất.
+- **D28 (27/9/2026) — Phạm vi kho.** Mặc định: chỉ chọn văn bản thuộc các họ bệnh ở đề cương §3.1 (configs/corpus_scope.yaml) → 26 văn bản hiện hành (9 văn bản OCR kể cả bản cũ); văn bản ngoài phạm vi là dự phòng DR2. Phương án khác: giữ quy tắc tầng thuần túy trên toàn danh mục 85 văn bản (35 văn bản, gồm Nipah, Mpox, COVID, dinh dưỡng ung thư…; mất suy tim). Lý do: đúng mục đích 'bệnh giàu xung đột' của §3.1.

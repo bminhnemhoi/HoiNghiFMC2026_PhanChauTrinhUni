@@ -405,7 +405,7 @@ There is no random assignment: every condition is applied to every item. The onl
   3. other text-layer PDFs, most recent first;
   4. scanned PDFs, most recent first.
 
-  Documents are taken in this order until 35 are included, with at most 10 OCR documents in total (current or superseded). DR2 additions, if needed, are the next eligible documents in the same order. Superseded versions are added for the version analysis.
+  Documents are taken in this order until 35 are included, with at most 10 OCR documents in total (current or superseded). **Scope:** only documents of the disease families listed in protocol §3.1 (its table and the seed-set documents named after it; `configs/corpus_scope.yaml`, which also lists in-scope documents without extractable recommendation values, e.g. TT13/2026) are selected; out-of-scope documents are DR2 reserves ranked after all in-scope ones. This rule was fixed on 27 September 2026, before any main-study atom was extracted, because extending the catalogue with newer out-of-scope guidelines (e.g. Nipah, Mpox, COVID-19) had displaced conflict-rich families such as heart failure under the recency tiers. [pending author confirmation, see review/prereg/response.md D28] DR2 additions, if needed, are the next eligible documents in the same order. Superseded versions are added for the version analysis.
 - **OCR.** The AI audit checks every OCR value against the page image.
 - **Supersession chains** are built from each document's own "replaces" clauses and recorded per atom, including partial amendments. The chains are checked a second time independently.
 - **Freeze.** The corpus is frozen on **15 October 2026**. Documents issued later are not added (DR7).
@@ -862,7 +862,7 @@ The analyses are implemented in `src/vnsoc/analysis/confirmatory.py` (Python; nu
 
 <!-- HASHES:BEGIN (scripts/prereg_snapshot.py; do not edit by hand) -->
 
-Snapshot 2026-09-27T03:28:38+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
+Snapshot 2026-09-27T03:49:33+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
 
 | File | SHA-256 |
 | --- | --- |
@@ -879,7 +879,7 @@ Snapshot 2026-09-27T03:28:38+07:00. SHA-256 of the registered analysis package (
 | `src/vnsoc/qgen/passages.py` | `01ff1a2da9e29b24d838a152cfa014ea79d465b577f8912aa00068f75e2c0439` |
 | `src/vnsoc/run/prompts.py` | `2b63970017b04788f4a4df9821e5c7f44584a4e0bf269f119baac924951a1a83` |
 | `configs/drug_display.yaml` | `cae110bdb8a3ad321e568c12d55f1e6e65d0216e535dd1ab48da0f84f499b573` |
-| `src/vnsoc/extract/corpus_priority.py` | `b1212886ede6c451ad352c0433b5f07cc98f4375cd3a079e2b58e60f7e739520` |
+| `src/vnsoc/extract/corpus_priority.py` | `f72e8f01821b0e75a52570940d5493f578abd329e00704ad2d7974a8e47d1159` |
 | `src/vnsoc/analysis/extractor_check.py` | `537314307496dfa243d4d65b7ca7065c6a19e07af3558eabbf387d609a6d75e4` |
 | `src/vnsoc/schemas.py` | `b967e50e4660a0d7a24a68fa0cd13e6588a0be6a80d080f03d4b40f2bf3e2630` |
 | `configs/project.yaml` | `46ed6af49ba87cc6ae63599e4a448ba747de94a5becb915dbee745f9767f3343` |
@@ -892,7 +892,7 @@ Snapshot 2026-09-27T03:28:38+07:00. SHA-256 of the registered analysis package (
 | `prereg/analysis_plan/simulate_operating_characteristics.py` | `7ca31d6febb334a14ea352fd53c8dc8f3f45a2c9f6318a6cfad1a7da8d08e93d` |
 | `prereg/analysis_plan/operating_characteristics.json` | `aca7eb16791bbbe0748703f24e38b2a744b4fa4bde41c666ce99d45dc01400bd` |
 | `prereg/analysis_plan/README.md` | `75bb30435bf6849185ec4cb4b3276881c481e7bfbfafac9e4b61688c7cbc4fad` |
-| `results/tables/corpus_triage.csv` | `f83fc60c69adf4260de2bf82354dd9b964fc1ed543b133a07037bff6ae9a82e6` |
+| `results/tables/corpus_triage.csv` | `b52ac48e64b0f2f05952b35ca2a9bcfce2f34d9a4944006df761d783adab2961` |
 | `data/seed/seed_conflicts.yaml` | `455db5474853f34105148f810d76af0c95b33c4f0e2709a4a2add2e0355b70cc` |
 
 <!-- HASHES:END -->

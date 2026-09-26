@@ -1,7 +1,9 @@
 """Merge the corpus-triage parts (data/interim/manifest_parts/*.jsonl) into data/interim/manifest.jsonl (T2.1/T2.2).
 
 One row per doc_key: the row with the most evidence (official URL, sha256, pages) is the base; list fields are
-unioned; notes are concatenated; disagreeing statuses between agents are flagged in notes (a person decides).
+unioned; notes are concatenated; disagreeing statuses between agents are flagged in notes (a person decides) and the
+status of the LATEST part (part files are read in name order c1_, c2_, … so a later review — e.g. the supersession
+check that read the repeal clause of a newer document — wins) is kept until that person decides.
 Also writes results/tables/corpus_triage.csv (official PDF? text layer? scanned? only on a private legal site?) and
 state/gates/HG2.3_missing.md (documents without an official PDF, scanned-only documents, where agents searched).
 
@@ -34,12 +36,17 @@ def merge_rows(rows: list[dict]) -> list[dict]:
         base = dict(rs[0], doc_key=key)
         for k in LISTS:
             base[k] = sorted({x for r in rs for x in r.get(k) or []})
-        notes = [n for r in rs for n in [r.get("notes") or ""] if n]
+        # latest part's note first, so the 4000-character cut never drops the most recent review or the flag
+        notes = [n for r in reversed(by[key]) for n in [r.get("notes") or ""] if n]
         statuses = sorted({r["status"] for r in rs})
         if len(statuses) > 1:
-            notes.append(f"MÂU THUẪN trạng thái giữa các agent: {statuses} — cần người quyết")
+            latest = by[key][-1]["status"]                  # input order = part order; later review wins
+            base["status"] = latest
+            notes.insert(0, f"MÂU THUẪN trạng thái giữa các agent: {statuses} — tạm lấy '{latest}' của phần sau "
+                            "cùng; cần người quyết")
         base["notes"] = " | ".join(dict.fromkeys(notes))[:4000]
         base["in_corpus"] = any(r.get("in_corpus") for r in rs)
+        base["ocr"] = any(r.get("ocr") for r in rs)         # values read from OCR in any review → counts to the cap
         out.append(ManifestRow.model_validate(base).model_dump())
     return out
 

@@ -34,3 +34,13 @@ def test_corpus_priority_is_mechanical():
     assert [r["included"] for r in order] == [True, True, True, False, False]       # DR2 reserve in the same order
     capped = priority_order(rows, seeded=set(), max_docs=10, max_ocr=1, ocr_already=1)
     assert not next(r for r in capped if r["doc_key"] == "d/2024")["included"]
+
+
+def test_priority_order_scope_keeps_out_of_scope_as_reserve():
+    rows = [{"doc_key": k, "status": "current", "official_pdf": "True", "text_layer": "True", "issued": d}
+            for k, d in (("new/2026", "2026-05-01"), ("hf/2022", "2022-01-01"), ("x/2025", "2025-01-01"))]
+    order = priority_order(rows, seeded=set(), max_docs=2, scope={"hf/2022", "x/2025"}, excluded={"x/2025": "no values"})
+    by = {r["doc_key"]: r for r in order}
+    assert by["hf/2022"]["included"] and not by["new/2026"]["included"] and not by["x/2025"]["included"]
+    assert by["x/2025"]["reason"] == "no values" and "DR2" in by["new/2026"]["reason"]
+    assert [r["doc_key"] for r in order][0] == "hf/2022"                  # in-scope first, reserve after
