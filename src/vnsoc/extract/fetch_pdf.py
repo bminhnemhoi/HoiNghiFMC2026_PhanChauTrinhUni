@@ -7,6 +7,7 @@ first pages yield little Vietnamese text is flagged scanned (needs OCR), and tex
 (e.g. "Quy¿t ®Þnh") is flagged legacy_font — neither can be span-verified without OCR.
 
   $PY -m vnsoc.extract.fetch_pdf --key 2760/2023 --url "https://kcb.vn/....pdf"
+  $PY -m vnsoc.extract.fetch_pdf --key 3942/2014 --url "https://kcb.vn/....rar" --member 3942   # PDF inside an official bundle
 """
 from __future__ import annotations
 
@@ -39,7 +40,40 @@ def text_quality(data: bytes, first: int = 4) -> dict:
             "text_kind": kind}
 
 
-def fetch_pdf(key: str, url: str, root=None, timeout: int = 120) -> dict:
+def _archive_member(data: bytes, member: str | None) -> tuple[str, bytes]:
+    """Official sites (kcb.vn) publish some guidelines as .rar/.zip bundles. Extract with zipfile, or bsdtar
+    (libarchive: Windows' tar.exe, `bsdtar` on Linux) for RAR, and return the PDF whose path matches `member`
+    (a regex; required when the archive holds several PDFs)."""
+    import re as _re
+    import shutil
+    import subprocess
+    import zipfile
+
+    with tempfile.TemporaryDirectory() as tmp:
+        arc = os.path.join(tmp, "bundle")
+        with open(arc, "wb") as f:
+            f.write(data)
+        out = os.path.join(tmp, "x")
+        os.mkdir(out)
+        if data[:4] == b"PK\x03\x04":
+            with zipfile.ZipFile(arc) as z:
+                z.extractall(out)
+        else:
+            tar = next((c for c in (r"C:\Windows\System32\tar.exe", shutil.which("bsdtar")) if c and os.path.exists(c)), None)
+            if not tar:
+                raise SystemExit("cần bsdtar/tar.exe (libarchive) để giải nén RAR")
+            subprocess.run([tar, "-xf", arc, "-C", out], check=True, capture_output=True)
+        pdfs = [os.path.join(d, n) for d, _, ns in os.walk(out) for n in ns if n.lower().endswith(".pdf")]
+        if member:
+            pdfs = [x for x in pdfs if _re.search(member, os.path.relpath(x, out), _re.I)]
+        if len(pdfs) != 1:
+            raise SystemExit(f"gói nén có {len(pdfs)} PDF khớp --member {member!r}: "
+                             f"{[os.path.relpath(x, out) for x in pdfs][:8]}")
+        with open(pdfs[0], "rb") as f:
+            return os.path.relpath(pdfs[0], out), f.read()
+
+
+def fetch_pdf(key: str, url: str, root=None, timeout: int = 120, member: str | None = None) -> dict:
     host = (urlparse(url).hostname or "").lower()
     import yaml
 
@@ -52,14 +86,18 @@ def fetch_pdf(key: str, url: str, root=None, timeout: int = 120) -> dict:
 
     r = requests.get(url, headers={"User-Agent": UA}, timeout=timeout)
     r.raise_for_status()
-    data = r.content
+    data, archive = r.content, None
+    if data[:4] in (b"Rar!", b"PK\x03\x04"):
+        archive = {"archive_sha256": hashlib.sha256(data).hexdigest(), "archive_bytes": len(data)}
+        name, data = _archive_member(data, member)
+        archive["member"] = name
     if data[:5] != b"%PDF-":
         raise SystemExit(f"không phải PDF ({r.headers.get('content-type')}, {len(data)} bytes): {url}")
     sha = hashlib.sha256(data).hexdigest()
     target = pdf_path(key, root)
     target.parent.mkdir(parents=True, exist_ok=True)
     out = {"key": key, "url": url, "final_url": r.url, "host": host, "sha256": sha, "bytes": len(data),
-           "downloaded": dt.date.today().isoformat(), **text_quality(data)}
+           "downloaded": dt.date.today().isoformat(), **text_quality(data), **({"archive": archive} if archive else {})}
     if target.exists():
         old = hashlib.sha256(target.read_bytes()).hexdigest()
         if old == sha:
@@ -81,8 +119,9 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="fetch_pdf")
     ap.add_argument("--key", required=True, help="'2760/2023' or 'TT51/2017'")
     ap.add_argument("--url", required=True)
+    ap.add_argument("--member", help="regex chọn file PDF trong gói .rar/.zip chính thức")
     a = ap.parse_args(argv)
-    print(json.dumps(fetch_pdf(a.key, a.url), ensure_ascii=False))
+    print(json.dumps(fetch_pdf(a.key, a.url, member=a.member), ensure_ascii=False))
     return 0
 
 

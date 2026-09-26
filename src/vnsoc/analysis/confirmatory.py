@@ -251,10 +251,12 @@ def cluster_interval(M: np.ndarray, stat: Callable[[np.ndarray], np.ndarray], *,
 # ------------------------------------------------------------------ H1
 def h1_delta(df: pd.DataFrame, n_boot: int = N_BOOT, seed: int = BOOT_SEED, *, models: Iterable[str] | None = None,
              language: str = "vi", condition: str = "A1", level: float = CI_LEVEL,
-             min_clusters: int = MIN_CLUSTERS_BCA) -> dict:
+             min_clusters: int = MIN_CLUSTERS_BCA, primary: str = "bca") -> dict:
     """H1 (primary; proposal §1.4, §5.3). Delta = P(foreign match, label 4) - P(decoy match) on conflict atoms,
     A1 Vietnamese short answers, open models pooled (pass `models`). Also the excess over chance
-    (pi_f - pi_d) / (1 - pi_d) = (F - D) / (N - D) with its own interval (same resamples). Confirmed iff ci_lo > 0.
+    (pi_f - pi_d) / (1 - pi_d) = (F - D) / (N - D) with its own interval (same resamples). Confirmed iff ci_lo > 0
+    for the `primary` interval (default textbook BCa, as in the proposal); the other cluster intervals are
+    returned under `variants` (see cluster_interval) with `confirmed_all_variants`.
     """
     d = _subset(prepare(df), condition=condition, language=language, models=models)
     d = d[d["conflict_status"] == "conflict"]
@@ -262,17 +264,18 @@ def h1_delta(df: pd.DataFrame, n_boot: int = N_BOOT, seed: int = BOOT_SEED, *, m
         raise ValueError("H1: không có câu trả lời nào (A1, vi, short, mẩu xung đột)")
     d = d.assign(n=1.0, f=(d["label"] == 4).astype(float), dm=d["decoy_match"].astype(float))
     _, M = _cluster_sums(d, ["n", "f", "dm"])
-    kw = dict(n_boot=n_boot, seed=seed, level=level, min_clusters=min_clusters)
+    kw = dict(n_boot=n_boot, seed=seed, level=level, min_clusters=min_clusters, primary=primary)
     r = cluster_interval(M, lambda S: (S[..., 1] - S[..., 2]) / S[..., 0], null=0.0, **kw)
     ex = cluster_interval(M, lambda S: (S[..., 1] - S[..., 2]) / (S[..., 0] - S[..., 2]), null=0.0, **kw)
     N, F, D = M.sum(axis=0)
     return {
         "delta": r["estimate"], "ci_lo": r["lo"], "ci_hi": r["hi"], "method": r["method"],
         "p_one_sided": r["p_one_sided"], "confirmed": bool(r["lo"] > 0),
-        "n_clusters": r["n_clusters"], "n_responses": int(N), "n_atoms": int(d["atom_id"].nunique()),
-        "pi_foreign": F / N, "pi_decoy": D / N, "excess": ex["estimate"], "excess_ci_lo": ex["lo"],
-        "excess_ci_hi": ex["hi"], "models": sorted(d["model"].unique().tolist()), "n_boot": r["n_boot"],
-        "seed": r["seed"], "level": level, "language": language, "condition": condition,
+        "confirmed_all_variants": bool(r["variants"]) and all(v["lo"] > 0 for v in r["variants"].values()),
+        "variants": r["variants"], "n_clusters": r["n_clusters"], "n_responses": int(N),
+        "n_atoms": int(d["atom_id"].nunique()), "pi_foreign": F / N, "pi_decoy": D / N, "excess": ex["estimate"],
+        "excess_ci_lo": ex["lo"], "excess_ci_hi": ex["hi"], "models": sorted(d["model"].unique().tolist()),
+        "n_boot": r["n_boot"], "seed": r["seed"], "level": level, "language": language, "condition": condition,
     }
 
 
@@ -409,7 +412,7 @@ def h3_per_model(df: pd.DataFrame, margin: float = H3_MARGIN, *, models: Iterabl
 # ------------------------------------------------------------------ H4
 def h4_risk_ratio(df: pd.DataFrame, bound: float = H4_RR_BOUND, n_boot: int = N_BOOT, seed: int = BOOT_SEED, *,
                   models: Iterable[str] | None = None, condition: str = "A2", language: str | None = None,
-                  level: float = CI_LEVEL, min_clusters: int = MIN_CLUSTERS_BCA) -> dict:
+                  level: float = CI_LEVEL, min_clusters: int = MIN_CLUSTERS_BCA, primary: str = "bca") -> dict:
     """H4 (proposal §1.4, §4.6). Served A2 answers (greedy, same language as the question; both languages by
     default), open models pooled: RR = P(wrong | disagree) / P(wrong | agree) at full coverage. Cluster-bootstrap
     BCa CI on log RR (small-sample t below 20 clusters); one-sided p for H0: RR <= bound. Confirmed (before Holm)
@@ -424,13 +427,17 @@ def h4_risk_ratio(df: pd.DataFrame, bound: float = H4_RR_BOUND, n_boot: int = N_
     d = d.assign(nd=dis, wd=dis * wr, na=1 - dis, wa=(1 - dis) * wr)
     _, M = _cluster_sums(d, ["nd", "wd", "na", "wa"])
     r = cluster_interval(M, lambda S: np.log(S[..., 1] / S[..., 0]) - np.log(S[..., 3] / S[..., 2]),
-                         null=math.log(bound), n_boot=n_boot, seed=seed, level=level, min_clusters=min_clusters)
+                         null=math.log(bound), n_boot=n_boot, seed=seed, level=level, min_clusters=min_clusters,
+                         primary=primary)
     nd, wd, na, wa = M.sum(axis=0)
     ex = lambda x: float(np.exp(x)) if np.isfinite(x) else (float("inf") if x > 0 else 0.0)  # noqa: E731
+    variants = {k: {"lo": ex(v["lo"]), "hi": ex(v["hi"]), "p_one_sided": v["p_one_sided"]}
+                for k, v in r["variants"].items()}
     return {
         "rr": ex(r["estimate"]), "ci_lo": ex(r["lo"]), "ci_hi": ex(r["hi"]), "log_rr": r["estimate"],
         "method": r["method"], "p_one_sided": r["p_one_sided"], "bound": bound,
-        "confirmed_unadjusted": bool(ex(r["lo"]) > bound), "risk_disagree": wd / nd if nd else float("nan"),
+        "confirmed_unadjusted": bool(ex(r["lo"]) > bound), "variants": variants,
+        "risk_disagree": wd / nd if nd else float("nan"),
         "risk_agree": wa / na if na else float("nan"), "n_disagree": int(nd), "n_agree": int(na),
         "n_clusters": r["n_clusters"], "n_responses": int(nd + na), "models": sorted(d["model"].unique().tolist()),
         "n_boot": r["n_boot"], "seed": r["seed"], "condition": condition, "language": language,

@@ -50,3 +50,24 @@ def test_forbidden_host_and_non_pdf(proj, monkeypatch):
 def test_text_quality_flags_scans():
     q = fp.text_quality(_pdf("short ascii text"))
     assert not q["text_layer"] and q["text_kind"] == "scanned_or_empty"
+
+
+def test_zip_bundle_member(proj, monkeypatch):
+    import io
+    import zipfile
+
+    requests = pytest.importorskip("requests")
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("bundle/Quyet dinh.pdf", _pdf("decision cover"))
+        z.writestr("bundle/The final 3942-20141002.pdf", _pdf("guideline body"))
+    data = buf.getvalue()
+
+    class Zip(Resp):
+        def __init__(self):
+            super().__init__(data)
+    monkeypatch.setattr(requests, "get", lambda url, **kw: Zip())
+    with pytest.raises(SystemExit):
+        fp.fetch_pdf("3942/2014", "https://kcb.vn/x.zip", root=proj)             # two PDFs, no --member
+    r = fp.fetch_pdf("3942/2014", "https://kcb.vn/x.zip", root=proj, member="3942")
+    assert r["archive"]["member"].endswith("3942-20141002.pdf") and r["archive"]["archive_sha256"] != r["sha256"]
