@@ -28,7 +28,14 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
       "Chrome/126.0 Safari/537.36 vn-soc-audit research (non-commercial)")
 PAGE_MARK = "\n[[page {}]]\n"
 DASHES = dict.fromkeys(map(ord, "‐‑‒–—―−"), "-")
-FORBIDDEN_HOSTS = ("thuvienphapluat.vn",)
+
+
+def forbidden_hosts(root=None) -> tuple[str, ...]:
+    """Hosts that must never be accessed automatically: configs/project.yaml corpus.forbidden_hosts."""
+    import yaml
+
+    cfg = yaml.safe_load((paths(root).configs / "project.yaml").read_text(encoding="utf-8"))
+    return tuple((cfg.get("corpus") or {}).get("forbidden_hosts") or ())
 
 
 @dataclass
@@ -99,8 +106,8 @@ def _to_text(data: bytes, ctype: str) -> str:
 
 
 def fetch(url: str, refresh: bool = False, timeout: int = 60, root=None) -> Fetched:
-    if any(h in url for h in FORBIDDEN_HOSTS):
-        raise ValueError("nguồn bị cấm truy cập tự động (thuvienphapluat.vn)")
+    if any(h in url for h in forbidden_hosts(root)):
+        raise ValueError("nguồn bị cấm truy cập tự động (configs/project.yaml corpus.forbidden_hosts)")
     idx_file, idx = _index(root)
     hit = idx.get(url)
     if hit and not refresh and (cache_dir(root) / hit["file"]).exists():
