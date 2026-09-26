@@ -149,3 +149,9 @@ def test_dr8_secondary_sources_verified_on_their_own_pages(proj):
 
 def test_symbol_font_pua_mapped():
     assert norm("F  2 và  5") == "F ≥ 2 và ≤ 5"
+
+
+def test_cyrillic_lookalikes_and_symbol_font_mapped():
+    """162/2024 writes 'ớ' as U+04DF and 'ẫ' as U+04AF; Symbol-font PUA bullets, µ and arrows (audit 27/9/2026)."""
+    assert norm("Người l\u04dfn và hư\u04dfng d\u04afn") == "Người lớn và hướng dẫn"
+    assert norm("10\uf06dg/kg \uf02b Lao \uf0adPaCO2") == "10µg/kg + Lao ↑PaCO2"

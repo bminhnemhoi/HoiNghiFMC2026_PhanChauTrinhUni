@@ -1,0 +1,1678 @@
+{
+ "doc": "1840/2025",
+ "auditor": "integrity-auditor (agent AI, không phải người)",
+ "date": "2026-09-27",
+ "inputs_sha256": {
+  "data/interim/atoms_parts/1840_2025.jsonl": "c66b48d91200de68fcf6d0ae63e93e6b2a14450a32f5151a9f8c3610cb66531c",
+  "data/interim/atoms_parts/1840_2025_coverage.md": "5be0764c67ff7166185620ed4148e9924e2b1e87719ea506d0722ba953654592",
+  "data/raw/1840_2025.pdf": "ad636ca2f468edb92dd83551511da7ea57e2bdaedbaf673073ef84a05d3aea75",
+  "configs/extraction_protocol.md": "4e5a0af0bad96a9757c32e9c539d761c4017086a313bf0924f12e766f3378a43"
+ },
+ "reproduction": {
+  "atoms_merge_only_1840_2025_to_scratch": "giữ 59, loại 0",
+  "vnsoc_schemas_atom": "OK 59/59",
+  "independent_pymupdf_span_check": "59/59 span có trên đúng trang; 41/41 mẩu num có mọi số lo/hi trong span",
+  "pdf_sha256_matches_manifest": true,
+  "protocol_sha256_in_atoms_matches_file": true
+ },
+ "accuracy": {
+  "n": 59,
+  "ok": 49,
+  "fix": 10,
+  "error": 0,
+  "atoms": [
+   {
+    "atom_id": "A-1840_2025-001",
+    "file_line": 1,
+    "page": 7,
+    "slot_type": "procedure",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "test nhanh"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 7)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-002",
+    "file_line": 2,
+    "page": 7,
+    "slot_type": "procedure",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "RT-PCR",
+     "Multiplex-PCR"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 7)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-003",
+    "file_line": 3,
+    "page": 7,
+    "slot_type": "target",
+    "value_kind": "num",
+    "unit": "%",
+    "vn": [
+     "SpO2 > 95%"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 7)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; cần kiểm ngữ cảnh: giá trị nằm trong tiêu chí phân độ cúm nặng ('cần hỗ trợ hô hấp để đảm bảo mục tiêu SpO2 > 95%'), slot target chấp nhận được"
+   },
+   {
+    "atom_id": "A-1840_2025-004",
+    "file_line": 4,
+    "page": 8,
+    "slot_type": "threshold",
+    "value_kind": "num",
+    "unit": "year",
+    "vn": [
+     "> 65 tuổi"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 8)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-005",
+    "file_line": 5,
+    "page": 8,
+    "slot_type": "threshold",
+    "value_kind": "num",
+    "unit": "year",
+    "vn": [
+     "< 5 tuổi (nhất là < 2 tuổi)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 8)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; '< 2 tuổi' (nhất là) không đưa vào tập vn — hợp lý"
+   },
+   {
+    "atom_id": "A-1840_2025-006",
+    "file_line": 6,
+    "page": 8,
+    "slot_type": "threshold",
+    "value_kind": "num",
+    "unit": "week",
+    "vn": [
+     "mới sinh 2 tuần"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 8)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-007",
+    "file_line": 7,
+    "page": 8,
+    "slot_type": "classification",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "test nhanh",
+     "RT-PCR",
+     "Multiplex-PCR"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 8)",
+     "b": "ok",
+     "c": "ok",
+     "d": "fix: slot_type 'classification' không hợp: giao thức §1 định nghĩa classification là mốc phân độ/phân loại CÓ GIÁ TRỊ SỐ; đây là lựa chọn kỹ thuật xét nghiệm (cat) cùng loại với 001/002 (procedure)",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "đổi slot_type -> 'procedure'; giữ vn; giữ cờ mâu thuẫn tr.7 (2.1: test nhanh chỉ để sàng lọc) và tr.8 (2.4.2: test nhanh đủ khẳng định) cho bước kiểm ngữ cảnh",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-008",
+    "file_line": 8,
+    "page": 8,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Có — dùng thuốc kháng vi rút càng sớm càng tốt"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 8)",
+     "b": "ok",
+     "c": "ok",
+     "d": "fix: cat_options.not_indicated chứa hai mẫu chép từ 037 (chi ... su dung ... khang vi rut ... co yeu to nguy co; only (for|in|to) ... risk) nên câu trả lời ĐÚNG kiểu khẳng định bị đọc thêm nhãn not_indicated. Tái hiện: grade_short(Answer: Yes; antivirals are indicated only in severe or high-risk cases, and this case is severe., A008, en) -> label 5 unattributed, parsed {indicated},{not_indicated}",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "bỏ hai mẫu đó khỏi not_indicated của 008 (giữ ở 037, nơi quần thể KHÔNG có yếu tố nguy cơ); thử lại bằng câu tự viết, không dùng đầu ra mô hình; giá trị không đổi",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-009",
+    "file_line": 9,
+    "page": 8,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Có — dùng thuốc kháng vi rút càng sớm càng tốt"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 8)",
+     "b": "ok",
+     "c": "ok",
+     "d": "fix: như 008. Tái hiện: grade_short(Đáp án: Có, chỉ dùng kháng vi rút cho người bệnh có yếu tố nguy cơ như trường hợp này., A009, vi) -> label 5 unattributed; tương tự Answer: Yes, antivirals are recommended only for high-risk patients like this one. -> label 5",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "như 008",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-010",
+    "file_line": 10,
+    "page": 8,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Oseltamivir"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 8)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-011",
+    "file_line": 11,
+    "page": 9,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Baloxavir",
+     "Zanamivir"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-012",
+    "file_line": 12,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "75 mg, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-013",
+    "file_line": 13,
+    "page": 9,
+    "slot_type": "duration",
+    "value_kind": "num",
+    "unit": "day",
+    "vn": [
+     "5 ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; population thêm immune_status để loại trường hợp chú thích * (mẩu 036) — hợp lý"
+   },
+   {
+    "atom_id": "A-1840_2025-014",
+    "file_line": 14,
+    "page": 9,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Có — an toàn ở phụ nữ mang thai"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok cho điều trị; population.indication='điều trị' nên KHÔNG phủ ô 'an toàn ở phụ nữ mang thai' của bảng dự phòng tr.11 (xem bỏ sót M11)"
+   },
+   {
+    "atom_id": "A-1840_2025-015",
+    "file_line": 15,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "30 mg, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-016",
+    "file_line": 16,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "45 mg, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-017",
+    "file_line": 17,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "60 mg, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-018",
+    "file_line": 18,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "75 mg, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-019",
+    "file_line": 19,
+    "page": 9,
+    "slot_type": "duration",
+    "value_kind": "num",
+    "unit": "day",
+    "vn": [
+     "5 ngày (mọi mức cân nặng)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; gộp 4 mức cân nặng cùng nhóm tuổi 1–12 — chấp nhận"
+   },
+   {
+    "atom_id": "A-1840_2025-020",
+    "file_line": 20,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg",
+    "vn": [
+     "3.5 mg/kg mỗi liều, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-021",
+    "file_line": 21,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg",
+    "vn": [
+     "3 mg/kg mỗi liều, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; văn bản không ghi 'đủ tháng' — ghi chú đúng"
+   },
+   {
+    "atom_id": "A-1840_2025-022",
+    "file_line": 22,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg",
+    "vn": [
+     "1 mg/kg mỗi liều, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "fix: khóa population 'gestational_age' gán nghĩa 'tuổi thai' mà văn bản không nói (chỉ ghi 'tuần' dưới 'Trẻ sinh non'); chính người trích ghi chú không thể là tuổi thai lúc sinh",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "đổi sang khóa trung tính (ví dụ 'age_weeks_as_written' = '< 38 tuần') và ghi rõ 'văn bản không nói tuổi thai hay tuổi sau kỳ kinh cuối'; giữ required_terms 'sinh non'; giá trị không đổi",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-023",
+    "file_line": 23,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg",
+    "vn": [
+     "1.5 mg/kg mỗi liều, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "fix: như 022 (khóa 'gestational_age' = '38 – 40 tuần')",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "như 022",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-024",
+    "file_line": 24,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg",
+    "vn": [
+     "1.5 mg/kg mỗi liều, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "fix: như 022; riêng dòng này 'trẻ sinh non' + gestational_age '> 40 tuần' sinh câu hỏi tự mâu thuẫn (sinh non theo định nghĩa có tuổi thai lúc sinh < 37 tuần)",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "như 022",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-025",
+    "file_line": 25,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "10 mg, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-026",
+    "file_line": 26,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "10 mg, 2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-027",
+    "file_line": 27,
+    "page": 9,
+    "slot_type": "duration",
+    "value_kind": "num",
+    "unit": "day",
+    "vn": [
+     "5 ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-028",
+    "file_line": 28,
+    "page": 9,
+    "slot_type": "threshold",
+    "value_kind": "num",
+    "unit": "year",
+    "vn": [
+     "Trẻ từ 7 tuổi"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-029",
+    "file_line": 29,
+    "page": 9,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Không — zanamivir chỉ dùng cho người bệnh không có bệnh lý nặng về đường hô hấp"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok (suy phủ định từ điều kiện dùng; cần kiểm ngữ cảnh); population.indication='điều trị' nên không phủ ô tương ứng của bảng dự phòng tr.12"
+   },
+   {
+    "atom_id": "A-1840_2025-030",
+    "file_line": 30,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg",
+    "vn": [
+     "2 mg/kg, 1 liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-031",
+    "file_line": 31,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "40 mg, 1 liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-032",
+    "file_line": 32,
+    "page": 9,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "80 mg, 1 liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-033",
+    "file_line": 33,
+    "page": 9,
+    "slot_type": "schedule",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "1 liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; gộp 3 mức cân nặng (cùng '1 liều duy nhất')"
+   },
+   {
+    "atom_id": "A-1840_2025-034",
+    "file_line": 34,
+    "page": 9,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Không dùng cho phụ nữ mang thai"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-035",
+    "file_line": 35,
+    "page": 9,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Không dùng cho phụ nữ đang cho con bú"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-036",
+    "file_line": 36,
+    "page": 9,
+    "slot_type": "duration",
+    "value_kind": "num",
+    "unit": "day",
+    "vn": [
+     "có thể dùng đến 10 ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-037",
+    "file_line": 37,
+    "page": 9,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Không — chỉ dùng kháng vi rút cho người có yếu tố nguy cơ diễn biến nặng"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok (suy phủ định từ 'Chỉ sử dụng ... cho người bệnh có yếu tố nguy cơ'); cần kiểm ngữ cảnh"
+   },
+   {
+    "atom_id": "A-1840_2025-038",
+    "file_line": 38,
+    "page": 10,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Không — nguy cơ hội chứng Reye"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 10)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-039",
+    "file_line": 39,
+    "page": 10,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Không khuyến cáo"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 10)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-040",
+    "file_line": 40,
+    "page": 10,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Có thể dùng kháng sinh theo kinh nghiệm"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 10)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; 'và/hoặc nghi ngờ bội nhiễm' đọc là cúm nặng đơn thuần cũng được dùng kháng sinh kinh nghiệm — hợp lý, cần kiểm ngữ cảnh"
+   },
+   {
+    "atom_id": "A-1840_2025-041",
+    "file_line": 41,
+    "page": 11,
+    "slot_type": "first_line",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Không dùng thường quy (hội chẩn nếu vẫn cần)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok; câu nói 'người bệnh nhiễm cúm' nhưng nằm trong mục 2.3 (cúm nặng); population cúm nặng là tập con đúng"
+   },
+   {
+    "atom_id": "A-1840_2025-042",
+    "file_line": 42,
+    "page": 11,
+    "slot_type": "threshold",
+    "value_kind": "num",
+    "unit": "day",
+    "vn": [
+     "trong vòng 2 ngày trước đó"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "ok",
+     "c": "fix: required_terms có khóa 'indication' nhưng population không có khóa này (population chỉ có setting/risk/exposure)",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "thêm population['indication'] = 'dự phòng sau phơi nhiễm'",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-043",
+    "file_line": 43,
+    "page": 11,
+    "slot_type": "duration",
+    "value_kind": "num",
+    "unit": "day",
+    "vn": [
+     "1 lần x 10 ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-044",
+    "file_line": 44,
+    "page": 11,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/day",
+    "vn": [
+     "75 mg/ngày (uống 1 lần)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok (mg/day đúng chữ 75mg/ngày); lưu ý bộ chấm: grade_short(Đáp án: 75 mg x 1 lần/ngày, A044, vi) -> label 5 unit_mismatch vì không có quy đổi mg <-> mg/day khi 1 lần/ngày (vấn đề bộ chấm/bộ đọc số, không phải người trích)"
+   },
+   {
+    "atom_id": "A-1840_2025-045",
+    "file_line": 45,
+    "page": 11,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "60 mg/ngày (uống 1 lần)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "fix: đơn vị 'mg' trong khi văn bản ghi '60mg/ ngày' và mẩu 044 cùng cột bảng dùng 'mg/day'. Lý do: normalize_vi đọc 'mg/ ngày' (có dấu cách) thành mg nhưng '75mg/ngày' thành mg/day. Hệ quả chấm: grade_short('Đáp án: 60 mg/ngày', 045, 'vi') -> label 5 unit_mismatch (câu trả lời đúng nguyên văn bị chấm như giá trị khác Bộ Y tế)",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "sửa normalize_vi để 'mg/ ngày' = mg/day (trước khi đóng băng câu hỏi), rồi đặt unit 'mg/day' cho 045–047 và chạy lại atoms_merge; giá trị không đổi",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-046",
+    "file_line": 46,
+    "page": 11,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "45 mg/ngày (uống 1 lần)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "fix: như 045 ('45mg/ ngày' -> mg)",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "như 045",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-047",
+    "file_line": 47,
+    "page": 11,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "30 mg/ngày (uống 1 lần)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "fix: như 045 ('30mg/ ngày' -> mg); ngoài ra 'Dưới 10-15kg' mơ hồ, người trích đã chọn 10–15 kg (phần giao an toàn) và ghi chú — chấp nhận",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "fix",
+    "fix": "như 045",
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-048",
+    "file_line": 48,
+    "page": 11,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg/day",
+    "vn": [
+     "3 mg/kg/ngày (uống 1 lần)"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 11)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-049",
+    "file_line": 49,
+    "page": 12,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "10 mg x 1 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": "ok cho người lớn; ô ghi '(người lớn và trẻ em ≥ 5 tuổi)' nhưng không có mẩu cho trẻ em ≥ 5 tuổi (ngoài trang mẫu; xem bỏ sót ngoài mẫu)"
+   },
+   {
+    "atom_id": "A-1840_2025-050",
+    "file_line": 50,
+    "page": 12,
+    "slot_type": "duration",
+    "value_kind": "num",
+    "unit": "day",
+    "vn": [
+     "x 10 ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-051",
+    "file_line": 51,
+    "page": 12,
+    "slot_type": "threshold",
+    "value_kind": "num",
+    "unit": "year",
+    "vn": [
+     "trẻ em ≥ 5 tuổi"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-052",
+    "file_line": 52,
+    "page": 12,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg/kg",
+    "vn": [
+     "2 mg/kg, một liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-053",
+    "file_line": 53,
+    "page": 12,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "40 mg, một liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-054",
+    "file_line": 54,
+    "page": 12,
+    "slot_type": "dose",
+    "value_kind": "num",
+    "unit": "mg",
+    "vn": [
+     "80 mg, một liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-055",
+    "file_line": 55,
+    "page": 12,
+    "slot_type": "threshold",
+    "value_kind": "num",
+    "unit": "year",
+    "vn": [
+     "trẻ em ≥ 12 tuổi"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-056",
+    "file_line": 56,
+    "page": 12,
+    "slot_type": "schedule",
+    "value_kind": "cat",
+    "unit": null,
+    "vn": [
+     "Một liều duy nhất"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-057",
+    "file_line": 57,
+    "page": 9,
+    "slot_type": "schedule",
+    "value_kind": "num",
+    "unit": "times/day",
+    "vn": [
+     "2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-058",
+    "file_line": 58,
+    "page": 9,
+    "slot_type": "schedule",
+    "value_kind": "num",
+    "unit": "times/day",
+    "vn": [
+     "2 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 9)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   },
+   {
+    "atom_id": "A-1840_2025-059",
+    "file_line": 59,
+    "page": 12,
+    "slot_type": "schedule",
+    "value_kind": "num",
+    "unit": "times/day",
+    "vn": [
+     "1 lần/ngày"
+    ],
+    "auto": {
+     "span_on_stated_page": true,
+     "num_values_in_span": true
+    },
+    "checks": {
+     "a": "ok (PyMuPDF, trang 12)",
+     "b": "ok",
+     "c": "ok",
+     "d": "ok",
+     "e": "ok"
+    },
+    "verdict": "ok",
+    "fix": null,
+    "note": ""
+   }
+  ]
+ },
+ "coverage": {
+  "professional_pages": [
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "non_professional_pages": {
+   "1": "quyết định",
+   "2": "bìa",
+   "3": "mục lục",
+   "4-5": "ban biên soạn"
+  },
+  "method": "python: sorted(random.Random(20260927).sample(list(range(6, 13)), 5)); seed = ngày kiểm toán, chọn trước khi đọc lại trang",
+  "sampled_pages": [
+   6,
+   7,
+   8,
+   9,
+   11
+  ],
+  "per_page": [
+   {
+    "page": 6,
+    "extractor_atoms": [],
+    "missed_certain": [],
+    "missed_possible": [],
+    "auditor_notes": [
+     "người già (>65 tuổi): cùng quần thể và giá trị với 004 (đã phủ)",
+     "ủ bệnh 1–4 ngày, sốt 3–5 ngày, không điển hình ở > 65 tuổi: mô tả, không phải khuyến cáo"
+    ]
+   },
+   {
+    "page": 7,
+    "extractor_atoms": [
+     "001",
+     "002",
+     "003"
+    ],
+    "missed_certain": [],
+    "missed_possible": [
+     "P1: Nuôi cấy phân lập vi rút, giải trình tự gene khi nghi ngờ biến chủng mới, định type, xác định kháng thuốc: lựa chọn kỹ thuật (procedure/cat), cùng cấu trúc với 001/002 đã lấy",
+     "P2: X-quang phổi hoặc CT lồng ngực chỉ định khi nghi ngờ viêm phổi hoặc suy hô hấp: chỉ định (procedure)"
+    ]
+   },
+   {
+    "page": 8,
+    "extractor_atoms": [
+     "004",
+     "005",
+     "006",
+     "007",
+     "008",
+     "009",
+     "010"
+    ],
+    "missed_certain": [],
+    "missed_possible": []
+   },
+   {
+    "page": 9,
+    "extractor_atoms": [
+     "011",
+     "012",
+     "013",
+     "014",
+     "015",
+     "016",
+     "017",
+     "018",
+     "019",
+     "020",
+     "021",
+     "022",
+     "023",
+     "024",
+     "025",
+     "026",
+     "027",
+     "028",
+     "029",
+     "030",
+     "031",
+     "032",
+     "033",
+     "034",
+     "035",
+     "036",
+     "037",
+     "057",
+     "058"
+    ],
+    "missed_certain": [
+     "M1: oseltamivir điều trị, trẻ 9–11 tháng: thời gian 5 ngày",
+     "M2: oseltamivir điều trị, trẻ 0–8 tháng: thời gian 5 ngày",
+     "M3: oseltamivir điều trị, trẻ sinh non (3 dòng): thời gian 5 ngày",
+     "M4: zanamivir điều trị, trẻ từ 7 tuổi: thời gian 5 ngày",
+     "M5: oseltamivir điều trị, trẻ 1–12 tuổi (mọi mức cân nặng): 2 lần/ngày",
+     "M6: oseltamivir điều trị, trẻ 9–11 tháng: 2 lần/ngày",
+     "M7: oseltamivir điều trị, trẻ 0–8 tháng: 2 lần/ngày",
+     "M8: oseltamivir điều trị, trẻ sinh non: 2 lần/ngày",
+     "M9: zanamivir điều trị, trẻ từ 7 tuổi: 2 lần/ngày"
+    ],
+    "missed_possible": [],
+    "reason": "người trích bỏ các dòng cùng giá trị với người lớn hoặc trẻ 1–12 tuổi (để tránh mẩu trùng), trái giao thức §1 (tách theo quần thể) và §4 (lấy MỌI mẩu); mẩu người lớn không phủ quần thể trẻ nhỏ và trẻ sinh non"
+   },
+   {
+    "page": 11,
+    "extractor_atoms": [
+     "041",
+     "042",
+     "043",
+     "044",
+     "045",
+     "046",
+     "047",
+     "048"
+    ],
+    "missed_certain": [
+     "M10: Cân nhắc sử dụng thuốc kháng vi rút dự phòng sau phơi nhiễm cho người bệnh nội trú có nguy cơ nhiễm cúm nặng cao: chỉ định dự phòng (cat), khác slot với mốc 2 ngày của 042, cùng loại với 008/009",
+     "M11: ô Lưu ý bảng dự phòng oseltamivir, an toàn ở phụ nữ mang thai: quần thể mang thai + dự phòng; 014 chỉ phủ điều trị (population.indication = điều trị cúm mùa)"
+    ],
+    "missed_possible": [
+     "P3: tần suất dự phòng oseltamivir 1 lần/ngày (Uống 1 lần x 10 ngày; 75mg/ngày): bị chặn vì bộ đọc số đọc 1 lần là times",
+     "P4: mục 2.4, cúm nặng cần điều trị tại đơn vị có khả năng theo dõi xử trí suy hô hấp cấp: nơi điều trị (cat)"
+    ]
+   }
+  ],
+  "extractor_atoms_on_sample": 47,
+  "missed_certain": 11,
+  "missed_possible": 4,
+  "required_certain": 58,
+  "miss_rate_certain": 0.1897,
+  "required_incl_possible": 62,
+  "miss_rate_incl_possible": 0.2419
+ },
+ "out_of_sample": {
+  "pages": [
+   10,
+   12
+  ],
+  "note": "đã đọc nhưng không thuộc mẫu ngẫu nhiên; không tính vào tỉ lệ",
+  "missed_certain": [
+   "tr.12 zanamivir dự phòng, trẻ em ≥ 5 tuổi: liều 10 mg",
+   "tr.12 zanamivir dự phòng, trẻ em ≥ 5 tuổi: 10 ngày",
+   "tr.12 zanamivir dự phòng, trẻ em ≥ 5 tuổi: 1 lần/ngày",
+   "tr.12 zanamivir dự phòng ở người có bệnh lý nặng về đường hô hấp: không dùng (Chỉ định cho người bệnh không có ...); 029 chỉ phủ điều trị"
+  ],
+  "missed_possible": [
+   "tr.10 lấy bệnh phẩm nuôi cấy trước khi dùng kháng sinh (procedure, không có giá trị)"
+  ],
+  "covered": [
+   "tr.12 baloxavir dự phòng không dùng khi mang thai/cho con bú: 034/035 không có khóa indication nên đã phủ"
+  ]
+ },
+ "systematic_issues": [
+  "S1 bỏ mẩu cùng giá trị ở quần thể khác (tránh mẩu trùng), trái §1/§4: 11 mẩu chắc chắn bỏ sót trên trang mẫu, thêm 4 ngoài mẫu (tr.12)",
+  "S2 đơn vị không thống nhất trong một cột bảng (044 mg/day; 045–047 mg) do normalize_vi đọc mg/ ngày (có dấu cách) thành mg; làm hỏng chấm",
+  "S3 khóa population mang nghĩa không có trong văn bản (gestational_age cho tuần dưới Trẻ sinh non)",
+  "S4 slot_type không thống nhất cho câu lựa chọn xét nghiệm (001/002 procedure, 007 classification); giao thức không có slot cho chỉ định/chống chỉ định Có/Không (đang dồn vào first_line)",
+  "S5 phạm vi chỉ định không nhất quán: lấy chỉ định điều trị (008/009) nhưng bỏ chỉ định dự phòng sau phơi nhiễm; lấy 001/002 nhưng bỏ nuôi cấy/giải trình tự",
+  "S6 cat_options chép nguyên bộ giữa các mẩu khác quần thể (008/009/037 dùng chung): mẫu not_indicated dành cho 037 làm câu trả lời đúng của 008/009 bị chấm label 5"
+ ],
+ "verdict": "KHÔNG ĐẠT (sửa được): độ chính xác đạt (0 lỗi giá trị/trang/span; 10 mẩu cần sửa không đổi giá trị), độ phủ không đạt (bỏ sót có hệ thống trái §1/§4: 11/58 = 19,0% trên 5 trang mẫu)",
+ "grader_notes_outside_extraction": [
+  "normalize_vi đọc mg/ ngày (có dấu cách) thành mg, mg/ngày thành mg/day",
+  "không có quy đổi mg <-> mg/day khi dùng 1 lần/ngày: Đáp án: 75 mg x 1 lần/ngày -> label 5 unit_mismatch với 044",
+  "bộ đọc số đọc Uống 1 lần là times, không phải times/day, nên chặn mẩu tần suất dự phòng oseltamivir"
+ ],
+ "cat_answer_tests": "kiểm toán viên tự viết 30 câu trả lời mẫu (không dùng đầu ra mô hình) cho các mẩu cat; lỗi đọc nhãn chỉ gặp ở 008/009 (đã ghi fix)"
+}

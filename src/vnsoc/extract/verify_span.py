@@ -32,7 +32,11 @@ _INVISIBLE = dict.fromkeys(map(ord, "­​‌‍﻿"), None)   # soft hyphen, ze
 
 _GLYPH = str.maketrans({"\u01a3": "\u01b0", "\u01a2": "\u01af",   # ƣ/Ƣ -> ư/Ư
                         "\uf0b3": "\u2265", "\uf0a3": "\u2264",   # Symbol-font PUA: ≥ ≤
-                        "\uf0b1": "\u00b1", "\uf0b4": "\u00d7"})  # ± ×
+                        "\uf0b1": "\u00b1", "\uf0b4": "\u00d7",   # ± ×
+                        "\uf02b": "+", "\uf02d": "-", "\uf020": " ",   # Symbol-font + - space (bullets: 162/2024, 3879/2014)
+                        "\uf06d": "\u00b5", "\uf0b0": "\u00b0",        # Symbol mu (ug/kg in 3312/2015), degree
+                        "\uf0ad": "\u2191", "\uf0af": "\u2193", "\uf0b7": "\u2022",   # up/down arrows, bullet
+                        "\u04df": "\u1edb", "\u04af": "\u1eab"})  # Cyrillic look-alikes in 162/2024 -> Vietnamese o-horn-acute, a-circumflex-tilde
 
 
 def norm(s: str | None) -> str:

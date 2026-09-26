@@ -17,7 +17,7 @@ families:
   copd: ["2131/2026"]
   cum_mua: ["1840/2025"]
   soi: ["1019/2025"]
-  dai_thao_duong_tip2: ["5481/2020", "1353/2021"]
+  dai_thao_duong_tip2: ["5481/2020"]              # sửa đổi một phần bởi 1353/2021 (xem excluded)
   tang_huyet_ap: ["3192/2010"]
   suy_tim: ["1857/2022"]
   dot_quy: ["3312/2024"]
@@ -32,3 +32,4 @@ families:
   khong_lay_nhiem_tram_y_te: ["5904/2019"]
 excluded:                            # trong phạm vi §3.1 nhưng không có giá trị khuyến cáo để trích (ghi lý do)
   TT13/2026: "quy định hoạt động tiêm chủng; Điều 5.4 giao lịch tiêm cho hướng dẫn của Cục Phòng bệnh (chưa tìm thấy) — không có bảng lịch tiêm (HG1.2 A1, mặc định (c))"
+  1353/2021: "quyết định sửa đổi 1 trang của 5481/2020, không phải hướng dẫn — không tính vào 25–35; nội dung sửa đổi áp vào mẩu của 5481/2020 (kiểm toán độc lập 27/9)"

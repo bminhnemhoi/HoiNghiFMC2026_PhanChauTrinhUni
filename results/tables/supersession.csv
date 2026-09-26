@@ -1,7 +1,7 @@
 doc_key,disease,status,supersedes,superseded_by,partially_amended_by,evidence,verified,read_by,in_corpus
 2892/2022,Béo phì,current,,,,"2892_2022.pdf tr.1 lớp chữ Đ3: 'Bãi bỏ bài ""Bệnh béo phì"" trong … Quyết định số 3879/QĐ-BYT' (bãi bỏ một phần)",yes,c6,True
 361/2014,"bệnh cơ xương khớp (loãng xương, gút, ...)",current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
-493/2026,bệnh do vi rút Nipah,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,True
+493/2026,bệnh do vi rút Nipah,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
 1622/2014,Bệnh dại,current,,,,chưa có PDF chính thức; agent trước đọc .doc (vncdc.gov.vn): Đ3 chỉ hiệu lực; không thấy văn bản thay thế,no,prior,False
 5904/2019,"Bệnh không lây nhiễm tại trạm y tế xã (tăng huyết áp, đái tháo đường, lồng ghép THA–ĐTĐ, COPD, hen phế quản người lớn)",current,,,,5904_2019.pdf (bản quét) tr.1 ảnh Đ3: bãi bỏ Phần 2 'Chẩn đoán và điều trị một số bệnh mạn tính thường gặp' của 2919/2014,yes,prior,True
 1832/2022,Bệnh lý huyết học,current,1494/2015,,,1832_2022__5a1f1b1a.pdf tr.1 ảnh Đ3: 'thay thế Quyết định số 1494/QĐ-BYT ngày 22/04/2015',yes,c6,False
@@ -11,43 +11,43 @@ doc_key,disease,status,supersedes,superseded_by,partially_amended_by,evidence,ve
 4562/2018,Bệnh phổi tắc nghẽn mạn tính (COPD),superseded,2866/2015;3874/2018,,,4562_2018.pdf tr.4 Đ3: thay 3874/QĐ-BYT 26/6/2018 và 2866/QĐ-BYT 8/7/2015. KHÔNG văn bản nào nêu tên 4562 → 'superseded' là SUY LUẬN,no,c6,False
 2767/2023,Bệnh phổi tắc nghẽn mạn tính (COPD),superseded,3874/2018,2131/2026,,2767_2023.pdf tr.1 lớp chữ Đ3: 'thay thế Quyết định số 3874/QĐ-BYT ngày 26 tháng 06 năm 2018'; bị thay: 2131_2026.pdf tr.1,yes,c6,False
 2131/2026,Bệnh phổi tắc nghẽn mạn tính (COPD),current,2767/2023,,,2131_2026.pdf tr.1 lớp chữ Đ3: 'thay thế Quyết định số 2767/QĐ-BYT ngày 04 tháng 07 năm 2023',yes,c6,True
-3510/2025,Bệnh thần kinh đái tháo đường,current,,,,"3510_2025.pdf tr.1 lớp chữ Đ3: 'có hiệu lực kể từ ngày ký, ban hành' (không thay văn bản nào)",yes,c6,True
+3510/2025,Bệnh thần kinh đái tháo đường,current,,,,"3510_2025.pdf tr.1 lớp chữ Đ3: 'có hiệu lực kể từ ngày ký, ban hành' (không thay văn bản nào)",yes,c6,False
 2388/2024,Bệnh thận mạn và một số bệnh lý thận,current,,,,"2388_2024.pdf tr.1 lớp chữ Đ3: 'Bãi bỏ bài ""Bệnh thận đái tháo đường"", ""Bệnh thận IgA"", ""Viêm thận Lupus"", ""Bệnh thận mạn""' của 3931/2015",yes,c6,True
 3931/2015,Bệnh thận – tiết niệu,partial,,,2388/2024,bãi bỏ một phần: 2388_2024.pdf tr.1 Đ3 (4 bài); tệp 3931 không có trang QĐ,yes,c6,False
 2558/2022,bệnh võng mạc đái tháo đường,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
-6101/2019,Bệnh Whitmore (melioidosis),current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
+6101/2019,Bệnh Whitmore (melioidosis),current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,True
 250/2022,COVID-19,superseded,4689/2021;5666/2021,2671/2023,,bị thay: 2671_2023.pdf tr.1 Đ1; tự thân: 250_2022.pdf tr.1 ảnh Đ1 thay HD kèm QĐ 4689/QĐ-BYT 06/10/2021 và 5666/QĐ-BYT,yes,c6,False
-2671/2023,COVID-19,current,250/2022,,,2671_2023.pdf tr.1 ảnh Đ1: thay HD kèm 'Quyết định số 250/QĐ-BYT ngày 28 tháng 11 năm 2022' [sic] và 437/QĐ-BYT 27/02/2022,yes,c6,True
-2959/2023,COVID-19 (trẻ em),current,405/2022,,,2959_2023.pdf tr.1 lớp chữ Đ1: thay HD kèm 'Quyết định số 405/QĐ-BYT ngày 22 tháng 02 năm 2022',yes,c6,True
+2671/2023,COVID-19,current,250/2022,,,2671_2023.pdf tr.1 ảnh Đ1: thay HD kèm 'Quyết định số 250/QĐ-BYT ngày 28 tháng 11 năm 2022' [sic] và 437/QĐ-BYT 27/02/2022,yes,c6,False
+2959/2023,COVID-19 (trẻ em),current,405/2022,,,2959_2023.pdf tr.1 lớp chữ Đ1: thay HD kèm 'Quyết định số 405/QĐ-BYT ngày 22 tháng 02 năm 2022',yes,c6,False
 2078/2011,Cúm mùa,superseded,,1840/2025,,bị thay: 1840_2025.pdf tr.1 Đ3; tự thân: 2078_2011.pdf tr.1 Đ3 chỉ hiệu lực (không thay văn bản nào),yes,c6,False
 1840/2025,Cúm mùa,current,2078/2011,,,1840_2025.pdf tr.1 lớp chữ Đ3: 'thay thế Quyết định số 2078/QĐ-BYT ngày 23/6/2011',yes,c6,True
-1768/2026,dinh dưỡng cho người bệnh ung thư,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,True
+1768/2026,dinh dưỡng cho người bệnh ung thư,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
 678/2025,"Dự phòng lây truyền mẹ–con (HIV, giang mai, viêm gan B)",current,2834/2019,,,678_2025__3241fdd5.pdf tr.1 lớp chữ Đ2: 'thay thế Quyết định số 2834/QĐ-BYT ngày 4/7/2019' (số 678 không in trong tệp),yes,c6,True
-3908/2023,dự phòng thuyên tắc huyết khối tĩnh mạch,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,True
+3908/2023,dự phòng thuyên tắc huyết khối tĩnh mạch,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
 1851/2020,Hen phế quản (người lớn và trẻ em ≥ 12 tuổi),current,4776/2009,,,1851_2020.pdf tr.1 lớp chữ Đ3: bãi bỏ 2 bài hen của 3942/QĐ-BYT 02/10/2014 và 'bãi bỏ Quyết định số 4776/QĐ-BYT ngày 04 tháng 12 năm 2009',yes,c6,False
 5456/2019,HIV/AIDS,superseded,,5968/2021,,bị thay: 5968_2021.pdf tr.1 Đ2 (PDF của chính 5456 chưa tải được: vaac.gov.vn lỗi TLS),yes,c6,False
 5968/2021,HIV/AIDS,current,5456/2019,,,5968_2021.pdf tr.1 Đ2: 'thay thế Quyết định số 5456/QĐ-BYT ngày 20/11/2019',yes,c6,True
 1493/2015,"hồi sức tích cực (sốc nhiễm khuẩn, suy hô hấp, ...)",current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
 2187/2019,hội chứng mạch vành cấp,current,,,,2187_2019.pdf chỉ có phần HD (không có trang QĐ) → điều khoản thay thế chưa đọc được; không thấy văn bản thay thế,no,c6,False
-2248/2023,Hội chứng mạch vành mạn,current,,,,"2248_2023.pdf tr.1 ảnh: Đ1–3, không có điều khoản thay thế",yes,c6,True
+2248/2023,Hội chứng mạch vành mạn,current,,,,"2248_2023.pdf tr.1 ảnh: Đ1–3, không có điều khoản thay thế",yes,c6,False
 2919/2014,"Khám, chữa bệnh tại trạm y tế xã (nhiều bệnh; Phần 2 bệnh mạn tính gồm THA, ĐTĐ)",partial,,,5904/2019,bãi bỏ một phần: 5904_2019.pdf tr.1 Đ3 (Phần 2); tệp 2919 không có trang QĐ,yes,prior,False
 4263/2015,lao,superseded,979/2009,3126/2018,,4263_2015.pdf tr.2 ảnh Đ3: thay 979/QĐ-BYT 24/3/2009; bị thay: 3126_2018.pdf tr.1 Đ3,yes,prior,False
 3126/2018,lao,superseded,4263/2015,1314/2020,,3126_2018.pdf (1 tr. ảnh) Đ3: thay 4263/QĐ-BYT 13/10/2015; bị thay: 1314_2020.pdf tr.1 Đ3,yes,prior+c6,False
 1314/2020,Lao,superseded,3126/2018,162/2024,2760/2021,1314_2020.pdf tr.1 Đ3: 'thay thế Quyết định số 3126/QĐ-BYT ngày 23 tháng 5 năm 2018'; bị thay: 162_2024.pdf tr.1 Đ3,yes,c6,False
 162/2024,Lao (kể cả lao kháng thuốc),current,1314/2020,,,162_2024.pdf tr.1 lớp chữ Đ3: 'thay thế Quyết định số 1314/QĐ-BYT ngày 24/03/2020',yes,c6,True
 2760/2021,Lao kháng thuốc,superseded,,,,KHÔNG có trang QĐ trong tệp; tr.1: 'Nội dung này thay cho … quyết định số 1314/QĐ-BYT … từ trang 43 đến trang 53'. Bị 162/2024 thay: SUY LUẬN,no,prior,False
-1530/2023,loét bàn chân do đái tháo đường,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,True
-465/2024,Mpox,current,2099/2022,,,465_2024.pdf tr.1 lớp chữ Đ1: thay HD kèm 'Quyết định số 2099/QĐ-BYT ngày 29/7/2022',yes,c6,True
+1530/2023,loét bàn chân do đái tháo đường,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
+465/2024,Mpox,current,2099/2022,,,465_2024.pdf tr.1 lớp chữ Đ1: thay HD kèm 'Quyết định số 2099/QĐ-BYT ngày 29/7/2022',yes,c6,False
 5642/2015,"Một số bệnh truyền nhiễm (uốn ván, thương hàn, sốt mò, nhiễm khuẩn huyết, cúm mùa, sốt rét kháng thuốc…)",current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,True
-3610/2015,Ngộ độc (gồm rắn độc cắn),current,,,,3610_2015.pdf không có trang QĐ đọc được → điều khoản thay thế chưa đọc; không thấy văn bản nào thay 3610 (WebSearch 27/9),no,prior+c6,False
+3610/2015,Ngộ độc (gồm rắn độc cắn),current,,,,3610_2015.pdf không có trang QĐ đọc được → điều khoản thay thế chưa đọc; không thấy văn bản nào thay 3610 (WebSearch 27/9),no,prior+c6,True
 3312/2015,Nhi khoa tổng hợp; có bài 'Hen phế quản trẻ em' (trang PDF 685) và 'Xử trí cơn hen phế quản cấp ở trẻ em' (trang PDF 694),current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
-3651/2024,Nấm Aspergillus phổi mạn tính,current,,,,"3651_2024.pdf tr.1 lớp chữ Đ3: 'có hiệu lực kể từ ngày ký, ban hành' (không thay văn bản nào)",yes,c6,True
+3651/2024,Nấm Aspergillus phổi mạn tính,current,,,,"3651_2024.pdf tr.1 lớp chữ Đ3: 'có hiệu lực kể từ ngày ký, ban hành' (không thay văn bản nào)",yes,c6,False
 3879/2014,"nội tiết – chuyển hóa (tuyến giáp, rối loạn lipid máu, đái tháo đường, ...)",partial,,,2892/2022;3319/2017,"2892_2022.pdf tr.1 Đ3 (bài béo phì); trang QĐ 3319/2017 (kcb.vn, ảnh, ngoài data/raw) Đ3 bãi bỏ phần ĐTĐ típ 2",yes,c6+prior,False
 TT51/2017,Phản vệ,current,TT08/1999,,,TT51_2017.pdf tr.3 (OCR) Đ7 k2: 'Thông tư số 08/1999/TT-BYT … hết hiệu lực kể từ ngày Thông tư này có hiệu lực',yes,c6,True
-2989/2026,suy dinh dưỡng cấp tính trẻ em 0–59 tháng,current,4487/2016,,,2989_2026.pdf tr.1 lớp chữ Đ1: 'Quyết định này thay thế Quyết định số 4487/QĐ-BYT ngày 18 tháng 8 năm 2016',yes,c6,True
-1857/2022,Suy tim (cấp và mạn),current,1762/2020,,,1857_2022.pdf tr.1 ảnh+OCR Đ3: thay 1762/QĐ-BYT 17/04/2020,yes,prior,False
+2989/2026,suy dinh dưỡng cấp tính trẻ em 0–59 tháng,current,4487/2016,,,2989_2026.pdf tr.1 lớp chữ Đ1: 'Quyết định này thay thế Quyết định số 4487/QĐ-BYT ngày 18 tháng 8 năm 2016',yes,c6,False
+1857/2022,Suy tim (cấp và mạn),current,1762/2020,,,1857_2022.pdf tr.1 ảnh+OCR Đ3: thay 1762/QĐ-BYT 17/04/2020,yes,prior,True
 1762/2020,Suy tim mạn tính,superseded,,1857/2022,,bị thay: 1857_2022.pdf tr.1 Đ3; tự thân: 1762_2020.pdf tr.1 Đ3 chỉ hiệu lực,yes,prior,False
-2323/2025,"Sơ sinh (chăm sóc, điều trị trẻ sơ sinh)",current,,,,2323_2025.pdf không có trang QĐ (bìa 'Ban hành kèm theo Quyết định số /QĐ-BYT … tháng 7 năm 2025') → chưa đọc được,no,c6,True
+2323/2025,"Sơ sinh (chăm sóc, điều trị trẻ sơ sinh)",current,,,,2323_2025.pdf không có trang QĐ (bìa 'Ban hành kèm theo Quyết định số /QĐ-BYT … tháng 7 năm 2025') → chưa đọc được,no,c6,False
 315/2015,"sản phụ khoa (tiền sản giật, thiếu máu thai kỳ, ...)",current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
 4845/2016,Sốt rét,superseded,3232/2013,2699/2020,,bị thay: trang QĐ 2699/2020 (IMPE Quy Nhơn) Đ1; tự thân: 4845_2016.pdf tr.1 ảnh Đ2 'Bãi bỏ Quyết định số 3232/QĐ-BYT ngày 30/8/2013',yes,c6+prior,False
 2699/2020,Sốt rét,superseded,4845/2016,3377/2023,,tệp QĐ riêng IMPE Quy Nhơn (ngoài data/raw) tr.1 Đ1: thay HD kèm QĐ 4845/QĐ-BYT 08/9/2016; bị thay: 3377_2023.pdf tr.1 Đ1,yes,prior+c6,False
@@ -61,7 +61,7 @@ TT51/2017,Phản vệ,current,TT08/1999,,,TT51_2017.pdf tr.3 (OCR) Đ7 k2: 'Thô
 292/2024,Tay chân miệng,current,1003/2012,,,292_2024.pdf tr.1 ảnh Đ1: thay HD kèm 'Quyết định số 1003/QĐ-BYT ngày 30/3/2012',yes,c6,True
 TT10/2024,"Tiêm chủng (danh mục bệnh, đối tượng, lịch tiêm chủng mở rộng)",superseded,TT38/2017,TT52/2025,,TT10_2024.pdf tr.4 ảnh Đ4: TT 38/2017/TT-BYT hết hiệu lực; bị thay: TT52_2025.pdf tr.9 Đ4 k2,yes,prior,False
 TT52/2025,"Tiêm chủng (danh mục bệnh, đối tượng, lịch tiêm chủng mở rộng)",superseded,TT10/2024,TT13/2026,,TT52_2025.pdf tr.9 ảnh Đ4 k2: TT 10/2024/TT-BYT hết hiệu lực; bị thay: TT13_2026.pdf tr.18 Đ27 k2 điểm d,yes,prior,False
-TT13/2026,Tiêm chủng (hoạt động tiêm chủng; không chứa bảng lịch tiêm),current,TT05/2020;TT24/2018;TT34/2018;TT52/2025,,,"TT13_2026.pdf tr.18 ảnh Đ27 k2: TT 24/2018, 34/2018, 05/2020 (và điểm d: TT 52/2025) hết hiệu lực từ 01/7/2026",yes,c6+prior,True
+TT13/2026,Tiêm chủng (hoạt động tiêm chủng; không chứa bảng lịch tiêm),current,TT05/2020;TT24/2018;TT34/2018;TT52/2025,,,"TT13_2026.pdf tr.18 ảnh Đ27 k2: TT 24/2018, 34/2018, 05/2020 (và điểm d: TT 52/2025) hết hiệu lực từ 01/7/2026",yes,c6+prior,False
 4121/2009,tiêu chảy cấp trẻ em,current,,,,"4121_2009.pdf (phông TCVN3, OCR): không thấy điều khoản thay thế; không thấy văn bản thay 4121 → hiệu lực chưa xác nhận",no,prior,False
 1911/2021,Tiền sản giật,superseded,,1154/2024,,"bị thay: Đ3 QĐ 1154/2024 (ảnh tr.1 bản quét Drive, agent trước đọc; ngoài data/raw); tự thân: 1911_2021__27810c20.pdf Đ2 chỉ hiệu lực",yes,c6+prior,False
 3087/2020,tiền đái tháo đường,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
@@ -71,13 +71,13 @@ TT13/2026,Tiêm chủng (hoạt động tiêm chủng; không chứa bảng lị
 3310/2019,Viêm gan vi rút B,superseded,5448/2014,1740/2026,,3310_2019__c43006cb.pdf tr.2 ảnh Đ2: 'Bãi bỏ Quyết định số 5448/QĐ-BYT ngày 30/12/2014'; bị thay: 1740_2026.pdf tr.1 Đ3,yes,prior+c6,False
 1740/2026,Viêm gan vi rút B,current,3310/2019,,,1740_2026.pdf tr.1 lớp chữ Đ3: 'thay thế Quyết định số 3310/QĐ-BYT ngày 29/7/2019',yes,c6,True
 2065/2021,Viêm gan vi rút C,superseded,5012/2016,2855/2024,,bị thay: 2855_2024.pdf tr.1 Đ1; tự thân: 2065_2021.pdf tr.1 Đ1 thay HD kèm 'Quyết định số 5012/Q-BYT ngày 20/9/2016',yes,c6,False
-2855/2024,Viêm gan vi rút C,current,2065/2021,,,2855_2024.pdf tr.1 ảnh Đ1: thay HD kèm 'Quyết định số 2065/QĐ-BYT ngày 29/04/2021',yes,c6,False
+2855/2024,Viêm gan vi rút C,current,2065/2021,,,2855_2024.pdf tr.1 ảnh Đ1: thay HD kèm 'Quyết định số 2065/QĐ-BYT ngày 29/04/2021',yes,c6,True
 4815/2020,Viêm phổi mắc phải cộng đồng ở người lớn,superseded,,2147/2026,,bị thay: 2147_2026.pdf tr.1 Đ3; tự thân: 4815_2020.pdf tr.1 lớp chữ Đ3 chỉ hiệu lực,yes,c6,False
 2147/2026,Viêm phổi mắc phải cộng đồng ở người lớn,current,4815/2020,,,2147_2026.pdf tr.1 lớp chữ Đ3: 'thay thế Quyết định số 4815/QĐ-BYT ngày 20 tháng 11 năm 2020',yes,c6,True
 2341/2024,Xử trí lồng ghép chăm sóc trẻ bệnh (IMCI),current,,,,"2341_2024__e7639ce8.pdf tr.1 ảnh Đ3: 'có hiệu lực kể từ ngày ký, ban hành' (không thay văn bản nào)",yes,c6,False
 6173/2018,Đái tháo đường thai kỳ,superseded,,1470/2024,,bị thay: 1470_2024.pdf tr.1 Đ3; tự thân: 6173_2018.pdf tr.2 Đ2 chỉ hiệu lực,yes,c6+prior,False
 1470/2024,Đái tháo đường thai kỳ,current,6173/2018,,,1470_2024.pdf tr.1 ảnh Đ3: 'thay thế Quyết định số 6173/QĐ-BYT ngày 12 tháng 10 năm 2018',yes,c6,True
-1760/2024,đái tháo đường típ 1 trẻ em và thanh thiếu niên,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,True
+1760/2024,đái tháo đường típ 1 trẻ em và thanh thiếu niên,current,,,,tr.1 trang QĐ: chỉ hiệu lực / không có điều khoản thay thế (theo notes manifest),yes,prior,False
 3280/2011,Đái tháo đường típ 2,current,,,,3280_2011.pdf tr.1 Đ3 chỉ hiệu lực; không văn bản nào đã đọc nêu tên 3280/2011 → vẫn current theo quy tắc (bản xuất LawSoft),yes,prior,False
 3319/2017,Đái tháo đường típ 2,superseded,,5481/2020,,bị thay: 5481_2020.pdf tr.1 Đ3; trang QĐ 3319 (ngoài data/raw) Đ3 bãi bỏ phần ĐTĐ típ 2 của 3879/2014,yes,c6+prior,False
 5481/2020,Đái tháo đường típ 2,current,3319/2017,,1353/2021,5481_2020.pdf tr.1 lớp chữ Đ3: 'thay thế Quyết định số 3319/QĐ-BYT ngày 19/07/2017'; sửa một phần: 1353_2021.pdf tr.1 Đ1,yes,c6,True

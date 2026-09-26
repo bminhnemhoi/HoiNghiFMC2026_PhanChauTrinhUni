@@ -1,0 +1,1125 @@
+{
+ "document": "2892/2022",
+ "atoms_file": "data/interim/atoms_parts/2892_2022.jsonl (dòng N = mẩu A-2892_2022-00N)",
+ "pdf": "data/raw/2892_2022.pdf",
+ "pdf_sha256": "c27414b7b2c980a899a104eb3e243c704c147c2c06894dd8a6e402ea59943cb3",
+ "protocol": "configs/extraction_protocol.md 1.0, sha256 4e5a0af0bad96a9757c32e9c539d761c4017086a313bf0924f12e766f3378a43 (khớp extraction.protocol_sha256 của 66 mẩu)",
+ "auditor": "integrity-auditor — AI (Claude), KHÔNG phải người, KHÔNG phải bác sĩ",
+ "date": "2026-09-27",
+ "blind_rule": "Không đọc/liệt kê data/runs/. Không sửa tệp của người trích. Không commit. Không truy cập trang luật tư nhân.",
+ "code_checks": {
+  "schema": "OK 66/66 (python -m vnsoc.schemas atom)",
+  "verify_span": "OK: 0 mẩu không đạt",
+  "atoms_merge_only": "giữ 66, loại 0 (xuất ra scratchpad, không ghi vào dự án)",
+  "independent_span_check": "Mã riêng (PyMuPDF get_text + NFC + gộp khoảng trắng, không dùng vnsoc.norm): 66/66 span nằm trên đúng trang và chỉ trang đó; 2/2 span DR8 (012 tr.16, 034 tr.14) đúng trang; printed_page 66/66 khớp số in đầu trang",
+  "claimed_counts": "slot_type (dose 13, duration 12, threshold 11, classification 10, first_line 7, schedule 6, target 5, procedure 2), value_kind (num 58, cat 8), trang có mẩu {8,10-19,23,24}: khớp báo cáo người trích",
+  "forbidden_fields": "không mẩu nào đặt moh_lags_evidence/clinical_harm/clinician_confirmed/decoy_plausible; foreign/superseded/decoy để trống"
+ },
+ "accuracy": {
+  "n": 66,
+  "ok": 62,
+  "fix": 3,
+  "error": 1,
+  "fix_ids": [
+   "A-2892_2022-006",
+   "A-2892_2022-007",
+   "A-2892_2022-035"
+  ],
+  "error_ids": [
+   "A-2892_2022-066"
+  ],
+  "value_or_span_wrong": 0,
+  "error_rate": "1/66 = 1,5% (KTC 95% Clopper-Pearson 0,0-8,2%)",
+  "fix_or_error_rate": "4/66 = 6,1% (1,7-14,8%)"
+ },
+ "coverage": {
+  "sampling": "python: sorted(random.Random(2892).sample(range(5,27),5)) trên trang PDF chuyên môn 5-26 (loại 1-4: quyết định/bìa/ban biên soạn/mục lục; 27-28: tài liệu tham khảo). Hạt giống = số hiệu văn bản.",
+  "pages": [
+   7,
+   12,
+   15,
+   18,
+   26
+  ],
+  "per_page": {
+   "7": {
+    "clear_covered": [],
+    "missed": [],
+    "borderline": [
+     "sai số chiều cao 0,1 cm; cân chính xác 0,1 kg (kỹ thuật đo)"
+    ]
+   },
+   "12": {
+    "clear_covered": [
+     "017",
+     "018",
+     "019",
+     "020",
+     "021",
+     "022",
+     "023",
+     "024",
+     "muối <5g (Bảng 6.1, cùng giá trị 016)"
+    ],
+    "missed": [],
+    "borderline": [
+     "Bảng 6.2 nhu cầu năng lượng nam 30/35/45, nữ 25/30/40 kcal/kg (6 ô) - người trích loại có lý do"
+    ]
+   },
+   "15": {
+    "clear_covered": [
+     "038",
+     "039"
+    ],
+    "missed": [],
+    "borderline": [
+     "«tất cả những người béo phì nên trải qua liệu pháp hành vi» (cat)",
+     "«nên được khuyên bỏ hút thuốc» (cat)",
+     "«phải chấm dứt hoặc giảm hút thuốc và uống rượu» (cat; người trích loại có lý do)",
+     "«đi bộ đặc biệt vẫn được ưa chuộng» (cat, chồng 038)"
+    ]
+   },
+   "18": {
+    "clear_covered": [
+     "055",
+     "056",
+     "057"
+    ],
+    "missed": [
+     "Liraglutide CCĐ: tiền sử cá nhân hoặc gia đình ung thư tuyến giáp thể tủy (cat)",
+     "Liraglutide CCĐ: tiền sử cá nhân đa u tuyến nội tiết típ 2 (cat)",
+     "Nhịp theo dõi «hàng tháng» sau đặt vòng thắt (schedule) - ĐÃ ghi ở _coverage.md, bị chặn vì bộ đọc số"
+    ]
+   },
+   "26": {
+    "clear_covered": [
+     "CCĐ «Có thai» (orlistat, liraglutide) - cùng giá trị 044"
+    ],
+    "missed": [
+     "Orlistat CCĐ: tắc mật (thân bài tr.17: «ứ mật»)",
+     "Orlistat CCĐ: hội chứng rối loạn hấp thu mạn tính (thân bài tr.17)",
+     "Liraglutide CCĐ: tiền sử viêm tụy (chỉ có ở phụ lục)"
+    ],
+    "borderline": [
+     "Tương tác thuốc (vitamin tan trong mỡ, levothyroxine, cyclosporine, kháng đông uống, chống co giật)"
+    ]
+   }
+  },
+  "unique_clear_candidates": 21,
+  "covered": 15,
+  "missed": 6,
+  "miss_rate_strict": "6/21 = 28,6% (KTC 95% 11,3-52,2%)",
+  "miss_rate_excluding_documented_blocked": "5/20 = 25,0% (8,7-49,1%)",
+  "miss_rate_if_contraindications_out_of_scope": "1/16 = 6,3% (0,2-30,2%) - chỉ còn mục đã ghi ở _coverage.md",
+  "borderline_not_counted": 14,
+  "note": "Cả 5 bỏ sót chưa ghi nhận đều là CHỐNG CHỈ ĐỊNH thuốc cho một quần thể, cùng dạng với 044-046 (không khuyến cáo khi mang thai) và 058-059 (không nên chỉ định ống đứng khi thoát vị hoành) mà người trích ĐÃ lấy. _coverage.md xếp chống chỉ định vào «thông tin dược lý»; giao thức §1 không nói rõ. Ngoài mẫu (không tính tỉ lệ): tr.13 «Cần thăm dò tim mạch trước khi bắt đầu chương trình vận động, nhất là với người lớn tuổi, có yếu tố nguy cơ tim mạch» (procedure/cat); tr.17 orlistat CCĐ và theo dõi INR/cyclosporine/chức năng tuyến giáp (cat, biên); tr.16 «Cân nhắc thay đổi thuốc ... sau ba tháng dùng liều đủ/tối đa» (cùng 3 tháng như 043; biên)."
+ },
+ "systemic_issues": {
+  "S1": "Chống chỉ định/khuyến cáo phủ định xử lý không nhất quán: lấy 044-046, 058-059; bỏ CCĐ orlistat (tr.17, 26) và liraglutide (tr.18, 26). Nguồn chính của tỉ lệ bỏ sót.",
+  "S2": "Thuộc tính quần thể quyết định đáp án (dân tộc/quốc gia cho ngưỡng nhân trắc) có ở 001-005 nhưng thiếu ở 006-007.",
+  "S3": "Quy ước hướng theo slot (src/vnsoc/match/atom_flags.py dòng 44: AGGRESSIVE_HIGHER dose True, target False) bị đảo cho mẩu lối sống: target dùng cho % giảm cân/tốc độ giảm cân/cường độ tập (009, 011, 025, 032, 040: cao hơn = tích cực hơn); dose dùng cho hạn chế ăn (016, 017, 022-024: cao hơn = ít tích cực hơn); 015 (số bữa/ngày) là dose trong khi tần suất khác (036, 048) là schedule. foreign_direction sẽ ngược dấu nếu không đặt aggressive_higher ở kiểm ngữ cảnh.",
+  "S4": "Khoảng nửa mở («15 - <20», «5 - < 85», «85 - < 95») không mã hóa được trong ValueItem; grade.matches tính cả đầu mút mở: 064 (thừa cân) nhận «≥ 95th percentile» là khớp Bộ Y tế; 018 nhận «20%».",
+  "S5": "Giá trị bằng chữ không số («mỗi tuần», «hàng tháng», «mỗi ngày») và INN thiếu trong configs/grading.yaml (orlistat, liraglutide): 3 ứng viên + 1 giá trị cùng câu (035) không ghi được.",
+  "S6": "Đơn vị ngoài UNIT_ALIASES (kcal/kg, percentile, kg/tháng, ngày/tuần): kg/tháng không quy đổi với kg/tuần (025).",
+  "S7": "Mâu thuẫn nội bộ Bộ Y tế (012 và 050/051; 030 và 035; 027 và 033; 009 và 040) chỉ ghi ở notes tự do.",
+  "S8": "Câu thuật lại phê duyệt của cơ quan nước ngoài (066) được lấy thành mẩu Bộ Y tế.",
+  "S9": "Hằng số công thức: lấy x22 (021) nhưng loại 220 (nhịp tim tối đa)."
+ },
+ "protocol_proposals": [
+  "P1 (§1): Nêu rõ chống chỉ định và «không khuyến cáo/không nên chỉ định» cho một quần thể là mẩu (cat, nhãn not_recommended/contraindicated), kể cả ở mục «Chống chỉ định» hay phụ lục; «dược lý chung» chỉ gồm cơ chế, dược động học, tác dụng phụ, tỷ lệ.",
+  "P2 (§2 population): Khi giá trị quốc tế cho slot khác theo dân tộc/khu vực (BMI, vòng bụng, ngưỡng chỉ định dựa BMI), ghi population.ethnicity + required_terms; văn bản gán cho tổ chức Việt Nam thì ghi «người Việt Nam».",
+  "P3 (§1): Câu thuật lại quy định/phê duyệt của cơ quan nước ngoài (FDA, EMA, WHO...) không phải khuyến cáo Bộ Y tế: không lấy, hoặc lấy kèm extraction.attributed_to_foreign và lead quyết.",
+  "P4 (§2 slot_type): Bảng chọn slot cho mẩu lối sống/dinh dưỡng; yêu cầu extraction.direction_hint (cao hơn = tích cực hơn/ít tích cực hơn) để kiểm ngữ cảnh đặt aggressive_higher; tần suất (lần/ngày, lần/tuần, bữa/ngày) luôn là schedule.",
+  "P5 (§1): Hằng số công thức (x22, 220 - tuổi): quy định lấy hay không, áp nhất quán.",
+  "P6 (§2 vn): Khoảng nửa mở «a - <b»: quy định cách ghi (ví dụ trường hi_open) và chặn sinh câu hỏi từ mẩu đó tới khi bộ chấm hỗ trợ; tạm ghi extraction.open_upper=true.",
+  "P7 (§3): Giá trị bằng chữ không số và thuốc chưa có trong grading.yaml: ghi vào _coverage.md mục «ứng viên chưa ghi được» (như người trích đã làm) VÀ mở phiếu công cụ.",
+  "P8 (§2): Thuộc tính quần thể lấy ngoài span phải ghi vị trí trong notes; thuộc tính quyết định đáp án phải nằm trong span hoặc span DR8.",
+  "P9 (§4): Mâu thuẫn nội bộ cùng văn bản: trường có cấu trúc extraction.internal_neighbours [{atom_id, lý do}] để kiểm ngữ cảnh điền moh_neighbour.",
+  "P10 (§1): Bảng tham chiếu nhu cầu/tiêu hao năng lượng («Tham khảo») thuộc nhóm «không lấy», như khoảng tham chiếu xét nghiệm."
+ ],
+ "atoms": {
+  "A-2892_2022-001": {
+   "line": 1,
+   "page": 8,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "«người lớn» suy từ cấu trúc (mục 7 dùng bách phân vị cho trẻ ≥ 2 tuổi); hợp lý, đã ghi notes."
+  },
+  "A-2892_2022-002": {
+   "line": 2,
+   "page": 8,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "«người lớn» suy từ cấu trúc (mục 7 dùng bách phân vị cho trẻ ≥ 2 tuổi); hợp lý, đã ghi notes."
+  },
+  "A-2892_2022-003": {
+   "line": 3,
+   "page": 8,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "«người lớn» suy từ cấu trúc (mục 7 dùng bách phân vị cho trẻ ≥ 2 tuổi); hợp lý, đã ghi notes."
+  },
+  "A-2892_2022-004": {
+   "line": 4,
+   "page": 8,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "«người lớn» suy từ cấu trúc (mục 7 dùng bách phân vị cho trẻ ≥ 2 tuổi); hợp lý, đã ghi notes."
+  },
+  "A-2892_2022-005": {
+   "line": 5,
+   "page": 8,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "«người lớn» suy từ cấu trúc (mục 7 dùng bách phân vị cho trẻ ≥ 2 tuổi); hợp lý, đã ghi notes."
+  },
+  "A-2892_2022-006": {
+   "line": 6,
+   "page": 8,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "fail",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "fix",
+   "flags": [],
+   "note": "Thiếu thuộc tính quyết định đáp án: dân tộc/quốc gia (ngưỡng vòng bụng quốc tế phụ thuộc chủng tộc) và tuổi (người lớn). Văn bản gán ngưỡng cho «Bộ Y tế và Hội Nội tiết & Đái tháo đường Việt Nam». Mẩu 001–005 cùng mục 4 đã có ethnicity + required_terms; 006/007 thì không. Sửa: thêm population.ethnicity «người Việt Nam (theo Bộ Y tế và Hội NT–ĐTĐ Việt Nam)», population.age «người lớn», required_terms.ethnicity (vi: Việt Nam/châu Á; en: Vietnamese/Asian). Không đổi giá trị."
+  },
+  "A-2892_2022-007": {
+   "line": 7,
+   "page": 8,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "fail",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "fix",
+   "flags": [],
+   "note": "Thiếu thuộc tính quyết định đáp án: dân tộc/quốc gia (ngưỡng vòng bụng quốc tế phụ thuộc chủng tộc) và tuổi (người lớn). Văn bản gán ngưỡng cho «Bộ Y tế và Hội Nội tiết & Đái tháo đường Việt Nam». Mẩu 001–005 cùng mục 4 đã có ethnicity + required_terms; 006/007 thì không. Sửa: thêm population.ethnicity «người Việt Nam (theo Bộ Y tế và Hội NT–ĐTĐ Việt Nam)», population.age «người lớn», required_terms.ethnicity (vi: Việt Nam/châu Á; en: Vietnamese/Asian). Không đổi giá trị."
+  },
+  "A-2892_2022-008": {
+   "line": 8,
+   "page": 8,
+   "slot_type": "procedure",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "Mẩu quy trình hợp lệ. population.posture lấy từ câu «Cách đo» ngoài span (cùng trang) — nhỏ, không quyết định đáp án."
+  },
+  "A-2892_2022-009": {
+   "line": 9,
+   "page": 10,
+   "slot_type": "target",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:target_but_higher_is_more_aggressive",
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-010": {
+   "line": 10,
+   "page": 10,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-011": {
+   "line": 11,
+   "page": 10,
+   "slot_type": "target",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:target_but_higher_is_more_aggressive"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-012": {
+   "line": 12,
+   "page": 10,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": "Mâu thuẫn nội bộ với 050/051 (orlistat BMI ≥ 30 / ≥ 27 kèm bệnh) — người trích đã ghi; cần moh_neighbour ở kiểm ngữ cảnh."
+  },
+  "A-2892_2022-013": {
+   "line": 13,
+   "page": 10,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-014": {
+   "line": 14,
+   "page": 10,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-015": {
+   "line": 15,
+   "page": 11,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_slot_inconsistent:meals_per_day_as_dose"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-016": {
+   "line": 16,
+   "page": 11,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:dose_but_higher_is_less_aggressive"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-017": {
+   "line": 17,
+   "page": 12,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:dose_but_higher_is_less_aggressive"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-018": {
+   "line": 18,
+   "page": 12,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S4_half_open_interval"
+   ],
+   "note": "«15 - <20%»: cận trên mở không mã hóa được (ValueItem một cmp); bộ chấm nhận «20%» là khớp."
+  },
+  "A-2892_2022-019": {
+   "line": 19,
+   "page": 12,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-020": {
+   "line": 20,
+   "page": 12,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-021": {
+   "line": 21,
+   "page": 12,
+   "slot_type": "procedure",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S9_formula_constant"
+   ],
+   "note": "Hằng số công thức (×22); đơn vị kg/m2 suy ra (văn bản không ghi). Không nhất quán với việc loại hằng số 220 của công thức nhịp tim (đề xuất P5)."
+  },
+  "A-2892_2022-022": {
+   "line": 22,
+   "page": 12,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:dose_but_higher_is_less_aggressive",
+    "S6_unit_outside_aliases"
+   ],
+   "note": "«calo» hiểu là kcal (cách dùng thông thường); kcal/kg ngoài UNIT_ALIASES nhưng bộ đọc vẫn đọc «20–25 kcal/kg/ngày»."
+  },
+  "A-2892_2022-023": {
+   "line": 23,
+   "page": 12,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:dose_but_higher_is_less_aggressive",
+    "S6_unit_outside_aliases"
+   ],
+   "note": "«calo» hiểu là kcal (cách dùng thông thường); kcal/kg ngoài UNIT_ALIASES nhưng bộ đọc vẫn đọc «20–25 kcal/kg/ngày»."
+  },
+  "A-2892_2022-024": {
+   "line": 24,
+   "page": 12,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:dose_but_higher_is_less_aggressive",
+    "S6_unit_outside_aliases"
+   ],
+   "note": "«calo» hiểu là kcal (cách dùng thông thường); kcal/kg ngoài UNIT_ALIASES nhưng bộ đọc vẫn đọc «20–25 kcal/kg/ngày»."
+  },
+  "A-2892_2022-025": {
+   "line": 25,
+   "page": 13,
+   "slot_type": "target",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:target_but_higher_is_more_aggressive",
+    "S6_unit_outside_aliases"
+   ],
+   "note": "kg/tháng bị đọc thành kg; trả lời theo tuần (0,5–1 kg/tuần) không được quy đổi — lỗi công cụ, không phải lỗi trích."
+  },
+  "A-2892_2022-026": {
+   "line": 26,
+   "page": 13,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-027": {
+   "line": 27,
+   "page": 13,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-028": {
+   "line": 28,
+   "page": 13,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-029": {
+   "line": 29,
+   "page": 13,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-030": {
+   "line": 30,
+   "page": 13,
+   "slot_type": "schedule",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-031": {
+   "line": 31,
+   "page": 13,
+   "slot_type": "schedule",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-032": {
+   "line": 32,
+   "page": 13,
+   "slot_type": "target",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:target_but_higher_is_more_aggressive"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-033": {
+   "line": 33,
+   "page": 13,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-034": {
+   "line": 34,
+   "page": 13,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "Tập {≥10; 5–10 phút} gộp đúng quy tắc cùng quần thể, cùng văn bản (tr.13 + tr.14)."
+  },
+  "A-2892_2022-035": {
+   "line": 35,
+   "page": 13,
+   "slot_type": "schedule",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "partial",
+   "d_recommendation": "pass",
+   "e_value_set": "fail",
+   "verdict": "fix",
+   "flags": [
+    "S6_unit_outside_aliases",
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": "Quần thể chung chung («vận động/tập luyện thể lực») chồng lên 030 (aerobic cường độ trung bình «3 đến 5 lần một tuần», cùng trang); cùng câu có giá trị thứ hai «tốt hơn nên tập đều đặn mỗi ngày» không vào được vn (bộ đọc số không đọc «mỗi ngày»): trả lời «7 ngày/tuần» bị chấm KHÔNG khớp Bộ Y tế. Sửa không đổi giá trị: thêm required_terms «tối thiểu / at least» để câu hỏi hỏi mức TỐI THIỂU; ghi moh_neighbour (030: 3–5 lần/tuần; «mỗi ngày»)."
+  },
+  "A-2892_2022-036": {
+   "line": 36,
+   "page": 14,
+   "slot_type": "schedule",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-037": {
+   "line": 37,
+   "page": 14,
+   "slot_type": "first_line",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-038": {
+   "line": 38,
+   "page": 15,
+   "slot_type": "first_line",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-039": {
+   "line": 39,
+   "page": 15,
+   "slot_type": "schedule",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-040": {
+   "line": 40,
+   "page": 16,
+   "slot_type": "target",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S3_direction:target_but_higher_is_more_aggressive",
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-041": {
+   "line": 41,
+   "page": 16,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-042": {
+   "line": 42,
+   "page": 16,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-043": {
+   "line": 43,
+   "page": 16,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-044": {
+   "line": 44,
+   "page": 17,
+   "slot_type": "first_line",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-045": {
+   "line": 45,
+   "page": 17,
+   "slot_type": "first_line",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-046": {
+   "line": 46,
+   "page": 17,
+   "slot_type": "first_line",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-047": {
+   "line": 47,
+   "page": 17,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-048": {
+   "line": 48,
+   "page": 17,
+   "slot_type": "schedule",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-049": {
+   "line": 49,
+   "page": 17,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-050": {
+   "line": 50,
+   "page": 17,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": "Tập vn có thể thiếu 25 kg/m2: nguyên tắc chung tr.10/tr.16 («BMI ≥ 25 ... cần xem xét điều trị bằng thuốc. Hai loại thuốc ...: orlistat và liraglutide») áp cho cả orlistat. Người trích đã ghi mâu thuẫn; lead quyết (lex specialis hay gộp tập) ở kiểm ngữ cảnh."
+  },
+  "A-2892_2022-051": {
+   "line": 51,
+   "page": 17,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S7_internal_conflict_notes_only"
+   ],
+   "note": "Tập vn có thể thiếu 25 kg/m2: nguyên tắc chung tr.10/tr.16 («BMI ≥ 25 ... cần xem xét điều trị bằng thuốc. Hai loại thuốc ...: orlistat và liraglutide») áp cho cả orlistat. Người trích đã ghi mâu thuẫn; lead quyết (lex specialis hay gộp tập) ở kiểm ngữ cảnh."
+  },
+  "A-2892_2022-052": {
+   "line": 52,
+   "page": 17,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "population.route «tiêm dưới da» lấy từ câu cơ chế ngoài span (cùng trang) — nhỏ."
+  },
+  "A-2892_2022-053": {
+   "line": 53,
+   "page": 17,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "population.route «tiêm dưới da» lấy từ câu cơ chế ngoài span (cùng trang) — nhỏ."
+  },
+  "A-2892_2022-054": {
+   "line": 54,
+   "page": 17,
+   "slot_type": "dose",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": "population.route «tiêm dưới da» lấy từ câu cơ chế ngoài span (cùng trang) — nhỏ."
+  },
+  "A-2892_2022-055": {
+   "line": 55,
+   "page": 18,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-056": {
+   "line": 56,
+   "page": 18,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-057": {
+   "line": 57,
+   "page": 18,
+   "slot_type": "duration",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-058": {
+   "line": 58,
+   "page": 19,
+   "slot_type": "first_line",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-059": {
+   "line": 59,
+   "page": 19,
+   "slot_type": "first_line",
+   "value_kind": "cat",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-060": {
+   "line": 60,
+   "page": 23,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-061": {
+   "line": 61,
+   "page": 23,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [],
+   "note": ""
+  },
+  "A-2892_2022-062": {
+   "line": 62,
+   "page": 24,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S6_unit_outside_aliases"
+   ],
+   "note": ""
+  },
+  "A-2892_2022-063": {
+   "line": 63,
+   "page": 24,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S4_half_open_interval",
+    "S6_unit_outside_aliases"
+   ],
+   "note": "«5 - < 85»: cận trên mở không mã hóa được; bộ chấm nhận «85th percentile»."
+  },
+  "A-2892_2022-064": {
+   "line": 64,
+   "page": 24,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S4_half_open_interval",
+    "S6_unit_outside_aliases"
+   ],
+   "note": "«85 - < 95»: cận trên mở không mã hóa được; bộ chấm nhận «≥ 95th percentile» (tức béo phì) là KHỚP Bộ Y tế cho câu hỏi thừa cân — rủi ro chấm sai (S4)."
+  },
+  "A-2892_2022-065": {
+   "line": 65,
+   "page": 24,
+   "slot_type": "classification",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "pass",
+   "e_value_set": "pass",
+   "verdict": "ok",
+   "flags": [
+    "S6_unit_outside_aliases"
+   ],
+   "note": "Ô bảng chỉ ghi «95» (ảnh tr.24 xác nhận); lưu không dấu so sánh là đúng nguyên văn; bộ chấm vẫn khớp «≥ 95th percentile»."
+  },
+  "A-2892_2022-066": {
+   "line": 66,
+   "page": 24,
+   "slot_type": "threshold",
+   "value_kind": "num",
+   "a_span": "pass",
+   "b_value": "pass",
+   "c_population": "pass",
+   "d_recommendation": "fail",
+   "e_value_set": "pass",
+   "verdict": "error",
+   "flags": [
+    "S8_attributed_to_foreign_regulator"
+   ],
+   "note": "Không phải khuyến cáo của Bộ Y tế: câu thuật lại phê duyệt của FDA (Hoa Kỳ) và EMA (châu Âu) «để sử dụng cho những người trên 12 tuổi». Giao thức §1 loại câu mô tả; giá trị trùng nguồn nước ngoài theo cấu trúc nên không đo được lệch. Đề xuất loại khỏi tập (hoặc lead quyết giữ và đánh dấu extraction.attributed_to_foreign)."
+  }
+ }
+}
