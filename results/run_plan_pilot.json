@@ -1,0 +1,10 @@
+{
+ "qwen3_8b_local|A0|en|short": 65,
+ "qwen3_8b_local|A0|vi|short": 65,
+ "qwen3_8b_local|A1|en|mcq": 46,
+ "qwen3_8b_local|A1|en|short": 65,
+ "qwen3_8b_local|A1|vi|mcq": 46,
+ "qwen3_8b_local|A1|vi|short": 65,
+ "qwen3_8b_local|A3|en|short": 65,
+ "qwen3_8b_local|A3|vi|short": 65
+}
