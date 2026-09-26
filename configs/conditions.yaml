@@ -1,4 +1,6 @@
 # Điều kiện hỏi A0–A6 và giải mã (đăng ký trước, mục 4.4 đề cương).
+# {doc} do vnsoc.run.prompts.doc_label dựng: "Quyết định 2760/QĐ-BYT (2023)" / "Thông tư 51/2017/TT-BYT"
+# (VI) và "Decision 2760/QĐ-BYT (2023)" / "Circular 51/2017/TT-BYT" (EN) — sửa 26/9, trước OSF.
 decoding: {temperature: 0.0, max_tokens: 128, seed: 0}
 signal_sampling: {condition: A2, n: 5, temperature: 0.7, top_p: 0.95}   # chốt trong OSF trước khi chạy
 rag:
@@ -22,7 +24,7 @@ prompts:
     A0: "{question}\n{answer_line}"
     A1: "Theo hướng dẫn chẩn đoán và điều trị hiện hành của Bộ Y tế Việt Nam, {question}\n{answer_line}"
     A2: "Các đoạn trích từ hướng dẫn của Bộ Y tế Việt Nam:\n{passages}\n\nDựa vào các đoạn trích trên, {question}\nGhi mã đoạn đã dùng ở dòng: NGUỒN: [P?]\n{answer_line}"
-    A3: "Đoạn trích từ QĐ {doc}, mục {section}:\n\"\"\"{passage}\"\"\"\nDựa vào đoạn trích, {question}\n{answer_line}"
+    A3: "Đoạn trích từ {doc}, mục {section}:\n\"\"\"{passage}\"\"\"\nDựa vào đoạn trích, {question}\n{answer_line}"
     A4: "Nội dung chương liên quan trong hướng dẫn của Bộ Y tế ({doc}):\n\"\"\"{chapter}\"\"\"\n\nDựa vào nội dung trên, {question}\n{answer_line}"
     A5: "Các đoạn trích từ hướng dẫn y khoa:\n{passages}\n\nTheo hướng dẫn chẩn đoán và điều trị hiện hành của Bộ Y tế Việt Nam, {question}\nGhi mã đoạn đã dùng ở dòng: NGUỒN: [P?]\n{answer_line}"
     A6: "{vignette}\n{answer_line}"
@@ -32,7 +34,7 @@ prompts:
     A0: "{question}\n{answer_line}"
     A1: "According to the current diagnosis and treatment guidelines of the Vietnamese Ministry of Health, {question}\n{answer_line}"
     A2: "Excerpts from Vietnamese Ministry of Health guidelines:\n{passages}\n\nBased on the excerpts above, {question}\nState the excerpt IDs you used on a line: SOURCE: [P?]\n{answer_line}"
-    A3: "Excerpt from Decision {doc}, section {section}:\n\"\"\"{passage}\"\"\"\nBased on the excerpt, {question}\n{answer_line}"
+    A3: "Excerpt from {doc}, section {section}:\n\"\"\"{passage}\"\"\"\nBased on the excerpt, {question}\n{answer_line}"
     A4: "Relevant chapter of the Vietnamese Ministry of Health guideline ({doc}):\n\"\"\"{chapter}\"\"\"\n\nBased on the text above, {question}\n{answer_line}"
     A5: "Excerpts from medical guidelines:\n{passages}\n\nAccording to the current diagnosis and treatment guidelines of the Vietnamese Ministry of Health, {question}\nState the excerpt IDs you used on a line: SOURCE: [P?]\n{answer_line}"
     A6: "{vignette}\n{answer_line}"
