@@ -91,7 +91,9 @@ def main(argv=None) -> int:
         w.writeheader()
         w.writerows(tri)
     (P.state / "gates").mkdir(parents=True, exist_ok=True)
-    (P.state / "gates" / "HG2.3_missing.md").write_text(missing_md(merged), encoding="utf-8")
+    extra = P.state / "gates" / "HG2.3_extra.md"          # hand-written items (agent findings), kept across re-merges
+    (P.state / "gates" / "HG2.3_missing.md").write_text(
+        missing_md(merged) + ("\n" + extra.read_text(encoding="utf-8") if extra.exists() else ""), encoding="utf-8")
     n_off = sum(t["official_pdf"] for t in tri)
     n_txt = sum(bool(t["text_layer"]) for t in tri)
     cur = sum(r["status"] == "current" for r in merged)
