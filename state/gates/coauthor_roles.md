@@ -21,6 +21,16 @@ Soạn 27/9/2026. Đây là đề xuất. Nhóm chốt vai trò thật và ghi l
 | Thông, Hương | Đọc abstract (`manuscript/build/fmc/abstract_fmc_vi.docx`) và nhắn Minh "đồng ý" hoặc góp ý | 15 phút |
 | Cả ba | Kiểm tên và đơn vị trên abstract (xem mục "Cần xác nhận" bên dưới) | 5 phút |
 
+## Việc có thể làm ngay (không bắt buộc, khoảng 1 giờ): kiểm 23 khuyến cáo xung đột của thí điểm
+
+File `review/human_check/pilot_conflicts.html` (5 MB, mở bằng trình duyệt trên điện thoại hoặc máy tính, không cần mạng). Minh gửi file này cho Thông (hoặc cả hai) qua Zalo hoặc email.
+
+1. Mở file, gõ tên người kiểm ở đầu trang.
+2. Với mỗi khuyến cáo: nhìn ảnh trang PDF (đoạn trích được tô vàng; trang scan thì tự tìm), rồi trả lời 3 câu Đúng / Sai / Không chắc. Nếu Sai, ghi ngắn sai ở đâu.
+3. Bấm **Tải kết quả** và gửi file `.json` tải về cho Minh. Minh đặt file vào `review/human_check/` và báo Claude. Claude tự tính mức đồng thuận người–AI.
+
+Kết quả này cho phép bài viết "được một sinh viên Y khoa kiểm độc lập", không chỉ "AI kiểm".
+
 ## Việc trong nghiên cứu chính (tháng 10–11/2026)
 
 | Việc | Ai làm | Khối lượng | Hình thức |

@@ -21,3 +21,6 @@ dist/
 # Toàn văn hướng dẫn trích từ PDF (tái tạo bằng vnsoc.extract.pdf_to_text / ocr) — không phát hành lại toàn văn
 data/interim/text/
 data/interim/ocr/
+
+# gói kiểm cho đồng tác giả (ảnh trang PDF, dựng lại bằng vnsoc.review_pack)
+review/human_check/*.html
