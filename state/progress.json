@@ -1,0 +1,2665 @@
+{
+ "plan_sha256": "a62c451abcebfb0aff1d9af6a4988b96fb1bc1969468e863c5dc8f512604acbc",
+ "created": "2026-09-26T03:13:15+07:00",
+ "updated": "2026-09-26T03:13:15+07:00",
+ "order": [
+  "T0.1",
+  "T0.2",
+  "T0.6",
+  "HG1.0",
+  "HG0.3",
+  "T0.4",
+  "T0.5",
+  "T1.1",
+  "HG1.2",
+  "T1.3",
+  "T1.4",
+  "T1.5",
+  "T1.6",
+  "T1.7",
+  "T1.8",
+  "HG1.9",
+  "HG1.10",
+  "HG1.11",
+  "T2.10",
+  "HG2.9",
+  "T2.11",
+  "T2.1",
+  "T2.2",
+  "HG2.3",
+  "T2.4",
+  "T2.5",
+  "T2.6",
+  "T2.7",
+  "T2.8",
+  "T3.1",
+  "T3.2",
+  "T3.3",
+  "T3.4",
+  "HG3.5",
+  "HG3.6",
+  "HG3.7",
+  "T3.8",
+  "HG3.9",
+  "T3.10",
+  "T3.11",
+  "T3.12",
+  "HG3.13",
+  "T4.1",
+  "HG4.2",
+  "T4.3",
+  "T4.4",
+  "HG4.5",
+  "T4.6",
+  "T4.7",
+  "T4.8",
+  "T4.9",
+  "HG5.0",
+  "HG4.6",
+  "T4.10",
+  "T5.0",
+  "T5.1",
+  "T5.2",
+  "T5.3",
+  "T5.4",
+  "T5.5",
+  "T5.6",
+  "T5.7",
+  "T5.8",
+  "HG5.9",
+  "T6.0",
+  "T6.1",
+  "HG6.2",
+  "T6.3",
+  "T6.4",
+  "T6.5",
+  "T6.6",
+  "T6.7",
+  "T6.8",
+  "T6.9",
+  "T7.1",
+  "T7.2",
+  "HG7.3",
+  "T7.4",
+  "T7.5",
+  "HG7.6",
+  "T7.7",
+  "T7.8",
+  "T7.9",
+  "HG7.10",
+  "T7.11",
+  "T8.1",
+  "HG8.2",
+  "T8.3"
+ ],
+ "tasks": {
+  "T0.1": {
+   "id": "T0.1",
+   "title": "Dựng repo từ prompt, cài môi trường, chạy test lõi",
+   "phase": "P0",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [],
+   "outputs": [
+    "CLAUDE.md",
+    ".claude/settings.json",
+    "src/vnsoc/state.py",
+    "docs/01_DE_CUONG.md",
+    "docs/02_KE_HOACH_TRIEN_KHAI.md"
+   ],
+   "acceptance": "Toàn bộ file trong 03 đã được tạo đúng đường dẫn; .venv có đủ gói; make test xanh; kế hoạch hợp lệ; git init + commit đầu",
+   "check": "test -x .venv/bin/python && $PY -m pytest -q && scripts/vs validate-plan && git rev-parse --git-dir",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "in_progress",
+   "history": [
+    {
+     "t": "2026-09-26T03:13:15+07:00",
+     "event": "start",
+     "note": ""
+    }
+   ],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T0.2": {
+   "id": "T0.2",
+   "title": "Kiểm tra môi trường và ghi báo cáo",
+   "phase": "P0",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T0.1"
+   ],
+   "outputs": [
+    "state/env_report.json"
+   ],
+   "acceptance": "Báo cáo nhóm core đủ; liệt kê phần thiếu (pdf, ocr, kaggle, api, r) để người dùng làm ở HG0.3",
+   "check": "python3 scripts/check_env.py --need core",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T0.6": {
+   "id": "T0.6",
+   "title": "Soạn sẵn thư và tài liệu cho các cổng người dùng sớm",
+   "phase": "P0",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T0.1"
+   ],
+   "outputs": [
+    "state/gates/HG1.0_email.md",
+    "state/gates/advisor_memo.md",
+    "state/gates/ethics_exemption.md",
+    "state/gates/clinician_invite.md",
+    "state/gates/project_onepager.md"
+   ],
+   "acceptance": "Email hỏi ban tổ chức FMC (ô 500 là ký tự hay từ; abstract chỉ có thiết kế + thí điểm có được không); bản ghi nhớ cho giảng viên về pháp lý (Luật SHTT Điều 15 khoản 2, Luật 131/2025, NĐ 134/2026, điều khoản thuvienphapluat) và đồng tác giả; đơn xin miễn xem xét đạo đức (không người tham gia, văn bản công khai); thư mời bác sĩ + trang tóm tắt dự án kèm bảng xung đột hạt giống (ghi rõ chưa kiểm PDF). Tiếng Việt, lịch sự, ngắn; không bịa tên người nhận",
+   "check": "$PY -m vnsoc.check nofill state/gates/HG1.0_email.md state/gates/advisor_memo.md state/gates/ethics_exemption.md state/gates/clinician_invite.md",
+   "skill": "human-gate-protocol",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG1.0": {
+   "id": "HG1.0",
+   "title": "Gửi email hỏi ban tổ chức FMC",
+   "phase": "P0",
+   "owner": "human",
+   "week": 0,
+   "depends_on": [
+    "T0.6"
+   ],
+   "outputs": [
+    "state/gates/HG1.0.txt"
+   ],
+   "acceptance": "Email đã gửi",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "1. Mở state/gates/HG1.0_email.md, sửa tên/thông tin liên hệ của bạn nếu cần.\n2. Gửi tới conference@pctu.edu.vn (tiêu đề đã soạn sẵn). Hỏi: giới hạn 500 là ký tự hay từ; abstract gồm thiết kế + thí điểm nhỏ có phù hợp không.\n3. Gõ trong Claude Code: XONG HG1.0 đã gửi lúc <giờ>. Khi ban tổ chức trả lời, dán câu trả lời vào chat.\n",
+   "not_before": null,
+   "deadline": "2026-09-26",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG0.3": {
+   "id": "HG0.3",
+   "title": "Tạo tài khoản, khóa API, giới hạn chi tiêu, cài phần mềm hệ thống",
+   "phase": "P0",
+   "owner": "human",
+   "week": 0,
+   "depends_on": [
+    "T0.2"
+   ],
+   "outputs": [
+    "state/gates/HG0.3.txt"
+   ],
+   "acceptance": "check_env nhóm core, kaggle, api đều OK",
+   "check": "python3 scripts/check_env.py --need core,kaggle,api",
+   "skill": null,
+   "agent": null,
+   "instructions": "Làm theo thứ tự (khoảng 1–2 giờ; Llama có thể được duyệt sau vài giờ–vài ngày):\n1. Kaggle: kaggle.com → Settings → xác minh số điện thoại (bắt buộc để dùng GPU và Internet). Settings → API → Create New Token → lưu file vào ~/.kaggle/kaggle.json rồi chạy chmod 600 ~/.kaggle/kaggle.json (hoặc đặt KAGGLE_API_TOKEN trong .env). Điền KAGGLE_USERNAME trong .env.\n2. Hugging Face: tạo tài khoản; Settings → Access Tokens → tạo token loại Read → HF_TOKEN trong .env. Mở trang meta-llama/Llama-3.1-8B-Instruct và Viet-Mistral/Vistral-7B-Chat, bấm đồng ý điều khoản.\n3. Kaggle Secrets: Settings của Kaggle (hoặc trong một notebook: Add-ons → Secrets) → thêm secret tên HF_TOKEN với giá trị token ở bước 2.\n4. API trả phí: tạo khóa Gemini (Google AI Studio) và/hoặc OpenAI. Đặt giới hạn chi tiêu ở trang quản trị sao cho TỔNG ≤ 40 USD (ví dụ Gemini 25 USD + OpenAI 15 USD). Điền GEMINI_API_KEY, OPENAI_API_KEY trong .env.\n5. Phần mềm (WSL2 Ubuntu/Linux): sudo apt update && sudo apt install -y poppler-utils tesseract-ocr tesseract-ocr-vie r-base jq pandoc git. macOS: brew install poppler tesseract tesseract-lang r jq pandoc git.\n6. Trong thư mục dự án: cp .env.example .env rồi điền các khóa. KHÔNG dán khóa vào chat.\nGõ: XONG HG0.3 Llama: <đã duyệt/đang chờ>, Vistral: <đã/chưa>, giới hạn: Gemini <x> USD, OpenAI <y> USD.\n",
+   "not_before": null,
+   "deadline": "2026-09-26",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T0.4": {
+   "id": "T0.4",
+   "title": "Chạy thử Kaggle vLLM (Qwen3-8B-AWQ, 20 câu), chốt phiên bản vLLM chạy được trên T4",
+   "phase": "P0",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "HG0.3"
+   ],
+   "outputs": [
+    "results/smoke/kaggle_smoke.json"
+   ],
+   "acceptance": "20 câu tiếng Việt trả về có dòng ĐÁP ÁN, không có nội dung <think>; ghi vllm_version, thời gian nạp, token/giây vào và ra; phiên bản vLLM ghi vào configs/models.yaml và docs/DECISIONS.md; giờ GPU ghi vào docs/LOG.md",
+   "check": "$PY -c \"import json;d=json.load(open('results/smoke/kaggle_smoke.json'));assert d['vllm_version'] and d['requests_ok']>=20 and d['tokens_out_per_s']>0 and not d.get('think_leak')\"",
+   "skill": "kaggle-vllm-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T0.5": {
+   "id": "T0.5",
+   "title": "Chạy thử API, xác minh model ID, giá và tham số suy luận tối thiểu",
+   "phase": "P0",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "HG0.3"
+   ],
+   "outputs": [
+    "results/smoke/api_smoke.json"
+   ],
+   "acceptance": "Model ID lấy từ API list (không đoán), giá kiểm trên trang chính thức ngày chạy, tham số suy luận tối thiểu đã thử; 5 lượt đồng bộ + 1 batch 20 dòng thành công; chi phí ghi sổ; configs/models.yaml hết FILL_AT_T0.5",
+   "check": "! grep -q FILL_AT_T0.5 configs/models.yaml && $PY -c \"import json;d=json.load(open('results/smoke/api_smoke.json'));assert d['batch_ok'] and d['models']\"",
+   "skill": "api-batch-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T1.1": {
+   "id": "T1.1",
+   "title": "Dựng ~60 mẩu thí điểm từ PDF chính thức (trích nguyên văn + trang), kèm giá trị nước ngoài đã kiểm",
+   "phase": "P1",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T0.2"
+   ],
+   "outputs": [
+    "data/interim/pilot_atoms.jsonl",
+    "state/gates/HG1.2_checklist.md",
+    "tests/test_pilot_atoms.py"
+   ],
+   "acceptance": "Từ data/seed/seed_conflicts.yaml (pilot: true) + 3 cặp lệch phiên bản + mẩu đối chứng. Mỗi mẩu có span nguyên văn, trang, quần thể, value set; giá trị nước ngoài có URL + vị trí đã mở kiểm (WHO/CDC/NCBI…); mẩu không tìm được PDF/đoạn thì bỏ và ghi lý do. ≥ 30 mẩu (mục tiêu 60), ≥ 12 mẩu xung đột. Test kiểm span có trong trang PDF và giá trị parse được từ span",
+   "check": "$PY -m vnsoc.check jsonl atom data/interim/pilot_atoms.jsonl --min 30 --require span_verified=true pilot=true && $PY -m vnsoc.check count data/interim/pilot_atoms.jsonl --min 12 --where conflict_status=conflict && $PY -m pytest -q tests/test_pilot_atoms.py",
+   "skill": "atomization-protocol",
+   "agent": "atom-extractor",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG1.2": {
+   "id": "HG1.2",
+   "title": "Kiểm tay trích dẫn của mẩu thí điểm",
+   "phase": "P1",
+   "owner": "human",
+   "week": 0,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [
+    "state/gates/HG1.2_result.md"
+   ],
+   "acceptance": "Người dùng đã kiểm toàn bộ checklist",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Mở state/gates/HG1.2_checklist.md (khoảng 1–2 giờ). Với từng mẩu: mở PDF ở đúng trang, xác nhận (a) đoạn trích có đúng nguyên văn, (b) giá trị và đơn vị đúng, (c) quần thể/bối cảnh đúng (ví dụ người lớn, đo tại phòng khám, 3 tháng đầu thai kỳ), (d) giá trị nước ngoài khớp trang nguồn.\nGõ: XONG HG1.2 sai: <danh sách mã mẩu và lỗi>, hoặc XONG HG1.2 không có lỗi.\n",
+   "not_before": null,
+   "deadline": "2026-09-28",
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T1.3": {
+   "id": "T1.3",
+   "title": "Sinh câu hỏi thí điểm (VI/EN; A0, A1, A3; trắc nghiệm 2 thứ tự)",
+   "phase": "P1",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [
+    "data/interim/pilot_questions.jsonl"
+   ],
+   "acceptance": "Mỗi mẩu: trả lời ngắn VI + EN (quần thể đầy đủ), đoạn oracle cho A3; mẩu xung đột/lệch phiên bản có trắc nghiệm 2 thứ tự; dịch có kiểm số/đơn vị",
+   "check": "$PY -m vnsoc.check jsonl question data/interim/pilot_questions.jsonl --min 60",
+   "skill": "question-generation",
+   "agent": "question-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T1.4": {
+   "id": "T1.4",
+   "title": "Chạy thí điểm — Qwen3-8B-AWQ (2 GPU) + 1 API rẻ",
+   "phase": "P1",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T1.3",
+    "HG1.2",
+    "T0.4",
+    "T0.5"
+   ],
+   "outputs": [
+    "data/runs/pilot",
+    "results/run_plan_pilot.json"
+   ],
+   "acceptance": "Loại mẩu người dùng báo sai ở HG1.2 trước khi chạy; results/run_plan_pilot.json ghi số lượt dự kiến; Qwen3-8B-AWQ chạy trên cả 2 GPU (chia đôi yêu cầu, mỗi GPU một tiến trình) + 1 API rẻ; thêm mô hình mở thứ hai chỉ khi đã có bản 4-bit không cần token; A0/A1/A3 × VI/EN + trắc nghiệm; nhiệt độ 0, 128 token; < 2 giờ GPU, < 2 USD",
+   "check": "$PY -m vnsoc.check runs data/runs/pilot --plan results/run_plan_pilot.json --min-frac 0.95",
+   "skill": "kaggle-vllm-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T1.5": {
+   "id": "T1.5",
+   "title": "Chấm và phân tích thí điểm (số đếm + Clopper–Pearson; trùng nước ngoài vs trùng mồi)",
+   "phase": "P1",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T1.4"
+   ],
+   "outputs": [
+    "data/processed/pilot_grades.parquet",
+    "results/pilot/pilot_summary.md"
+   ],
+   "acceptance": "Kiểm tay mọi đầu ra trên mẩu xung đột; số đếm a/b riêng cho mẩu xung đột và đối chứng; mọi số ghi registry khóa pilot.* (n mẩu, k văn bản, a, b, c, d, e, f của mục 7.3)",
+   "check": "$PY -m vnsoc.check numbers pilot. --min 8",
+   "skill": "grading-protocol",
+   "agent": "grader",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T1.6": {
+   "id": "T1.6",
+   "title": "Viết abstract FMC bản 'thiết kế' (dự phòng) + DOCX",
+   "phase": "P1",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T0.6"
+   ],
+   "outputs": [
+    "src/vnsoc/analysis/design_counts.py",
+    "manuscript/fmc/abstract_fmc_design.md",
+    "manuscript/build/fmc/abstract_fmc_design.docx"
+   ],
+   "acceptance": "Theo mục 7.3 (phương án không kịp thí điểm): mô tả thiết kế và bộ xung đột ứng viên, thì tương lai; mọi con số là {{design.*}} do src/vnsoc/analysis/design_counts.py tính từ data/seed/seed_conflicts.yaml (ghi rõ bộ này mới được agent đối chiếu, chưa có người kiểm) hoặc {{=hằng số}} có trong configs; tên 131 ký tự; bản ngắn + bản đủ; render ra manuscript/build/fmc/, DOCX tạo từ bản render, ≤ 1 MB",
+   "check": "$PY -m vnsoc.check numbers design. --min 2 && $PY -m vnsoc.numbers verify manuscript/fmc/abstract_fmc_design.md && $PY -m vnsoc.numbers render && ! grep -q '{{' manuscript/build/fmc/abstract_fmc_design.md && $PY -m vnsoc.check maxsize manuscript/build/fmc/abstract_fmc_design.docx 1000000",
+   "skill": "tripod-llm-manuscript",
+   "agent": "manuscript-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T1.7": {
+   "id": "T1.7",
+   "title": "Viết abstract FMC có kết quả thí điểm + DOCX",
+   "phase": "P1",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T1.5",
+    "T1.6"
+   ],
+   "outputs": [
+    "manuscript/fmc/abstract_fmc.md",
+    "manuscript/build/fmc/abstract_fmc.docx"
+   ],
+   "acceptance": "Điền các ô [n] [k] [a]…[f] bằng {{pilot.*}}; đúng giới hạn ô 500 theo trả lời ban tổ chức (chưa có trả lời → bản ≤ 500 ký tự); nêu rõ mẫu chọn tay, chưa có bác sĩ duyệt; DOCX từ bản render ≤ 1 MB. 20:00 ngày 29/9 chưa có T1.5 → skip theo DR0 và báo người dùng nộp bản thiết kế",
+   "check": "$PY -m vnsoc.numbers verify manuscript/fmc/abstract_fmc.md && $PY -m vnsoc.numbers render && ! grep -q '{{' manuscript/build/fmc/abstract_fmc.md && $PY -m vnsoc.check maxsize manuscript/build/fmc/abstract_fmc.docx 1000000",
+   "skill": "tripod-llm-manuscript",
+   "agent": "manuscript-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": "2026-09-30",
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T1.8": {
+   "id": "T1.8",
+   "title": "Hội đồng agent mốc M1 (thí điểm + abstract), một vòng",
+   "phase": "P1",
+   "owner": "claude",
+   "week": 0,
+   "depends_on": [
+    "T1.7"
+   ],
+   "outputs": [
+    "review/M1/summary.md"
+   ],
+   "acceptance": "5 báo cáo độc lập + summary; sửa ngay lỗi làm abstract sai/nói quá (trước khi người dùng nộp); yêu cầu lớn khác thành task R1.* không chặn gì. Hạn FMC ưu tiên hơn hội đồng: không kịp trước trưa 30/9 thì làm sau khi nộp",
+   "check": "test -s review/M1/summary.md",
+   "skill": "review-panel",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG1.9": {
+   "id": "HG1.9",
+   "title": "Nộp abstract FMC",
+   "phase": "P1",
+   "owner": "human",
+   "week": 0,
+   "depends_on": [
+    "T1.6"
+   ],
+   "outputs": [
+    "state/gates/HG1.9.txt"
+   ],
+   "acceptance": "Đã nộp trước hạn",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "1. Mở biểu mẫu nộp bài trên trang hội nghị (conference.pctu.edu.vn, Thông báo số 1), chọn Chủ đề 1 “AI và chuyển đổi số trong Y tế và Giáo dục Y khoa”.\n2. Chờ Claude báo bản cuối (dự kiến tối 29/9). Nếu T1.7 xong: dùng manuscript/build/fmc/abstract_fmc.md và .docx; nếu không: manuscript/build/fmc/abstract_fmc_design.md và .docx. Tới trưa 30/9 chưa có báo thì nộp bản thiết kế. Luôn dùng bản trong manuscript/build/ (đã điền số), không dùng bản còn {{…}}.\nTên: dán dòng tên 131 ký tự. Tóm tắt: dán bản ngắn. Đính kèm file DOCX (≤ 1 MB).\n3. Kiểm lại tác giả, đơn vị (TDTU), email liên hệ trước khi bấm gửi.\nGõ: XONG HG1.9 đã nộp lúc <giờ>, mã/email xác nhận: <...>.\n",
+   "not_before": null,
+   "deadline": "2026-09-30",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG1.10": {
+   "id": "HG1.10",
+   "title": "Gặp giảng viên hướng dẫn — pháp lý, đạo đức, đồng tác giả",
+   "phase": "P1",
+   "owner": "human",
+   "week": 1,
+   "depends_on": [
+    "T0.6"
+   ],
+   "outputs": [
+    "state/gates/HG1.10.txt"
+   ],
+   "acceptance": "Có ý kiến giảng viên về pháp lý; đơn đạo đức đã nộp",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "1. Gửi/trao đổi state/gates/advisor_memo.md với giảng viên hướng dẫn: xác nhận cách hiểu bản quyền hướng dẫn Bộ Y tế, chính sách không cào thuvienphapluat, việc chỉ công bố giá trị + trích dẫn của hướng dẫn nước ngoài; hỏi vai trò đồng tác giả.\n2. Nộp state/gates/ethics_exemption.md theo thủ tục của trường (xin miễn xem xét đạo đức).\nGõ: XONG HG1.10 pháp lý: <ý kiến thầy/cô>, đạo đức: <đã nộp/đã có kết quả>, đồng tác giả: <...>.\n",
+   "not_before": null,
+   "deadline": "2026-10-07",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG1.11": {
+   "id": "HG1.11",
+   "title": "Mời bác sĩ đồng tác giả (3–5 người)",
+   "phase": "P1",
+   "owner": "human",
+   "week": 1,
+   "depends_on": [
+    "T0.6"
+   ],
+   "outputs": [
+    "state/gates/HG1.11.txt"
+   ],
+   "acceptance": "Đã gửi lời mời; ghi lại kết quả",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Gửi state/gates/clinician_invite.md + project_onepager.md tới 3–5 bác sĩ nội/truyền nhiễm hoặc dược sĩ lâm sàng (kênh gợi ý mục 9.3 đề cương: giảng viên ĐH Phan Châu Trinh, giảng viên y TDTU, nhóm tác giả khảo sát sinh viên y về AI). Công việc: duyệt mẩu xung đột tuần 4–5 (khoảng 25–30 giờ).\nGõ: XONG HG1.11 <ai đồng ý, chuyên khoa>, hoặc XONG HG1.11 chưa có ai.\n",
+   "not_before": null,
+   "deadline": "2026-10-14",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.10": {
+   "id": "T2.10",
+   "title": "Soạn bản đăng ký trước OSF + mã phân tích H1 chạy trên dữ liệu mô phỏng",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 1,
+   "depends_on": [
+    "T1.6"
+   ],
+   "outputs": [
+    "prereg/osf_preregistration.md",
+    "prereg/analysis_plan",
+    "tests/test_prereg_code.py"
+   ],
+   "acceptance": "Theo mẫu OSF Preregistration: câu hỏi, giả thuyết H1–H4 (điều kiện xác nhận A1), điểm kết cục, quy tắc chấm 6 nhãn + thứ tự, giá trị mồi, định nghĩa nhóm RQ3, α, δ, quy tắc sinh lưới ngưỡng, c_k, ngưỡng 30%, α dự phòng, DR3, hai chế độ đánh giá, seed chia, cỡ mẫu (mục 5.4), phân tích độ nhạy, cách xử lý mẩu thí điểm. Mã H1/H4/RQ3 chạy được trên dữ liệu mô phỏng",
+   "check": "$PY -m vnsoc.check nofill prereg/osf_preregistration.md && $PY -m pytest -q tests/test_prereg_code.py",
+   "skill": "statistics-plan",
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG2.9": {
+   "id": "HG2.9",
+   "title": "Nộp đăng ký trước trên OSF",
+   "phase": "P2",
+   "owner": "human",
+   "week": 1,
+   "depends_on": [
+    "T2.10"
+   ],
+   "outputs": [
+    "state/gates/HG2.9_osf.txt"
+   ],
+   "acceptance": "Có link/DOI đăng ký",
+   "check": "grep -Eq 'osf\\.io|10\\.17605' state/gates/HG2.9_osf.txt",
+   "skill": null,
+   "agent": null,
+   "instructions": "1. osf.io → tạo project “Whose Standard of Care?” → Registrations → New registration → mẫu “OSF Preregistration”.\n2. Chép từng phần từ prereg/osf_preregistration.md; đính kèm thư mục prereg/analysis_plan (nén zip).\n3. Có thể chọn embargo (vẫn có dấu thời gian, công khai sau). Bấm Submit.\nGõ: XONG HG2.9 <link OSF hoặc DOI 10.17605/...>.\n",
+   "not_before": null,
+   "deadline": "2026-10-07",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.11": {
+   "id": "T2.11",
+   "title": "Lưu bản đăng ký đã nộp (bất biến) và mã băm",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 1,
+   "depends_on": [
+    "HG2.9"
+   ],
+   "outputs": [
+    "prereg/submitted/osf_preregistration.md",
+    "prereg/submitted/SHA256SUMS"
+   ],
+   "acceptance": "Chép đúng bản đã nộp + analysis_plan vào prereg/submitted/, ghi link OSF, sha256; từ đây mọi thay đổi là addendum",
+   "check": "test -s prereg/submitted/osf_preregistration.md && test -s prereg/submitted/SHA256SUMS",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.1": {
+   "id": "T2.1",
+   "title": "Phân loại 52+ quyết định (PDF chính thức? lớp chữ? bản quét? chỉ thấy trên TVPL?)",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 1,
+   "depends_on": [
+    "T0.2"
+   ],
+   "outputs": [
+    "data/interim/manifest.jsonl",
+    "results/tables/corpus_triage.csv"
+   ],
+   "acceptance": "Mỗi văn bản một ManifestRow; khóa (số, năm); nguồn chính thức; không truy cập TVPL",
+   "check": "$PY -m vnsoc.check jsonl manifest data/interim/manifest.jsonl --min 52",
+   "skill": "corpus-acquisition",
+   "agent": "corpus-librarian",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.2": {
+   "id": "T2.2",
+   "title": "Tải PDF chính thức, băm SHA-256, kiểm lớp chữ",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 1,
+   "depends_on": [
+    "T2.1"
+   ],
+   "outputs": [
+    "tests/test_manifest.py",
+    "state/gates/HG2.3_missing.md"
+   ],
+   "acceptance": "Mọi dòng có source_url đều có file trong data/raw khớp sha256; state/gates/HG2.3_missing.md liệt kê văn bản Bộ Y tế chưa tìm được (kèm nơi đã tìm) và nguồn nước ngoài cần đăng ký để tải (ví dụ GINA, GOLD)",
+   "check": "$PY -m pytest -q tests/test_manifest.py",
+   "skill": "corpus-acquisition",
+   "agent": "corpus-librarian",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG2.3": {
+   "id": "HG2.3",
+   "title": "Tìm tay văn bản chưa có PDF chính thức",
+   "phase": "P2",
+   "owner": "human",
+   "week": 2,
+   "depends_on": [
+    "T2.2"
+   ],
+   "outputs": [
+    "state/gates/HG2.3.txt"
+   ],
+   "acceptance": "Đã tìm hết khả năng; văn bản không tìm được được ghi rõ",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Mở state/gates/HG2.3_missing.md. Với từng văn bản: tìm bản PDF chính thức (kcb.vn, moh.gov.vn, trang Sở Y tế/bệnh viện, thư viện trường). Có thể dùng thuvienphapluat.vn để TRA số hiệu/ngày, nhưng không dùng file từ đó làm nguồn.\nLưu PDF vào data/raw/manual/<số>_<năm>.pdf và ghi URL nguồn bên cạnh tên văn bản trong file HG2.3_missing.md.\nNguồn nước ngoài cần đăng ký (GINA, GOLD…): tự đăng ký, tải PDF vào data/raw/manual_foreign/ (chỉ dùng nội bộ, không phát hành lại).\nGõ: XONG HG2.3 tìm được <n>/<tổng>.\n",
+   "not_before": null,
+   "deadline": "2026-10-12",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.4": {
+   "id": "T2.4",
+   "title": "Tách văn bản có vị trí (PyMuPDF/pdfplumber); OCR ≤ 10 văn bản có kiểm số",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 2,
+   "depends_on": [
+    "T2.2"
+   ],
+   "outputs": [
+    "src/vnsoc/extract/pdf_to_text.py",
+    "tests/test_pdf_text.py",
+    "data/interim/text"
+   ],
+   "acceptance": "Mỗi PDF → JSONL theo trang/khối/đề mục; bảng liều giữ cấu trúc; OCR tiếng Việt cho bản quét (≤ 10) và mọi con số được so ảnh trang (ghi log)",
+   "check": "$PY -m pytest -q tests/test_pdf_text.py",
+   "skill": "corpus-acquisition",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.5": {
+   "id": "T2.5",
+   "title": "Dựng chuỗi thay thế và chọn kho 25–35 hướng dẫn hiện hành",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 2,
+   "depends_on": [
+    "T2.4",
+    "HG2.3"
+   ],
+   "outputs": [
+    "results/tables/supersession.csv",
+    "review/supersession_check.md"
+   ],
+   "acceptance": "supersedes/superseded_by/partially_amended_by lấy từ điều khoản trong văn bản; agent integrity-auditor kiểm lại độc lập toàn bộ chuỗi; 25–35 văn bản in_corpus (hiện hành, có lớp chữ hoặc OCR đã kiểm), ưu tiên bệnh giàu xung đột",
+   "check": "$PY -m vnsoc.check count data/interim/manifest.jsonl --min 25 --where in_corpus=true status=current && test -s review/supersession_check.md",
+   "skill": "corpus-acquisition",
+   "agent": "corpus-librarian",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.6": {
+   "id": "T2.6",
+   "title": "Kho đối chiếu nước ngoài có phiên bản (chỉ giá trị + nguồn + vị trí)",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 2,
+   "depends_on": [
+    "T2.5"
+   ],
+   "outputs": [
+    "data/interim/foreign_values.jsonl",
+    "tests/test_foreign_store.py"
+   ],
+   "acceptance": "Mỗi bệnh trong kho: WHO hiện hành + bản trước, WHO WPRO (nếu có), US, EU_UK. Mỗi dòng ForeignRecord có url, version_date, locator, fetched_at, page_sha256 (băm trang/PDF đã mở thật); giá trị không mở được nguồn thì bỏ trống. Không lưu đoạn văn (test: không trường text nào > 200 ký tự)",
+   "check": "$PY -m vnsoc.check jsonl foreign data/interim/foreign_values.jsonl --min 20 && $PY -m pytest -q tests/test_foreign_store.py",
+   "skill": "counterpart-matching",
+   "agent": "counterpart-matcher",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.7": {
+   "id": "T2.7",
+   "title": "Đóng băng kho hướng dẫn (15/10/2026)",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 3,
+   "depends_on": [
+    "T2.5",
+    "T3.3"
+   ],
+   "outputs": [
+    "data/frozen/manifest_v1.jsonl"
+   ],
+   "acceptance": "$PY -m vnsoc.freeze corpus sau khi đã đếm sơ bộ mẩu xung đột (T3.3) và áp DR2 nếu cần; văn bản ban hành sau 15/10 không thêm (DR7)",
+   "check": "test -s data/frozen/manifest_v1.jsonl && grep -q manifest_v1 data/frozen/SHA256SUMS",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": "2026-10-15",
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T2.8": {
+   "id": "T2.8",
+   "title": "Cập nhật tài liệu (PubMed, Crossref, arXiv, tạp chí y học Việt Nam) + cảnh báo trùng hướng",
+   "phase": "P2",
+   "owner": "claude",
+   "week": 1,
+   "depends_on": [
+    "T1.6"
+   ],
+   "outputs": [
+    "review/lit/2026-10.md",
+    "manuscript/references.yaml"
+   ],
+   "acceptance": "Tìm các bài từ 2026-09 và các nguồn đề cương ghi là chưa tìm được (PubMed, tapchiyhocvietnam.vn); mỗi bài có DOI/arXiv và 2 câu so sánh; có bài gần như y hệt → báo người dùng ngay",
+   "check": "test -s review/lit/2026-10.md && test -s manuscript/references.yaml",
+   "skill": "citation-verification",
+   "agent": "lit-scout",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.1": {
+   "id": "T3.1",
+   "title": "Viết pipeline trích mẩu (atomize + verify_span) và test",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 2,
+   "depends_on": [
+    "T2.4",
+    "T0.5"
+   ],
+   "outputs": [
+    "src/vnsoc/extract/atomize.py",
+    "src/vnsoc/extract/verify_span.py",
+    "configs/prompts_extract.yaml",
+    "tests/test_extract.py"
+   ],
+   "acceptance": "Chạy thử trên 2 văn bản (≤ 0,5 USD); nếu có mẩu thí điểm thì ≥ 90% được tìm lại; test cho verify_span (khớp nguyên văn sau chuẩn hóa, giá trị parse được)",
+   "check": "$PY -m pytest -q tests/test_extract.py",
+   "skill": "atomization-protocol",
+   "agent": "atom-extractor",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.2": {
+   "id": "T3.2",
+   "title": "Trích mẩu trên kho đã chọn (trước khi đóng băng; văn bản thêm theo DR2 trích bổ sung)",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 2,
+   "depends_on": [
+    "T2.5",
+    "T3.1"
+   ],
+   "outputs": [
+    "data/interim/atoms_raw.jsonl",
+    "data/interim/extraction_rejects.jsonl"
+   ],
+   "acceptance": "Mọi mẩu span_verified; bản cũ (superseded) cũng trích cho phân tích phiên bản; chi phí ghi sổ",
+   "check": "$PY -m vnsoc.check jsonl atom data/interim/atoms_raw.jsonl --min 500 --require span_verified=true",
+   "skill": "atomization-protocol",
+   "agent": "atom-extractor",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.3": {
+   "id": "T3.3",
+   "title": "Ghép giá trị nước ngoài, bản cũ, mồi; dung sai; trạng thái xung đột; nhóm xung đột",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 3,
+   "depends_on": [
+    "T3.2",
+    "T2.6"
+   ],
+   "outputs": [
+    "data/interim/atoms_matched.jsonl",
+    "tests/test_match.py",
+    "results/tables/conflict_summary.csv"
+   ],
+   "acceptance": "conflict_status và tolerance tính bằng vnsoc.grade; mồi không làm mẩu thành indistinguishable; độ nhạy trên bộ hạt giống; đếm sơ bộ mẩu xung đột và nhóm → áp DR2 TRƯỚC khi đóng băng kho (task bổ sung: scripts/vs add --blocks T2.7)",
+   "check": "$PY -m vnsoc.check jsonl atom data/interim/atoms_matched.jsonl --min 500 && $PY -m pytest -q tests/test_match.py",
+   "skill": "counterpart-matching",
+   "agent": "counterpart-matcher",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.4": {
+   "id": "T3.4",
+   "title": "Công cụ duyệt + bảng tiêu chí + mẫu kiểm (100% xung đột, 200 mẩu QC, 100 cặp ghép)",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 3,
+   "depends_on": [
+    "T3.3"
+   ],
+   "outputs": [
+    "review/adjudication_rubric.md",
+    "review/ui/conflicts.html",
+    "review/qc/extraction_sample.csv",
+    "review/qc/pairs_sample.csv"
+   ],
+   "acceptance": "UI HTML tĩnh mở bằng trình duyệt, hiển thị span/trang/quần thể/giá trị VN/nước ngoài, xuất CSV; mẫu QC phân tầng 100 ngẫu nhiên + 100 xung đột (seed ghi lại); 100 cặp ghép ngẫu nhiên",
+   "check": "test -s review/adjudication_rubric.md && test -s review/ui/conflicts.html && test -s review/qc/extraction_sample.csv && test -s review/qc/pairs_sample.csv",
+   "skill": "atomization-protocol",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG3.5": {
+   "id": "HG3.5",
+   "title": "Kiểm tra 100% mẩu xung đột theo bảng tiêu chí (lượt 1)",
+   "phase": "P3",
+   "owner": "human",
+   "week": 4,
+   "depends_on": [
+    "T3.4"
+   ],
+   "outputs": [
+    "review/adjudication/conflicts_pass1.csv"
+   ],
+   "acceptance": "100% mẩu xung đột có quyết định pass/fail",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Việc lớn nhất của bạn (40–70 giờ trong khoảng 18/10–1/11, tức 3–5 giờ mỗi ngày; trên đường găng). Mở review/ui/conflicts.html bằng trình duyệt, đọc review/adjudication_rubric.md.\nVới từng mẩu xung đột: đúng bệnh? đúng quần thể? đúng can thiệp? giá trị có điều kiện đi kèm bị bỏ sót? giá trị nước ngoài đúng quần thể tương ứng? → pass/fail + lý do.\nXuất CSV từ UI và lưu thành review/adjudication/conflicts_pass1.csv. Có thể làm từng phần; Claude tính tiến độ khi bạn hỏi.\nGõ: XONG HG3.5 đã kiểm <n> mẩu.\n",
+   "not_before": null,
+   "deadline": "2026-11-01",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG3.6": {
+   "id": "HG3.6",
+   "title": "Kiểm chất lượng trích xuất trên 200 mẩu phân tầng",
+   "phase": "P3",
+   "owner": "human",
+   "week": 3,
+   "depends_on": [
+    "T3.4"
+   ],
+   "outputs": [
+    "review/qc/extraction_sample_checked.csv"
+   ],
+   "acceptance": "200/200 dòng đã kiểm",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Mở review/qc/extraction_sample.csv (200 dòng). Với mỗi dòng đối chiếu PDF: giá trị, đơn vị, quần thể, can thiệp có đúng không (cột correct = 1/0, ghi lỗi). Lưu thành review/qc/extraction_sample_checked.csv.\nGõ: XONG HG3.6.\n",
+   "not_before": null,
+   "deadline": "2026-10-27",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG3.7": {
+   "id": "HG3.7",
+   "title": "Kiểm 100 cặp ghép giá trị nước ngoài",
+   "phase": "P3",
+   "owner": "human",
+   "week": 4,
+   "depends_on": [
+    "T3.4"
+   ],
+   "outputs": [
+    "review/qc/pairs_sample_checked.csv"
+   ],
+   "acceptance": "100/100 cặp đã kiểm",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Mở review/qc/pairs_sample.csv (100 dòng): mở link nguồn nước ngoài, kiểm giá trị + quần thể + phiên bản (cột correct = 1/0). Lưu thành review/qc/pairs_sample_checked.csv.\nGõ: XONG HG3.7.\n",
+   "not_before": null,
+   "deadline": "2026-10-29",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.8": {
+   "id": "T3.8",
+   "title": "Gói tài liệu cho bác sĩ duyệt mẩu xung đột",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 4,
+   "depends_on": [
+    "T3.4",
+    "HG1.11"
+   ],
+   "outputs": [
+    "review/clinician_packet/README.md",
+    "review/clinician_packet/conflicts_for_review.csv"
+   ],
+   "acceptance": "Hướng dẫn 1 trang; bảng mẩu xung đột đã pass ở HG3.5, gửi theo đợt khi HG3.5 tiến triển; cột xác nhận, moh_lags_evidence, clinical_harm (độ cấp tính × hướng sai); ước tính thời gian. Không có bác sĩ (HG1.11) → skip",
+   "check": "test -s review/clinician_packet/conflicts_for_review.csv",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG3.9": {
+   "id": "HG3.9",
+   "title": "Bác sĩ duyệt mẩu xung đột — hoặc xác nhận không có bác sĩ",
+   "phase": "P3",
+   "owner": "human",
+   "week": 6,
+   "depends_on": [
+    "T3.8"
+   ],
+   "outputs": [
+    "state/gates/HG3.9.txt"
+   ],
+   "acceptance": "Có file bác sĩ trả về, hoặc xác nhận không có bác sĩ",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Có bác sĩ: gửi review/clinician_packet/ cho bác sĩ, nhận lại file đã điền và lưu thành review/clinician/returned.csv. Gõ: XONG HG3.9 bác sĩ <tên, chuyên khoa> đã duyệt <n> mẩu.\nKhông có bác sĩ: gõ XONG HG3.9 không có bác sĩ (bài nhắm JMIR Med Inform/IJMI và nêu giới hạn).\n",
+   "not_before": null,
+   "deadline": "2026-11-05",
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.10": {
+   "id": "T3.10",
+   "title": "Nhập kết quả kiểm; độ chính xác trích xuất và ghép (Clopper–Pearson); áp DR1/DR2",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 6,
+   "depends_on": [
+    "HG3.5",
+    "HG3.6",
+    "HG3.7"
+   ],
+   "outputs": [
+    "data/interim/atoms.jsonl",
+    "results/tables/extraction_qc.csv"
+   ],
+   "acceptance": "Mẩu xung đột fail bị loại hoặc sửa theo ghi chú (ghi log); registry qc.* gồm qc.extraction_cp_lower (cận dưới Clopper–Pearson độ chính xác trích), qc.pairs_cp_lower, số mẩu xung đột, số nhóm; dưới ngưỡng → áp DR1/DR2 và ghi DECISIONS (việc làm lại thêm bằng scripts/vs add --blocks T3.12)",
+   "check": "$PY -m vnsoc.check jsonl atom data/interim/atoms.jsonl --min 500 --require span_verified=true && $PY -m vnsoc.check numbers qc. --min 4 && ($PY -m vnsoc.check value qc.extraction_cp_lower --ge 0.90 || grep -q DR1 docs/DECISIONS.md) && (($PY -m vnsoc.check count data/interim/atoms.jsonl --min 400 --where conflict_status=conflict && $PY -m vnsoc.check families data/interim/atoms.jsonl --min 25) || grep -q DR2 docs/DECISIONS.md)",
+   "skill": "atomization-protocol",
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.11": {
+   "id": "T3.11",
+   "title": "Nhập nhãn bác sĩ, tính đồng thuận, cờ 'Bộ Y tế chậm hơn bằng chứng'",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 6,
+   "depends_on": [
+    "T3.10",
+    "HG3.9"
+   ],
+   "outputs": [
+    "results/tables/clinician_review.csv"
+   ],
+   "acceptance": "Có bác sĩ: gắn clinician_confirmed, moh_lags_evidence, clinical_harm; báo cáo tỉ lệ xác nhận. Không có: ghi bảng rỗng có ghi chú và registry clin.available = 0",
+   "check": "$PY -m vnsoc.check numbers clin. --min 1",
+   "skill": null,
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T3.12": {
+   "id": "T3.12",
+   "title": "Đóng băng mẩu v1",
+   "phase": "P3",
+   "owner": "claude",
+   "week": 6,
+   "depends_on": [
+    "T3.11",
+    "T2.7"
+   ],
+   "outputs": [
+    "data/frozen/atoms_v1.jsonl"
+   ],
+   "acceptance": "/freeze atoms; DR2 ghi trong DECISIONS nếu < 400 mẩu xung đột hoặc < 25 nhóm (kèm cỡ mẫu tính lại)",
+   "check": "$PY -m vnsoc.check jsonl atom data/frozen/atoms_v1.jsonl --min 500 --require span_verified=true",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG3.13": {
+   "id": "HG3.13",
+   "title": "Kiểm lại lần hai 20% mẩu xung đột (độ tin cậy nội bộ)",
+   "phase": "P3",
+   "owner": "human",
+   "week": 7,
+   "depends_on": [
+    "HG3.5"
+   ],
+   "outputs": [
+    "review/adjudication/conflicts_pass2.csv"
+   ],
+   "acceptance": "Đủ mẫu 20%",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Sau ít nhất 7 ngày kể từ lượt 1: mở review/ui/conflicts.html ở chế độ “lượt 2” (mẫu ngẫu nhiên 20%, ẩn quyết định cũ), kiểm lại như lượt 1, xuất review/adjudication/conflicts_pass2.csv.\nGõ: XONG HG3.13.\n",
+   "not_before": "2026-11-08",
+   "deadline": "2026-11-22",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.1": {
+   "id": "T4.1",
+   "title": "Sinh bộ câu hỏi chính (VI/EN; ngắn, trắc nghiệm, A6) + đoạn oracle + chunk RAG + split theo mẩu",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 6,
+   "depends_on": [
+    "T3.12"
+   ],
+   "outputs": [
+    "data/interim/questions.jsonl",
+    "results/tables/question_qc.csv",
+    "data/processed/rag/chunks.jsonl",
+    "review/qc/vignettes_sample.csv"
+   ],
+   "acceptance": "Đủ dạng/ngôn ngữ cho mọi mẩu; câu mơ hồ bị loại; dịch QC; split theo mẩu ref/cal/test (tỉ lệ và seed ghi trong prereg); review/qc/vignettes_sample.csv 100 câu A6 cho HG4.2",
+   "check": "$PY -m vnsoc.check jsonl question data/interim/questions.jsonl --min 1000",
+   "skill": "question-generation",
+   "agent": "question-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG4.2": {
+   "id": "HG4.2",
+   "title": "Kiểm 100 câu tình huống A6",
+   "phase": "P4",
+   "owner": "human",
+   "week": 6,
+   "depends_on": [
+    "T4.1"
+   ],
+   "outputs": [
+    "review/qc/vignettes_checked.csv"
+   ],
+   "acceptance": "100 câu đã kiểm",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Mở review/qc/vignettes_sample.csv (100 câu, Claude tạo ở T4.1). Ưu tiên nhờ bác sĩ đồng tác giả kiểm (đề cương §3.5); không có bác sĩ thì bạn kiểm và bài báo ghi rõ người kiểm. Kiểm: tình huống hợp lý ở bệnh viện huyện; đủ dữ kiện để chỉ một đáp án theo Bộ Y tế; không lộ đáp án. Cột ok = 1/0, cột nguoi_kiem, ghi chú. Lưu thành review/qc/vignettes_checked.csv.\nGõ: XONG HG4.2.\n",
+   "not_before": null,
+   "deadline": "2026-11-10",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.3": {
+   "id": "T4.3",
+   "title": "Đóng băng câu hỏi + quy tắc chấm + điều kiện; addendum đăng ký trước",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 6,
+   "depends_on": [
+    "HG4.2",
+    "T2.11",
+    "T4.1"
+   ],
+   "outputs": [
+    "data/frozen/questions_v1.jsonl",
+    "data/frozen/grading_v1.yaml",
+    "data/frozen/conditions_v1.yaml",
+    "prereg/addenda/addendum_1.md",
+    "results/run_plan.json"
+   ],
+   "acceptance": "Sửa/loại câu A6 theo HG4.2; /freeze questions; results/run_plan.json = số lượt dự kiến cho mọi mô hình (mở và API) × điều kiện × ngôn ngữ × dạng theo phạm vi mục 5.2, khóa model|condition|language|format; addendum liệt kê mọi khác biệt so với bản OSF — người dùng tải lên OSF ở HG4.5",
+   "check": "test -s data/frozen/questions_v1.jsonl && test -s data/frozen/grading_v1.yaml && test -s prereg/addenda/addendum_1.md && $PY -c \"import json;d=json.load(open('results/run_plan.json'));assert len(d)>=8 and all(v>0 for v in d.values())\"",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.4": {
+   "id": "T4.4",
+   "title": "Chuẩn bị gói Zenodo v1 (bộ xung đột đã duyệt + quy trình), bản nháp",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 7,
+   "depends_on": [
+    "T4.3",
+    "HG3.9"
+   ],
+   "outputs": [
+    "release/zenodo_v1/README.md",
+    "tests/test_release.py",
+    "state/gates/HG4.5_zenodo.md"
+   ],
+   "acceptance": "Chỉ giá trị + trích dẫn + vị trí (không đoạn văn nước ngoài, không toàn văn Bộ Y tế); giấy phép CC BY 4.0 dữ liệu, MIT mã; metadata; nếu có ZENODO_TOKEN tạo bản nháp qua API (không publish)",
+   "check": "$PY -m pytest -q tests/test_release.py",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG4.5": {
+   "id": "HG4.5",
+   "title": "Công bố Zenodo v1 và tải addendum lên OSF",
+   "phase": "P4",
+   "owner": "human",
+   "week": 7,
+   "depends_on": [
+    "T4.4"
+   ],
+   "outputs": [
+    "state/gates/HG4.5.txt"
+   ],
+   "acceptance": "Có DOI Zenodo",
+   "check": "grep -Eq 'zenodo|10\\.5281' state/gates/HG4.5.txt",
+   "skill": null,
+   "agent": null,
+   "instructions": "1. Làm theo state/gates/HG4.5_zenodo.md: mở bản nháp trên zenodo.org (hoặc tạo mới, tải file trong release/zenodo_v1/), kiểm tác giả, giấy phép, mô tả; bấm Publish.\n2. Trên OSF: thêm prereg/addenda/addendum_1.md vào project (Files) và ghi chú trong phần registration updates.\n3. (Tùy chọn) ghi chú arXiv ngắn “bộ dữ liệu + thí điểm” nếu kịp — hỏi Claude soạn.\nGõ: XONG HG4.5 <DOI Zenodo 10.5281/...>.\n",
+   "not_before": null,
+   "deadline": "2026-11-13",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.6": {
+   "id": "T4.6",
+   "title": "Hội đồng agent mốc M2 (trước khi chạy chính) — vòng 1",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 7,
+   "depends_on": [
+    "T4.3"
+   ],
+   "outputs": [
+    "review/M2/summary.md"
+   ],
+   "acceptance": "5 báo cáo độc lập; yêu cầu major thành task R2.* (--blocks T4.7)",
+   "check": "test -s review/M2/summary.md",
+   "skill": "review-panel",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.7": {
+   "id": "T4.7",
+   "title": "Chốt mốc M2 (sửa xong yêu cầu, vòng 2 nếu cần)",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 7,
+   "depends_on": [
+    "T4.6"
+   ],
+   "outputs": [
+    "review/M2/summary.md"
+   ],
+   "acceptance": "M2 ĐẠT ở vòng 1 hoặc 2, hoặc người dùng quyết định qua cổng HGM2 (chỉ người dùng xác nhận được)",
+   "check": "$PY -m vnsoc.check review M2",
+   "skill": "review-panel",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.8": {
+   "id": "T4.8",
+   "title": "Khung bản thảo (Methods có placeholder) + references.yaml",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 7,
+   "depends_on": [
+    "T4.3"
+   ],
+   "outputs": [
+    "manuscript/main.md"
+   ],
+   "acceptance": "Đủ đề mục JMIR; Methods viết xong theo bản đóng băng; Results là khung với {{khóa}}",
+   "check": "grep -q '## Methods' manuscript/main.md && grep -q '## Results' manuscript/main.md",
+   "skill": "tripod-llm-manuscript",
+   "agent": "manuscript-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.9": {
+   "id": "T4.9",
+   "title": "Tạo kernel Kaggle cố định 'vnsoc-weights' để chuẩn bị trọng số 4-bit (đẩy lần đầu)",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 4,
+   "depends_on": [
+    "T0.4"
+   ],
+   "outputs": [
+    "kaggle/jobs/vnsoc-weights/kernel-metadata.json"
+   ],
+   "acceptance": "Kernel riêng tư, id cố định <user>/vnsoc-weights, đã push một lần (tải mô hình không gated để kiểm); hướng dẫn gắn secret ghi vào state/gates/HG5.0.md",
+   "check": "test -s kaggle/jobs/vnsoc-weights/kernel-metadata.json && test -s state/gates/HG5.0.md",
+   "skill": "kaggle-vllm-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG5.0": {
+   "id": "HG5.0",
+   "title": "Gắn secret HF_TOKEN vào kernel vnsoc-weights (giao diện Kaggle)",
+   "phase": "P4",
+   "owner": "human",
+   "week": 5,
+   "depends_on": [
+    "T4.9"
+   ],
+   "outputs": [
+    "state/gates/HG5.0.txt"
+   ],
+   "acceptance": "Secret đã gắn; biết trạng thái quyền của mô hình gated",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Secret chỉ gắn được qua giao diện và gắn theo từng notebook. Mở kaggle.com → Code → notebook “vnsoc-weights” → Edit → Add-ons → Secrets → bật HF_TOKEN → Save Version (hoặc chỉ Save). Xem thêm state/gates/HG5.0.md.\nKiểm trên Hugging Face rằng quyền Llama 3.1 và Vistral đã được duyệt.\nGõ: XONG HG5.0 Llama: <đã duyệt/chưa>, Vistral: <đã/chưa>.\n",
+   "not_before": null,
+   "deadline": "2026-11-01",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG4.6": {
+   "id": "HG4.6",
+   "title": "Chép danh mục 128 vấn đề cốt lõi (cho RQ4) — hoặc bỏ RQ4 sang bài sau",
+   "phase": "P4",
+   "owner": "human",
+   "week": 5,
+   "depends_on": [
+    "T0.6"
+   ],
+   "outputs": [
+    "state/gates/HG4.6.txt"
+   ],
+   "acceptance": "Có file 128 dòng, hoặc quyết định bỏ RQ4",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Danh mục 128 vấn đề (QĐ 22/QĐ-HĐYKQG) hiện chỉ thấy dạng ảnh. Xin bản gốc từ trường y hoặc chép tay (khoảng 4 giờ) vào data/manual/core_problems_128.csv với cột: ma, ten_van_de, chuyen_khoa.\nKhông làm được: gõ XONG HG4.6 bỏ RQ4 (RQ4 chuyển sang bài thứ hai, đúng như đề cương cho phép).\nLàm xong: gõ XONG HG4.6 đã chép 128 dòng.\n",
+   "not_before": null,
+   "deadline": "2026-11-08",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T4.10": {
+   "id": "T4.10",
+   "title": "Ánh xạ mẩu và câu tình huống vào 128 vấn đề (core_problem_id)",
+   "phase": "P4",
+   "owner": "claude",
+   "week": 7,
+   "depends_on": [
+    "HG4.6",
+    "T4.1"
+   ],
+   "outputs": [
+    "results/tables/core_problem_map.csv"
+   ],
+   "acceptance": "LLM đề xuất ánh xạ kèm độ tin cậy, người dùng xem mẫu 30 dòng khi được hỏi; gắn nhãn khám phá. Người dùng bỏ RQ4 ở HG4.6 → skip",
+   "check": "test -s results/tables/core_problem_map.csv",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.0": {
+   "id": "T5.0",
+   "title": "Chuẩn bị trọng số 4-bit (Llama, Sailor2, Vistral) và kiểm nạp trên T4",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 6,
+   "depends_on": [
+    "T0.4",
+    "HG5.0"
+   ],
+   "outputs": [
+    "results/smoke/model_load.json"
+   ],
+   "acceptance": "Kernel vnsoc-weights tải mô hình (có HF_TOKEN), dùng bản 4-bit có sẵn đã kiểm nguồn/giấy phép hoặc tự lượng tử (llm-compressor; AutoAWQ đã ngừng phát triển), lưu làm output kernel để các job sau gắn qua kernel_sources (không cần secret); mỗi mô hình nạp được trên 1 T4 (hoặc TP=2 có lý do) và trả lời 10 câu; configs/models.yaml hết FILL_AT_T5.0; chưa có quyền Llama → DR11",
+   "check": "! grep -q FILL_AT_T5.0 configs/models.yaml && test -s results/smoke/model_load.json",
+   "skill": "kaggle-vllm-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.1": {
+   "id": "T5.1",
+   "title": "Chỉ mục RAG bge-m3 lai (Kaggle) + đánh giá truy xuất",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 7,
+   "depends_on": [
+    "T4.3",
+    "T0.4"
+   ],
+   "outputs": [
+    "data/processed/rag/index_meta.json",
+    "results/tables/retrieval_eval.csv"
+   ],
+   "acceptance": "Đoạn ≤ 500 token; k = 5; recall@5 của đoạn chứa đáp án ghi registry rag.*; top-k cho mọi câu A2 lưu sẵn (retrieved_ids)",
+   "check": "$PY -m vnsoc.check numbers rag. --min 1",
+   "skill": "kaggle-vllm-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.2": {
+   "id": "T5.2",
+   "title": "Mô hình mở — A0, A1 (mọi mẩu × VI/EN) + trắc nghiệm A1",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 7,
+   "depends_on": [
+    "T4.7",
+    "T5.0"
+   ],
+   "outputs": [
+    "data/runs/open"
+   ],
+   "acceptance": "Dùng results/run_plan.json từ T4.3; đo tốc độ thật ngày đầu và cập nhật ước tính giờ GPU (DR6 nếu vượt 80 giờ); mô hình thay thế theo DR11 thì cập nhật run_plan và ghi DECISIONS",
+   "check": "$PY -m vnsoc.check runs data/runs/open --plan results/run_plan.json --conditions A0 A1 --models-from open",
+   "skill": "kaggle-vllm-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.3": {
+   "id": "T5.3",
+   "title": "Mô hình mở — A2 (+5 mẫu tín hiệu), A3, A4 tập con 300",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 8,
+   "depends_on": [
+    "T5.1",
+    "T5.2"
+   ],
+   "outputs": [
+    "data/runs/open"
+   ],
+   "acceptance": "A2 phục vụ ở T=0 + 5 mẫu T=0,7; A3 đoạn oracle; A4 chỉ Qwen3 và Llama với max_model_len 32768 (chương ≤ 28k token), prefix caching",
+   "check": "$PY -m vnsoc.check runs data/runs/open --plan results/run_plan.json --conditions A2 A3 A4 --models-from open",
+   "skill": "kaggle-vllm-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.4": {
+   "id": "T5.4",
+   "title": "Kiểm ảnh hưởng lượng tử hóa (fp16 vs 4-bit, 500 câu)",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 9,
+   "depends_on": [
+    "T5.2"
+   ],
+   "outputs": [
+    "results/tables/quantization_check.csv"
+   ],
+   "acceptance": "Một mô hình fp16 (2 GPU) vs 4-bit trên 500 câu cố định; tỉ lệ nhãn khác nhau; ghi registry quant.*",
+   "check": "$PY -m vnsoc.check numbers quant. --min 1",
+   "skill": "kaggle-vllm-runner",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.5": {
+   "id": "T5.5",
+   "title": "API giá rẻ (Batch) — tập con phân tầng 1.000–1.500 mẩu × VI/EN × A0–A3",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 8,
+   "depends_on": [
+    "T4.7",
+    "T0.5",
+    "T5.1"
+   ],
+   "outputs": [
+    "data/runs/api"
+   ],
+   "acceptance": "Mọi mẩu xung đột + đối chứng ngẫu nhiên; ngân sách đặt trước qua api_batch; chi phí thực ghi sổ",
+   "check": "$PY -m vnsoc.check runs data/runs/api --plan results/run_plan.json --models-from api_cheap --min-frac 0.97",
+   "skill": "api-batch-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.6": {
+   "id": "T5.6",
+   "title": "API mạnh — mọi mẩu xung đột × A0/A1 × VI/EN",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 9,
+   "depends_on": [
+    "T5.5"
+   ],
+   "outputs": [
+    "data/runs/api_frontier"
+   ],
+   "acceptance": "1–2 mô hình hàng đầu; dừng khi ngân sách còn < chi phí ước tính (DR6: còn 1 mô hình)",
+   "check": "$PY -m vnsoc.check runs data/runs/api_frontier --plan results/run_plan.json --models-from api_frontier --min-frac 0.97",
+   "skill": "api-batch-runner",
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.7": {
+   "id": "T5.7",
+   "title": "Khám phá A5 (RAG kho trộn) và A6 (tình huống) — nếu còn thời gian",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 9,
+   "depends_on": [
+    "T5.3"
+   ],
+   "outputs": [
+    "data/runs/open_exploratory"
+   ],
+   "acceptance": "Gắn nhãn khám phá; cắt đầu tiên theo DR6",
+   "check": "$PY -m vnsoc.check runs data/runs/open_exploratory --plan results/run_plan.json --conditions A5 A6 --models-from open --min-frac 0.9",
+   "skill": "kaggle-vllm-runner",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T5.8": {
+   "id": "T5.8",
+   "title": "Kiểm tra chất lượng lượt chạy + ghi phiên bản mô hình",
+   "phase": "P5",
+   "owner": "claude",
+   "week": 9,
+   "depends_on": [
+    "T5.3",
+    "T5.4",
+    "T5.5",
+    "T5.6",
+    "T5.7"
+   ],
+   "outputs": [
+    "results/tables/run_qa.csv",
+    "results/model_versions.json"
+   ],
+   "acceptance": "Ma trận đủ/thiếu theo mô hình × điều kiện × ngôn ngữ × dạng; tỉ lệ lỗi; tỉ lệ thiếu dòng ĐÁP ÁN; commit hash/phiên bản và ngày cắt dữ liệu từng mô hình; tổng giờ GPU và USD",
+   "check": "test -s results/tables/run_qa.csv && test -s results/model_versions.json",
+   "skill": null,
+   "agent": "run-orchestrator",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG5.9": {
+   "id": "HG5.9",
+   "title": "Đăng ký tham dự FMC (nếu abstract được nhận)",
+   "phase": "P5",
+   "owner": "human",
+   "week": 9,
+   "depends_on": [
+    "HG1.9"
+   ],
+   "outputs": [
+    "state/gates/HG5.9.txt"
+   ],
+   "acceptance": "Đã đăng ký hoặc đã báo không được nhận",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Ban tổ chức thông báo trước 15/10. Được nhận: đăng ký và đóng phí theo hướng dẫn của hội nghị trước 30/11. Không được nhận: báo lại để Claude bỏ các việc FMC.\nGõ: XONG HG5.9 <đã đăng ký / không được nhận>.\n",
+   "not_before": null,
+   "deadline": "2026-11-30",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.0": {
+   "id": "T6.0",
+   "title": "Cài gói R (lme4, glmmTMB, sandwich, boot, jsonlite, arrow) vào thư viện người dùng",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 6,
+   "depends_on": [
+    "HG0.3"
+   ],
+   "outputs": [
+    "analysis_R/setup.R"
+   ],
+   "acceptance": "Rscript analysis_R/setup.R cài được không cần sudo; check_env nhóm r OK",
+   "check": "python3 scripts/check_env.py --need r",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.1": {
+   "id": "T6.1",
+   "title": "Chấm toàn bộ lượt chạy (grader_version đóng băng) + mẫu kiểm bộ tách",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 9,
+   "depends_on": [
+    "T5.8"
+   ],
+   "outputs": [
+    "data/processed/grades_v1.parquet",
+    "review/parser_check/sample.csv"
+   ],
+   "acceptance": "Mọi RunRecord có nhãn hoặc needs_llm đã xử lý; condition truyền vào grade_short; tỉ lệ theo parse_method ghi registry grade.*; mẫu phân tầng 500 câu (mọi câu parse_method=llm + phân tầng theo mô hình × ngôn ngữ × cách tách) cho HG6.2",
+   "check": "$PY -m vnsoc.check numbers grade. --min 3 && test -s review/parser_check/sample.csv",
+   "skill": "grading-protocol",
+   "agent": "grader",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG6.2": {
+   "id": "HG6.2",
+   "title": "Kiểm tay bộ tách đáp án",
+   "phase": "P6",
+   "owner": "human",
+   "week": 10,
+   "depends_on": [
+    "T6.1"
+   ],
+   "outputs": [
+    "review/parser_check/sample_checked.csv"
+   ],
+   "acceptance": "Mẫu đã kiểm đủ",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Mở review/parser_check/sample.csv (500 dòng, 8–12 giờ): mỗi dòng có đầu ra gốc của mô hình và giá trị bộ tách đọc được. Cột correct = 1/0 (bộ tách đọc đúng giá trị mô hình đã trả lời hay không — KHÔNG chấm đúng/sai y khoa). Lưu thành review/parser_check/sample_checked.csv.\nGõ: XONG HG6.2.\n",
+   "not_before": null,
+   "deadline": "2026-12-06",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.3": {
+   "id": "T6.3",
+   "title": "RQ1 — H1 (chính), H2, mô tả A0; GLMM trong R",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 10,
+   "depends_on": [
+    "HG6.2",
+    "T6.0"
+   ],
+   "outputs": [
+    "results/tables/h1_h2.csv",
+    "results/figures/F2_attribution.pdf",
+    "analysis_R/glmm.R"
+   ],
+   "acceptance": "Áp DR9 nếu bộ tách lỗi > 5%; đúng prereg; registry h1.*, h2.*, glmm.*",
+   "check": "$PY -m vnsoc.check numbers h1. --min 3 && $PY -m vnsoc.check numbers h2. --min 1",
+   "skill": "statistics-plan",
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.4": {
+   "id": "T6.4",
+   "title": "RQ2 — H3 (A3), phân rã lỗi truy xuất vs cố chấp, bậc thang ngữ cảnh",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 10,
+   "depends_on": [
+    "HG6.2"
+   ],
+   "outputs": [
+    "results/tables/h3_decomposition.csv",
+    "results/figures/F3_context_ladder.pdf"
+   ],
+   "acceptance": "Registry h3.*; lỗi truy xuất = đoạn đúng không trong top-k và trả lời sai",
+   "check": "$PY -m vnsoc.check numbers h3. --min 2",
+   "skill": "statistics-plan",
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.5": {
+   "id": "T6.5",
+   "title": "Lệch phiên bản (H5, biến liên tục) + thiên lệch 'mới nhất' + RQ4 mô tả",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 10,
+   "depends_on": [
+    "HG6.2",
+    "T4.10"
+   ],
+   "outputs": [
+    "results/figures/F4_temporal.pdf",
+    "results/tables/temporal.csv"
+   ],
+   "acceptance": "Registry h5.*, rq4.* (nếu A6 đã chạy)",
+   "check": "$PY -m vnsoc.check numbers h5. --min 1",
+   "skill": "statistics-plan",
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.6": {
+   "id": "T6.6",
+   "title": "RQ3 — H4, cận chứng nhận Clopper–Pearson, Learn-then-Test, hai chế độ chia, so sánh",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 10,
+   "depends_on": [
+    "HG6.2"
+   ],
+   "outputs": [
+    "results/tables/rq3_bounds.csv",
+    "results/figures/F5_certified.pdf"
+   ],
+   "acceptance": "Nhóm và điểm cố định trước; DR3/DR4/DR5 áp dụng và ghi DECISIONS; chế độ (b) 500 lần chia; registry h4.*, rq3.*",
+   "check": "$PY -m vnsoc.check numbers rq3. --min 4 && $PY -m vnsoc.check numbers h4. --min 1",
+   "skill": "certified-abstention",
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.7": {
+   "id": "T6.7",
+   "title": "Phân tích độ nhạy, Holm cho H2–H4, đồng thuận kiểm tay, DR3",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 11,
+   "depends_on": [
+    "T6.3",
+    "T6.4",
+    "T6.5",
+    "T6.6",
+    "HG3.13"
+   ],
+   "outputs": [
+    "results/tables/sensitivity.csv"
+   ],
+   "acceptance": "Đủ các phân tích độ nhạy đăng ký trước; kappa lượt 1–2; registry sens.*, holm.*",
+   "check": "$PY -m vnsoc.check numbers sens. --min 3 && $PY -m vnsoc.check numbers holm. --min 3",
+   "skill": "statistics-plan",
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.8": {
+   "id": "T6.8",
+   "title": "Hội đồng agent mốc M3 (kết quả) — vòng 1",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 11,
+   "depends_on": [
+    "T6.7"
+   ],
+   "outputs": [
+    "review/M3/summary.md"
+   ],
+   "acceptance": "Yêu cầu major thành task R3.* (--blocks T6.9)",
+   "check": "test -s review/M3/summary.md",
+   "skill": "review-panel",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T6.9": {
+   "id": "T6.9",
+   "title": "Chốt mốc M3",
+   "phase": "P6",
+   "owner": "claude",
+   "week": 11,
+   "depends_on": [
+    "T6.8"
+   ],
+   "outputs": [
+    "review/M3/summary.md"
+   ],
+   "acceptance": "M3 ĐẠT ở vòng 1 hoặc 2, hoặc người dùng quyết định qua cổng HGM3",
+   "check": "$PY -m vnsoc.check review M3",
+   "skill": "review-panel",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.1": {
+   "id": "T7.1",
+   "title": "Hình F1–F5, bảng T1–T4 bản cuối (script tái tạo được)",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 12,
+   "depends_on": [
+    "T6.9"
+   ],
+   "outputs": [
+    "results/figures/F1_pipeline.pdf",
+    "results/figures/F2_attribution.pdf",
+    "results/figures/F3_context_ladder.pdf",
+    "results/figures/F4_temporal.pdf",
+    "results/figures/F5_certified.pdf"
+   ],
+   "acceptance": "PDF + PNG 300 dpi; font đọc được; mỗi hình có script trong src/vnsoc/analysis/figures/",
+   "check": "ls results/figures/F1_pipeline.pdf results/figures/F5_certified.pdf",
+   "skill": null,
+   "agent": "statistician",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.2": {
+   "id": "T7.2",
+   "title": "Slide FMC (tiếng Việt, 10–12 phút) + ghi chú thuyết trình",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 10,
+   "depends_on": [
+    "T6.3",
+    "T6.4",
+    "HG5.9"
+   ],
+   "outputs": [
+    "manuscript/fmc/slides.md"
+   ],
+   "acceptance": "Dựa trên kết quả H1–H3 đã có (M3 có thể chưa xong: ghi rõ “sơ bộ”); số qua registry; không nói quá; render ra manuscript/build/fmc/slides.md; bỏ qua nếu abstract không được nhận (HG5.9)",
+   "check": "$PY -m vnsoc.numbers verify manuscript/fmc/slides.md && $PY -m vnsoc.numbers render && ! grep -q '{{' manuscript/build/fmc/slides.md",
+   "skill": "tripod-llm-manuscript",
+   "agent": "manuscript-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": "2026-12-10",
+   "skippable": true,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG7.3": {
+   "id": "HG7.3",
+   "title": "Trình bày tại FMC (12/12/2026)",
+   "phase": "P7",
+   "owner": "human",
+   "week": 11,
+   "depends_on": [
+    "T7.2"
+   ],
+   "outputs": [
+    "state/gates/HG7.3.txt"
+   ],
+   "acceptance": "Đã trình bày",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Tập slide manuscript/build/fmc/slides.md (bản đã điền số; Claude có thể xuất PPTX/PDF). Trình bày; ghi lại câu hỏi và góp ý của khán giả, người liên hệ (bác sĩ quan tâm).\nGõ: XONG HG7.3 <góp ý chính>. Nếu abstract không được nhận hoặc bạn không dự: XONG HG7.3 không tham dự.\n",
+   "not_before": null,
+   "deadline": "2026-12-12",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.4": {
+   "id": "T7.4",
+   "title": "Bản thảo đầy đủ + supplement S1–S6 + checklist TRIPOD-LLM",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 12,
+   "depends_on": [
+    "T7.1",
+    "T4.8"
+   ],
+   "outputs": [
+    "manuscript/main.md",
+    "manuscript/supplement.md",
+    "manuscript/tripod_llm_checklist.md"
+   ],
+   "acceptance": "make verify xanh (không số viết tay, placeholder đủ); tuyên bố đúng mức; giới hạn đầy đủ; công bố dùng AI",
+   "check": "$PY -m vnsoc.numbers verify && $PY -m vnsoc.numbers render",
+   "skill": "tripod-llm-manuscript",
+   "agent": "manuscript-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.5": {
+   "id": "T7.5",
+   "title": "Kiểm chứng toàn bộ trích dẫn",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 13,
+   "depends_on": [
+    "T7.4"
+   ],
+   "outputs": [
+    "manuscript/citations_verified.json",
+    "state/gates/HG7.6_manual_refs.md"
+   ],
+   "acceptance": "Mọi DOI/arXiv ok; state/gates/HG7.6_manual_refs.md liệt kê văn bản pháp quy/trang web cần người dùng xác nhận VÀ mọi con số trích từ bài khác (kèm câu gốc cần đối chiếu)",
+   "check": "test -s manuscript/citations_verified.json",
+   "skill": "citation-verification",
+   "agent": "lit-scout",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG7.6": {
+   "id": "HG7.6",
+   "title": "Xác nhận các trích dẫn văn bản pháp quy / trang web",
+   "phase": "P7",
+   "owner": "human",
+   "week": 13,
+   "depends_on": [
+    "T7.5"
+   ],
+   "outputs": [
+    "state/gates/HG7.6.txt"
+   ],
+   "acceptance": "Mọi mục đã xác nhận",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Mở state/gates/HG7.6_manual_refs.md: mở từng link, xác nhận tên văn bản, số hiệu, ngày, và câu/giá trị được dẫn; với mỗi con số trích từ bài khác (ví dụ 74,5% của Wang & Suresh; 86,7–95% của Bazerbachi) mở bài gốc và đối chiếu. Ghi sai sót nếu có.\nGõ: XONG HG7.6 <danh sách sai hoặc 'không sai'>.\n",
+   "not_before": null,
+   "deadline": "2027-01-02",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.7": {
+   "id": "T7.7",
+   "title": "Kiểm toán toàn vẹn độc lập (integrity-auditor) + sửa lỗi",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 14,
+   "depends_on": [
+    "HG7.6"
+   ],
+   "outputs": [
+    "review/audit_final.md"
+   ],
+   "acceptance": "Kết luận ĐẠT; mọi lỗi đã sửa và kiểm lại; verify_citations exit 0",
+   "check": "grep -q 'ĐẠT' review/audit_final.md && ! grep -q 'KHÔNG ĐẠT' review/audit_final.md && $PY scripts/verify_citations.py",
+   "skill": null,
+   "agent": "integrity-auditor",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.8": {
+   "id": "T7.8",
+   "title": "Hội đồng agent mốc M4 (bản thảo) — vòng 1",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 14,
+   "depends_on": [
+    "T7.7"
+   ],
+   "outputs": [
+    "review/M4/summary.md"
+   ],
+   "acceptance": "Yêu cầu major thành task R4.* (--blocks T7.9)",
+   "check": "test -s review/M4/summary.md",
+   "skill": "review-panel",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.9": {
+   "id": "T7.9",
+   "title": "Chốt mốc M4",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 14,
+   "depends_on": [
+    "T7.8"
+   ],
+   "outputs": [
+    "review/M4/summary.md"
+   ],
+   "acceptance": "M4 ĐẠT ở vòng 1 hoặc 2, hoặc người dùng quyết định qua cổng HGM4",
+   "check": "$PY -m vnsoc.check review M4",
+   "skill": "review-panel",
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG7.10": {
+   "id": "HG7.10",
+   "title": "Giảng viên và bác sĩ đọc, duyệt bản thảo; chốt tác giả (CRediT)",
+   "phase": "P7",
+   "owner": "human",
+   "week": 14,
+   "depends_on": [
+    "T7.9"
+   ],
+   "outputs": [
+    "state/gates/HG7.10.txt"
+   ],
+   "acceptance": "Có sự đồng ý của giảng viên (và bác sĩ nếu có)",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "Gửi manuscript/build/main.md (Claude xuất DOCX/PDF khi bạn yêu cầu) + supplement cho giảng viên hướng dẫn và bác sĩ đồng tác giả. Thu góp ý (file hoặc ghi chú) vào review/advisor/. Thống nhất danh sách và thứ tự tác giả, vai trò CRediT, xung đột lợi ích, nguồn tài trợ (nếu có).\nGõ: XONG HG7.10 tác giả: <...>; góp ý ở review/advisor/<file>.\n",
+   "not_before": null,
+   "deadline": "2027-01-12",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T7.11": {
+   "id": "T7.11",
+   "title": "Sửa theo góp ý giảng viên/bác sĩ",
+   "phase": "P7",
+   "owner": "claude",
+   "week": 15,
+   "depends_on": [
+    "HG7.10"
+   ],
+   "outputs": [
+    "review/advisor/response.md"
+   ],
+   "acceptance": "Bảng phản hồi từng góp ý; make verify xanh",
+   "check": "test -s review/advisor/response.md && $PY -m vnsoc.numbers verify",
+   "skill": null,
+   "agent": "manuscript-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T8.1": {
+   "id": "T8.1",
+   "title": "Gói nộp tạp chí (JMIR Med Inform), thư nộp, dữ liệu/mã công khai, gói arXiv, Zenodo v2",
+   "phase": "P8",
+   "owner": "claude",
+   "week": 15,
+   "depends_on": [
+    "T7.11"
+   ],
+   "outputs": [
+    "submission/cover_letter.md",
+    "submission/manuscript.docx",
+    "submission/checklist.md",
+    "release/zenodo_v2/README.md"
+   ],
+   "acceptance": "Đúng hướng dẫn tác giả của tạp chí (kiểm trang hướng dẫn ngày làm); định dạng trích dẫn; dữ liệu phát hành chỉ giá trị + trích dẫn; make verify xanh",
+   "check": "make verify && $PY -m vnsoc.check nofill submission/cover_letter.md submission/checklist.md",
+   "skill": "tripod-llm-manuscript",
+   "agent": "manuscript-writer",
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "HG8.2": {
+   "id": "HG8.2",
+   "title": "Nộp bài tạp chí + arXiv + công bố Zenodo v2",
+   "phase": "P8",
+   "owner": "human",
+   "week": 16,
+   "depends_on": [
+    "T8.1"
+   ],
+   "outputs": [
+    "state/gates/HG8.2.txt"
+   ],
+   "acceptance": "Bài đã nộp",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": "1. Tạo tài khoản trên hệ thống nộp bài của JMIR Medical Informatics (hoặc IJMI nếu chọn), nộp theo submission/checklist.md: bản thảo, supplement, thư nộp, link OSF, DOI Zenodo.\n2. arXiv (cs.CL hoặc cs.CY; cần người giới thiệu nếu lần đầu): tải gói submission/arxiv/.\n3. Zenodo: publish bản nháp v2.\nGõ: XONG HG8.2 mã bài: <...>, arXiv: <...>, Zenodo v2: <DOI>.\n",
+   "not_before": null,
+   "deadline": "2027-01-24",
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  },
+  "T8.3": {
+   "id": "T8.3",
+   "title": "Lưu trữ, gắn tag phiên bản, tổng kết dự án",
+   "phase": "P8",
+   "owner": "claude",
+   "week": 16,
+   "depends_on": [
+    "HG8.2"
+   ],
+   "outputs": [
+    "docs/FINAL_SUMMARY.md"
+   ],
+   "acceptance": "git tag v1.0-submitted; tổng kết giờ GPU, USD, số liệu chính, việc cho vòng phản biện tạp chí",
+   "check": "test -s docs/FINAL_SUMMARY.md && git tag | grep -q v1.0-submitted",
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [],
+   "note": "",
+   "source": "plan",
+   "extra_depends": []
+  }
+ }
+}

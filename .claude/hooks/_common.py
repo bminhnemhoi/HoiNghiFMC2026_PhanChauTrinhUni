@@ -9,6 +9,14 @@ import sys
 import traceback
 from pathlib import Path
 
+# Claude Code exchanges UTF-8 JSON/text with hooks. On Windows the default stdio codec is the ANSI code page
+# (cp1252), which cannot encode Vietnamese: a hook would crash and fail open. Force UTF-8 on every platform.
+for _s in (sys.stdin, sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8")
+    except Exception:  # noqa: BLE001
+        pass
+
 
 def read_input() -> dict:
     try:

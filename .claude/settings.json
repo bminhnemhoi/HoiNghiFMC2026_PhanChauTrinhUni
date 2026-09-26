@@ -92,7 +92,8 @@
   },
   "env": {
     "PYTHONPATH": "src",
-    "PYTHONDONTWRITEBYTECODE": "1"
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUTF8": "1"
   },
   "hooks": {
     "SessionStart": [
