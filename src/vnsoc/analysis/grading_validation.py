@@ -61,8 +61,48 @@ def main(argv=None) -> int:
     for k in ("kappa_rule_final", "kappa_ab"):
         if s[k] is not None:
             put(f"pilot.grader_{k}", s[k], f"{s[k]:.2f}".replace(".", ","), NOTE)
-    print(json.dumps(s, ensure_ascii=False))
+    adj = adjudicated_cells(load())
+    for k, v in adj.items():                   # sensitivity: key pilot cells with the resolved reference labels
+        put(f"pilot.adj_{k}", v, str(v), "nhãn tham chiếu sau trọng tài (độ nhạy); " + NOTE)
+    print(json.dumps({**s, "adjudicated": adj}, ensure_ascii=False))
     return 0
+
+
+def adjudicated_cells(rows: list[dict], root=None) -> dict:
+    """Short-answer cells of the pilot recomputed with the resolved reference labels (same exclusions and groups
+    as vnsoc.analysis.pilot)."""
+    import pandas as pd
+
+    from vnsoc.analysis.pilot import apply_exclusions, load_exclusions
+
+    P = paths(root)
+    g = pd.read_parquet(P.root / "data" / "processed" / "pilot_grades.parquet").to_dict("records")
+    ref = {r["row"]: r for r in rows}
+    g = apply_exclusions(g, load_exclusions(P.root / "data" / "interim" / "pilot_analysis_exclusions.yaml"))
+    atoms = {}
+    for x in (P.root / "data" / "interim" / "pilot_atoms.jsonl").read_text(encoding="utf-8").splitlines():
+        if x.strip():
+            a = json.loads(x)
+            atoms[a["atom_id"]] = a
+    out = {}
+    for cond in ("A0", "A1", "A3"):
+        for lang in ("vi", "en"):
+            for group in ("conflict", "concordant"):
+                cell = [r for r in g if r["format"] == "short" and r["condition"] == cond and r["language"] == lang
+                        and r["group"] == group and r["run_id"] in ref]
+                labs = [int(ref[r["run_id"]]["final"]) for r in cell]
+                k = f"{cond.lower()}_{lang}_{group}"
+                out[f"{k}_n"] = len(labs)
+                out[f"{k}_correct"] = sum(x in (1, 2) for x in labs)
+                out[f"{k}_foreign"] = sum(x == 4 for x in labs)
+                out[f"{k}_unattributed"] = sum(x == 5 for x in labs)
+                out[f"{k}_abstain"] = sum(x == 6 for x in labs)
+                if group == "conflict":
+                    h1 = [r for r in cell if atoms[r["atom_id"]].get("decoy")]
+                    out[f"{k}_h1_n"] = len(h1)
+                    out[f"{k}_h1_foreign"] = sum(int(ref[r["run_id"]]["final"]) == 4 for r in h1)
+                    out[f"{k}_decoy"] = sum(bool(ref[r["run_id"]].get("final_decoy")) for r in h1)
+    return out
 
 
 if __name__ == "__main__":

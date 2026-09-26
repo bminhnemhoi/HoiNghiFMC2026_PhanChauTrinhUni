@@ -203,6 +203,7 @@ def main(argv=None) -> int:
     reg = register(grades, atoms)
     for k, v in reg.items():
         put(f"pilot.{k}", v, str(v), HAND)
+    put("pilot.ci_level", 0.95, "95%", "mức tin cậy của mọi khoảng Clopper–Pearson thí điểm")
     for lang in ("vi", "en"):
         k, n = reg[f"a1_{lang}_h1_foreign"], reg[f"a1_{lang}_h1_n"]
         if n:
