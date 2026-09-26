@@ -12,6 +12,7 @@ The PDF of guideline 'NNNN/YYYY' is data/raw/NNNN_YYYY.pdf; circulars use the ke
   $PY -m vnsoc.extract.verify_span data/interim/pilot_atoms.jsonl      # one line per atom, exit 1 if any fails
   $PY -m vnsoc.extract.verify_span --find 2760/2023 "15 ml/kg"         # pages whose text contains the snippet
   $PY -m vnsoc.extract.verify_span --page 2760/2023 23                 # print the normalised text of one page
+  $PY -m vnsoc.extract.verify_span --image 3377/2023 23                # PNG of the page (check OCR numbers by eye)
 """
 from __future__ import annotations
 
@@ -160,7 +161,18 @@ def main(argv=None) -> int:
     ap.add_argument("atoms", nargs="?", help="JSONL of atoms")
     ap.add_argument("--find", nargs=2, metavar=("GUIDELINE", "SNIPPET"))
     ap.add_argument("--page", nargs=2, metavar=("GUIDELINE", "PAGE"))
+    ap.add_argument("--image", nargs=2, metavar=("GUIDELINE", "PAGE"), help="render the page to PNG (check OCR by eye)")
     a = ap.parse_args(argv)
+    if a.image:
+        import pymupdf as fitz
+
+        pdf, pg = pdf_path(a.image[0]), int(a.image[1])
+        out = paths().root / "data" / "cache" / "page_images" / f"{pdf.stem}_p{pg:03d}.png"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        with fitz.open(pdf) as doc:
+            doc[pg - 1].get_pixmap(dpi=150).save(out)
+        print(out)
+        return 0
     if a.find:
         print(find_pages(pdf_path(a.find[0]), a.find[1]))
         return 0
