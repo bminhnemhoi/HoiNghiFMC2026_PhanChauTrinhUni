@@ -23,7 +23,8 @@ from vnsoc.extract.verify_span import drug_tables
 from vnsoc.paths import paths
 from vnsoc.qgen import mcq
 from vnsoc.qgen.passages import atom_passage
-from vnsoc.qgen.qc import leak_issues, population_issues, translation_issues
+from vnsoc.qgen.qc import (leak_issues, passage_alt_values, population_issues, required_terms_issues,
+                           translation_issues)
 from vnsoc.schemas import Question
 
 
@@ -50,13 +51,16 @@ def build_all(atoms: list[dict], drafts: dict[str, dict], seed: int, words: tupl
             text = atom_passage(a, root, *words)
             passages.append({"passage_id": pid, "atom_id": a["atom_id"], "guideline": a["guideline"],
                              "section": a["section"], "page": a["page"], "words": len(text.split()), "text": text})
+            alt = passage_alt_values(text, a, "vi", syn, combos)   # flagged, re-checked by hand before the freeze
+            qc_rows.append({"question_id": pid, "ok": True, "issues": "", "passage_has_alt_value": ";".join(alt)})
         except Exception as e:  # noqa: BLE001
             qc_rows.append({"question_id": pid, "ok": False, "issues": f"không tạo được đoạn A3: {e}"})
             pid = None
         tr = translation_issues(d["short_vi"], d["short_en"])
         for lang in ("vi", "en"):
             t = d[f"short_{lang}"]
-            issues = leak_issues(t, a, lang, syn, combos) + population_issues(t, a, lang)
+            issues = (leak_issues(t, a, lang, syn, combos) + population_issues(t, a, lang)
+                      + required_terms_issues(t, a, lang))
             if lang == "en":
                 issues += tr
             add({"question_id": f"{a['atom_id']}|short|{lang}", "atom_id": a["atom_id"], "format": "short",
@@ -74,7 +78,8 @@ def build_all(atoms: list[dict], drafts: dict[str, dict], seed: int, words: tupl
                 continue
             mtr = translation_issues(stems["vi"], stems["en"])
             for q in qs:
-                issues = leak_issues(q["text"], a, q["language"], syn, combos)
+                issues = (leak_issues(q["text"], a, q["language"], syn, combos)
+                          + required_terms_issues(q["text"], a, q["language"]))
                 if q["language"] == "en":
                     issues += mtr
                     q["translation_qc"] = "pass" if not mtr else "fail"
@@ -104,7 +109,7 @@ def main(argv=None) -> int:
         Path(path).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
     Path(a.qc).parent.mkdir(parents=True, exist_ok=True)
     with open(a.qc, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["question_id", "ok", "issues"])
+        w = csv.DictWriter(f, fieldnames=["question_id", "ok", "issues", "passage_has_alt_value"], restval="")
         w.writeheader()
         w.writerows(qc)
     bad = [r for r in qc if not r["ok"]]

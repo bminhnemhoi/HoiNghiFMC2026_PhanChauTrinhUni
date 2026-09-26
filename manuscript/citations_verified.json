@@ -1,0 +1,446 @@
+[
+ {
+  "key": "wang2026jurisdictional",
+  "status": "ok",
+  "found_title": "Which Institutional Frameworks Do Chatbots Assume? Auditing Jurisdictional Defaults in Multilingual LLMs",
+  "similarity": 1.0
+ },
+ {
+  "key": "bazerbachi2026cultural",
+  "status": "ok",
+  "found_title": "Cultural bias in large language models’ ability to follow neuroradiology guidelines",
+  "similarity": 1.0
+ },
+ {
+  "key": "tan2026cpgbench",
+  "status": "ok",
+  "found_title": "A Decade-Scale Benchmark Evaluating LLMs' Clinical Practice Guidelines Detection and Adherence in Multi-turn Conversations",
+  "similarity": 1.0
+ },
+ {
+  "key": "guan2026temporal",
+  "status": "ok",
+  "found_title": "Large Language Models Lack Temporal Awareness of Medical Knowledge",
+  "similarity": 1.0
+ },
+ {
+  "key": "wu2025driftmedqa",
+  "status": "ok",
+  "found_title": "Assessing and Mitigating Medical Knowledge Drift and Conflicts in Large Language Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "vladika2025factsfade",
+  "status": "ok",
+  "found_title": "Facts Fade Fast: Evaluating Memorization of Outdated Medical Knowledge in Large Language Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "prior2026oldfriend",
+  "status": "ok",
+  "found_title": "Asking For An Old Friend: Diagnosing and Mitigating Temporal Failure Modes in LLM-based Statutory Question Answering",
+  "similarity": 1.0
+ },
+ {
+  "key": "mutisya2025alama",
+  "status": "ok",
+  "found_title": "Retrieval-Augmented Clinical Benchmarking for Contextual Model Testing in Kenyan Primary Care: A Methodology Paper",
+  "similarity": 1.0
+ },
+ {
+  "key": "mutisya2025mindgap",
+  "status": "ok",
+  "found_title": "Mind the Gap: Evaluating the Representativeness of Quantitative Medical Language Reasoning LLM Benchmarks for African Disease Burdens",
+  "similarity": 1.0
+ },
+ {
+  "key": "bui2026crosslingual",
+  "status": "ok",
+  "found_title": "Perspectives on Cross-Lingual Consistency in LLMs for Medical Questions",
+  "similarity": 1.0
+ },
+ {
+  "key": "gabriel2026safety",
+  "status": "ok",
+  "found_title": "Safety That Does Not Transfer: Cross-Lingual Clinical Correctness Drift in Deployable Medical Language Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "hisada2025healthbench",
+  "status": "ok",
+  "found_title": "Filling in the Clinical Gaps in Benchmark: Case for HealthBench for the Japanese medical system",
+  "similarity": 1.0
+ },
+ {
+  "key": "kasai2023japanese",
+  "status": "ok",
+  "found_title": "Evaluating GPT-4 and ChatGPT on Japanese Medical Licensing Examinations",
+  "similarity": 1.0
+ },
+ {
+  "key": "wang2026clear",
+  "status": "ok",
+  "found_title": "CLEAR: Cross-Source Evidence Adjudication for Large Language Models in Medicine",
+  "similarity": 1.0
+ },
+ {
+  "key": "nguyen2025vm14k",
+  "status": "ok",
+  "found_title": "VM14K: First Vietnamese Medical Benchmark",
+  "similarity": 1.0
+ },
+ {
+  "key": "tran2024vimedaqa",
+  "status": "ok",
+  "found_title": "ViMedAQA: A Vietnamese Medical Abstractive Question-Answering Dataset and Findings of Large Language Model",
+  "similarity": 1.0
+ },
+ {
+  "key": "nguyen2026vihermes",
+  "status": "ok",
+  "found_title": "ViHERMES: A Graph-Grounded Multihop Question Answering Benchmark and System for Vietnamese Healthcare Regulations",
+  "similarity": 1.0
+ },
+ {
+  "key": "wu2024clasheval",
+  "status": "ok",
+  "found_title": "ClashEval: Quantifying the tug-of-war between an LLM's internal prior and external evidence",
+  "similarity": 1.0
+ },
+ {
+  "key": "xie2023chameleon",
+  "status": "ok",
+  "found_title": "Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts",
+  "similarity": 1.0
+ },
+ {
+  "key": "xu2024knowledgeconflicts",
+  "status": "ok",
+  "found_title": "Knowledge Conflicts for LLMs: A Survey",
+  "similarity": 1.0
+ },
+ {
+  "key": "yeginbergen2026crosslingual",
+  "status": "ok",
+  "found_title": "Effects of Cross-lingual Evidence in Multilingual Medical Question Answering",
+  "similarity": 1.0
+ },
+ {
+  "key": "molfetta2026sycophants",
+  "status": "ok",
+  "found_title": "Sycophants in the Courtroom: Are LLMs Fragile to Juridical Authority and Evolving Legal Standards?",
+  "similarity": 1.0
+ },
+ {
+  "key": "angelopoulos2025learnthentest",
+  "status": "ok",
+  "found_title": "Learn then test: Calibrating predictive algorithms to achieve risk control",
+  "similarity": 1.0
+ },
+ {
+  "key": "angelopoulos2022crc",
+  "status": "ok",
+  "found_title": "Conformal Risk Control",
+  "similarity": 1.0
+ },
+ {
+  "key": "gurram2026selective",
+  "status": "ok",
+  "found_title": "Valid Per-Field Selective Risk Control for Document Extraction: Three Failure Modes, a Validity Ladder, and When Conditioning Pays",
+  "similarity": 1.0
+ },
+ {
+  "key": "salem2026hgcrc",
+  "status": "ok",
+  "found_title": "Hierarchical Group-Conditional Conformal Risk Control for Selective Prediction in Language Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "yadkori2024conformal",
+  "status": "ok",
+  "found_title": "Mitigating LLM Hallucinations via Conformal Abstention",
+  "similarity": 1.0
+ },
+ {
+  "key": "gui2024conformalalignment",
+  "status": "ok",
+  "found_title": "Conformal Alignment: Knowing When to Trust Foundation Models with Guarantees",
+  "similarity": 1.0
+ },
+ {
+  "key": "mohri2024conformalfactuality",
+  "status": "ok",
+  "found_title": "Language Models with Conformal Factuality Guarantees",
+  "similarity": 1.0
+ },
+ {
+  "key": "machcha2026medabstain",
+  "status": "ok",
+  "found_title": "Knowing When to Abstain: Medical LLMs Under Clinical Uncertainty",
+  "similarity": 1.0
+ },
+ {
+  "key": "feng2024abstain",
+  "status": "ok",
+  "found_title": "Teaching LLMs to Abstain across Languages via Multilingual Feedback",
+  "similarity": 1.0
+ },
+ {
+  "key": "duwal2025mka",
+  "status": "ok",
+  "found_title": "MKA: Leveraging Cross-Lingual Consensus for Model Abstention",
+  "similarity": 1.0
+ },
+ {
+  "key": "dunn2023hierarchical",
+  "status": "ok",
+  "found_title": "Distribution-Free Prediction Sets for Two-Layer Hierarchical Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "gibbs2025conditional",
+  "status": "ok",
+  "found_title": "Conformal prediction with conditional guarantees",
+  "similarity": 1.0
+ },
+ {
+  "key": "gallifant2025tripodllm",
+  "status": "ok",
+  "found_title": "The TRIPOD-LLM reporting guideline for studies using large language models",
+  "similarity": 1.0
+ },
+ {
+  "key": "bui2026kap",
+  "status": "ok",
+  "found_title": "Knowledge, Attitudes, and Practices Related to AI in Learning and Research Among Medical Students in Vietnam: Cross-Sectional Study",
+  "similarity": 1.0
+ },
+ {
+  "key": "ada2025glycemic",
+  "status": "ok",
+  "found_title": "9. Pharmacologic Approaches to Glycemic Treatment: Standards of Care in Diabetes—2025",
+  "similarity": 1.0
+ },
+ {
+  "key": "ada2025cvd",
+  "status": "ok",
+  "found_title": "10. Cardiovascular Disease and Risk Management: Standards of Care in Diabetes—2025",
+  "similarity": 1.0
+ },
+ {
+  "key": "abonizio2026brazilian",
+  "status": "ok",
+  "found_title": "Teaching LLMs Brazilian Healthcare: Injecting Knowledge from Official Clinical Guidelines",
+  "similarity": 1.0
+ },
+ {
+  "key": "siepmann2025hepatitisb",
+  "status": "ok",
+  "found_title": "The Impact of Access to Clinical Guidelines on LLM‐Based Treatment Recommendations for Chronic Hepatitis B",
+  "similarity": 1.0
+ },
+ {
+  "key": "nguyen2025gpchatgpt",
+  "status": "ok",
+  "found_title": "GP or ChatGPT? Ability of large language models (LLMs) to support general practitioners when prescribing antibiotics",
+  "similarity": 1.0
+ },
+ {
+  "key": "zeng2025geographic",
+  "status": "ok",
+  "found_title": "Dr. LLM Will See You Now: The Ability of ChatGPT to Provide Geographically Tailored Colorectal Cancer Screening and Surveillance Recommendations",
+  "similarity": 1.0
+ },
+ {
+  "key": "zhou2026localization",
+  "status": "ok",
+  "found_title": "Knowledge localization is associated with higher performance of domestic large language models in a Chinese radiation oncology examination",
+  "similarity": 1.0
+ },
+ {
+  "key": "wong2026implicit",
+  "status": "ok",
+  "found_title": "Implicit Geographic Inference in LLM Medical Triage: Language-Driven Disparities in Emergency Recommendations",
+  "similarity": 1.0
+ },
+ {
+  "key": "harris2025pubhealthbench",
+  "status": "ok",
+  "found_title": "Healthy LLMs? Benchmarking LLM Knowledge of UK Government Public Health Information",
+  "similarity": 1.0
+ },
+ {
+  "key": "feldman2026healthier",
+  "status": "ok",
+  "found_title": "Healthier LLMs: Retrieval-Augmented Generation for Public Health Question Answering",
+  "similarity": 1.0
+ },
+ {
+  "key": "schlicht2026zoomin",
+  "status": "ok",
+  "found_title": "Zoom In Disparities in Healthcare LLM Q&amp;A",
+  "similarity": 0.933
+ },
+ {
+  "key": "hasan2026english",
+  "status": "ok",
+  "found_title": "When English Rewrites Local Knowledge: Global Narrative Dominance in Large Language Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "chen2026megacdp",
+  "status": "ok",
+  "found_title": "Benchmarking Clinical Decision Pathway Adherence in Large Language Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "liu2026certified",
+  "status": "ok",
+  "found_title": "Certified Against Which Oracle? Execution Labels Set the Reported Risk of Conformal Abstention for Text-to-SQL",
+  "similarity": 1.0
+ },
+ {
+  "key": "noonan2026exceedance",
+  "status": "ok",
+  "found_title": "The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering",
+  "similarity": 1.0
+ },
+ {
+  "key": "zhou2026falsesense",
+  "status": "ok",
+  "found_title": "False Sense of Safety in Selective Signal Classification: Auditing Bound Tightness and Exchangeability for Risk Control",
+  "similarity": 1.0
+ },
+ {
+  "key": "liu2026guidelineconflicts",
+  "status": "ok",
+  "found_title": "Impact of Clinical Guideline Knowledge Conflicts on Large Language Models Performance in Medical Question-Answering:Original paper (Preprint)",
+  "similarity": 1.0
+ },
+ {
+  "key": "fu2026sinousdrugqa",
+  "status": "ok",
+  "found_title": "Sino-US-DrugQA: A benchmark for evaluating large language models in cross-jurisdictional pharmaceutical regulation",
+  "similarity": 1.0
+ },
+ {
+  "key": "yang2026hcc",
+  "status": "ok",
+  "found_title": "Evaluating the clinical utility of large language models for hepatocellular carcinoma treatment recommendations: A nationwide retrospective registry study",
+  "similarity": 1.0
+ },
+ {
+  "key": "schwietering2026cpgqade",
+  "status": "ok",
+  "found_title": "Benchmarking large language models for question answering on German clinical practice guidelines",
+  "similarity": 1.0
+ },
+ {
+  "key": "ke2025ragfitness",
+  "status": "ok",
+  "found_title": "Retrieval augmented generation for 10 large language models and its generalizability in assessing medical fitness",
+  "similarity": 1.0
+ },
+ {
+  "key": "vach2026neurovascular",
+  "status": "ok",
+  "found_title": "Evaluating Retrieval Augmented Generation-enhanced Large Language Models for Question Answering On German Neurovascular Guidelines",
+  "similarity": 1.0
+ },
+ {
+  "key": "presacan2026silence",
+  "status": "ok",
+  "found_title": "When silence is safer: a review and decision-theoretic framework for LLM abstention in healthcare",
+  "similarity": 1.0
+ },
+ {
+  "key": "mo2026faithfulness",
+  "status": "ok",
+  "found_title": "Faithfulness vs. Safety: Evaluating LLM Behavior Under Counterfactual Medical Evidence",
+  "similarity": 1.0
+ },
+ {
+  "key": "zhao2025chinesemedicine",
+  "status": "ok",
+  "found_title": "Assessing the adherence of large language models to clinical practice guidelines in Chinese medicine: a content analysis",
+  "similarity": 1.0
+ },
+ {
+  "key": "yu2026outdated",
+  "status": "ok",
+  "found_title": "Diagnostic Accuracy Masks Outdated Reasoning: Evaluating LLMs on Evolving Clinical Guidelines",
+  "similarity": 1.0
+ },
+ {
+  "key": "kalai2026hallucinations",
+  "status": "ok",
+  "found_title": "Evaluating large language models for accuracy incentivizes hallucinations",
+  "similarity": 1.0
+ },
+ {
+  "key": "cocchieri2026abstain",
+  "status": "ok",
+  "found_title": "LLMs (Almost) Never Abstain Under Medical Uncertainty",
+  "similarity": 1.0
+ },
+ {
+  "key": "macedo2026globalmedqa",
+  "status": "ok",
+  "found_title": "GlobalMedQA: A Standardized Multilingual Dataset for Assessing Medical Knowledge in LLMs",
+  "similarity": 1.0
+ },
+ {
+  "key": "rezaei2026counterfactual",
+  "status": "ok",
+  "found_title": "Counterfactual Cultural Cues Reduce Medical QA Accuracy in LLMs: Identifier vs Context Effects",
+  "similarity": 1.0
+ },
+ {
+  "key": "nimo2025africahealthcheck",
+  "status": "ok",
+  "found_title": "Africa Health Check: Probing Cultural Bias in Medical LLMs",
+  "similarity": 1.0
+ },
+ {
+  "key": "who2022drtb",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "who2025obesity",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "rcuk2021anaphylaxis",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "aasld2025hbvslides",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "cdc2026rabiespep",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "cdc2026malariatables",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "cdc2025childschedule",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ }
+]

@@ -19,7 +19,7 @@ def _conflicting(atom: dict) -> list[tuple[str, dict]]:
     out: list[tuple[list[str], dict]] = []
     for f in atom.get("foreign") or []:
         for it in f["values"]:
-            if not all(_gap(v, it, atom) > 0 for v in vn):
+            if it.get("derived") or not all(_gap(v, it, atom) > 0 for v in vn):   # derived values: never options
                 continue
             same = next((o for o in out if _gap(o[1], it, atom) == 0), None)
             if same:

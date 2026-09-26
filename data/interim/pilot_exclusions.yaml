@@ -1,0 +1,4 @@
+# Loại có chủ đích khi gộp mẩu thí điểm (vnsoc.extract.pilot_merge). Mỗi mục: atom_id: lý do. Ghi 26/9/2026.
+exclude:
+  P-anaphylaxis-01: "trùng P-anaphylaxis_ocr-03 (liều adrenalin tiêm bắp người lớn, TT51 PL III tr.9); giữ bản OCR đã kiểm toán"
+  P-anaphylaxis-02: "trùng P-anaphylaxis_ocr-04 (khoảng nhắc lại, người lớn); bản này gộp giá trị nhi khoa QĐ 3312/2015 vào quần thể người lớn — sai phạm vi DR8"

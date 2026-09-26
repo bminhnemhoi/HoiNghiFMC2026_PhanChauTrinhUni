@@ -165,8 +165,15 @@ def main(argv=None) -> int:
     syn, combos = drug_tables()
     blocks = block_hashes()
     atoms = [finalize(enforce_decoy_rule(a)) for a in canonical_keys(load_topics(P.root / "data" / "interim" / "pilot"))]
+    import yaml
+
+    ex_f = P.root / "data" / "interim" / "pilot_exclusions.yaml"      # deliberate, reasoned exclusions (duplicates...)
+    excl = (yaml.safe_load(ex_f.read_text(encoding="utf-8")) or {}).get("exclude", {}) if ex_f.exists() else {}
     seen, keep, bad = set(), [], []
     for a in atoms:
+        if a["atom_id"] in excl:
+            bad.append((a, [f"loại có chủ đích: {excl[a['atom_id']]}"]))
+            continue
         probs = check(a, syn, combos)
         if a["atom_id"] in seen:
             probs.append("atom_id trùng")

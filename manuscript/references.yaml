@@ -1,0 +1,845 @@
+# manuscript/references.yaml — do lit-scout tạo ngày 2026-09-26 (task T2.8).
+# Tiêu đề, tác giả, năm, nơi đăng lấy từ bản ghi Crossref/DataCite (không từ trí nhớ).
+# Mục arXiv dùng DOI DataCite 10.48550/arXiv.<id> để scripts/verify_citations.py kiểm được.
+# Mục chỉ có url (hướng dẫn nước ngoài dạng trang web) cần người dùng xác nhận (HG7.3) mới đặt checked_by_human: true.
+# Văn bản Bộ Y tế, luật và nghị định KHÔNG nằm ở đây (lấy từ manifest kho, kiểm tay theo HG7.3).
+- key: wang2026jurisdictional
+  title: Which Institutional Frameworks Do Chatbots Assume? Auditing Jurisdictional Defaults in Multilingual LLMs
+  authors: Wang Z, Suresh H
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2606.00333
+  arxiv: '2606.00333'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: cao
+  note: 74,5% chỉ thuộc điều kiện system prompt buộc trả lời một đáp án (gộp 7 mô hình)
+- key: bazerbachi2026cultural
+  title: Cultural bias in large language models’ ability to follow neuroradiology guidelines
+  authors: Bazerbachi N, Bentegeac R, Pistilli G, et al.
+  year: 2026
+  venue: European Radiology 36(10):7444-7453
+  doi: 10.1007/s00330-026-12634-0
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: cao
+  note: Open access CC-BY, PMC13574872; số liệu đề cương khớp toàn văn
+- key: tan2026cpgbench
+  title: A Decade-Scale Benchmark Evaluating LLMs' Clinical Practice Guidelines Detection and Adherence in Multi-turn Conversations
+  authors: Tan A, Dai S, Wang J, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2603.25196
+  arxiv: '2603.25196'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: cao
+  note: CPGBench
+- key: guan2026temporal
+  title: Large Language Models Lack Temporal Awareness of Medical Knowledge
+  authors: Guan Z, Jin Q, Xiong G, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2605.13045
+  arxiv: '2605.13045'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: TempoMed-Bench; 25,37-53,89% là tỉ lệ so với độ chính xác kiến thức cập nhật
+- key: wu2025driftmedqa
+  title: Assessing and Mitigating Medical Knowledge Drift and Conflicts in Large Language Models
+  authors: Wu W, Xu X, Gao C, et al.
+  year: 2025
+  venue: 'Findings of the Association for Computational Linguistics: EMNLP 2025:707-730'
+  doi: 10.18653/v1/2025.findings-emnlp.38
+  arxiv: '2505.07968'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: DriftMedQA; bản đã xuất bản Findings EMNLP 2025
+- key: vladika2025factsfade
+  title: 'Facts Fade Fast: Evaluating Memorization of Outdated Medical Knowledge in Large Language Models'
+  authors: Vladika J, Dhaini M, Matthes F
+  year: 2025
+  venue: 'Findings of the Association for Computational Linguistics: EMNLP 2025:9161-9174'
+  doi: 10.18653/v1/2025.findings-emnlp.487
+  arxiv: '2509.04304'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: Facts Fade Fast
+- key: prior2026oldfriend
+  title: 'Asking For An Old Friend: Diagnosing and Mitigating Temporal Failure Modes in LLM-based Statutory Question Answering'
+  authors: Prior M, Schultz A, Grabmair M
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2605.23497
+  arxiv: '2605.23497'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: luật Đức; staleness + recency bias
+- key: mutisya2025alama
+  title: 'Retrieval-Augmented Clinical Benchmarking for Contextual Model Testing in Kenyan Primary Care: A Methodology Paper'
+  authors: Mutisya F, Gitau S, Syovata C, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2507.14615
+  arxiv: '2507.14615'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: Alama Health QA (trích theo tên bài, không theo tên bộ dữ liệu)
+- key: mutisya2025mindgap
+  title: 'Mind the Gap: Evaluating the Representativeness of Quantitative Medical Language Reasoning LLM Benchmarks for African Disease Burdens'
+  authors: Mutisya F, Gitau S, Syovata C, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2507.16322
+  arxiv: '2507.16322'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: Mind the Gap
+- key: bui2026crosslingual
+  title: Perspectives on Cross-Lingual Consistency in LLMs for Medical Questions
+  authors: Bui MD, Sanz-Guerrero M, Ebrahimi A, et al.
+  year: 2026
+  venue: 'arXiv preprint (arXiv comment: Accepted to EMNLP 2026 Main; chưa có DOI ACL Anthology)'
+  doi: 10.48550/arXiv.2609.07687
+  arxiv: '2609.07687'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: cập nhật DOI ACL khi có
+- key: gabriel2026safety
+  title: 'Safety That Does Not Transfer: Cross-Lingual Clinical Correctness Drift in Deployable Medical Language Models'
+  authors: Gabriel AO, Olawuyi D, Ajayi T, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2607.17270
+  arxiv: '2607.17270'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: khác IyàwóBench 2605.23465 cùng nhóm
+- key: hisada2025healthbench
+  title: 'Filling in the Clinical Gaps in Benchmark: Case for HealthBench for the Japanese medical system'
+  authors: Hisada S, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2509.17444
+  arxiv: '2509.17444'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: thứ tự họ-tên của 2 đồng tác giả (Endo Sunao, Himi Yamato) cần người kiểm
+- key: kasai2023japanese
+  title: Evaluating GPT-4 and ChatGPT on Japanese Medical Licensing Examinations
+  authors: Kasai J, Kasai Y, Sakaguchi K, et al.
+  year: 2023
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2303.18027
+  arxiv: '2303.18027'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: IgakuQA
+- key: wang2026clear
+  title: 'CLEAR: Cross-Source Evidence Adjudication for Large Language Models in Medicine'
+  authors: Wang S, Zhao Y, Chen Q
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2609.16301
+  arxiv: '2609.16301'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: CLEAR (Cross-Source Evidence Adjudication)
+- key: nguyen2025vm14k
+  title: 'VM14K: First Vietnamese Medical Benchmark'
+  authors: Nguyen T, Nguyen D, Dang M, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2506.01305
+  arxiv: '2506.01305'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: VM14K
+- key: tran2024vimedaqa
+  title: 'ViMedAQA: A Vietnamese Medical Abstractive Question-Answering Dataset and Findings of Large Language Model'
+  authors: Tran MN, Nguyen PV, Nguyen L, et al.
+  year: 2024
+  venue: 'Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 4: Student Research Workshop):356-364'
+  doi: 10.18653/v1/2024.acl-srw.31
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: ViMedAQA
+- key: nguyen2026vihermes
+  title: 'ViHERMES: A Graph-Grounded Multihop Question Answering Benchmark and System for Vietnamese Healthcare Regulations'
+  authors: Nguyen LST, Bui QM, Ngo TT, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2602.07361
+  arxiv: '2602.07361'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: ViHERMES
+- key: wu2024clasheval
+  title: 'ClashEval: Quantifying the tug-of-war between an LLM''s internal prior and external evidence'
+  authors: Wu K, Wu E, Zou J
+  year: 2024
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2404.10198
+  arxiv: '2404.10198'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: nơi đăng chính thức chưa kiểm qua registry
+- key: xie2023chameleon
+  title: 'Adaptive Chameleon or Stubborn Sloth: Revealing the Behavior of Large Language Models in Knowledge Conflicts'
+  authors: Xie J, Zhang K, Chen J, et al.
+  year: 2023
+  venue: 'arXiv preprint (arXiv comment: ICLR 2024 Spotlight)'
+  doi: 10.48550/arXiv.2305.13300
+  arxiv: '2305.13300'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+- key: xu2024knowledgeconflicts
+  title: 'Knowledge Conflicts for LLMs: A Survey'
+  authors: Xu R, Qi Z, Guo Z, et al.
+  year: 2024
+  venue: Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing:8541-8565
+  doi: 10.18653/v1/2024.emnlp-main.486
+  arxiv: '2403.08319'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: bản đã xuất bản EMNLP 2024
+- key: yeginbergen2026crosslingual
+  title: Effects of Cross-lingual Evidence in Multilingual Medical Question Answering
+  authors: Yeginbergen A, Oronoz M, Agerri R
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2604.20531
+  arxiv: '2604.20531'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+- key: molfetta2026sycophants
+  title: 'Sycophants in the Courtroom: Are LLMs Fragile to Juridical Authority and Evolving Legal Standards?'
+  authors: Molfetta L, Cocchieri A, Ragazzi L, et al.
+  year: 2026
+  venue: 'Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers):10865-10886'
+  doi: 10.18653/v1/2026.acl-long.497
+  arxiv: '2608.21409'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: bản đã xuất bản ACL 2026 long
+- key: angelopoulos2025learnthentest
+  title: 'Learn then test: Calibrating predictive algorithms to achieve risk control'
+  authors: Angelopoulos AN, Bates S, Candès EJ, et al.
+  year: 2025
+  venue: The Annals of Applied Statistics 19(2)
+  doi: 10.1214/24-aoas1998
+  arxiv: '2110.01052'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: bản đã xuất bản Ann Appl Stat 2025
+- key: angelopoulos2022crc
+  title: Conformal Risk Control
+  authors: Angelopoulos AN, Bates S, Fisch A, et al.
+  year: 2022
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2208.02814
+  arxiv: '2208.02814'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: Conformal Risk Control; nơi đăng chính thức chưa kiểm qua registry
+- key: gurram2026selective
+  title: 'Valid Per-Field Selective Risk Control for Document Extraction: Three Failure Modes, a Validity Ladder, and When Conditioning Pays'
+  authors: Gurram B
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2608.14639
+  arxiv: '2608.14639'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: miền trích xuất tài liệu (hóa đơn CORD), không phải LLM y khoa
+- key: salem2026hgcrc
+  title: Hierarchical Group-Conditional Conformal Risk Control for Selective Prediction in Language Models
+  authors: Salem M, Böhm L, Pontes D, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2607.24562
+  arxiv: '2607.24562'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: HG-CRC
+- key: yadkori2024conformal
+  title: Mitigating LLM Hallucinations via Conformal Abstention
+  authors: Yadkori YA, Kuzborskij I, Stutz D, et al.
+  year: 2024
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2405.01563
+  arxiv: '2405.01563'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+- key: gui2024conformalalignment
+  title: 'Conformal Alignment: Knowing When to Trust Foundation Models with Guarantees'
+  authors: Gui Y, Jin Y, Ren Z
+  year: 2024
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2405.10301
+  arxiv: '2405.10301'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+- key: mohri2024conformalfactuality
+  title: Language Models with Conformal Factuality Guarantees
+  authors: Mohri C, Hashimoto T
+  year: 2024
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2402.10978
+  arxiv: '2402.10978'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+- key: machcha2026medabstain
+  title: 'Knowing When to Abstain: Medical LLMs Under Clinical Uncertainty'
+  authors: Machcha S, Yerra S, Gupta S, et al.
+  year: 2026
+  venue: 'Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers):6153-6182'
+  doi: 10.18653/v1/2026.eacl-long.291
+  arxiv: '2601.12471'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: MedAbstain; bản đã xuất bản EACL 2026
+- key: feng2024abstain
+  title: Teaching LLMs to Abstain across Languages via Multilingual Feedback
+  authors: Feng S, Shi W, Wang Y, et al.
+  year: 2024
+  venue: Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing:4125-4150
+  doi: 10.18653/v1/2024.emnlp-main.239
+  arxiv: '2406.15948'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: bản đã xuất bản EMNLP 2024
+- key: duwal2025mka
+  title: 'MKA: Leveraging Cross-Lingual Consensus for Model Abstention'
+  authors: Duwal S
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2503.23687
+  arxiv: '2503.23687'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: trung bình
+  note: MKA; một tác giả
+- key: dunn2023hierarchical
+  title: Distribution-Free Prediction Sets for Two-Layer Hierarchical Models
+  authors: Dunn R, Wasserman L, Ramdas A
+  year: 2023
+  venue: Journal of the American Statistical Association 118(544):2491-2502
+  doi: 10.1080/01621459.2022.2060112
+  arxiv: '1809.07441'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: JASA; online 2022-05-09, bản in 2023
+- key: gibbs2025conditional
+  title: Conformal prediction with conditional guarantees
+  authors: Gibbs I, Cherian JJ, Candès EJ
+  year: 2025
+  venue: 'Journal of the Royal Statistical Society Series B: Statistical Methodology 87(4):1100-1126'
+  doi: 10.1093/jrsssb/qkaf008
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+- key: gallifant2025tripodllm
+  title: The TRIPOD-LLM reporting guideline for studies using large language models
+  authors: Gallifant J, Afshar M, Ameen S, et al.
+  year: 2025
+  venue: Nature Medicine 31(1):60-69
+  doi: 10.1038/s41591-024-03425-5
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: chuẩn báo cáo
+- key: bui2026kap
+  title: 'Knowledge, Attitudes, and Practices Related to AI in Learning and Research Among Medical Students in Vietnam: Cross-Sectional Study'
+  authors: Bui MT, Le HM, Luong TKH, et al.
+  year: 2026
+  venue: JMIR Formative Research 10:e95867-e95867
+  doi: 10.2196/95867
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  overlap: thấp
+  note: nguồn số liệu §1.1 (n=1.002; 79,6%); tên công cụ cần đọc toàn văn
+- key: ada2025glycemic
+  title: '9. Pharmacologic Approaches to Glycemic Treatment: Standards of Care in Diabetes—2025'
+  authors: American Diabetes Association Professional Practice Committee, ElSayed NA, McCoy RG, et al.
+  year: 2025
+  venue: Diabetes Care 48(Supplement_1):S181-S206
+  doi: 10.2337/dc25-s009
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: hướng dẫn nước ngoài (ADA 2025 mục 9); online 2024-12-09
+- key: ada2025cvd
+  title: '10. Cardiovascular Disease and Risk Management: Standards of Care in Diabetes—2025'
+  authors: American Diabetes Association Professional Practice Committee, ElSayed NA, McCoy RG, et al.
+  year: 2025
+  venue: Diabetes Care 48(Supplement_1):S207-S238
+  doi: 10.2337/dc25-s010
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: hướng dẫn nước ngoài (ADA 2025 mục 10); online 2024-12-09
+- key: abonizio2026brazilian
+  title: 'Teaching LLMs Brazilian Healthcare: Injecting Knowledge from Official Clinical Guidelines'
+  authors: Abonizio H, Lopes FR, Lotufo R, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2605.01077
+  arxiv: '2605.01077'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: cao
+  note: HealthBench-BR, PCDT-QA; hướng dẫn SUS Brazil
+- key: siepmann2025hepatitisb
+  title: The Impact of Access to Clinical Guidelines on LLM‐Based Treatment Recommendations for Chronic Hepatitis B
+  authors: Siepmann R, Schneider CV, von der Stueck MS, et al.
+  year: 2025
+  venue: Liver International 45(10):e70324
+  doi: 10.1111/liv.70324
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: cao
+  note: WHO 2015 vs 2024, viêm gan B, có/không ngữ cảnh
+- key: nguyen2025gpchatgpt
+  title: GP or ChatGPT? Ability of large language models (LLMs) to support general practitioners when prescribing antibiotics
+  authors: Ngoc Nguyen O, Amin D, Bennett J, et al.
+  year: 2025
+  venue: Journal of Antimicrobial Chemotherapy 80(5):1324-1330
+  doi: 10.1093/jac/dkaf077
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: cao
+  note: hướng dẫn kháng sinh quốc gia 4 nước, có nêu quốc gia
+- key: zeng2025geographic
+  title: 'Dr. LLM Will See You Now: The Ability of ChatGPT to Provide Geographically Tailored Colorectal Cancer Screening and Surveillance Recommendations'
+  authors: Zeng A, Steinke J, Bocse HF, et al.
+  year: 2025
+  venue: Journal of Clinical Medicine 14(14):5101
+  doi: 10.3390/jcm14145101
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: cao
+  note: khuyến cáo theo địa lý, 4 nước
+- key: zhou2026localization
+  title: Knowledge localization is associated with higher performance of domestic large language models in a Chinese radiation oncology examination
+  authors: Zhou Y, Lin S, Wang X, et al.
+  year: 2026
+  venue: Frontiers in Oncology 16:1808714
+  doi: 10.3389/fonc.2026.1808714
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: cao
+  note: 'phân tích lỗi GPT-5: 43,4% do lệch NCCN vs CSCO'
+- key: wong2026implicit
+  title: 'Implicit Geographic Inference in LLM Medical Triage: Language-Driven Disparities in Emergency Recommendations'
+  authors: Wong QH
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2606.01204
+  arxiv: '2606.01204'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: ngôn ngữ -> suy luận địa lý ngầm trong triage
+- key: harris2025pubhealthbench
+  title: Healthy LLMs? Benchmarking LLM Knowledge of UK Government Public Health Information
+  authors: Harris J, Grayson F, Feldman F, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2505.06046
+  arxiv: '2505.06046'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: PubHealthBench
+- key: feldman2026healthier
+  title: 'Healthier LLMs: Retrieval-Augmented Generation for Public Health Question Answering'
+  authors: Feldman F, Harris J, Laurence T, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2607.06641
+  arxiv: '2607.06641'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: PubHealthBench + RAG
+- key: schlicht2026zoomin
+  title: Zoom In Disparities in Healthcare LLM Q&A
+  authors: Schlicht IB, Sayin B, Zhao Z, et al.
+  year: 2026
+  venue: Natural Language Processing and Information Systems:154-168
+  doi: 10.1007/978-3-032-29532-3_12
+  arxiv: '2510.17476'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: LNCS (NLDB), MultiWikiHealthCare
+- key: hasan2026english
+  title: 'When English Rewrites Local Knowledge: Global Narrative Dominance in Large Language Models'
+  authors: Hasan MA, Naswan R, Samir F, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2605.30481
+  arxiv: '2605.30481'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: CulturalNB; không y khoa
+- key: chen2026megacdp
+  title: Benchmarking Clinical Decision Pathway Adherence in Large Language Models
+  authors: Chen N, Jiang X, Wang Z, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2608.26592
+  arxiv: '2608.26592'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: MEGA-CDP
+- key: liu2026certified
+  title: Certified Against Which Oracle? Execution Labels Set the Reported Risk of Conformal Abstention for Text-to-SQL
+  authors: Liu J, Qiao D, Zhang Y, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2609.25938
+  arxiv: '2609.25938'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: chứng nhận phụ thuộc oracle
+- key: noonan2026exceedance
+  title: 'The Exceedance Design Effect: Effective Sample Size for Thresholds under Clustering'
+  authors: Noonan A
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2608.21262
+  arxiv: '2608.21262'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: cỡ mẫu hiệu dụng cho ngưỡng khi có cụm
+- key: zhou2026falsesense
+  title: 'False Sense of Safety in Selective Signal Classification: Auditing Bound Tightness and Exchangeability for Risk Control'
+  authors: Zhou J, Wang M
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2606.15153
+  arxiv: '2606.15153'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: Clopper-Pearson; vi phạm khi chia theo nhóm
+- key: liu2026guidelineconflicts
+  title: Impact of Clinical Guideline Knowledge Conflicts on Large Language Models Performance in Medical Question-Answering:Original paper (Preprint)
+  authors: Liu Y, Pan Y, Liu Y, et al.
+  year: 2026
+  venue: JMIR Preprints (bản thảo chưa bình duyệt)
+  doi: 10.2196/preprints.110584
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+- key: fu2026sinousdrugqa
+  title: 'Sino-US-DrugQA: A benchmark for evaluating large language models in cross-jurisdictional pharmaceutical regulation'
+  authors: Fu X, Chen Z, Lu W
+  year: 2026
+  venue: PLOS One 21(9):e0343858
+  doi: 10.1371/journal.pone.0343858
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: cross-jurisdictional, quy định dược
+- key: yang2026hcc
+  title: 'Evaluating the clinical utility of large language models for hepatocellular carcinoma treatment recommendations: A nationwide retrospective registry study'
+  authors: Yang K, Lee J, Jang JW, et al.
+  year: 2026
+  venue: PLOS Medicine 23(1):e1004855
+  doi: 10.1371/journal.pmed.1004855
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: Hàn Quốc, AASLD/EASL vs thực hành
+- key: schwietering2026cpgqade
+  title: Benchmarking large language models for question answering on German clinical practice guidelines
+  authors: Schwietering J, Lichtner G
+  year: 2026
+  venue: BMJ Health &amp; Care Informatics 33(1):e102207
+  doi: 10.1136/bmjhci-2026-102207
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: cpgQA-DE
+- key: ke2025ragfitness
+  title: Retrieval augmented generation for 10 large language models and its generalizability in assessing medical fitness
+  authors: Ke YH, Jin L, Elangovan K, et al.
+  year: 2025
+  venue: npj Digital Medicine 8(1):187
+  doi: 10.1038/s41746-025-01519-z
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: Singapore, hướng dẫn địa phương + quốc tế
+- key: vach2026neurovascular
+  title: Evaluating Retrieval Augmented Generation-enhanced Large Language Models for Question Answering On German Neurovascular Guidelines
+  authors: Vach M, Gliem M, Weiss D, et al.
+  year: 2026
+  venue: Clinical Neuroradiology 36(1):119-127
+  doi: 10.1007/s00062-025-01562-z
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: 80% câu sai do truy xuất
+- key: presacan2026silence
+  title: 'When silence is safer: a review and decision-theoretic framework for LLM abstention in healthcare'
+  authors: Presacan O, Nik A, Ojha J, et al.
+  year: 2026
+  venue: npj Digital Medicine
+  doi: 10.1038/s41746-026-02882-1
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: tổng quan từ chối trong y tế
+- key: mo2026faithfulness
+  title: 'Faithfulness vs. Safety: Evaluating LLM Behavior Under Counterfactual Medical Evidence'
+  authors: Mo K, Venkatayogi S, Shaib C, et al.
+  year: 2026
+  venue: 'Findings of the Association for Computational Linguistics: ACL 2026:37053-37081'
+  doi: 10.18653/v1/2026.findings-acl.1847
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: MedCounterFact
+- key: zhao2025chinesemedicine
+  title: 'Assessing the adherence of large language models to clinical practice guidelines in Chinese medicine: a content analysis'
+  authors: Zhao W, Lai H, Pan B, et al.
+  year: 2025
+  venue: Frontiers in Pharmacology 16:1649041
+  doi: 10.3389/fphar.2025.1649041
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: tiếng Trung > tiếng Anh về tuân thủ hướng dẫn YHCT
+- key: yu2026outdated
+  title: 'Diagnostic Accuracy Masks Outdated Reasoning: Evaluating LLMs on Evolving Clinical Guidelines'
+  authors: Yu Y
+  year: 2026
+  venue: Preprints.org (bản thảo chưa bình duyệt)
+  doi: 10.20944/preprints202609.1228.v1
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: trung bình
+  note: Sepsis-3 vs SIRS; kho trộn bản hiện hành + bản bị thay
+- key: kalai2026hallucinations
+  title: Evaluating large language models for accuracy incentivizes hallucinations
+  authors: Kalai AT, Nachum O, Vempala SS, et al.
+  year: 2026
+  venue: Nature 653(8116):1047-1051
+  doi: 10.1038/s41586-026-10549-w
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: thấp
+  note: 'cần trích: chấm chỉ theo độ đúng thưởng cho đoán mò'
+- key: cocchieri2026abstain
+  title: LLMs (Almost) Never Abstain Under Medical Uncertainty
+  authors: Cocchieri A, Ragazzi L, Tagliavini G, et al.
+  year: 2026
+  venue: 'Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers):29573-29613'
+  doi: 10.18653/v1/2026.acl-long.1365
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: thấp
+  note: MedQAbstain
+- key: macedo2026globalmedqa
+  title: 'GlobalMedQA: A Standardized Multilingual Dataset for Assessing Medical Knowledge in LLMs'
+  authors: Macedo M, Hecht M, Saalfeld S, et al.
+  year: 2026
+  venue: Opening the Personal Gate between Technology and Health Care
+  doi: 10.3233/SHTI260188
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: thấp
+  note: benchmark mang khung nước gốc
+- key: rezaei2026counterfactual
+  title: 'Counterfactual Cultural Cues Reduce Medical QA Accuracy in LLMs: Identifier vs Context Effects'
+  authors: Rezaei AHM, Shakeri Z
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2601.20102
+  arxiv: '2601.20102'
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: thấp
+  note: đáp án cố định theo MedQA
+- key: nimo2025africahealthcheck
+  title: 'Africa Health Check: Probing Cultural Bias in Medical LLMs'
+  authors: Nimo C, Liu S, Essa I, et al.
+  year: 2025
+  venue: Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing:32207-32220
+  doi: 10.18653/v1/2025.emnlp-main.1639
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: moi
+  overlap: thấp
+  note: mặc định điều trị phương Tây
+- key: who2022drtb
+  title: 'WHO consolidated guidelines on tuberculosis. Module 4: treatment - drug-resistant tuberculosis treatment, 2022 update'
+  authors: World Health Organization
+  year: 2022
+  venue: World Health Organization
+  url: https://www.who.int/publications/i/item/9789240063129
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: hướng dẫn nước ngoài; trang mở được 2026-09-26
+- key: who2025obesity
+  title: Obesity and overweight
+  authors: World Health Organization
+  year: 2025
+  venue: WHO fact sheet (8 December 2025)
+  url: https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: trang mở được 2026-09-26
+- key: rcuk2021anaphylaxis
+  title: Anaphylaxis algorithm
+  authors: Resuscitation Council UK
+  year: 2021
+  venue: Resuscitation Council UK
+  url: https://www.resus.org.uk/sites/default/files/2021-04/Anaphylaxis%20algorithm%202021.pdf
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: 'PDF 1 trang, mở được 2026-09-26 (bản cache: data/cache/foreign)'
+- key: aasld2025hbvslides
+  title: Practical Application of HBV Guidelines
+  authors: American Association for the Study of Liver Diseases
+  year: 2025
+  venue: AASLD educational slide set
+  url: https://www.aasld.org/sites/default/files/2025-11/CHB%20Educational%20Slide%20Set%20Final%202.pdf
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: bộ slide giáo dục, không phải văn bản hướng dẫn gốc; nên thay bằng bài hướng dẫn AASLD 2025 nếu có
+- key: cdc2026rabiespep
+  title: Rabies Post-exposure Prophylaxis Guidance
+  authors: Centers for Disease Control and Prevention
+  year: 2026
+  venue: CDC web page (last updated 17 September 2026)
+  url: https://www.cdc.gov/rabies/hcp/clinical-care/post-exposure-prophylaxis.html
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: mở qua WebFetch 2026-09-26 (curl bị 403)
+- key: cdc2026malariatables
+  title: 'Malaria in the United States: Treatment Tables'
+  authors: Centers for Disease Control and Prevention
+  year: 2026
+  venue: CDC web page (updated 17 August 2026)
+  url: https://www.cdc.gov/malaria/hcp/clinical-guidance/appendix-a-treatment-tables.html
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: mở qua WebFetch 2026-09-26
+- key: cdc2025childschedule
+  title: Child and Adolescent Immunization Schedule by Age (Addendum updated July 2, 2025)
+  authors: Centers for Disease Control and Prevention
+  year: 2025
+  venue: CDC web page (updated 2 July 2025)
+  url: https://www.cdc.gov/vaccines/hcp/imz-schedules/child-adolescent-age.html
+  checked_by_human: false
+  source: lit-scout 2026-09-26
+  group: de_cuong
+  note: mở qua WebFetch 2026-09-26

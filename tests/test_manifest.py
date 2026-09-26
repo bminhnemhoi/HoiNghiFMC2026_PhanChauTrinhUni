@@ -33,7 +33,8 @@ def test_unique_keys_and_schema():
 @pytest.mark.parametrize("row", [r for r in ROWS if r.get("source_url") and r.get("sha256")], ids=lambda r: r["doc_key"])
 def test_downloaded_file_matches_sha(row):
     default = pdf_path(row["doc_key"])
-    cands = [default, *default.parent.glob(default.stem.split("__")[0] + "__*.pdf")]
+    base = default.stem.split("__")[0]                  # pdf_choice.json may point to a second official copy
+    cands = [default, default.parent / f"{base}.pdf", *default.parent.glob(base + "__*.pdf")]
     shas = {_sha(p) for p in cands if p.exists()}
     assert shas, f"thiếu file PDF cho {row['doc_key']} trong data/raw/"
     assert row["sha256"] in shas, f"{row['doc_key']}: sha256 trong manifest không khớp file nào trong data/raw/"

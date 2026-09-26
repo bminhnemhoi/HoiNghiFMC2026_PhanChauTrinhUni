@@ -27,6 +27,8 @@ hypotheses:
   secondary_family: [H2, H3, H4]     # Holm within family
   H3_margin: 0.05
   H4_rr_lower_bound: 2.0
+  H1_sesoi_excess: 0.10             # ngưỡng hiệu quả nhỏ nhất có ý nghĩa thực tế cho E (chỉ để diễn giải, không đổi
+                                    # tiêu chí H1); đề xuất 26/9/2026 theo phản biện đăng ký trước — người dùng xác nhận
   ci_level: 0.95
 rq3:
   groups: [agree, disagree]

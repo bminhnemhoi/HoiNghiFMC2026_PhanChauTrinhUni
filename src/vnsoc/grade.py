@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import asdict, dataclass, field
+from decimal import Decimal
 
 from vnsoc import normalize_vi as nv
 
@@ -29,10 +30,20 @@ ABSTAIN = re.compile(r"không\s+(?:rõ|chắc|biết|thể\s+xác\s+định|có\
                      r"cannot\s+(?:determine|answer|provide)|unable\s+to|not\s+sure|insufficient\s+information", re.I)
 ASK_COUNTRY = re.compile(r"quốc\s+gia\s+nào|nước\s+nào|hướng\s+dẫn\s+(?:của\s+)?(?:nước|quốc\s+gia)\s+nào|"
                          r"which\s+(?:country|guideline|jurisdiction)", re.I)
-CONTRAST = re.compile(r"khác\s+(?:với)?|trong\s+khi|còn\s+theo|ngược\s+lại|whereas|while|differ|in\s+contrast|"
-                      r"unlike|however", re.I)
-FOREIGN_NAMES = re.compile(r"\b(?:WHO|ADA|AHA|ACC|ESC|ESH|CDC|AASLD|EASL|RCUK|NICE|ACOG|GINA|GOLD|WAO|EAACI|"
-                           r"IDSA|Mỹ|Hoa\s+Kỳ|châu\s+Âu|quốc\s+tế|US|USA|American|European|international)\b", re.I)
+# Label 1 (context-aware) needs a NAMED foreign body/country in the same sentence as a non-MoH value, or together
+# with an explicit contrast phrase (prereg §6.3 rule 8; revised 2026-09-26 after the clinician review: generic
+# connectives such as "while", "however", "khác" and case-insensitive acronyms such as "who", "us" gave label 1 to
+# ordinary answers). Acronyms are case-sensitive with letter boundaries; "quốc tế"/"international" never count
+# inside "đơn vị quốc tế"/"international units".
+CONTRAST = re.compile(r"khác\s+(?:với|so\s+với)|không\s+giống|trong\s+khi|còn\s+theo|ngược\s+lại|"
+                      r"whereas|unlike|in\s+contrast|differs?\s+from|different\s+from|as\s+opposed\s+to", re.I)
+FOREIGN_NAMES = re.compile(
+    r"(?<![A-Za-z])(?:WHO|ADA|AHA|ACC|ESC|ESH|CDC|AASLD|EASL|APASL|RCUK|NICE|ACOG|GINA|GOLD|WAO|EAACI|IDSA|USPSTF|"
+    r"KDIGO|US|USA|UK)(?![A-Za-z])"
+    r"|\b(?:Mỹ|Hoa\s+Kỳ|[cC]hâu\s+Âu|Anh\s+quốc|Vương\s+quốc\s+Anh|nước\s+Anh|Tổ\s+chức\s+Y\s+tế\s+Thế\s+giới)\b"
+    r"|(?i:\b(?:american|european|british|united\s+states|world\s+health\s+organi[sz]ation)\b)"
+    r"|(?<!vị\s)(?i:\bquốc\s+tế\b)|(?i:\binternational\b(?!\s+units?))")
+SENT_SPLIT = re.compile(r"(?<=[.!?;])\s+|\n+")
 VN_MARK = re.compile(r"bộ\s+y\s+tế|việt\s+nam|\bBYT\b|\bMoH\b|Vietnam", re.I)
 
 
@@ -42,6 +53,7 @@ class Grade:
     label_name: str | None
     vn_match: bool = False
     foreign_systems: list = field(default_factory=list)
+    foreign_sources: list = field(default_factory=list)   # 'source|version_date' of every matched foreign record
     superseded: list = field(default_factory=list)
     decoy_match: bool = False
     parse_method: str = "none"      # answer_line | fallback | llm | none
@@ -102,6 +114,8 @@ def matches(val, item: dict, atom: dict) -> tuple[bool, bool]:
         ref = ref.to(atom.get("unit"), atom.get("context") or {}) or ref
         inside = _within(val.lo, ref.lo, ref.hi, tol) and _within(val.hi, ref.lo, ref.hi, tol)
         overlap = not (val.hi < ref.lo - tol or val.lo > ref.hi + tol)
+        if _open_touch(val, getattr(val, "cmp", None), ref, item.get("cmp")):
+            inside = overlap = False             # '<130' is not inside '130 to <140' (and vice versa)
         return inside, (overlap and not inside)
     if kind == "bp":
         ok = _within(val.sys, item["sys"], item["sys"], tol) and _within(val.dia, item["dia"], item["dia"], tol)
@@ -122,11 +136,13 @@ def classify_value(val, atom: dict) -> dict:
         ok, part = matches(val, it, atom)
         r["vn"] |= ok
         r["partial"] |= part
+    r["sources"] = []
     for f in atom.get("foreign") or []:
-        if any(matches(val, it, atom)[0] for it in f["values"]):
+        if any(matches(val, it, atom)[0] for it in f["values"] if not it.get("derived")):
             r["foreign"].append(f["system"])
+            r["sources"].append(f"{f.get('source', '')}|{f.get('version_date', '')}")
     for s in atom.get("superseded") or []:
-        if any(matches(val, it, atom)[0] for it in s["values"]):
+        if any(matches(val, it, atom)[0] for it in s["values"] if not it.get("derived")):
             r["superseded"].append(s["guideline"])
     r["decoy"] = any(matches(val, it, atom)[0] for it in atom.get("decoy") or [])
     return r
@@ -138,6 +154,65 @@ def _distinct(vals: list) -> list:
         if all(v != w for _, w in out):
             out.append((flag, v))
     return out
+
+
+def _sentences(text: str) -> list[str]:
+    return [x for x in SENT_SPLIT.split(text or "") if x.strip()]
+
+
+def _name_segments(sentence: str) -> list[tuple[str | None, str]]:
+    """Split a sentence at every named source; each segment is attributed to the name it starts with ('vn' for a
+    Vietnam/MoH marker, 'foreign' for a named foreign body/country, None before the first name)."""
+    marks = sorted([(m.start(), "vn") for m in VN_MARK.finditer(sentence)] +
+                   [(m.start(), "foreign") for m in FOREIGN_NAMES.finditer(sentence)])
+    segs, prev, kind = [], 0, None
+    for pos, k in marks:
+        if pos > prev:
+            segs.append((kind, sentence[prev:pos]))
+        prev, kind = pos, k
+    segs.append((kind, sentence[prev:]))
+    return segs
+
+
+def _attributed(text: str, atom: dict, lang: str, synonyms=None, combos=None) -> list[tuple[str | None, dict]]:
+    """(attribution, classification) of every value parsed in `text`, segment by segment; unit-less numbers are
+    ignored when a value with an explicit unit exists (years such as 'WHO 2009' are not answers)."""
+    out = []
+    for sent in _sentences(text):
+        for kind, seg in _name_segments(sent):
+            for flag, v in parse_values(seg, atom, lang, synonyms, combos):
+                out.append((kind, flag, classify_value(v, atom)))
+    if any(f == "ok" for _, f, _ in out):
+        out = [x for x in out if x[1] == "ok"]
+    return [(k, c) for k, _, c in out]
+
+
+def _attribution_aware(span: str, atom: dict, lang: str, synonyms=None, combos=None, conflicting=None) -> bool:
+    """Label 1 for an answer giving several values (prereg §6.3 rules 6-7): every non-MoH value must sit in a segment
+    introduced by a named foreign source, and at least one MoH value in a segment introduced by a Vietnam/MoH marker
+    or by no name. 'Theo Bộ Y tế: 5-10 hoặc 15' attaches the foreign value to the MoH marker, so it is label 5."""
+    av = _attributed(span, atom, lang, synonyms, combos)
+
+    def foreign_hit(c) -> bool:
+        return bool(conflicting and set(c["foreign"]) & conflicting)
+
+    moh = [k for k, c in av if c["vn"] and not foreign_hit(c)]
+    non = [k for k, c in av if not c["vn"] or foreign_hit(c)]
+    return bool(moh) and bool(non) and all(k == "foreign" for k in non) and any(k in (None, "vn") for k in moh)
+
+
+def _sentence_aware(text: str, atom: dict, lang: str, synonyms=None, combos=None) -> bool:
+    """Label 1 for a single MoH value (prereg §6.3 rule 8): some sentence names a foreign body/country AND either
+    states a non-MoH value (explicit unit) or uses an explicit contrast phrase."""
+    for sent in _sentences(text):
+        if not FOREIGN_NAMES.search(sent):
+            continue
+        if CONTRAST.search(sent):
+            return True
+        if any(f == "ok" and not classify_value(v, atom)["vn"]
+               for f, v in parse_values(sent, atom, lang, synonyms, combos)):
+            return True
+    return False
 
 
 def grade_short(output: str, atom: dict, lang: str = "vi", synonyms=None, combos=None,
@@ -171,35 +246,31 @@ def grade_short(output: str, atom: dict, lang: str = "vi", synonyms=None, combos
     g.partial = any(c["partial"] for c in cls) and not any(c["vn"] for c in cls)
     if len(cls) > 1 and not all(c["vn"] for c in cls):
         g.multi = True
-        if any(c["vn"] for c in cls) and VN_MARK.search(span):
+        if any(c["vn"] for c in cls) and _attribution_aware(span, atom, lang, synonyms, combos):
             g.vn_match = True
             g.foreign_systems = sorted({s for c in cls for s in c["foreign"]})
+            g.foreign_sources = sorted({s for c in cls for s in c["sources"]})
             g.label, g.label_name = 1, LABELS[1]
         else:
             g.label, g.label_name = 5, LABELS[5]
         return g
-    c = cls[0] if len(cls) == 1 else {"vn": True, "foreign": [], "superseded": [], "decoy": False}
+    c = cls[0] if len(cls) == 1 else {"vn": True, "foreign": [], "superseded": [], "decoy": False, "sources": []}
     g.vn_match = c["vn"]
     g.foreign_systems = sorted(set(c["foreign"]))
+    g.foreign_sources = sorted(set(c["sources"]))
     g.superseded = sorted(set(c["superseded"]))
     if c["vn"] and c["foreign"] and atom["value_kind"] == "drugs":
         # one drug list containing both the MoH and a foreign regimen
         g.multi = True
         conflicting = [f["system"] for f in atom.get("foreign") or []
-                       if all(_gap(v, it, atom) > 0 for v in atom["vn"] for it in f["values"])]
+                       if all(_gap(v, it, atom) > 0 for v in atom["vn"] for it in f["values"] if not it.get("derived"))]
         if set(c["foreign"]) & set(conflicting):
-            aware = bool(VN_MARK.search(full_text) or FOREIGN_NAMES.search(full_text))
+            aware = _attribution_aware(span, atom, lang, synonyms, combos, conflicting=set(conflicting))
             g.label = 1 if aware else 5
             g.label_name = LABELS[g.label]
             return g
     if c["vn"]:
-        aware = False
-        others = _distinct(parse_values(full_text, atom, lang, synonyms, combos))
-        if any(classify_value(v, atom)["foreign"] and not classify_value(v, atom)["vn"] for _, v in others):
-            aware = bool(CONTRAST.search(full_text) or FOREIGN_NAMES.search(full_text))
-        elif CONTRAST.search(full_text) and FOREIGN_NAMES.search(full_text):
-            aware = True
-        g.label = 1 if aware else 2
+        g.label = 1 if _sentence_aware(full_text, atom, lang, synonyms, combos) else 2
     elif c["superseded"]:
         g.label = 3
     elif c["foreign"]:
@@ -244,7 +315,10 @@ def _gap(a: dict, b: dict, atom: dict) -> float:
         y = nv.Num(float(b["lo"]), float(b["hi"]), b.get("unit") or unit).to(unit, ctx)
         if x is None or y is None:
             return float("inf")
-        return max(0.0, max(x.lo, y.lo) - min(x.hi, y.hi))
+        g = max(0.0, max(x.lo, y.lo) - min(x.hi, y.hi))
+        if g == 0 and _open_touch(x, a.get("cmp"), y, b.get("cmp")):
+            return _resolution(a, b)                 # disjoint but adjacent: one unit of the last recorded decimal
+        return g
     if kind == "bp":
         return max(abs(a["sys"] - b["sys"]), abs(a["dia"] - b["dia"]))
     if kind == "schedule":
@@ -256,9 +330,31 @@ def _gap(a: dict, b: dict, atom: dict) -> float:
     raise ValueError(kind)
 
 
+def _open_touch(x, xc, y, yc) -> bool:
+    """Two numeric items that touch at one point p are disjoint when a strict comparator puts one of them on the
+    other side of p: a point '<p' against a proper interval starting at p, or '>p' against one ending at p
+    (prereg §6.2). Point-against-point thresholds ('> 2000' vs '>= 2000') stay equal (gap 0)."""
+    def one(a, ac, b) -> bool:
+        if a.lo != a.hi:
+            return False
+        p = a.lo
+        return (ac == "<" and b.lo == p and b.hi > p) or (ac == ">" and b.hi == p and b.lo < p)
+    return one(x, xc, y) or one(y, yc, x)
+
+
+def _resolution(a: dict, b: dict) -> float:
+    nd = 0
+    for it in (a, b):
+        for k in ("lo", "hi"):
+            e = Decimal(str(float(it[k]))).normalize().as_tuple().exponent
+            nd = max(nd, -e if isinstance(e, int) and e < 0 else 0)
+    return 10.0 ** (-nd)
+
+
 def others(atom: dict) -> list[dict]:
-    items = [it for f in atom.get("foreign") or [] for it in f["values"]]
-    items += [it for s in atom.get("superseded") or [] for it in s["values"]]
+    """Every non-MoH source value (foreign, superseded, decoy); values flagged derived=True are ignored."""
+    items = [it for f in atom.get("foreign") or [] for it in f["values"] if not it.get("derived")]
+    items += [it for s in atom.get("superseded") or [] for it in s["values"] if not it.get("derived")]
     items += list(atom.get("decoy") or [])
     return items
 
@@ -280,14 +376,14 @@ def conflict_status(atom: dict) -> str:
     indistinguishable: a conflicting foreign value cannot be told apart from a superseded or decoy
     value (tolerance windows overlap), or the decoy touches the MoH set."""
     vn = atom.get("vn") or []
-    foreign = [it for f in atom.get("foreign") or [] for it in f["values"]]
+    foreign = [it for f in atom.get("foreign") or [] for it in f["values"] if not it.get("derived")]
     if not foreign:
         return "no_counterpart"
     conflicting = [o for o in foreign if all(_gap(v, o, atom) > 0 for v in vn)]
     if not conflicting:
         return "concordant"
     tol = float(atom.get("tolerance") if atom.get("tolerance") is not None else compute_tolerance(atom))
-    sup = [it for s in atom.get("superseded") or [] for it in s["values"]]
+    sup = [it for s in atom.get("superseded") or [] for it in s["values"] if not it.get("derived")]
     dec = list(atom.get("decoy") or [])
     for o in conflicting:
         for x in sup + dec:

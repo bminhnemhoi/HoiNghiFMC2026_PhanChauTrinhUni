@@ -17,3 +17,7 @@ manuscript/build/
 .DS_Store
 dist/
 .ruff_cache/
+
+# Toàn văn hướng dẫn trích từ PDF (tái tạo bằng vnsoc.extract.pdf_to_text / ocr) — không phát hành lại toàn văn
+data/interim/text/
+data/interim/ocr/

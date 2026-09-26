@@ -37,8 +37,10 @@ def in_atom_unit(item: dict, atom: dict):
 
 
 def _conflicting(atom: dict) -> list[dict]:
+    """Conflicting foreign items; items flagged derived=True (computed, not verbatim) never anchor a decoy."""
     vn = atom.get("vn") or []
-    return [it for f in atom.get("foreign") or [] for it in f["values"] if all(_gap(v, it, atom) > 0 for v in vn)]
+    return [it for f in atom.get("foreign") or [] for it in f["values"]
+            if not it.get("derived") and all(_gap(v, it, atom) > 0 for v in vn)]
 
 
 def mirror_decoy(atom: dict, rule: str = "auto") -> tuple[dict | None, str]:
@@ -109,6 +111,12 @@ def check_decoy(atom: dict) -> list[str]:
             probs.append(f"mồi {d.get('text') or d} trùng tập giá trị Bộ Y tế")
         if any(_gap(s, d, atom) == 0 for s in srcs):
             probs.append(f"mồi {d.get('text') or d} trùng một nguồn đã ghi")
+        # MoH values of a neighbouring context (another step/population/level of care; Atom.moh_neighbour) are
+        # recorded MoH values too: a decoy touching one (gap 0, or < 2·tolerance for num/bp) is rejected.
+        tol = compute_tolerance(atom) if atom.get("value_kind") in ("num", "bp") else 0.0
+        nbs = [it for nb in atom.get("moh_neighbour") or [] for it in nb.get("values") or []]
+        if any(_gap(x, d, atom) == 0 or _gap(x, d, atom) < 2 * tol for x in nbs):
+            probs.append(f"mồi {d.get('text') or d} chạm giá trị Bộ Y tế ở bối cảnh lân cận")
     if atom.get("decoy"):
         without = dict(atom, decoy=[])
         before = conflict_status(dict(without, tolerance=compute_tolerance(without)))

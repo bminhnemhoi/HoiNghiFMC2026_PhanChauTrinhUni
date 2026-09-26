@@ -67,6 +67,8 @@ class ValueItem(Strict):
     # cat
     label: str | None = None
     text: str | None = None                   # human-readable rendering, e.g. "5–10 ml/kg/giờ"
+    derived: bool = False                     # computed by the extractor, not read verbatim (e.g. a bolus converted
+    #                                           to a rate): ignored by vnsoc.grade for status/tolerance/attribution
 
 
 class ForeignValue(Strict):
@@ -95,6 +97,17 @@ class ForeignRecord(Strict):
     page_sha256: str
     values: list[ValueItem] = Field(min_length=1)
     note: str = ""
+
+
+class NeighbourValue(Strict):
+    """An MoH value of the CURRENT corpus for a neighbouring context of the atom (another step of the same protocol,
+    another population, another level of care), recorded at the context check (prereg §5.6 B.21)."""
+    context: str                              # e.g. "bước 2 (giờ thứ 2–3)", "trẻ em", "tuyến trạm y tế"
+    guideline: str | None = None              # 'NNNN/YYYY'; None = same document as the atom
+    section: str | None = None
+    page: int | None = None
+    span: str | None = None                   # verbatim MoH text (<= 600 chars)
+    values: list[ValueItem] = Field(min_length=1)
 
 
 class SupersededValue(Strict):
@@ -127,6 +140,16 @@ class Atom(Strict):
     foreign: list[ForeignValue] = []
     superseded: list[SupersededValue] = []
     decoy: list[ValueItem] = []
+    decoy_rule: str | None = None             # mirror_arith | mirror_geom | mirror_far | agent_proposed | rounded |
+    #                                           borrowed:<atom_id> (frozen with the atom; prereg §6.4)
+    roundness_ok: bool | None = None          # vnsoc.match.atom_flags.roundness_ok (num/bp), frozen
+    decoy_plausible: bool | None = None       # rated blind to outputs at HG3.5 by the registered rubric
+    decoy_plausible_reason: str | None = None
+    moh_neighbour: list[NeighbourValue] = []  # MoH values of neighbouring contexts (clinician review id 1)
+    required_terms: dict[str, dict[str, list[str]]] = {}   # population key -> {"vi": [...], "en": [...]} synonyms
+    moh_scope: Literal["preferred", "acceptable", "exhaustive"] | None = None   # drugs/cat: what the MoH text lists
+    acuity: Literal["high", "not_high"] | None = None      # student, from the registered topic list
+    aggressive_higher: bool | None = None     # override of the slot convention for foreign_direction
     tolerance: float | None = None
     conflict_status: ConflictStatus | None = None
     conflict_family: str | None = None
@@ -146,6 +169,9 @@ class Atom(Strict):
             _check_item(self.value_kind, it)
         for f in self.foreign:
             for it in f.values:
+                _check_item(self.value_kind, it)
+        for nb in self.moh_neighbour:
+            for it in nb.values:
                 _check_item(self.value_kind, it)
         if self.value_kind == "num" and not self.unit:
             raise ValueError("value_kind=num cần unit chuẩn hóa")
@@ -175,6 +201,8 @@ class Question(Strict):
     order_variant: int = 0
     population_complete: bool = True
     translation_qc: Literal["pass", "fail", "n/a", "pending"] = "n/a"
+    translation_hand_edited: bool = False      # EN text edited by hand after machine translation (RQ3 B.12)
+    ambiguity_check: Literal["pass", "fail", "pending", "n/a"] = "n/a"   # manual check, 100% of conflict atoms
     oracle_passage_id: str | None = None
     gold_chunk_ids: list[str] = []
     split: Literal["ref", "cal", "test", "unassigned"] = "unassigned"   # ref = thresholds, cal = certification
@@ -199,6 +227,7 @@ class RunRecord(Strict):
     tokens_in: int | None = None
     tokens_out: int | None = None
     logprob_answer: float | None = None
+    finish_reason: str | None = None          # 'stop' | 'length' (truncated at max_tokens) | ...
     backend: Literal["vllm", "hf", "openai_batch", "gemini_batch", "api_sync", "ollama"]
     error: str | None = None
 
@@ -211,6 +240,7 @@ class GradeRecord(Strict):
     label_name: str | None
     vn_match: bool
     foreign_systems: list[str]
+    foreign_sources: list[str] = []           # 'source|version_date' of the matched foreign records
     superseded: list[str]
     decoy_match: bool
     parse_method: str
