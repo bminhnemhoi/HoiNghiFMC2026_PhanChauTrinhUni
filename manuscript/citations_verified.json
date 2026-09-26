@@ -442,5 +442,161 @@
   "status": "needs_human_check",
   "found_title": null,
   "similarity": null
+ },
+ {
+  "key": "clopper1934binomial",
+  "status": "ok",
+  "found_title": "THE USE OF CONFIDENCE OR FIDUCIAL LIMITS ILLUSTRATED IN THE CASE OF THE BINOMIAL",
+  "similarity": 1.0
+ },
+ {
+  "key": "efron1987bca",
+  "status": "ok",
+  "found_title": "Better Bootstrap Confidence Intervals",
+  "similarity": 1.0
+ },
+ {
+  "key": "field2007clustered",
+  "status": "ok",
+  "found_title": "Bootstrapping Clustered Data",
+  "similarity": 1.0
+ },
+ {
+  "key": "cameron2008wildcluster",
+  "status": "ok",
+  "found_title": "Bootstrap-Based Improvements for Inference with Clustered Errors",
+  "similarity": 1.0
+ },
+ {
+  "key": "mackinnon2017wild",
+  "status": "ok",
+  "found_title": "Wild Bootstrap Inference for Wildly Different Cluster Sizes",
+  "similarity": 1.0
+ },
+ {
+  "key": "durkalski2003clustered",
+  "status": "ok",
+  "found_title": "Analysis of clustered matched‐pair data",
+  "similarity": 1.0
+ },
+ {
+  "key": "benjamini2008partial",
+  "status": "ok",
+  "found_title": "Screening for Partial Conjunction Hypotheses",
+  "similarity": 1.0
+ },
+ {
+  "key": "mantel1959retrospective",
+  "status": "ok",
+  "found_title": "Statistical Aspects of the Analysis of Data From Retrospective Studies of Disease",
+  "similarity": 1.0
+ },
+ {
+  "key": "greenland1985sparse",
+  "status": "ok",
+  "found_title": "Estimation of a Common Effect Parameter from Sparse Follow-Up Data",
+  "similarity": 1.0
+ },
+ {
+  "key": "holm1979sequential",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "korn1998survey",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "bates2015lme4",
+  "status": "ok",
+  "found_title": "Fitting Linear Mixed-Effects Models Using\n                    <b>lme4</b>",
+  "similarity": 0.933
+ },
+ {
+  "key": "brooks2017glmmtmb",
+  "status": "ok",
+  "found_title": "glmmTMB Balances Speed and Flexibility Among Packages for Zero-inflated Generalized Linear Mixed Modeling",
+  "similarity": 1.0
+ },
+ {
+  "key": "zeileis2020sandwich",
+  "status": "ok",
+  "found_title": "Various Versatile Variances: An Object-Oriented Implementation of Clustered Covariances in\n                    <i>R</i>",
+  "similarity": 0.96
+ },
+ {
+  "key": "pustejovsky2018smallsample",
+  "status": "ok",
+  "found_title": "Small-Sample Methods for Cluster-Robust Variance Estimation and Hypothesis Testing in Fixed Effects Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "chen2024m3embedding",
+  "status": "ok",
+  "found_title": "M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation",
+  "similarity": 1.0
+ },
+ {
+  "key": "yang2025qwen3",
+  "status": "ok",
+  "found_title": "Qwen3 Technical Report",
+  "similarity": 1.0
+ },
+ {
+  "key": "qwen2025blog",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "dou2025sailor2",
+  "status": "ok",
+  "found_title": "Sailor2: Sailing in South-East Asia with Inclusive Multilingual LLMs",
+  "similarity": 1.0
+ },
+ {
+  "key": "grattafiori2024llama3",
+  "status": "ok",
+  "found_title": "The Llama 3 Herd of Models",
+  "similarity": 1.0
+ },
+ {
+  "key": "meta2024llama31card",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "nguyen2023vistral",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "gemma2025gemma3",
+  "status": "ok",
+  "found_title": "Gemma 3 Technical Report",
+  "similarity": 1.0
+ },
+ {
+  "key": "gemma2026gemma4",
+  "status": "ok",
+  "found_title": "Gemma 4 Technical Report",
+  "similarity": 1.0
+ },
+ {
+  "key": "ollama2026",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
+ },
+ {
+  "key": "llamacpp2026",
+  "status": "needs_human_check",
+  "found_title": null,
+  "similarity": null
  }
 ]

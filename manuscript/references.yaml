@@ -843,3 +843,265 @@
   source: lit-scout 2026-09-26
   group: de_cuong
   note: mở qua WebFetch 2026-09-26
+# --- Phương pháp, phần mềm, mô hình (lit-scout 2026-09-27, giải TODO-CITE của main.md) ---
+# DOI tra Crossref /works/<doi>; arXiv tra export.arxiv.org + DataCite 10.48550; PubMed esummary cho tác giả/trang khi Crossref thiếu.
+# Mục chỉ có url (Holm 1979, Korn & Graubard 1998, model card, blog, phần mềm) là needs_human_check cho tới HG7.3.
+- key: clopper1934binomial
+  title: The use of confidence or fiducial limits illustrated in the case of the binomial
+  authors: Clopper CJ, Pearson ES
+  year: 1934
+  venue: Biometrika 26(4):404-413
+  doi: 10.1093/biomet/26.4.404
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+- key: efron1987bca
+  title: Better Bootstrap Confidence Intervals
+  authors: Efron B
+  year: 1987
+  venue: Journal of the American Statistical Association 82(397):171-185
+  doi: 10.1080/01621459.1987.10478410
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+- key: field2007clustered
+  title: Bootstrapping Clustered Data
+  authors: Field CA, Welsh AH
+  year: 2007
+  venue: 'Journal of the Royal Statistical Society Series B: Statistical Methodology 69(3):369-390'
+  doi: 10.1111/j.1467-9868.2007.00593.x
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+- key: cameron2008wildcluster
+  title: Bootstrap-Based Improvements for Inference with Clustered Errors
+  authors: Cameron AC, Gelbach JB, Miller DL
+  year: 2008
+  venue: Review of Economics and Statistics 90(3):414-427
+  doi: 10.1162/rest.90.3.414
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+- key: mackinnon2017wild
+  title: Wild Bootstrap Inference for Wildly Different Cluster Sizes
+  authors: MacKinnon JG, Webb MD
+  year: 2017
+  venue: Journal of Applied Econometrics 32(2):233-254
+  doi: 10.1002/jae.2508
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: Crossref issued 2016-02-21 (bản trực tuyến); tập 32 số 2 năm 2017
+- key: durkalski2003clustered
+  title: Analysis of clustered matched‐pair data
+  authors: Durkalski VL, Palesch YY, Lipsitz SR, Rust PF
+  year: 2003
+  venue: Statistics in Medicine 22(15):2417-2428
+  doi: 10.1002/sim.1438
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: tiêu đề giữ dấu gạch nối U+2010 như bản ghi Crossref (gạch ASCII làm scripts/verify_citations.py tách token, similarity 0,727)
+- key: benjamini2008partial
+  title: Screening for Partial Conjunction Hypotheses
+  authors: Benjamini Y, Heller R
+  year: 2008
+  venue: Biometrics 64(4):1215-1222
+  doi: 10.1111/j.1541-0420.2007.00984.x
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+- key: mantel1959retrospective
+  title: Statistical Aspects of the Analysis of Data From Retrospective Studies of Disease
+  authors: Mantel N, Haenszel W
+  year: 1959
+  venue: Journal of the National Cancer Institute 22(4):719-748
+  doi: 10.1093/jnci/22.4.719
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: bản ghi Crossref thiếu tác giả/tập/trang; tác giả và 22(4):719-48 lấy từ PubMed PMID 13655060
+- key: greenland1985sparse
+  title: Estimation of a Common Effect Parameter from Sparse Follow-Up Data
+  authors: Greenland S, Robins JM
+  year: 1985
+  venue: Biometrics 41(1):55-68
+  doi: 10.2307/2530643
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: trang 55-68 theo PubMed PMID 4005387 (Crossref chỉ có trang đầu 55); tóm tắt PubMed nêu ước lượng tỉ số nguy cơ Mantel-Haenszel vững khi phân tầng thưa và có phương sai vững
+- key: holm1979sequential
+  title: A Simple Sequentially Rejective Multiple Test Procedure
+  authors: Holm S
+  year: 1979
+  venue: Scandinavian Journal of Statistics 6:65-70
+  url: https://www.jstor.org/stable/4615733
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: 'KHÔNG có DOI đăng ký (doi.org/10.2307/4615733 trả 404; Crossref và DataCite 404; OpenAlex tự ghi DOI này nhưng handle không tồn tại). Siêu dữ liệu từ OpenAlex W2121044470 (tập 6, tr. 65-70, JSTOR 4615733) và danh mục tham khảo Crossref của Bretz et al 2009 (doi:10.1002/sim.3495; tập 6, trang đầu 65). Trang JSTOR chặn bot. Tác giả đối chiếu bản gốc (prereg D11, HG7.3).'
+- key: korn1998survey
+  title: Confidence Intervals for Proportions With Small Expected Number of Positive Counts Estimated From Survey Data
+  authors: Korn EL, Graubard BI
+  year: 1998
+  venue: Survey Methodology 24(2):193-201 (Statistics Canada catalogue no. 12-001-X19980024356)
+  url: https://www150.statcan.gc.ca/n1/pub/12-001-x/1998002/article/4356-eng.pdf
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: 'Không có DOI. Đã mở PDF chính thức của Statistics Canada 2026-09-27: đầu trang 193 in "Survey Methodology, December 1998, Vol. 24, No.2, pp. 193-201", tác giả "Edward L. Korn and Barry I. Graubard". Cần HG7.3.'
+- key: bates2015lme4
+  title: Fitting Linear Mixed-Effects Models Using lme4
+  authors: Bates D, Mächler M, Bolker B, Walker S
+  year: 2015
+  venue: Journal of Statistical Software 67(1)
+  doi: 10.18637/jss.v067.i01
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+- key: brooks2017glmmtmb
+  title: glmmTMB Balances Speed and Flexibility Among Packages for Zero-inflated Generalized Linear Mixed Modeling
+  authors: Brooks ME, Kristensen K, van Benthem KJ, et al.
+  year: 2017
+  venue: The R Journal 9(2):378
+  doi: 10.32614/RJ-2017-066
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: Crossref chỉ ghi trang đầu 378; 9 tác giả
+- key: zeileis2020sandwich
+  title: 'Various Versatile Variances: An Object-Oriented Implementation of Clustered Covariances in R'
+  authors: Zeileis A, Köll S, Graham N
+  year: 2020
+  venue: Journal of Statistical Software 95(1)
+  doi: 10.18637/jss.v095.i01
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: bài mô tả gói R sandwich (ma trận phương sai theo cụm)
+- key: pustejovsky2018smallsample
+  title: Small-Sample Methods for Cluster-Robust Variance Estimation and Hypothesis Testing in Fixed Effects Models
+  authors: Pustejovsky JE, Tipton E
+  year: 2018
+  venue: Journal of Business & Economic Statistics 36(4):672-683
+  doi: 10.1080/07350015.2016.1247004
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: Crossref issued 2017-06-12 (bản trực tuyến); tập 36 số 4 năm 2018
+- key: chen2024m3embedding
+  title: 'M3-Embedding: Multi-Linguality, Multi-Functionality, Multi-Granularity Text Embeddings Through Self-Knowledge Distillation'
+  authors: Chen J, Xiao S, Zhang P, Luo K, Lian D, Liu Z
+  year: 2024
+  venue: 'Findings of the Association for Computational Linguistics: ACL 2024:2318-2335'
+  doi: 10.18653/v1/2024.findings-acl.137
+  arxiv: '2402.03216'
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: bài của mô hình BAAI/bge-m3 (model card HF dẫn arXiv 2402.03216; tên arXiv cũ "BGE M3-Embedding ...")
+- key: yang2025qwen3
+  title: Qwen3 Technical Report
+  authors: Yang A, Li A, Yang B, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2505.09388
+  arxiv: '2505.09388'
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: 60 tác giả; báo cáo nêu dữ liệu tiền huấn luyện 119 ngôn ngữ và phương ngữ
+- key: qwen2025blog
+  title: 'Qwen3: Think Deeper, Act Faster'
+  authors: Qwen Team
+  year: 2025
+  venue: Qwen blog (29 April 2025)
+  url: https://qwenlm.github.io/blog/qwen3/
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: 'mở được 2026-09-27; bảng ngôn ngữ ghi "Austroasiatic: Vietnamese, Khmer"; "119 languages and dialects"'
+- key: dou2025sailor2
+  title: 'Sailor2: Sailing in South-East Asia with Inclusive Multilingual LLMs'
+  authors: Dou L, Liu Q, Zhou F, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2502.12982
+  arxiv: '2502.12982'
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: 41 tác giả; báo cáo kỹ thuật Sailor2 (xây trên Qwen2.5, tiền huấn luyện tiếp 500B token, 13 ngôn ngữ Đông Nam Á)
+- key: grattafiori2024llama3
+  title: The Llama 3 Herd of Models
+  authors: Grattafiori A, Dubey A, Jauhri A, et al.
+  year: 2024
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2407.21783
+  arxiv: '2407.21783'
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+- key: meta2024llama31card
+  title: meta-llama/Llama-3.1-8B-Instruct (model card)
+  authors: Meta
+  year: 2024
+  venue: Hugging Face model card (accessed 27 September 2026)
+  url: https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: 'mở được 2026-09-27; "Supported languages: English, German, French, Italian, Portuguese, Hindi, Spanish, and Thai"; phát hành 23/7/2024; dữ liệu cắt 12/2023'
+- key: nguyen2023vistral
+  title: Vistral-7B-Chat - Towards a State-of-the-Art Large Language Model for Vietnamese
+  authors: Nguyen CV, Nguyen T, Nguyen Q, et al.
+  year: 2023
+  venue: Hugging Face model card, Viet-Mistral/Vistral-7B-Chat (accessed 27 September 2026)
+  url: https://huggingface.co/Viet-Mistral/Vistral-7B-Chat
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: 'không có bài báo hay arXiv; tiêu đề, 9 tác giả, năm 2023 theo khối BibTeX trên model card (repo tạo 2024-01-14). Model card: mở rộng tokenizer Mistral 7B, tiền huấn luyện tiếp trên văn bản tiếng Việt, tinh chỉnh chỉ dẫn'
+- key: gemma2025gemma3
+  title: Gemma 3 Technical Report
+  authors: Gemma Team, Kamath A, Ferret J, et al.
+  year: 2025
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2503.19786
+  arxiv: '2503.19786'
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: cho mô hình tùy chọn gemma3:4b (khám phá); chưa trích trong main.md
+- key: gemma2026gemma4
+  title: Gemma 4 Technical Report
+  authors: Gemma Team, El Abd S, Aggarwal V, et al.
+  year: 2026
+  venue: arXiv preprint
+  doi: 10.48550/arXiv.2607.02770
+  arxiv: '2607.02770'
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: cho mô hình tùy chọn gemma4:e4b-it-qat (khám phá); arXiv v2; chưa trích trong main.md
+- key: ollama2026
+  title: Ollama
+  authors: Ollama
+  year: 2026
+  venue: GitHub repository ollama/ollama, MIT License (accessed 27 September 2026)
+  url: https://github.com/ollama/ollama
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: phần mềm, không có DOI hay CITATION.cff; ghi phiên bản đã dùng (runs.ollama_version) khi trích; main.md chưa có chỗ đánh dấu để trích
+- key: llamacpp2026
+  title: 'llama.cpp: LLM inference in C/C++'
+  authors: ggml-org
+  year: 2026
+  venue: GitHub repository ggml-org/llama.cpp, MIT License (accessed 27 September 2026)
+  url: https://github.com/ggml-org/llama.cpp
+  checked_by_human: false
+  source: lit-scout 2026-09-27
+  group: methods
+  note: phần mềm, không có DOI hay CITATION.cff; main.md chưa có chỗ đánh dấu để trích
