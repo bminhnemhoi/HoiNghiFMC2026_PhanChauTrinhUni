@@ -109,8 +109,12 @@ def check_decoy(atom: dict) -> list[str]:
             probs.append(f"mồi {d.get('text') or d} trùng tập giá trị Bộ Y tế")
         if any(_gap(s, d, atom) == 0 for s in srcs):
             probs.append(f"mồi {d.get('text') or d} trùng một nguồn đã ghi")
-    if atom.get("decoy") and conflict_status(dict(atom, tolerance=compute_tolerance(atom))) == "indistinguishable":
-        probs.append("mồi làm mẩu thành indistinguishable")
+    if atom.get("decoy"):
+        without = dict(atom, decoy=[])
+        before = conflict_status(dict(without, tolerance=compute_tolerance(without)))
+        after = conflict_status(dict(atom, tolerance=compute_tolerance(atom)))
+        if after == "indistinguishable" and before != "indistinguishable":   # only when the decoy itself causes it
+            probs.append("mồi làm mẩu thành indistinguishable")
     return probs
 
 

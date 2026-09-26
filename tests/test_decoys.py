@@ -65,3 +65,12 @@ def test_choose_decoy_skips_values_of_older_foreign_versions():
 def test_bp_far_rule():
     a = {"value_kind": "bp", "vn": [{"sys": 140, "dia": 90}], "foreign": [{"system": "US", "values": [{"sys": 130, "dia": 80}]}]}
     assert mirror_decoy(a, "mirror_far")[0]["sys"] == 160
+
+
+def test_check_decoy_blames_decoy_only_when_it_causes_indistinguishable():
+    # MoH ULN 30; US 35 equals the superseded MoH value 35 -> indistinguishable before any decoy
+    a = {"value_kind": "num", "unit": "U/L", "vn": [{"lo": 30, "hi": 30}],
+         "foreign": [{"system": "US", "values": [{"lo": 35, "hi": 35}]}],
+         "superseded": [{"guideline": "3310/2019", "values": [{"lo": 35, "hi": 35}]}], "decoy": [{"lo": 25, "hi": 25}]}
+    assert finalize(dict(a, decoy=[]))["conflict_status"] == "indistinguishable"
+    assert check_decoy(a) == []

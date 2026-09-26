@@ -100,9 +100,13 @@ def _index(root=None) -> tuple[Path, dict]:
 
 
 def _to_text(data: bytes, ctype: str) -> str:
-    if "pdf" in ctype or data[:5] == b"%PDF-":
+    if data[:5] == b"%PDF-" or ("pdf" in ctype and b"%PDF-" in data[:1024]):
         return pdf_to_text(data)
-    return html_to_text(data.decode("utf-8", errors="replace"))
+    raw = data.decode("utf-8", errors="replace")
+    try:
+        return html_to_text(raw)
+    except Exception:  # noqa: BLE001 — malformed or binary payload (e.g. zip/XML served as html): strip tags crudely
+        return re.sub(r"\s+", " ", re.sub(r"<[^>]{0,2000}>", " ", raw)).strip()
 
 
 def fetch(url: str, refresh: bool = False, timeout: int = 60, root=None) -> Fetched:
