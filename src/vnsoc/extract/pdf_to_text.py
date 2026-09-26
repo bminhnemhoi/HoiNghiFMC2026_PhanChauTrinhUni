@@ -15,7 +15,6 @@ import hashlib
 import json
 import re
 import sys
-from pathlib import Path
 
 from vnsoc.extract.verify_span import norm, ocr_pages, page_text, pdf_path
 from vnsoc.paths import paths
