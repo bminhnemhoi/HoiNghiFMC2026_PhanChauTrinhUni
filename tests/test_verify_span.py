@@ -66,3 +66,32 @@ def test_missing_values_other_kinds():
              "vn": [{"key_drugs": ["quinine+clindamycin"]}]}
     assert missing_vn_values(drugs, "vi", SYN, COMBOS) == []
     assert missing_vn_values(dict(drugs, span="artemether-lumefantrin"), "vi", SYN, COMBOS) == [0]
+
+
+def test_ocr_sidecar_used_only_for_textless_pages(proj):
+    import hashlib
+    import json
+
+    fitz = pytest.importorskip("pymupdf")
+    doc = fitz.open()
+    doc.new_page().insert_text((72, 72), "A page that has a normal text layer with enough characters in it.")
+    doc.new_page()                                             # scanned page: no text layer
+    p = pdf_path("8888/2099", proj)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    doc.save(p)
+    from vnsoc.extract.ocr import sidecar_dir
+
+    d = sidecar_dir(p, proj)
+    d.mkdir(parents=True)
+    (d / "p002.txt").write_text("Quinin 7 ngày + clindamycin 7 ngày cho 3 tháng đầu", encoding="utf-8")
+    (d / "p001.txt").write_text("OCR text that must not replace a real text layer", encoding="utf-8")
+    (d / "meta.json").write_text(json.dumps({"pdf_sha256": hashlib.sha256(p.read_bytes()).hexdigest()}), encoding="utf-8")
+    from vnsoc.extract.verify_span import ocr_pages, page_text
+
+    assert ocr_pages(p) == {2} and "clindamycin" in page_text(p, 2) and "normal text layer" in page_text(p, 1)
+    a = {"atom_id": "o", "guideline": "8888/2099", "page": 2, "value_kind": "drugs",
+         "span": "Quinin 7 ngày + clindamycin 7 ngày", "vn": [{"key_drugs": ["quinine+clindamycin"]}]}
+    r = verify_atom(a, proj, SYN, COMBOS)
+    assert r["ok"] and r["ocr"]
+    (d / "meta.json").write_text(json.dumps({"pdf_sha256": "0" * 64}), encoding="utf-8")   # sidecar of another PDF
+    assert ocr_pages(p) == frozenset()

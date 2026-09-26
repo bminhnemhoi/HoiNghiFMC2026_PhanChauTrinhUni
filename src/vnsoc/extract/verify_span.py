@@ -47,9 +47,42 @@ def _pages(pdf: str, mtime: float) -> tuple[str, ...]:
         return tuple(norm(p.get_text("text")) for p in doc)
 
 
+def _side_mtime(pdf: Path) -> float:
+    from vnsoc.extract.ocr import sidecar_dir  # lazy: ocr imports this module
+
+    d = sidecar_dir(pdf)
+    return max((f.stat().st_mtime for f in d.glob("*")), default=0.0) if d.exists() else 0.0
+
+
+@lru_cache(maxsize=32)
+def _resolved(pdf: str, mtime: float, smtime: float) -> tuple[tuple[str, ...], frozenset[int]]:
+    """Page texts, using the OCR sidecar (vnsoc.extract.ocr) for pages without a text layer, or for every page
+    when the sidecar says override_text_layer. A sidecar made from a different PDF (sha256) is ignored."""
+    base, ocr = list(_pages(pdf, mtime)), set()
+    if smtime:
+        import hashlib
+
+        from vnsoc.extract.ocr import sidecar_meta, sidecar_page
+
+        meta = sidecar_meta(pdf) or {}
+        if meta.get("pdf_sha256") == hashlib.sha256(Path(pdf).read_bytes()).hexdigest():
+            for i in range(len(base)):
+                if meta.get("override_text_layer") or len(base[i]) < 50:
+                    t = sidecar_page(pdf, i + 1)
+                    if t is not None:
+                        base[i], _ = norm(t), ocr.add(i + 1)
+    return tuple(base), frozenset(ocr)
+
+
 def page_texts(pdf: Path | str) -> tuple[str, ...]:
     p = Path(pdf)
-    return _pages(str(p), p.stat().st_mtime)
+    return _resolved(str(p), p.stat().st_mtime, _side_mtime(p))[0]
+
+
+def ocr_pages(pdf: Path | str) -> frozenset[int]:
+    """1-based pages whose text comes from OCR (values must be checked against the page image)."""
+    p = Path(pdf)
+    return _resolved(str(p), p.stat().st_mtime, _side_mtime(p))[1]
 
 
 def page_text(pdf: Path | str, page: int) -> str:
@@ -88,7 +121,7 @@ def verify_atom(atom: dict, root=None, synonyms=None, combos=None) -> dict:
         synonyms, combos = drug_tables(root)
     pdf = pdf_path(atom["guideline"], root)
     out = {"atom_id": atom.get("atom_id"), "pdf": str(pdf), "pdf_exists": pdf.exists(), "span_on_page": False,
-           "missing_vn": [], "ok": False, "reason": ""}
+           "missing_vn": [], "ok": False, "reason": "", "ocr": False}
     if not pdf.exists():
         out["reason"] = f"thiếu PDF {pdf.name}"
         return out
@@ -100,6 +133,7 @@ def verify_atom(atom: dict, root=None, synonyms=None, combos=None) -> dict:
         pages = find_pages(pdf, atom.get("span") or "")
         out["reason"] = f"span không có ở trang {atom['page']}" + (f" (có ở trang {pages})" if pages else "")
         return out
+    out["ocr"] = int(atom["page"]) in ocr_pages(pdf)
     out["missing_vn"] = missing_vn_values(atom, "vi", synonyms, combos)
     if out["missing_vn"]:
         out["reason"] = f"không đọc lại được giá trị vn {out['missing_vn']} từ span"
