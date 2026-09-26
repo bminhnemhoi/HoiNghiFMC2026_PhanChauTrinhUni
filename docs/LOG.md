@@ -4,3 +4,22 @@
 - 2026-09-26T10:21:29+07:00 · autopilot on
 - 2026-09-26T10:21:50+07:00 · T0.2 bắt đầu · Kiểm tra môi trường và ghi báo cáo
 - 2026-09-26T10:23:13+07:00 · T0.2 XONG · Kiểm tra môi trường và ghi báo cáo · core+pdf OK (Python 3.12.6 venv, PyMuPDF, pdfplumber, pdftotext). THIẾU cho HG0.3: kaggle_creds, API keys, HF_TOKEN, R+lme4/glmmTMB/sandwich/boot, tesseract+vie, OSF/ZENODO tokens. Hướng dẫn Windows: state/gates/HG0.3_windows.md
+- 2026-09-26T10:38:07+07:00 · T0.6 bắt đầu · Soạn sẵn thư và tài liệu cho các cổng người dùng sớm
+- 2026-09-26T10:38:08+07:00 · T1.1 bắt đầu · Dựng ~60 mẩu thí điểm từ PDF chính thức (trích nguyên văn + trang), kèm giá trị nước ngoài đã kiểm
+- 2026-09-26T10:38:08+07:00 · T2.1 bắt đầu · Phân loại 52+ quyết định (PDF chính thức? lớp chữ? bản quét? chỉ thấy trên TVPL?)
+- 2026-09-26T11:34:42+07:00 · T0.6 XONG · Soạn sẵn thư và tài liệu cho các cổng người dùng sớm · 5 tài liệu cổng (email FMC, ghi nhớ giảng viên, đơn miễn đạo đức, thư mời bác sĩ, trang tóm tắt) + kiểm độc lập review/T0.6_check.md (2 lỗi TB + 11 nhỏ đã sửa); phát hiện hạn FMC 'trước 30/9' → nộp muộn nhất 29/9
+- 2026-09-26T11:34:59+07:00 · T1.6 bắt đầu · Viết abstract FMC bản 'thiết kế' (dự phòng) + DOCX
+- 2026-09-26T11:56:11+07:00 · T2.1 XONG · Phân loại 52+ quyết định (PDF chính thức? lớp chữ? bản quét? chỉ thấy trên TVPL?) · 75 văn bản (52 hiện hành) từ 5 cụm; PDF chính thức 58, lớp chữ 43, thiếu 17; chuỗi thay thế đọc từ văn bản; corpus_triage.csv
+- 2026-09-26T11:56:11+07:00 · T2.2 bắt đầu · Tải PDF chính thức, băm SHA-256, kiểm lớp chữ
+- 2026-09-26T11:56:12+07:00 · T2.2 XONG · Tải PDF chính thức, băm SHA-256, kiểm lớp chữ · 58 PDF chính thức khớp sha256 (tests/test_manifest.py); hỗ trợ gói .rar/.zip; HG2.3_missing.md: 17 văn bản + 5 việc bổ sung
+- 2026-09-26T12:04:22+07:00 · T2.4 bắt đầu · Tách văn bản có vị trí (PyMuPDF/pdfplumber); OCR ≤ 10 văn bản có kiểm số
+- 2026-09-26T13:26:09+07:00 · T1.1 XONG · Dựng ~60 mẩu thí điểm từ PDF chính thức (trích nguyên văn + trang), kèm giá trị nước ngoài đã kiểm · 65 mẩu thí điểm span_verified từ 13 hướng dẫn (24 xung đột/20 nhóm, 31 đối chứng, 9 không phân biệt được); 10 chủ đề × trích→kiểm toán→sửa + 2 chủ đề OCR; checklist HG1.2; 11/20 dòng hạt giống xác nhận, 9 không sạch
+- 2026-09-26T13:26:10+07:00 · T1.6 XONG · Viết abstract FMC bản 'thiết kế' (dự phòng) + DOCX · abstract thiết kế theo mẫu FMC (song ngữ, VI 248/EN 229 từ, ô 424 ký tự), DOCX 39 KB; số từ registry design.*
+- 2026-09-26T13:27:06+07:00 · T2.4 XONG · Tách văn bản có vị trí (PyMuPDF/pdfplumber); OCR ≤ 10 văn bản có kiểm số · 57 văn bản → data/interim/text (khối có vị trí + đường dẫn đề mục, bảng pdfplumber); OCR Tesseract vie cho 10 văn bản quét (3377/2023, TT51/2017, TT13/2026, 1327/2014, 1470/2024, 292/2024, 6101/2019, 4121/2009, 3310/2019, 3705/2019); số từ OCR được so ảnh trang ở cấp mẩu (extraction.ocr, HG1.2/HG3.5)
+- 2026-09-26T13:27:07+07:00 · T2.8 bắt đầu · Cập nhật tài liệu (PubMed, Crossref, arXiv, tạp chí y học Việt Nam) + cảnh báo trùng hướng
+- 2026-09-26T13:27:07+07:00 · T2.8 XONG · Cập nhật tài liệu (PubMed, Crossref, arXiv, tạp chí y học Việt Nam) + cảnh báo trùng hướng · 110 bài mới (5 trùng cao, 20 trung bình), không DR13; 11 sai sót ở §2 đề cương; references.yaml 74 mục
+- 2026-09-26T13:27:07+07:00 · T2.10 bắt đầu · Soạn bản đăng ký trước OSF + mã phân tích H1 chạy trên dữ liệu mô phỏng
+- 2026-09-26T13:27:17+07:00 · T2.10 XONG · Soạn bản đăng ký trước OSF + mã phân tích H1 chạy trên dữ liệu mô phỏng · OSF prereg (mẫu v4) + confirmatory.py; 3 phản biện, 34/34 yêu cầu xử lý; OC mô phỏng B=10000 đạt cỡ; 10 quyết định D1–D10 chờ người dùng trước HG2.9
+- 2026-09-26T13:27:34+07:00 · T1.3 bắt đầu · Sinh câu hỏi thí điểm (VI/EN; A0, A1, A3; trắc nghiệm 2 thứ tự)
+- 2026-09-26T14:04:59+07:00 · nén ngữ cảnh (auto); đang làm: T1.3
+- 2026-09-26T17:24:25+07:00 · T1.3 XONG · Sinh câu hỏi thí điểm (VI/EN; A0, A1, A3; trắc nghiệm 2 thứ tự) · 222 câu (130 ngắn VI/EN, 92 trắc nghiệm của 23 mẩu × 2 thứ tự × VI/EN), 65 đoạn A3 (16 trang OCR, cần kiểm tay), 0 mục QC không đạt; 42 mẩu bỏ trắc nghiệm có chủ đích (không mồi/tập Bộ Y tế nhiều mục/không giá trị ngoài tập). Sau 2 vòng phản biện: sửa mã qgen, bộ chấm 1.1.0, quy tắc mồi (DECISIONS 15:55); prereg đồng bộ, D13–D16 chờ người dùng

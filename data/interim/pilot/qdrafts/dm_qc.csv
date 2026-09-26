@@ -1,0 +1,39 @@
+question_id,ok,issues,note,passage_has_alt_value,passage_ocr,option_rank
+P-dm-01#A3,True,,,,False,
+P-dm-01|short|vi,True,,,,,
+P-dm-01|short|en,True,,,,,
+P-dm-01|mcq|vi|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-01|mcq|en|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-01|mcq|vi|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-01|mcq|en|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-02#A3,True,,,,False,
+P-dm-02|short|vi,True,,,,,
+P-dm-02|short|en,True,,,,,
+P-dm-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-03#A3,True,,,,False,
+P-dm-03|short|vi,True,,,,,
+P-dm-03|short|en,True,,,,,
+P-dm-03|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-03|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-03|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-03|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-04#A3,True,,,,False,
+P-dm-04|short|vi,True,,,,,
+P-dm-04|short|en,True,,,,,
+P-dm-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-05#A3,True,,,,False,
+P-dm-05|short|vi,True,,,,,
+P-dm-05|short|en,True,,,,,
+P-dm-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-06#A3,True,,,,False,
+P-dm-06|short|vi,True,,,,,
+P-dm-06|short|en,True,,,,,
+P-dm-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-07#A3,True,,,,False,
+P-dm-07|short|vi,True,,,,,
+P-dm-07|short|en,True,,,,,
+P-dm-07|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-08#A3,True,,,,False,
+P-dm-08|short|vi,True,,,,,
+P-dm-08|short|en,True,,,,,
+P-dm-08|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,

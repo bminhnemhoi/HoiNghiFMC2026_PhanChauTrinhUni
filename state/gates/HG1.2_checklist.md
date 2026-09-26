@@ -1,0 +1,755 @@
+# HG1.2 — Kiểm tay trích dẫn các mẩu thí điểm
+
+Với từng mẩu: mở PDF ở đúng **trang PDF** (số trang trong trình xem PDF, đếm từ 1) và xác nhận:
+(a) đoạn trích đúng nguyên văn; (b) giá trị và đơn vị đúng; (c) quần thể/bối cảnh đúng (người lớn/trẻ em, đo tại phòng khám, 3 tháng đầu thai kỳ...); (d) giá trị nước ngoài khớp trang nguồn (mở link, tìm theo vị trí).
+
+Khi xong, gõ trong chat: `XONG HG1.2 không có lỗi` hoặc `XONG HG1.2 sai: <mã mẩu và lỗi>`.
+
+## P-anaphylaxis-03 — Phản vệ: Adrenalin 1 mg/ml tiêm bắp — liều mỗi lần ở nhũ nhi < 10 kg (conflict)
+
+- Văn bản: `TT51/2017` → `data/raw/TT51_2017.pdf`, **trang PDF 9** (trang in 9), mục Phụ lục III (Hướng dẫn xử trí cấp cứu phản vệ), mục IV 'Phác đồ sử dụng adrenalin và truyền dịch', khoản 1 'Thuốc adrenalin 1mg = 1ml = 1 ống, tiêm bắp', điểm a
+- Quần thể: {"setting": "cơ sở khám bệnh, chữa bệnh; nhân viên y tế tiêm", "severity": "phản vệ độ II–III (nặng hoặc nguy kịch)", "preparation": "adrenalin ống 1 mg/1 ml (1:1.000)", "route": "tiêm bắp", "cause": "do thuốc: ngay sau tiêm kháng sinh", "age": "4 tháng tuổi (nhũ nhi)", "weight": "6 kg (< 10 kg)", "dose": "liều đầu tiên (mỗi lần)"}
+- Giá trị Bộ Y tế: **0,2 ml (1/5 ống) = 200 µg — TT51 PL III mục IV.1a (tr.9); 1/5–1/3 ống = 200–333,3 µg — TT51 PL X tr.20, ô TIÊM BẮP 'Trẻ em: 1/5-1/3 ống' (cùng văn bản); 0,01 mg/kg × 6 kg = 60 µg — QĐ 3312/2015 tr.106 (trẻ em, mọi nguyên nhân) và QĐ 3942/2014 tr.13 '0,01 ml/kg' (do thuốc) (DR8)**
+- Đoạn trích: «a) Trẻ sơ sinh hoặc trẻ < 10kg: 0,2ml (tương đương 1/5 ống).»
+- EU_UK — Resuscitation Council UK — Emergency treatment of anaphylaxis: guidelines for healthcare providers (2021) (2021-05): **100–150 µg (0,1–0,15 ml) — trẻ < 6 tháng** · vị trí: PDF tr.29, bảng liều adrenalin tiêm bắp, dòng '< 6 months' (tr.9: liều cho trẻ < 6 tháng là điểm mới của bản 2021) · https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf
+- OTHER — World Allergy Organization Anaphylaxis Guidance 2020 (Cardona et al., World Allergy Organ J 2020;13:100472; PMC7607509) (2020-10): **0,01 mg/kg (= 60 µg ở 6 kg) — nhũ nhi < 10 kg** · vị trí: Đoạn ngay trước Bảng 6 (0,01 mg/kg, tối đa 0,5 mg) và Bảng 6, dòng 'infants under 10 kg' · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7607509/fullTextXML
+- US — AAAAI/ACAAI Joint Task Force on Practice Parameters — Anaphylaxis: a 2023 practice parameter update (Golden et al., Ann Allergy Asthma Immunol 2024) (2023): **0,01 mg/kg (= 60 µg ở 6 kg)** · vị trí: PDF tr.4 và tr.31 ('current standard practice' 0,01 mg/kg, tối đa 0,3 mg ở trẻ em). Mẩu CỐ Ý KHÔNG ghi liều bút tiêm (EAI) 0,1/0,15 mg cho trẻ < 15 kg (Recommendation 12, tr.7 và tr.20; tr.4 và tr.31: JTFPP 2020 ủng hộ bút 0,15 mg cho trẻ < 15 kg): đó là liều kê đơn bút tiêm tự dùng ngoài cơ sở y tế, không khớp quần thể 'ống 1 mg/1 ml, nhân viên y tế tiêm bắp tại cơ sở y tế' · https://www.aaaai.org/Aaaai/media/Media-Library-PDFs/Allergist%20Resources/Statements%20and%20Practice%20Parameters/Anaphylaxis-Practice-Paramaters-2023.pdf
+- WHO_global — WHO Pocket book of hospital care for children, 2nd ed. (2013), §4.6.4 Anaphylaxis (2013): **0,15 ml dung dịch 1:1000 = 150 µg (trẻ em)** · vị trí: PDF tr.133 (số in 109), §4.6.4 Anaphylaxis, mục Treatment: thể vừa và sốc phản vệ nặng ở trẻ em — liều cố định, không theo cân nặng · https://iris.who.int/server/api/core/bitstreams/8f110da0-22e6-4ef1-90e4-c9f1b7daa363/content
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-anaphylaxis_ocr-01 — Phản vệ: Adrenalin 1 mg/ml tiêm bắp — liều mỗi lần (liều đầu) ở trẻ khoảng 10 kg (conflict)
+
+- Văn bản: `TT51/2017` → `data/raw/TT51_2017.pdf`, **trang PDF 9** (trang in 9), mục Phụ lục III (Hướng dẫn xử trí cấp cứu phản vệ), mục IV.1 'Thuốc adrenalin 1mg = 1ml = 1 ống, tiêm bắp', điểm b
+- Quần thể: {"setting": "cơ sở khám bệnh, chữa bệnh; nhân viên y tế tiêm", "severity": "phản vệ độ III (nguy kịch): có sốc/tụt huyết áp, chưa ngừng tuần hoàn", "preparation": "adrenalin ống 1 mg/1 ml (1:1.000), tiêm bắp", "dose": "liều tiêm bắp mỗi lần (liều đầu)", "age": "18 tháng (1–2 tuổi)", "weight": "10 kg", "cause": "do thuốc (ngay sau tiêm kháng sinh)"}
+- Giá trị Bộ Y tế: **0,25 ml (tương đương 1/4 ống) = 250 µg — TT51 PL III mục IV.1b, tr.9; 1/5–1/3 ống = 200–333,3 µg — TT51 PL X sơ đồ tóm tắt 'Trẻ em', tr.20; 0,01 mg/kg = 100 µg ở 10 kg — QĐ 3312/2015 tr.106 (DR8); = 0,01 ml/kg của QĐ 3942/2014 tr.13 (DR8)**
+- Đoạn trích: «b) Trẻ khoảng 10 kg: 0,25ml (tương đương 1/4 ống).»
+- EU_UK — Resuscitation Council UK – Emergency treatment of anaphylaxis: guidelines for healthcare providers (May 2021) (2021-05): **150 µg (0,15 ml) — trẻ 6 tháng–6 tuổi** · vị trí: Bảng liều adrenalin tiêm bắp (IM dose), PDF tr.29; cũng trong RCUK Anaphylaxis algorithm 2021, tr.1 (resus.org.uk/sites/default/files/2021-04/Anaphylaxis%20algorithm%202021.pdf, sha256 c7b75e76a1fdba09…) — dòng 'child 6 months to 6 years' · https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf
+- OTHER — World Allergy Organization Anaphylaxis Guidance 2020 (Cardona et al., World Allergy Organ J 2020;13:100472; PMC7607509) (2020-10): **0,01 mg/kg (tối đa 0,5 mg) = 100 µg ở 10 kg; 0,15 mg — trẻ 1–5 tuổi (bảng đơn giản hóa)** · vị trí: Mục 'epinephrine' ngay trước Bảng 6 và Bảng 6 'Recommended doses for intramuscular epinephrine (adrenaline)' — dòng 'children aged 1-5 years' và liều 0,01 mg/kg · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7607509/fullTextXML
+- US — AAAAI/ACAAI Joint Task Force on Practice Parameters – Anaphylaxis: a 2023 practice parameter update (Golden et al., Ann Allergy Asthma Immunol) (2023): **0,01 mg/kg (tối đa 0,3 mg ở trẻ) = 100 µg ở 10 kg** · vị trí: PDF tr.4 và tr.31 (mục Dosage): 'current standard practice' 0,01 mg/kg, tối đa 0,3 mg ở trẻ em/thiếu niên, 0,5 mg ở người lớn · https://www.aaaai.org/Aaaai/media/Media-Library-PDFs/Allergist%20Resources/Statements%20and%20Practice%20Parameters/Anaphylaxis-Practice-Paramaters-2023.pdf
+- WHO_global — WHO – Pocket book of hospital care for children: guidelines for the management of common childhood illnesses, 2nd ed. (2013), ISBN 978 92 4 154837 3 (2013): **0,15 ml dd 1:1000 = 0,15 mg (150 µg) tiêm bắp, liều cố định trẻ em (trẻ khoảng 10 kg); nhắc lại mỗi 5–15 phút** · vị trí: PDF tr.133 (số in 109), mục 4.6.4 Anaphylaxis, dòng 'For severe anaphylactic shock' (cùng liều ở dòng 'moderate cases' và tr.336); phạm vi sách: 'young children' tại bệnh viện tuyến đầu (tr.17), bảng liều thuốc 3–29 kg (tr.379). Trang mục IRIS handle 10665/81170 (sha256 98702ec07bd45084…). Chưa xác minh có bản mới hơn 2013. · https://iris.who.int/server/api/core/bitstreams/8f110da0-22e6-4ef1-90e4-c9f1b7daa363/content
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-anaphylaxis_ocr-02 — Phản vệ: Adrenalin 1 mg/ml tiêm bắp — liều mỗi lần (liều đầu) ở trẻ khoảng 10 kg, phản vệ do thức ăn (lạc hoặc sữa bò) (concordant)
+
+- Văn bản: `TT51/2017` → `data/raw/TT51_2017.pdf`, **trang PDF 9** (trang in 9), mục Phụ lục III (Hướng dẫn xử trí cấp cứu phản vệ), mục IV.1 'Thuốc adrenalin 1mg = 1ml = 1 ống, tiêm bắp', điểm b
+- Quần thể: {"setting": "cơ sở khám bệnh, chữa bệnh; nhân viên y tế tiêm", "severity": "phản vệ độ III (nguy kịch): có sốc/tụt huyết áp, chưa ngừng tuần hoàn", "preparation": "adrenalin ống 1 mg/1 ml (1:1.000), tiêm bắp", "dose": "liều tiêm bắp mỗi lần (liều đầu)", "age": "18 tháng (1–2 tuổi)", "weight": "10 kg", "cause": "do thức ăn: lạc (đậu phộng) hoặc sữa bò, không phải dứa"}
+- Giá trị Bộ Y tế: **0,25 ml (tương đương 1/4 ống) = 250 µg — TT51 PL III mục IV.1b, tr.9; 1/5–1/3 ống = 200–333,3 µg — TT51 PL X sơ đồ tóm tắt 'Trẻ em', tr.20; 0,01 mg/kg = 100 µg ở 10 kg — QĐ 3312/2015 tr.106 (DR8, phạm vi mọi nguyên nhân); 0,15 mg = 150 µg — QĐ 3942/2014 ch.5 Dị ứng thức ăn tr.48 'Trẻ em nặng 10-25kg' (DR8)**
+- Đoạn trích: «b) Trẻ khoảng 10 kg: 0,25ml (tương đương 1/4 ống).»
+- EU_UK — Resuscitation Council UK – Emergency treatment of anaphylaxis: guidelines for healthcare providers (May 2021) (2021-05): **150 µg (0,15 ml) — trẻ 6 tháng–6 tuổi** · vị trí: Bảng liều adrenalin tiêm bắp (IM dose), PDF tr.29; cũng trong RCUK Anaphylaxis algorithm 2021, tr.1 (resus.org.uk/sites/default/files/2021-04/Anaphylaxis%20algorithm%202021.pdf, sha256 c7b75e76a1fdba09…) — dòng 'child 6 months to 6 years' · https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf
+- OTHER — World Allergy Organization Anaphylaxis Guidance 2020 (Cardona et al., World Allergy Organ J 2020;13:100472; PMC7607509) (2020-10): **0,01 mg/kg (tối đa 0,5 mg) = 100 µg ở 10 kg; 0,15 mg — trẻ 1–5 tuổi (bảng đơn giản hóa)** · vị trí: Mục 'epinephrine' ngay trước Bảng 6 và Bảng 6 'Recommended doses for intramuscular epinephrine (adrenaline)' — dòng 'children aged 1-5 years' và liều 0,01 mg/kg · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7607509/fullTextXML
+- US — AAAAI/ACAAI Joint Task Force on Practice Parameters – Anaphylaxis: a 2023 practice parameter update (Golden et al., Ann Allergy Asthma Immunol) (2023): **0,01 mg/kg (tối đa 0,3 mg ở trẻ) = 100 µg ở 10 kg** · vị trí: PDF tr.4 và tr.31 (mục Dosage): 'current standard practice' 0,01 mg/kg, tối đa 0,3 mg ở trẻ em/thiếu niên, 0,5 mg ở người lớn · https://www.aaaai.org/Aaaai/media/Media-Library-PDFs/Allergist%20Resources/Statements%20and%20Practice%20Parameters/Anaphylaxis-Practice-Paramaters-2023.pdf
+- WHO_global — WHO – Pocket book of hospital care for children: guidelines for the management of common childhood illnesses, 2nd ed. (2013), ISBN 978 92 4 154837 3 (2013): **0,15 ml dd 1:1000 = 0,15 mg (150 µg) tiêm bắp, liều cố định trẻ em (trẻ khoảng 10 kg); nhắc lại mỗi 5–15 phút** · vị trí: PDF tr.133 (số in 109), mục 4.6.4 Anaphylaxis, dòng 'For severe anaphylactic shock' (cùng liều ở dòng 'moderate cases' và tr.336); phạm vi sách: 'young children' tại bệnh viện tuyến đầu (tr.17), bảng liều thuốc 3–29 kg (tr.379). Trang mục IRIS handle 10665/81170 (sha256 98702ec07bd45084…). Chưa xác minh có bản mới hơn 2013. · https://iris.who.int/server/api/core/bitstreams/8f110da0-22e6-4ef1-90e4-c9f1b7daa363/content
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-anaphylaxis_ocr-03 — Phản vệ: Adrenalin 1 mg/ml tiêm bắp — liều mỗi lần (liều đầu) ở người lớn (concordant)
+
+- Văn bản: `TT51/2017` → `data/raw/TT51_2017.pdf`, **trang PDF 9** (trang in 9), mục Phụ lục III (Hướng dẫn xử trí cấp cứu phản vệ), mục IV.1 'Thuốc adrenalin 1mg = 1ml = 1 ống, tiêm bắp', điểm e
+- Quần thể: {"setting": "cơ sở khám bệnh, chữa bệnh; nhân viên y tế tiêm", "severity": "phản vệ nặng (độ II) hoặc nguy kịch (độ III)", "preparation": "adrenalin ống 1 mg/1 ml (1:1.000), tiêm bắp", "dose": "liều tiêm bắp mỗi lần (liều đầu)", "age": "người lớn (≥ 18 tuổi)", "weight": "khoảng 60 kg (≥ 50 kg)", "cause": "do thuốc (ngay sau tiêm kháng sinh)"}
+- Giá trị Bộ Y tế: **0,5–1 ml (tương đương 1/2–1 ống) = 0,5–1 mg — TT51 PL III mục IV.1e, tr.9; PL X tr.20: 1/2 ống; = 3942/2014 tr.13 '0,5 - 1 ml ở người lớn'**
+- Đoạn trích: «e) Người lớn: 0,5-1ml»
+- EU_UK — Resuscitation Council UK – Emergency treatment of anaphylaxis: guidelines for healthcare providers (May 2021) (2021-05): **500 µg (0,5 ml) — người lớn và trẻ > 12 tuổi** · vị trí: Bảng liều adrenalin tiêm bắp (IM dose), PDF tr.29; cũng trong RCUK Anaphylaxis algorithm 2021, tr.1 (resus.org.uk/sites/default/files/2021-04/Anaphylaxis%20algorithm%202021.pdf, sha256 c7b75e76a1fdba09…) — dòng 'adult and child > 12 years' · https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf
+- OTHER — World Allergy Organization Anaphylaxis Guidance 2020 (Cardona et al., World Allergy Organ J 2020;13:100472; PMC7607509) (2020-10): **0,5 mg — thiếu niên và người lớn (0,01 mg/kg, tối đa 0,5 mg)** · vị trí: Mục 'epinephrine' ngay trước Bảng 6 và Bảng 6 'Recommended doses for intramuscular epinephrine (adrenaline)' — dòng 'teenagers and adults'; 0,01 mg/kg tối đa 0,5 mg · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7607509/fullTextXML
+- US — AAAAI/ACAAI Joint Task Force on Practice Parameters – Anaphylaxis: a 2023 practice parameter update (Golden et al., Ann Allergy Asthma Immunol) (2023): **0,5 mg — 0,01 mg/kg, tối đa 0,5 mg ở người lớn (60 kg → 0,5 mg)** · vị trí: PDF tr.4 và tr.31 (mục Dosage): 'current standard practice' 0,01 mg/kg, tối đa 0,3 mg ở trẻ em/thiếu niên, 0,5 mg ở người lớn · https://www.aaaai.org/Aaaai/media/Media-Library-PDFs/Allergist%20Resources/Statements%20and%20Practice%20Parameters/Anaphylaxis-Practice-Paramaters-2023.pdf
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-anaphylaxis_ocr-04 — Phản vệ: Adrenalin tiêm bắp — khoảng cách tiêm nhắc lại (phút) (concordant)
+
+- Văn bản: `TT51/2017` → `data/raw/TT51_2017.pdf`, **trang PDF 20** (trang in 20), mục Phụ lục X (Sơ đồ chẩn đoán và xử trí phản vệ), II. Sơ đồ tóm tắt, ô 'TIÊM BẮP'
+- Quần thể: {"setting": "cơ sở khám bệnh, chữa bệnh; nhân viên y tế tiêm", "severity": "phản vệ độ III (nguy kịch): có sốc/tụt huyết áp, chưa ngừng tuần hoàn", "preparation": "adrenalin ống 1 mg/1 ml (1:1.000), tiêm bắp", "dose": "khoảng cách giữa các lần tiêm bắp nhắc lại khi chưa đáp ứng", "age": "người lớn (≥ 18 tuổi)", "cause": "do thuốc (ngay sau tiêm kháng sinh)"}
+- Giá trị Bộ Y tế: **3–5 phút — TT51 PL X tr.20 'Nhắc lại sau mỗi 3-5 phút'; PL III mục IV.3 tr.9 '3-5 phút/lần'; 5–15 phút/lần (có thể sớm hơn 5 phút nếu cần) — QĐ 3942/2014 tr.13 (DR8)**
+- Đoạn trích: «TIEM BAP - Người lớn: 1/2 ống - Trẻ em: 1/5-1/3 ống * Nhắc lại sau mỗi 3-5 phút cho đến khi hết các dấu hiệu về hô hấp và tiêu hóa, huyết động»
+- EU_UK — Resuscitation Council UK – Emergency treatment of anaphylaxis: guidelines for healthcare providers (May 2021) (2021-05): **nhắc lại sau 5 phút** · vị trí: PDF tr.7, 13, 29 'repeat IM adrenaline after 5 minutes'; cũng trong RCUK Anaphylaxis algorithm 2021, tr.1 (resus.org.uk/sites/default/files/2021-04/Anaphylaxis%20algorithm%202021.pdf, sha256 c7b75e76a1fdba09…) · https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf
+- OTHER — World Allergy Organization Anaphylaxis Guidance 2020 (Cardona et al., World Allergy Organ J 2020;13:100472; PMC7607509) (2020-10): **mỗi 5–15 phút** · vị trí: Đoạn ngay trước Bảng 6: 'dosing should be repeated every 5-15 min' · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7607509/fullTextXML
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-anaphylaxis_ocr-05 — Phản vệ: Adrenalin 1 mg/ml tiêm bắp — liều mỗi lần (liều đầu) ở trẻ khoảng 20 kg (conflict)
+
+- Văn bản: `TT51/2017` → `data/raw/TT51_2017.pdf`, **trang PDF 9** (trang in 9), mục Phụ lục III (Hướng dẫn xử trí cấp cứu phản vệ), mục IV.1 'Thuốc adrenalin 1mg = 1ml = 1 ống, tiêm bắp', điểm c
+- Quần thể: {"setting": "cơ sở khám bệnh, chữa bệnh; nhân viên y tế tiêm", "severity": "phản vệ độ III (nguy kịch): có sốc/tụt huyết áp, chưa ngừng tuần hoàn", "preparation": "adrenalin ống 1 mg/1 ml (1:1.000), tiêm bắp", "dose": "liều tiêm bắp mỗi lần (liều đầu)", "age": "5 tuổi", "weight": "20 kg", "cause": "do thuốc (ngay sau tiêm kháng sinh)"}
+- Giá trị Bộ Y tế: **0,3 ml (tương đương 1/3 ống) = 300 µg — TT51 PL III mục IV.1c, tr.9; 1/5–1/3 ống = 200–333,3 µg — TT51 PL X 'Trẻ em', tr.20; 0,01 mg/kg = 200 µg ở 20 kg — QĐ 3312/2015 tr.106 (DR8); = 0,01 ml/kg (≤ 0,3 ml) của QĐ 3942/2014 tr.13 (DR8)**
+- Đoạn trích: «c) Trẻ khoảng 20 kg: 0,3ml (tương đương 1⁄3 ống).»
+- EU_UK — Resuscitation Council UK – Emergency treatment of anaphylaxis: guidelines for healthcare providers (May 2021) (2021-05): **150 µg (0,15 ml) — trẻ 6 tháng–6 tuổi** · vị trí: Bảng liều adrenalin tiêm bắp (IM dose), PDF tr.29; cũng trong RCUK Anaphylaxis algorithm 2021, tr.1 (resus.org.uk/sites/default/files/2021-04/Anaphylaxis%20algorithm%202021.pdf, sha256 c7b75e76a1fdba09…) — dòng 'child 6 months to 6 years' · https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf
+- OTHER — World Allergy Organization Anaphylaxis Guidance 2020 (Cardona et al., World Allergy Organ J 2020;13:100472; PMC7607509) (2020-10): **0,01 mg/kg (tối đa 0,5 mg) = 200 µg ở 20 kg; 0,15 mg — trẻ 1–5 tuổi (bảng đơn giản hóa)** · vị trí: Mục 'epinephrine' ngay trước Bảng 6 và Bảng 6 'Recommended doses for intramuscular epinephrine (adrenaline)' — dòng 'children aged 1-5 years' và liều 0,01 mg/kg · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7607509/fullTextXML
+- US — AAAAI/ACAAI Joint Task Force on Practice Parameters – Anaphylaxis: a 2023 practice parameter update (Golden et al., Ann Allergy Asthma Immunol) (2023): **0,01 mg/kg (tối đa 0,3 mg ở trẻ) = 200 µg ở 20 kg** · vị trí: PDF tr.4 và tr.31 (mục Dosage): 'current standard practice' 0,01 mg/kg, tối đa 0,3 mg ở trẻ em/thiếu niên, 0,5 mg ở người lớn · https://www.aaaai.org/Aaaai/media/Media-Library-PDFs/Allergist%20Resources/Statements%20and%20Practice%20Parameters/Anaphylaxis-Practice-Paramaters-2023.pdf
+- WHO_global — WHO – Pocket book of hospital care for children: guidelines for the management of common childhood illnesses, 2nd ed. (2013), ISBN 978 92 4 154837 3 (2013): **0,15 ml dd 1:1000 = 0,15 mg (150 µg) tiêm bắp, liều cố định trẻ em (trẻ khoảng 20 kg); nhắc lại mỗi 5–15 phút** · vị trí: PDF tr.133 (số in 109), mục 4.6.4 Anaphylaxis, dòng 'For severe anaphylactic shock' (cùng liều ở dòng 'moderate cases' và tr.336); phạm vi sách: 'young children' tại bệnh viện tuyến đầu (tr.17), bảng liều thuốc 3–29 kg (tr.379). Trang mục IRIS handle 10665/81170 (sha256 98702ec07bd45084…). Chưa xác minh có bản mới hơn 2013. · https://iris.who.int/server/api/core/bitstreams/8f110da0-22e6-4ef1-90e4-c9f1b7daa363/content
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-anaphylaxis_ocr-06 — Phản vệ: Adrenalin 1 mg/ml tiêm bắp — liều mỗi lần (liều đầu) ở trẻ > 30 kg (concordant)
+
+- Văn bản: `TT51/2017` → `data/raw/TT51_2017.pdf`, **trang PDF 9** (trang in 9), mục Phụ lục III (Hướng dẫn xử trí cấp cứu phản vệ), mục IV.1 'Thuốc adrenalin 1mg = 1ml = 1 ống, tiêm bắp', điểm d
+- Quần thể: {"setting": "cơ sở khám bệnh, chữa bệnh; nhân viên y tế tiêm", "severity": "phản vệ độ III (nguy kịch): có sốc/tụt huyết áp, chưa ngừng tuần hoàn", "preparation": "adrenalin ống 1 mg/1 ml (1:1.000), tiêm bắp", "dose": "liều tiêm bắp mỗi lần (liều đầu)", "age": "10 tuổi (chưa dậy thì)", "weight": "35 kg", "cause": "do thuốc (ngay sau tiêm kháng sinh)"}
+- Giá trị Bộ Y tế: **0,5 ml (tương đương 1/2 ống) = 500 µg — TT51 PL III mục IV.1d, tr.9 (trẻ > 30 kg); 1/5–1/3 ống = 200–333,3 µg — TT51 PL X 'Trẻ em', tr.20; 0,01 mg/kg = 350 µg ở 35 kg — QĐ 3312/2015 tr.106 (DR8; không ghi liều tối đa); 0,01 ml/kg, tối đa 0,3 ml → 0,3 ml = 300 µg — QĐ 3942/2014 tr.13 (DR8)**
+- Đoạn trích: «d) Trẻ > 30kg: 0,5ml (tương đương 1/2 ống).»
+- EU_UK — Resuscitation Council UK – Emergency treatment of anaphylaxis: guidelines for healthcare providers (May 2021) (2021-05): **300 µg (0,3 ml) — trẻ 6–12 tuổi** · vị trí: Bảng liều adrenalin tiêm bắp (IM dose), PDF tr.29; cũng trong RCUK Anaphylaxis algorithm 2021, tr.1 (resus.org.uk/sites/default/files/2021-04/Anaphylaxis%20algorithm%202021.pdf, sha256 c7b75e76a1fdba09…) — dòng 'child 6-12 years' · https://www.resus.org.uk/sites/default/files/2021-05/Emergency%20Treatment%20of%20Anaphylaxis%20May%202021_0.pdf
+- OTHER — World Allergy Organization Anaphylaxis Guidance 2020 (Cardona et al., World Allergy Organ J 2020;13:100472; PMC7607509) (2020-10): **0,01 mg/kg (tối đa 0,5 mg) = 350 µg ở 35 kg; 0,3 mg — trẻ 6–12 tuổi** · vị trí: Mục 'epinephrine' ngay trước Bảng 6 và Bảng 6 'Recommended doses for intramuscular epinephrine (adrenaline)' — dòng 'children aged 6-12 years' và liều 0,01 mg/kg · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7607509/fullTextXML
+- US — AAAAI/ACAAI Joint Task Force on Practice Parameters – Anaphylaxis: a 2023 practice parameter update (Golden et al., Ann Allergy Asthma Immunol) (2023): **0,01 mg/kg = 0,35 mg, tối đa 0,3 mg ở trẻ → 0,3 mg** · vị trí: PDF tr.4 và tr.31 (mục Dosage): 'current standard practice' 0,01 mg/kg, tối đa 0,3 mg ở trẻ em/thiếu niên, 0,5 mg ở người lớn · https://www.aaaai.org/Aaaai/media/Media-Library-PDFs/Allergist%20Resources/Statements%20and%20Practice%20Parameters/Anaphylaxis-Practice-Paramaters-2023.pdf
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-01 — Bệnh phổi tắc nghẽn mạn tính (BPTNMT/COPD): ngưỡng tỉ số FEV1/FVC để chẩn đoán tắc nghẽn không hồi phục hoàn toàn (concordant)
+
+- Văn bản: `2767/2023` → `data/raw/2767_2023.pdf`, **trang PDF 12** (trang in 11), mục Chương 1 Chẩn đoán, mục 1.2.2 Chẩn đoán xác định (cơ sở có máy đo CNHH) — Đo chức năng hô hấp, Nhận định kết quả
+- Quần thể: {"age": "người lớn", "measurement": "hô hấp ký (spirometry) sau test hồi phục phế quản (post-bronchodilator)", "setting": "cơ sở y tế có máy đo chức năng hô hấp"}
+- Giá trị Bộ Y tế: **FEV1/FVC < 70% sau test hồi phục phế quản**
+- Đoạn trích: «Nhận định kết quả: + Chẩn đoán xác định khi: rối loạn thông khí tắc nghẽn không hồi phục hoàn toàn sau test hồi phục phế quản: chỉ số FEV1/FVC < 70% sau test HPPQ.»
+- OTHER — GOLD 2026 Report — Global Strategy for the Prevention, Diagnosis and Management of COPD (v1.3) (2025-12-08): **FEV1/FVC < 0,7 sau giãn phế quản (= 70%)** · vị trí: Chapter 2 Diagnosis, assessment and monitoring — spirometry; PDF p.32 (tr. in 21; cũng PDF p.15, 18, 40) · https://goldcopd.org/wp-content/uploads/2026/01/GOLD-REPORT-2026-v1.3-8Dec2025_WMV2.pdf
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-02 — Bệnh phổi tắc nghẽn mạn tính (BPTNMT/COPD): chỉ định thở oxy dài hạn tại nhà (LTOT) (concordant)
+
+- Văn bản: `2767/2023` → `data/raw/2767_2023.pdf`, **trang PDF 23** (trang in 22), mục Chương 2 Điều trị BPTNMT giai đoạn ổn định, mục 2.4 Thở oxy dài hạn tại nhà, 2.4.2 Chỉ định
+- Quần thể: {"age": "người lớn", "stage": "giai đoạn ổn định, điều trị tối ưu", "measurement": "khí máu động mạch khi nghỉ, không thở oxy, 2 mẫu trong 3 tuần", "comorbidity": "không tăng áp phổi, không suy tim phải, không đa hồng cầu"}
+- Giá trị Bộ Y tế: **PaO2 ≤ 55 mmHg**
+- Đoạn trích: «2.4.2. Chỉ định BPTNMT có suy hô hấp mạn tính, thiếu oxy máu: - PaO2 ≤ 55 mmHg hoặc SaO2 ≤ 88% trên hai mẫu máu trong vòng 3 tuần, bệnh nhân trong giai đoạn ổn định, ở trạng thái nghỉ ngơi, không thở oxy, đã sử dụng các biện pháp điều trị tối ưu.»
+- OTHER — GOLD 2026 Report — Global Strategy for the Prevention, Diagnosis and Management of COPD (v1.3) (2025-12-08): **PaO2 ≤ 55 mmHg (7,3 kPa) hoặc SaO2 ≤ 88%** · vị trí: Chapter 3 Prevention & management of COPD — Oxygen therapy (LTOT indications); PDF p.87 (tr. in 76) · https://goldcopd.org/wp-content/uploads/2026/01/GOLD-REPORT-2026-v1.3-8Dec2025_WMV2.pdf
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-03 — Bệnh phổi tắc nghẽn mạn tính (BPTNMT/COPD): prednisone/prednisolone/methylprednisolone uống (glucocorticoid toàn thân) (concordant)
+
+- Văn bản: `2767/2023` → `data/raw/2767_2023.pdf`, **trang PDF 31** (trang in 30), mục Chương 3 Đợt cấp BPTNMT, mục 3.4.2 Điều trị ngoại trú đợt cấp BPTNMT — Thuốc glucocorticoids
+- Quần thể: {"age": "người lớn", "setting": "đợt cấp điều trị ngoại trú", "route": "glucocorticoid toàn thân đường uống"}
+- Giá trị Bộ Y tế: **5–7 ngày**
+- Đoạn trích: «Prednisone hoặc prednisolone hoặc methylprednisolone: 30-40 mg/ngày uống 1 lần vào buổi sáng trong 5-7 ngày. Budesonide liều cao phun khí dung có thể là một lựa chọn thay thế cho glucocorticoid toàn thân trong trường hợp bệnh nhân sử dụng glucocorticoid toàn thân liều cao hoặc có nguy cơ khi sử dụng glucocorticoid toàn thân. Liều thông thường của budesonide trong đợt cấp BPTNMT là 4-8 mg/ngày, chia thành 2-4 lần/ngày, tối thiểu 5 ngày hoặc cho đến khi cải thiện về mặt lâm sàng.»
+- OTHER — GOLD 2026 Report — Global Strategy for the Prevention, Diagnosis and Management of COPD (v1.3) (2025-12-08): **40 mg prednisone-tương đương/ngày trong 5 ngày** · vị trí: Chapter 4 Management of exacerbations — Pharmacological treatment, glucocorticoids; PDF p.114 (tr. in 103: 40 mg prednisone-tương đương/ngày trong 5 ngày); PDF p.103 (tóm tắt: tối đa 5 ngày, đợt cấp trung bình/nặng) · https://goldcopd.org/wp-content/uploads/2026/01/GOLD-REPORT-2026-v1.3-8Dec2025_WMV2.pdf
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-04 — Bệnh phổi tắc nghẽn mạn tính (BPTNMT/COPD): ngưỡng bạch cầu ái toan máu 'cao' dự báo đáp ứng tốt với ICS (không phải ngưỡng tối thiểu ≥ 100 tế bào/µL dùng cho người có đợt cấp thường xuyên) (concordant)
+
+- Văn bản: `2767/2023` → `data/raw/2767_2023.pdf`, **trang PDF 23** (trang in 22), mục Chương 2, mục 2.3.2 Chuyển đổi điều trị thuốc — bệnh nhân đang dùng LABA hoặc LAMA đơn trị liệu
+- Quần thể: {"age": "người lớn", "stage": "giai đoạn ổn định; đang đơn trị LABA hoặc LAMA; 1 đợt cấp trung bình (không nhập viện) trong năm qua; cân nhắc thêm ICS", "measurement": "bạch cầu ái toan máu ngoại vi"}
+- Giá trị Bộ Y tế: **≥ 300 tế bào/µL**
+- Đoạn trích: «- Nếu bệnh nhân đang được điều trị LABA hoặc LAMA đơn trị liệu: nâng bậc lên LABA/LAMA hoặc ICS/LABA. ICS/LABA có thể chỉ định cho: + Bệnh nhân có tiền sử mắc hen. Bệnh nhân có thể có đáp ứng tốt với ICS khi có bạch cầu ái toan máu ≥300 tế bào/µL.»
+- OTHER — GOLD 2026 Report — Global Strategy for the Prevention, Diagnosis and Management of COPD (v1.3) (2025-12-08): **≥ 300 tế bào/µL hỗ trợ dùng ICS** · vị trí: Chapter 3 — pharmacological treatment, blood eosinophils và ICS: PDF p.132 và p.161 (ngưỡng ≥ 300 tế bào/µL hỗ trợ dùng ICS; đỉnh quan hệ liên tục eos–ICS); p.75 (khởi trị nhóm E bằng LABA+LAMA+ICS nếu ≥ 300); ngưỡng ≥ 100 (khác slot): p.77, p.80 · https://goldcopd.org/wp-content/uploads/2026/01/GOLD-REPORT-2026-v1.3-8Dec2025_WMV2.pdf
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-05 — Sốt mò (scrub typhus, Orientia tsutsugamushi): doxycyclin uống — liều mỗi lần (uống 2 lần/ngày) (concordant)
+
+- Văn bản: `5642/2015` → `data/raw/5642_2015.pdf`, **trang PDF 63** (trang in 63), mục Bệnh sốt mò, mục 4.2 Điều trị cụ thể, a. Điều trị kháng sinh
+- Quần thể: {"age": "người lớn", "pregnancy": "không mang thai", "contraindication": "không chống chỉ định tetracyclin", "weight": "> 45 kg"}
+- Giá trị Bộ Y tế: **0,1 g (100 mg)/lần, 2 lần/ngày**
+- Đoạn trích: «Các thuốc điều trị sốt mò chính là doxycyclin và azithromycin, có ưu điểm là hấp thu tốt qua đường tiêu hóa, có thời gian bán thải kéo dài và ít tác dụng phụ. Các phác đồ điều trị sốt mò cụ thể:  Doxycyclin: liều 0,1 g x 2 viên uống chia 2 lần/ngày trong 5 ngày.»
+- US — CDC — Clinical Overview of Scrub Typhus (HCP) (2024-05-15): **100 mg × 2 lần/ngày** · vị trí: mục Treatment (người lớn > 45 kg; trẻ < 45 kg dùng 2,2 mg/kg); needs_human_check: cdc.gov trả 403 với script (thử lại 26/9/2026) → đọc bằng WebFetch 26/9/2026 ba lần (người trích, kiểm toán, agent sửa); last reviewed 2024-05-15 · https://www.cdc.gov/typhus/hcp/clinical-overview/clinical-overview-of-scrub-typhus.html · ⚠ chưa băm được trang (cần mở kiểm)
+- ⚠ Kiểm bằng mã: CDC — Clinical Overview of Scrub Typhus (HCP): không có page_sha256 (cần người mở kiểm)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-06 — Bệnh Whitmore (melioidosis) — nhiễm khuẩn huyết do Burkholderia pseudomallei: ceftazidim tĩnh mạch — liều mỗi lần (concordant)
+
+- Văn bản: `5642/2015` → `data/raw/5642_2015.pdf`, **trang PDF 84** (trang in 84), mục Nhiễm khuẩn huyết, mục 3.2 Điều trị cụ thể — bảng kháng sinh đề nghị theo vi khuẩn, dòng Burkholderia pseudomallei
+- Quần thể: {"age": "người lớn", "renal": "chức năng thận bình thường", "phase": "giai đoạn tấn công (tĩnh mạch)", "setting": "điều trị tại khoa thường (không ICU), không tổn thương thần kinh trung ương"}
+- Giá trị Bộ Y tế: **ceftazidim 2 g/lần, tiêm TM chậm mỗi 8 giờ**
+- Đoạn trích: «Burkholderia pseudomallei Người bệnh làm ruộng, tiếp xúc với môi trường đất. Ceftazidim 2 g/lần, tiêm tĩnh mạch chậm 8 giờ/lần. Imipenem+cisplatin 1 g truyền tĩnh mạch 8 giờ/lần. Meropenem 500 mg/lần, truyền tĩnh mạch 8 giờ /lần.»
+- OTHER — NT Health (Darwin, Australia) Melioidosis Guideline 2024 — nguồn CDC dẫn làm hướng dẫn điều trị (2024-02-10): **2 g TM mỗi 6 giờ, ít nhất 14 ngày** · vị trí: Treatment — Initial intensive therapy (ward: ceftazidime; ICU: meropenem), PDF p.4; version 11.0, approved 10/2/24, review date 10/2/26 (đã quá hạn — needs_human_check phiên bản mới) · https://digitallibrary.health.nt.gov.au/nthealthserver/api/core/bitstreams/78de80ef-afe5-4aea-860a-6ea801354542/content
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-07 — Uốn ván: metronidazol (kháng sinh diệt C. tetani) — liều mỗi lần (concordant)
+
+- Văn bản: `5642/2015` → `data/raw/5642_2015.pdf`, **trang PDF 29** (trang in 29), mục Bệnh uốn ván, mục 4.2 Điều trị cụ thể, a. Ngăn chặn tạo độc tố uốn ván — kháng sinh
+- Quần thể: {"age": "người lớn", "condition": "uốn ván toàn thể, điều trị tại hồi sức"}
+- Giá trị Bộ Y tế: **metronidazol 500 mg/lần, truyền TM mỗi 6–8 giờ**
+- Đoạn trích: «Kháng sinh diệt vi khuẩn uốn ván: metronidazol 500 mg, truyền TM cách 6 - 8 giờ/lần; hoặc penicillin G: 1 - 2 triệu đơn vị, tiêm TM cách 4 - 6 giờ/lần; erythromycin, penicillin V hoặc clindamycin là những thay thế của metronidazol và penicillin G; thời gian điều trị 7 - 10 ngày.»
+- WHO_global — WHO Technical Note: Current recommendations for treatment of tetanus during humanitarian emergencies (WHO/HSE/GAR/DCE/2010.2) (2010-01): **500 mg mỗi 6 giờ, TM hoặc uống** · vị trí: Treatment — Antibiotic treatment, p.5 · https://iris.who.int/server/api/core/bitstreams/f9f77952-80b0-4a25-92d7-edce3241af13/content
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-08 — Uốn ván: globulin miễn dịch uốn ván từ người (HTIG) tiêm bắp — tổng liều (conflict)
+
+- Văn bản: `5642/2015` → `data/raw/5642_2015.pdf`, **trang PDF 29** (trang in 29), mục Bệnh uốn ván, mục 4.2 Điều trị cụ thể, b. Trung hòa độc tố uốn ván
+- Quần thể: {"age": "người lớn", "product": "globulin miễn dịch uốn ván từ người (HTIG), không phải SAT ngựa", "indication": "điều trị bệnh uốn ván (không phải dự phòng vết thương)"}
+- Giá trị Bộ Y tế: **HTIG 3000–6000 đơn vị, tiêm bắp**
+- Đoạn trích: «b. Trung hòa độc tố uốn ván Globulin miễn dịch uốn ván từ người (HTIG) liều 3000 - 6000 đơn vị tiêm bắp, hoặc huyết thanh kháng độc tố uốn ván từ ngựa (SAT) 1.500 đơn vị/01 ống, liều 400 - 500 đơn vị/kg cân nặng, liều duy nhất (người lớn thường dùng 14 ống) tiêm bắp. Dùng SAT phải thử phản ứng trước tiêm, test SAT với 75 đơn vị, với HTIG không cần thử test. Uốn ván sơ sinh dùng SAT 1.000 đơn vị/kg cân nặng.»
+- WHO_global — WHO Technical Note: Current recommendations for treatment of tetanus during humanitarian emergencies (WHO/HSE/GAR/DCE/2010.2) (2010-01): **TIG người 500 đơn vị, tiêm bắp hoặc TM** · vị trí: Treatment — Immunotherapy, p.5 (technical note cho tình huống nhân đạo khẩn cấp) · https://iris.who.int/server/api/core/bitstreams/f9f77952-80b0-4a25-92d7-edce3241af13/content
+- US — CDC — Tetanus: Clinical Care and Treatment (HCP) (2026-09-08): **một liều duy nhất 500 IU TIG, tiêm bắp** · vị trí: mục TIG for tetanus treatment (một liều 500 IU tiêm bắp); needs_human_check: cdc.gov trả 403 với script → đọc bằng WebFetch 26/9/2026 (người trích, kiểm toán, agent sửa); last reviewed 2026-09-08 · https://www.cdc.gov/tetanus/hcp/clinical-care/index.html · ⚠ chưa băm được trang (cần mở kiểm)
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 8500 IU
+- ⚠ Kiểm bằng mã: CDC — Tetanus: Clinical Care and Treatment (HCP): không có page_sha256 (cần người mở kiểm)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-controls-09 — Thừa cân/béo phì (tiêu chí tầm soát đái tháo đường típ 2): ngưỡng BMI thấp nhất đạt tiêu chí thừa cân hoặc béo phì trong chỉ định xét nghiệm tầm soát ĐTĐ/tiền ĐTĐ (conflict)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 11** (trang in 9), mục Phần 2 Chẩn đoán và phân loại ĐTĐ, mục 1.2 Khuyến cáo xét nghiệm tầm soát ĐTĐ/tiền ĐTĐ ở người lớn không triệu chứng, điểm a
+- Quần thể: {"age": "người trưởng thành", "symptoms": "không có triệu chứng, biểu hiện lâm sàng của đái tháo đường", "setting": "xét chỉ định xét nghiệm tầm soát đái tháo đường/tiền đái tháo đường", "exclusions": "không mang thai; không nhiễm HIV; không mắc ung thư"}
+- Giá trị Bộ Y tế: **BMI ≥ 23 kg/m2**
+- Đoạn trích: «1.2. Khuyến cáo làm xét nghiệm để tầm soát, phát hiện ĐTĐ hoặc tiền ĐTĐ ở người lớn không có triệu chứng, biểu hiện lâm sàng. a) Người trưởng thành ở bất kỳ tuổi nào có thừa cân hoặc béo phì (BMI ≥ 23 kg/m2)»
+- WHO_global — WHO Fact sheet: Obesity and overweight (2025-12-08): **thừa cân: BMI ≥ 25 (béo phì ≥ 30)** · vị trí: Definition — Adults · https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight
+- WHO_WPRO — WHO WPRO/IASO/IOTF — The Asia-Pacific perspective: redefining obesity and its treatment (2000) (2000-02): **thừa cân (người châu Á): BMI ≥ 23** · vị trí: Table 2.2 Proposed classification of weight by BMI in adult Asians, tr. in 18 (PDF p.19); needs_human_check: PDF quét, sources grep 0 kết quả; kiểm toán viên AI và agent sửa xem ảnh PDF p.19 (sha b1188634…) thấy 'Overweight ≥ 23'; khuyến nghị ghi là tạm thời (provisional); không áp cho người đảo Thái Bình Dương · https://iris.who.int/server/api/core/bitstreams/53228dc6-9520-421b-b5a2-f826967090cb/content
+- US — USPSTF — Prediabetes and Type 2 Diabetes: Screening (Final Recommendation Statement) (2021-08-24): **thừa cân: BMI ≥ 25 (béo phì ≥ 30)** · vị trí: Clinician Summary — 'How to implement this recommendation?' (Assess risk: định nghĩa thừa cân/béo phì theo BMI) và Practice Considerations — Patient Population Under Consideration; quần thể USPSTF: người lớn 35–70 tuổi không mang thai, không triệu chứng, tại chăm sóc ban đầu. Ngưỡng thấp hơn cho người Mỹ gốc Á (mục Assessment of Risk) là quần thể khác → không ghi vào values (xem extraction.notes) · https://www.uspreventiveservicestaskforce.org/uspstf/recommendation/screening-for-prediabetes-and-type-2-diabetes
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 21 kg/m2
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-01 — Sốt xuất huyết Dengue: Tốc độ truyền dịch tinh thể (Ringer lactate hoặc NaCl 0,9%) trong giờ đầu chống sốc (conflict)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 28** (trang in 27), mục IV.C.2.1.2 (Điều trị sốc SXHD người lớn – bù dịch nhanh)
+- Quần thể: {"age": "≥ 16 tuổi (người lớn)", "severity": "sốc SXHD còn bù: mạch nhanh, huyết áp kẹt, HA tâm thu còn duy trì; KHÔNG phải sốc nặng (mạch và HA còn đo được)", "setting": "nội trú/cấp cứu", "phase": "giờ đầu tiên chống sốc", "weight_basis": "BMI < 25 kg/m2 (cân nặng thực)", "history": "vào viện trong tình trạng sốc SXHD, chưa được truyền dịch tĩnh mạch trước đó"}
+- Giá trị Bộ Y tế: **15 ml/kg/giờ trong 1 giờ**
+- Đoạn trích: «C.2. Điều trị sốt xuất huyết Dengue nặng người lớn Người bệnh phải được nhập viện điều trị cấp cứu. C.2.1. Điều trị sốc sốt xuất huyết Dengue C.2.1.1. Thở oxy qua gọng mũi 1 - 6 lít/phút khi SpO2 < 95%. C.2.1.2. Bù dịch nhanh theo phác đồ. Phụ lục 16.1: Sơ đồ truyền dịch trong sốc sốt xuất huyết Dengue ở người lớn. Trong 1 giờ đầu, phải thay thế nhanh chóng lượng huyết tương mất đi bằng Ringer lactate hoặc NaCl 0,9% 15ml/kg/giờ sau đó đánh giá lại lâm sàng, Hct.»
+- WHO_global — WHO 2009 Dengue: guidelines for diagnosis, treatment, prevention and control (2009): **5–10 ml/kg/giờ trong 1 giờ (sốc còn bù, không phân tuổi)** · vị trí: Ch.2 'Treatment of shock' – compensated shock, PDF p.48 (printed 36); Fig. 2.2 PDF p.49; Textbox/Group C PDF p.65 · https://iris.who.int/server/api/core/bitstreams/b1db05d8-0e97-469e-b529-464dca6de540/content
+- WHO_global — WHO 2012 Handbook for clinical management of dengue (2012): **5–10 ml/kg/giờ trong 1 giờ (người lớn)** · vị trí: §2.2.3.1 Treatment of shock – compensated shock, adults, PDF p.38 (printed 28) · https://iris.who.int/server/api/core/bitstreams/825eb07b-b372-4527-ac2f-fe6e8201c1c1/content
+- Bản cũ 3705/2019 (trang PDF 19, mục IV.C.2.1.2 (Điều trị sốc SXHD, sốc SXHD nặng – người lớn, PDF p.19); Phụ lục 14 (PDF p.39)): **15 ml/kg/giờ trong 1 giờ (không đổi so với 2760/2023)**
+- Giá trị mồi (quy tắc mirror_geom, làm tròn none): 28–32 ml/kg/h
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-02 — Sốt xuất huyết Dengue: Tốc độ dịch tinh thể (Ringer lactate hoặc NaCl 0,9%) ở bước tiếp theo khi đã cải thiện (conflict)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 28** (trang in 27), mục IV.C.2.1.2.a (sốc SXHD người lớn – cải thiện sau giờ đầu)
+- Quần thể: {"age": "≥ 16 tuổi (người lớn)", "severity": "sốc SXHD còn bù, không phải sốc nặng (mạch và HA còn đo được)", "response": "cải thiện lâm sàng sau giờ đầu (mạch giảm, HA bình thường, hiệu áp > 20 mmHg)", "setting": "nội trú/cấp cứu", "phase": "bước thứ hai, ngay sau giờ đầu", "history": "vào viện trong tình trạng sốc; giờ đầu chống sốc đã truyền Ringer lactate hoặc NaCl 0,9%"}
+- Giá trị Bộ Y tế: **10 ml/kg/giờ × 2 giờ**
+- Đoạn trích: «C.2.1. Điều trị sốc sốt xuất huyết Dengue C.2.1.1. Thở oxy qua gọng mũi 1 - 6 lít/phút khi SpO2 < 95%. C.2.1.2. Bù dịch nhanh theo phác đồ. Phụ lục 16.1: Sơ đồ truyền dịch trong sốc sốt xuất huyết Dengue ở người lớn. Trong 1 giờ đầu, phải thay thế nhanh chóng lượng huyết tương mất đi bằng Ringer lactate hoặc NaCl 0,9% 15ml/kg/giờ sau đó đánh giá lại lâm sàng, Hct. a) Nếu cải thiện lâm sàng (mạch giảm, HA bình thường, hiệu áp > 20 mmHg) Tiếp tục truyền Ringer lactate hoặc NaCl 0,9% tốc độ 10ml/kg/giờ x 2 giờ.»
+- WHO_global — WHO 2009 Dengue: guidelines for diagnosis, treatment, prevention and control (2009): **giảm dần còn 5–7 ml/kg/giờ trong 1–2 giờ** · vị trí: Ch.2 'Treatment of shock' – compensated shock, if improves, PDF p.48 (printed 36) · https://iris.who.int/server/api/core/bitstreams/b1db05d8-0e97-469e-b529-464dca6de540/content
+- WHO_global — WHO 2012 Handbook for clinical management of dengue (2012): **5–7 ml/kg/giờ trong 1–2 giờ (người lớn)** · vị trí: §2.2.3.1 compensated shock, adult improves, PDF p.38 (printed 28) · https://iris.who.int/server/api/core/bitstreams/825eb07b-b372-4527-ac2f-fe6e8201c1c1/content
+- US — CDC 2024 Dengue Clinical Management Pocket Guide (2024-05): **10 (nguồn in '10mg/kg for 1-2 hrs'; đơn vị mL và 'mỗi giờ' là diễn giải)** · vị trí: Group C (compensated or hypotensive shock) algorithm, PDF p.5: nhánh YES sau liều crystalloid đầu 20 mL/kg trong 15–30 phút, ô 'Reduce IV crystalloid solution to 10mg/kg for 1-2 hrs' (ô sau: 5-7mL/kg/hr for 2-4 hrs). needs_human_check: nguồn in 'mg/kg' và không có '/hr'; đọc thành 10 mL/kg/giờ là diễn giải (cũng có thể là 10 mL/kg trong 1–2 giờ); agent sửa đã xem ảnh trang (2026-09-26) · https://www.cdc.gov/dengue/media/pdfs/2024/05/20240521_342849-B_PRESS_READY_PocketGuideDCMC_UPDATE.pdf
+- Bản cũ 3705/2019 (trang PDF 19, mục IV.C.2.1.2.a (PDF p.19); Phụ lục 14 (PDF p.39)): **10 ml/kg/giờ × 2 giờ (không đổi)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-03 — Sốt xuất huyết Dengue: Loại dịch cho liều chống sốc đầu tiên (conflict)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 15** (trang in 14), mục IV.B2.1.5 (SXHD có dấu hiệu cảnh báo ở người lớn – khi xuất hiện sốc)
+- Quần thể: {"age": "≥ 16 tuổi (người lớn)", "severity": "SXHD có dấu hiệu cảnh báo, đang truyền dịch tĩnh mạch tốc độ duy trì theo phác đồ B2, chưa nhận bolus nào; nay xuất hiện sốc còn bù (mạch nhanh, HA kẹt, HA tâm thu còn duy trì) kèm Hct tăng", "setting": "nội trú", "phase": "liều chống sốc đầu tiên"}
+- Giá trị Bộ Y tế: **cao phân tử (dextran/HES) 10–15 ml/kg/giờ**
+- Đoạn trích: «Phụ lục 6: Sơ đồ xử trí SXHD có dấu hiệu cảnh báo ở người lớn. Nếu bệnh nhân có biểu hiện sốc (mạch nhanh, nhẹ, khó bắt, huyết áp kẹt, tụt, khó đo và Hct tăng): truyền dịch chống sốc như phác đồ điều trị sốc SXHD ở người lớn với liều chống sốc đầu tiên là cao phân tử 10 - 15ml/kg/giờ.»
+- WHO_global — WHO 2025 guidelines for clinical management of arboviral diseases: dengue, chikungunya, Zika and yellow fever (2025-07): **dịch tinh thể thay vì dịch keo (khuyến cáo có điều kiện)** · vị trí: Recommendations summary (severe disease), PDF p.16 (printed 2); §5.1 choice of IV fluid, PDF p.60; p.60 ghi chú cá thể hóa, nhất là lựa chọn dịch sau hồi sức ban đầu · https://iris.who.int/server/api/core/bitstreams/634a55a5-327e-459b-a633-0650fe8ad6c9/content
+- WHO_global — WHO 2009 Dengue: guidelines for diagnosis, treatment, prevention and control (2009): **dịch tinh thể đẳng trương** · vị trí: Ch.2 'Treatment of shock' – compensated shock: isotonic crystalloid, PDF p.48 (printed 36) · https://iris.who.int/server/api/core/bitstreams/b1db05d8-0e97-469e-b529-464dca6de540/content
+- WHO_global — WHO 2012 Handbook for clinical management of dengue (2012): **dịch tinh thể đẳng trương** · vị trí: §2.2.3.1 compensated shock: isotonic crystalloid, PDF p.38 (tóm tắt p.34); ngoại lệ trong sơ đồ: colloid preferable nếu đã nhận bolus crystalloid trước đó (PDF p.39, 40, 42) → quần thể loại trừ bệnh nhân đã bolus · https://iris.who.int/server/api/core/bitstreams/825eb07b-b372-4527-ac2f-fe6e8201c1c1/content
+- US — CDC 2024 Dengue Clinical Management Pocket Guide (2024-05): **dịch tinh thể 20 mL/kg; dịch keo chỉ khi sốc kháng trị** · vị trí: Group C algorithm PDF p.5; colloids only for refractory shock PDF p.2 & p.6 · https://www.cdc.gov/dengue/media/pdfs/2024/05/20240521_342849-B_PRESS_READY_PocketGuideDCMC_UPDATE.pdf
+- Bản cũ 3705/2019 (trang PDF 8, mục IV.B2.1.5): **cao phân tử 10–15 ml/kg/giờ (không đổi)**
+- Giá trị mồi (quy tắc agent_proposed: albumin (dung dịch albumin 5%) — lý do ở extraction.notes, làm tròn —): albumin 5%
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-04 — Sốt xuất huyết Dengue: Có được dùng metamizol (analgin) để hạ sốt/giảm đau không (conflict)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 12** (trang in 11), mục IV.A.1 (Điều trị triệu chứng – thuốc hạ nhiệt)
+- Quần thể: {"age": "mọi tuổi", "severity": "SXHD (không nặng, điều trị ngoại trú hoặc nội trú)", "symptom": "sốt ≥ 38,5°C hoặc đau", "drug": "metamizol (analgin, dipyrone)"}
+- Giá trị Bộ Y tế: **Không dùng analgin (metamizol); chỉ dùng paracetamol đơn chất**
+- Đoạn trích: «- Thuốc hạ nhiệt chỉ được dùng là paracetamol đơn chất, liều dùng từ 10 - 15mg/kg cân nặng/lần, cách nhau mỗi 4 - 6 giờ. * Chú ý: + Tổng liều paracetamol không quá 60mg/kg cân nặng/24 giờ. + Không dùng aspirin (acetylsalicylic acid), analgin, ibuprofen để điều trị vì có thể gây xuất huyết, toan máu.»
+- WHO_global — WHO 2025 guidelines for clinical management of arboviral diseases: dengue, chikungunya, Zika and yellow fever (2025-07): **WHO gợi ý dùng metamizol (dipyrone) cho đau và/hoặc sốt (khuyến cáo có điều kiện)** · vị trí: §4.2.2 Metamizole/dipyrone – conditional recommendation (non-severe), PDF p.47 (printed 33); tóm tắt khuyến cáo PDF p.15; bảng liều 4-5 PDF p.49; p.49 nêu metamizole là lựa chọn thay thế paracetamol ở nước đã phê duyệt · https://iris.who.int/server/api/core/bitstreams/634a55a5-327e-459b-a633-0650fe8ad6c9/content
+- Bản cũ 3705/2019 (trang PDF 6, mục IV.A.1): **Không dùng analgin (không đổi)**
+- Giá trị mồi (quy tắc agent_proposed: chỉ dùng metamizol khi paracetamol không hiệu quả — lý do ở extraction.notes, làm tròn —): chỉ dùng metamizol khi paracetamol không hiệu quả
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-05 — Sốt xuất huyết Dengue: Thời gian truyền liều Ringer lactate/NaCl 0,9% 15 ml/kg đầu tiên (concordant)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 30** (trang in 29), mục IV.C.2.2 (Điều trị sốc SXHD nặng người lớn)
+- Quần thể: {"age": "≥ 16 tuổi (người lớn)", "severity": "sốc nặng: mạch = 0 và HA = 0 lúc nhập viện", "setting": "cấp cứu", "phase": "liều dịch tinh thể đầu tiên 15 ml/kg"}
+- Giá trị Bộ Y tế: **15 ml/kg trong vòng 15 phút**
+- Đoạn trích: «C.2.2. Điều trị sốc sốt xuất huyết Dengue nặng Trường hợp bệnh nhân nhập viện trong tình trạng sốc nặng (mạch không bắt được (M = 0) và HA không đo được (HA=0)) thì khẩn trương truyền nhanh Ringer lactate hoặc NaCl 0,9% 15ml/kg trong vòng 15 phút, rồi chuyển sang truyền cao phân tử 15ml/kg/giờ trong 1 giờ, sau đó đánh giá lại lâm sàng và Hct.»
+- WHO_global — WHO 2009 Dengue: guidelines for diagnosis, treatment, prevention and control (2009): **bolus 20 ml/kg trong 15 phút (thể tích khác: 20 ml/kg)** · vị trí: Ch.2 hypotensive shock, PDF p.49 (printed 37): 20 ml/kg bolus over 15 minutes · https://iris.who.int/server/api/core/bitstreams/b1db05d8-0e97-469e-b529-464dca6de540/content
+- WHO_global — WHO 2012 Handbook for clinical management of dengue (2012): **bolus 20 ml/kg trong 15–30 phút (thể tích khác)** · vị trí: §2.2.3.1 Treatment of profound shock (hypotensive; undetectable pulse and BP), all patients, PDF p.41 (printed 31): 20 ml/kg over 15–30 minutes; tóm tắt PDF p.34 (hypotensive shock) ghi 'bolus for 15 min' · https://iris.who.int/server/api/core/bitstreams/825eb07b-b372-4527-ac2f-fe6e8201c1c1/content
+- US — CDC 2024 Dengue Clinical Management Pocket Guide (2024-05): **20 mL/kg trong 15–30 phút (thể tích khác)** · vị trí: Group C algorithm PDF p.5: 20 mL/kg in 15–30 min · https://www.cdc.gov/dengue/media/pdfs/2024/05/20240521_342849-B_PRESS_READY_PocketGuideDCMC_UPDATE.pdf
+- Bản cũ 3705/2019 (trang PDF 19, mục IV.C.2.1 (Điều trị sốc SXHD, sốc SXHD nặng – người lớn, PDF p.19, trang in 18); Phụ lục 14 'SỐC SXHD hoặc SỐC SXHD NẶNG' (PDF p.39)): **15 ml/kg/giờ x 1 giờ (sốc và sốc nặng chung phác đồ) ⇒ 15 ml/kg trong 60 phút (phép tính)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-06 — Sốt xuất huyết Dengue: Dùng Gelatin làm dung dịch cao phân tử thay thế (no_counterpart)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 16** (trang in 15), mục IV.C1.1.3.b.1 (Sốc SXHD trẻ em – không cải thiện, Hct còn cao)
+- Quần thể: {"age": "< 16 tuổi (trẻ em)", "severity": "sốc SXHD không cải thiện, Hct còn tăng cao hoặc ≥ 40%", "availability": "cơ sở KHÔNG có Dextran 40/70 hoặc HES 200 6%", "setting": "nội trú/cấp cứu"}
+- Giá trị Bộ Y tế: **Có thể thay thế bằng HES 130 6% hoặc Gelatin, theo dõi sát**
+- Đoạn trích: «b.1) Nếu hematocrit còn tăng cao hoặc ≥ 40% - Chuyển sang truyền cao phân tử (CPT) 10 - 20ml/kg/giờ trong 1 giờ. Cao phân tử được chọn trong SXHD là Dextran 40, Dextran 70 hoặc 6% HES 200. Tác dụng phụ của HES là rối loạn đông máu, tổn thương gan, thận đặc biệt là khi tổng liều > 60ml/kg. - Trường hợp không có Dextran 40, Dextran 70 hoặc 6% HES 200, có thể thay thế bằng dung dịch 6% HES 130 hoặc Gelatin, nhưng cần theo dõi sát đáp ứng điều trị (cải thiện lâm sàng, Hct) vì khả năng tăng thể tích ít và thời gian lưu trong lòng mạch ngắn.»
+- Bản cũ 3705/2019 (trang PDF 9, mục IV.C.1.1.3.b.1): **không dùng Gelatin do hiệu quả kém**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-08 — Sốt xuất huyết Dengue: Liều paracetamol mỗi lần (concordant)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 12** (trang in 11), mục IV.A.1 (Điều trị triệu chứng – thuốc hạ nhiệt)
+- Quần thể: {"age": "trẻ em < 16 tuổi", "symptom": "sốt ≥ 38,5°C", "drug": "paracetamol đơn chất, đường uống"}
+- Giá trị Bộ Y tế: **10–15 mg/kg/lần, cách 4–6 giờ**
+- Đoạn trích: «- Thuốc hạ nhiệt chỉ được dùng là paracetamol đơn chất, liều dùng từ 10 - 15mg/kg cân nặng/lần, cách nhau mỗi 4 - 6 giờ. * Chú ý: + Tổng liều paracetamol không quá 60mg/kg cân nặng/24 giờ. + Không dùng aspirin (acetylsalicylic acid), analgin, ibuprofen để điều trị vì có thể gây xuất huyết, toan máu.»
+- WHO_global — WHO 2025 guidelines for clinical management of arboviral diseases: dengue, chikungunya, Zika and yellow fever (2025-07): **10–15 mg/kg mỗi 4–6 giờ** · vị trí: §4.2.1 Table 4-2 Dosing of paracetamol – paediatrics, PDF p.44 (printed 30) · https://iris.who.int/server/api/core/bitstreams/634a55a5-327e-459b-a633-0650fe8ad6c9/content
+- WHO_global — WHO 2012 Handbook for clinical management of dengue (2012): **10 mg/kg/liều, không quá 3–4 lần/24 giờ** · vị trí: §2.2.1 Group A treatment, PDF p.35 (printed 25); home care card PDF p.116: 10 mg/kg/dose (children) · https://iris.who.int/server/api/core/bitstreams/825eb07b-b372-4527-ac2f-fe6e8201c1c1/content
+- Bản cũ 3705/2019 (trang PDF 6, mục IV.A.1): **10–15 mg/kg/lần (không đổi)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-09 — Sốt xuất huyết Dengue: Ngưỡng AST hoặc ALT xếp SXHD nặng (concordant)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 38** (trang in Phụ lục 2 (không đánh số trang in)), mục Phụ lục 2 – Phân độ SXHD (cột SXHD nặng: suy các tạng)
+- Quần thể: {"age": "mọi tuổi", "context": "phân độ lâm sàng SXHD (tiêu chuẩn SXHD nặng do suy tạng gan)"}
+- Giá trị Bộ Y tế: **AST hoặc ALT ≥ 1000 U/L**
+- Đoạn trích: «Ít nhất 1 trong các dấu hiệu sau 1. Thoát huyết tương nặng dẫn tới - Sốc SXHD, sốc SXHD nặng. - Ứ dịch, biểu hiện suy hô hấp. 2. Xuất huyết nặng 3. Suy các tạng - Gan: AST hoặc ALT ≥ 1000U/L.»
+- WHO_global — WHO 2009 Dengue: guidelines for diagnosis, treatment, prevention and control (2009): **AST or ALT ≥ 1000** · vị trí: Ch.1 dengue case classification – criteria for severe dengue, PDF p.23 (printed 11) · https://iris.who.int/server/api/core/bitstreams/b1db05d8-0e97-469e-b529-464dca6de540/content
+- WHO_global — WHO 2012 Handbook for clinical management of dengue (2012): **AST or ALT ≥ 1000** · vị trí: Dengue case classification – severe organ involvement, PDF p.17 · https://iris.who.int/server/api/core/bitstreams/825eb07b-b372-4527-ac2f-fe6e8201c1c1/content
+- US — CDC 2024 Dengue Clinical Management Pocket Guide (2024-05): **ALT hoặc AST > 1000 IU (nhóm C)** · vị trí: p.1 Group C – severe organ impairment (hepatitis [ALT or AST>1000 IU]); p.6 dùng '≥1000' cho tiêu chí nhập viện (không phải phân độ) · https://www.cdc.gov/dengue/media/pdfs/2024/05/20240521_342849-B_PRESS_READY_PocketGuideDCMC_UPDATE.pdf
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dengue-10 — Sốt xuất huyết Dengue: Ngưỡng hiệu áp (HA tâm thu − HA tâm trương) coi là huyết áp kẹt (concordant)
+
+- Văn bản: `2760/2023` → `data/raw/2760_2023.pdf`, **trang PDF 9** (trang in 8), mục II.2.1 (Giai đoạn nguy hiểm – lâm sàng: sốc)
+- Quần thể: {"age": "trẻ em < 16 tuổi", "context": "định nghĩa huyết áp kẹt (hiệu áp) khi nhận biết sốc SXHD"}
+- Giá trị Bộ Y tế: **hiệu áp ≤ 20 mmHg**
+- Đoạn trích: «+ Nếu thoát huyết tương nhiều sẽ dẫn đến sốc với các biểu hiện vật vă, bứt rứt hoặc li bì, lạnh đầu chi, mạch nhanh nhỏ, huyết áp kẹt (hiệu số huyết áp tối đa và tối thiểu ≤ 20mmHg hoặc tụt huyết áp, không đo được huyết áp, mạch không bắt được, da lạnh, nổi vân tím (sốc nặng), tiểu ít.»
+- WHO_global — WHO 2009 Dengue: guidelines for diagnosis, treatment, prevention and control (2009): **≤ 20 mmHg (trẻ em)** · vị trí: Ch.1 critical phase / shock, PDF p.40 (printed 28): pulse pressure ≤ 20 mm Hg in children · https://iris.who.int/server/api/core/bitstreams/b1db05d8-0e97-469e-b529-464dca6de540/content
+- WHO_global — WHO 2012 Handbook for clinical management of dengue (2012): **≤ 20 mmHg (trẻ em)** · vị trí: Ch.1 compensated shock, PDF p.14: pulse pressure ≤ 20 mmHg in children · https://iris.who.int/server/api/core/bitstreams/825eb07b-b372-4527-ac2f-fe6e8201c1c1/content
+- US — CDC 2024 Dengue Clinical Management Pocket Guide (2024-05): **< 20 mmHg (nguồn dùng '<')** · vị trí: p.2 'recognize and treat early shock': systolic minus diastolic BP < 20 mmHg · https://www.cdc.gov/dengue/media/pdfs/2024/05/20240521_342849-B_PRESS_READY_PocketGuideDCMC_UPDATE.pdf
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-01 — Đái tháo đường típ 2: khởi trị insulin sớm (conflict)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 25** (trang in 23), mục Phần 4 Điều trị, mục 4.2 Lựa chọn cụ thể (thuốc kiểm soát đường huyết), điểm f
+- Quần thể: {"age": "người lớn", "diabetes_type": "típ 2", "pregnancy": "không mang thai", "clinical": "không có dấu hiệu dị hóa (sụt cân), không có triệu chứng tăng đường huyết", "trigger": "chỉ dựa vào mức HbA1c"}
+- Giá trị Bộ Y tế: **HbA1c ≥ 9%**
+- Đoạn trích: «f) Sử dụng sớm insulin nên cân nhắc nếu có bằng chứng của dị hóa (giảm cân), triệu chứng tăng đường huyết, hoặc nếu mức A1C ≥9% hoặc mức glucose huyết rất cao ≥300 mg/dL (16.7 mmol/L).»
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **A1C > 10%** · vị trí: Rec 9.20, slide 176 (Section 9 Pharmacologic Approaches, S183–S215) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- US — ADA/EASD consensus report — Management of Hyperglycemia in Type 2 Diabetes, 2018 (Davies MJ et al., Diabetes Care 2018;41(12):2669–2701, doi:10.2337/dci18-0033, PMC6245208; Europe PMC full text) (2018): **HbA1c > 11% (> 97 mmol/mol)** · vị trí: section 'Choice of Glucose-Lowering Medication After Metformin', body text after the boxed consensus recommendation (early basal insulin; HbA1c > 97 mmol/mol [> 11%]); narrative, not a numbered recommendation · https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6245208/fullTextXML
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 8 %
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-02 — Đái tháo đường típ 2: khởi trị insulin sớm (concordant)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 25** (trang in 23), mục Phần 4 Điều trị, mục 4.2 Lựa chọn cụ thể (thuốc kiểm soát đường huyết), điểm f
+- Quần thể: {"age": "người lớn", "diabetes_type": "típ 2", "pregnancy": "không mang thai", "trigger": "chỉ dựa vào mức glucose huyết"}
+- Giá trị Bộ Y tế: **glucose huyết ≥ 300 mg/dL; 16,7 mmol/L**
+- Đoạn trích: «f) Sử dụng sớm insulin nên cân nhắc nếu có bằng chứng của dị hóa (giảm cân), triệu chứng tăng đường huyết, hoặc nếu mức A1C ≥9% hoặc mức glucose huyết rất cao ≥300 mg/dL (16.7 mmol/L).»
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **blood glucose ≥ 300 mg/dL; ≥ 16,7 mmol/L** · vị trí: Rec 9.20, slide 176 (Section 9 Pharmacologic Approaches, S183–S215) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- ⚠ Kiểm bằng mã: ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA: không thấy ['16.7'] trong nguồn đã băm
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-03 — Đái tháo đường típ 2: xét nghiệm tầm soát ĐTĐ cho mọi người (không dựa vào yếu tố nguy cơ) (conflict)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 12** (trang in 10), mục Phần 2 Chẩn đoán và phân loại, mục 1.2 Khuyến cáo làm xét nghiệm để tầm soát ĐTĐ/tiền ĐTĐ ở người lớn không có triệu chứng, điểm c
+- Quần thể: {"age": "người lớn", "symptoms": "không triệu chứng", "pregnancy": "không mang thai", "weight_status": "không thừa cân/béo phì", "risk_factors": "không có yếu tố nguy cơ ĐTĐ", "gdm_history": "không tiền sử ĐTĐ thai kỳ"}
+- Giá trị Bộ Y tế: **từ 45 tuổi**
+- Đoạn trích: «c) Tất cả mọi người từ 45 tuổi trở lên d) Nếu các kết quả bình thường, xét nghiệm sẽ được làm lại trong vòng 1- 3 năm sau hoặc ngắn hơn tùy theo kết quả ban đầu và các yếu tố nguy cơ.»
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **bắt đầu từ 35 tuổi** · vị trí: Rec 2.12b, slide 29 (Section 2 Diagnosis and Classification, S27–S49) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 55 year
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-04 — Đái tháo đường típ 2: chẩn đoán tăng huyết áp (concordant)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 34** (trang in 32), mục Phần 4 Điều trị, mục 6 Quản lý các bệnh đồng mắc, 6.1 Tăng huyết áp, 6.1.1 Theo dõi huyết áp
+- Quần thể: {"age": "người lớn", "comorbidity": "đái tháo đường típ 2", "pregnancy": "không mang thai", "measurement": "HA đo tại phòng khám, đã kiểm tra lại vào ngày khác", "component": "huyết áp tâm thu"}
+- Giá trị Bộ Y tế: **HA tâm thu ≥ 140 mmHg (5481/2020 mục 6.1.1); HA tâm thu ≥ 130 mmHg (3879/2014, bài 'Tăng huyết áp ở người bệnh đái tháo đường', DR8)**
+- Đoạn trích: «6.1. Tăng huyết áp 6.1.1. Theo dõi huyết áp: Phải đo huyết áp định kỳ ở mỗi lần thăm khám. Nếu huyết áp tâm thu ≥ 130mmHg hay huyết áp tâm trương ≥80 mmHg cần phải kiểm tra lại huyết áp vào ngày khác. Chẩn đoán tăng huyết áp khi kiểm tra lại có huyết áp tâm thu ≥140 mmHg và/hay huyết áp tâm trương ≥90 mmHg.»
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **SBP ≥ 130 mmHg (hoặc DBP ≥ 80)** · vị trí: Rec 10.1, slide 200 (Section 10 Cardiovascular Disease and Risk Management, S216–S245) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- WHO_global — WHO Fact sheet: Hypertension (người lớn nói chung) (2025-09-25): **SBP ≥ 140 mmHg (và/hoặc DBP ≥ 90)** · vị trí: mục Overview/định nghĩa: chẩn đoán khi đo ở hai ngày khác nhau (đầu trang: 25 September 2025) · https://www.who.int/news-room/fact-sheets/detail/hypertension
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-05 — Đái tháo đường thai kỳ: chiến lược tầm soát/chẩn đoán ĐTĐ thai kỳ (concordant)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 12** (trang in 10), mục Phần 2 Chẩn đoán và phân loại, mục 1.3 Phát hiện và chẩn đoán ĐTĐ thai kỳ, điểm c
+- Quần thể: {"pregnancy": "đang mang thai", "gestational_age": "tuần 24–28", "prior_diabetes": "chưa được chẩn đoán ĐTĐ trước đó"}
+- Giá trị Bộ Y tế: **chỉ phương pháp 1 bước: NPDNG 75 g (đói, 1 giờ, 2 giờ) — 5481/2020 mục 1.3.c (và 1470/2024, chưa kiểm span); 1 bước (75 g) hoặc 2 bước (50 g rồi 100 g) — 3879/2014 bài 'Đái tháo đường thai kỳ' mục III.2 (DR8)**
+- Đoạn trích: «c) Tầm soát và chẩn đoán đái tháo đường thai kỳ: Hiện tại ở Việt Nam có thể thực hiện phương pháp 1 bước như sau: Thực hiện nghiệm pháp dung nạp glucose đường uống 75g (75-g OGTT): đo nồng độ glucose huyết tương lúc đói và tại thời điểm 1 giờ, 2 giờ, ở tuần thứ 24 đến 28 của thai kỳ đối với những thai phụ không được chẩn đoán đái tháo đường trước đó.»
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **một trong hai chiến lược: 1 bước (75 g OGTT) HOẶC 2 bước (50 g rồi 100 g OGTT)** · vị trí: slide 44 (Section 2, GDM) + Table 2.8 (slide 45) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- Bản cũ 3319/2017 (trang PDF 4, mục II.5.c Tầm soát và chẩn đoán ĐTĐ thai kỳ): **một trong 2 phương pháp: 1 bước (75 g) hoặc 2 bước (50 g rồi 100 g)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-06 — Đái tháo đường típ 2: chẩn đoán đái tháo đường (concordant)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 11** (trang in 9), mục Phần 2 Chẩn đoán và phân loại, mục 1.1 Chẩn đoán đái tháo đường, tiêu chí a
+- Quần thể: {"age": "người lớn", "pregnancy": "không mang thai", "measurement": "glucose huyết tương tĩnh mạch lúc đói (nhịn ăn ≥ 8 giờ)"}
+- Giá trị Bộ Y tế: **≥ 7,0 mmol/L; ≥ 126 mg/dL**
+- Đoạn trích: «Tiêu chuẩn chẩn đoán đái tháo đường dựa vào 1 trong 4 tiêu chí sau đây: a) Glucose huyết tương lúc đói ≥ 126 mg/dL (hay 7 mmol/L) hoặc: b) Glucose huyết tương ở thời điểm sau 2 giờ làm nghiệm pháp dung nạp với 75g glucose bằng đường uống ≥ 200 mg/dL (hay 11,1 mmol/L) c) HbA1c ≥ 6,5% (48 mmol/mol).»
+- WHO_global — WHO/IDF 2006 — Definition and diagnosis of diabetes mellitus and intermediate hyperglycaemia (2006): **FPG ≥ 7,0 mmol/L; 126 mg/dL** · vị trí: tr. PDF 7 và 9 (bảng tiêu chuẩn chẩn đoán) · https://iris.who.int/server/api/core/bitstreams/ef6a81ae-5db3-4c5c-9136-c047bd8f8344/content
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **FPG ≥ 7,0 mmol/L; FPG ≥ 126 mg/dL** · vị trí: Table 2.1, slide 19 (ảnh bảng trong bộ slide; đọc bằng mắt) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-07 — Đái tháo đường típ 2: chẩn đoán đái tháo đường (concordant)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 11** (trang in 9), mục Phần 2 Chẩn đoán và phân loại, mục 1.1 Chẩn đoán đái tháo đường, tiêu chí c
+- Quần thể: {"age": "người lớn", "pregnancy": "không mang thai", "measurement": "HbA1c bằng phương pháp chuẩn hóa quốc tế"}
+- Giá trị Bộ Y tế: **HbA1c ≥ 6,5%**
+- Đoạn trích: «Tiêu chuẩn chẩn đoán đái tháo đường dựa vào 1 trong 4 tiêu chí sau đây: a) Glucose huyết tương lúc đói ≥ 126 mg/dL (hay 7 mmol/L) hoặc: b) Glucose huyết tương ở thời điểm sau 2 giờ làm nghiệm pháp dung nạp với 75g glucose bằng đường uống ≥ 200 mg/dL (hay 11,1 mmol/L) c) HbA1c ≥ 6,5% (48 mmol/mol).»
+- WHO_global — WHO 2011 — Use of glycated haemoglobin (HbA1c) in the diagnosis of diabetes mellitus (2011): **HbA1c 6,5% là điểm cắt chẩn đoán** · vị trí: tr. PDF 3 và 6 (khuyến cáo) · https://iris.who.int/server/api/core/bitstreams/db9b9d3d-f95e-4797-9d2b-c78dcef0133f/content
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **A1C ≥ 6,5%** · vị trí: Table 2.1, slide 19 (ảnh bảng trong bộ slide; đọc bằng mắt) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-dm-08 — Đái tháo đường thai kỳ: chẩn đoán ĐTĐ thai kỳ (concordant)
+
+- Văn bản: `5481/2020` → `data/raw/5481_2020.pdf`, **trang PDF 12** (trang in 10), mục Phần 2 Chẩn đoán và phân loại, mục 1.3 Phát hiện và chẩn đoán ĐTĐ thai kỳ, điểm c (phương pháp 1 bước)
+- Quần thể: {"pregnancy": "đang mang thai", "gestational_age": "tuần 24–28", "prior_diabetes": "chưa được chẩn đoán ĐTĐ trước đó", "test": "NPDNG 75 g (một bước)", "measurement": "glucose huyết tương lúc đói"}
+- Giá trị Bộ Y tế: **lúc đói ≥ 5,1 mmol/L; ≥ 92 mg/dL**
+- Đoạn trích: «Chẩn đoán đái tháo đường thai kỳ khi bất kỳ giá trị glucose huyết tương nào thoả mãn tiêu chuẩn sau đây: - Lúc đói ≥ 92 mg/dL (5,1 mmol/L) - Ở thời điểm 1 giờ ≥ 180 mg/dL (10,0 mmol/L) - Ở thời điểm 2 giờ ≥ 153 mg/dL (8,5 mmol/L)»
+- WHO_global — WHO 2013 — Diagnostic criteria and classification of hyperglycaemia first detected in pregnancy (2013): **FPG 5,1–6,9 mmol/L (ngưỡng dưới 5,1); 92 mg/dL** · vị trí: tr. PDF 5 (khuyến cáo 2) và 37 · https://iris.who.int/server/api/core/bitstreams/612e0faa-04b5-4984-abcb-5fe3b1703677/content
+- US — ADA Standards of Care in Diabetes—2026 (Diabetes Care 49 Suppl 1); bộ slide toàn bộ khuyến cáo của ADA (2026): **fasting 5,1 mmol/L; fasting 92 mg/dL** · vị trí: Table 2.8 one-step strategy, slide 45 (ảnh bảng; đọc bằng mắt) · https://professional.diabetes.org/sites/dpro/files/2025-12/2026-ADA-SOC-Slide-Deck-all-recommendations-12-8-25.pptx
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-01 — Viêm gan vi rút B mạn: Ngưỡng ULN của ALT (U/L) (indistinguishable)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 18** (trang in 7), mục IV.4.1.2.b Các xét nghiệm đánh giá giai đoạn bệnh - Xét nghiệm sinh hóa gan
+- Quần thể: {"sex": "nam", "age": "người lớn (≥ 18 tuổi)", "analyte": "ALT huyết thanh", "setting": "đánh giá giai đoạn bệnh / chỉ định điều trị kháng vi rút"}
+- Giá trị Bộ Y tế: **30 U/L**
+- Đoạn trích: «+ Xét nghiệm sinh hóa gan: ▪ ALT, AST có thể bình thường hoặc tăng (Giới hạn trên của mức bình thường đối với ALT được xác định là 30 U/L đối với nam và 19 U/L đối với nữ);»
+- US — AASLD Practice Guideline on Treatment of Chronic Hepatitis B (Ghany MG et al.; Europe PMC: 'AASLD ISDA Practice Guideline on treatment of chronic hepatitis B', Hepatology 2026;83(4):974-997, epub 2025-11-04, PMID 41186418, doi 10.1097/HEP.0000000000001549) - giá trị đọc từ bộ slide giáo dục chính thức của AASLD 'Practical Application of HBV Guidelines' (11/2025); toàn văn bài báo chưa đọc (403) (2025-11-04): **35 U/L** · vị trí: slide 21 (Figure 2, chú thích ULN) và slide 25 (Figure 3, chú thích ULN); slide 4 (Phases of CHB) · https://www.aasld.org/sites/default/files/2025-11/CHB%20Educational%20Slide%20Set%20Final%202.pdf
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **30 U/L** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo, PDF tr.35 (in xxix); nhắc lại PDF tr.24, 41, 83 · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- Bản cũ 3310/2019 (trang PDF 4, mục II.1 Chẩn đoán viêm gan vi rút B cấp - Cận lâm sàng): **35 U/L (3310/2019)**
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 25 U/L
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-02 — Viêm gan vi rút B mạn: Ngưỡng ULN của ALT (U/L) (indistinguishable)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 18** (trang in 7), mục IV.4.1.2.b Các xét nghiệm đánh giá giai đoạn bệnh - Xét nghiệm sinh hóa gan
+- Quần thể: {"sex": "nữ", "age": "người lớn (≥ 18 tuổi)", "analyte": "ALT huyết thanh", "setting": "đánh giá giai đoạn bệnh / chỉ định điều trị kháng vi rút"}
+- Giá trị Bộ Y tế: **19 U/L**
+- Đoạn trích: «+ Xét nghiệm sinh hóa gan: ▪ ALT, AST có thể bình thường hoặc tăng (Giới hạn trên của mức bình thường đối với ALT được xác định là 30 U/L đối với nam và 19 U/L đối với nữ);»
+- US — AASLD Practice Guideline on Treatment of Chronic Hepatitis B (Ghany MG et al.; Europe PMC: 'AASLD ISDA Practice Guideline on treatment of chronic hepatitis B', Hepatology 2026;83(4):974-997, epub 2025-11-04, PMID 41186418, doi 10.1097/HEP.0000000000001549) - giá trị đọc từ bộ slide giáo dục chính thức của AASLD 'Practical Application of HBV Guidelines' (11/2025); toàn văn bài báo chưa đọc (403) (2025-11-04): **25 U/L** · vị trí: slide 21 (Figure 2, chú thích ULN) và slide 25 (Figure 3, chú thích ULN); slide 4 (Phases of CHB) · https://www.aasld.org/sites/default/files/2025-11/CHB%20Educational%20Slide%20Set%20Final%202.pdf
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **19 U/L** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo, PDF tr.35 (in xxix); nhắc lại PDF tr.24, 41, 83 · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- Bản cũ 3310/2019 (trang PDF 4, mục II.1 Chẩn đoán viêm gan vi rút B cấp - Cận lâm sàng): **25 U/L (3310/2019)**
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 13 U/L
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-03 — Viêm gan vi rút B mạn: Ngưỡng tải lượng HBV DNA (IU/mL) để khởi trị kháng vi rút (indistinguishable)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 20** (trang in 9), mục IV.4.2.3.a Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi
+- Quần thể: {"hbeag": "dương tính", "age": "người lớn (≥ 18 tuổi)", "cirrhosis": "không (chưa xơ hóa ≥ F2)", "alt": "ALT ≥ 2×ULN", "comorbidity": "không đồng nhiễm HIV/HCV/HDV; không đái tháo đường/MASLD; không suy giảm miễn dịch; không biểu hiện ngoài gan; không tiền sử gia đình ung thư gan/xơ gan; không tái phát sau ngưng thuốc (1740 tr.PDF 20)"}
+- Giá trị Bộ Y tế: **> 2.000 IU/mL**
+- Đoạn trích: «Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi Hoặc - Tải lượng HBV DNA > 2000 IU/mL và ALT > giới hạn trên của mức bình thường.»
+- US — AASLD Practice Guideline on Treatment of Chronic Hepatitis B (Ghany MG et al.; Europe PMC: 'AASLD ISDA Practice Guideline on treatment of chronic hepatitis B', Hepatology 2026;83(4):974-997, epub 2025-11-04, PMID 41186418, doi 10.1097/HEP.0000000000001549) - giá trị đọc từ bộ slide giáo dục chính thức của AASLD 'Practical Application of HBV Guidelines' (11/2025); toàn văn bài báo chưa đọc (403) (2025-11-04): **≥ 20,000 IU/mL (kèm ALT ≥ 2×ULN)** · vị trí: slide 21 (Figure 2, HBeAg+, không xơ gan: HBV DNA ≥ 20,000 và ALT ≥ 2x ULN -> Treat); slide 4 và 29 (Phases of CHB: immune active HBeAg-positive) · https://www.aasld.org/sites/default/files/2025-11/CHB%20Educational%20Slide%20Set%20Final%202.pdf
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **> 2000 IU/mL** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo (tiêu chí 2), PDF tr.35 (in xxix); không phân biệt HBeAg · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- WHO_global — WHO Guidelines for the prevention, care and treatment of persons with chronic hepatitis B infection (2015; ban truoc, da duoc thay boi WHO 2024) (2015-03): **> 20 000 IU/mL (WHO 2015)** · vị trí: Executive summary - khuyến cáo 'Who to treat', PDF tr.22 (> 20 000 IU/mL, bất kể HBeAg, người > 30 tuổi có ALT bất thường kéo dài) · https://iris.who.int/server/api/core/bitstreams/51bfba1f-fbbe-4ae3-a950-48cf39601916/content
+- Bản cũ 3310/2019 (trang PDF 7, mục III.2.4.2 Chỉ định điều trị - Đối với trường hợp không xơ gan): **≥ 20.000 IU/mL nếu HBeAg dương tính (3310/2019); > 20.000 IU/mL nếu > 30 tuổi, ALT > ULN kéo dài, bất kể HBeAg (3310/2019, nhánh 2)**
+- Bản cũ 5448/2014 (trang PDF 4, mục III.2.a Chỉ định điều trị (viêm gan vi rút B mạn)): **≥ 20.000 IU/mL nếu HBeAg dương tính (5448/2014)**
+- Giá trị mồi (quy tắc mirror_geom, làm tròn none): 200 IU/mL
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-04 — Viêm gan vi rút B mạn: Ngưỡng ALT tính theo bội số ULN để khởi trị (indistinguishable)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 20** (trang in 9), mục IV.4.2.3.a Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi
+- Quần thể: {"hbeag": "dương tính", "age": "18-30 tuổi", "cirrhosis": "không (chưa xơ hóa ≥ F2)", "hbv_dna": "≥ 20.000 và ≤ 10.000.000 IU/mL", "comorbidity": "không đồng nhiễm HIV/HCV/HDV; không đái tháo đường/MASLD; không suy giảm miễn dịch; không biểu hiện ngoài gan; không tiền sử gia đình ung thư gan/xơ gan; không tái phát sau ngưng thuốc (1740 tr.PDF 20)"}
+- Giá trị Bộ Y tế: **ALT > ULN (vượt giới hạn trên bình thường)**
+- Đoạn trích: «Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi Hoặc - Tải lượng HBV DNA > 2000 IU/mL và ALT > giới hạn trên của mức bình thường.»
+- US — AASLD Practice Guideline on Treatment of Chronic Hepatitis B (Ghany MG et al.; Europe PMC: 'AASLD ISDA Practice Guideline on treatment of chronic hepatitis B', Hepatology 2026;83(4):974-997, epub 2025-11-04, PMID 41186418, doi 10.1097/HEP.0000000000001549) - giá trị đọc từ bộ slide giáo dục chính thức của AASLD 'Practical Application of HBV Guidelines' (11/2025); toàn văn bài báo chưa đọc (403) (2025-11-04): **ALT ≥ 2×ULN** · vị trí: slide 21 (Figure 2, HBeAg+, không xơ gan: ALT ≥ 2x ULN + HBV DNA ≥ 20,000 -> Treat; ALT 1-<2x ULN + HBV DNA 20,000-10,000,000 -> indeterminate, theo dõi, chỉ cân nhắc nếu ≥ 40 tuổi hoặc ≥ F2); slide 4 (Phases of CHB) · https://www.aasld.org/sites/default/files/2025-11/CHB%20Educational%20Slide%20Set%20Final%202.pdf
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **ALT > ULN** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo (tiêu chí 2), PDF tr.35 (in xxix) · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- Bản cũ 3310/2019 (trang PDF 7, mục III.2.4.2 Chỉ định điều trị - Đối với trường hợp không xơ gan): **AST, ALT > 2 lần ULN (3310/2019)**
+- Bản cũ 5448/2014 (trang PDF 4, mục III.2.a Chỉ định điều trị (viêm gan vi rút B mạn)): **ALT > 2 lần giá trị bình thường (5448/2014)**
+- Giá trị mồi (quy tắc agent_proposed, làm tròn —): ALT > 3×ULN
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-05 — Viêm gan vi rút B mạn: Ngưỡng độ cứng gan (kPa) cho xơ hóa đáng kể (concordant)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 19** (trang in 8), mục IV.4.2.3.a Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi
+- Quần thể: {"age": "người lớn (≥ 18 tuổi)", "measurement": "đo độ đàn hồi gan thoáng qua (FibroScan)", "fibrosis_stage": "≥ F2 (xơ hóa đáng kể)"}
+- Giá trị Bộ Y tế: **> 7 kPa**
+- Đoạn trích: «Điều trị được khuyến cáo cho tất cả người lớn và thanh thiếu niên (≥12 tuổi) nhiễm HBV mạn và có: - Xơ hóa gan đáng kể (≥F2: ví dụ APRI > 0,5, FibroScan > 7 kPa) hoặc xơ gan (triệu chứng lâm sàng xơ gan và/hoặc xơ hóa F4: ví dụ APRI > 1, FibroScan >12,5 kPa) (không phụ thuộc tải lượng HBV DNA hoặc nồng độ ALT).»
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **> 7 kPa** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo (tiêu chí 1), PDF tr.35 (in xxix); PDF tr.34; tr.46 (thuật toán ghi '>7 kPa (adults)'); tr.80 ('>7.0 kPa identifies most adults with significant fibrosis') · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- Bản cũ 3310/2019 (trang PDF 16, mục Phụ lục 2. Đánh giá các giai đoạn độ xơ hóa gan): **F2: 7,0 - < 9,5 KPa (3310/2019)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-06 — Viêm gan vi rút B mạn: Thuốc kháng vi rút NA đơn trị ưu tiên (concordant)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 40** (trang in 29), mục Phụ lục 5. Điều trị viêm gan B mạn ở người ≥ 12 tuổi (lưu đồ) - Phác đồ ưu tiên
+- Quần thể: {"age": "18-60 tuổi", "weight": "≥ 50 kg", "pregnancy": "không", "renal_bone": "không bệnh thận (mức lọc cầu thận ≥ 50 ml/phút), không loãng xương, không yếu tố nguy cơ rối loạn chức năng thận (tăng huyết áp, đái tháo đường, thuốc độc thận)", "treatment_history": "chưa điều trị"}
+- Giá trị Bộ Y tế: **TDF; TAF; ETV**
+- Đoạn trích: «HBV DNA > 2000 IU/ml và ALT > ULN ĐIỀU TRỊ THUỐC KHÁNG VI RUT ▪ Phác đồ ưu tiên: TDF hoặc TAF hoặc ETV ▪ Phác đồ thay thế: TDF +3TC hoặc TDF + FTC ( khi không có TDF đơn)»
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **TDF; ETV** · vị trí: Executive summary - Chapter 6 'First-line antiviral therapies', PDF tr.36 (in xxx): preferred regimens · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- Bản cũ 3310/2019 (trang PDF 8, mục III.2.5 Thuốc điều trị - Bảng 1. Thuốc kháng vi rút): **TDF (3310/2019); ETV (3310/2019)**
+- Bản cũ 5448/2014 (trang PDF 4, mục III.2.b Điều trị cụ thể - Thuốc điều trị): **Tenofovir 300 mg/ngày (5448/2014); Entecavir 0,5 mg/ngày (5448/2014)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-07 — Viêm gan vi rút B mạn: Thời gian HBV DNA không phát hiện trước khi ngừng NA (conflict)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 24** (trang in 13), mục IV.4.2.5.b Tiêu chuẩn ngừng điều trị
+- Quần thể: {"hbeag": "âm tính", "cirrhosis": "không (không F3/F4)", "treatment": "đang dùng NA", "hbsag_quant": "< 100 IU/mL", "coinfection": "không", "preference": "người bệnh mong muốn ngừng thuốc; có điều kiện theo dõi định kỳ lâu dài"}
+- Giá trị Bộ Y tế: **ít nhất 3–4 năm**
+- Đoạn trích: «- Người viêm gan B mạn HBeAg âm tính: có thể ngưng điều trị khi tải lượng HBV DNA dưới ngưỡng phát hiện ít nhất 3- 4 năm và mức HBsAg định lượng thấp (<100 IU/ml);»
+- US — AASLD Practice Guideline on Treatment of Chronic Hepatitis B (Ghany MG et al.; Europe PMC: 'AASLD ISDA Practice Guideline on treatment of chronic hepatitis B', Hepatology 2026;83(4):974-997, epub 2025-11-04, PMID 41186418, doi 10.1097/HEP.0000000000001549) - giá trị đọc từ bộ slide giáo dục chính thức của AASLD 'Practical Application of HBV Guidelines' (11/2025); toàn văn bài báo chưa đọc (403) (2025-11-04): **tối thiểu 2 năm** · vị trí: slide 33 'Criteria for discontinuing antiviral therapy' (tiêu chí cho người có mong muốn mạnh ngừng thuốc, quyết định chung; slide 33 KHÔNG có dòng trích Ghany 2025 -> needs_human_check với toàn văn); slide 32 Recommendation 5: không ngừng NA cho tới khi mất HBsAg (khuyến cáo chính, có điều kiện) · https://www.aasld.org/sites/default/files/2025-11/CHB%20Educational%20Slide%20Set%20Final%202.pdf
+- Bản cũ 5448/2014 (trang PDF 4, mục III.2.b Điều trị cụ thể - Xem xét ngừng thuốc): **≥ 1 năm (suy ra: 3 lần xét nghiệm liên tiếp cách nhau mỗi 6 tháng; 5448/2014)**
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 5 year
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-08 — Viêm gan vi rút B mạn: Ngưỡng tải lượng HBV DNA (IU/mL) để khởi trị kháng vi rút (indistinguishable)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 20** (trang in 9), mục IV.4.2.3.a Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi
+- Quần thể: {"hbeag": "âm tính", "age": "người lớn (≥ 18 tuổi)", "cirrhosis": "không (chưa xơ hóa ≥ F2)", "alt": "tăng trên ULN (mọi mức)", "comorbidity": "không đồng nhiễm HIV/HCV/HDV; không đái tháo đường/MASLD; không suy giảm miễn dịch; không biểu hiện ngoài gan; không tiền sử gia đình ung thư gan/xơ gan; không tái phát sau ngưng thuốc (1740 tr.PDF 20)"}
+- Giá trị Bộ Y tế: **> 2.000 IU/mL**
+- Đoạn trích: «Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi Hoặc - Tải lượng HBV DNA > 2000 IU/mL và ALT > giới hạn trên của mức bình thường.»
+- US — AASLD Practice Guideline on Treatment of Chronic Hepatitis B (Ghany MG et al.; Europe PMC: 'AASLD ISDA Practice Guideline on treatment of chronic hepatitis B', Hepatology 2026;83(4):974-997, epub 2025-11-04, PMID 41186418, doi 10.1097/HEP.0000000000001549) - giá trị đọc từ bộ slide giáo dục chính thức của AASLD 'Practical Application of HBV Guidelines' (11/2025); toàn văn bài báo chưa đọc (403) (2025-11-04): **≥ 2,000 IU/mL (ALT ≥ 2×ULN: điều trị; ALT < 2×ULN: cân nhắc, Rec 4)** · vị trí: slide 25 (Figure 3, HBeAg-, không xơ gan: HBV DNA ≥ 2,000 và ALT ≥ 2x ULN -> Treat; HBV DNA ≥ 2,000 và ALT < 2x ULN -> cân nhắc điều trị theo quyết định chung); slide 24 (Recommendation 4); slide 4 và 29 (Phases of CHB) · https://www.aasld.org/sites/default/files/2025-11/CHB%20Educational%20Slide%20Set%20Final%202.pdf
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **> 2000 IU/mL** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo (tiêu chí 2), PDF tr.35 (in xxix); không phân biệt HBeAg · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- WHO_global — WHO Guidelines for the prevention, care and treatment of persons with chronic hepatitis B infection (2015; ban truoc, da duoc thay boi WHO 2024) (2015-03): **> 20 000 IU/mL (WHO 2015)** · vị trí: Executive summary - khuyến cáo 'Who to treat', PDF tr.22 (> 20 000 IU/mL, bất kể HBeAg, người > 30 tuổi có ALT bất thường kéo dài) · https://iris.who.int/server/api/core/bitstreams/51bfba1f-fbbe-4ae3-a950-48cf39601916/content
+- Bản cũ 3310/2019 (trang PDF 7, mục III.2.4.2 Chỉ định điều trị - Đối với trường hợp không xơ gan): **≥ 2.000 IU/mL nếu HBeAg âm tính (3310/2019); > 20.000 IU/mL nếu > 30 tuổi, ALT > ULN kéo dài, bất kể HBeAg (3310/2019, nhánh 2)**
+- Bản cũ 5448/2014 (trang PDF 4, mục III.2.a Chỉ định điều trị (viêm gan vi rút B mạn)): **≥ 2.000 IU/mL nếu HBeAg âm tính (5448/2014)**
+- Giá trị mồi (quy tắc mirror_geom, làm tròn none): 200 IU/mL
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-09 — Viêm gan vi rút B mạn: Ngưỡng độ cứng gan (kPa) cho xơ gan (concordant)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 19** (trang in 8), mục IV.4.2.3.a Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi
+- Quần thể: {"age": "người lớn (≥ 18 tuổi)", "measurement": "đo độ đàn hồi gan thoáng qua (FibroScan)", "fibrosis_stage": "F4 (xơ gan)"}
+- Giá trị Bộ Y tế: **> 12,5 kPa**
+- Đoạn trích: «Điều trị được khuyến cáo cho tất cả người lớn và thanh thiếu niên (≥12 tuổi) nhiễm HBV mạn và có: - Xơ hóa gan đáng kể (≥F2: ví dụ APRI > 0,5, FibroScan > 7 kPa) hoặc xơ gan (triệu chứng lâm sàng xơ gan và/hoặc xơ hóa F4: ví dụ APRI > 1, FibroScan >12,5 kPa) (không phụ thuộc tải lượng HBV DNA hoặc nồng độ ALT).»
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **> 12.5 kPa** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo (tiêu chí 1), PDF tr.35 (in xxix); PDF tr.34, 78, 80 · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- Bản cũ 3310/2019 (trang PDF 16, mục Phụ lục 2. Đánh giá các giai đoạn độ xơ hóa gan): **F4 ≥ 11 KPa (3310/2019)**
+- Bản cũ 5448/2014 (trang PDF 9, mục Phụ lục - Ý nghĩa của các xét nghiệm (FibroScan, APRI)): **F4 > 14,6 kPa (5448/2014)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-hbv-10 — Viêm gan vi rút B mạn: Ngưỡng APRI cho xơ gan (indistinguishable)
+
+- Văn bản: `1740/2026` → `data/raw/1740_2026.pdf`, **trang PDF 19** (trang in 8), mục IV.4.2.3.a Tiêu chuẩn điều trị cho người lớn, vị thành niên và trẻ ≥ 12 tuổi
+- Quần thể: {"age": "người lớn (≥ 18 tuổi)", "measurement": "chỉ số APRI", "fibrosis_stage": "F4 (xơ gan)"}
+- Giá trị Bộ Y tế: **APRI > 1**
+- Đoạn trích: «Điều trị được khuyến cáo cho tất cả người lớn và thanh thiếu niên (≥12 tuổi) nhiễm HBV mạn và có: - Xơ hóa gan đáng kể (≥F2: ví dụ APRI > 0,5, FibroScan > 7 kPa) hoặc xơ gan (triệu chứng lâm sàng xơ gan và/hoặc xơ hóa F4: ví dụ APRI > 1, FibroScan >12,5 kPa) (không phụ thuộc tải lượng HBV DNA hoặc nồng độ ALT).»
+- WHO_global — WHO Guidelines for the prevention, diagnosis, care and treatment for people with chronic hepatitis B infection (2024) (2024-03-29): **APRI > 1** · vị trí: Executive summary - Chapter 5 'Who to treat', khung khuyến cáo (tiêu chí 1), PDF tr.35 (in xxix) · https://iris.who.int/server/api/core/bitstreams/34470cc8-af90-4d7b-a949-ef27e5d0726f/content
+- WHO_global — WHO Guidelines for the prevention, care and treatment of persons with chronic hepatitis B infection (2015; ban truoc, da duoc thay boi WHO 2024) (2015-03): **APRI > 2 (WHO 2015)** · vị trí: Executive summary - khuyến cáo NIT và 'Who to treat', PDF tr.22 (APRI score > 2 in adults) · https://iris.who.int/server/api/core/bitstreams/51bfba1f-fbbe-4ae3-a950-48cf39601916/content
+- Bản cũ 3310/2019 (trang PDF 16, mục Phụ lục 2. Đánh giá các giai đoạn độ xơ hóa gan): **F4: APRI ≥ 2 (3310/2019)**
+- Bản cũ 5448/2014 (trang PDF 9, mục Phụ lục - Ý nghĩa của các xét nghiệm (FibroScan, APRI)): **F4: APRI > 2 (5448/2014)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-htn-01 — Tăng huyết áp: ngưỡng chẩn đoán tăng huyết áp (HA đo tại phòng khám) (conflict)
+
+- Văn bản: `3192/2010` → `data/raw/3192_2010.pdf`, **trang PDF 1**, mục 1. ĐỊNH NGHĨA (cùng trang: 3.1 Chẩn đoán xác định THA, Bảng 1 — ngưỡng theo cách đo, dòng 'Cán bộ y tế đo theo đúng quy trình')
+- Quần thể: {"age": "người trưởng thành ≥ 18 tuổi", "measurement": "HA đo tại phòng khám/cơ sở y tế, cán bộ y tế đo đúng quy trình (KHÔNG phải HA tự đo tại nhà hay Holter 24 giờ)", "pregnancy": "không mang thai", "setting": "chẩn đoán xác định THA lần đầu"}
+- Giá trị Bộ Y tế: **≥ 140/90 mmHg**
+- Đoạn trích: «1. ĐỊNH NGHĨA Tăng huyết áp là khi huyết áp tâm thu ≥ 140mmHg và/hoặc huyết áp tâm trương ≥ 90mmHg.»
+- US — 2025 AHA/ACC/multisociety High Blood Pressure Guideline (AHA newsroom summary) (2025-08-14): **≥ 130/80 mmHg (THA giai đoạn 1: 130–139 hoặc 80–89)** · vị trí: Guideline highlights + 'blood pressure criteria remain the same as the 2017 guideline' (stage 1 = 130–139 or 80–89 mmHg); full text 403 · https://newsroom.heart.org/news/new-high-blood-pressure-guideline-emphasizes-prevention-early-treatment-to-reduce-cvd-risk
+- EU_UK — 2024 ESC Guidelines for the management of elevated blood pressure and hypertension (official ESC slide set) (2024): **≥ 140/90 mmHg (office)** · vị trí: Slide 'Comparison of office, home, and ambulatory BP measurement thresholds' (slide 53): Hypertension, office BP. needs_human_check: slide là ảnh EMF, `vnsoc.match.sources grep` không đọc được pptx (0 kết quả); giá trị đọc từ bản ghi chữ EMR_EXTTEXTOUTW bằng script ở scratchpad (kiểm toán viên + agent sửa, 2026-09-26), người cần mở slide xác nhận · https://yjxzhi.files.cmp.optimizely.com/download/033b7456bfae11f0940e9af5f85eac06
+- WHO_global — WHO Fact sheet: Hypertension (fact sheet, KHÔNG phải guideline; WHO 2021 guideline tự ghi không đề cập chẩn đoán — PDF tr.14) (2025-09-25): **≥ 140/90 mmHg** · vị trí: Section 'Overview'/definition: diagnosed on two different days, SBP ≥140 and/or DBP ≥90 · https://www.who.int/news-room/fact-sheets/detail/hypertension
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 150/100 mmHg
+- ⚠ Kiểm bằng mã: 2024 ESC Guidelines for the management of elevated blood pressure and hypertension (official ESC slide set): không thấy ['140/90'] trong nguồn đã băm
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-htn-03 — Tăng huyết áp: ngưỡng HA bắt đầu dùng thuốc hạ áp (conflict)
+
+- Văn bản: `5904/2019` → `data/raw/5904_2019__9e6bbe13.pdf`, **trang PDF 13** (trang in 4), mục Phần 1 – Bước 5. Điều trị, quản lý – A. Nguyên tắc điều trị, mục 5 (Thời điểm khởi trị THA)
+- Quần thể: {"age": "41–59 tuổi", "comorbidity": "không bệnh tim mạch, không ĐTĐ, không bệnh thận mạn, chưa tổn thương cơ quan đích (không dày thất trái, không protein niệu)", "cv_risk": "nguy cơ tim mạch thấp: không có yếu tố nguy cơ tim mạch nào khác ngoài THA (không hút thuốc, lipid máu bình thường), không thuộc nhóm nguy cơ cao/rất cao", "prior_management": "đã thay đổi lối sống vài tháng, HA vẫn tăng", "measurement": "HA đo tại phòng khám, đã xác nhận ở nhiều lần khám", "pregnancy": "không"}
+- Giá trị Bộ Y tế: **≥ 140/90 mmHg**
+- Đoạn trích: «5. Thời điểm khởi trị THA: - Khởi trị khi HA ≥ 140/90 mmHg ở người < 80 tuổi hoặc ≥ 160/90 mmHg ở người ≥ 80 tuổi; - Khi HA từ 130-139/85-89 mmHg: cần thay đổi lối sống, cân nhắc phối hợp với điều trị thuốc khi nguy cơ tim mạch rất cao.»
+- US — 2025 AHA/ACC/multisociety High Blood Pressure Guideline (ACC 'New in Clinical Guidance' key points) (2025-08-14): **≥ 130/80 mmHg (sau 3–6 tháng thay đổi lối sống)** · vị trí: Key Points: adults with BP ≥130/80 and lower CVD risk (PREVENT <7.5%): start medication if 3–6 months of lifestyle fail to lower BP <130/80; full text 403 · https://www.acc.org/latest-in-cardiology/articles/2025/10/01/01/new-in-clinical-guidance-hbp
+- US — JNC 8 — 2014 evidence-based guideline for the management of high blood pressure in adults (Eighth Joint National Committee panel), bản tóm tắt AAFP Practice Guidelines (Am Fam Physician 2014;90(7):503-504) (2014): **≥ 140/90 mmHg (người < 60 tuổi)** · vị trí: Key points: general population < 60 y, initiate drugs at SBP ≥ 140 or DBP ≥ 90 (≥ 60 y: 150/90 — ngoài quần thể mẩu) · https://www.aafp.org/pubs/afp/issues/2014/1001/p503.html
+- EU_UK — 2024 ESC Guidelines for the management of elevated blood pressure and hypertension (official ESC slide set) (2024): **≥ 140/90 mmHg** · vị trí: Recommendations for initiating BP-lowering treatment (slide 92): confirmed BP ≥140/90 → drugs irrespective of CVD risk (I-A); elevated BP + low/medium risk (<10%) → lifestyle only (I-B). needs_human_check: slide là ảnh EMF, `vnsoc.match.sources grep` không đọc được pptx (0 kết quả); giá trị đọc từ bản ghi chữ EMR_EXTTEXTOUTW bằng script ở scratchpad (kiểm toán viên + agent sửa, 2026-09-26), người cần mở slide xác nhận · https://yjxzhi.files.cmp.optimizely.com/download/033b7456bfae11f0940e9af5f85eac06
+- WHO_global — WHO 2021 Guideline for the pharmacological treatment of hypertension in adults (2021-08-24): **≥ 140/90 mmHg** · vị trí: §3.1 BP threshold for initiation, Recommendation 1 (PDF p.9 executive summary; p.19): confirmed HTN and SBP ≥140 or DBP ≥90 · https://iris.who.int/server/api/core/bitstreams/f062769d-f075-4a00-87af-0a2106e0bd04/content
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 150/100 mmHg
+- ⚠ Kiểm bằng mã: 2024 ESC Guidelines for the management of elevated blood pressure and hypertension (official ESC slide set): không thấy ['140/90'] trong nguồn đã băm
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-htn-04 — Tăng huyết áp: huyết áp tâm thu mục tiêu khi điều trị THA (concordant)
+
+- Văn bản: `5904/2019` → `data/raw/5904_2019__9e6bbe13.pdf`, **trang PDF 12** (trang in 3), mục Phần 1 – Bước 5. Điều trị, quản lý – A. Nguyên tắc điều trị, mục 2 (mục tiêu HA tại trạm y tế)
+- Quần thể: {"age": "18–59 tuổi", "comorbidity": "không ĐTĐ, không bệnh thận mạn, chưa có bệnh tim mạch; nguy cơ tim mạch không cao", "status": "THA đang điều trị thuốc, dung nạp tốt", "measurement": "HA đo tại phòng khám/trạm y tế", "pregnancy": "không"}
+- Giá trị Bộ Y tế: **120 đến < 130 mmHg (5904/2019, người < 65 tuổi); < 140 mmHg (3192/2010: < 140/90 mmHg, thấp hơn nếu dung nạp)**
+- Đoạn trích: «cụ thể mục tiêu về HA tại trạm y tế như sau: - HA tâm thu từ 120 đến < 130 mmHg (người < 65 tuổi) và từ 130 đến < 140 mmHg (người ≥ 65 tuổi), có thể thấp hơn nếu dung nạp được. - HA tâm trương cần đạt từ 70 đến < 80 mmHg.»
+- EU_UK — 2024 ESC Guidelines for the management of elevated blood pressure and hypertension (official ESC slide set) (2024): **120–129 mmHg** · vị trí: Recommendations for BP targets with treatment (slide 93): treated SBP 120–129 mmHg in most adults (I-A). needs_human_check: slide là ảnh EMF, `vnsoc.match.sources grep` không đọc được pptx (0 kết quả); giá trị đọc từ bản ghi chữ EMR_EXTTEXTOUTW bằng script ở scratchpad (kiểm toán viên + agent sửa, 2026-09-26), người cần mở slide xác nhận · https://yjxzhi.files.cmp.optimizely.com/download/033b7456bfae11f0940e9af5f85eac06
+- EU_UK — 2018 ESC/ESH Guidelines for the management of arterial hypertension (as quoted in the 2024 ESC official slide set, 'Revised recommendations') (2018): **< 140 mmHg (mục tiêu đầu tiên < 140/90); ≤ 130 mmHg (130/80 hoặc thấp hơn)** · vị trí: Slide 'Revised recommendations (11)', 2018 column: <140/90 in all, then 130/80 or lower in most patients (I-A). needs_human_check: slide là ảnh EMF, `vnsoc.match.sources grep` không đọc được pptx (0 kết quả); giá trị đọc từ bản ghi chữ EMR_EXTTEXTOUTW bằng script ở scratchpad (kiểm toán viên + agent sửa, 2026-09-26), người cần mở slide xác nhận · https://yjxzhi.files.cmp.optimizely.com/download/033b7456bfae11f0940e9af5f85eac06
+- US — 2025 AHA/ACC/multisociety High Blood Pressure Guideline (ACC 'New in Clinical Guidance' key points) (2025-08-14): **< 130 mmHg (mục tiêu < 130/80)** · vị trí: Key Points: overarching BP treatment goal <130/80 mm Hg for all adults; full text 403 · https://www.acc.org/latest-in-cardiology/articles/2025/10/01/01/new-in-clinical-guidance-hbp
+- US — JNC 8 — 2014 evidence-based guideline for the management of high blood pressure in adults (Eighth Joint National Committee panel), bản tóm tắt AAFP Practice Guidelines (Am Fam Physician 2014;90(7):503-504) (2014): **< 140 mmHg (người < 60 tuổi; mục tiêu < 140/90)** · vị trí: Key points: general population < 60 y, target SBP < 140 and DBP < 90 (≥ 60 y: < 150/90 — ngoài quần thể mẩu) · https://www.aafp.org/pubs/afp/issues/2014/1001/p503.html
+- WHO_global — WHO 2021 Guideline for the pharmacological treatment of hypertension in adults (2021-08-24): **< 140 mmHg (mục tiêu < 140/90)** · vị trí: §3.6 Target blood pressure, Recommendation 6 (PDF p.10; p.28): <140/90 in all patients without comorbidities · https://iris.who.int/server/api/core/bitstreams/f062769d-f075-4a00-87af-0a2106e0bd04/content
+- ⚠ Kiểm bằng mã: 2018 ESC/ESH Guidelines for the management of arterial hypertension (as quoted in the 2024 ESC official slide set, 'Revised recommendations'): không thấy ['140'] trong nguồn đã băm
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-immunization-01 — Sởi: vắc xin có chứa thành phần sởi - mũi 1 (MCV1), tiêm chủng thường xuyên (conflict)
+
+- Văn bản: `TT52/2025` → `data/raw/TT52_2025.pdf`, **trang PDF 7** (trang in 7), mục Điều 1 (danh mục TCMR), mục 8 Bệnh sởi – Vắc xin sởi đơn giá
+- Quần thể: {"age": "trẻ em", "dose": "mũi đầu tiên của bất kỳ vắc xin nào có chứa thành phần sởi", "schedule": "tiêm chủng thường xuyên đúng lịch (không tính liều tiêm sớm hoặc liều bổ sung ngoài lịch thường xuyên, ví dụ khi có dịch)", "setting": "Việt Nam, Chương trình TCMR"}
+- Giá trị Bộ Y tế: **khi trẻ đủ 9 tháng tuổi**
+- Đoạn trích: «8 Bệnh sởi Vắc xin sởi đơn giá Trẻ em - Tiêm khi trẻ đủ 9 tháng tuổi. - Trường hợp tiêm chủng không đúng theo lịch thì tiêm ngay khi có thể.»
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 - original 2025 edition (CDC archive, no revision mark). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified (2025): **12–15 months (MMR dose 1)** · vị trí: Notes: Measles, mumps, and rubella vaccination - Routine vaccination (PDF p.10) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/past/2025-child.pdf
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 (PDF revised 07/02/2025, live CDC URL at fetch). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified; which 2025 edition is operative is not verified - value identical in both editions (2025-07-02): **12–15 months (MMR dose 1)** · vị trí: Notes: Measles, mumps, and rubella vaccination - Routine vaccination (PDF p.10); Table 1 (p.2) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/child/0-18yrs-child-combined-schedule.pdf
+- EU_UK — UKHSA Complete routine immunisation schedule from 1 September 2026 (page updated 24/09/2026) (2026-09-24): **1 year, on/after first birthday (MMRV dose 1)** · vị trí: Complete routine immunisation schedule table, row 'One year old' (MMRV) · https://www.gov.uk/government/publications/the-complete-routine-immunisation-schedule/complete-routine-immunisation-schedule-from-1-july-2026
+- WHO_global — WHO Summary of Position Papers - Table 1: Recommendations for Routine Immunization (updated December 2025) (2025-12): **9 months (MCV1, ongoing transmission)** · vị trí: Footnote 9 Measles, countries with ongoing transmission (PDF p.8) · https://cdn.who.int/media/docs/default-source/immunization/immunization_schedules/immunization-summary-table-1.pdf?sfvrsn=2e112cea_16&download=true
+- WHO_global — WHO Measles vaccines: WHO position paper – April 2017 (WER 92(17):205-228), official summary (2017-04-28): **9 months (MCV1, ongoing transmission)** · vị trí: Summary p.1, recommendations for countries with ongoing transmission · https://cdn.who.int/media/docs/default-source/immunization/position_paper_documents/measles/who-pp-measles-vaccine-summary-2017.pdf?sfvrsn=e546119a_2
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 3–6 month
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-immunization-02 — Bạch hầu (vắc xin phối hợp bạch hầu–uốn ván, ± ho gà): vắc xin có chứa thành phần bạch hầu - mũi nhắc lại lần 2 (sau mũi nhắc lại lúc 18 tháng) (conflict)
+
+- Văn bản: `TT52/2025` → `data/raw/TT52_2025.pdf`, **trang PDF 3** (trang in 3), mục Điều 1, mục 3 Bệnh bạch hầu – Vắc xin phối hợp có chứa thành phần bạch hầu giảm liều (nhắc lại lần 2)
+- Quần thể: {"age": "trẻ em", "dose": "mũi nhắc lại lần thứ hai (sau mũi nhắc lại lần thứ nhất lúc 18 tháng), tiêm đúng lịch", "setting": "Việt Nam, Chương trình TCMR"}
+- Giá trị Bộ Y tế: **khi trẻ đủ 7 tuổi**
+- Đoạn trích: «Vắc xin phối hợp có chứa thành phần bạch hầu giảm liều Trẻ em - Tiêm nhắc lại lần 2 khi trẻ đủ 7 tuổi. - Trường hợp tiêm chủng nhắc lại lần 2 không đúng theo lịch thì tiêm nhắc lại lần 2 khi trẻ từ 7 tuổi trở lên cách ít nhất 4 năm sau tiêm nhắc lại lần 1.»
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 - original 2025 edition (CDC archive, no revision mark). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified (2025): **4–6 years (DTaP dose 5)** · vị trí: Notes: DTaP vaccination - Routine vaccination, 5-dose series, booster at 4-6 years (PDF p.7) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/past/2025-child.pdf
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 (PDF revised 07/02/2025, live CDC URL at fetch). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified; which 2025 edition is operative is not verified - value identical in both editions (2025-07-02): **4–6 years (DTaP dose 5)** · vị trí: Notes: DTaP vaccination - Routine vaccination, 5-dose series, booster at 4-6 years (PDF p.8); Table 1 (p.2) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/child/0-18yrs-child-combined-schedule.pdf
+- EU_UK — UKHSA Complete routine immunisation schedule from 1 September 2026 (page updated 24/09/2026) (2026-09-24): **3 years 4 months or soon after (dTaP/IPV pre-school booster)** · vị trí: Complete routine immunisation schedule table, row 'Three years four months old or soon after' (dTaP/IPV); children born on/after 1 Jul 2024 (18-month hexavalent booster given) · https://www.gov.uk/government/publications/the-complete-routine-immunisation-schedule/complete-routine-immunisation-schedule-from-1-july-2026
+- WHO_global — WHO Summary of Position Papers - Table 1: Recommendations for Routine Immunization (updated December 2025) (2025-12): **4–7 years (Td/DT-containing booster)** · vị trí: Table 1 row DTP-containing vaccine (PDF p.1); footnote 5 (p.6): booster 4–7 years, Td/DT · https://cdn.who.int/media/docs/default-source/immunization/immunization_schedules/immunization-summary-table-1.pdf?sfvrsn=2e112cea_16&download=true
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 8–10 year
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-immunization-03 — Viêm gan vi rút B: vắc xin viêm gan B - liều sơ sinh (thời hạn tối đa sau sinh) (concordant)
+
+- Văn bản: `TT13/2026` → `data/raw/TT13_2026.pdf`, **trang PDF 18** (trang in 18), mục Điều 26 khoản 1 (Trách nhiệm của các cơ sở khám bệnh, chữa bệnh - cơ sở có phòng sinh)
+- Quần thể: {"age": "trẻ sơ sinh", "maternal_hbsag": "mẹ HBsAg âm tính", "weight": "cân nặng lúc sinh ≥ 2000 g", "clinical_status": "lâm sàng ổn định", "setting": "trẻ sinh tại cơ sở khám bệnh, chữa bệnh có phòng sinh (Việt Nam)", "schedule": "đúng lịch (không phải tiêm muộn/bù)"}
+- Giá trị Bộ Y tế: **trong vòng 24 giờ sau sinh**
+- Đoạn trích: «Cơ sở khám bệnh, chữa bệnh có tổ chức hoạt động tiêm chủng ngoài việc thực hiện các quy định tại Điều 25 Thông tư này phải thực hiện: 1. Đối với các cơ sở khám bệnh, chữa bệnh có phòng sinh: tổ chức thực hiện việc tiêm chủng vắc xin viêm gan B trong vòng 24 giờ sau sinh»
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 - original 2025 edition (CDC archive, no revision mark). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified (2025): **within 24 hours of birth** · vị trí: Notes: Hepatitis B vaccination - Routine, mother HBsAg-negative, birth weight ≥2,000 g (PDF p.8) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/past/2025-child.pdf
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 (PDF revised 07/02/2025, live CDC URL at fetch). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified; which 2025 edition is operative is not verified - value identical in both editions (2025-07-02): **within 24 hours of birth** · vị trí: Notes: Hepatitis B vaccination - Routine, mother HBsAg-negative, birth weight ≥2,000 g (PDF p.9) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/child/0-18yrs-child-combined-schedule.pdf
+- WHO_global — WHO Summary of Position Papers - Table 1: Recommendations for Routine Immunization (updated December 2025) (2025-12): **as soon as possible after birth, ideally within 24 hours** · vị trí: Footnote 3 Hepatitis B (PDF p.5) · https://cdn.who.int/media/docs/default-source/immunization/immunization_schedules/immunization-summary-table-1.pdf?sfvrsn=2e112cea_16&download=true
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-immunization-04 — Ho gà (vắc xin phối hợp DTP): vắc xin phối hợp có thành phần ho gà (DTP) - mũi nhắc lại (mũi thứ tư, sau ba mũi cơ bản) (concordant)
+
+- Văn bản: `TT52/2025` → `data/raw/TT52_2025.pdf`, **trang PDF 3** (trang in 3), mục Điều 1, mục 4 Bệnh ho gà – Vắc xin phối hợp có chứa thành phần ho gà (nhắc lại)
+- Quần thể: {"age": "trẻ em", "prior_doses": "đã tiêm đủ ba mũi cơ bản vắc xin phối hợp có chứa thành phần ho gà", "dose": "mũi nhắc lại đầu tiên (mũi thứ tư) vắc xin phối hợp có thành phần ho gà/bạch hầu/uốn ván, đúng lịch", "setting": "Việt Nam, Chương trình TCMR"}
+- Giá trị Bộ Y tế: **khi trẻ đủ 18 tháng tuổi**
+- Đoạn trích: «4 Bệnh ho gà Vắc xin phối hợp có chứa thành phần ho gà Trẻ em - Tiêm lần 1: khi trẻ đủ 2 tháng tuổi. - Tiêm lần 2: ít nhất 1 tháng sau tiêm lần 1. - Tiêm lần 3: ít nhất 1 tháng sau tiêm lần 2. - Trường hợp tiêm chủng không đúng theo lịch: + Đối với trẻ dưới 12 tháng tuổi Tiêm lần 1: ngay khi có thể. Tiêm lần 2: ít nhất 1 tháng sau tiêm lần 1. Tiêm lần 3: ít nhất 1 tháng sau tiêm lần 2. + Đối với trẻ từ 12 tháng tuổi trở lên Tiêm lần 1: ngay khi có thể. Tiêm lần 2: ít nhất 1 tháng sau tiêm lần 1. Tiêm lần 3: ít nhất 6 tháng sau tiêm lần 2. Trẻ em - Tiêm nhắc lại khi trẻ đủ 18 tháng tuổi.»
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 - original 2025 edition (CDC archive, no revision mark). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified (2025): **15–18 months (DTaP dose 4)** · vị trí: Notes: DTaP vaccination - Routine vaccination, booster at 15-18 months (dose 4) (PDF p.7) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/past/2025-child.pdf
+- US — CDC/ACIP Recommended Child and Adolescent Immunization Schedule, United States, 2025 (PDF revised 07/02/2025, live CDC URL at fetch). D. Mass. stay 16/3/2026 reverts CDC schedules to 'the version as of May 2025' (CRS R48982 p.5, 11/6/2026); appeal to 1st Cir. filed 29/4/2026; status after 11/6/2026 not verified; which 2025 edition is operative is not verified - value identical in both editions (2025-07-02): **15–18 months (DTaP dose 4)** · vị trí: Notes: DTaP vaccination - Routine vaccination, booster at 15-18 months (dose 4) (PDF p.8); Table 1 (p.2) · https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/child/0-18yrs-child-combined-schedule.pdf
+- EU_UK — UKHSA Complete routine immunisation schedule from 1 September 2026 (page updated 24/09/2026) (2026-09-24): **18 months (DTaP/IPV/Hib/HepB dose 4; born ≥1 Jul 2024)** · vị trí: Complete routine immunisation schedule table, row 'Eighteen months old' (born on/after 1 Jul 2024, DTaP/IPV/Hib/HepB); footnote 4 'also at 18 months' · https://www.gov.uk/government/publications/the-complete-routine-immunisation-schedule/complete-routine-immunisation-schedule-from-1-july-2026
+- WHO_global — WHO Summary of Position Papers - Table 1: Recommendations for Routine Immunization (updated December 2025) (2025-12): **12–23 months (DTPcv booster)** · vị trí: Table 1 row DTP-containing vaccine: booster 12–23 months (DTPcv) (PDF p.1) · https://cdn.who.int/media/docs/default-source/immunization/immunization_schedules/immunization-summary-table-1.pdf?sfvrsn=2e112cea_16&download=true
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-01 — Sốt rét: Thuốc điều trị đặc hiệu lựa chọn đầu tiên (conflict)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 10** (trang in 9), mục III.2.2.1(a) Phụ nữ có thai trong 3 tháng đầu — điều trị P. falciparum
+- Quần thể: {"pregnancy": "có thai trong 3 tháng đầu (tam cá nguyệt 1)", "species": "P. falciparum (đơn thuần hoặc nhiễm phối hợp có P. falciparum)", "severity": "sốt rét thể thông thường (chưa biến chứng)", "age": "người lớn", "acquired": "nhiễm tại Việt Nam (vùng P. falciparum kháng chloroquin)", "drug_availability": "có sẵn mọi thuốc"}
+- Giá trị Bộ Y tế: **quinin sulfat 7 ngày + clindamycin 7 ngày; chloroquin 10 mg/kg/ngày × 2 ngày, 5 mg/kg ngày 3 (315/2015 tr. 75 — DR8; HG1.2: câu hỏi nêu vùng P. falciparum đa kháng thuốc — CDC 2026 tr. 6 chỉ cho chloroquin khi nhiễm ở vùng nhạy chloroquin); muối quinin 10 mg/kg × 3 lần/ngày × 7 ngày, đơn trị (315/2015 tr. 75 — DR8); sulfadoxin–pyrimethamin 3 viên uống liều duy nhất (315/2015 tr. 75 — DR8; HG1.2: WHO 2026 tr. 18 chống chỉ định thuốc kháng folat trong 3 tháng đầu)**
+- Đoạn trích: «a) Phụ nữ có thai trong 3 tháng đầu - Điều trị sốt rét do P. falciparum hoặc nhiễm phối hợp có P. falciparum: + Thuốc điều trị là quinin sulfat 7 ngày (xem Bảng 6) + clindamycin 7 ngày (xem Bảng 7). + Trường hợp không có quinin sulfat, có thể dùng artemether - lumefantrin (xem Bảng 10).»
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **artemether–lumefantrin trong 3 tháng đầu (ACT khác chỉ cân nhắc khi không có AL)** · vị trí: §5.2.1.4.1 Pregnant and lactating women — khuyến cáo 'Treatment in the first trimester of pregnancy (2022)' (strong); PDF p.18 (nhắc lại p.183) · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- US — CDC — Malaria in the United States: Treatment Tables (PDF) (2026-06-26): **artemether–lumefantrin (ưu tiên, mọi tam cá nguyệt)** · vị trí: Table 4 'Uncomplicated malaria: Pregnant women', P. falciparum or species unknown, mọi tam cá nguyệt — AL được đánh dấu ưu tiên; PDF p.6 · https://www.cdc.gov/malaria/media/pdfs/2026/06/Malaria-Treatment-Tables-8-11-26.pdf
+- WHO_global — WHO Guidelines for the treatment of malaria, 3rd ed. (ISBN 978 92 4 154912 7; bản văn bản IRIS) (2015): **quinin + clindamycin 7 ngày (3 tháng đầu)** · vị trí: 3rd ed. 2015 — Summary of recommendations, 'Treating uncomplicated P. falciparum malaria in special risk groups — First trimester of pregnancy' (strong recommendation): 7 ngày quinin + clindamycin; bản văn bản IRIS không có số trang PDF · https://iris.who.int/server/api/core/bitstreams/999277b9-4aa3-4609-960f-b39d7283587b/content
+- Giá trị mồi (quy tắc agent_proposed: pyronaridin–artesunat — thuốc có thật; KHÔNG nguồn nào khuyến cáo cho thai 3 tháng đầu: 3377/2023 Bảng 3 chống chỉ định 'Phụ nữ có thai' (tr. 16); WHO 2026 p.17 'not recommended for use in the first trimester'; CDC 2026 không có Pyramax; 2699/2020 và WHO 2015 dùng quinin + clindamycin; check_decoy == []. Lưu ý: đây là thuốc đầu tay chung của VN nên có thể thu hút câu trả lời nhiều hơn mức ngẫu nhiên (thiên về bảo thủ cho H1) · Sau kiểm toán: 315/2015 tr. 75 và 3312/2015 tr. 520 (nguồn DR8) cũng không nêu pyronaridin–artesunat; check_decoy == [] với tập vn đã hợp · 26/9: check_decoy == [] cả sau khi hợp SP (315/2015 không nêu pyronaridin–artesunat) · 26/9 (kiểm độc lập): WHO 2026 PDF p.18 cũng ghi chưa có dữ liệu ghi nhận dùng artesunat–pyronaridin trong 3 tháng đầu → vẫn không nguồn nào khuyến cáo cho quần thể này, làm tròn —): pyronaridin–artesunat (Pyramax) (mồi)
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-02 — Sốt rét: Thuốc điều trị đặc hiệu (ACT) lựa chọn đầu tiên (indistinguishable)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 9** (trang in 8), mục III.2.1(a) Điều trị đặc hiệu ưu tiên — sốt rét P. falciparum chưa biến chứng
+- Quần thể: {"species": "P. falciparum đơn thuần (hoặc phối hợp P. malariae/P. knowlesi)", "severity": "chưa biến chứng", "age": "người lớn", "pregnancy": "không có thai, không cho con bú", "acquired": "nhiễm tại Việt Nam"}
+- Giá trị Bộ Y tế: **pyronaridin tetraphosphat–artesunat (Pyramax) 3 ngày + primaquin liều duy nhất**
+- Đoạn trích: «a) Điều trị đặc hiệu ưu tiên - Sot rét do P. Jalciparum đơn thuần hoặc phối hợp P. falciparum với P. malariae hoặc P. knowlesi: Pyronaridin tetraphosphat - artesunat (Pyramax) uông 3 ngay (xem Bang 2 hoic 3) va primaquin liêu duy nhất (xem Bảng 4).»
+- US — CDC — Malaria in the United States: Treatment Tables (PDF) (2026-08-11): **A. artemether–lumefantrin (ưu tiên số 1); B. atovaquon–proguanil (ưu tiên số 2)** · vị trí: Table 1 'Uncomplicated malaria: P. falciparum or species unknown', nhiễm ở mọi vùng dịch tễ, xếp theo thứ tự ưu tiên: A = AL (liệu trình 5 ngày), B = atovaquon–proguanil; chú thích 7 coi AL/AP là phác đồ ưu tiên; PDF p.1–2 · https://www.cdc.gov/malaria/media/pdfs/2026/06/Malaria-Treatment-Tables-8-11-26.pdf
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **artemether–lumefantrin; artesunat + amodiaquin; artesunat–mefloquin; dihydroartemisinin–piperaquin; artesunat + sulfadoxin–pyrimethamin; artesunat–pyronaridin (2022)** · vị trí: §5.2.1.1 khuyến cáo 'Artemisinin-based combination therapy (2015)' (strong), ASPY thêm năm 2022 — 6 ACT ngang hàng, không xếp thứ tự; PDF p.17 (nhắc lại p.170) · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- Bản cũ 2699/2020 (trang PDF 6, mục 2.1(a) Thuốc điều trị ưu tiên — P. falciparum): **dihydroartemisinin–piperaquin phosphat 3 ngày + primaquin liều duy nhất**
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-03 — Sốt rét: Primaquin liều duy nhất (tính theo mg primaquin base) (conflict)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 16** (trang in Phụ lục I tr. 2), mục Phụ lục I, Bảng 4. Primaquin (viên chứa 7,5 mg primaquin base) — cột P. falciparum/P. knowlesi/P. malariae điều trị 1 lần
+- Quần thể: {"species": "P. falciparum (hoặc P. malariae/P. knowlesi)", "age": "người lớn (≥ 18 tuổi)", "weight": "60 kg", "pregnancy": "không có thai, không cho con bú", "purpose": "liều đơn diệt giao bào ngày đầu, kèm thuốc cắt cơn", "setting": "Việt Nam (vùng lan truyền thấp)"}
+- Giá trị Bộ Y tế: **4 viên × 7,5 mg base = 30 mg primaquin base, uống 1 lần ngày đầu**
+- Đoạn trích: «> 15 tuổi 4 viên 4 viên/ngày 2 viên/ngày - Đối với người bệnh nhiễm P. falciparum/ P. malariae/P. knowlesi: uống liều duy nhất vào ngày đầu tiên đề diệt giao bào.»
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **0,25 mg/kg liều đơn (= 15 mg ở 60 kg)** · vị trí: §5.2.1.3 khuyến cáo 'Reducing the transmissibility of treated P. falciparum infections (2026)' (strong; vùng lan truyền thấp; không cần xét nghiệm G6PD); PDF p.18 (nhắc lại p.180) · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- WHO_global — WHO — liều primaquin diệt giao bào khuyến cáo TRƯỚC bản cập nhật chính sách 2012 ('Single dose primaquine as a gametocytocide in P. falciparum malaria; updated WHO policy recommendation', 2012, được WHO 3rd ed. 2015 trích); giá trị đọc trong WHO Guidelines for the treatment of malaria 3rd ed. (2015) (chưa rõ (trước 2012)): **0,75 mg/kg liều đơn (khuyến cáo cũ của WHO; = 45 mg ở 60 kg)** · vị trí: 3rd ed. 2015, chương 4 (primaquin liều đơn diệt giao bào): 'previously recommended dose' 0,75 mg/kg, được thay bằng 0,25 mg/kg sau khi WHO rà soát an toàn; bản văn bản IRIS không có số trang PDF; cũng nêu ở WHO 10/9/2026 PDF p.180. Năm của phiên bản khuyến cáo 0,75 mg/kg CHƯA kiểm được (WHO 2015 chỉ nêu các bản hướng dẫn điều trị 2006 và 2010; bản 2010 chưa tải được từ IRIS) → version_date 'chưa rõ' · https://iris.who.int/server/api/core/bitstreams/999277b9-4aa3-4609-960f-b39d7283587b/content
+- Giá trị mồi (quy tắc mirror_geom, làm tròn none): 60 mg
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-04 — Sốt rét: Primaquin — liều mỗi ngày (mg base/kg/ngày) (conflict)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 17** (trang in Phụ lục I tr. 3), mục Phụ lục I, Bảng 4 (tiếp) — P. vivax/P. ovale, a) có kết quả xét nghiệm G6PD: không thiếu G6PD
+- Quần thể: {"species": "P. vivax hoặc P. ovale", "g6pd": "đã xét nghiệm, không thiếu G6PD (hoạt độ > 70% bình thường)", "age": "người lớn", "weight": "60 kg", "pregnancy": "không có thai, không cho con bú", "purpose": "điều trị tiệt căn chống tái phát (primaquin)"}
+- Giá trị Bộ Y tế: **0,5 mg/kg/ngày × 7 ngày**
+- Đoạn trích: «- Bán thiếu G6PD (hoạt độ G6PD từ 30 - 70% hoạt độ G6PD ở người bình thường), liều primaquin: 0,25 mg/kg/ngày x 14 ngày. - Không thiếu G6PD: liều primaquin: 0,5 mg/kg/ngày x 7 ngày.»
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **1 mg/kg/ngày × 7 ngày (G6PD ≥ 70%); 0,5 mg/kg/ngày × 14 ngày** · vị trí: §5.2.1.7 (anti-relapse treatment of P. vivax and P. ovale) khuyến cáo 'Primaquine as anti-relapse therapy (2024)' (strong): tổng liều cao 7 mg/kg = 0,5 mg/kg/ngày × 14 ngày hoặc 1 mg/kg/ngày × 7 ngày (1 mg/kg chỉ khi G6PD ≥ 70%); liều thấp 3,5 mg/kg (0,5 × 7) chỉ gợi ý cho tiểu lục địa Ấn Độ và châu Mỹ; PDF p.21 (nhắc lại p.207); ngưỡng G6PD §5.2.1.6 p.20 · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- US — CDC — Malaria in the United States: Treatment Tables (PDF) (2026-06-26): **30 mg base/ngày × 14 ngày ở người lớn (= 0,5 mg/kg/ngày ở 60 kg; ≥ 70 kg chỉnh tổng liều 6 mg/kg); trẻ em 0,5 mg/kg/ngày × 14 ngày** · vị trí: Table 2 'Uncomplicated malaria: P. vivax or P. ovale', Anti-relapse treatment (cần xét nghiệm G6PD định lượng), Primaquine phosphate; PDF p.4 · https://www.cdc.gov/malaria/media/pdfs/2026/06/Malaria-Treatment-Tables-8-11-26.pdf
+- WHO_global — WHO Guidelines for the treatment of malaria, 3rd ed. (ISBN 978 92 4 154912 7; bản văn bản IRIS) (2015): **0,25–0,5 mg/kg/ngày × 14 ngày** · vị trí: 3rd ed. 2015 — liều điều trị primaquin 0,25–0,5 mg/kg/ngày × 14 ngày (phụ lục về primaquin); phụ lục khác nêu 0,5 mg base/kg × 14 ngày ở Đông Nam Á/châu Đại Dương; bản văn bản IRIS không có số trang PDF · https://iris.who.int/server/api/core/bitstreams/999277b9-4aa3-4609-960f-b39d7283587b/content
+- Bản cũ 2699/2020 (trang PDF 15, mục 2.5 Bảng 5: Liều primaquin — liều tính theo cân nặng, P. vivax/P. ovale): **0,25 mg base/kg/ngày × 14 ngày**
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-05 — Sốt rét: Primaquin — thời gian điều trị tiệt căn (indistinguishable)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 17** (trang in Phụ lục I tr. 3), mục Phụ lục I, Bảng 4 (tiếp) — P. vivax/P. ovale, a) có kết quả xét nghiệm G6PD: không thiếu G6PD
+- Quần thể: {"species": "P. vivax hoặc P. ovale", "g6pd": "đã xét nghiệm, không thiếu G6PD (hoạt độ > 70% bình thường)", "age": "người lớn", "weight": "60 kg", "pregnancy": "không có thai, không cho con bú", "purpose": "điều trị tiệt căn chống tái phát (primaquin)"}
+- Giá trị Bộ Y tế: **7 ngày (0,5 mg/kg/ngày)**
+- Đoạn trích: «- Bán thiếu G6PD (hoạt độ G6PD từ 30 - 70% hoạt độ G6PD ở người bình thường), liều primaquin: 0,25 mg/kg/ngày x 14 ngày. - Không thiếu G6PD: liều primaquin: 0,5 mg/kg/ngày x 7 ngày.»
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **14 ngày (0,5 mg/kg/ngày); 7 ngày (1 mg/kg/ngày, G6PD ≥ 70%)** · vị trí: §5.2.1.7 'Primaquine as anti-relapse therapy (2024)': 0,5 mg/kg/ngày × 14 ngày hoặc 1 mg/kg/ngày × 7 ngày; PDF p.21 (nhắc lại p.207) · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- US — CDC — Malaria in the United States: Treatment Tables (PDF) (2026-06-26): **14 ngày (30 mg base/ngày)** · vị trí: Table 2, Anti-relapse treatment, Primaquine phosphate mỗi ngày × 14 ngày; PDF p.4 · https://www.cdc.gov/malaria/media/pdfs/2026/06/Malaria-Treatment-Tables-8-11-26.pdf
+- WHO_global — WHO Guidelines for the treatment of malaria, 3rd ed. (ISBN 978 92 4 154912 7; bản văn bản IRIS) (2015): **14 ngày** · vị trí: 3rd ed. 2015 — khuyến cáo primaquin chống tái phát liệu trình 14 ngày; bản văn bản IRIS không có số trang PDF · https://iris.who.int/server/api/core/bitstreams/999277b9-4aa3-4609-960f-b39d7283587b/content
+- Bản cũ 2699/2020 (trang PDF 15, mục 2.5 Bảng 5: Liều primaquin — P. vivax/P. ovale): **14 ngày (0,25 mg base/kg/ngày)**
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-06 — Sốt rét: Artemether–lumefantrin — thời gian điều trị (conflict)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 19** (trang in Phụ lục I tr. 5), mục Phụ lục I, Bảng 10. Artemether 40mg – lumefantrin 240mg
+- Quần thể: {"species": "P. falciparum", "severity": "chưa biến chứng", "age": "người lớn", "pregnancy": "không có thai", "drug": "artemether–lumefantrin đường uống", "acquired": "nhiễm tại Việt Nam", "weight": "≥ 35 kg"}
+- Giá trị Bộ Y tế: **uống 2 lần/ngày, liên tục 3 ngày**
+- Đoạn trích: «Bảng 10. Artemether 40mg — lumefantrin 240mg - Uống 2 lần/ ngày, liên tục trong 3 ngày. Hai liều đầu tiên cách nhau 8 gio.»
+- US — CDC — Malaria in the United States: Treatment Tables (PDF) (2026-08-11): **liệu trình 5 ngày (ngày 1: 2 liều; ngày 2–5: 2 lần/ngày)** · vị trí: Table 1 'Uncomplicated malaria: P. falciparum or species unknown', A. artemether–lumefantrin liệu trình 5 ngày (chú thích 5 nêu lý do kéo dài); PDF p.1–2 · https://www.cdc.gov/malaria/media/pdfs/2026/06/Malaria-Treatment-Tables-8-11-26.pdf
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **3 ngày** · vị trí: §5.2.1.1.1 khuyến cáo 'Duration of ACT treatment (2015)' (strong): ACT 3 ngày; PDF p.17 · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 1 day
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-07 — Sốt rét: Artesunat tiêm — liều mỗi lần (mg/kg) (conflict)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 11** (trang in 10), mục III.2.3(b) Thuốc điều trị đặc hiệu sốt rét ác tính — artesunat tiêm, trẻ em < 20 kg
+- Quần thể: {"severity": "sốt rét ác tính", "age": "trẻ em", "weight": "15 kg (< 20 kg)", "route": "artesunat tiêm tĩnh mạch (hoặc tiêm bắp)", "dose_unit": "mỗi liều (giờ 0, giờ 12, rồi mỗi ngày)"}
+- Giá trị Bộ Y tế: **3 mg/kg/lần**
+- Đoạn trích: «+ Trẻ em < 20kg liều sử dụng artesunat tiêm là 3mg/kg/lần, quy trình điều trị như trẻ > 20kg.»
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **3 mg/kg/liều (trẻ < 20 kg)** · vị trí: §5.2.2 (treating severe malaria) khuyến cáo 'Treating severe malaria in children (2015)': trẻ < 20 kg 3 mg/kg/liều (strong, dựa trên mô hình dược động học); PDF p.22 (nhắc lại p.218) · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- US — CDC — Malaria in the United States: Treatment Tables (PDF) (2026-08-11): **2,4 mg/kg/liều cho mọi cân nặng, kể cả trẻ < 20 kg** · vị trí: Table 5 'Severe malaria': mỗi liều 2,4 mg/kg IV; chú thích 2: liều hiện dùng cho trẻ nhỏ < 20 kg là 2,4 mg/kg (mô hình FDA), ghi rõ WHO khuyến cáo 3 mg/kg; PDF p.7 · https://www.cdc.gov/malaria/media/pdfs/2026/06/Malaria-Treatment-Tables-8-11-26.pdf
+- Giá trị mồi (quy tắc mirror_arith, làm tròn none): 3.6 mg/kg
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-malaria_ocr-08 — Sốt rét: Artesunat tiêm — liều mỗi lần (mg/kg) (concordant)
+
+- Văn bản: `3377/2023` → `data/raw/3377_2023.pdf`, **trang PDF 11** (trang in 10), mục III.2.3(b) Thuốc điều trị đặc hiệu sốt rét ác tính — artesunat tiêm, trẻ em > 20 kg và người lớn
+- Quần thể: {"severity": "sốt rét ác tính", "age": "người lớn", "weight": "60 kg (> 20 kg)", "route": "artesunat tiêm tĩnh mạch (hoặc tiêm bắp)", "dose_unit": "mỗi liều (giờ 0, giờ 12, rồi mỗi ngày)", "pregnancy": "không có thai"}
+- Giá trị Bộ Y tế: **2,4 mg/kg giờ đầu, nhắc lại giờ thứ 12, sau đó mỗi ngày 1 liều**
+- Đoạn trích: «+ Trẻ em > 20 kg và người lớn: Liều gio đầu 2,4 mg/kg, tiêm nhắc lại 2,4 mg/kg vào giờ thứ 12 (ngày đầu).»
+- WHO_global — WHO guidelines for malaria (MAGICapp PDF, doi 10.2471/B09879) (2026-09-10): **2,4 mg/kg/liều** · vị trí: §5.2.2 (treating severe malaria) 'Treating severe malaria in children (2015)': trẻ lớn và người lớn 2,4 mg/kg/liều; PDF p.22 (nhắc lại p.218) · https://iris.who.int/server/api/core/bitstreams/d3c6488b-3ee6-41cb-960f-ddf0202cd74d/content
+- US — CDC — Malaria in the United States: Treatment Tables (PDF) (2026-08-11): **2,4 mg/kg IV lúc 0, 12, 24 giờ** · vị trí: Table 5 'Severe malaria': mỗi liều 2,4 mg/kg IV, 3 liều lúc 0, 12, 24 giờ; PDF p.7 · https://www.cdc.gov/malaria/media/pdfs/2026/06/Malaria-Treatment-Tables-8-11-26.pdf
+- ⚠ Kiểm bằng mã: trang OCR — so TỪNG con số với ảnh trang PDF (§3.1)
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-tbhiv-01 — Lao kháng thuốc: Phác đồ điều trị chuẩn (conflict)
+
+- Văn bản: `162/2024` → `data/raw/162_2024.pdf`, **trang PDF 53** (trang in 52), mục Phần III, 2.2.2 Phác đồ điều trị cho người lớn — Phác đồ BPaL
+- Quần thể: {"age": "người lớn (≥ 14 tuổi)", "resistance": "kháng rifampicin (lao đa kháng) và kháng fluoroquinolone", "site_severity": "lao phổi không thể nặng (non-severe pulmonary)", "prior_exposure": "chưa dùng bedaquiline/pretomanid/delamanid/linezolid > 1 tháng", "pregnancy": "không có thai, không cho con bú", "contraindications": "không có chống chỉ định của phác đồ BPaL: QTcF > 500 ms, men gan ≥ 3×ULN, bệnh thần kinh ngoại biên độ 3-4, cân nặng < 35 kg hoặc BMI < 17, lao ngoài phổi nặng"}
+- Giá trị Bộ Y tế: **BPaL (bedaquiline + pretomanid + linezolid), 6-9 tháng**
+- Đoạn trích: «Phác đồ BPaL Đối tượng áp dụng - Kháng ít nhất vӟi R và FQ, hoặc không dung nạp thuốc trong phác đồ điều trị lao đa kháng. - Tuổi từ đủ 14 tuổi trở lên. - Không có tiền sử dùng các thuốc trên 01 tháng (Bedaquiline, Pretomanid hoặc Delamanid, Linezolid). - Có sử dụng các thuốc có trong PĐ trên 01 tháng, nhưng xét nghiệm KSĐ cho thấy vүn nhạy vӟi các thuốc này. - Các trường hợp lao phổi và lao ngoài phổi nhẹ.»
+- WHO_global — WHO consolidated guidelines on tuberculosis. Module 4: treatment and care, 2nd ed. (2026) (2026-09-21): **BPaL 6 tháng (B1.1a, lao phổi tiền siêu kháng không nặng); BDLC 6 tháng: bedaquiline + delamanid + linezolid + clofazimine (B1.2a)** · vị trí: Recommendations table PDF p.22: B1.1a BPaL (non-severe pulmonary pre-XDR-TB, NEW 2026); B1.2 BDLLfx/C 'with or without fluoroquinolone resistance' (UPDATED 2026) and B1.2a 6-month BDLC in non-severe pulmonary pre-XDR-TB (NEW 2026); full text PDF p.79, p.120 · https://iris.who.int/server/api/core/bitstreams/fb7951ad-797f-4382-9792-c5a0b3136100/content
+- WHO_global — WHO consolidated guidelines on tuberculosis. Module 4: treatment. Drug-resistant TB treatment, 2022 update (2022-12-14): **BPaL (BPaLM bỏ moxifloxacin khi có kháng fluoroquinolone)** · vị trí: Section 1 (6-month BPaLM regimen), remark 1: BPaL khi kháng fluoroquinolone; PDF p.26 · https://iris.who.int/server/api/core/bitstreams/b4112461-7e9c-403c-808f-055f1dc3a54b/content
+- US — ATS/CDC/ERS/IDSA. Updates on the Treatment of Drug-Susceptible and Drug-Resistant Tuberculosis (Saukkonen et al., Am J Respir Crit Care Med 2025;211(1):15-33; doi:10.1164/rccm.202410-2096ST; PMC11755361) (2025-01-01): **BPaL 6 tháng (≥ 14 tuổi, lao phổi kháng R và kháng FQ)** · vị trí: PICO 3 (RR-TB + FQ resistance, adolescents ≥14 y and adults, pulmonary TB): 6-month BPaL rather than ≥15-month regimens (strong recommendation, very low certainty); Table 1 'Q3: treatment of rifampin-resistant, fluoroquinolone resistant TB: recommended BPaL regimen' · https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11755361
+- WHO_global — WHO consolidated guidelines on tuberculosis. Module 4: treatment. Drug-resistant tuberculosis treatment (2020) (2020-06-15): **BPaL 6–9 tháng — chỉ trong điều kiện nghiên cứu vận hành (rec 4.1); phác đồ dài hạn cá thể khi kháng FQ: Bdq Lzd Cfz Cs (+ nhóm C) — SUY RA từ quy tắc nhóm A/B (tr.15, tr.40), không nguyên văn** · vị trí: IRIS 10665/332397. Rec 4.1 BPaL 'may be used under operational research conditions' in MDR-TB with FQ resistance, PDF p.17 and p.60 ('does not apply to routine programmatic use'); longer regimens: 'if only one or two Group A agents are used, both Group B agents are to be included' PDF p.15 and p.40; Group A/B lists PDF p.40 · https://iris.who.int/server/api/core/bitstreams/56364485-36dc-467f-b50c-23db380b13ab/content
+- Bản cũ 2760/2021 (trang PDF 17, mục 3.2.2.4 Phác đồ cá thể — Các PĐ kháng FQs (Phác đồ E1-FQ mới)): **E1-FQ mới: Bdq Lzd Cfz Cs + 1 thuốc nhóm C (phác đồ cá thể dài hạn)**
+- Bản cũ 1314/2020 (trang PDF 60, mục 3.2.2.4 Phác đồ cá thể cho người bệnh tiền/siêu kháng (Phác đồ E1-TSFQ mới)): **E1-TSFQ mới: Bdq Lzd Cfz Cs + 1 thuốc nhóm C**
+- Giá trị mồi (quy tắc agent_proposed (thay lần 2 sau phản biện câu hỏi tbhiv_review.md vấn đề 7, 26/9): BPaZ = bedaquiline + pretomanid + pyrazinamide — phối hợp 3 thuốc cùng khuôn BPaL (lõi bedaquiline + pretomanid), linezolid thay bằng pyrazinamide; KHÔNG có fluoroquinolone nên không mâu thuẫn với quần thể kháng FQ (mồi trước BPaMZ bị bỏ vì chứa moxifloxacin khi người bệnh đã kháng FQ → mô hình có kiến thức loại ngay, π_mồi → 0). Không nguồn nào đã ghi khuyến cáo cho quần thể này (kiểm bằng công cụ 26/9): 162/2024 verify_span --find 'BPaZ' = [], 'Pa-Z' = [], 'Pretomanid' chỉ ở tr.16, 20, 47, 48, 53, 160, 189 — tr.48 ghi chú '(**) Pretomanid: thuốc mới, không xếp hạng theo nhóm, hiện chỉ áp dụng đối với phác đồ BPaL(M)', tr.189 'Hiện nay chỉ sử dụng như 1 thành phần của phác đồ BPaLM/ BPaL'; 2760/2021 và 1314/2020 'Pretomanid' = []; sources grep 'BPaZ' / 'pretomanid and pyrazinamide' / 'pretomanid, pyrazinamide' = 0 kết quả ở WHO 2026 (sha a6092c81…; danh mục phác đồ PDF tr.10: BDLC, BDLLfx, BDLLfxC, BPaL, BPaLC, BPaLM, BLLfxCZ, BDLLfxZ, BLMZ, HPMZ, HRZE… — không có BPaZ), WHO 2022 (7fdfa0ba…), WHO 2020 (133ba15f…), ATS/CDC/ERS/IDSA 2025 (43ce9bbd…). key_drugs {pretomanid, pyrazinamide}: pretomanid chỉ còn trong tập thuốc đã tách khi KHÔNG đủ bộ ba BPaL/BPaLM (combos gộp), nên câu trả lời theo Bộ Y tế (BPaL), WHO 2026 (BDLC), bản cũ E1 (Bdq Lzd Cfz Cs + 1 thuốc nhóm C, kể cả khi thuốc nhóm C là pyrazinamide) và giá trị lân cận (BPaLM, PĐ E) không khớp mồi → decoy_match không bị thổi bởi câu trả lời thuộc nguồn đã ghi (π_d = mean(k·decoy_match), analysis.confirmatory). check_decoy == []. Hạn chế: grading.yaml chưa có bí danh 'bpaz' (quy ước đối xứng với 'bdlc'; câu trả lời chỉ viết tắt 'BPaZ' sẽ không đọc được — việc của chủ mã); bí danh 'bpamz' nay không còn là mồi. Tính hợp lý (phác đồ bỏ linezolid, dựa vào pyrazinamide ở người kháng R + FQ) chờ chấm decoy_plausible ở HG3.5. VÒNG 3 (kiểm độc lập): (a) matches() so khớp TẬP CON nên decoy_match bật cho cả họ phác đồ chứa {pretomanid, pyrazinamide}, kể cả 'BPaMZ' (bedaquiline + pretomanid + moxifloxacin + pyrazinamide) — không nguồn nào đã ghi khuyến cáo phác đồ nào trong họ này cho quần thể; π_d của mẩu hiểu là 'chọn một phác đồ Pa + Z'; (b) lưu ý lâm sàng cho HG3.5: kháng pyrazinamide thường gặp ở lao đa kháng/tiền siêu kháng nên người có chuyên môn có thể thấy phác đồ này yếu (ảnh hưởng decoy_plausible); 162/2024 tr.55 cho phép hoàn thành liệu trình bằng '02 thuốc còn lại (Bdq, Pa) mà không cần Lzd' — phối hợp này không có Z nên không khớp mồi (đã kiểm trang). Bộ chấm chưa đọc viết tắt 'Pa' ('Bdq + Pa + Lzd' → {bedaquiline, linezolid} → nhãn 5, đúng ra 2) và 'BPaZ' (→ 6): việc của chủ mã (grading.yaml; luật '~' hiện đòi ≥ 3 thuốc khác đã nhận nên '~pa' chưa đủ)., làm tròn —): BPaZ: bedaquiline + pretomanid + pyrazinamide
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-tbhiv-02 — Lao kháng thuốc: Thuốc chủ lực trong giai đoạn đầu của phác đồ chuẩn ngắn hạn (bedaquiline thay thuốc tiêm) (indistinguishable)
+
+- Văn bản: `162/2024` → `data/raw/162_2024.pdf`, **trang PDF 49** (trang in 48), mục Phần III, 2.2.2 Phác đồ điều trị cho người lớn — a) Phác đồ ngắn ngày: Phác đồ C (C1a/C2a)
+- Quần thể: {"age": "người lớn", "resistance": "kháng rifampicin/lao đa kháng, không kháng fluoroquinolone", "prior_exposure": "chưa dùng thuốc lao hàng hai có trong phác đồ > 1 tháng", "severity": "không phải lao phổi/lao ngoài phổi thể nặng", "regimen_type": "phác đồ chuẩn ngắn hạn 9-11 tháng (không phải BPaLM 6 tháng)"}
+- Giá trị Bộ Y tế: **Phác đồ toàn uống có bedaquiline: 4-6Bdq[6]-Lfx-Pto-E-Z-Hh-Cfz / 5 Lfx-Cfz-Z-E (C1a) hoặc C2a (Lzd 2 tháng thay Pto)**
+- Đoạn trích: «2.2.2. Phác đồ điều trị cho người lớn a) Phác đồ ngắn ngày: Phác đồ C Đối tượng áp dụng - Lao đa kháng. - Không kháng vӟi FQ (phác đồ vүn sử dụng được khi kháng thuốc tiêm). - Chưa có tiền sử dùng thuốc lao hàng hai có trong phác đồ (Bedaquiline, Fluoroquinolones, Prothionamid/Ethionamide, Linezolid, Clofazimine) hoặc dùng dưӟi 01 tháng.»
+- WHO_global — WHO consolidated guidelines on tuberculosis. Module 4: treatment and care, 2nd ed. (2026) (2026-09-21): **9-month all-oral: 4-6 Bdq[6]-Lfx[Mfx]-Eto-E-Z-Hh-Cfz / 5 Lfx[Mfx]-Cfz-Z-E** · vị trí: Recommendations table p.22 (B2.1, unchanged 2022); remarks PDF p.140 · https://iris.who.int/server/api/core/bitstreams/fb7951ad-797f-4382-9792-c5a0b3136100/content
+- WHO_global — WHO consolidated guidelines on drug-resistant tuberculosis treatment (2019) (2019-03-20): **phác đồ ngắn hạn chuẩn 9–12 tháng có thuốc tiêm: 4-6 Am(Km)-Mfx-Cfz-Eto-Z-E-Hh / 5 Mfx-Cfz-Z-E** · vị trí: IRIS 10665/311389. Recommendation 4.1 (standardized shorter MDR-TB regimen 9–12 months), PDF p.37; composition 4-6Km-Mfx-Cfz-Eto-Z-E-Hh/5Mfx-Cfz-Z-E, PDF p.41; GDG condition 'kanamycin be replaced by amikacin', PDF p.42 · https://iris.who.int/server/api/core/bitstreams/30d89c8e-8e59-4f52-82b4-9a30882a09bf/content
+- Bản cũ 1314/2020 (trang PDF 59, mục 3.2.2.4 Các phác đồ điều trị lao kháng thuốc áp dụng tại Việt Nam — Phác đồ chuẩn ngắn hạn): **4-6 Am Lfx Pto Cfz Z H liều cao E / 5 Lfx Cfz Z E (có thuốc tiêm amikacin)**
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-tbhiv-03 — Lao: Các thuốc dùng trong giai đoạn duy trì 4 tháng (conflict)
+
+- Văn bản: `162/2024` → `data/raw/162_2024.pdf`, **trang PDF 44** (trang in 43), mục Phần III, 2.1.2 Các phác đồ điều trị lao nhạy cảm thuốc — Phác đồ A1
+- Quần thể: {"age": "người lớn", "resistance": "không có bằng chứng/nghi ngờ kháng thuốc (lao nhạy cảm)", "site": "lao phổi (không phải lao hệ thần kinh trung ương, không phải lao xương khớp)", "regimen": "phác đồ 6 tháng (không phải phác đồ 4 tháng 2HPMZ/2HPM)", "hiv_pregnancy": "áp dụng cả người nhiễm HIV và phụ nữ mang thai"}
+- Giá trị Bộ Y tế: **4RHE — rifampicin + isoniazid + ethambutol (2HRZE/4RHE)**
+- Đoạn trích: «Phác đồ A1: 2HRZE/4RHE (phác đồ 06 tháng – điều trị lao cho người lӟn) Chỉ định Lao người lӟn: chỉ định cho các trường hợp lao không có bằng chứng kháng thuốc hoặc nghi ngờ kháng thuốc trên lâm sàng bao gồm cả người nhiễm HIV và phụ nữ mang thai. Không chỉ định Không chỉ định phác đồ này vӟi lao hệ thần kinh trung ương, lao xương khӟp. Thành phần và hưӟng dүn sử dụng phác đồ - Giai đoạn tấn công: sử dụng kéo dài 02 tháng, vӟi 04 loại thuốc: H, R, Z, E; dùng hàng ngày; - Giai đoạn duy trì: kéo dài 04 tháng, vӟi 03 loại thuốc: R, H, E; dùng hàng ngày.»
+- WHO_global — WHO consolidated guidelines on tuberculosis. Module 4: treatment and care, 2nd ed. (2026) (2026-09-21): **4HR — isoniazid + rifampicin (2HRZE/4HR)** · vị trí: Recommendation A1.1 (unchanged 2010), recommendations table PDF p.19 and section 1 PDF p.32 · https://iris.who.int/server/api/core/bitstreams/fb7951ad-797f-4382-9792-c5a0b3136100/content
+- WHO_global — WHO. Guidelines for treatment of drug-susceptible tuberculosis and patient care, 2017 update (2017-04-24): **4HR (2HRZE/4HR) — khuyến cáo chính; 4HRE — phương án chấp nhận được ở quần thể có (nghi) tỷ lệ kháng isoniazid cao** · vị trí: IRIS 10665/255052. Bảng khuyến cáo 2010 còn hiệu lực: 2HRZE/4HR 'remains valid' PDF p.17; 'Initial regimen in countries with high levels of isoniazid resistance' (HRE ở giai đoạn duy trì là phương án chấp nhận được thay HR, conditional, expert opinion) 'remains valid' PDF p.19 · https://iris.who.int/server/api/core/bitstreams/b4d54e27-0c0a-4cbb-8ffc-cf93dde8b017/content
+- US — ATS/CDC/IDSA Clinical Practice Guidelines: Treatment of Drug-Susceptible Tuberculosis (Nahid et al., Clin Infect Dis 2016; doi:10.1093/cid/ciw376) (2016-08-10): **4HR — isoniazid + rifampin (2HRZE/4HR)** · vị trí: Summary of recommendations and Table 2 (regimen 1, continuation phase INH RIF 126 doses/18 wk), PDF p.4 · https://www.cdc.gov/tb/publications/guidelines/pdf/clin-infect-dis.-2016-nahid-cid_ciw376.pdf
+- US — ATS/CDC/ERS/IDSA. Updates on the Treatment of Drug-Susceptible and Drug-Resistant Tuberculosis (Saukkonen et al., Am J Respir Crit Care Med 2025;211(1):15-33; doi:10.1164/rccm.202410-2096ST; PMC11755361) (2025-01-01): **4HR (2HRZE/4HR) — phác đồ chuẩn 6 tháng** · vị trí: PICO 1 (4-month 2HPZM/2HPM) comparator: 'standard 6-month … regimen … 2HRZE/4HR endorsed by the ATS/CDC/ERS/IDSA guidelines'; bản cập nhật không đổi phác đồ 6 tháng · https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11755361
+- Giá trị mồi (quy tắc agent_proposed: 4RE (bỏ isoniazid ở giai đoạn duy trì) — không nguồn nào dùng cho lao nhạy cảm người lớn: 162/2024, 1314/2020, 2760/2021, 4263/2015 ('4RE' = []), WHO 2017/2022/2026, ATS/CDC/IDSA 2016 ('4RE' = 0; tr.35 'RIF and EMB' kèm FQ/thuốc tiêm/cycloserine 12–18 tháng chỉ cho bệnh gan nặng — quần thể khác), ATS/CDC/ERS/IDSA 2025 ('rifampin and ethambutol' = 0); REZ-Lfx của WHO/Bộ Y tế là cho lao kháng H (quần thể khác). Không chạm giá trị lân cận (trẻ em 4RH). check_decoy == []. Tính hợp lý chờ chấm decoy_plausible ở HG3.5., làm tròn —): 4RE — rifampicin + ethambutol
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-tbhiv-04 — Lao: Các thuốc dùng trong giai đoạn duy trì 4 tháng (concordant)
+
+- Văn bản: `162/2024` → `data/raw/162_2024.pdf`, **trang PDF 44** (trang in 43), mục Phần III, 2.1.2 Các phác đồ điều trị lao nhạy cảm thuốc — Phác đồ A2
+- Quần thể: {"age": "trẻ em 5 tuổi", "resistance": "không có bằng chứng/nghi ngờ kháng thuốc", "site": "lao phổi (không phải lao hệ thần kinh trung ương, không phải lao xương khớp)", "regimen": "phác đồ 6 tháng (không phải phác đồ 4 tháng A2a cho thể nhẹ)", "hiv": "có thể dùng cho trẻ nhiễm HIV"}
+- Giá trị Bộ Y tế: **4RH — rifampicin + isoniazid (2HRZE/4RH)**
+- Đoạn trích: «Phác đồ A2: 2HRZE/4RH (phác đồ 06 tháng – điều trị lao cho trẻ em ) Chỉ định Lao trẻ em không có bằng chứng kháng thuốc hoặc không nghi ngờ kháng thuốc trên lâm sàng. Có thể sử dụng cho trẻ nhiễm HIV.»
+- WHO_global — WHO consolidated guidelines on tuberculosis. Module 4: treatment and care, 2nd ed. (2026) (2026-09-21): **4HR sau 2 tháng HRZ hoặc HRZE** · vị trí: Recommendations A1.6a/A1.6b (unchanged 2010/2014/2022), recommendations table PDF p.20 · https://iris.who.int/server/api/core/bitstreams/fb7951ad-797f-4382-9792-c5a0b3136100/content
+- US — ATS/CDC/ERS/IDSA. Updates on the Treatment of Drug-Susceptible and Drug-Resistant Tuberculosis (Saukkonen et al., Am J Respir Crit Care Med 2025;211(1):15-33; doi:10.1164/rccm.202410-2096ST; PMC11755361) (2025-01-01): **4HR (2HRZE/4HR) — phác đồ 6 tháng cho trẻ** · vị trí: PICO 2 (trẻ em, lao không nặng): 'children and adolescents who do not meet the criteria for nonsevere TB should receive the standard 6-month treatment regimen (2HRZE/4HR)' · https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11755361
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-tbhiv-05 — HIV: Phác đồ ARV dự phòng sau phơi nhiễm (ưu tiên) (conflict)
+
+- Văn bản: `5968/2021` → `data/raw/5968_2021.pdf`, **trang PDF 29** (trang in 29), mục Chương 2, II. Điều trị dự phòng sau phơi nhiễm với HIV — 3. Bảng 3
+- Quần thể: {"age": "người lớn", "exposure": "phơi nhiễm có nguy cơ không do nghề nghiệp (quan hệ tình dục không bảo vệ với người nhiễm HIV), trong 72 giờ", "pregnancy": "không mang thai", "renal": "chức năng thận bình thường"}
+- Giá trị Bộ Y tế: **TDF + 3TC (hoặc FTC) + DTG**
+- Đoạn trích: «Bảng 3: Điều trị dự phòng sau phơi nhiễm HIV bằng thuốc ARV Đối tƣợng Phác đồ thuốc ARV Người trên 10 tuổi Ƣu tiên: TDF + 3TC (hoặc FTC) + DTG Thay thế: TDF + 3TC (hoặc FTC) + LPV/r hoặc TDF + 3TC (hoặc FTC) + RAL»
+- WHO_global — WHO Guidelines for HIV post-exposure prophylaxis (2024) (2024-07-16): **TDF + 3TC (hoặc FTC) + DTG (ưu tiên)** · vị trí: Executive summary 'Recommended drug regimens — adults and adolescents', PDF p.8 (lặp lại p.14) · https://iris.who.int/server/api/core/bitstreams/fc3c8ce2-35d8-4b39-93b1-cb4d060767f0/content
+- US — CDC. Antiretroviral postexposure prophylaxis after sexual, injection drug use, or other nonoccupational exposure to HIV - United States, 2025 (MMWR Recomm Rep 74(1); doi:10.15585/mmwr.rr7401a1; PMC12064164) (2025-05-08): **BIC/FTC/TAF (bictegravir/emtricitabine/tenofovir alafenamide); DTG + TDF + (FTC hoặc 3TC); DTG + TAF + (FTC hoặc 3TC)** · vị trí: Summary of recommendations; section 'HIV nPEP regimens', Table 4 (preferred regimens for adults and adolescents) · https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12064164
+- Giá trị mồi (quy tắc agent_proposed (đặt 26/9 sau phản biện câu hỏi tbhiv_review.md vấn đề 7; GIỮ TẠM ở vòng 3 — CHỜ QUYẾT ĐỊNH của người dùng/HG3.5, xem cuối): TLE = TDF + 3TC + EFV (tenofovir disoproxil + lamivudine + efavirenz); key_drugs {efavirenz}. Nguồn ĐÃ GHI của mẩu (kiểm 26/9): 5968/2021 verify_span --find 'EFV' → tr.8, 34–38, 46, 48–50, 52–53, 76–77, 125, 127–128, 141–142, 'Efavirenz' → tr.8, 125 — không có ở mục PEP tr.28–30 (Bảng 3 tr.29 không có EFV); WHO 2024 PEP (sha 56493a35…) 'efavirenz'/'EFV' = 0; CDC 2025 (sha 69b99dc9…) chỉ nhắc EFV ở phần bàn luận NNRTI và tài liệu tham khảo, không có trong Bảng 4. check_decoy == []. Câu trả lời theo Bộ Y tế/WHO 2024 (TLD) và CDC 2025 (BIC/FTC/TAF, DTG + TAF) không chứa efavirenz → không khớp mồi. KIỂM ĐỘC LẬP VÒNG 3 — RỦI RO ĐÃ XÁC NHẬN: WHO 2014 PEP ('Guidelines on post-exposure prophylaxis for HIV and the use of co-trimoxazole prophylaxis for HIV-related infections among adults, adolescents and children … December 2014 supplement to the 2013 consolidated guidelines on the use of antiretroviral drugs', IRIS bitstream https://iris.who.int/server/api/core/bitstreams/397914f8-0cd4-41da-ae11-e03aff3d59d0/content; vnsoc.match.sources fetch 26/9: sha256 4319686155242dafcbfbe41e43e396589c9e0e37fc7e93f3dece5cbccfc267be, 52 trang PDF) — sources grep: PDF tr.11 (bảng tóm tắt) và tr.23 (mục 4.2): 'TDF + 3TC (or FTC) is recommended as the preferred backbone regimen … LPV/r or ATV/r is recommended as the preferred third drug … Where available, RAL, DRV/r or EFV can be considered as alternative options'; tr.24: 'Efavirenz (EFV) has also been previously recommended for post-exposure prophylaxis'. → TLE là PHƯƠNG ÁN THAY THẾ của một bản WHO cũ cho chính quần thể người lớn/vị thành niên, KHÔNG phải phương án 'không hướng dẫn nào khuyến cáo'. WHO 2014 không ghi vào foreign: giá trị 'ưu tiên' của nó (TDF + 3TC + LPV/r hoặc ATV/r) cần lopinavir/atazanavir mà grading.yaml chưa có. Hệ quả: tỉ lệ chọn mồi ở mẩu này lẫn kiến thức WHO cũ (π_d bị thổi lên; hướng lệch có lợi cho thận trọng ở H1 nhưng diễn giải decoy_match sai); câu rào đón 'TDF + 3TC + DTG; if DTG unavailable, TDF + 3TC + EFV' → nhãn 2 kèm decoy_match=True (π_d = mean(k·decoy_match) không lọc theo nhãn). Mồi khác đã xét: nevirapine (INN HIV duy nhất còn lại trong grading.yaml ngoài các thuốc của nguồn đã ghi) bị loại — WHO 2014 tr.25 'Nevirapine should not be used for post-exposure prophylaxis for adults, adolescents and older children' (chống chỉ định → π_mồi ≈ 0 theo cấu tạo). ỨNG VIÊN doravirine (TDF + 3TC + DOR): sources grep 'doravirine' = 0 ở WHO 2024 và WHO 2014; 5968/2021 verify_span --find 'doravirin' / 'DOR' = []; CDC 2025 chỉ ở phần bàn luận ('Doravirine (DOR) and RPV are generally better tolerated than EFV') và tài liệu tham khảo (DRIVE-AHEAD, DRIVE-FORWARD) — nhưng doravirine CHƯA có trong configs/grading.yaml (agent không sửa configs), nên chưa đổi. QUYẾT ĐỊNH (người dùng + HG3.5, không do agent): (a) chủ mã thêm 'doravirine: [doravirin, dor]' (+ test) vào grading.yaml, rồi đổi mồi sang TDF + 3TC + DOR và chạy lại check_decoy/QC; hoặc (b) giữ TLE, ghi hạn chế 'mồi trùng phương án thay thế WHO 2014' và đánh dấu/loại mẩu khỏi phân tích π_d. Còn chưa kiểm: 5456/2019 (bản Bộ Y tế trước, chưa vào data/raw — lỗi TLS vaac.gov.vn) và CDC 2005 nPEP (trang cdc.gov trả 'Access Denied' cho người kiểm)., làm tròn —): TDF + 3TC + EFV
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-tbhiv-06 — HIV: Thời gian điều trị dự phòng sau phơi nhiễm bằng ARV (concordant)
+
+- Văn bản: `5968/2021` → `data/raw/5968_2021.pdf`, **trang PDF 29** (trang in 29), mục Chương 2, II. Điều trị dự phòng sau phơi nhiễm với HIV — 4. Thời gian điều trị dự phòng sau phơi nhiễm
+- Quần thể: {"age": "người lớn", "exposure": "phơi nhiễm HIV có nguy cơ, đã bắt đầu PEP"}
+- Giá trị Bộ Y tế: **28 ngày**
+- Đoạn trích: «Thời gian điều trị dự phòng sau phơi nhiễm Thời gian điều trị dự phòng sau phơi nhiễm với HIV: đủ 28 ngày liên tục.»
+- WHO_global — WHO Guidelines for HIV post-exposure prophylaxis (2024) (2024-07-16): **28 ngày** · vị trí: Executive summary, PDF p.8 ('28-day prescription') · https://iris.who.int/server/api/core/bitstreams/fc3c8ce2-35d8-4b39-93b1-cb4d060767f0/content
+- US — CDC. Antiretroviral postexposure prophylaxis after sexual, injection drug use, or other nonoccupational exposure to HIV - United States, 2025 (MMWR Recomm Rep 74(1); doi:10.15585/mmwr.rr7401a1; PMC12064164) (2025-05-08): **28 ngày** · vị trí: Summary of recommendations ('recommended nPEP course is 28 days') · https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12064164
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+
+## P-tbhiv-07 — Lao kháng thuốc: Thời gian điều trị phác đồ kháng H nhạy R (R(H)ZE + levofloxacin) (concordant)
+
+- Văn bản: `162/2024` → `data/raw/162_2024.pdf`, **trang PDF 59** (trang in 58), mục Phần III, 2.2.2 d) Phác đồ kháng H nhạy R (6 R(H)ZELfx)
+- Quần thể: {"age": "người lớn", "resistance": "kháng H (± S), nhạy R, không kháng FQ", "site": "lao phổi, không tổn thương rộng, âm hóa đúng hạn", "hiv": "không nhiễm HIV hoặc nhiễm HIV (không cần kéo dài)"}
+- Giá trị Bộ Y tế: **6 tháng**
+- Đoạn trích: «Cần tiến hành làm xét nghiệm GeneXpert để loại trừ kháng R trưӟc khi điều trị phác đồ kháng H. - XN phát hiện kháng FQ (XpertXDR) hoặc LPA hàng 2. - Nếu người bệnh được chẩn đoán kháng H bằng LPA hàng 1 mà không phải bằng KSĐ, cần làm thêm xét nghiệm KSĐ thuốc lao hạng 1 để loại trừ kháng nhiều thuốc. - Làm nhắc lại xét nghiệm GeneXpert nếu không âm hoá (nhuộm soi trực tiếp) sau 02 đến 03 tháng hoặc thất bại phác đồ kháng H. Thời gian điều trị 06 tháng.»
+- WHO_global — WHO consolidated guidelines on tuberculosis. Module 4: treatment and care, 2nd ed. (2026) (2026-09-21): **6 tháng (rifampicin, ethambutol, pyrazinamide, levofloxacin)** · vị trí: Recommendation B4.1 (unchanged 2018), recommendations table PDF p.25; section B4 PDF p.196 · https://iris.who.int/server/api/core/bitstreams/fb7951ad-797f-4382-9792-c5a0b3136100/content
+- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài
+

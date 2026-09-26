@@ -1,0 +1,43 @@
+question_id,ok,issues,note,passage_has_alt_value,passage_ocr,option_rank
+P-controls-01#A3,True,,,,False,
+P-controls-01|short|vi,True,,,,,
+P-controls-01|short|en,True,,,,,
+P-controls-01|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-02#A3,True,,,,False,
+P-controls-02|short|vi,True,,,,,
+P-controls-02|short|en,True,,,,,
+P-controls-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-03#A3,True,,,,False,
+P-controls-03|short|vi,True,,,,,
+P-controls-03|short|en,True,,,,,
+P-controls-03|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-04#A3,True,,,,False,
+P-controls-04|short|vi,True,,,,,
+P-controls-04|short|en,True,,,,,
+P-controls-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-05#A3,True,,,,False,
+P-controls-05|short|vi,True,,,,,
+P-controls-05|short|en,True,,,,,
+P-controls-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-06#A3,True,,,,False,
+P-controls-06|short|vi,True,,,,,
+P-controls-06|short|en,True,,,,,
+P-controls-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-07#A3,True,,,,False,
+P-controls-07|short|vi,True,,,,,
+P-controls-07|short|en,True,,,,,
+P-controls-07|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-08#A3,True,,,neighbour,False,
+P-controls-08|short|vi,True,,,,,
+P-controls-08|short|en,True,,,,,
+P-controls-08|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-08|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-08|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-08|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-09#A3,True,,,,False,
+P-controls-09|short|vi,True,,,,,
+P-controls-09|short|en,True,,,,,
+P-controls-09|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-controls-09|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-controls-09|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-controls-09|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler

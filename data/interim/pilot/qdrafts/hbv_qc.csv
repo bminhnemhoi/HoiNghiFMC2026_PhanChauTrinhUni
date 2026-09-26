@@ -1,0 +1,59 @@
+question_id,ok,issues,note,passage_has_alt_value,passage_ocr,option_rank
+P-hbv-01#A3,True,,,neighbour,False,
+P-hbv-01|short|vi,True,,,,,
+P-hbv-01|short|en,True,,,,,
+P-hbv-01|mcq|vi|o0,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-01|mcq|en|o0,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-01|mcq|vi|o1,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-01|mcq|en|o1,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-02#A3,True,,,neighbour,False,
+P-hbv-02|short|vi,True,,,,,
+P-hbv-02|short|en,True,,,,,
+P-hbv-02|mcq|vi|o0,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-02|mcq|en|o0,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-02|mcq|vi|o1,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-02|mcq|en|o1,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-03#A3,True,,,,False,
+P-hbv-03|short|vi,True,,,,,
+P-hbv-03|short|en,True,,,,,
+P-hbv-03|mcq|vi|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-03|mcq|en|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-03|mcq|vi|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-03|mcq|en|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-04#A3,True,,,,False,
+P-hbv-04|short|vi,True,,,,,
+P-hbv-04|short|en,True,,,,,
+P-hbv-04|mcq|vi|o0,True,,,,,
+P-hbv-04|mcq|en|o0,True,,,,,
+P-hbv-04|mcq|vi|o1,True,,,,,
+P-hbv-04|mcq|en|o1,True,,,,,
+P-hbv-05#A3,True,,,,False,
+P-hbv-05|short|vi,True,,,,,
+P-hbv-05|short|en,True,,,,,
+P-hbv-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-hbv-06#A3,True,,,,False,
+P-hbv-06|short|vi,True,,,,,
+P-hbv-06|short|en,True,,,,,
+P-hbv-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-hbv-07#A3,True,,,neighbour;superseded,False,
+P-hbv-07|short|vi,True,,,,,
+P-hbv-07|short|en,True,,,,,
+P-hbv-07|mcq|vi|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-07|mcq|en|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-07|mcq|vi|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-07|mcq|en|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-08#A3,True,,,,False,
+P-hbv-08|short|vi,True,,,,,
+P-hbv-08|short|en,True,,,,,
+P-hbv-08|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-08|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-08|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-08|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-09#A3,True,,,,False,
+P-hbv-09|short|vi,True,,,,,
+P-hbv-09|short|en,True,,,,,
+P-hbv-09|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-hbv-10#A3,True,,,,False,
+P-hbv-10|short|vi,True,,,,,
+P-hbv-10|short|en,True,,,,,
+P-hbv-10|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,

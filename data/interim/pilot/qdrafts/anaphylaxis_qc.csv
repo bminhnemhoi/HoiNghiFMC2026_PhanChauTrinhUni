@@ -1,0 +1,5 @@
+question_id,ok,issues,note,passage_has_alt_value,passage_ocr,option_rank
+P-anaphylaxis-03#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-anaphylaxis-03|short|vi,True,,,,,
+P-anaphylaxis-03|short|en,True,,,,,
+P-anaphylaxis-03|mcq,True,,"bỏ trắc nghiệm có chủ đích: tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,

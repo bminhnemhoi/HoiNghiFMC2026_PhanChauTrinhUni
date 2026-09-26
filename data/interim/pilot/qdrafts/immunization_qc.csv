@@ -1,0 +1,23 @@
+question_id,ok,issues,note,passage_has_alt_value,passage_ocr,option_rank
+P-immunization-01#A3,True,,,neighbour,False,
+P-immunization-01|short|vi,True,,,,,
+P-immunization-01|short|en,True,,,,,
+P-immunization-01|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-01|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-01|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-01|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-02#A3,True,,,foreign:US,False,
+P-immunization-02|short|vi,True,,,,,
+P-immunization-02|short|en,True,,,,,
+P-immunization-02|mcq|vi|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-02|mcq|en|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-02|mcq|vi|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-02|mcq|en|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-03#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-immunization-03|short|vi,True,,,,,
+P-immunization-03|short|en,True,,,,,
+P-immunization-03|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-immunization-04#A3,True,,,,False,
+P-immunization-04|short|vi,True,,,,,
+P-immunization-04|short|en,True,,,,,
+P-immunization-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,

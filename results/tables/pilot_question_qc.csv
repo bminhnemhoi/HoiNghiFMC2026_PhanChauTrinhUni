@@ -1,0 +1,330 @@
+question_id,ok,issues,note,passage_has_alt_value,passage_ocr,option_rank
+P-anaphylaxis-03#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-anaphylaxis-03|short|vi,True,,,,,
+P-anaphylaxis-03|short|en,True,,,,,
+P-anaphylaxis-03|mcq,True,,"bỏ trắc nghiệm có chủ đích: tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-anaphylaxis_ocr-01#A3,True,,trang OCR: kiểm tay với ảnh trang,neighbour,True,
+P-anaphylaxis_ocr-01|short|vi,True,,,,,
+P-anaphylaxis_ocr-01|short|en,True,,,,,
+P-anaphylaxis_ocr-01|mcq,True,,"bỏ trắc nghiệm có chủ đích: tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-anaphylaxis_ocr-02#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-anaphylaxis_ocr-02|short|vi,True,,,,,
+P-anaphylaxis_ocr-02|short|en,True,,,,,
+P-anaphylaxis_ocr-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-anaphylaxis_ocr-03#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-anaphylaxis_ocr-03|short|vi,True,,,,,
+P-anaphylaxis_ocr-03|short|en,True,,,,,
+P-anaphylaxis_ocr-03|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-anaphylaxis_ocr-04#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-anaphylaxis_ocr-04|short|vi,True,,,,,
+P-anaphylaxis_ocr-04|short|en,True,,,,,
+P-anaphylaxis_ocr-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-anaphylaxis_ocr-05#A3,True,,trang OCR: kiểm tay với ảnh trang,neighbour,True,
+P-anaphylaxis_ocr-05|short|vi,True,,,,,
+P-anaphylaxis_ocr-05|short|en,True,,,,,
+P-anaphylaxis_ocr-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-anaphylaxis_ocr-06#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-anaphylaxis_ocr-06|short|vi,True,,,,,
+P-anaphylaxis_ocr-06|short|en,True,,,,,
+P-anaphylaxis_ocr-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-01#A3,True,,,,False,
+P-controls-01|short|vi,True,,,,,
+P-controls-01|short|en,True,,,,,
+P-controls-01|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-02#A3,True,,,,False,
+P-controls-02|short|vi,True,,,,,
+P-controls-02|short|en,True,,,,,
+P-controls-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-03#A3,True,,,,False,
+P-controls-03|short|vi,True,,,,,
+P-controls-03|short|en,True,,,,,
+P-controls-03|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-04#A3,True,,,,False,
+P-controls-04|short|vi,True,,,,,
+P-controls-04|short|en,True,,,,,
+P-controls-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-05#A3,True,,,,False,
+P-controls-05|short|vi,True,,,,,
+P-controls-05|short|en,True,,,,,
+P-controls-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-06#A3,True,,,,False,
+P-controls-06|short|vi,True,,,,,
+P-controls-06|short|en,True,,,,,
+P-controls-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-07#A3,True,,,,False,
+P-controls-07|short|vi,True,,,,,
+P-controls-07|short|en,True,,,,,
+P-controls-07|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-controls-08#A3,True,,,neighbour,False,
+P-controls-08|short|vi,True,,,,,
+P-controls-08|short|en,True,,,,,
+P-controls-08|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-08|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-08|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-08|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-controls-09#A3,True,,,,False,
+P-controls-09|short|vi,True,,,,,
+P-controls-09|short|en,True,,,,,
+P-controls-09|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-controls-09|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-controls-09|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-controls-09|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-dengue-01#A3,True,,,foreign:WHO_global;neighbour,False,
+P-dengue-01|short|vi,True,,,,,
+P-dengue-01|short|en,True,,,,,
+P-dengue-01|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dengue-01|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dengue-01|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dengue-01|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dengue-02#A3,True,,,foreign:WHO_global;neighbour,False,
+P-dengue-02|short|vi,True,,,,,
+P-dengue-02|short|en,True,,,,,
+P-dengue-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dengue-03#A3,True,,,foreign:US;foreign:WHO_global;neighbour,False,
+P-dengue-03|short|vi,True,,,,,
+P-dengue-03|short|en,True,,,,,
+P-dengue-03|mcq|vi|o0,True,,,,,
+P-dengue-03|mcq|en|o0,True,,,,,
+P-dengue-03|mcq|vi|o1,True,,,,,
+P-dengue-03|mcq|en|o1,True,,,,,
+P-dengue-04#A3,True,,,,False,
+P-dengue-04|short|vi,True,,,,,
+P-dengue-04|short|en,True,,,,,
+P-dengue-04|mcq|vi|o0,True,,,,,
+P-dengue-04|mcq|en|o0,True,,,,,
+P-dengue-04|mcq|vi|o1,True,,,,,
+P-dengue-04|mcq|en|o1,True,,,,,
+P-dengue-05#A3,True,,,superseded,False,
+P-dengue-05|short|vi,True,,,,,
+P-dengue-05|short|en,True,,,,,
+P-dengue-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dengue-06#A3,True,,,,False,
+P-dengue-06|short|vi,True,,,,,
+P-dengue-06|short|en,True,,,,,
+P-dengue-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dengue-08#A3,True,,,,False,
+P-dengue-08|short|vi,True,,,,,
+P-dengue-08|short|en,True,,,,,
+P-dengue-08|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dengue-09#A3,True,,,,False,
+P-dengue-09|short|vi,True,,,,,
+P-dengue-09|short|en,True,,,,,
+P-dengue-09|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dengue-10#A3,True,,,,False,
+P-dengue-10|short|vi,True,,,,,
+P-dengue-10|short|en,True,,,,,
+P-dengue-10|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-01#A3,True,,,,False,
+P-dm-01|short|vi,True,,,,,
+P-dm-01|short|en,True,,,,,
+P-dm-01|mcq|vi|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-01|mcq|en|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-01|mcq|vi|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-01|mcq|en|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía decoy trước",,,filler<decoy<vn<foreign
+P-dm-02#A3,True,,,,False,
+P-dm-02|short|vi,True,,,,,
+P-dm-02|short|en,True,,,,,
+P-dm-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-03#A3,True,,,,False,
+P-dm-03|short|vi,True,,,,,
+P-dm-03|short|en,True,,,,,
+P-dm-03|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-03|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-03|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-03|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-dm-04#A3,True,,,,False,
+P-dm-04|short|vi,True,,,,,
+P-dm-04|short|en,True,,,,,
+P-dm-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-05#A3,True,,,,False,
+P-dm-05|short|vi,True,,,,,
+P-dm-05|short|en,True,,,,,
+P-dm-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-06#A3,True,,,,False,
+P-dm-06|short|vi,True,,,,,
+P-dm-06|short|en,True,,,,,
+P-dm-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-07#A3,True,,,,False,
+P-dm-07|short|vi,True,,,,,
+P-dm-07|short|en,True,,,,,
+P-dm-07|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-dm-08#A3,True,,,,False,
+P-dm-08|short|vi,True,,,,,
+P-dm-08|short|en,True,,,,,
+P-dm-08|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-hbv-01#A3,True,,,neighbour,False,
+P-hbv-01|short|vi,True,,,,,
+P-hbv-01|short|en,True,,,,,
+P-hbv-01|mcq|vi|o0,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-01|mcq|en|o0,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-01|mcq|vi|o1,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-01|mcq|en|o1,True,,filler thử phía decoy trước,,,decoy<vn<foreign<filler
+P-hbv-02#A3,True,,,neighbour,False,
+P-hbv-02|short|vi,True,,,,,
+P-hbv-02|short|en,True,,,,,
+P-hbv-02|mcq|vi|o0,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-02|mcq|en|o0,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-02|mcq|vi|o1,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-02|mcq|en|o1,True,,filler thử phía decoy trước,,,filler<decoy<vn<foreign
+P-hbv-03#A3,True,,,,False,
+P-hbv-03|short|vi,True,,,,,
+P-hbv-03|short|en,True,,,,,
+P-hbv-03|mcq|vi|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-03|mcq|en|o0,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-03|mcq|vi|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-03|mcq|en|o1,True,,"dấu so sánh khác nhau giữa các phương án theo dữ liệu mẩu: >, >=; filler thử phía anchor trước",,,decoy<vn<foreign<filler
+P-hbv-04#A3,True,,,,False,
+P-hbv-04|short|vi,True,,,,,
+P-hbv-04|short|en,True,,,,,
+P-hbv-04|mcq|vi|o0,True,,,,,
+P-hbv-04|mcq|en|o0,True,,,,,
+P-hbv-04|mcq|vi|o1,True,,,,,
+P-hbv-04|mcq|en|o1,True,,,,,
+P-hbv-05#A3,True,,,,False,
+P-hbv-05|short|vi,True,,,,,
+P-hbv-05|short|en,True,,,,,
+P-hbv-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-hbv-06#A3,True,,,,False,
+P-hbv-06|short|vi,True,,,,,
+P-hbv-06|short|en,True,,,,,
+P-hbv-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-hbv-07#A3,True,,,neighbour;superseded,False,
+P-hbv-07|short|vi,True,,,,,
+P-hbv-07|short|en,True,,,,,
+P-hbv-07|mcq|vi|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-07|mcq|en|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-07|mcq|vi|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-07|mcq|en|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-hbv-08#A3,True,,,,False,
+P-hbv-08|short|vi,True,,,,,
+P-hbv-08|short|en,True,,,,,
+P-hbv-08|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-08|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-08|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-08|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-hbv-09#A3,True,,,,False,
+P-hbv-09|short|vi,True,,,,,
+P-hbv-09|short|en,True,,,,,
+P-hbv-09|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-hbv-10#A3,True,,,,False,
+P-hbv-10|short|vi,True,,,,,
+P-hbv-10|short|en,True,,,,,
+P-hbv-10|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-htn-01#A3,True,,,,False,
+P-htn-01|short|vi,True,,,,,
+P-htn-01|short|en,True,,,,,
+P-htn-01|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-01|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-01|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-01|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-03#A3,True,,,neighbour,False,
+P-htn-03|short|vi,True,,,,,
+P-htn-03|short|en,True,,,,,
+P-htn-03|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-03|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-03|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-03|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-htn-04#A3,True,,,,False,
+P-htn-04|short|vi,True,,,,,
+P-htn-04|short|en,True,,,,,
+P-htn-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-immunization-01#A3,True,,,neighbour,False,
+P-immunization-01|short|vi,True,,,,,
+P-immunization-01|short|en,True,,,,,
+P-immunization-01|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-01|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-01|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-01|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-immunization-02#A3,True,,,foreign:US,False,
+P-immunization-02|short|vi,True,,,,,
+P-immunization-02|short|en,True,,,,,
+P-immunization-02|mcq|vi|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-02|mcq|en|o0,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-02|mcq|vi|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-02|mcq|en|o1,True,,filler thử phía anchor trước,,,foreign<vn<decoy<filler
+P-immunization-03#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-immunization-03|short|vi,True,,,,,
+P-immunization-03|short|en,True,,,,,
+P-immunization-03|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-immunization-04#A3,True,,,,False,
+P-immunization-04|short|vi,True,,,,,
+P-immunization-04|short|en,True,,,,,
+P-immunization-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-malaria_ocr-01#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:US;foreign:WHO_global,True,
+P-malaria_ocr-01|short|vi,True,,,,,
+P-malaria_ocr-01|short|en,True,,,,,
+P-malaria_ocr-01|mcq,True,,bỏ trắc nghiệm có chủ đích: tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ,,,
+P-malaria_ocr-02#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-malaria_ocr-02|short|vi,True,,,,,
+P-malaria_ocr-02|short|en,True,,,,,
+P-malaria_ocr-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-malaria_ocr-03#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:WHO_global,True,
+P-malaria_ocr-03|short|vi,True,,,,,
+P-malaria_ocr-03|short|en,True,,,,,
+P-malaria_ocr-03|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-03|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-03|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-03|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-04#A3,True,,trang OCR: kiểm tay với ảnh trang,superseded,True,
+P-malaria_ocr-04|short|vi,True,,,,,
+P-malaria_ocr-04|short|en,True,,,,,
+P-malaria_ocr-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-malaria_ocr-05#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:US;foreign:WHO_global;superseded,True,
+P-malaria_ocr-05|short|vi,True,,,,,
+P-malaria_ocr-05|short|en,True,,,,,
+P-malaria_ocr-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-malaria_ocr-06#A3,True,,trang OCR: kiểm tay với ảnh trang,decoy,True,
+P-malaria_ocr-06|short|vi,True,,,,,
+P-malaria_ocr-06|short|en,True,,,,,
+P-malaria_ocr-06|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-06|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-06|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-06|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-07#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:US,True,
+P-malaria_ocr-07|short|vi,True,,,,,
+P-malaria_ocr-07|short|en,True,,,,,
+P-malaria_ocr-07|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-07|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-07|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-07|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-08#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-malaria_ocr-08|short|vi,True,,,,,
+P-malaria_ocr-08|short|en,True,,,,,
+P-malaria_ocr-08|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-tbhiv-01#A3,True,,,neighbour,False,
+P-tbhiv-01|short|vi,True,,,,,
+P-tbhiv-01|short|en,True,,,,,
+P-tbhiv-01|mcq|vi|o0,True,,,,,
+P-tbhiv-01|mcq|en|o0,True,,,,,
+P-tbhiv-01|mcq|vi|o1,True,,,,,
+P-tbhiv-01|mcq|en|o1,True,,,,,
+P-tbhiv-02#A3,True,,,,False,
+P-tbhiv-02|short|vi,True,,,,,
+P-tbhiv-02|short|en,True,,,,,
+P-tbhiv-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-tbhiv-03#A3,True,,,foreign:US;foreign:WHO_global;neighbour,False,
+P-tbhiv-03|short|vi,True,,,,,
+P-tbhiv-03|short|en,True,,,,,
+P-tbhiv-03|mcq|vi|o0,True,,,,,
+P-tbhiv-03|mcq|en|o0,True,,,,,
+P-tbhiv-03|mcq|vi|o1,True,,,,,
+P-tbhiv-03|mcq|en|o1,True,,,,,
+P-tbhiv-04#A3,True,,,neighbour,False,
+P-tbhiv-04|short|vi,True,,,,,
+P-tbhiv-04|short|en,True,,,,,
+P-tbhiv-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-tbhiv-05#A3,True,,,,False,
+P-tbhiv-05|short|vi,True,,,,,
+P-tbhiv-05|short|en,True,,,,,
+P-tbhiv-05|mcq|vi|o0,True,,,,,
+P-tbhiv-05|mcq|en|o0,True,,,,,
+P-tbhiv-05|mcq|vi|o1,True,,,,,
+P-tbhiv-05|mcq|en|o1,True,,,,,
+P-tbhiv-06#A3,True,,,,False,
+P-tbhiv-06|short|vi,True,,,,,
+P-tbhiv-06|short|en,True,,,,,
+P-tbhiv-06|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-tbhiv-07#A3,True,,,,False,
+P-tbhiv-07|short|vi,True,,,,,
+P-tbhiv-07|short|en,True,,,,,
+P-tbhiv-07|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,

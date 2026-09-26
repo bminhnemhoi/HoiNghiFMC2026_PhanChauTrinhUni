@@ -1,0 +1,42 @@
+question_id,ok,issues,note,passage_has_alt_value,passage_ocr,option_rank
+P-malaria_ocr-01#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:US;foreign:WHO_global,True,
+P-malaria_ocr-01|short|vi,True,,,,,
+P-malaria_ocr-01|short|en,True,,,,,
+P-malaria_ocr-01|mcq,True,,bỏ trắc nghiệm có chủ đích: tập giá trị Bộ Y tế nhiều mục (DR8) — trắc nghiệm một đáp án sẽ mơ hồ,,,
+P-malaria_ocr-02#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-malaria_ocr-02|short|vi,True,,,,,
+P-malaria_ocr-02|short|en,True,,,,,
+P-malaria_ocr-02|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-malaria_ocr-03#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:WHO_global,True,
+P-malaria_ocr-03|short|vi,True,,,,,
+P-malaria_ocr-03|short|en,True,,,,,
+P-malaria_ocr-03|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-03|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-03|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-03|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-04#A3,True,,trang OCR: kiểm tay với ảnh trang,superseded,True,
+P-malaria_ocr-04|short|vi,True,,,,,
+P-malaria_ocr-04|short|en,True,,,,,
+P-malaria_ocr-04|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-malaria_ocr-05#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:US;foreign:WHO_global;superseded,True,
+P-malaria_ocr-05|short|vi,True,,,,,
+P-malaria_ocr-05|short|en,True,,,,,
+P-malaria_ocr-05|mcq,True,,"bỏ trắc nghiệm có chủ đích: mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
+P-malaria_ocr-06#A3,True,,trang OCR: kiểm tay với ảnh trang,decoy,True,
+P-malaria_ocr-06|short|vi,True,,,,,
+P-malaria_ocr-06|short|en,True,,,,,
+P-malaria_ocr-06|mcq|vi|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-06|mcq|en|o0,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-06|mcq|vi|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-06|mcq|en|o1,True,,filler thử phía anchor trước,,,decoy<vn<foreign<filler
+P-malaria_ocr-07#A3,True,,trang OCR: kiểm tay với ảnh trang,foreign:US,True,
+P-malaria_ocr-07|short|vi,True,,,,,
+P-malaria_ocr-07|short|en,True,,,,,
+P-malaria_ocr-07|mcq|vi|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-07|mcq|en|o0,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-07|mcq|vi|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-07|mcq|en|o1,True,,filler thử phía decoy trước,,,foreign<vn<decoy<filler
+P-malaria_ocr-08#A3,True,,trang OCR: kiểm tay với ảnh trang,,True,
+P-malaria_ocr-08|short|vi,True,,,,,
+P-malaria_ocr-08|short|en,True,,,,,
+P-malaria_ocr-08|mcq,True,,"bỏ trắc nghiệm có chủ đích: không có giá trị nước ngoài/bản cũ nằm ngoài tập Bộ Y tế; mẩu không có mồi hợp lệ (DECISIONS 2026-09-26: giữ mẩu, ngoài H1/H2)",,,
