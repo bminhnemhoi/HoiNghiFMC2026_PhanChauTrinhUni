@@ -42,14 +42,19 @@ def test_docx_one_language_per_file(tmp_path):
     pytest.importorskip("docx")
     import docx
 
-    au = [{"name": "Bình Minh", "affiliation": "Khoa CNTT, TDTU, Việt Nam"}]
+    au = [{"name": "Binh Minh Ngo", "affiliation": "Khoa CNTT, TDTU, Việt Nam", "affiliation_en": "FIT, TDTU, Vietnam",
+           "email": "a@b.vn", "corresponding": True},
+          {"name": "B", "affiliation": "Khoa Y, PCTU, Việt Nam", "affiliation_en": "Faculty of Medicine, PCTU, Vietnam"}]
     d = fmc.parse(md())
     for lang in ("vi", "en"):
         out = tmp_path / f"a_{lang}.docx"
         fmc.build_docx(d, out, au, lang)
         text = "\n".join(p.text for p in docx.Document(out).paragraphs)
-        assert "TÊN ĐỀ TÀI" in text and "Bình Minh¹" in text and 0 < out.stat().st_size < 1_000_000
+        assert "TÊN ĐỀ TÀI" in text and "Binh Minh Ngo¹, B²" in text and 0 < out.stat().st_size < 1_000_000
         if lang == "vi":
             assert "ĐẶT VẤN ĐỀ: nội dung" in text and "KEYWORDS" not in text and "Chưa đăng." in text
+            assert "²Khoa Y, PCTU, Việt Nam" in text and "Tác giả liên hệ: Binh Minh Ngo, a@b.vn" in text
         else:
             assert "KEYWORDS: x; y; z" in text and "ĐẶT VẤN ĐỀ" not in text and "Not published." in text
+            assert "²Faculty of Medicine, PCTU, Vietnam" in text and "Corresponding author: Binh Minh Ngo" in text
+            assert "Khoa" not in text

@@ -130,6 +130,10 @@ def build_docx(doc: dict, out: Path, authors: list[dict], lang: str = "vi") -> N
          align=WD_ALIGN_PARAGRAPH.CENTER)
     for k, af in enumerate(aff):
         para(f"{'¹²³⁴⁵'[k]}{af}", italic=True, align=WD_ALIGN_PARAGRAPH.CENTER)
+    corr = [a for a in authors if a.get("corresponding") and a.get("email")]
+    for a in corr:                                  # corresponding author line (name + e-mail), language of the file
+        para(f"{'Tác giả liên hệ' if lang == 'vi' else 'Corresponding author'}: {a['name']}, {a['email']}",
+             align=WD_ALIGN_PARAGRAPH.CENTER, size=11)
     for name, text in secs[1:]:
         para(text, label=name.upper(), align=WD_ALIGN_PARAGRAPH.JUSTIFY)
     note = doc["note"] if lang == "vi" else (doc.get("note_en") or "")

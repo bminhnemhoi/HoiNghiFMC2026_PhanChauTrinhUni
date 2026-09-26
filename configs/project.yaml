@@ -43,8 +43,20 @@ rq3:
   split_unit: atom
   split_fractions: {ref: 0.2, cal: 0.4, test: 0.4}   # đề xuất; chốt trong bản OSF (T2.10)
   split_seed: 20261001
-authors:                             # FMC/journal byline; người dùng sửa họ tên đầy đủ + thêm đồng tác giả (HG1.9, HG7.10)
-  - {name: "Bình Minh", affiliation: "Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, Việt Nam", affiliation_en: "Faculty of Information Technology, Ton Duc Thang University, Vietnam"}
+authors:                             # FMC/journal byline — do người dùng cung cấp 27/9/2026 (tên giữ đúng như người dùng gõ)
+  - name: "Binh Minh Ngo"
+    affiliation: "Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, TP. Hồ Chí Minh, Việt Nam"
+    affiliation_en: "Faculty of Information Technology, Ton Duc Thang University, Ho Chi Minh City, Vietnam"
+    email: "ngobinhminh.st@tdtu.edu.vn"
+    corresponding: true
+  - name: "Binh Thong Ngo"
+    affiliation: "Khoa Y, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam"
+    affiliation_en: "Faculty of Medicine, Phan Chau Trinh University, Da Nang City, Vietnam"
+    email: "thong.nb.22yk1@pctu.edu.com"   # như người dùng gõ; tên miền trường là pctu.edu.vn — chờ xác nhận
+  - name: "Tran Doan Mai Huong"
+    affiliation: "Khoa Răng Hàm Mặt, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam"
+    affiliation_en: "Faculty of Odonto-Stomatology, Phan Chau Trinh University, Da Nang City, Vietnam"
+    email: "huong.tdm.24rhm1@pctu.edu.vn"
 qgen:
   mcq_order_seed: 20260926           # seeded shuffle for MCQ order 0; order 1 = order 0 rotated by 2 (i -> (i+2) mod 4);
                                      # also seeds the filler-side coin (vnsoc.qgen.mcq.orders, filler_side)
