@@ -249,8 +249,8 @@ def _gap(a: dict, b: dict, atom: dict) -> float:
         return max(abs(a["sys"] - b["sys"]), abs(a["dia"] - b["dia"]))
     if kind == "schedule":
         return 0.0 if list(a["seq"]) == list(b["seq"]) else float("inf")
-    if kind == "drugs":
-        return 0.0 if set(a["key_drugs"]) & set(b["key_drugs"]) else float("inf")
+    if kind == "drugs":   # a regimen that differs by any drug lies outside the other (value-set definition, §1.2)
+        return 0.0 if set(a["key_drugs"]) == set(b["key_drugs"]) else float("inf")
     if kind == "cat":
         return 0.0 if a["label"] == b["label"] else float("inf")
     raise ValueError(kind)

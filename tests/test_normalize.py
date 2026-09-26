@@ -83,3 +83,23 @@ def test_drugs():
 def test_cats():
     opts = {"one_step": ["mot buoc", "one-step"], "two_step": ["hai buoc", "two-step"]}
     assert parse_cats("Nghiệm pháp 75 g một bước", opts).labels == {"one_step"}
+
+
+# Grader fixes found by the pilot agents (26/9/2026) — cases taken from their reports, pre-freeze.
+def _vals(text, **atom):
+    from vnsoc.grade import parse_values
+
+    return [(f, (round(v.lo, 3), round(v.hi, 3), v.unit)) for f, v in parse_values(text, atom, "vi")]
+
+
+def test_weight_and_frequency_are_not_assumed_doses():
+    a = {"value_kind": "num", "unit": "ug", "context": {"mg_per_ml": 1, "weight_kg": 10}}
+    assert _vals("Trẻ 2 tuổi nặng 10 kg: tiêm bắp 0,25 mg", **a) == [("ok", (250.0, 250.0, "ug"))]
+    b = {"value_kind": "num", "unit": "mg/kg"}
+    assert _vals("Paracetamol 10–15 mg/kg/lần, 2 lần/ngày, cách 4–6 giờ", **b) == [("ok", (10.0, 15.0, "mg/kg"))]
+
+
+def test_ifcc_international_units_and_index():
+    assert _vals("HbA1c ≥ 9% (75 mmol/mol)", value_kind="num", unit="%") == [("ok", (9.0, 9.0, "%"))]
+    assert _vals("HTIG 3000–6000 đơn vị tiêm bắp", value_kind="num", unit="IU") == [("ok", (3000.0, 6000.0, "IU"))]
+    assert parse_nums("500 IU")[0].unit == "IU" and parse_nums("APRI 1,5 index")[0].unit == "index"

@@ -85,6 +85,13 @@ UNIT_ALIASES = {
     "tháng tuổi": "month", "months old": "month", "năm": "year", "year": "year", "years": "year",
     "tuổi": "year", "years old": "year", "viên": "tablet", "tablet": "tablet", "tablets": "tablet",
     "ống": "ampoule", "ampoule": "ampoule", "ampoules": "ampoule", "vial": "ampoule", "lọ": "ampoule",
+    # added 26/9/2026 from pilot-agent reports (pre-freeze): units that must NOT be taken as the atom's unit
+    "kg": "kg", "cm": "cm", "mmol/mol": "mmol/mol",
+    "iu": "IU", "ui": "IU", "đơn vị": "IU", "units": "IU", "international units": "IU",
+    "lần/ngày": "times/day", "lần mỗi ngày": "times/day", "times/day": "times/day", "times daily": "times/day",
+    "lần/tuần": "times/week", "lần": "times", "times": "times",
+    "mg base/kg/ngày": "mg/kg/day", "mg base/kg": "mg/kg", "mg/kg/tuần": "mg/kg/week", "mg/kg/week": "mg/kg/week",
+    "index": "index", "chỉ số": "index",
 }
 _UNIT_KEYS = sorted(UNIT_ALIASES, key=len, reverse=True)
 UNIT_RE = "(?:" + "|".join(re.escape(u) for u in _UNIT_KEYS) + r")(?![^\W\d_])"
@@ -293,6 +300,7 @@ def parse_schedules(text: str, min_len: int = 3) -> list[Schedule]:
 
 def _norm_drug_text(s: str) -> str:
     s = strip_accents(clean(s).lower())
+    s = re.sub(r"(?<![a-z0-9])([a-z]{2,5})[1-9](?![a-z0-9])", r"\1", s)   # table footnotes: "DTG1", "TAF2" -> "dtg", "taf"
     return re.sub(r"\s*(?:-|/|\+)\s*", "-", s)
 
 

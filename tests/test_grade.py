@@ -106,3 +106,37 @@ def test_mcq():
     assert grade_mcq("C", roles).decoy_match
     assert grade_mcq("ĐÁP ÁN: D", roles).label_name == "temporal"
     assert grade_mcq("không biết", roles).label_name == "abstain"
+
+
+def test_drug_regimens_conflict_unless_identical():
+    # _gap for drugs must agree with the value-set idea: a regimen differing by any drug is outside the MoH set
+    vn = {"key_drugs": ["tenofovir-disoproxil", "lamivudine", "dolutegravir"]}
+    other = {"key_drugs": ["tenofovir-alafenamide", "emtricitabine", "dolutegravir"]}
+    a = atom(value_kind="drugs", vn=[vn], foreign=[{"system": "US", "values": [other]}])
+    assert conflict_status(a) == "conflict"
+    same = atom(value_kind="drugs", vn=[vn], foreign=[{"system": "WHO_global", "values": [dict(vn)]}])
+    assert conflict_status(same) == "concordant"
+
+
+def test_footnote_digits_after_abbreviations():
+    from vnsoc.normalize_vi import parse_drugs
+
+    syn = {"dolutegravir": ["dtg"], "tenofovir-alafenamide": ["taf"], "lamivudine": ["3tc"]}
+    assert parse_drugs("TAF2 + 3TC + DTG1", syn).names == frozenset({"tenofovir-alafenamide", "lamivudine", "dolutegravir"})
+
+
+def test_grading_config_aliases_unambiguous():
+    import yaml
+
+    from vnsoc.normalize_vi import _norm_drug_text
+    from vnsoc.paths import paths
+
+    cfg = yaml.safe_load((paths().configs / "grading.yaml").read_text(encoding="utf-8"))
+    seen = {}
+    for inn, aliases in cfg["drugs"].items():
+        for a in [inn, *aliases]:
+            k = _norm_drug_text(a)
+            assert len(k) >= 3, f"bí danh quá ngắn: {a}"
+            assert seen.setdefault(k, inn) == inn or k == _norm_drug_text(inn), f"{a} trỏ tới {seen[k]} và {inn}"
+    for combo, parts in cfg["combos"].items():
+        assert all(p in cfg["drugs"] for p in parts), combo
