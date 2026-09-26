@@ -84,6 +84,30 @@ def check(atom: dict, syn, combos, root=None) -> list[str]:
     return probs
 
 
+def canonical_keys(atoms: list[dict], root=None) -> list[dict]:
+    """'5904/2019__9e6bbe13' (a second official copy saved by fetch_pdf) -> guideline '5904/2019', and the copy is
+    recorded as the chosen PDF in data/interim/pdf_choice.json (one choice per document, else the atoms conflict)."""
+    import re
+
+    f = paths(root).root / "data" / "interim" / "pdf_choice.json"
+    choice = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    out = []
+    for a in atoms:
+        m = re.fullmatch(r"(.+)__([0-9a-f]{8})", a["guideline"])
+        if m:
+            key, file = m.group(1), a["guideline"].replace("/", "_") + ".pdf"
+            prev = choice.get(key, {}).get("file")
+            if prev and prev != file:
+                raise SystemExit(f"{key}: hai lựa chọn PDF khác nhau ({prev} / {file})")
+            choice[key] = {"file": file, "reason": "bản chính thức thứ hai có lớp chữ, do agent thí điểm chọn "
+                                                   f"({a['atom_id']}); cần người xác nhận nguồn ở HG1.2/HG2.3"}
+            a = dict(a, guideline=key)
+        out.append(a)
+    if choice:
+        f.write_text(json.dumps(choice, ensure_ascii=False, indent=1), encoding="utf-8")
+    return out
+
+
 def enforce_decoy_rule(atom: dict) -> dict:
     """num/bp conflict atoms: the decoy is whatever the fixed rule gives (vnsoc.match.decoys.mirror_decoy);
     a stored decoy that differs is replaced and the change noted in extraction.decoy_rule."""
@@ -140,7 +164,7 @@ def main(argv=None) -> int:
 
     syn, combos = drug_tables()
     blocks = block_hashes()
-    atoms = [finalize(enforce_decoy_rule(a)) for a in load_topics(P.root / "data" / "interim" / "pilot")]
+    atoms = [finalize(enforce_decoy_rule(a)) for a in canonical_keys(load_topics(P.root / "data" / "interim" / "pilot"))]
     seen, keep, bad = set(), [], []
     for a in atoms:
         probs = check(a, syn, combos)

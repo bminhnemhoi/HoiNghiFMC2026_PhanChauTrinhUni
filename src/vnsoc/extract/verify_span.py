@@ -35,8 +35,21 @@ def norm(s: str | None) -> str:
     return _WS.sub(" ", s).strip()
 
 
+def pdf_choice(root=None) -> dict[str, str]:
+    """doc_key -> file name in data/raw/, when a document exists in several official copies (e.g. a scanned signed
+    decision and a text-layer copy of the attached guideline): data/interim/pdf_choice.json, written by code/people
+    with the reason; the corpus freeze hashes the chosen file."""
+    import json
+
+    f = paths(root).root / "data" / "interim" / "pdf_choice.json"
+    return {k: v["file"] for k, v in json.loads(f.read_text(encoding="utf-8")).items()} if f.exists() else {}
+
+
 def pdf_path(guideline: str, root=None) -> Path:
-    return paths(root).root / "data" / "raw" / (guideline.replace(" ", "").replace("/", "_") + ".pdf")
+    key = guideline.replace(" ", "")
+    raw = paths(root).root / "data" / "raw"
+    chosen = pdf_choice(root).get(key)
+    return raw / chosen if chosen else raw / (key.replace("/", "_") + ".pdf")
 
 
 @lru_cache(maxsize=32)

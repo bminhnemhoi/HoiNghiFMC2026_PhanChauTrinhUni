@@ -95,3 +95,13 @@ def test_ocr_sidecar_used_only_for_textless_pages(proj):
     assert r["ok"] and r["ocr"]
     (d / "meta.json").write_text(json.dumps({"pdf_sha256": "0" * 64}), encoding="utf-8")   # sidecar of another PDF
     assert ocr_pages(p) == frozenset()
+
+
+def test_pdf_choice_overrides_default_file(proj):
+    import json
+
+    f = proj / "data" / "interim" / "pdf_choice.json"
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(json.dumps({"5904/2019": {"file": "5904_2019__9e6bbe13.pdf", "reason": "text layer"}}), encoding="utf-8")
+    assert pdf_path("5904/2019", proj).name == "5904_2019__9e6bbe13.pdf"
+    assert pdf_path("2760/2023", proj).name == "2760_2023.pdf"
