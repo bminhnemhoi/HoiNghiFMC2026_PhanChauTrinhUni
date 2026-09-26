@@ -123,6 +123,9 @@ def enforce_decoy_rule(atom: dict) -> dict:
         return atom
     d, rule = choose_decoy(atom)
     if d is None:
+        if atom.get("decoy") and check_decoy(atom):    # no rule gives a valid decoy and the stored one fails:
+            ex = dict(atom.get("extraction") or {}, decoy_rule=f"none — {rule}")   # keep the atom, no decoy
+            return dict(atom, decoy=[], extraction=ex)       # (prereg: excluded from H1/H2, counted; descriptive only)
         return atom
     a = dict(atom)
     old = list(atom.get("decoy") or [])

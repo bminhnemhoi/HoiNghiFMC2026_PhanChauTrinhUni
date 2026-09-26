@@ -111,6 +111,10 @@ def check_decoy(atom: dict) -> list[str]:
             probs.append(f"mồi {d.get('text') or d} trùng tập giá trị Bộ Y tế")
         if any(_gap(s, d, atom) == 0 for s in srcs):
             probs.append(f"mồi {d.get('text') or d} trùng một nguồn đã ghi")
+        elif atom.get("value_kind") in ("num", "bp"):
+            tol_s = compute_tolerance(atom)
+            if tol_s and any(_gap(s, d, atom) < 2 * tol_s for s in srcs):   # windows overlap: graded as that source
+                probs.append(f"mồi {d.get('text') or d} nằm trong vùng dung sai của một nguồn đã ghi")
         # MoH values of a neighbouring context (another step/population/level of care; Atom.moh_neighbour) are
         # recorded MoH values too: a decoy touching one (gap 0, or < 2·tolerance for num/bp) is rejected.
         tol = compute_tolerance(atom) if atom.get("value_kind") in ("num", "bp") else 0.0

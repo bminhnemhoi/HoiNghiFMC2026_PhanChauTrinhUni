@@ -74,3 +74,11 @@ def test_check_decoy_blames_decoy_only_when_it_causes_indistinguishable():
          "superseded": [{"guideline": "3310/2019", "values": [{"lo": 35, "hi": 35}]}], "decoy": [{"lo": 25, "hi": 25}]}
     assert finalize(dict(a, decoy=[]))["conflict_status"] == "indistinguishable"
     assert check_decoy(a) == []
+
+
+def test_decoy_inside_tolerance_of_a_source_is_rejected():
+    # malaria OCR audit: decoy 0.2 sits 0.05 from the superseded 0.25 while tolerance is 0.125
+    a = {"value_kind": "num", "unit": "mg/kg/day", "vn": [{"lo": 0.5, "hi": 0.5}],
+         "foreign": [{"system": "WHO_global", "values": [{"lo": 1.0, "hi": 1.0}]}],
+         "superseded": [{"guideline": "2699/2020", "values": [{"lo": 0.25, "hi": 0.25}]}], "decoy": [{"lo": 0.2, "hi": 0.2}]}
+    assert any("dung sai" in p for p in check_decoy(a))

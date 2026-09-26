@@ -103,3 +103,10 @@ def test_ifcc_international_units_and_index():
     assert _vals("HbA1c ≥ 9% (75 mmol/mol)", value_kind="num", unit="%") == [("ok", (9.0, 9.0, "%"))]
     assert _vals("HTIG 3000–6000 đơn vị tiêm bắp", value_kind="num", unit="IU") == [("ok", (3000.0, 6000.0, "IU"))]
     assert parse_nums("500 IU")[0].unit == "IU" and parse_nums("APRI 1,5 index")[0].unit == "index"
+
+
+def test_daily_dose_converts_with_weight():
+    # malaria OCR audit (26/9/2026): "30 mg/ngày" at 60 kg is 0,5 mg/kg/ngày, not "30 mg"
+    assert parse_nums("30 mg/ngày")[0].unit == "mg/day"
+    assert convert(30, "mg/day", "mg/kg/day", {"weight_kg": 60}) == pytest.approx(0.5)
+    assert convert(30, "mg/day", "mg/kg/day", {}) is None

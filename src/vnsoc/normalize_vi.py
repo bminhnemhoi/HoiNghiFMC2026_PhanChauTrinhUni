@@ -91,6 +91,7 @@ UNIT_ALIASES = {
     "lần/ngày": "times/day", "lần mỗi ngày": "times/day", "times/day": "times/day", "times daily": "times/day",
     "lần/tuần": "times/week", "lần": "times", "times": "times",
     "mg base/kg/ngày": "mg/kg/day", "mg base/kg": "mg/kg", "mg/kg/tuần": "mg/kg/week", "mg/kg/week": "mg/kg/week",
+    "mg/ngày": "mg/day", "mg/day": "mg/day", "mg base/ngày": "mg/day", "mg/24 giờ": "mg/day", "mg/24h": "mg/day",
     "index": "index", "chỉ số": "index",
 }
 _UNIT_KEYS = sorted(UNIT_ALIASES, key=len, reverse=True)
@@ -119,6 +120,7 @@ def _edges(ctx: dict) -> dict:
         w = float(ctx["weight_kg"])
         e[("mg/kg", "mg")] = w
         e[("ug/kg", "ug")] = w
+        e[("mg/kg/day", "mg/day")] = w
     if (ctx or {}).get("mg_per_ml"):
         e[("ml", "mg")] = float(ctx["mg_per_ml"])
     if (ctx or {}).get("mg_per_tablet"):
