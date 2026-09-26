@@ -24,6 +24,21 @@ category": it is two values, whichever category comes first and whichever form t
 nor the foreign reading is credited; multi=True lets the analysis report such answers separately). A category that is
 named but negated or only a vehicle is not a value (normalize_vi.parse_cats). An atom's own pattern must not read a
 conditional mention differently for one category (P-dengue-03 colloid: DECISIONS 1.2.0, owner fix pending).
+
+Grader 1.3.0 (from the AI check of the pilot grading; the pilot itself stays reported with 1.2.0):
+  - rule 5 for every value kind: an answer line (or LLM-extracted answer) holding a number that is no value of the
+    atom's kind is label 5 (unit_mismatch), and a cat answer naming a drug (or, on a TB-phase atom, a TB code)
+    outside every category is label 5 ('unlisted'); without an answer line such a text is flagged needs_llm instead
+    of label 6. A cat answer that mentions a category without stating it (negated) keeps the 1.2.0 handling.
+    After review: an answer line that abstains is 6 and one that asks back which country (A0) is 1 BEFORE the number
+    test; ordinal labels and stem numbers inside a phrase are no values (_value_numbers).
+  - drugs: every drug of the answer must belong to a recorded regimen it names (key drugs + drugs of the item's
+    recorded text, pooled over items at gap 0, + the atom's background); otherwise the answer is a regimen of its own
+    (label 5). A '+' combination is one regimen. Excluded drugs ('không dùng EFV') are not read. An MoH regimen listed
+    with a superseded or decoy regimen is rule 7 like a conflicting foreign one (see regimen_fit, classify_value); an
+    answer line whose whole list is not in the MoH set is read piece by piece for rule 6 (_drug_segments_multi).
+  - normalize_vi: template slots ('<unit>' dropped, '<TDF>' kept as text), 'N /ULN', 'S mmHg / D mmHg', 'S D mmHg',
+    'S by D', '≥S mmHg or ≥D mmHg', mixed split forms, 'R H E', TB code letter order, more negation words.
 """
 from __future__ import annotations
 
@@ -32,6 +47,7 @@ import math
 import re
 from dataclasses import asdict, dataclass, field, replace
 from decimal import Decimal
+from functools import lru_cache
 
 from vnsoc import normalize_vi as nv
 
@@ -62,11 +78,22 @@ def _on_scale(n, atom: dict):
     return replace(n, lo=math.log10(n.lo), hi=math.log10(n.hi))
 ANS_LINE = re.compile(r"(?:ĐÁP\s*ÁN|Đáp\s*án|DAP\s*AN|ANSWER|Final\s+answer)\s*\**\s*[:：]\s*\**\s*(.+)", re.I)
 THINK = re.compile(r"<think>.*?</think>", re.S | re.I)
-ABSTAIN = re.compile(r"không\s+(?:rõ|chắc|biết|thể\s+xác\s+định|có\s+(?:đủ\s+)?(?:thông\s+tin|dữ\s+liệu))|"
-                     r"tôi\s+không\s+thể|không\s+đủ\s+thông\s+tin|i\s+(?:do\s+not|don't)\s+know|"
-                     r"cannot\s+(?:determine|answer|provide)|unable\s+to|not\s+sure|insufficient\s+information", re.I)
+# An explicit abstention (grader 1.3.0 uses it: rule 5, and cat answers, see _grade_short / parse_values).
+ABSTAIN = re.compile(
+    r"không\s+(?:rõ|chắc(?:\s+chắn)?|biết|thể\s+(?:xác\s+định|trả\s+lời|khẳng\s+định|đưa\s+ra)|"
+    r"có\s+(?:đủ\s+)?(?:thông\s+tin|dữ\s+liệu))|chưa\s+(?:rõ|có\s+(?:đủ\s+)?(?:thông\s+tin|dữ\s+liệu))|"
+    r"tôi\s+không\s+thể|không\s+đủ\s+(?:thông\s+tin|dữ\s+liệu)|"
+    r"\bi\s+(?:do\s+not|don't|don’t)\s+know\b|\bunknown\b|\bnot\s+sure\b|\bunsure\b|\buncertain\b|"
+    r"\bcannot\s+(?:determine|answer|provide|say|be\s+determined)\b|\bcan(?:'|’)t\s+(?:determine|answer|say)\b|"
+    r"\bunable\s+to\b|\binsufficient\s+(?:information|data)\b|\bnot\s+enough\s+(?:information|data)\b|"
+    r"\bno\s+(?:sufficient\s+|enough\s+|reliable\s+)?(?:information|data)(?:\s+(?:is\s+)?available)?\b", re.I)
 ASK_COUNTRY = re.compile(r"quốc\s+gia\s+nào|nước\s+nào|hướng\s+dẫn\s+(?:của\s+)?(?:nước|quốc\s+gia)\s+nào|"
-                         r"which\s+(?:country|guideline|jurisdiction)", re.I)
+                         r"theo\s+hướng\s+dẫn\s+nào|which\s+(?:country|guidelines?|jurisdiction|national)", re.I)
+# Numbers that label an ordinal, a line or a class, not a value ("ARV bậc 1", "first-line: nhóm 2", "type 2", "2nd"):
+# not counted by rule 5 (grader 1.3.0, after review).
+ORDINAL_LABEL_RE = re.compile(
+    r"(?<![^\W\d_])(?:bậc|tuyến|hàng|lines?|nhóm|groups?|loại|type|typ|độ|grade|giai\s+đoạn|stage|phase|cấp|level|"
+    r"mức|class)\s*\d+[a-z]?(?![\d.,]?\d)|(?<![\w.,])\d+\s*(?:st|nd|rd|th)(?![^\W\d_])", re.I)
 # Label 1 (context-aware) needs a NAMED foreign body/country in the same sentence as a non-MoH value, or together
 # with an explicit contrast phrase (prereg §6.3 rule 8; revised 2026-09-26 after the clinician review: generic
 # connectives such as "while", "however", "khác" and case-insensitive acronyms such as "who", "us" gave label 1 to
@@ -93,7 +120,7 @@ class Grade:
     foreign_sources: list = field(default_factory=list)   # 'source|version_date' of every matched foreign record
     superseded: list = field(default_factory=list)
     decoy_match: bool = False
-    parse_method: str = "none"      # answer_line | fallback | llm | none
+    parse_method: str = "none"      # answer_line | fallback | llm | none | unit_mismatch | unlisted (cat, 1.3.0)
     multi: bool = False
     partial: bool = False
     unit_assumed: bool = False
@@ -133,18 +160,52 @@ def parse_values(text: str, atom: dict, lang: str, synonyms=None, combos=None, r
     if kind == "schedule":
         return [("ok", s) for s in nv.parse_schedules(text, min_len=int(atom.get("min_schedule_len", 2)))]
     if kind == "drugs":
-        d = nv.parse_drugs(text, synonyms or {}, combos or {})
+        # grader 1.3.0: a drug named only to be excluded is not read ("… (không dùng EFV)", "TLD instead of TLE"); a
+        # list joined as one combination ("TDF + ETV") is flagged `joined` (see regimen_fit)
+        stated, joined = nv.stated_drugs_text(text, synonyms or {})
+        d = nv.parse_drugs(stated, synonyms or {}, combos or {})
         if resolve:
             d = nv.resolve_classes(d, resolve, combos)
-        return [("ok", d)] if d.names else []
+        return [("ok", nv.Drugs(d.names, joined=joined))] if d.names else []
     if kind == "cat":
         # one value per category named (grader 1.2.0): "Ringer lactate hoặc cao phân tử", "4HR hoặc 4HRE" and the
         # conditional "Ringer lactate; nếu không đáp ứng chuyển cao phân tử" are several values, graded by the
         # multi-value rule like num/drugs (label 5, or 1 when each value is attributed to its source); before 1.2.0
         # one Cat holding every label was label 2 whenever the MoH label was among them.
-        c = nv.parse_cats(text, atom.get("cat_options") or {})
+        c = parse_cat(text, atom)
         return [("ok", nv.Cat(frozenset([lab]))) for lab in sorted(c.labels)]
     raise ValueError(f"value_kind lạ: {kind}")
+
+
+def _tb_atom(options: dict) -> bool:
+    """A cat atom whose categories are TB phase codes (labels 'HRE', 'HR', 'RE'...)."""
+    return any(re.fullmatch(r"[HRZES]{2,5}", lab) for lab in options)
+
+
+def parse_cat(text: str, atom: dict) -> nv.Cat:
+    """Categories of a cat answer (grader 1.3.0 around normalize_vi.parse_cats): an explicit abstention is not a
+    category ('Không rõ' is not the answer 'Không' of a yes/no atom; 'No information available' is not 'No'), and on
+    a TB-phase atom a code the atom's patterns do not read in its written order is read in the one order they read
+    ('E H R' -> 'EHR' -> 'HRE'; letter order carries no meaning in TB notation), when exactly one reading exists."""
+    opts = atom.get("cat_options") or {}
+    text = ABSTAIN.sub(" ", text or "")
+    c = nv.parse_cats(text, opts)
+    if not _tb_atom(opts):
+        return c
+    t, codes = nv.tb_codes(text)
+    new = t
+    for m in reversed(codes):
+        if nv.parse_cats(m.group(0), opts).labels:
+            continue
+        reads: dict[frozenset, str] = {}
+        for p in itertools.permutations(m.group("c")):
+            q = m.group("d") + "".join(p)
+            labs = nv.parse_cats(q, opts).labels
+            if labs:
+                reads.setdefault(labs, q)
+        if len(reads) == 1:
+            new = new[:m.start()] + next(iter(reads.values())) + new[m.end():]
+    return c if new == t else nv.parse_cats(new, opts)
 
 
 # ------------------------------------------------------------------------------ matching
@@ -185,29 +246,178 @@ def _named(val):
     return val
 
 
-def classify_value(val, atom: dict) -> dict:
+# ------------------------------------------------------------------------------ drug regimens (grader 1.3.0)
+# A drug value item records only the DISCRIMINATING drugs of a regimen (key_drugs: 'cycloserine' for 'Bdq Lzd Cfz Cs
+# + 1 thuốc nhóm C'), so `matches` asks only that the answer names them (containment). Before 1.3.0 an answer naming
+# the key drugs PLUS other drugs was a full match ('TDF + 3TC' matched the MoH monotherapy 'TDF'; 'Bdq, Lzd, Cfz, Z,
+# E, R' matched C1a through bedaquiline), against prereg §6.2 ("a regimen differing by any drug lies outside the
+# other"). Since 1.3.0 every drug of the answer must belong to a recorded regimen it names.
+#   - The drugs of a regimen (regimen_drugs) are the key drugs and the drugs named in the recorded `text` of its item,
+#     pooled over the items at gap 0 (WHO 2026 C1a with ethionamide = MoH C1a with prothionamide), PLUS the atom's
+#     background: every drug named in some recorded text of the atom (MoH, foreign, superseded, decoy) that is the key
+#     drug of no item (3TC/FTC of HIV PEP, primaquine after an ACT, the companion drugs of the MDR-TB regimens). The
+#     background is one set per atom and is allowed in every regimen, so whether one source's text happens to write the
+#     backbone out ('+ primaquin liều duy nhất', '(hoặc FTC)') does not change which source an answer matches (after
+#     review of the first 1.3.0 draft: a WHO ACT + primaquine was 5, the MoH ACT + primaquine 2).
+#   - A class token in a recorded text ('Tenofovir 300 mg') names the member that is the item's own key drug, or every
+#     member when none is.
+#   - A drug that belongs to none of the regimens the answer names ('extra') makes the answer a regimen of its own: it
+#     matches no source (label 5; `partial` when it names an MoH key drug). Drugs the answer excludes ('không dùng EFV',
+#     'instead of TLE') are not read (normalize_vi.stated_drugs_text).
+#   - A list JOINED as one combination ('TDF + ETV', 'TLD + NVP'; Drugs.joined) is one regimen: one recorded regimen
+#     (with its gap-0 items) must hold every drug. Other lists ('TDF hoặc ETV', 'Bdq, Lfx, Cfz…') may spread over the
+#     regimens they name, which stay several values: an MoH regimen listed with a superseded or decoy regimen outside
+#     the MoH set is rule 7 (label 5, or 1 when attributed), as a conflicting foreign regimen already was.
+# One rule for MoH, foreign, superseded and decoy items. Recorded texts are read with the caller's drug tables
+# (configs/grading.yaml when none is given).
+_TEXT_DRUGS: dict = {}
+
+
+@lru_cache(maxsize=1)
+def _config_drug_tables() -> tuple[dict, dict]:
+    import yaml
+
+    from vnsoc.paths import paths
+
+    cfg = yaml.safe_load((paths().configs / "grading.yaml").read_text(encoding="utf-8")) or {}
+    return cfg.get("drugs") or {}, cfg.get("combos") or {}
+
+
+def _tables(synonyms, combos) -> tuple[dict, dict]:
+    """The caller's drug tables, or configs/grading.yaml when none is given."""
+    if synonyms is None:
+        return _config_drug_tables()
+    return synonyms, combos or {}
+
+
+def _item_drugs(item: dict, synonyms: dict, combos: dict) -> frozenset:
+    """Single drugs of one recorded item: its key drugs and the drugs named in its text (cached per text, key and table
+    objects; the tables are kept alive). A class token in the text names the item's own key member, else every member."""
+    key = (item.get("text") or "", tuple(item["key_drugs"]), id(synonyms), id(combos))
+    hit = _TEXT_DRUGS.get(key)
+    if hit is None or hit[0] is not synonyms or hit[1] is not combos:
+        own = nv.drug_leaves(item["key_drugs"], combos, classes="members")
+        names = nv.parse_drugs(key[0], synonyms, combos).names if key[0] else frozenset()
+        out = set(own)
+        for n in names:
+            if "|" in n:
+                out |= (set(n.split("|")) & own) or set(n.split("|"))
+            else:
+                out |= nv.drug_leaves([n], combos, classes="members")
+        hit = (synonyms, combos, frozenset(out))
+        _TEXT_DRUGS[key] = hit
+    return hit[2]
+
+
+def _recorded(atom: dict) -> list[dict]:
+    """Every recorded value item that grading reads (MoH, foreign, superseded, decoy; derived items are ignored)."""
+    items = list(atom.get("vn") or [])
+    items += [it for f in atom.get("foreign") or [] for it in f["values"] if not it.get("derived")]
+    items += [it for s in atom.get("superseded") or [] for it in s["values"] if not it.get("derived")]
+    return items + list(atom.get("decoy") or [])
+
+
+def background_drugs(atom: dict, synonyms=None, combos=None) -> frozenset:
+    """Drugs named in the recorded texts of a drug atom that are the key drug of no recorded item (see above)."""
+    syn, cmb = _tables(synonyms, combos)
+    items = _recorded(atom)
+    named = set().union(*(_item_drugs(it, syn, cmb) for it in items)) if items else set()
+    keys = set().union(*(nv.drug_leaves(it["key_drugs"], cmb, classes="members") for it in items)) if items else set()
+    return frozenset(named - keys)
+
+
+def regimen_drugs(item: dict, atom: dict, synonyms=None, combos=None) -> set:
+    """Single drugs of the regimen a drug item stands for: key drugs and text drugs of the item and of every recorded
+    item at gap 0, plus the atom's background (see the section comment above)."""
+    syn, cmb = _tables(synonyms, combos)
+    out: set = set(background_drugs(atom, syn, cmb))
+    for it in [x for x in _recorded(atom) if _gap(x, item, atom) == 0] or [item]:
+        out |= _item_drugs(it, syn, cmb)
+    return out
+
+
+def regimen_fit(val, atom: dict, synonyms=None, combos=None) -> tuple[list[dict], list[str]]:
+    """(recorded items the drug answer matches, extra drugs). An item matches when the answer names its key drugs
+    (`matches`) and every drug of the answer belongs to the regimens it names: the union of their regimens for a list,
+    ONE regimen for a joined combination (val.joined). extra: the drugs outside (for a joined list, outside the nearest
+    regimen); [] when the answer names no recorded key drug (then nothing matches anyway). A class token ('tenofovir')
+    is extra only when no member belongs."""
+    items = [it for it in _recorded(atom) if matches(val, it, atom)[0]]
+    if not items:
+        return [], []
+    syn, cmb = _tables(synonyms, combos)
+    leaves = nv.drug_leaves(val.names, cmb)
+
+    def outside(known: set) -> list[str]:
+        return sorted(n for n in leaves if n not in known and not ("|" in n and set(n.split("|")) & known))
+
+    if not getattr(val, "joined", False):
+        ex = outside(set().union(*(regimen_drugs(it, atom, syn, cmb) for it in items)))
+        return ([], ex) if ex else (items, [])
+    families: dict[frozenset, list[dict]] = {}
+    for it in items:
+        families.setdefault(frozenset(it["key_drugs"]), []).append(it)
+    fit: list[dict] = []
+    nearest: list[str] | None = None
+    for fam in families.values():
+        ex = outside(regimen_drugs(fam[0], atom, syn, cmb))
+        if not ex:
+            fit += fam
+        elif nearest is None or len(ex) < len(nearest):
+            nearest = ex
+    return (fit, []) if fit else ([], nearest or [])
+
+
+def extra_drugs(val, atom: dict, synonyms=None, combos=None) -> list[str]:
+    """Drugs of a drug answer outside the recorded regimens it names (regimen_fit)."""
+    return regimen_fit(val, atom, synonyms, combos)[1]
+
+
+def classify_value(val, atom: dict, synonyms=None, combos=None) -> dict:
     """Sources one parsed value matches. foreign_conflict: it matches a foreign value lying OUTSIDE the MoH set (a
     value-level test; a system can have one concordant and one conflicting record, e.g. WHO 2026 vs WHO 2019). A
     foreign drug value reached only through a class token ('tenofovir' for TAF) is under-specification, not a second
-    regimen, so it does not set foreign_conflict."""
-    r = {"vn": False, "foreign": [], "superseded": [], "decoy": False, "partial": False, "foreign_conflict": False}
+    regimen, so it does not set foreign_conflict. Drugs (grader 1.3.0): only the items of regimen_fit match; a list
+    with a drug outside every regimen it names ('extra') matches no source; other_conflict: the list also names a
+    superseded or decoy regimen outside the MoH set (rule 7, like foreign_conflict)."""
+    r = {"vn": False, "foreign": [], "superseded": [], "decoy": False, "partial": False, "foreign_conflict": False,
+         "other_conflict": False, "extra": [], "sources": []}
     vn = atom.get("vn") or []
+    drugs = atom["value_kind"] == "drugs"
+    fit = None
+    if drugs:
+        items, r["extra"] = regimen_fit(val, atom, synonyms, combos)
+        fit = {id(it) for it in items}
+
+    def hit_(it) -> bool:
+        return matches(val, it, atom)[0] and (fit is None or id(it) in fit)
+
     for it in vn:
         ok, part = matches(val, it, atom)
+        if ok and fit is not None and id(it) not in fit:
+            ok, part = False, True                   # the MoH key drugs are named, inside another regimen
         r["vn"] |= ok
         r["partial"] |= part
-    r["sources"] = []
+    if drugs and not fit:
+        return r
+
+    def outside(it) -> bool:
+        return all(_gap(v, it, atom) > 0 for v in vn)
+
     for f in atom.get("foreign") or []:
-        hit = [it for it in f["values"] if not it.get("derived") and matches(val, it, atom)[0]]
+        hit = [it for it in f["values"] if not it.get("derived") and hit_(it)]
         if hit:
             r["foreign"].append(f["system"])
             r["sources"].append(f"{f.get('source', '')}|{f.get('version_date', '')}")
-            r["foreign_conflict"] |= any(all(_gap(v, it, atom) > 0 for v in vn) and matches(_named(val), it, atom)[0]
-                                         for it in hit)
+            r["foreign_conflict"] |= any(outside(it) and matches(_named(val), it, atom)[0] for it in hit)
     for s in atom.get("superseded") or []:
-        if any(matches(val, it, atom)[0] for it in s["values"] if not it.get("derived")):
+        hit = [it for it in s["values"] if not it.get("derived") and hit_(it)]
+        if hit:
             r["superseded"].append(s["guideline"])
-    r["decoy"] = any(matches(val, it, atom)[0] for it in atom.get("decoy") or [])
+            r["other_conflict"] |= drugs and any(outside(it) and matches(_named(val), it, atom)[0] for it in hit)
+    hit = [it for it in atom.get("decoy") or [] if hit_(it)]
+    r["decoy"] = bool(hit)
+    r["other_conflict"] |= drugs and any(outside(it) and matches(_named(val), it, atom)[0] for it in hit)
     return r
 
 
@@ -239,6 +449,46 @@ def _distinct(vals: list) -> list:
     return out
 
 
+def _names_drug(text: str, atom: dict, synonyms=None, combos=None) -> bool:
+    """A cat answer states a drug of the drug tables, or (TB-phase atom) a TB phase code, that it does not negate (a
+    value, grader 1.3.0: see _grade_short)."""
+    syn, cmb = _tables(synonyms, combos)
+    if nv.parse_drugs(nv.stated_drugs_text(text, syn)[0], syn, cmb).names:
+        return True
+    return _tb_atom(atom.get("cat_options") or {}) and bool(nv.tb_codes(text)[1])
+
+
+def _stem_numbers(atom: dict) -> list:
+    """Numbers of the question stem as recorded in the atom (population, condition, intervention; the question is
+    rendered from them)."""
+    pop = atom.get("population")
+    texts = list(pop.values()) if isinstance(pop, dict) else [pop]
+    texts += [atom.get("condition"), atom.get("intervention")]
+    return [n for x in texts if isinstance(x, str) for n in nv.parse_nums(x, "vi")]
+
+
+def _restated(n, stem: list) -> bool:
+    """A number that repeats a number of the question stem (same bounds; a unit on one side only is allowed)."""
+    return any(math.isclose(n.lo, s.lo) and math.isclose(n.hi, s.hi) and (n.unit == s.unit or None in (n.unit, s.unit))
+               for s in stem)
+
+
+# A bare quantity: the whole answer is one number (or range) with at most one unit word ('4 tháng', '6 months', '2').
+BARE_QUANTITY_RE = re.compile(r"^\W*(?:[≥≤<>]\s*)?\d[\d.,\s-]*(?:[^\W\d_][^\s\d]{0,11})?[\W_]*$")
+
+
+def _value_numbers(span: str, atom: dict, lang: str) -> list:
+    """Numbers of a span that could be a value in another unit or kind (rule 5; grader 1.3.0, after review): ordinal
+    and class labels ('ARV bậc 1', 'type 2') are not counted, nor are numbers restated from the question stem inside a
+    phrase that restates the question ('PEP within 72 hours', 'OGTT at 24–28 weeks', 'standard 6-month regimen'). A
+    bare quantity is the answer the model gives, stem number or not ('4 tháng' to the drugs of the 4-month phase: 5)."""
+    nums = nv.parse_nums(ORDINAL_LABEL_RE.sub(" ", span), lang)
+    if BARE_QUANTITY_RE.match(nv.clean(span)):
+        return nums
+    stem = _stem_numbers(atom)
+    return [n for n in nums if not _restated(n, stem)]
+
+
 def _sentences(text: str) -> list[str]:
     return [x for x in SENT_SPLIT.split(text or "") if x.strip()]
 
@@ -265,7 +515,7 @@ def _attributed(text: str, atom: dict, lang: str, synonyms=None, combos=None,
     for sent in _sentences(text):
         for kind, seg in _name_segments(sent):
             for flag, v in parse_values(seg, atom, lang, synonyms, combos, resolve):
-                out.append((kind, flag, classify_value(v, atom)))
+                out.append((kind, flag, classify_value(v, atom, synonyms, combos)))
     if any(f == "ok" for _, f, _ in out):
         out = [x for x in out if x[1] == "ok"]
     return [(k, c) for k, _, c in out]
@@ -276,15 +526,23 @@ def _attribution_aware(span: str, atom: dict, lang: str, synonyms=None, combos=N
     """Label 1 for an answer giving several values (prereg §6.3 rules 6-7): every non-MoH value must sit in a segment
     introduced by a named foreign source, and at least one MoH value in a segment introduced by a Vietnam/MoH marker
     or by no name. 'Theo Bộ Y tế: 5-10 hoặc 15' attaches the foreign value to the MoH marker, so it is label 5.
-    conflicting=True (drug lists): a list that also contains a conflicting foreign regimen counts as non-MoH."""
+    conflicting=True (drug lists): a list that also contains a conflicting foreign regimen (since 1.3.0 also a
+    superseded or decoy regimen outside the MoH set) counts as non-MoH."""
     av = _attributed(span, atom, lang, synonyms, combos, resolve)
 
     def foreign_hit(c) -> bool:
-        return conflicting and c["foreign_conflict"]
+        return conflicting and (c["foreign_conflict"] or c["other_conflict"])
 
     moh = [k for k, c in av if c["vn"] and not foreign_hit(c)]
     non = [k for k, c in av if not c["vn"] or foreign_hit(c)]
     return bool(moh) and bool(non) and all(k == "foreign" for k in non) and any(k in (None, "vn") for k in moh)
+
+
+def _drug_segments_multi(span: str, atom: dict, lang: str, synonyms=None, combos=None, resolve=None) -> bool:
+    """A drug answer that, read piece by piece (sentences cut at every named source, as rule 6), holds at least two
+    drug lists, one of them in the MoH set (grader 1.3.0; see _grade_short)."""
+    av = _attributed(span, atom, lang, synonyms, combos, resolve)
+    return len(av) >= 2 and any(c["vn"] for _, c in av)
 
 
 def _sentence_aware(text: str, atom: dict, lang: str, synonyms=None, combos=None, resolve=None) -> bool:
@@ -295,7 +553,7 @@ def _sentence_aware(text: str, atom: dict, lang: str, synonyms=None, combos=None
             continue
         if CONTRAST.search(sent):
             return True
-        if any(f == "ok" and not classify_value(v, atom)["vn"]
+        if any(f == "ok" and not classify_value(v, atom, synonyms, combos)["vn"]
                for f, v in parse_values(sent, atom, lang, synonyms, combos, resolve)):
             return True
     return False
@@ -358,17 +616,47 @@ def _grade_short(output: str, atom: dict, lang: str, synonyms, combos, extracted
         g.parsed = [repr(v) for _, v in vals]
         return g
     if not vals:
-        if atom["value_kind"] == "num" and nv.parse_nums(span, lang) and method == "answer_line":
-            g.parse_method = "unit_mismatch"  # a value was given but in an unconvertible unit
+        # prereg §6.3 rule 5, for every value kind since 1.3.0: an answer line (or LLM-extracted answer) holding a
+        # number that is not a value of the atom's kind ('0 mg' to a yes/no atom, '4 tháng' to a drug list, '140
+        # mmHg' alone to a BP atom) is a value, label 5 (unit_mismatch), not an abstention; so is a cat answer naming
+        # a drug outside every category ('rifampicin, isoniazid, pyrazinamide' to a closed set of TB phases:
+        # 'unlisted'). Without an answer line the same text goes to the LLM extractor (needs_llm) instead of label 6.
+        # A cat answer that mentions a category but does not state it ('Dextran 40 không được khuyến cáo', negated) is
+        # handled as before 1.3.0 (label 6): a number inside a product name must not tell it from 'Ringer lactate
+        # không được khuyến cáo'.
+        # After review of the first 1.3.0 draft, BEFORE the number rule: an answer line that asks back which country or
+        # guideline applies (A0) is label 1, and an answer line that abstains ('Không rõ, cần hỏi bác sĩ trong 24 giờ',
+        # 'Insufficient information (depends on age ≥ 14 years)') is label 6, whatever number it mentions; numbers
+        # restated from the question stem and ordinal labels are not counted (_value_numbers).
+        cat = atom["value_kind"] == "cat"
+        line = method in ("answer_line", "llm")
+        if line and condition == "A0" and ASK_COUNTRY.search(span):
+            g.label, g.label_name = 1, LABELS[1]
+            return g
+        if line and ABSTAIN.search(span):
+            g.label, g.label_name = 6, LABELS[6]
+            return g
+        if cat and nv.cat_mentioned(ABSTAIN.sub(" ", span), atom.get("cat_options") or {}):
+            number = drug = False
+        else:
+            number = bool(_value_numbers(span, atom, lang))
+            drug = not number and cat and _names_drug(span, atom, synonyms, combos)
+        if line and (number or drug):
+            g.parse_method = "unit_mismatch" if number else "unlisted"
             g.label, g.label_name = 5, LABELS[5]
             return g
-        g.parse_method = "none" if method == "fallback" else method
-        g.label = 1 if (ASK_COUNTRY.search(full_text) and condition == "A0") else 6
-        g.label_name = LABELS[g.label]
+        if ASK_COUNTRY.search(full_text) and condition == "A0":
+            g.parse_method = "none" if method == "fallback" else method
+            g.label, g.label_name = 1, LABELS[1]
+        elif method == "fallback" and (number or drug):
+            g.needs_llm = True                        # label None until the LLM extraction (DR9)
+        else:
+            g.parse_method = "none" if method == "fallback" else method
+            g.label, g.label_name = 6, LABELS[6]
         return g
     g.parsed = [repr(v) for _, v in vals]
     g.unit_assumed = any(f == "assumed" for f, _ in vals)
-    cls = [classify_value(v, atom) for _, v in vals]
+    cls = [classify_value(v, atom, synonyms, combos) for _, v in vals]
     g.decoy_match = any(c["decoy"] for c in cls)
     g.partial = any(c["partial"] for c in cls) and not any(c["vn"] for c in cls)
     if len(cls) > 1 and not all(c["vn"] for c in cls):
@@ -386,11 +674,29 @@ def _grade_short(output: str, atom: dict, lang: str, synonyms, combos, extracted
     g.foreign_systems = sorted(set(c["foreign"]))
     g.foreign_sources = sorted(set(c["sources"]))
     g.superseded = sorted(set(c["superseded"]))
-    if c["vn"] and c.get("foreign_conflict") and atom["value_kind"] == "drugs":
+    if c["vn"] and (c.get("foreign_conflict") or c.get("other_conflict")) and atom["value_kind"] == "drugs":
         # one drug list containing both the MoH regimen and a conflicting foreign regimen (value-level test: a
-        # concordant WHO 2026 record is not vetoed by a conflicting WHO 2019 record of the same system)
+        # concordant WHO 2026 record is not vetoed by a conflicting WHO 2019 record of the same system); since 1.3.0
+        # also a superseded or decoy regimen outside the MoH set ('TLD + EFV': MoH and decoy, two regimens)
         g.multi = True
         aware = _attribution_aware(span, atom, lang, synonyms, combos, conflicting=True, resolve=resolve)
+        g.label = 1 if aware else 5
+        g.label_name = LABELS[g.label]
+        return g
+    if not c["vn"] and atom["value_kind"] == "drugs" and _drug_segments_multi(span, atom, lang, synonyms, combos,
+                                                                              resolve):
+        # grader 1.3.0 (after review): the whole answer line is one drug list, which an unrecorded regimen given for a
+        # named foreign body makes 'extra' ('Theo Bộ Y tế: TDF + 3TC + DTG. Theo CDC (US): TDF/FTC + DRV/r'). Read
+        # piece by piece it holds an MoH regimen and other regimens: rule 6, as for num atoms (1 when attributed).
+        g.multi = True
+        aware = _attribution_aware(span, atom, lang, synonyms, combos, conflicting=True, resolve=resolve)
+        if aware:
+            cls = [c for _, c in _attributed(span, atom, lang, synonyms, combos, resolve)]
+            g.vn_match = True
+            g.foreign_systems = sorted({s for x in cls for s in x["foreign"]})
+            g.foreign_sources = sorted({s for x in cls for s in x["sources"]})
+            g.superseded = []
+            g.partial = False
         g.label = 1 if aware else 5
         g.label_name = LABELS[g.label]
         return g

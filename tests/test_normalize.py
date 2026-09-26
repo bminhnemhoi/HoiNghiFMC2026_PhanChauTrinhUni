@@ -535,3 +535,131 @@ def test_anchored_pattern_reread_is_bounded():
 
     assert parse_cats("Truyền dịch; " + "HES không được dùng; " * 10, FLUID_OPTS).labels == set()
     assert parse_cats("Truyền dịch; " + "HES không được dùng; " * (_MAX_CLAUSES + 5), FLUID_OPTS).labels == {"colloid"}
+
+
+# ================================================================== grader 1.3.0 (27/9/2026, pre-freeze; self-written)
+from vnsoc.normalize_vi import cat_mentioned, clean, drug_leaves, join_tb_letters  # noqa: E402
+
+
+@pytest.mark.parametrize("text,want", [
+    ("5 <unit>", "5"), ("0,5 <đơn vị> mg", "0,5 mg"), ("<giá trị> 20 ml/kg/giờ", "20 ml/kg/giờ"),
+    ("<b>140</b>/<b>90</b>", "140 / 90"), ("3 <times> /ULN", "3 x ULN"),
+    ("1 /ULN", "1 x ULN"), ("2 lần /ULN", "2 x ULN"), ("2x/ULN", "2 x ULN"), ("2 times / ULN", "2 x ULN"),
+    ("1,5 /ULN", "1,5 x ULN"),
+    # untouched: comparisons, numbers inside brackets, a ratio without a number, ranges with '<'
+    ("< 140 và > 90", "< 140 và > 90"), ("<5 tuổi>", "<5 tuổi>"), ("120-129/<80", "120-129/<80"),
+    ("ALT/ULN 2", "ALT/ULN 2"), ("tuổi <5 hoặc >10", "tuổi <5 hoặc >10"),
+])
+def test_clean_placeholders_and_uln_slash(text, want):
+    assert clean(text) == want
+
+
+@pytest.mark.parametrize("text,bp", [
+    ("140 mmHg / 90 mmHg", BP(140, 90)), ("≥ 130 mmHg/≥ 80 mmHg", BP(130, 80, ">=")), ("140 mmHg over 90", BP(140, 90)),
+    ("140 90 mmHg", BP(140, 90)), ("130 mmHg 80 mmHg", BP(130, 80)), ("HA 150 100", BP(150, 100)),
+    ("BP ≥ 140 ≥ 90", BP(140, 90, ">=")), ("blood pressure 130 80", BP(130, 80)),
+])
+def test_blood_pressure_unit_per_part_and_space_1_3_0(text, bp):
+    assert parse_bps(text) == [bp]
+
+
+@pytest.mark.parametrize("text", [
+    "140 90",                                   # no mmHg, no BP word: two numbers, not read
+    "130-139 80-89 mmHg", "140 90-99 mmHg",     # range ends
+    "130 120 mmHg", "160 140 mmHg",             # implausible pair (difference < 20, diastolic > 130)
+    "≥ 140 < 90 mmHg",                          # opposite comparators
+    "tuổi 60 80 mmHg",
+])
+def test_blood_pressure_space_guards(text):
+    assert parse_bps(text) == []
+
+
+def test_blood_pressure_words_between_numbers_unchanged():
+    assert parse_bps("140 over 90 mmHg") == [BP(140, 90)]                   # BP_RE, no comparator
+    assert parse_bps("140 hoặc 90 mmHg") == []
+
+
+@pytest.mark.parametrize("text,want", [
+    ("R H E", "RHE"), ("4 R H E", "4 RHE"), ("R-H-E", "RHE"), ("H R Z E", "HRZE"), ("2HRZE/4R H E", "2HRZE/4RHE"),
+    ("r h e", "r h e"),                          # capitals only
+    ("vitamin E", "vitamin E"), ("HR 80", "HR 80"), ("HA R", "HA R"), ("E. coli", "E. coli"),
+])
+def test_join_tb_letters(text, want):
+    assert join_tb_letters(text) == want
+
+
+def test_tb_letters_in_cats():
+    opts = {"HRE": [r"(?<![a-z0-9])(?:hre|rhe)(?![a-z])"], "HR": [r"(?<![a-z0-9])(?:hr|rh)(?![a-z])"]}
+    assert parse_cats("R H E", opts).labels == {"HRE"}
+    assert parse_cats("R H", opts).labels == {"HR"}
+    assert parse_cats("không dùng R H E", opts).labels == frozenset()       # negation reads the joined code too
+
+
+def test_cat_mentioned_reads_negated_mentions():
+    opts = {"colloid": [r"\bhes\b", "dextran"], "crystalloid": ["ringer"]}
+    assert cat_mentioned("Dextran 40 không được khuyến cáo", opts)
+    assert cat_mentioned("HES", opts) and not cat_mentioned("500 ml/giờ", opts)
+
+
+def test_drug_leaves():
+    combos = {"BPaL": ["bedaquiline", "pretomanid", "linezolid"], "artemether-lumefantrine": ["artemether", "lumefantrine"]}
+    cls = "tenofovir-disoproxil|tenofovir-alafenamide"
+    assert drug_leaves({"BPaL", "quinine+clindamycin"}, combos) == {"bedaquiline", "pretomanid", "linezolid", "quinine",
+                                                                   "clindamycin"}
+    assert drug_leaves({"artemether-lumefantrine"}, combos) == {"artemether", "lumefantrine"}
+    assert drug_leaves({cls}, combos) == {cls}
+    assert drug_leaves({cls}, combos, classes="members") == {"tenofovir-disoproxil", "tenofovir-alafenamide"}
+
+
+# ------------------------------------------------------------------ grader 1.3.0 after the independent review
+SYN_MINI = {"tenofovir-disoproxil": ["tdf"], "lamivudine": ["3tc"], "dolutegravir": ["dtg"], "efavirenz": ["efv"],
+            "nevirapine": ["nvp"], "entecavir": ["etv"], "emtricitabine": ["ftc"], "pyrazinamide": ["pyrazinamid"],
+            "ethambutol": [], "tenofovir-disoproxil+lamivudine+dolutegravir": ["tld"],
+            "tenofovir-disoproxil+lamivudine+efavirenz": ["tle"]}
+
+
+@pytest.mark.parametrize("text,names,joined", [
+    ("TDF + 3TC + DTG (không dùng EFV)", {"tenofovir-disoproxil", "lamivudine", "dolutegravir"}, True),
+    ("TDF + 3TC + DTG, not EFV", {"tenofovir-disoproxil", "lamivudine", "dolutegravir"}, True),
+    ("TLD instead of TLE", {"tenofovir-disoproxil", "lamivudine", "dolutegravir"}, False),
+    ("TLE instead of TLD", {"tenofovir-disoproxil", "lamivudine", "efavirenz"}, False),
+    ("không dùng EFV hoặc NVP; TDF + 3TC + DTG", {"tenofovir-disoproxil", "lamivudine", "dolutegravir"}, True),
+    ("EFV or NVP should be avoided", set(), False),
+    ("không dùng EFV, TDF + 3TC + DTG", {"tenofovir-disoproxil", "lamivudine", "dolutegravir"}, True),
+    ("stop pyrazinamide and ethambutol", set(), False), ("ngừng pyrazinamid và ethambutol", set(), False),
+    ("TDF + ETV", {"tenofovir-disoproxil", "entecavir"}, True), ("TDF hoặc ETV", {"tenofovir-disoproxil", "entecavir"}, False),
+    ("TDF, ETV", {"tenofovir-disoproxil", "entecavir"}, False), ("TDF and ETV", {"tenofovir-disoproxil", "entecavir"}, False),
+    ("TDF + 3TC (hoặc FTC) + DTG", {"tenofovir-disoproxil", "lamivudine", "emtricitabine", "dolutegravir"}, False),
+    ("TDF + 3TC. DTG", {"tenofovir-disoproxil", "lamivudine", "dolutegravir"}, False),
+    ("chứa TDF", {"tenofovir-disoproxil"}, False),                     # 'chứa' (contains) is not 'chưa'
+])
+def test_stated_drugs_text(text, names, joined):
+    from vnsoc.normalize_vi import stated_drugs_text
+
+    stated, j = stated_drugs_text(text, SYN_MINI)
+    assert (set(parse_drugs(stated, SYN_MINI).names), j) == (names, joined)
+
+
+@pytest.mark.parametrize("text,codes", [
+    ("HRZE", ["HRZE"]), ("E H R", ["EHR"]), ("2HRZE/4HR", ["2HRZE", "4HR"]), ("RHZ", ["RHZ"]),
+    ("HR", []), ("HRR", []), ("HER2", []), ("không dùng HRZE", []), ("hrze", []), ("ESR", ["ESR"]),
+])
+def test_tb_codes(text, codes):
+    from vnsoc.normalize_vi import tb_codes
+
+    assert [m.group(0) for m in tb_codes(text)[1]] == codes
+
+
+@pytest.mark.parametrize("text,bp", [
+    ("≥140 mmHg or ≥90 mmHg", BP(140, 90, ">=")), ("≥ 130 mmHg hoặc ≥ 80 mmHg", BP(130, 80, ">=")),
+    ("140 by 90 mmHg", BP(140, 90)), ("130-139 mmHg / 80-89 mmHg", BP(130, 80, ">=")),
+    ("SBP 140 mmHg, 90 mmHg DBP", BP(140, 90)), ("90 mmHg DBP, SBP 140 mmHg", BP(140, 90)),
+])
+def test_blood_pressure_forms_after_review(text, bp):
+    assert parse_bps(text) == [bp]
+
+
+@pytest.mark.parametrize("text", ["140 mmHg hoặc 150 mmHg", "140 or 90", "≥ 140 mmHg or < 90 mmHg",
+                                  "HA tâm thu ≥ 140 mmHg 30 phút sau nghỉ", "SBP 140 mmHg, 150 mmHg DBP"])
+def test_no_blood_pressure_after_review(text):
+    assert parse_bps(text) == []

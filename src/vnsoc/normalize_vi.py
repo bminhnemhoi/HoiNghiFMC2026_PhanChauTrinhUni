@@ -22,6 +22,13 @@ Conventions
   lower bounds, "120–129/<80" and opposite comparators ("≥140/<90") are no BP; a negated or vehicle mention of a
   category ("không dùng X", "X rather than", "HES in 0.9% saline") is not that category (parse_cats, same rule for
   every label and a Vietnamese phrase for every English one; negation words read with their accents).
+- Grader 1.3.0: template words echoed from the prompt ("<unit>", "<đơn vị>") are dropped, a filled slot ("<TDF>",
+  "4 <weeks>") keeps its text, and "2 /ULN", "2 lần /ULN" read "2 x ULN" (clean); a BP with a unit on each part
+  ("140 mmHg / 90 mmHg"), two numbers separated by a space in a BP context ("140 90 mmHg"), "140 by 90", "≥140 mmHg
+  or ≥90 mmHg" and mixed split forms ("SBP 140 mmHg, 90 mmHg DBP") are one value; TB letters written apart ("R H E")
+  are one code string in parse_cats; drug_leaves gives the single drugs behind combinations; a drug named only to be
+  excluded is not read (stated_drugs_text, the negation rules of parse_cats) and a "+" list is flagged as one
+  combination; TB phase codes are found by tb_codes.
 """
 from __future__ import annotations
 
@@ -34,6 +41,24 @@ from dataclasses import dataclass, field
 DASHES = "‐‑‒–—―−"
 FRACTIONS = {"½": 0.5, "¼": 0.25, "¾": 0.75, "⅓": 1 / 3}
 SUPERSCRIPTS = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹⁻", "0123456789-")
+# Angle-bracket slots of the answer template (grader 1.3.0, revised after review). The template words themselves
+# (configs/conditions.yaml: "<giá trị> <đơn vị>", "<value> <unit>", "<chữ cái>", "<letter>") and markup tags ("<b>",
+# "</b>", "<br/>") are dropped: "2 <unit> /ULN" reads "2 /ULN". Any other text in a slot is what the model filled in
+# ("4 <weeks>", "<TDF>", "<isoniazid and rifampicin>", "2 <times> /ULN"): the brackets go and the text stays (the
+# first 1.3.0 draft deleted it, so "<TDF>" was an abstention and "4 <weeks>" was read in the atom's unit). A slot opens
+# after the start, a space, "(", "[" or ":" with a letter right after "<", and closes on a non-space not followed by a
+# digit, so "ALT<ULN", "< 140 và > 90", "<5 tuổi", "120–129/<80" and "DNA>2000" are never touched.
+TEMPLATE_WORD_RE = re.compile(r"(?:giá\s*trị|đơn\s*vị|chữ\s*cái|values?|units?|letters?)", re.I)
+TAG_RE = re.compile(r"</?(?:b|i|u|s|em|strong|br|p|sup|sub|span|div|mark|small|code)\s*/?>", re.I)
+SLOT_RE = re.compile(r"(?<![^\s(\[:：])<(?P<c>[^\W\d_](?:[^<>\n]{0,58}[^\s<>])?)>(?![.,]?\d)")
+
+
+def _slot(m: re.Match) -> str:
+    c = m.group("c")
+    return " " if TEMPLATE_WORD_RE.fullmatch(c) else f" {c} "
+# A multiple of the upper limit of normal written with a slash ("2 /ULN", "2 lần /ULN", "2x/ULN", "2 times / ULN": the
+# unit slot of the answer template) is "2 x ULN" (grader 1.3.0). A slash without a number before it ("ALT/ULN") stays.
+ULN_SLASH_RE = re.compile(r"(?<=\d)\s*(?:(?:lần|x|×|times?)(?![^\W\d_])\s*)?/\s*(?=ULN(?![^\W\d_]))", re.I)
 
 
 def clean(text: str) -> str:
@@ -42,6 +67,7 @@ def clean(text: str) -> str:
         t = t.replace(d, "-")
     t = t.replace(" ", " ").replace(" ", " ").replace("μ", "µ")
     t = t.replace("≧", "≥").replace("≦", "≤").replace("=>", "≥").replace(">=", "≥").replace("<=", "≤")
+    t = ULN_SLASH_RE.sub(" x ", SLOT_RE.sub(_slot, TAG_RE.sub(" ", t)))  # grader 1.3.0 (see SLOT_RE)
     # a power of ten keeps its caret ("2×10³" -> "2×10^3", grader 1.2.0); other superscripts are unit exponents
     t = re.sub(r"(?<![\d.,])10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)", lambda m: "10^" + m.group(1).translate(SUPERSCRIPTS), t)
     t = re.sub(r"(?<=\d)\s*\*\s*(?=10\s*\^)", "×", t)    # "2*10^3" is 2×10³ (before: "210^3", read as 210)
@@ -95,6 +121,7 @@ UNIT_ALIASES = {
     "x10^9/l": "10^9/L", "×10^9/l": "10^9/L", "x 10^9/l": "10^9/L", "× 10^9/l": "10^9/L",
     "x109/l": "10^9/L", "g/l tiểu cầu": "10^9/L",
     "mg": "mg", "µg": "ug", "mcg": "ug", "ug": "ug", "microgram": "ug", "micrograms": "ug", "g": "g", "gram": "g",
+    "grams": "g", "gam": "g", "milligram": "mg", "milligrams": "mg",          # grader 1.3.0 (after review)
     "ml": "ml", "l": "l", "lít": "l", "lit": "l",
     "%": "%", "giờ": "h", "gio": "h", "h": "h", "hr": "h", "hrs": "h", "hour": "h", "hours": "h", "tiếng": "h",
     "phút": "min", "min": "min", "minute": "min", "minutes": "min", "ngày": "day", "day": "day", "days": "day",
@@ -214,6 +241,9 @@ def _set_repr(s: frozenset) -> str:
 @dataclass(frozen=True, repr=False)
 class Drugs:
     names: frozenset = field(default_factory=frozenset)
+    # grader 1.3.0: the answer joins its drugs as ONE combination ("TDF + ETV"; stated_drugs_text). Not part of the
+    # value's identity (equality, hash, repr).
+    joined: bool = field(default=False, compare=False)
 
     def __repr__(self) -> str:
         return f"Drugs(names={_set_repr(self.names)})"
@@ -630,9 +660,11 @@ def _parse_nums(t: str, lang: str) -> list[Num]:
 # ends a range whose diastolic is no range ("120–129/<80", the ACC/AHA "elevated" category) is no BP value (after
 # review: 1.2.0 read it as 129/80 '<', i.e. near the US 130/80); nor is a pair with opposite comparators ("≥140/<90",
 # isolated systolic hypertension), in every BP form.
+# Grader 1.3.0: a unit after the systolic part ("140 mmHg / 90 mmHg", "140 mmHg over 90 mmHg") is the same value, and
+# "140 by 90" reads as "140 over 90".
 BP_RE = re.compile(
-    rf"(?:(?P<cmp>{CMP_RE})\s*)?(?<![\d.,])(?<!\d-)(?<!\d\s-)(?<!\d-\s)(?<!\d\s-\s)(?P<s>\d{{2,3}})"
-    rf"(?:\s*/\s*|\s+(?:over|trên)\s+)(?:(?P<cmp2>{CMP_RE})\s*)?(?P<d>\d{{2,3}})(?!\s*(?:u/l|iu|ui))", re.I)
+    rf"(?:(?P<cmp>{CMP_RE})\s*)?(?<![\d.,])(?<!\d-)(?<!\d\s-)(?<!\d-\s)(?<!\d\s-\s)(?P<s>\d{{2,3}})(?:\s*mm\s*Hg)?"
+    rf"(?:\s*/\s*|\s+(?:over|trên|by)\s+)(?:(?P<cmp2>{CMP_RE})\s*)?(?P<d>\d{{2,3}})(?!\s*(?:u/l|iu|ui))", re.I)
 
 
 def _opposite(*cmps: str | None) -> bool:
@@ -643,8 +675,10 @@ def _opposite(*cmps: str | None) -> bool:
 # atom is a threshold (P-htn-01, P-htn-03), so a range is read as the threshold at its LOWER bounds, BP(S1, D1, '>=')
 # (grader 1.2.0; before, the inner '139/80' was read as a BP). The same rule for every source: the ACC/AHA stage-1
 # range reads 130/80 (US), the MoH/ESC grade-1 range reads 140/90. A bp target atom would need an interval type.
+# Grader 1.3.0: a unit after the systolic range ("130–139 mmHg / 80–89 mmHg") is the same value.
 BP_RANGE_RE = re.compile(
-    rf"(?:(?P<cmp>{CMP_RE})\s*)?(?<![\d.,])(?P<s>\d{{2,3}})\s*-\s*(?P<s2>\d{{2,3}})\s*/\s*(?P<d>\d{{2,3}})\s*-\s*"
+    rf"(?:(?P<cmp>{CMP_RE})\s*)?(?<![\d.,])(?P<s>\d{{2,3}})\s*-\s*(?P<s2>\d{{2,3}})(?:\s*mm\s*Hg)?\s*/\s*(?P<d>\d{{2,3}})"
+    rf"\s*-\s*"
     rf"(?P<d2>\d{{2,3}})(?![\d.,]?\d)", re.I)
 # Split form: "HA tâm thu ≥ 140 mmHg và/hoặc HA tâm trương ≥ 90 mmHg", "HATT (HATTh) ≥ 140 và HATTr ≥ 90",
 # "SBP ≥140 and/or DBP ≥90 mmHg", "≥130 mmHg systolic or ≥80 mmHg diastolic", "HA ≥ 140 mmHg (tâm thu) và/hoặc
@@ -671,12 +705,20 @@ def _bp_value_first(label: str, c: str, v: str, r: str) -> str:
             rf"(?![^\W\d_])\s*\)?")
 
 
+# Grader 1.3.0: the two parts may mix the forms ("SBP 140 mmHg, 90 mmHg DBP", "140 mmHg tâm thu, tâm trương 90").
+# Group names: s*/d* values, c* comparators, u* "trở lên", r* range ends; _BP_SPLIT_RANGES pairs each r* with its value.
 BP_SPLIT_RE = re.compile("|".join([
     _bp_label_first(_SYS, "c1", "s1", "u1", "r1") + _JOIN + _bp_label_first(_DIA, "c2", "d1", "u2", "r2"),
     _bp_label_first(_DIA, "c3", "d2", "u3", "r3") + _JOIN + _bp_label_first(_SYS, "c4", "s2", "u4", "r4"),
     _bp_value_first(_SYS, "c5", "s3", "r5") + _JOIN + _bp_value_first(_DIA, "c6", "d3", "r6"),
     _bp_value_first(_DIA, "c7", "d4", "r7") + _JOIN + _bp_value_first(_SYS, "c8", "s4", "r8"),
+    _bp_label_first(_SYS, "c9", "s5", "u5", "r9") + _JOIN + _bp_value_first(_DIA, "c10", "d5", "r10"),
+    _bp_value_first(_SYS, "c11", "s6", "r11") + _JOIN + _bp_label_first(_DIA, "c12", "d6", "u6", "r12"),
+    _bp_label_first(_DIA, "c13", "d7", "u7", "r13") + _JOIN + _bp_value_first(_SYS, "c14", "s7", "r14"),
+    _bp_value_first(_DIA, "c15", "d8", "r15") + _JOIN + _bp_label_first(_SYS, "c16", "s8", "u8", "r16"),
 ]), re.I)
+_BP_SPLIT_RANGES = ["s1", "d1", "d2", "s2", "s3", "d3", "d4", "s4", "s5", "d5", "s6", "d6", "d7", "s7", "d8", "s8"]
+_BP_SPLIT_UP = {"c1": "u1", "c2": "u2", "c3": "u3", "c4": "u4", "c9": "u5", "c12": "u6", "c13": "u7", "c16": "u8"}
 # Two bare numbers joined by a conjunction ("≥ 140 và/hoặc ≥ 90 mmHg", "140 và 90 mmHg", "HA 140 and 90"; grader
 # 1.2.0): read only with a BP context (mmHg after the second number, or HA/huyết áp/BP/blood pressure right before)
 # and a plausible pair (diastolic ≤ 130, systolic − diastolic ≥ 20), so "140 và 130 mmHg" (two systolic values) is
@@ -685,6 +727,22 @@ BP_WORDS_RE = re.compile(
     r"(?P<ctx>(?:huyết\s*áp|(?-i:HA|BP)|blood\s+pressure)\s*(?:là|:|=|of)?\s*)?"
     rf"(?:(?P<cmp>{CMP_RE})\s*)?(?P<s>{_BPV}){_MMHG}\s*[,;]?\s*(?:và\s*/\s*(?:hoặc|hay)|and\s*/\s*or|và|and)\s*"
     rf"(?:(?P<cmp2>{CMP_RE})\s*)?(?P<d>{_BPV})(?P<mm>\s*mm\s*Hg)?", re.I)
+# Two numbers separated by a space only ("140 90 mmHg", "140 mmHg 90 mmHg", "HA 140 90"; grader 1.3.0): read last, with
+# the context and plausibility of BP_WORDS_RE (mmHg after either number, or HA/huyết áp/BP/blood pressure right before;
+# diastolic ≤ 130, systolic − diastolic ≥ 20), comparison signs as symbols only (a word such as "trên"/"over" between
+# the numbers is BP_RE's), and never the end of a range ("130-139 80-89 mmHg", "140 90-99").
+BP_SPACE_RE = re.compile(
+    r"(?P<ctx>(?:huyết\s*áp|(?-i:HA|BP)|blood\s+pressure)\s*(?:là|:|=|of)?\s*)?"
+    rf"(?:(?P<cmp>[≥≤<>])\s*)?(?<!\d-)(?<!\d\s-)(?<!\d-\s)(?<!\d\s-\s)(?P<s>{_BPV})(?P<mm1>\s*mm\s*Hg)?\s+"
+    rf"(?:(?P<cmp2>[≥≤<>])\s*)?(?P<d>{_BPV})(?!\s*-\s*\d)(?:(?P<mm>\s*mm\s*Hg)|(?!\s*[^\W\d_]|\s*%))", re.I)
+# (the second number is followed by mmHg or by no word at all: "HA ≥ 140 mmHg 30 phút sau nghỉ" is no BP 140/30)
+# Two numbers joined by "or"/"hoặc"/"hay" with mmHg after EACH ("≥140 mmHg or ≥90 mmHg", "≥ 140 mmHg hoặc ≥ 90 mmHg";
+# grader 1.3.0, after review): the usual wording of "systolic ≥ 140 or diastolic ≥ 90". Plausibility as BP_WORDS_RE
+# (diastolic ≤ 130, systolic − diastolic ≥ 20), so "140 mmHg hoặc 150 mmHg" (two systolic values) is not a BP; bare
+# "140 or 90" without both units stays unread (between two numbers "or" lists alternatives).
+BP_OR_RE = re.compile(
+    rf"(?:(?P<cmp>{CMP_RE})\s*)?(?P<s>{_BPV})\s*mm\s*Hg\s*[,;]?\s*(?:hoặc(?:\s+là)?|hay|or)\s*"
+    rf"(?:(?P<cmp2>{CMP_RE})\s*)?(?P<d>{_BPV})\s*mm\s*Hg", re.I)
 
 
 def _first(m: re.Match, prefix: str, n: int) -> str | None:
@@ -696,8 +754,9 @@ def _bp_ok(s: float, d: float) -> bool:
 
 
 def parse_bps(text: str) -> list[BP]:
-    """Blood pressures written as 'S/D' ('S over D', 'S trên D'), a range 'S1–S2/D1–D2' (read at its lower bounds),
-    split into systolic and diastolic parts, or as two numbers joined by 'và'/'and' in a BP context; reading order."""
+    """Blood pressures written as 'S/D' ('S over D', 'S trên D', 'S mmHg / D mmHg'), a range 'S1–S2/D1–D2' (read at
+    its lower bounds), split into systolic and diastolic parts, or as two numbers joined by 'và'/'and' or (grader
+    1.3.0) by a space only, in a BP context; reading order."""
     t = strip_citations(text)
     found: list[tuple[int, BP]] = []
     taken: list[tuple[int, int]] = []
@@ -709,17 +768,15 @@ def parse_bps(text: str) -> list[BP]:
         return None if not u else ">=" if re.search(r"lên|higher|more|above|greater", u, re.I) else "<="
 
     for m in BP_SPLIT_RE.finditer(t):
-        s, d = float(_first(m, "s", 4)), float(_first(m, "d", 4))
-        ranges = [(m.group(v), m.group(f"r{i}")) for i, v in enumerate(
-            ["s1", "d1", "d2", "s2", "s3", "d3", "d4", "s4"], 1) if m.group(f"r{i}")]
+        s, d = float(_first(m, "s", 8)), float(_first(m, "d", 8))
+        ranges = [(m.group(v), m.group(f"r{i}")) for i, v in enumerate(_BP_SPLIT_RANGES, 1) if m.group(f"r{i}")]
         if any(float(hi) <= float(lo) for lo, hi in ranges):
             continue                                     # '140-90' is not a range
-        part = [_cmp_of(m.group(c)) or up_cmp(m.group(u) if u else None)
-                for c, u in (("c1", "u1"), ("c2", "u2"), ("c3", "u3"), ("c4", "u4"), ("c5", None), ("c6", None),
-                             ("c7", None), ("c8", None))]
+        part = [_cmp_of(m.group(f"c{i}")) or up_cmp(m.group(_BP_SPLIT_UP[f"c{i}"]) if f"c{i}" in _BP_SPLIT_UP else None)
+                for i in range(1, 17)]
         if _opposite(*part):
             continue                                     # 'tâm thu ≥ 140 và tâm trương < 90' is no threshold pair
-        cmp = _cmp_of(_first(m, "c", 8)) or up_cmp(_first(m, "u", 4))
+        cmp = _cmp_of(_first(m, "c", 16)) or up_cmp(_first(m, "u", 8))
         if cmp is None and ranges:
             cmp = ">="                                   # a range read at its lower bound
         if _bp_ok(s, d):
@@ -737,12 +794,27 @@ def parse_bps(text: str) -> list[BP]:
         if free(m) and (m.group("ctx") or m.group("mm")) and _bp_ok(s, d) and d <= 130 and s - d >= 20:
             found.append((m.start(), BP(s, d, _cmp_of(m.group("cmp") or m.group("cmp2")))))
             taken.append(m.span())
+    for m in BP_OR_RE.finditer(t):                       # grader 1.3.0: "≥140 mmHg or ≥90 mmHg"
+        s, d = float(m.group("s")), float(m.group("d"))
+        if not free(m) or _opposite(_cmp_of(m.group("cmp")), _cmp_of(m.group("cmp2"))):
+            continue
+        if _bp_ok(s, d) and d <= 130 and s - d >= 20:
+            found.append((m.start(), BP(s, d, _cmp_of(m.group("cmp") or m.group("cmp2")))))
+            taken.append(m.span())
     for m in BP_RE.finditer(t):
         if not free(m) or _opposite(_cmp_of(m.group("cmp")), _cmp_of(m.group("cmp2"))):
             continue
         s, d = float(m.group("s")), float(m.group("d"))
         if _bp_ok(s, d):
             found.append((m.start(), BP(s, d, _cmp_of(m.group("cmp") or m.group("cmp2")))))
+            taken.append(m.span())
+    for m in BP_SPACE_RE.finditer(t):                    # grader 1.3.0: "140 90 mmHg" (read last)
+        s, d = float(m.group("s")), float(m.group("d"))
+        if not free(m) or _opposite(_cmp_of(m.group("cmp")), _cmp_of(m.group("cmp2"))):
+            continue
+        if (m.group("ctx") or m.group("mm1") or m.group("mm")) and _bp_ok(s, d) and d <= 130 and s - d >= 20:
+            found.append((m.start(), BP(s, d, _cmp_of(m.group("cmp") or m.group("cmp2")))))
+            taken.append(m.span())
     return [b for _, b in sorted(found, key=lambda x: x[0])]
 
 
@@ -880,6 +952,33 @@ def resolve_classes(d: Drugs, choice: dict[str, str], combos: dict[str, list[str
     return Drugs(frozenset(_collapse({choice.get(n, n) for n in d.names}, combos)))
 
 
+def drug_leaves(names, combos: dict[str, list[str]] | None = None, classes: str = "keep") -> set[str]:
+    """The single drugs behind parsed drug names (grader 1.3.0): a combination (a `combos` key such as 'BPaL' or
+    'artemether-lumefantrine', or a named regimen 'a+b+c') is replaced by its parts, recursively. A class token 'a|b'
+    ('tenofovir') is kept (classes='keep': it stands for one unknown member) or replaced by all its members
+    (classes='members': a recorded text naming the class names every member)."""
+    out: set[str] = set()
+    todo = list(names)
+    seen: set[str] = set()
+    while todo:
+        n = todo.pop()
+        if n in seen:
+            continue
+        seen.add(n)
+        if "|" in n:
+            if classes == "members":
+                todo += n.split("|")
+            else:
+                out.add(n)
+        elif n in (combos or {}):
+            todo += list(combos[n])
+        elif "+" in n:
+            todo += n.split("+")
+        else:
+            out.add(n)
+    return out
+
+
 def drugs_cover(names, key) -> tuple[bool, bool]:
     """(every drug of `key` is named, some drug of `key` is named). A class token 'a|b' ('tenofovir') names at most
     one required member: 'tenofovir' satisfies [tenofovir-disoproxil] but not [tenofovir-disoproxil,
@@ -944,29 +1043,36 @@ _FILLER = (r"(?:dung\s+dịch|dịch|các|loại|phác\s+đồ|thuốc|dùng|s�
            r"using|give|giving|of|>|≥|trên|above|over)")
 _NEG_PRE_ALTS = [
     r"\b(?:không|chẳng)(?:\s+(?:bao\s+giờ|còn|nên|được|cần|phải))*"
-    r"(?:\s+(?:dùng|sử\s+dụng|truyền|chọn|cho|là|phải\s+là|khuyến\s+cáo|khuyến\s+nghị|chỉ\s+định|ưu\s+tiên|kê))?",
+    r"(?:\s+(?:dùng|sử\s+dụng|truyền|chọn|cho|là|phải\s+là|khuyến\s+cáo|khuyến\s+nghị|chỉ\s+định|ưu\s+tiên|kê|"
+    r"phối\s+hợp|kết\s+hợp))?",                           # 1.3.0: "không phối hợp X" (drug lists)
     r"\bchứ\s+không(?:\s+phải)?(?:\s+là)?", r"\bcũng\s+không", r"\bmà\s+không\s+(?:có|dùng|cần)",
     r"\bkhông\s+kèm(?:\s+theo)?", r"\b(?:(?:nên|cần|phải)\s+)?tránh(?:\s+(?:dùng|sử\s+dụng|truyền))?",
     r"\bthay\s+vì", r"\bthay\s+cho", r"\bngoại\s+trừ",
-    r"\bnot(?:\s+(?:use|using|give|giving|with|recommended|recommend))?",
+    r"\bnot(?:\s+(?:use|using|give|giving|with|recommended|recommend|combined\s+with|plus))?",
     r"\bno(?:\s+longer\s+(?:use|using|give|giving|recommended|recommend))?", r"\bnever(?:\s+(?:use|give))?",
     r"\bnor", r"\bneither", r"\bavoid(?:s|ed|ing)?", r"\bwithout", r"\binstead\s+of", r"\brather\s+than",
     r"\bin\s+place\s+of", r"\bexcept(?:\s+for)?",
     r"\b(?:do|does|did|should|must)\s+not\s+(?:use|give|recommend)",
     r"\b(?:don'?t|doesn'?t|shouldn'?t)\s+(?:use|give|recommend)",
-    r"\b(?:drop|dropping|omit|omitting|exclude|excluding)"]
-# only with diacritics: unaccented "chua" is also "chứa" (contains), "bo" also "bộ" (Bộ Y tế)
-_NEG_PRE_ACCENTED = [r"\bchưa(?:\s+(?:nên|được|cần))*(?:\s+(?:dùng|sử\s+dụng|truyền))?", r"\b(?:loại\s+)?bỏ(?:\s+qua)?"]
+    r"\b(?:drop|dropping|omit|omitting|exclude|excluding)",
+    # grader 1.3.0 (after review; also read in drug lists, stated_drugs_text): stopping a drug or category
+    r"\b(?:stop|stopping|discontinue|discontinuing|withdraw|withdrawing)", r"\b(?:ngừng|ngưng)(?:\s+(?:dùng|sử\s+dụng|truyền))?"]
+# only with diacritics: unaccented "chua" is also "chứa" (contains), "bo" also "bộ" (Bộ Y tế), "dung" also "dùng"
+_NEG_PRE_ACCENTED = [r"\bchưa(?:\s+(?:nên|được|cần))*(?:\s+(?:dùng|sử\s+dụng|truyền))?", r"\b(?:loại\s+)?bỏ(?:\s+qua)?",
+                     r"\bdừng(?:\s+(?:dùng|sử\s+dụng|truyền))?"]
 _NEG_POST_SRC = (
     r"^[\w'’%-]*(?:\s+(?!(?:hoặc|hay|và|or|and|nor|rồi|sau|then|nhưng|but|nếu|if|khi|when)\b)[\w'’%-]+){0,2}?\s*"
     r"(?:\([^()]*\)\s*)?"
     r"(?:(?:is|are|should|must|be|been|was|were|now|currently|generally|usually|also|là|thì|cũng|sẽ|đều|bị|hiện|nay|"
     r"hiện\s+nay|hiện\s+tại|thường)\s+)*"
     r"(?:(?:not|no\s+longer)\s+(?:be\s+|been\s+)?(?:the\s+|a\s+)?(?:recommended|advised|indicated|used|given|preferred|"
-    r"appropriate|needed|required|necessary|first[- ]line|first[- ]choice|encouraged|suggested|allowed|permitted)"
+    r"appropriate|needed|required|necessary|first[- ]line|first[- ]choice|encouraged|suggested|allowed|permitted|"
+    r"continued|included|added)"
     r"|(?:should|must)\s+not|(?:be\s+)?avoided|discouraged|contraindicated|prohibited|banned"
+    r"|(?:is|are|was|were|be|been)\s+(?:omitted|excluded|dropped|removed|stopped|discontinued|withdrawn)"
+    r"|(?:bị|được|đã)\s+(?:ngừng|ngưng|loại\s+bỏ)"
     r"|không\s+(?:(?:nên|được|còn|cần|phải)\s+)*(?:dùng|sử\s+dụng|truyền|khuyến\s+cáo|khuyến\s+nghị|khuyến\s+khích|"
-    r"chỉ\s+định|ưu\s+tiên|khuyên\s+dùng|cần\s+thiết|phù\s+hợp|yêu\s+cầu|đòi\s+hỏi|bắt\s+buộc|cho\s+phép)"
+    r"chỉ\s+định|ưu\s+tiên|khuyên\s+dùng|cần\s+thiết|phù\s+hợp|yêu\s+cầu|đòi\s+hỏi|bắt\s+buộc|cho\s+phép|tiếp\s+tục|kèm)"
     r"|không\s+(?:nên|được|còn|cần)"
     r"|không\s+phải\s+(?:là\s+)?(?:(?:lựa\s+chọn|thuốc|phác\s+đồ)\s+)?(?:đầu\s+tay|đầu\s+tiên|hàng\s+đầu|ưu\s+tiên|"
     r"được\s+ưu\s+tiên)"
@@ -1063,12 +1169,19 @@ def _segments(t: str) -> list[tuple[int, int]]:
     return [(x, y) for x, y in zip(bounds, bounds[1:]) if y > x]
 
 
-def parse_cats(text: str, options: dict[str, list[str]]) -> Cat:
-    """Categories stated in the text (options: label -> regex patterns over the lower-case, accent-free text); a
-    mention that is negated or a vehicle does not count (_dismissed; grader 1.2.0). A pattern anchored at the start
-    ('^') reads the whole answer (_anchored_dismissed); any other pattern reads one sentence or ';'-clause at a time
-    (_HARD_CUT)."""
-    t, kept = _fold(text)
+# TB drug letters written apart ("R H E", "H R Z E", "R-H-E"; grader 1.3.0) are one code string ("RHE"), the form the
+# atoms' patterns read: capital H, R, Z, E only, each a letter on its own, joined by one space or hyphen.
+TB_LETTERS_RE = re.compile(r"(?<![^\W\d_])[HRZE](?:[ -][HRZE])+(?![^\W\d_])")
+
+
+def join_tb_letters(text: str) -> str:
+    """'R H E' -> 'RHE' (see TB_LETTERS_RE)."""
+    return TB_LETTERS_RE.sub(lambda m: re.sub(r"[ -]", "", m.group(0)), clean(text))
+
+
+def _cat_hits(text: str, options: dict[str, list[str]]) -> tuple[str, str, _Lex, list]:
+    """(accent-free text, text the negation rules read, their lexicon, [(label, span, anchored pattern or None)])."""
+    t, kept = _fold(join_tb_letters(text))
     accented = kept != t
     lex, s = _LEX[accented], (kept if accented else t)
     segs = _segments(t)
@@ -1079,6 +1192,22 @@ def parse_cats(text: str, options: dict[str, list[str]]) -> Cat:
                 hits += [(lab, m.span(), pat) for m in pat.finditer(t)]
             else:
                 hits += [(lab, (x + m.start(), x + m.end()), None) for x, y in segs for m in pat.finditer(t[x:y])]
+    return t, s, lex, hits
+
+
+def cat_mentioned(text: str, options: dict[str, list[str]]) -> bool:
+    """Some category pattern matches words of the text, stated or not ('Dextran 40 không được khuyến cáo' mentions the
+    colloid category; grader 1.3.0 uses it to keep such an answer out of the number rule, see grade._grade_short)."""
+    t, _, _, hits = _cat_hits(text, options)
+    return any(_ALNUM.search(t, *span) for _, span, _ in hits)
+
+
+def parse_cats(text: str, options: dict[str, list[str]]) -> Cat:
+    """Categories stated in the text (options: label -> regex patterns over the lower-case, accent-free text); a
+    mention that is negated or a vehicle does not count (_dismissed; grader 1.2.0). A pattern anchored at the start
+    ('^') reads the whole answer (_anchored_dismissed); any other pattern reads one sentence or ';'-clause at a time
+    (_HARD_CUT). TB letters written apart ('R H E') are read as one code string (grader 1.3.0, join_tb_letters)."""
+    t, s, lex, hits = _cat_hits(text, options)
     keep: set[str] = set()
     named = [(other, o) for other, o, _ in hits if _ALNUM.search(t, *o)]
     others = {lab: [o for other, o in named if other != lab] for lab in options}
@@ -1089,3 +1218,117 @@ def parse_cats(text: str, options: dict[str, list[str]]) -> Cat:
                 else _dismissed(s, span, lex, others[lab])):
             keep.add(lab)
     return Cat(frozenset(keep))
+
+
+# ------------------------------------------------------------------ drug mentions (grader 1.3.0, after review)
+# A drug answer is read with the negation rules of the categories (_dismissed): a drug named only to be excluded is not
+# part of the answer's regimen ("TDF + 3TC + DTG (không dùng EFV)", "TLD instead of TLE", "TDF hoặc ETV (không dùng
+# lamivudin vì dễ kháng)", "adefovir is no longer recommended"). The negation also covers the drugs coordinated with
+# the negated one ("không dùng EFV hoặc NVP", "stop pyrazinamide and ethambutol", "EFV or NVP should be avoided"; joined
+# by và/hoặc/hay/and/or/nor/+/&//, never by a comma: "không dùng EFV, TDF + 3TC + DTG" negates EFV only). Mentions are
+# the aliases of the drug table (the 1–2 letter chain codes and letter-spelled regimens are never negated). The same
+# rule for every drug, whichever source records it.
+_DRUG_SEP = r"(?:\s*[-/+]\s*|\s+)"
+_COORD = re.compile(r"\s*(?:và|va|hoặc|hoac|hay|and|or|nor|\+|&|/)\s*")
+# Connectors between two stated drugs (accent-free text): a combination word makes the list ONE regimen ("TDF + ETV",
+# "Truvada plus DRV/r") unless a connector lists alternatives ("TDF hoặc ETV", "TDF, TAF or ETV", "TDF + 3TC (hoặc FTC)
+# + DTG", a new clause or sentence).
+_COMBINE = re.compile(r"\+|\bplus\b|\bphoi\s+hop\b|\bket\s+hop\b|\bcombined\s+with\b|\bin\s+combination\b|"
+                      r"\btogether\s+with\b|\bcung\s+voi\b|\bwith\b")
+_ALTERNATIVE = re.compile(r"\bhoac\b|\bhay\b|\bor\b|\beither\b|\bthay\s+the\b|\balternative|[,;:\n]|\.(?!\d)")
+_ALIAS_RE: dict[int, tuple[dict, list]] = {}
+
+
+def _alias_regexes(synonyms: dict[str, list[str]]) -> list[re.Pattern]:
+    """Every alias of the drug table as a pattern over accent-free lower-case text, longest first (cached per table)."""
+    hit = _ALIAS_RE.get(id(synonyms))
+    if hit is None or hit[0] is not synonyms:
+        aliases = sorted({_norm_drug_text(a) for c, al in synonyms.items() for a in [c, *al] if not a.startswith("~")},
+                         key=len, reverse=True)
+        pats = []
+        for alias in aliases:
+            parts = [p for p in re.split(r"[ -]", alias) if p]
+            if parts:
+                pats.append(re.compile(r"(?<![a-z0-9])" + _DRUG_SEP.join(re.escape(p) for p in parts) + r"(?![a-z0-9])"))
+        hit = (synonyms, pats)
+        _ALIAS_RE[id(synonyms)] = hit
+    return hit[1]
+
+
+def _fold_map(c: str) -> tuple[str, str]:
+    """(accent-free, accent-kept) lower-case forms of an already cleaned text, one character per character of c."""
+    free, kept = [], []
+    for ch in c:
+        lc = ch.lower()
+        lc = lc if len(lc) == 1 else ch
+        f = strip_accents(lc)
+        free.append(f if len(f) == 1 else (f[:1] or " "))
+        kept.append(lc)
+    return "".join(free), "".join(kept)
+
+
+def _lex_for(c: str) -> tuple[str, str, _Lex]:
+    free, kept = _fold_map(c)
+    accented = kept != free
+    return free, (kept if accented else free), _LEX[accented]
+
+
+def _coordinated_dismissal(free: str, spans: list[tuple[int, int]], dis: list[bool]) -> list[bool]:
+    """A negation reaches the mentions coordinated with the negated one (forward and backward; see above)."""
+    dis = list(dis)
+    coord = [bool(_COORD.fullmatch(free[b:a2])) for (_, b), (a2, _) in zip(spans, spans[1:])]
+    for i, c in enumerate(coord):
+        if c and dis[i]:
+            dis[i + 1] = True
+    for i in reversed(range(len(coord))):
+        if coord[i] and dis[i + 1]:
+            dis[i] = True
+    return dis
+
+
+def stated_drugs_text(text: str, synonyms: dict[str, list[str]]) -> tuple[str, bool]:
+    """(the cleaned text with every negated drug mention blanked out, joined). joined: the stated drugs are ONE
+    combination (a combination word between two of them and no alternative, see _COMBINE); grade reads a joined list
+    as one regimen, other lists as regimens or alternatives (grade.regimen_fit)."""
+    c = clean(text)
+    free, s, lex = _lex_for(c)
+    spans: list[tuple[int, int]] = []
+    used = bytearray(len(free))
+    for pat in _alias_regexes(synonyms):
+        for m in pat.finditer(free):
+            a, b = m.span()
+            if not any(used[a:b]):
+                used[a:b] = b"\x01" * (b - a)
+                spans.append((a, b))
+    if not spans:
+        return c, False
+    spans.sort()
+    dis = _coordinated_dismissal(free, spans, [_dismissed(s, sp, lex, []) for sp in spans])
+    out = list(c)
+    for (a, b), d in zip(spans, dis):
+        if d:
+            out[a:b] = " " * (b - a)
+    stated = [sp for sp, d in zip(spans, dis) if not d]
+    between = [free[b:a2] for (_, b), (a2, _) in zip(stated, stated[1:])]
+    joined = any(_COMBINE.search(x) for x in between) and not any(_ALTERNATIVE.search(x) for x in between)
+    return "".join(out), joined
+
+
+# TB phase codes ("HRZE", "RHZ", "EHR", "4RH", "2HRZE"; grader 1.3.0, after review): a capitalised token of 2–5
+# distinct letters among H, R, Z, E, S (2 letters only after a duration, "4RH"), read after join_tb_letters. In TB
+# notation the letter order carries no meaning ("EHR" = "HRE"; grade reads an unread order as the order the atom's
+# patterns read). A negated code ("không dùng HRZE") is not stated.
+TB_CODE_RE = re.compile(r"(?<![^\W_])(?P<d>\d*)(?P<c>[HRZES]{2,5})(?![^\W_])")
+
+
+def tb_codes(text: str) -> tuple[str, list[re.Match]]:
+    """(text with TB letters joined, the TB phase codes it states; see TB_CODE_RE)."""
+    t = join_tb_letters(text)
+    free, s, lex = _lex_for(t)
+    ms = [m for m in TB_CODE_RE.finditer(t)
+          if len(set(m.group("c"))) == len(m.group("c")) and (len(m.group("c")) >= 3 or m.group("d"))]
+    if not ms:
+        return t, []
+    spans = [m.span() for m in ms]
+    dis = _coordinated_dismissal(free, spans, [_dismissed(s, sp, lex, []) for sp in spans])
+    return t, [m for m, d in zip(ms, dis) if not d]

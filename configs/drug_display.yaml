@@ -38,6 +38,9 @@ rifampicin: {vi: rifampicin, en: rifampicin}
 pyrazinamide: {vi: pyrazinamide, en: pyrazinamide}
 ethambutol: {vi: ethambutol, en: ethambutol}
 rifapentine: {vi: rifapentine, en: rifapentine}
+rifabutin: {vi: rifabutin, en: rifabutin}
+streptomycin: {vi: streptomycin, en: streptomycin}
+kanamycin: {vi: kanamycin, en: kanamycin}
 clofazimine: {vi: clofazimine, en: clofazimine}
 cycloserine: {vi: cycloserine, en: cycloserine}
 delamanid: {vi: delamanid, en: delamanid}
@@ -55,6 +58,14 @@ bictegravir: {vi: bictegravir, en: bictegravir}
 nevirapine: {vi: nevirapine, en: nevirapine}
 adefovir: {vi: adefovir, en: adefovir}
 telbivudine: {vi: telbivudine, en: telbivudine}
+darunavir: {vi: darunavir, en: darunavir}
+ritonavir: {vi: ritonavir, en: ritonavir}
+lopinavir: {vi: lopinavir, en: lopinavir}
+atazanavir: {vi: atazanavir, en: atazanavir}
+raltegravir: {vi: raltegravir, en: raltegravir}
+zidovudine: {vi: zidovudine, en: zidovudine}
+abacavir: {vi: abacavir, en: abacavir}
+rilpivirine: {vi: rilpivirine, en: rilpivirine}
 alteplase: {vi: alteplase, en: alteplase}
 tenecteplase: {vi: tenecteplase, en: tenecteplase}
 ceftazidime: {vi: ceftazidime, en: ceftazidime}

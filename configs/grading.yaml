@@ -67,11 +67,82 @@
 #     và đơn vị (EN) "three consecutive days" = "ba ngày liên tiếp"; "a hundred"; "năm tuổi"/"năm năm" = 5 (trừ "(năm
 #     tuổi)", "năm tuổi thứ N"); "một/one" mở đầu MỆNH ĐỀ ("Theo Bộ Y tế: một tuần" = "Per MoH: one week"); "đợt/chu
 #     kỳ 1" = "round/cycle 1" là số thứ tự. Mẫu neo đọc lại tối đa 50 mệnh đề (đầu ra lặp thoái hóa).
-grader_version: "1.2.0"
+# 1.3.0 (27/9/2026, TRƯỚC đóng băng; cho NGHIÊN CỨU CHÍNH — thí điểm vẫn báo cáo bằng 1.2.0 (vnsoc.analysis.pilot từ
+#   chối chấm lại bằng bản khác). Nguồn: kiểm bộ chấm thí điểm bằng AI (review/pilot_grading, 41 grader_error). Test hồi
+#   quy là câu TỰ VIẾT mô phỏng từng loại lỗi, không chép đầu ra mô hình; sẽ kiểm trên tập giữ riêng trước đóng băng):
+#   - E1 quy tắc 5 cho MỌI value_kind: dòng đáp án (hoặc chuỗi bộ tách LLM trả về) có SỐ mà không đọc được giá trị thuộc
+#     kiểu của mẩu → nhãn 5 (unit_mismatch), không phải 6 ("0 mg" cho câu có/không, "4 tháng" cho danh sách thuốc,
+#     "150 mmHg" một mình cho mẩu HA, "120–129/<80", "≥140/<90"). Không có dòng đáp án mà văn bản có số (hoặc tên thuốc,
+#     mẩu cat) nhưng không đọc được giá trị → needs_llm (bộ tách dự phòng) thay vì 6. Ngoại lệ giữ như 1.2.0: câu cat có
+#     NHẮC một hạng mục nhưng bị phủ định ("Dextran 40 không được khuyến cáo") vẫn 6 — số trong tên chế phẩm không được
+#     làm khác nhãn so với "Ringer lactate không được khuyến cáo".
+#   - E2 HA: "140 mmHg / 90 mmHg" (đơn vị sau từng phần) và "140 90 mmHg", "HA 140 90" (hai số cách nhau CHỈ bằng
+#     khoảng trắng; cần mmHg sau một trong hai số hoặc HA/huyết áp/BP trước; tâm trương ≤ 130, hiệu ≥ 20; không phải đầu
+#     khoảng "130-139 80-89"; dấu so sánh chỉ dạng ký hiệu) = MỘT giá trị HA; đọc SAU mọi dạng cũ.
+#   - E3 chữ giữ chỗ của mẫu trả lời ("<unit>", "<đơn vị>"; thẻ "<b>") — bản nháp bỏ mọi khe <…>, đã SỬA sau phản biện
+#     (xem dưới); "2 /ULN", "2 lần /ULN", "2x/ULN" = "2 x ULN". "2 <đơn vị>" (số trơn, không ULN) KHÔNG đọc thành
+#     2×ULN (việc của chủ mẩu) → nhãn 5 theo E1.
+#   - E4 thuốc: mọi thuốc câu trả lời nêu phải thuộc một phác đồ đã ghi mà nó nêu đủ key_drugs; thuốc của phác đồ = key_
+#     drugs + thuốc có trong `text` đã ghi của mục, gộp qua mọi mục cùng giá trị (gap 0, vd WHO 2026 C1a có Eto = Bộ Y tế
+#     C1a có Pto). Có thuốc thừa → phác đồ khác, không khớp nguồn nào → nhãn 5 (partial nếu nêu thuốc khóa Bộ Y tế). Một
+#     luật cho Bộ Y tế/nước ngoài/bản cũ/mồi. Mục không có text: chỉ key_drugs (chặt). Danh sách chứa phác đồ Bộ Y tế
+#     VÀ phác đồ bản cũ/mồi ngoài tập Bộ Y tế = hai giá trị (quy tắc 7, như phác đồ nước ngoài xung đột): 5, hoặc 1 nếu
+#     quy thuộc nguồn nước ngoài rõ. `matches` (chứa) giữ nguyên cho kiểm span (verify_span.missing_vn_values).
+#   - E5 thuốc: Truvada, Descovy, DRV/r, LPV/r (Kaletra, Aluvia), ATV/r, darunavir, ritonavir, lopinavir, atazanavir,
+#     rifabutin, streptomycin, kanamycin (tên đầy đủ), "moxyfloxacin" (lỗi chính tả); chữ lao viết rời ("R H E", "R-H-E",
+#     chữ HOA H/R/Z/E) gộp thành chuỗi mã trong parse_cats.
+#   - E6 mẩu cat: dòng đáp án nêu tên thuốc (bảng `drugs`) mà không khớp hạng mục nào → nhãn 5 (parse_method
+#     "unlisted"), không phải 6. (Mã chữ lao ngoài mẫu: xem phần sau phản biện.)
+#   - Kiểm hồi quy: 65 mẩu thí điểm — render mọi giá trị (644 phép, VI+EN) lỗi 2→2, không đổi nhãn nào; text đầy đủ của
+#     mọi mục thuốc không đổi nhãn; trắc nghiệm 368 phương án lỗi 8→8 (cách đếm theo phương án), không đổi;
+#     tolerance/conflict_status 65 mẩu không đổi; missing_vn_values rỗng.
+#   Sau phản biện độc lập bản nháp 1.3.0 (cùng ngày, vẫn 1.3.0: chưa chấm đầu ra nào của nghiên cứu chính; bản nháp chỉ
+#   chạy chẩn đoán trong bộ nhớ trên thí điểm). Câu thử vẫn TỰ VIẾT; trên 390 câu trả lời ngắn thí điểm bản sửa cho
+#   ĐÚNG nhãn như bản nháp (0 dòng đổi), các sửa dưới đây nhắm lỗi ngoài mẫu:
+#   - E1 thứ tự quy tắc 5 (dòng đáp án/chuỗi LLM không có giá trị thuộc kiểu mẩu): (i) dòng đáp án HỎI LẠI quốc gia/hướng
+#     dẫn nào và điều kiện A0 → 1; (ii) dòng đáp án là câu TỪ CHỐI ("không rõ/không biết/không đủ thông tin/chưa rõ",
+#     "I don't know/unknown/not sure/insufficient information/unable to…") → 6; (iii) mới đến số → 5 / thuốc → 5;
+#     (iv) hỏi lại ở thân bài + A0 → 1; (v) còn lại 6. Số KHÔNG tính cho (iii): nhãn thứ bậc/nhóm ("bậc 1", "type 2",
+#     "2nd") và số lặp lại từ đề (population/condition/intervention của mẩu, cùng cận) nằm TRONG một cụm lặp đề ("PEP
+#     within 72 hours", "standard 6-month regimen"); số trơn đứng một mình ("4 tháng") vẫn là câu trả lời → 5. Mẩu cat:
+#     cụm từ chối không được đọc thành hạng mục ("Không rõ" ≠ "Không"). Mẩu num: số KHÔNG đơn vị vẫn đọc theo đơn vị mẩu
+#     (quy tắc 3 đã đăng ký) — hạn chế ghi nhận.
+#   - E1/HA đọc thêm (câu trả lời đúng từng bị 5): "≥140 mmHg or ≥90 mmHg" (mmHg sau CẢ hai số, hoặc/hay/or), "140 by 90",
+#     "130–139 mmHg / 80–89 mmHg", dạng tách trộn "SBP 140 mmHg, 90 mmHg DBP"; BP_SPACE không đọc khi số thứ hai có chữ
+#     theo sau ("≥ 140 mmHg 30 phút").
+#   - E3 khe <…>: chỉ bỏ CHỮ MẪU ("<giá trị>", "<đơn vị>", "<value>", "<unit>", "<chữ cái>", "<letter>") và thẻ HTML; nội
+#     dung khác GIỮ, bỏ dấu ngoặc ("<TDF>" → TDF, "4 <weeks>" → 4 tuần, "2 <times> /ULN" → 2 x ULN). Khe chỉ mở sau đầu
+#     câu/khoảng trắng/( [ : và có chữ cái ngay sau "<"; "ALT<ULN", "< 140", "<5 tuổi", "DNA>2000" không bị đụng.
+#   - E4 đối xứng: thuốc của một phác đồ = key_drugs + thuốc trong text của mục (gộp gap 0) + NỀN CỦA MẨU = mọi thuốc có
+#     trong text của bất kỳ mục nào (Bộ Y tế/nước ngoài/bản cũ/mồi) mà không là key_drugs của mục nào (3TC/FTC ở PEP,
+#     primaquine ở ACT); nền chung cho mọi nguồn nên nhãn không còn phụ thuộc text nguồn nào ghi đủ hơn. Tên lớp trong
+#     text ("Tenofovir 300 mg") = thành viên là key của chính mục đó. Danh sách nối "+"/"plus"/"phối hợp"/"kết hợp"/
+#     "with" và không có từ lựa chọn ("hoặc", "or", dấu phẩy, ";", ":", hết câu) = MỘT phác đồ: một phác đồ đã ghi phải
+#     chứa đủ ("TDF + ETV" → 5, "TDF hoặc ETV" → 2; đối xứng "AL + AS-AQ" → 5, "AL or AS-AQ" → 4). Quy tắc 7 giữ cho danh
+#     sách liệt kê ("TLD hoặc TLE").
+#   - E4 phủ định trong danh sách thuốc: dùng luật phủ định của parse_cats cho từng lần nhắc thuốc ("không dùng EFV",
+#     "TLD instead of TLE", "adefovir is no longer recommended", "moxifloxacin is omitted"), lan qua thuốc nối bằng
+#     và/hoặc/hay/and/or/nor/+/&// (không qua dấu phẩy). Thêm từ phủ định (dùng chung cho cat): stop/discontinue/withdraw,
+#     ngừng/ngưng (dừng: chỉ khi có dấu), "không phối hợp/kết hợp", "not combined with/plus", "(is) omitted/excluded/
+#     dropped/removed/stopped/discontinued/withdrawn", "not continued/included/added", "bị/được/đã ngừng/loại bỏ",
+#     "không tiếp tục/kèm".
+#   - E4 quy nguồn: danh sách cả dòng không thuộc tập Bộ Y tế nhưng đọc theo từng đoạn (cắt ở tên nguồn như quy tắc 6) có
+#     ≥ 2 danh sách, một thuộc tập Bộ Y tế → quy tắc 6 (1 nếu mọi phác đồ khác nằm sau tên nguồn nước ngoài, không thì 5).
+#   - Mẩu cat mã lao (nhãn HRE/HR...): mã chữ HOA 3–5 chữ H/R/Z/E/S khác nhau (2 chữ khi có số đứng trước) mà mẫu của mẩu
+#     không đọc theo thứ tự đã viết thì đọc theo thứ tự hoán vị DUY NHẤT mẫu đọc được ("E H R" → HRE); không đọc được →
+#     "unlisted" 5 ("HRZE" trơn, "RHZ"); mã bị phủ định không tính.
+#   - Từ điển/đơn vị: raltegravir, zidovudine (AZT, ZDV), abacavir, rilpivirine (RPV), "DHA-piperaquine"; "grams",
+#     "gam", "milligram(s)".
+#   - Bác bỏ (lý do trong DECISIONS): "tenofovir + lamivudine + dolutegravir" vẫn 5 underspecified (quy tắc 10 đã đăng
+#     ký); "two-step (50 g then 100 g)" ở P-dm-05 là 2 (tập Bộ Y tế có two_step_allowed qua DR8); trường ignore_drugs
+#     không thêm (nền của mẩu đã phủ primaquine).
+#   - Kiểm hồi quy lặp lại: render 644 phép lỗi 2→2, 0 đổi; text mục thuốc 0 đổi; trắc nghiệm 368 phương án lỗi 8→8,
+#     0 đổi; tolerance/conflict_status 65/65; missing_vn_values rỗng; 390 câu ngắn thí điểm: bản nháp → bản sửa 0 đổi.
+grader_version: "1.3.0"
 tolerance_rule: "half the minimum gap between the MoH value set and any other source value (foreign, superseded, decoy)"
 partial_overlap: wrong_in_primary_reported_separately
 multi_value_without_vn_designation: wrong_reported_separately
-llm_extraction_fallback: {used_only_when: "no ĐÁP ÁN/ANSWER line and >1 candidate values", manual_check_n: 500}
+llm_extraction_fallback: {used_only_when: "no ĐÁP ÁN/ANSWER line and (>1 candidate values, or no value but a number (cat: or a stated drug name / TB code) in the text; 1.3.0)", manual_check_n: 500}
 # drugs: khóa chuẩn -> bí danh (so khớp không dấu, chữ thường sau chuẩn hóa). Mở rộng khi gặp thuốc mới + thêm test.
 #   - Khóa là một INN: bí danh đầu tiên là tên hiển thị tiếng Việt (qgen.render), nên để cách viết tiếng Việt/INN
 #     trước viết tắt. Không dùng viết tắt 1–2 chữ (H, R, Z, E, Pa, Am, Cs) — quá mơ hồ; viết tắt ≥ 3 chữ.
@@ -95,7 +166,8 @@ drugs:
   pyronaridine-artesunate: [pyronaridin-artesunat, pyramax]
   pyronaridine: [pyronaridin]
   artesunate: [artesunat]
-  dihydroartemisinin-piperaquine: [dihydroartemisinin-piperaquin, dha-ppq, arterakine, eurartesim]
+  dihydroartemisinin-piperaquine: [dihydroartemisinin-piperaquin, dha-ppq, dha-piperaquine, dha-piperaquin, arterakine,
+                                   eurartesim]                   # 'DHA-piperaquine' (1.3.0 after review)
   primaquine: [primaquin]
   tafenoquine: [tafenoquin, krintafel, arakoda]
   quinine: [quinin]
@@ -105,7 +177,7 @@ drugs:
   bedaquiline: [bedaquilin, bdq]
   pretomanid: [~Pa@2]
   linezolid: [lzd]
-  moxifloxacin: [moxifloxacine, mfx]
+  moxifloxacin: [moxifloxacine, moxyfloxacin, moxyfloxacine, mfx]    # moxy-: common misspelling (1.3.0)
   tenofovir-disoproxil: [tenofovir disoproxil, tenofovir disoproxil fumarate, tenofovir disoproxil fumarat, tenofovir df,
                          tdf]
   tenofovir-alafenamide: [tenofovir alafenamide, tenofovir alafenamid, tenofovir alafenamide fumarate,
@@ -146,6 +218,23 @@ drugs:
   # added 26/9/2026 (grader 1.2.0) from hbv_review.md: 'adefovir' at P-hbv-06 was abstain (6) instead of 5
   adefovir: [adefovir dipivoxil, adv]
   telbivudine: [telbivudin, ldt]
+  # added 27/9/2026 (grader 1.3.0) from the pilot grader check (review/pilot_grading): answers naming these drugs were
+  # abstain (6) because no alias existed. Symmetry: the other ritonavir-boosted PIs (LPV/r, ATV/r) and the TAF
+  # counterpart of Truvada (Descovy) are added with DRV/r and Truvada; streptomycin and kanamycin (older TB drugs,
+  # full names only, no 1–2 letter codes).
+  rifabutin: [rifabutine, rfb]
+  streptomycin: [streptomycine]
+  kanamycin: [kanamycine]
+  darunavir: [drv]
+  ritonavir: [rtv]
+  lopinavir: [lpv]
+  atazanavir: [atv]
+  # 1.3.0 after review: other ARVs an answer may name instead of a recorded regimen (full names; AZT/ZDV/RPV only: no
+  # 'ABC'/'RAL', ambiguous in other contexts). Read so that such an answer is a value (5), not an abstention (6).
+  raltegravir: [raltegravir]
+  zidovudine: [zidovudin, azt, zdv]
+  abacavir: [abacavir]
+  rilpivirine: [rilpivirin, rpv]
   # WHO ACTs named in P-malaria_ocr-02 (key_drugs had no entry here, so these foreign values were never matched)
   artesunate-amodiaquine: [artesunat-amodiaquin, as-aq, asaq]
   amodiaquine: [amodiaquin]
@@ -160,6 +249,11 @@ drugs:
   tenofovir-disoproxil+lamivudine+dolutegravir: [tld]
   tenofovir-disoproxil+lamivudine+efavirenz: [tle]
   bictegravir+emtricitabine+tenofovir-alafenamide: [biktarvy]
+  tenofovir-disoproxil+emtricitabine: [truvada]                    # 1.3.0
+  tenofovir-alafenamide+emtricitabine: [descovy]                   # 1.3.0 (symmetry: Truvada)
+  darunavir+ritonavir: [drv/r]                                     # 1.3.0 ('DRV/r' = darunavir boosted by ritonavir)
+  lopinavir+ritonavir: [lpv/r, kaletra, aluvia]                    # 1.3.0 (symmetry: DRV/r)
+  atazanavir+ritonavir: [atv/r]                                    # 1.3.0 (symmetry: DRV/r)
   # drug classes (a class name satisfies ONE item that needs one member)
   tenofovir-disoproxil|tenofovir-alafenamide: [tenofovir]
 combos:           # tổ hợp -> INN thành phần; gộp khi có đủ thành phần (tổ hợp lớn gộp trước)

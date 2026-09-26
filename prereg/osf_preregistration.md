@@ -862,14 +862,14 @@ The analyses are implemented in `src/vnsoc/analysis/confirmatory.py` (Python; nu
 
 <!-- HASHES:BEGIN (scripts/prereg_snapshot.py; do not edit by hand) -->
 
-Snapshot 2026-09-27T00:19:34+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
+Snapshot 2026-09-27T01:13:57+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
 
 | File | SHA-256 |
 | --- | --- |
 | `src/vnsoc/analysis/confirmatory.py` | `143b878523885d301dede96e837b74b5d6d7e8e36a079cbe03944fa9c0d45b32` |
 | `src/vnsoc/ltt.py` | `53ba2d23021ad1c13f043881a94da806414711770eabb4437eefb880dadee38c` |
-| `src/vnsoc/grade.py` | `a9ade5af1d5a59bafee252b8d6cb60d68583cedf30896c59d0d41fc2ec105b02` |
-| `src/vnsoc/normalize_vi.py` | `a969cb7a30fc22f27a4176e7a73cdc492294632c4102816a011d1f2943893ca5` |
+| `src/vnsoc/grade.py` | `498331b8763b404b15bf2038c04ba0172241df74fda1e1264ced041ea83b981e` |
+| `src/vnsoc/normalize_vi.py` | `edc4cbd472bd5e28d28796bcae9be3883bc80445159e0d07464b25fae89ef2e6` |
 | `src/vnsoc/match/decoys.py` | `6f10c554bc1dd8212c11de6ca4951ba1d6357ab16c777a28baa550be631c3bd8` |
 | `src/vnsoc/match/atom_flags.py` | `3122128e8cc7b0e2f3ad56d0b75ddbb0fa4167f25750460e4e53b13891d56d1d` |
 | `src/vnsoc/qgen/mcq.py` | `21e2dfc6a01c59564a9a6c32c67649f66ba247f17099d7379e9a79c815787af9` |
@@ -878,13 +878,13 @@ Snapshot 2026-09-27T00:19:34+07:00. SHA-256 of the registered analysis package (
 | `src/vnsoc/qgen/render.py` | `5290819ac4a0a877fef32056b45f7eb983d7b2034658ad1092ed5f99a04e8f11` |
 | `src/vnsoc/qgen/passages.py` | `01ff1a2da9e29b24d838a152cfa014ea79d465b577f8912aa00068f75e2c0439` |
 | `src/vnsoc/run/prompts.py` | `2b63970017b04788f4a4df9821e5c7f44584a4e0bf269f119baac924951a1a83` |
-| `configs/drug_display.yaml` | `44784aed3607aed0691473ff6fe29665fe127bff589c63ecde6fbbf03b87dd1b` |
+| `configs/drug_display.yaml` | `cae110bdb8a3ad321e568c12d55f1e6e65d0216e535dd1ab48da0f84f499b573` |
 | `src/vnsoc/extract/corpus_priority.py` | `b1212886ede6c451ad352c0433b5f07cc98f4375cd3a079e2b58e60f7e739520` |
 | `src/vnsoc/analysis/extractor_check.py` | `537314307496dfa243d4d65b7ca7065c6a19e07af3558eabbf387d609a6d75e4` |
 | `src/vnsoc/schemas.py` | `b967e50e4660a0d7a24a68fa0cd13e6588a0be6a80d080f03d4b40f2bf3e2630` |
 | `configs/project.yaml` | `46b1f82526e3e1bc3352489144edc01a46558f254d0a8489e2f4427e5a42d909` |
 | `configs/conditions.yaml` | `9636da8651f0f0f57d99474ce4e72e3853a6d321f24d77c8f3543f3d88da0597` |
-| `configs/grading.yaml` | `4e5b17f3b2452dde9f09c74d47d9a37666411e0b66297314c81e7bac6315c90d` |
+| `configs/grading.yaml` | `34fddff2c0dadce7186cf0c5cb6bb4e76de71b2bbdf3fc78c27f844c2919e466` |
 | `configs/models.yaml` | `a6df01228f85880a8138aea37746708a7aebd1029e3f5d7160b2fd446e88182b` |
 | `tests/test_prereg_code.py` | `a6f8d4b05d1a21a1e9b52ca301180ecb07f35add2f0cccb5a3c3161fe18a159a` |
 | `tests/test_atom_flags.py` | `871ce75caf1d451a60abda861582fe51a22b31af81bc4e7b00aed0d9b2b994ad` |

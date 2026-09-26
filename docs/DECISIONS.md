@@ -57,3 +57,67 @@ Mỗi dòng: thời điểm · mã quy tắc (DR1–DR10) hoặc lý do · tác 
 - 2026-09-26T23:45+07:00 · **Mở niêm phong và chấm thí điểm (T1.5), kiểm bộ chấm bằng AI (thay HG6.2 theo ủy quyền người dùng)** · Sau kiểm toán trích dẫn tự động (state/gates/HG1.2_result.md), mã băm đầu ra khớp SEALED.txt; 482/482 RunRecord; chấm bằng grader 1.2.0 với danh sách loại khai trước. Kiểm bộ chấm: hai người chấm AI mù + trọng tài cho cả 482 câu (review/pilot_grading/); số liệu đồng thuận và kết quả theo nhãn phân xử (độ nhạy) nằm trong registry (pilot.grader_*, pilot.adj_*). 41 lỗi bộ chấm được phân loại (nhãn 6 cho câu có giá trị nhưng dạng lạ ở mẩu cat/drugs; HA '140 mmHg / 90 mmHg' và '140 90 mmHg'; drugs_cover bỏ qua thuốc thừa; thiếu biệt dược Truvada, DRV/r, rifabutin; mã lao cách nhau bằng dấu cách) — KHÔNG sửa bộ chấm để chấm lại thí điểm (tránh tinh chỉnh theo đầu ra); các lỗi này thành việc cho bộ chấm của nghiên cứu chính, sửa và đóng băng TRƯỚC khi chạy chính. Đoạn A3 của P-controls-01..04 lấy từ văn bản cũ 2767/2023 (đã bị 2131/2026 thay) — không ảnh hưởng nhãn trừ P-controls-03 (A3 đo văn bản cũ); ghi hạn chế. · Claude.
 - 2026-09-26T23:50+07:00 · **R1.1 — kiểm chéo không dùng LLM cho chuẩn tham chiếu** · Thay cho lượt kiểm bằng một mô hình mở 8B khác họ (yếu ở việc đọc PDF tiếng Việt và tốn ổ C), dùng phép kiểm hoàn toàn bằng mã, độc lập với Claude: đoạn trích có trên đúng trang PDF, giá trị Bộ Y tế đọc lại bằng bộ đọc số của bộ chấm, số/tên thuốc của nguồn nước ngoài có trong bản nguồn đã băm (src/vnsoc/analysis/independent_check.py; review/pilot_audit/independent_code_check.md; khóa pilot.indep_*). Tiêu chí quần thể (c) không có tương đương bằng mã nên vẫn chỉ kiểm bằng AI — ghi hạn chế. Với bộ chấm, so sánh 'bộ chấm quy tắc (mã) với nhãn Claude phân xử' đã là so sánh giữa hai phương pháp độc lập. Mức đồng thuận cho tiêu chí (b) so kết luận kiểm toán TRƯỚC khi sửa với mẩu SAU khi sửa (P-controls-03 đã được sửa), nên một chỗ lệch là do sửa lỗi, không phải bất đồng. · Claude.
 - 2026-09-27T00:20+07:00 · **R1.5 + R1.6 — Lệch đăng ký trước: bản đăng ký KHÔNG được tải lên OSF trước khi mở đầu ra thí điểm; Addendum 1; bản đăng ký sửa cho chế độ một người + laptop** · (1) Sự thật, dùng giờ commit git cục bộ (không phải dấu thời gian của bên thứ ba). Bản đăng ký cuối cùng trước khi mở là commit ae7357d lúc 26/9 19:45:32; SHA-256 của osf_preregistration.md tại commit đó = 39369ba877963f2a0d95619f174efb6e7adaea5111ea29b71c16fbc823848735. Đầu ra thí điểm được mở và chấm CHẬM NHẤT lúc 22:42:03 (commit 0f3604c). **Sửa mốc giờ:** các nhãn giờ trong file này gõ tay nên không chính xác tới phút. Mục "18:25" (niêm phong) nằm trong commit fd30566 lúc 18:10:56; mục "23:45" (mở niêm phong) nằm trong commit 38d70fa lúc 22:54:22. (2) Addendum 1 (prereg/addenda/2026-09-27_addendum_1.md, SHA-256 cd6fc755e6f7b89d4220fbeeb9e52f895fcdd58f0ca740f66a7d27f45a8441b7 khi ghi mục này) liệt kê C1–C12. Dựa trên đầu ra thí điểm: bộ chấm 1.2.0 → 1.3.0 cho nghiên cứu chính (C4); trắc nghiệm tối đa 384 token (C5); tỉ lệ lỗi quy được nguồn (C7); kế hoạch diễn giải khi âm tính (C8); các biện pháp bảo vệ (C12). Một phần: kiểm toán AI (C2), phạm vi (C10). Không dựa trên đầu ra: laptop/không API/không Kaggle (C1), không bác sĩ (C3), thiết lập chạy (C6), giá trị biết được (C9), đoạn A3 controls (C11). Cam kết: mẩu thí điểm không dùng để kiểm bộ chấm và bị loại khỏi RQ3; B.1 báo cạnh H1/H3; bộ chấm kiểm trên tập giữ riêng gồm mẩu không thuộc thí điểm trước khi đóng băng; review/pilot_grading/ và data/processed/ phải được commit kèm SHA-256 trước HG2.9. (3) prereg/osf_preregistration.md: phạm vi "mô hình mở chạy tại chỗ" (local_main), bỏ API/Kaggle; mọi kiểm tay → kiểm toán AI kép + trọng tài + kiểm bằng mã; DR12 áp dụng từ đầu; DR6/DR10/DR11 viết lại cho laptop; kết cục mô tả chính AS báo cùng H1; phân tích giá trị biết được B.26/C.8; kế hoạch diễn giải khi H1/H3 âm tính; foreknowledge đổi sang phương án 6 (câu chữ đọc từ API OSF 27/9). Mọi lựa chọn mới gắn "[pending author confirmation, D18–D26]" (review/prereg/response.md). Đã chạy lại scripts/prereg_snapshot.py (ảnh chụp 2026-09-27T00:19:34; ảnh chụp này gồm cả grade.py/normalize_vi.py/models.yaml/atom_flags.py ĐANG sửa dở ở R1.2/R1.4, nên phải chụp lại khi các task đó xong). · Claude (statistician); D18–D26 chờ người dùng.
+## 27/9/2026: Bộ chấm 1.3.0 sau phản biện độc lập bản nháp (nghiên cứu chính; thí điểm vẫn báo cáo bằng 1.2.0)
+
+**Bối cảnh.** Bản nháp 1.3.0 sửa 6 loại lỗi E1–E6 lấy từ đợt kiểm bộ chấm thí điểm. Người phản biện chấm 238 câu tự viết và thấy 4 lỗi CHẶN ngoài mẫu. Thí điểm chỉ có một mô hình, không có dòng fallback và hầu như không có câu từ chối, nên chẩn đoán trong mẫu không lộ ra các lỗi này. Mọi ca thử của bản sửa vẫn là câu tự viết. Trên 390 câu trả lời ngắn thí điểm, bản nháp và bản sửa cho nhãn giống hệt nhau (0 dòng đổi); khớp trọng tài vẫn 381/390, không phải kiểm định. grader_version giữ "1.3.0" vì chưa chấm đầu ra nào của nghiên cứu chính.
+
+**Quyết định.**
+
+1. **Thứ tự quy tắc 5 (§6.3), cho mọi value_kind.** Áp khi dòng đáp án hoặc chuỗi bộ tách LLM trả về không có giá trị thuộc kiểu mẩu, xét theo thứ tự:
+   - (i) dòng đáp án hỏi lại quốc gia/hướng dẫn nào và điều kiện là A0 → nhãn 1;
+   - (ii) dòng đáp án là câu từ chối ("không rõ/không biết/không đủ thông tin/chưa rõ", "I don't know/unknown/not sure/insufficient information/unable to") → nhãn 6;
+   - (iii) có số → 5 (unit_mismatch); mẩu cat nêu thuốc hoặc mã lao ngoài tập → 5 (unlisted);
+   - (iv) hỏi lại ở thân bài và A0 → 1;
+   - (v) còn lại → 6.
+
+   Lý do: nhãn 6 là tự từ chối (RQ3). Một câu từ chối có số tình cờ không phải một giá trị.
+
+   Số không tính cho (iii):
+   - nhãn thứ bậc/nhóm ("bậc 1", "type 2");
+   - số lặp lại từ đề (population/condition/intervention của mẩu, cùng cận) khi nằm trong một cụm lặp đề ("PEP within 72 hours").
+
+   Số đứng một mình như "4 tháng" vẫn là câu trả lời → 5, như trọng tài thí điểm đã chấm. Không có dòng đáp án thì vẫn chuyển needs_llm như cũ.
+
+   Lệch so với văn bản §6.3 (bản 1.2.0): (i) và (ii) đứng trước luật số. Cần ghi vào addendum đóng băng câu hỏi. Đề xuất đăng ký thêm phân tích độ nhạy chuyển unit_mismatch và unlisted sang 6.
+
+2. **E3, khe <…>.** Chỉ bỏ chữ mẫu và thẻ HTML. Nội dung khác mô hình điền vào khe được giữ ("<TDF>", "4 <weeks>"). Bản nháp xóa cả nội dung đó, nên "<TDF>" bị chấm 6.
+
+3. **E4, phác đồ.** Thuốc của một phác đồ gồm key_drugs, thuốc trong text của mục (gộp các mục gap 0), và **nền chung của mẩu**. Nền là mọi thuốc có trong text của bất kỳ mục nào mà không là key của mục nào, áp như nhau cho Bộ Y tế, nước ngoài, bản cũ và mồi.
+   - Lý do: ở bản nháp, nhãn phụ thuộc vào việc text của nguồn nào ghi đủ hơn. Ví dụ WHO ACT + primaquine → 5 nhưng Bộ Y tế ACT + primaquine → 2, và TDF+FTC+EFV mất cờ decoy. Chênh lệch này làm lệch Delta của H1.
+   - Tên lớp trong text chỉ thành viên là key của chính mục đó.
+   - Danh sách nối bằng "+", "plus", "phối hợp", "kết hợp", "with" mà không có từ lựa chọn ("hoặc", "or", dấu phẩy, ";", ":", hết câu) là MỘT phác đồ, và một phác đồ đã ghi phải chứa đủ các thuốc đó. Ví dụ "TDF + ETV" → 5, "TDF hoặc ETV" → 2; đối xứng "AL + AS-AQ" → 5, "AL or AS-AQ" → 4. Theo §6.2: phác đồ khác bất kỳ thuốc nào là giá trị khác.
+   - Quy tắc 7 chỉ còn áp cho danh sách liệt kê. "TLD + NVP" là 5 với multi=False và không cờ decoy.
+
+4. **E4, phủ định.** Thuốc chỉ được nhắc để loại ("không dùng EFV", "TLD instead of TLE", "no longer recommended") không thuộc phác đồ câu trả lời. Dùng cùng luật phủ định với hạng mục cat. Phủ định lan qua thuốc nối bằng và/hoặc/and/or/+/, nhưng không lan qua dấu phẩy. Từ vựng phủ định mới dùng chung cho cat.
+
+5. **E4, quy nguồn.** Khi cả dòng không thuộc tập Bộ Y tế nhưng đọc từng đoạn (cắt ở tên nguồn) có một phác đồ Bộ Y tế, áp quy tắc 6: nhãn 1 nếu mọi phác đồ khác đứng sau tên nguồn nước ngoài, không thì 5. Nhất quán với mẩu num.
+
+6. **Đọc thêm.**
+   - HA: "≥140 mmHg or ≥90 mmHg" (mmHg ở cả hai số), "140 by 90", "130–139 mmHg / 80–89 mmHg", dạng tách trộn.
+   - Mẩu cat: cụm từ chối không đọc thành hạng mục ("Không rõ" ≠ "Không").
+   - Mã lao viết theo thứ tự khác được đọc theo hoán vị duy nhất mà mẫu đọc được ("EHR" = HRE); không đọc được → unlisted.
+   - Từ điển: raltegravir, zidovudine (AZT, ZDV), abacavir, rilpivirine (RPV), "DHA-piperaquine".
+   - Đơn vị: grams, gam, milligram(s).
+
+**Bác bỏ.**
+- "tenofovir + lamivudine + dolutegravir" vẫn → 5 underspecified, theo quy tắc 10 đã đăng ký (D14 chờ tác giả).
+- "two-step" ở P-dm-05 → 2 vì tập Bộ Y tế có two_step_allowed (DR8).
+- Không thêm trường ignore_drugs, vì nền của mẩu đã phủ primaquine.
+
+**Hạn chế ghi nhận.**
+- Mẩu num: câu từ chối có số KHÔNG đơn vị vẫn đọc số đó theo đơn vị mẩu (quy tắc 3, unit_assumed).
+- Phủ định không qua dấu phẩy.
+- Mã chuỗi 1–2 chữ (E, Z, Hh) không bị phủ định.
+- "TDF and ETV" đọc là danh sách lựa chọn.
+- Nền của mẩu rộng ở P-tbhiv-02: có linezolid, vì text Bộ Y tế nhắc C2a.
+- P-hbv-04 "2 <đơn vị>" (số trơn) → 5, trong khi trọng tài chấm 3.
+
+**Kiểm.**
+- pytest 1397 test qua; ruff sạch.
+- Render 644 phép: lỗi 2→2, 0 đổi.
+- Text các mục thuốc: 0 đổi.
+- Trắc nghiệm 368 phương án: lỗi 8→8, 0 đổi.
+- tolerance và conflict_status 65/65 mẩu khớp giá trị đã lưu; missing_vn_values rỗng.
+- 236/238 câu của người phản biện khớp kỳ vọng; 2 câu còn lại là 2 kỳ vọng đã bác bỏ.
+
+**Việc tiếp.** Kiểm trên tập giữ riêng (§3.1 mục 7) trước khi đóng băng. Viết lại §6.3 trong addendum đóng băng câu hỏi.

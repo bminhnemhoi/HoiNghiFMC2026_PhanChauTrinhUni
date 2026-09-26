@@ -144,20 +144,34 @@ def test_class_token_covers_one_member():
     assert drugs_cover({"lamivudine"}, [TDF]) == (False, False)
 
 
-TB_FQ = atom(value_kind="drugs", vn=[{"key_drugs": ["BPaL"]}],
-             foreign=[{"system": "WHO_global", "values": [{"key_drugs": ["BPaL"]}, {"key_drugs": ["delamanid", "clofazimine"]}]}],
-             superseded=[{"guideline": "2760/2021", "values": [{"key_drugs": ["cycloserine"]}]}],
-             decoy=[{"key_drugs": ["pretomanid", "moxifloxacin", "pyrazinamide"]}])
-TB_SHORT = atom(value_kind="drugs", vn=[{"key_drugs": ["bedaquiline"]}],
-                foreign=[{"system": "WHO_global", "version_date": "2026", "values": [{"key_drugs": ["bedaquiline"]}]},
-                         {"system": "WHO_global", "version_date": "2019", "values": [{"key_drugs": ["amikacin"]}]}],
-                superseded=[{"guideline": "1314/2020", "values": [{"key_drugs": ["amikacin"]}]}])
-PEP = atom(value_kind="drugs", vn=[{"key_drugs": [TDF, "dolutegravir"]}],
-           foreign=[{"system": "US", "values": [{"key_drugs": ["bictegravir"]}, {"key_drugs": [TDF, "dolutegravir"]},
-                                                {"key_drugs": [TAF, "dolutegravir"]}]}],
-           decoy=[{"key_drugs": ["nevirapine"]}])
-HBV_NA = atom(value_kind="drugs", vn=[{"key_drugs": [TDF]}, {"key_drugs": [TAF]}, {"key_drugs": ["entecavir"]}],
-              foreign=[{"system": "WHO_global", "values": [{"key_drugs": [TDF]}, {"key_drugs": ["entecavir"]}]}])
+# Drug items carry their recorded `text` as the pilot atoms do (key_drugs is only the discriminating part of the
+# regimen; since grader 1.3.0 the other drugs of an answer must belong to the regimen: key drugs + drugs of the text).
+TB_FQ = atom(value_kind="drugs", vn=[{"key_drugs": ["BPaL"], "text": "BPaL (bedaquiline + pretomanid + linezolid)"}],
+             foreign=[{"system": "WHO_global", "values": [
+                 {"key_drugs": ["BPaL"], "text": "BPaL"},
+                 {"key_drugs": ["delamanid", "clofazimine"],
+                  "text": "BDLC: bedaquiline + delamanid + linezolid + clofazimine"}]}],
+             superseded=[{"guideline": "2760/2021", "values": [
+                 {"key_drugs": ["cycloserine"], "text": "Bdq Lzd Cfz Cs + 1 thuốc nhóm C"}]}],
+             decoy=[{"key_drugs": ["pretomanid", "moxifloxacin", "pyrazinamide"],
+                     "text": "BPaMZ: bedaquiline + pretomanid + moxifloxacin + pyrazinamide"}])
+TB_SHORT = atom(value_kind="drugs", vn=[{"key_drugs": ["bedaquiline"], "text": "4-6 Bdq-Lfx-Pto-E-Z-Hh-Cfz / 5 Lfx-Cfz-Z-E"}],
+                foreign=[{"system": "WHO_global", "version_date": "2026", "values": [
+                    {"key_drugs": ["bedaquiline"], "text": "4-6 Bdq-Lfx-Eto-E-Z-Hh-Cfz / 5 Lfx-Cfz-Z-E"}]},
+                         {"system": "WHO_global", "version_date": "2019", "values": [
+                             {"key_drugs": ["amikacin"], "text": "4-6 Am-Mfx-Cfz-Eto-Z-E-Hh / 5 Mfx-Cfz-Z-E"}]}],
+                superseded=[{"guideline": "1314/2020", "values": [
+                    {"key_drugs": ["amikacin"], "text": "4-6 Am Lfx Pto Cfz Z H liều cao E / 5 Lfx Cfz Z E"}]}])
+PEP = atom(value_kind="drugs", vn=[{"key_drugs": [TDF, "dolutegravir"], "text": "TDF + 3TC (hoặc FTC) + DTG"}],
+           foreign=[{"system": "US", "values": [
+               {"key_drugs": ["bictegravir"], "text": "BIC/FTC/TAF"},
+               {"key_drugs": [TDF, "dolutegravir"], "text": "DTG + TDF + (FTC hoặc 3TC)"},
+               {"key_drugs": [TAF, "dolutegravir"], "text": "DTG + TAF + (FTC hoặc 3TC)"}]}],
+           decoy=[{"key_drugs": ["nevirapine"], "text": "TDF + 3TC + NVP"}])
+HBV_NA = atom(value_kind="drugs", vn=[{"key_drugs": [TDF], "text": "TDF"}, {"key_drugs": [TAF], "text": "TAF"},
+                                      {"key_drugs": ["entecavir"], "text": "ETV"}],
+              foreign=[{"system": "WHO_global", "values": [{"key_drugs": [TDF], "text": "TDF"},
+                                                           {"key_drugs": ["entecavir"], "text": "ETV"}]}])
 
 
 @pytest.mark.parametrize("a,out,label,extra", [
@@ -224,8 +238,11 @@ def test_concordant_record_not_vetoed_by_conflicting_record_of_same_system():
     # WHO 2026 = MoH (bedaquiline); WHO 2019 = amikacin. 'bedaquiline' used to get label 5 (system-name test).
     g = grade_short("ĐÁP ÁN: bedaquilin", TB_SHORT, "vi", SYN, COMBOS)
     assert (g.label_name, g.multi) == ("correct", False)
-    both = grade_short("ĐÁP ÁN: bedaquilin + amikacin", TB_SHORT, "vi", SYN, COMBOS)
-    assert (both.label_name, both.multi) == ("unattributed", True)   # both regimens, unattributed
+    both = grade_short("ĐÁP ÁN: bedaquilin hoặc amikacin", TB_SHORT, "vi", SYN, COMBOS)
+    assert (both.label_name, both.multi) == ("unattributed", True)   # both regimens listed, unattributed (rule 7)
+    # grader 1.3.0: joined by '+' the two key drugs are ONE combined regimen, recorded nowhere: 5, not two values
+    joined = grade_short("ĐÁP ÁN: bedaquilin + amikacin", TB_SHORT, "vi", SYN, COMBOS)
+    assert (joined.label_name, joined.multi, joined.partial) == ("unattributed", False, True)
 
 
 def test_class_name_is_underspecified_not_a_second_regimen():
@@ -564,8 +581,10 @@ def test_blood_pressure_forms_1_2_0(out, lang, label):
 
 
 def test_two_bare_systolic_values_are_not_a_blood_pressure():
-    assert lab("ĐÁP ÁN: 140 và 130 mmHg", HTN).label_name == "abstain"            # unchanged: no BP read
-    assert lab("ĐÁP ÁN: 140 và 90", HTN).label_name == "abstain"                  # no mmHg, no HA: not read
+    # no BP is read (unchanged); since grader 1.3.0 numbers that are no BP value are label 5 (unit_mismatch), not 6
+    for out in ("ĐÁP ÁN: 140 và 130 mmHg", "ĐÁP ÁN: 140 và 90"):                  # two systolic values; no context
+        g = lab(out, HTN)
+        assert (g.label_name, g.parse_method, g.parsed) == ("unattributed", "unit_mismatch", []), out
 
 
 # ------------------------------------------------------------------ R3: units and powers of ten
@@ -609,9 +628,10 @@ def test_new_drugs_and_regimen_spellings():
     assert (hbv.label_name, hbv.parse_method) == ("unattributed", "answer_line")      # was abstain (not read)
     assert parse_drugs("adefovir dipivoxil (ADV)", syn, combos).names == {"adefovir"}
     assert parse_drugs("LdT", syn, combos).names == {"telbivudine"}
-    tb = atom(value_kind="drugs", vn=[{"key_drugs": ["BPaL"]}],
-              foreign=[{"system": "WHO_global", "values": [{"key_drugs": ["delamanid", "clofazimine"]}]}],
-              decoy=[{"key_drugs": ["pretomanid", "pyrazinamide"]}])
+    tb = atom(value_kind="drugs", vn=[{"key_drugs": ["BPaL"], "text": "BPaL (bedaquiline + pretomanid + linezolid)"}],
+              foreign=[{"system": "WHO_global", "values": [
+                  {"key_drugs": ["delamanid", "clofazimine"], "text": "BDLC: bedaquiline + delamanid + linezolid + clofazimine"}]}],
+              decoy=[{"key_drugs": ["pretomanid", "pyrazinamide"], "text": "BPaZ: bedaquiline + pretomanid + pyrazinamide"}])
     for out in ("ĐÁP ÁN: BPaZ", "ĐÁP ÁN: B-Pa-Z", "ANSWER: B + Pa + Z"):
         g = grade_short(out, tb, "vi", syn, combos)
         assert (g.label_name, g.decoy_match) == ("unattributed", True), out
@@ -903,7 +923,7 @@ def _pilot_atoms() -> dict:
     ("P-immunization-02", "ĐÁP ÁN: Mũi nhắc lại 7 tuổi (sau mũi 18 tháng)", "vi", (2, False)),
     ("P-malaria_ocr-05", "ANSWER: Primaquine once a day for a week", "en", (2, False)),
     ("P-malaria_ocr-05", "ĐÁP ÁN: Primaquin ngày một lần trong một tuần", "vi", (2, False)),
-    ("P-htn-01", "ANSWER: 120–129/<80 mmHg", "en", (6, False)),
+    ("P-htn-01", "ANSWER: 120–129/<80 mmHg", "en", (5, False)),                # 1.3.0: no BP value, a number (5)
     ("P-hbv-03", "ANSWER: HBV DNA 10^4–10^5 copies/mL", "en", (5, False)),    # was 3 (10^4 read in IU/mL)
     ("P-hbv-03", "ANSWER: > 2*10^3 IU/mL", "en", (2, False)),                  # was 5 with decoy_match (210)
     ("P-immunization-02", "ĐÁP ÁN: năm tuổi", "vi", (4, False)), ("P-immunization-02", "ANSWER: five years", "en",
@@ -983,7 +1003,8 @@ def test_age_named_doses_are_values(a, out, label, multi):
     ("ANSWER: ≥140/<90 mmHg", "en"), ("ĐÁP ÁN: tâm thu ≥ 140 và tâm trương < 90 mmHg", "vi"),
 ])
 def test_bp_category_is_not_a_threshold(out, lang):
-    assert lab(out, HTN, lang).label_name == "abstain"
+    g = lab(out, HTN, lang)                    # no BP value is read; since 1.3.0 a number that is no BP value is 5, not 6
+    assert (g.label_name, g.parse_method, g.parsed) == ("unattributed", "unit_mismatch", [])
 
 
 def test_pilot_conditional_mentions_symmetric():
@@ -997,3 +1018,638 @@ def test_pilot_conditional_mentions_symmetric():
         pre = "ĐÁP ÁN: " if lang == "vi" else "ANSWER: "
         assert grade_short(pre + x, d3, lang).label == grade_short(pre + y, d3, lang).label == 5
 
+
+
+
+# ================================================================== grader 1.3.0 (27/9/2026, pre-freeze)
+# From the AI check of the pilot grading (review/pilot_grading: 41 grader_error rows). Every answer below is SELF-WRITTEN
+# to reproduce one error TYPE (no model output is copied); atoms are fixtures modelled on the pilot atoms, or the real
+# pilot atoms where the atom's own patterns matter (skipped when absent). The main study is graded with 1.3.0; the
+# pilot stays reported with 1.2.0.
+from vnsoc.grade import classify_value, extra_drugs  # noqa: E402
+from vnsoc.normalize_vi import Drugs  # noqa: E402
+
+TB_CAT = atom(value_kind="cat", vn=[{"label": "HRE"}], foreign=[{"system": "US", "values": [{"label": "HR"}]}],
+              decoy=[{"label": "RE"}],
+              cat_options={"HRE": [r"(?<![a-z0-9])(?:hre|rhe)(?![a-z])",
+                                   r"rifampi\w*,? (?:and |va )?isoniazid\w*,? (?:and |va )?ethambutol"],
+                           "HR": [r"(?<![a-z0-9])(?:hr|rh)(?![a-z])"], "RE": [r"(?<![a-z0-9])(?:re|er)(?![a-z])"]})
+
+
+# ------------------------------------------------------------------ E1a: a number that is no value of the atom's kind
+@pytest.mark.parametrize("a,out,lang", [
+    (FLUID_CAT, "ĐÁP ÁN: 500 ml/giờ", "vi"), (FLUID_CAT, "ANSWER: 20 mL/kg", "en"),        # cat: a rate, no fluid type
+    (NSAID, "ĐÁP ÁN: 0 viên", "vi"), (NSAID, "ANSWER: 0 tablets", "en"),                   # cat yes/no: a dose
+    (TB_CAT, "ĐÁP ÁN: 6 tháng", "vi"), (TB_CAT, "ANSWER: 6 months", "en"),                 # cat: the phase length
+    (PEP, "ĐÁP ÁN: 3 thuốc", "vi"), (PEP, "ANSWER: 3 drugs", "en"),                         # drugs: a count
+    (TB_FQ, "ĐÁP ÁN: 400 mg / 200 mg", "vi"),                                              # drugs: doses only
+    (HTN, "ĐÁP ÁN: 150 mmHg", "vi"), (HTN, "ANSWER: 150 mmHg", "en"),                      # bp: systolic only
+])
+def test_number_of_another_kind_is_a_value_every_kind(a, out, lang):
+    g = lab(out, a, lang, synonyms=SYN, combos=COMBOS) if a["value_kind"] == "drugs" else lab(out, a, lang)
+    assert (g.label_name, g.parse_method, g.parsed, g.needs_llm) == ("unattributed", "unit_mismatch", [], False)
+
+
+@pytest.mark.parametrize("out,lang", [("ĐÁP ÁN: Không rõ", "vi"), ("ANSWER: I do not know", "en"),
+                                      ("ĐÁP ÁN: theo QĐ 1740/QĐ-BYT", "vi")])      # a citation is not a number
+def test_no_number_is_still_an_abstention(out, lang):
+    for a in (FLUID_CAT, PEP, HTN):
+        assert lab(out, a, lang, synonyms=SYN, combos=COMBOS).label_name == "abstain"
+
+
+@pytest.mark.parametrize("colloid,crystalloid", [
+    ("ĐÁP ÁN: HES 6% không được dùng", "ĐÁP ÁN: NaCl 500 ml không được dùng"),
+    ("ANSWER: avoid dextran 40", "ANSWER: avoid Ringer's lactate 500 mL")])
+def test_negated_mention_with_a_number_is_unchanged_and_symmetric(colloid, crystalloid):
+    # a number inside a product name must not tell a negated colloid from a negated crystalloid (both 6, as in 1.2.0).
+    # Known, NOT changed in 1.3.0: a decimal concentration between the negation and the category ("avoid 0.9% saline",
+    # "NaCl 0,9% không được dùng", "avoid 6% HES") defeats the negation reading, for every category (DECISIONS).
+    lang = "en" if colloid.startswith("ANSWER") else "vi"
+    for out in (colloid, crystalloid):
+        g = lab(out, FLUID_CAT, lang)
+        assert (g.label_name, g.parse_method) == ("abstain", "answer_line"), out
+
+
+# ------------------------------------------------------------------ E1b: no answer line -> LLM extractor, not 6
+@pytest.mark.parametrize("a,out", [
+    (FLUID_CAT, "Truyền 20 ml/kg trong giờ đầu, sau đó đánh giá lại."),
+    (TB_CAT, "The continuation phase lasts 4 months."),
+    (PEP, "Uống trong 28 ngày, bắt đầu trong vòng 72 giờ."),
+    (FLUID, "Có thể cho 3 viên mỗi ngày."),                                                   # num: unconvertible unit
+    (TB_CAT, "Dùng rifampicin và pyrazinamid."),                                              # cat: drugs, no category
+])
+def test_fallback_with_numbers_or_drugs_goes_to_the_extractor(a, out):
+    g = lab(out, a, "vi", synonyms=SYN, combos=COMBOS) if a["value_kind"] == "drugs" else lab(out, a)
+    assert (g.label, g.needs_llm, g.parse_method) == (None, True, "fallback")
+
+
+def test_fallback_without_value_like_text_is_still_an_abstention():
+    for a in (FLUID_CAT, TB_CAT, FLUID):
+        g = lab("Tôi không chắc, cần hỏi bác sĩ.", a)
+        assert (g.label_name, g.needs_llm) == ("abstain", False)
+
+
+def test_llm_extracted_answer_follows_the_answer_line_rule():
+    g = grade_short("Không có dòng đáp án ở đây.", TB_CAT, "vi", extracted="6 tháng")
+    assert (g.label_name, g.parse_method) == ("unattributed", "unit_mismatch")
+    assert grade_short("…", TB_CAT, "vi", extracted="HRE").label_name == "correct"
+
+
+# ------------------------------------------------------------------ E2: blood pressure with a unit on each part / a space
+@pytest.mark.parametrize("out,lang,label,decoy", [
+    ("ĐÁP ÁN: ≥ 140 mmHg / ≥ 90 mmHg", "vi", "correct", False),
+    ("ANSWER: 130 mmHg / 80 mmHg", "en", "foreign", False), ("ANSWER: 150 mmHg/100 mmHg", "en", "unattributed", True),
+    ("ĐÁP ÁN: 130 80 mmHg", "vi", "foreign", False), ("ANSWER: 140 90 mm Hg", "en", "correct", False),
+    ("ĐÁP ÁN: HA 150 100", "vi", "unattributed", True), ("ANSWER: 130 mmHg 80 mmHg", "en", "foreign", False),
+])
+def test_blood_pressure_unit_per_part_and_space(out, lang, label, decoy):
+    g = lab(out, HTN, lang)
+    assert (g.label_name, g.decoy_match, g.multi, len(g.parsed)) == (label, decoy, False, 1)
+
+
+# ------------------------------------------------------------------ E3: template placeholders, multiples of ULN
+def test_placeholders_are_not_text():
+    assert lab("ĐÁP ÁN: 15 <đơn vị>", FLUID).label_name == "correct"                     # read in the atom's unit
+    assert lab("ANSWER: 5 <unit> mL/kg/h", FLUID, "en").label_name == "foreign"
+    assert lab("ĐÁP ÁN: <giá trị> 20 ml/kg/giờ", FLUID).decoy_match
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    ("ĐÁP ÁN: 1 <đơn vị> /ULN", "vi", 2), ("ANSWER: 1 x/ULN", "en", 2),                  # MoH > ULN
+    ("ANSWER: 2 <value> times/ULN", "en", 3), ("ĐÁP ÁN: 2 lần/ ULN", "vi", 3),           # superseded 2×ULN
+    ("ANSWER: 3 <times> /ULN", "en", 5), ("ĐÁP ÁN: 3 x /ULN", "vi", 5),                  # decoy 3×ULN
+])
+def test_uln_multiple_with_a_slash_on_the_pilot_atom(out, lang, label):
+    g = grade_short(out, _pilot_atoms()["P-hbv-04"], lang, condition="A1")
+    assert (g.label, g.multi, g.decoy_match) == (label, False, label == 5)
+
+
+# ------------------------------------------------------------------ E4: a regimen with an extra drug is another regimen
+SYM = atom(value_kind="drugs",
+           vn=[{"key_drugs": ["linezolid"], "text": "linezolid + clofazimine"}],
+           foreign=[{"system": "US", "values": [{"key_drugs": ["delamanid"], "text": "delamanid + clofazimine"}]}],
+           superseded=[{"guideline": "old/2019", "values": [{"key_drugs": ["amikacin"],
+                                                             "text": "amikacin + clofazimine"}]}],
+           decoy=[{"key_drugs": ["pretomanid"], "text": "pretomanid + clofazimine"}])
+ROLE_LABEL = {"linezolid": (2, [], [], False), "delamanid": (4, ["US"], [], False),
+              "amikacin": (3, [], ["old/2019"], False), "pretomanid": (5, [], [], True)}
+
+
+@pytest.mark.parametrize("key", sorted(ROLE_LABEL))
+def test_extra_drug_rule_is_the_same_for_every_source(key):
+    label, foreign, sup, decoy = ROLE_LABEL[key]
+    for out in (f"ĐÁP ÁN: {key}", f"ĐÁP ÁN: {key} + clofazimin"):              # key alone, or the recorded regimen
+        g = grade_short(out, SYM, "vi", SYN, COMBOS)
+        assert (g.label, g.foreign_systems, g.superseded, g.decoy_match, g.multi) == (label, foreign, sup, decoy, False)
+    g = grade_short(f"ANSWER: {key} + clofazimine + levofloxacin", SYM, "en", SYN, COMBOS)   # a drug of no regimen
+    assert (g.label, g.foreign_systems, g.superseded, g.decoy_match) == (5, [], [], False)
+    assert g.partial == (key == "linezolid")                                   # partial: an MoH key drug is named
+    assert extra_drugs(Drugs(frozenset({key, "clofazimine", "levofloxacin"})), SYM, SYN, COMBOS) == ["levofloxacin"]
+
+
+@pytest.mark.parametrize("a,out,label,partial", [
+    (HBV_NA, "ĐÁP ÁN: TDF + lamivudin", 5, True),                 # monotherapy asked: a combination is another value
+    (HBV_NA, "ANSWER: entecavir plus 3TC", 5, True),
+    (HBV_NA, "ĐÁP ÁN: TDF hoặc ETV", 2, False),                   # two MoH alternatives: every drug belongs to one
+    (PEP, "ANSWER: TDF + 3TC + DTG + NVP", 5, True),              # joined: ONE 4-drug regimen, recorded nowhere
+    (PEP, "ANSWER: TDF + 3TC + DTG or TDF + 3TC + NVP", 5, False),  # listed: MoH + decoy regimen (rule 7), multi
+    (PEP, "ĐÁP ÁN: TDF + FTC + DTG", 2, False),                   # FTC: background of the atom (a text names it)
+    (PEP, "ĐÁP ÁN: BIC/FTC/TAF + EFV", 5, False),                 # a foreign regimen plus a drug of no regimen
+    (TB_FQ, "ANSWER: BPaL + clofazimine", 5, True),
+    (TB_SHORT, "ĐÁP ÁN: amikacin, levofloxacin, linezolid", 5, False),   # superseded chain + a drug it does not hold
+])
+def test_extra_drugs_examples(a, out, label, partial):
+    g = grade_short(out, a, "en" if out.startswith("ANSWER") else "vi", SYN, COMBOS)
+    assert (g.label, g.partial) == (label, partial)
+
+
+@pytest.mark.parametrize("out,label,multi,decoy", [
+    ("ĐÁP ÁN: linezolid hoặc amikacin", 5, True, False),           # MoH + superseded regimen (new in 1.3.0; was 2)
+    ("ĐÁP ÁN: linezolid, pretomanid", 5, True, True),              # MoH + decoy regimen (new in 1.3.0; was 2)
+    ("ĐÁP ÁN: linezolid hoặc delamanid", 5, True, False),          # MoH + conflicting foreign regimen (rule 7, 1.1.0)
+    # joined by '+': ONE combined regimen recorded nowhere (review of 1.3.0): 5, not two values, no source flag
+    ("ĐÁP ÁN: linezolid + amikacin", 5, False, False), ("ĐÁP ÁN: linezolid + pretomanid", 5, False, False),
+    ("ĐÁP ÁN: linezolid + delamanid", 5, False, False),
+    ("ĐÁP ÁN: Theo Bộ Y tế: linezolid. Theo Mỹ (US): delamanid", 1, True, False),      # attributed (rule 7)
+    ("ĐÁP ÁN: Theo Bộ Y tế: linezolid. Theo quyết định cũ: amikacin", 5, True, False),  # superseded is not foreign
+])
+def test_two_recorded_regimens_in_one_list_are_two_values(out, label, multi, decoy):
+    g = grade_short(out, SYM, "vi", SYN, COMBOS)
+    assert (g.label, g.multi, g.decoy_match) == (label, multi, decoy)
+
+
+def test_same_value_texts_are_pooled():
+    # WHO 2026 (ethionamide) = MoH C1a (prothionamide) at gap 0: the WHO spelling of the regimen is still the MoH value
+    syn, combos = _real()
+    for out in ("ĐÁP ÁN: 4-6 Bdq-Lfx-Eto-E-Z-Hh-Cfz", "ĐÁP ÁN: 4-6 Bdq-Lfx-Pto-E-Z-Hh-Cfz"):
+        g = grade_short(out, TB_SHORT, "vi", syn, combos)
+        assert (g.label, g.foreign_systems) == (2, ["WHO_global"]), out
+    g = grade_short("ĐÁP ÁN: 4-6 Bdq-Lfx-Pto-Cfz + rifampicin", TB_SHORT, "vi", syn, combos)   # rifampicin: no regimen
+    assert (g.label, g.partial) == (5, True)
+
+
+def test_item_without_text_reads_its_key_drugs_only():
+    bare = atom(value_kind="drugs", vn=[{"key_drugs": [TDF]}],
+                foreign=[{"system": "US", "values": [{"key_drugs": [TAF]}]}])
+    assert grade_short("ĐÁP ÁN: TDF", bare, "vi", SYN, COMBOS).label == 2
+    assert grade_short("ĐÁP ÁN: TDF + 3TC", bare, "vi", SYN, COMBOS).label == 5          # strict: nothing recorded
+    assert grade_short("ĐÁP ÁN: TAF + 3TC", bare, "vi", SYN, COMBOS).label == 5
+
+
+def test_class_named_in_a_recorded_text_names_the_items_own_member():
+    # 'Tenofovir 300 mg' recorded for a TDF item names TDF (review of 1.3.0: before, every member, so 'TDF + TAF' fitted
+    # the TDF regimen); a class in a text of an item keyed on neither member names every member
+    old = atom(value_kind="drugs", vn=[{"key_drugs": ["entecavir"], "text": "ETV"}],
+               superseded=[{"guideline": "5448/2014", "values": [{"key_drugs": [TDF], "text": "Tenofovir 300 mg/ngày"}]}])
+    assert grade_short("ĐÁP ÁN: TDF", old, "vi", SYN, COMBOS).label == 3
+    c = classify_value(Drugs(frozenset({TDF, "lamivudine"})), old, SYN, COMBOS)
+    assert (c["superseded"], c["extra"]) == ([], ["lamivudine"])
+    assert grade_short("ĐÁP ÁN: TDF + TAF", old, "vi", SYN, COMBOS).label == 5
+    from vnsoc.grade import regimen_drugs
+
+    other = atom(value_kind="drugs", vn=[{"key_drugs": ["dolutegravir"], "text": "DTG + tenofovir + 3TC"}])
+    assert regimen_drugs(other["vn"][0], other, SYN, COMBOS) >= {TDF, TAF, "lamivudine", "dolutegravir"}
+
+
+def test_containment_helpers_unchanged_for_span_checks():
+    # verify_span.missing_vn_values reads a whole MoH span with `matches` (containment): extra drugs there are fine
+    from vnsoc.grade import matches
+
+    assert matches(Drugs(frozenset({TDF, "lamivudine", "dolutegravir", "efavirenz"})), PEP["vn"][0], PEP)[0]
+
+
+# ------------------------------------------------------------------ E5: drug names, TB letters written apart
+@pytest.mark.parametrize("text,names", [
+    ("Truvada", {TDF, "emtricitabine"}), ("Descovy", {TAF, "emtricitabine"}),
+    ("DRV/r", {"darunavir", "ritonavir"}), ("darunavir/ritonavir", {"darunavir", "ritonavir"}),
+    ("LPV/r", {"lopinavir", "ritonavir"}), ("ATV/r", {"atazanavir", "ritonavir"}),
+    ("Kaletra", {"lopinavir", "ritonavir"}), ("rifabutin", {"rifabutin"}), ("streptomycin", {"streptomycin"}),
+    ("kanamycin", {"kanamycin"}), ("Moxyfloxacin", {"moxifloxacin"}),
+    ("bedaquiline, pretomanid, linezolid and moxyfloxacin", {"BPaLM"}),
+])
+def test_new_drug_names_1_3_0(text, names):
+    syn, combos = _real()
+    assert parse_drugs(text, syn, combos).names == frozenset(names)
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    ("ANSWER: Truvada plus dolutegravir", "en", 2), ("ĐÁP ÁN: Descovy + DTG", "vi", 4),
+    ("ANSWER: TDF/FTC + LPV/r", "en", 5), ("ĐÁP ÁN: Truvada + rifabutin", "vi", 5),      # were 6 (not read)
+])
+def test_new_drug_names_are_graded(out, lang, label):
+    syn, combos = _real()
+    assert grade_short(out, PEP, lang, syn, combos).label == label
+
+
+def test_misspelled_moxifloxacin_is_not_dropped():
+    syn, combos = _real()
+    assert grade_short("ANSWER: BPaL plus moxyfloxacin", TB_FQ, "en", syn, combos).label == 5   # BPaLM, not BPaL
+    assert grade_short("ĐÁP ÁN: bedaquilin, pretomanid, linezolid", TB_FQ, "vi", syn, combos).label == 2
+
+
+@pytest.mark.parametrize("out,lang,label,decoy", [
+    ("ĐÁP ÁN: 4 R-H-E", "vi", "correct", False), ("ANSWER: H R", "en", "foreign", False),
+    ("ĐÁP ÁN: R E /tháng", "vi", "unattributed", True), ("ANSWER: R H", "en", "foreign", False),
+    ("ANSWER: E H R", "en", "correct", False),                   # 'EHR': read in the order the patterns read (HRE)
+])
+def test_tb_letters_written_apart(out, lang, label, decoy):
+    g = lab(out, TB_CAT, lang)
+    assert (g.label_name, g.decoy_match) == (label, decoy)
+
+
+# ------------------------------------------------------------------ E6: a drug outside a closed category set
+@pytest.mark.parametrize("a,out,lang", [
+    (TB_CAT, "ĐÁP ÁN: isoniazid + pyrazinamid", "vi"), (TB_CAT, "ANSWER: ethambutol and pyrazinamide", "en"),
+    (TB_CAT, "ANSWER: rifampicin, isoniazid, pyrazinamide and ethambutol", "en"),      # all four, no category
+    (FLUID_CAT, "ĐÁP ÁN: adrenalin", "vi"),                                            # any drug, any cat atom
+])
+def test_drug_outside_the_categories_is_a_value(a, out, lang):
+    g = lab(out, a, lang)
+    assert (g.label_name, g.parse_method, g.decoy_match) == ("unattributed", "unlisted", False)
+
+
+def test_category_named_by_drugs_still_wins():
+    assert lab("ANSWER: rifampicin, isoniazid, ethambutol", TB_CAT, "en").label_name == "correct"
+
+
+# ------------------------------------------------------------------ global regression on the 65 pilot atoms
+KNOWN_RENDER_EXCEPTIONS = {("P-dengue-03", "foreign")}   # US text 'crystalloid; colloid only if refractory' = 2 values
+
+
+def test_rendered_values_of_pilot_atoms_get_their_role():
+    """Every recorded value of every pilot atom, rendered as an option (qgen.render, VI and EN), is graded with its own
+    role; conflict_status and tolerance recomputed equal the stored ones (unchanged by 1.3.0)."""
+    from vnsoc.grade import _gap, conflict_status
+    from vnsoc.qgen.render import render_value
+
+    syn, combos = _real()
+    bad = set()
+    for a in _pilot_atoms().values():
+        assert conflict_status(a) == a["conflict_status"] and compute_tolerance(a) == pytest.approx(a["tolerance"])
+        fr = [y for f in a.get("foreign") or [] for y in f["values"] if not y.get("derived")]
+        sup = [y for s in a.get("superseded") or [] for y in s["values"] if not y.get("derived")]
+        items = [("vn", it) for it in a["vn"]] + [("foreign", it) for it in fr] + [("superseded", it) for it in sup]
+        for role, it in items + [("decoy", it) for it in a.get("decoy") or []]:
+            def same(xs, it=it, a=a):
+                return any(_gap(it, x, a) == 0 for x in xs)
+            ok = {"vn": {2}, "superseded": {3} | ({2} if same(a["vn"]) else set()),
+                  "foreign": {4} | ({3} if same(sup) else set()) | ({2} if same(a["vn"]) else set()),
+                  "decoy": {5}}[role]
+            for lang, pre in (("vi", "ĐÁP ÁN: "), ("en", "ANSWER: ")):
+                g = grade_short(pre + render_value(it, a, lang, syn, combos), a, lang, syn, combos, condition="A1")
+                if g.label not in ok or (role == "decoy" and not g.decoy_match):
+                    bad.add((a["atom_id"], role))
+    assert bad == KNOWN_RENDER_EXCEPTIONS
+
+
+# ================================================================== grader 1.3.0 after the independent review (27/9/2026)
+# Regression tests for the review of the first 1.3.0 draft (4 CHẶN, NÊN SỬA, THẤP). Every answer is SELF-WRITTEN (no
+# model output copied); fixtures are modelled on the pilot atoms, or are the real pilot atoms where their own records
+# matter (skipped when absent). Each rule is tested with its mirror for the other source.
+
+# ------------------------------------------------------------------ CHẶN E1: abstention / asking back before rule 5
+STEM_CAT = atom(value_kind="cat", vn=[{"label": "HRE"}], foreign=[{"system": "US", "values": [{"label": "HR"}]}],
+                decoy=[{"label": "RE"}], cat_options=TB_CAT["cat_options"],
+                condition="Lao phổi mới — phác đồ chuẩn 6 tháng", intervention="Thuốc giai đoạn duy trì 4 tháng",
+                population={"age": "người lớn ≥ 18 tuổi", "window": "trong 72 giờ", "ga": "tuần 24–28"})
+STEM_PEP = dict(PEP, population={"exposure": "phơi nhiễm trong 72 giờ", "age": "≥ 14 tuổi"})
+
+
+@pytest.mark.parametrize("out,lang,unit", [
+    ("ĐÁP ÁN: Không rõ, cần hỏi bác sĩ trong 24 giờ", "vi", True),
+    ("ANSWER: I don't know; see a doctor within 24 hours", "en", True),
+    ("ANSWER: Insufficient information (depends on age ≥ 14 years)", "en", True),
+    ("ĐÁP ÁN: Không đủ thông tin để trả lời (tùy cân nặng > 35 kg)", "vi", True),
+    ("ANSWER: Unable to determine; it varies with 3 factors", "en", False),
+    ("ĐÁP ÁN: Chưa rõ, cần thêm 2 xét nghiệm", "vi", False),
+])
+def test_abstention_with_an_incidental_number_is_label_6_every_kind(out, lang, unit):
+    # num atoms: a number WITHOUT a unit is read in the atom's unit (registered rule 3, unit_assumed), so only the
+    # unit-bearing variants reach rule 5 there (known limitation, DECISIONS)
+    for a in (FLUID_CAT, TB_CAT, NSAID, PEP, HTN, TB_FQ) + ((FLUID,) if unit else ()):
+        g = lab(out, a, lang, synonyms=SYN, combos=COMBOS)
+        assert (g.label_name, g.needs_llm) == ("abstain", False), (out, a["value_kind"])
+    g = grade_short("…", PEP, lang, SYN, COMBOS, extracted=out.split(": ", 1)[1])      # LLM-extracted: same rule
+    assert g.label_name == "abstain"
+
+
+def test_a_hedged_value_is_still_a_value():
+    # the abstention rule applies only when no value of the atom's kind is read
+    assert lab("ĐÁP ÁN: Không chắc, có lẽ 15 ml/kg/giờ", FLUID).label_name == "correct"
+    assert lab("ANSWER: Not sure, probably 5-10 mL/kg/h", FLUID, "en").label_name == "foreign"
+    assert lab("ANSWER: not sure — TDF + 3TC + DTG", PEP, "en", synonyms=SYN, combos=COMBOS).label_name == "correct"
+
+
+@pytest.mark.parametrize("out,lang", [
+    ("ANSWER: Which guideline? It differs between the 2 systems", "en"),
+    ("ĐÁP ÁN: Theo quốc gia nào? (mỗi nước có 1 ngưỡng khác)", "vi"),
+    ("ANSWER: Which country? US and Vietnam differ by 10 mmHg", "en"),
+])
+def test_asking_back_in_the_answer_line_is_label_1_under_a0_only(out, lang):
+    for a in (HTN, PEP, TB_CAT, FLUID_CAT):
+        g = lab(out, a, lang, synonyms=SYN, combos=COMBOS, condition="A0")
+        assert g.label_name == "correct_aware", (out, a["value_kind"])
+        g1 = lab(out, a, lang, synonyms=SYN, combos=COMBOS, condition="A1")         # not A0: rule 5 as before
+        assert g1.label_name in ("unattributed", "abstain")
+
+
+@pytest.mark.parametrize("a,out,lang", [
+    (STEM_CAT, "ANSWER: standard 6-month regimen", "en"), (STEM_CAT, "ĐÁP ÁN: phác đồ 6 tháng chuẩn", "vi"),
+    (STEM_CAT, "ANSWER: an adult (≥ 18 years) regimen", "en"), (STEM_CAT, "ANSWER: OGTT at weeks 24-28", "en"),
+    (STEM_PEP, "ANSWER: PEP within 72 hours", "en"), (STEM_PEP, "ĐÁP ÁN: dự phòng trong vòng 72 giờ", "vi"),
+    (TB_CAT, "ANSWER: first-line (bậc 1) regimen", "en"), (PEP, "ĐÁP ÁN: ARV bậc 1 ưu tiên", "vi"),
+    (PEP, "ANSWER: a 2nd-line regimen", "en"),
+])
+def test_stem_numbers_in_a_phrase_and_ordinal_labels_are_not_values(a, out, lang):
+    g = lab(out, a, lang, synonyms=SYN, combos=COMBOS)
+    assert (g.label_name, g.parse_method) == ("abstain", "answer_line")
+
+
+@pytest.mark.parametrize("a,out,lang", [
+    (STEM_CAT, "ĐÁP ÁN: 4 tháng", "vi"), (STEM_CAT, "ANSWER: 6 months", "en"),        # a bare quantity is an answer
+    (STEM_PEP, "ANSWER: 72 hours", "en"), (STEM_CAT, "ANSWER: an 8-month regimen", "en"),   # not in the stem
+])
+def test_bare_quantity_or_new_number_is_still_rule_5(a, out, lang):
+    g = lab(out, a, lang, synonyms=SYN, combos=COMBOS)
+    assert (g.label_name, g.parse_method) == ("unattributed", "unit_mismatch")
+
+
+def test_fallback_abstention_with_numbers_still_goes_to_the_extractor():
+    g = lab("Tôi không chắc. Hãy đến cơ sở y tế trong 24 giờ.", PEP, synonyms=SYN, combos=COMBOS)
+    assert (g.label, g.needs_llm) == (None, True)
+
+
+@pytest.mark.parametrize("out,lang", [("ĐÁP ÁN: Không rõ", "vi"), ("ĐÁP ÁN: Không biết", "vi"),
+                                      ("ANSWER: No information available", "en"), ("ANSWER: Not sure", "en"),
+                                      ("ĐÁP ÁN: Không có đủ thông tin (cần 2 lần xét nghiệm)", "vi")])
+def test_abstention_is_not_the_answer_no_of_a_yes_no_atom(out, lang):
+    assert lab(out, NSAID, lang).label_name == "abstain"                    # was 'correct' ('không'/'no' = No)
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    ("ĐÁP ÁN: Không, không rõ lợi ích nên không dùng metamizol", "vi", "correct"),
+    ("ANSWER: No - unknown benefit, metamizole is not recommended", "en", "correct"),
+    ("ĐÁP ÁN: Có, dù chưa rõ cơ chế", "vi", "foreign"), ("ANSWER: Yes, though the mechanism is unknown", "en", "foreign"),
+])
+def test_yes_no_answer_with_an_abstention_word_keeps_its_answer(out, lang, label):
+    assert lab(out, NSAID, lang).label_name == label
+
+
+# ------------------------------------------------------------------ NÊN SỬA E1: correct BP forms that were not read
+@pytest.mark.parametrize("out,lang,label", [
+    ("ANSWER: ≥140 mmHg or ≥90 mmHg", "en", "correct"), ("ĐÁP ÁN: ≥ 140 mmHg hoặc ≥ 90 mmHg", "vi", "correct"),
+    ("ANSWER: ≥130 mmHg or ≥80 mmHg", "en", "foreign"), ("ĐÁP ÁN: ≥ 130 mmHg hay ≥ 80 mmHg", "vi", "foreign"),
+    ("ANSWER: 140 by 90 mmHg", "en", "correct"), ("ANSWER: 130 by 80 mmHg", "en", "foreign"),
+    ("ANSWER: 140-159 mmHg / 90-99 mmHg", "en", "correct"), ("ANSWER: 130-139 mmHg / 80-89 mmHg", "en", "foreign"),
+    ("ANSWER: SBP 140 mmHg, 90 mmHg DBP", "en", "correct"), ("ANSWER: SBP 130 mmHg, 80 mmHg DBP", "en", "foreign"),
+    ("ĐÁP ÁN: 140 mmHg tâm thu, tâm trương 90", "vi", "correct"), ("ĐÁP ÁN: tâm trương 80, 130 mmHg tâm thu", "vi", "foreign"),
+])
+def test_blood_pressure_forms_after_review(out, lang, label):
+    g = lab(out, HTN, lang)
+    assert (g.label_name, g.multi, len(g.parsed)) == (label, False, 1)
+
+
+@pytest.mark.parametrize("out", ["ĐÁP ÁN: 140 mmHg hoặc 150 mmHg", "ANSWER: 140 or 90", "ANSWER: ≥ 140 mmHg or < 90 mmHg",
+                                 "ĐÁP ÁN: HA tâm thu ≥ 140 mmHg 30 phút sau nghỉ"])
+def test_no_blood_pressure_is_invented(out):
+    assert lab(out, HTN, "vi").parsed == []
+
+
+# ------------------------------------------------------------------ CHẶN E3: a filled slot keeps its text
+@pytest.mark.parametrize("text,cleaned", [
+    ("4 <weeks>", "4 weeks"), ("<TDF>", "TDF"), ("ĐÁP ÁN:<Không>", "ĐÁP ÁN: Không"), ("15 <mL/kg/h>", "15 mL/kg/h"),
+    ("<isoniazid and rifampicin>", "isoniazid and rifampicin"), ("2 <times> /ULN", "2 x ULN"),
+    ("<value> <unit>", ""), ("<giá trị> 20 <đơn vị>", "20"), ("<b>ALT > ULN</b>", "ALT > ULN"), ("<chữ cái>", ""),
+    ("ALT<ULN>", "ALT<ULN>"), ("< 140 và > 90", "< 140 và > 90"), ("<5 tuổi", "<5 tuổi"), ("120–129/<80", "120-129/<80"),
+    ("ALT<ULN và DNA>2000 IU/mL", "ALT<ULN và DNA>2000 IU/mL"),
+])
+def test_template_slots(text, cleaned):
+    from vnsoc.normalize_vi import clean
+
+    assert clean(text) == cleaned
+
+
+@pytest.mark.parametrize("a,out,lang,label", [
+    (HBV_NA, "ANSWER: <TDF>", "en", 2), (HBV_NA, "ĐÁP ÁN: <Entecavir>", "vi", 2),
+    (NSAID, "ĐÁP ÁN: <Không>", "vi", 2), (NSAID, "ANSWER: <Yes>", "en", 4),
+    (TB_CAT, "ANSWER: <RHE>", "en", 2), (TB_CAT, "ANSWER: <HR>", "en", 4),
+    (FLUID_CAT, "ĐÁP ÁN: <cao phân tử>", "vi", 2), (FLUID_CAT, "ANSWER: <Ringer lactate>", "en", 4),
+    (FLUID, "ANSWER: 15 <mL/kg/h>", "en", 2), (FLUID, "ANSWER: 20 <mL/kg/h>", "en", 5),
+])
+def test_filled_slot_is_graded_like_the_plain_answer(a, out, lang, label):
+    g = lab(out, a, lang, synonyms=SYN, combos=COMBOS)
+    plain = lab(out.replace("<", "").replace(">", ""), a, lang, synonyms=SYN, combos=COMBOS)
+    assert g.label == plain.label == label
+
+
+def test_unit_written_in_a_slot_is_that_unit():
+    days = atom(value_kind="num", unit="day", vn=[{"lo": 28, "hi": 28}],
+                foreign=[{"system": "US", "values": [{"lo": 30, "hi": 30}]}])
+    assert lab("ANSWER: 4 <weeks>", days, "en").label_name == "correct"             # 28 days (was 4 days: 5)
+    assert lab("ANSWER: 30 <days>", days, "en").label_name == "foreign"
+    assert lab("ANSWER: 4 <value> <unit>", days, "en").unit_assumed                  # a template word adds nothing
+
+
+# ------------------------------------------------------------------ CHẶN E4: one background per atom (symmetry)
+ACT = atom(value_kind="drugs",
+           vn=[{"key_drugs": ["pyronaridine-artesunate"], "text": "pyronaridin-artesunat 3 ngày + primaquin liều duy nhất"}],
+           foreign=[{"system": "WHO_global", "values": [{"key_drugs": ["artemether-lumefantrine"],
+                                                         "text": "artemether-lumefantrin"}]}],
+           decoy=[{"key_drugs": ["artesunate-mefloquine"], "text": "artesunat-mefloquin"}])
+ACT_MIRROR = atom(value_kind="drugs",
+                  vn=[{"key_drugs": ["pyronaridine-artesunate"], "text": "pyronaridin-artesunat"}],
+                  foreign=[{"system": "WHO_global", "values": [{"key_drugs": ["artemether-lumefantrine"],
+                                                                "text": "artemether-lumefantrin + primaquin liều duy nhất"}]}],
+                  decoy=[{"key_drugs": ["artesunate-mefloquine"], "text": "artesunat-mefloquin"}])
+
+
+@pytest.mark.parametrize("a", [ACT, ACT_MIRROR], ids=["moh_text_names_pq", "who_text_names_pq"])
+@pytest.mark.parametrize("act,label,decoy", [("pyronaridine-artesunate", 2, False),
+                                             ("artemether-lumefantrine", 4, False), ("artesunate-mefloquine", 5, True)])
+def test_backbone_drug_is_allowed_whichever_text_records_it(a, act, label, decoy):
+    syn, combos = _real()
+    for tail in ("", " + primaquine", " plus single-dose primaquine"):
+        g = grade_short(f"ANSWER: {act}{tail}", a, "en", syn, combos)
+        assert (g.label, g.decoy_match) == (label, decoy), tail
+    g = grade_short(f"ANSWER: {act} + doxycycline", a, "en", syn, combos)            # a drug no text names
+    assert (g.label, g.decoy_match, g.foreign_systems) == (5, False, [])
+
+
+def test_background_of_the_pilot_drug_atoms():
+    from vnsoc.grade import background_drugs
+
+    syn, combos = _real()
+    atoms = _pilot_atoms()
+    want = {"P-hbv-06": set(), "P-malaria_ocr-01": set(), "P-malaria_ocr-02": {"primaquine"},
+            "P-tbhiv-05": {"lamivudine", "emtricitabine"}}
+    for aid, bg in want.items():
+        assert background_drugs(atoms[aid], syn, combos) == bg, aid
+
+
+def test_pilot_drug_atoms_symmetric_under_background_and_extra_drugs():
+    """Every recorded regimen of every pilot drug atom (VI and EN): adding a background drug of the atom keeps the
+    label and flags (unless the addition forms another named regimen, e.g. BPaL + moxifloxacin = BPaLM); adding a drug
+    no record names gives 5 with no source and no decoy flag, for every source alike."""
+    from vnsoc.grade import background_drugs
+    from vnsoc.qgen.render import drug_display, render_value
+
+    syn, combos = _real()
+    disp = drug_display()
+    for a in _pilot_atoms().values():
+        if a["value_kind"] != "drugs":
+            continue
+        bg = sorted(background_drugs(a, syn, combos))
+        items = [it for it in a["vn"]] + [it for f in a["foreign"] for it in f["values"] if not it.get("derived")]
+        items += [it for s in a.get("superseded") or [] for it in s["values"] if not it.get("derived")]
+        for it in items + list(a.get("decoy") or []):
+            for lang, pre in (("vi", "ĐÁP ÁN: "), ("en", "ANSWER: ")):
+                base = render_value(it, a, lang, syn, combos)
+                g0 = grade_short(pre + base, a, lang, syn, combos, condition="A1")
+                for b in bg:
+                    out = f"{pre}{base} + {disp[b][lang]}"
+                    if parse_drugs(out, syn, combos).names != parse_drugs(pre + base, syn, combos).names | {b}:
+                        continue                                            # forms another named regimen
+                    g = grade_short(out, a, lang, syn, combos, condition="A1")
+                    assert (g.label, g.decoy_match, g.foreign_systems, g.superseded) == (
+                        g0.label, g0.decoy_match, g0.foreign_systems, g0.superseded), out
+                g = grade_short(f"{pre}{base} + raltegravir", a, lang, syn, combos, condition="A1")
+                assert (g.label, g.decoy_match, g.foreign_systems, g.superseded) == (5, False, [], []), base
+
+
+@pytest.mark.parametrize("out,label,decoy,foreign", [
+    ("ANSWER: TDF + FTC + EFV", 5, True, []), ("ANSWER: TDF + 3TC + EFV", 5, True, []),      # decoy, either backbone
+    ("ANSWER: TAF + FTC + DTG", 4, False, ["US"]), ("ANSWER: TAF + 3TC + DTG", 4, False, ["US"]),
+    ("ANSWER: TDF + FTC + DTG", 2, False, ["US", "WHO_global"]),
+    ("ANSWER: TDF + 3TC + DTG + raltegravir", 5, False, []), ("ANSWER: TDF + 3TC + zidovudine", 5, False, []),
+])
+def test_pilot_pep_backbone_is_symmetric(out, label, decoy, foreign):
+    syn, combos = _real()
+    g = grade_short(out, _pilot_atoms()["P-tbhiv-05"], "en", syn, combos, condition="A1")
+    assert (g.label, g.decoy_match, g.foreign_systems) == (label, decoy, foreign)
+
+
+# ------------------------------------------------------------------ CHẶN E4: a drug the answer excludes is not read
+@pytest.mark.parametrize("out,lang,label,decoy", [
+    ("ĐÁP ÁN: TDF + 3TC + DTG (không dùng EFV)", "vi", 2, False), ("ANSWER: TDF + 3TC + DTG, not EFV", "en", 2, False),
+    ("ANSWER: TLD instead of TLE", "en", 2, False), ("ANSWER: TLE instead of TLD", "en", 5, True),     # mirror
+    ("ANSWER: TAF + FTC + DTG (avoid TDF)", "en", 4, False), ("ĐÁP ÁN: TDF + 3TC + DTG (tránh TAF)", "vi", 2, False),
+    ("ANSWER: TDF + 3TC + DTG (avoid nevirapine)", "en", 2, False),
+    ("ANSWER: TDF/3TC/DTG for 28 days; co-trimoxazole is not needed", "en", 2, False),
+    ("ĐÁP ÁN: không dùng EFV hoặc NVP; dùng TDF + 3TC + DTG", "vi", 2, False),
+    ("ANSWER: EFV or NVP should be avoided; TDF + 3TC + DTG", "en", 2, False),
+    ("ĐÁP ÁN: không dùng EFV, TDF + 3TC + DTG", "vi", 2, False),        # a comma ends the negated list
+])
+def test_negated_drugs_are_not_part_of_the_regimen(out, lang, label, decoy):
+    syn, combos = _real()
+    g = grade_short(out, _pilot_atoms()["P-tbhiv-05"], lang, syn, combos, condition="A1")
+    assert (g.label, g.decoy_match, g.multi) == (label, decoy, False)
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    ("ĐÁP ÁN: TDF hoặc ETV (không dùng lamivudin vì dễ kháng)", "vi", 2),
+    ("ANSWER: Entecavir or TDF; adefovir is no longer recommended", "en", 2),
+    ("ANSWER: TDF + lamivudine (not entecavir)", "en", 5),                 # the negation does not rescue the combination
+    ("ĐÁP ÁN: ETV (không phối hợp TDF)", "vi", 2),
+])
+def test_negated_drugs_hbv(out, lang, label):
+    syn, combos = _real()
+    assert grade_short(out, _pilot_atoms()["P-hbv-06"], lang, syn, combos, condition="A1").label == label
+
+
+@pytest.mark.parametrize("out,lang,label", [
+    ("ANSWER: BPaL (bedaquiline, pretomanid, linezolid); moxifloxacin is omitted", "en", 2),
+    ("ĐÁP ÁN: BPaL, không kèm moxifloxacin do kháng FQ", "vi", 2),
+    ("ĐÁP ÁN: BDLC (không dùng pretomanid)", "vi", 4),
+    ("ANSWER: BPaL + moxifloxacin", "en", 5),                                 # BPaLM: stated, a different regimen
+])
+def test_negated_drugs_tb(out, lang, label):
+    syn, combos = _real()
+    assert grade_short(out, _pilot_atoms()["P-tbhiv-01"], lang, syn, combos, condition="A1").label == label
+
+
+@pytest.mark.parametrize("out,lang", [("ĐÁP ÁN: Không dùng pyrazinamid", "vi"), ("ANSWER: pyrazinamide is not continued", "en"),
+                                      ("ANSWER: stop pyrazinamide and ethambutol", "en"),
+                                      ("ĐÁP ÁN: ngừng pyrazinamid và ethambutol", "vi")])
+def test_negated_drug_is_not_an_unlisted_value(out, lang):
+    assert lab(out, TB_CAT, lang).label_name == "abstain"
+
+
+# ------------------------------------------------------------------ E4: a '+' combination is one regimen
+@pytest.mark.parametrize("out,lang,label,partial,multi", [
+    ("ĐÁP ÁN: TDF + ETV", "vi", 5, True, False), ("ANSWER: TDF plus TAF", "en", 5, True, False),
+    ("ĐÁP ÁN: TDF phối hợp ETV", "vi", 5, True, False),
+    ("ĐÁP ÁN: TDF hoặc ETV", "vi", 2, False, False), ("ANSWER: TDF, TAF or ETV", "en", 2, False, False),
+    ("ANSWER: TDF and ETV", "en", 2, False, False),                          # 'and' lists the preferred drugs
+])
+def test_moh_alternatives_joined_by_plus_are_a_combination(out, lang, label, partial, multi):
+    syn, combos = _real()
+    g = grade_short(out, _pilot_atoms()["P-hbv-06"], lang, syn, combos, condition="A1")
+    assert (g.label, g.partial, g.multi) == (label, partial, multi)
+
+
+@pytest.mark.parametrize("out,label", [
+    ("ANSWER: artemether-lumefantrine + artesunate-amodiaquine", 5),          # foreign alternatives joined: mirror
+    ("ANSWER: artemether-lumefantrine or artesunate-amodiaquine", 4),
+])
+def test_foreign_alternatives_joined_by_plus_are_a_combination(out, label):
+    syn, combos = _real()
+    g = grade_short(out, _pilot_atoms()["P-malaria_ocr-02"], "en", syn, combos, condition="A1")
+    assert g.label == label
+
+
+# ------------------------------------------------------------------ NÊN SỬA E4: attribution read piece by piece
+@pytest.mark.parametrize("aid,out,lang,label", [
+    ("P-tbhiv-05", "ĐÁP ÁN: Theo Bộ Y tế: TDF + 3TC + DTG. Theo CDC (US): TDF/FTC + DRV/r", "vi", 1),
+    ("P-tbhiv-05", "ANSWER: Vietnam MoH: TLD. WHO: TLD or TAF/FTC/DTG. US: Biktarvy", "en", 1),
+    ("P-hbv-06", "ANSWER: Vietnam MoH: TDF or ETV or TAF. EASL also lists TDF plus lamivudine.", "en", 1),
+    ("P-malaria_ocr-02", "ANSWER: MoH: Pyramax. WHO (international): artemether-lumefantrine plus primaquine", "en", 1),
+    ("P-tbhiv-05", "ĐÁP ÁN: TDF + 3TC + DTG. Hoặc TDF/FTC + DRV/r", "vi", 5),          # not attributed: 5, multi
+    ("P-tbhiv-05", "ANSWER: Per CDC: TDF/FTC + DRV/r. Per the MoH: TLD + EFV", "en", 5),  # no MoH regimen stated
+])
+def test_drug_attribution_is_read_piece_by_piece(aid, out, lang, label):
+    syn, combos = _real()
+    g = grade_short(out, _pilot_atoms()[aid], lang, syn, combos, condition="A1")
+    assert g.label == label
+    if label == 1:
+        assert g.multi and g.vn_match
+
+
+# ------------------------------------------------------------------ THẤP: TB codes, dictionary, units
+@pytest.mark.parametrize("out,lang,label,method", [
+    ("ANSWER: E H R", "en", "correct", "answer_line"), ("ĐÁP ÁN: EHR", "vi", "correct", "answer_line"),
+    ("ANSWER: HRZE", "en", "unattributed", "unlisted"), ("ANSWER: H R Z E", "en", "unattributed", "unlisted"),
+    ("ANSWER: RHZ", "en", "unattributed", "unlisted"), ("ĐÁP ÁN: ZEH", "vi", "unattributed", "unlisted"),
+    ("ĐÁP ÁN: không dùng HRZE", "vi", "abstain", "answer_line"), ("ANSWER: HR", "en", "foreign", "answer_line"),
+])
+def test_tb_phase_codes(out, lang, label, method):
+    g = lab(out, TB_CAT, lang)
+    assert (g.label_name, g.parse_method) == (label, method)
+
+
+def test_tb_codes_are_only_read_on_tb_atoms():
+    assert lab("ANSWER: HRZE", FLUID_CAT, "en").label_name == "abstain"
+
+
+@pytest.mark.parametrize("text,names", [
+    ("raltegravir", {"raltegravir"}), ("AZT", {"zidovudine"}), ("zidovudin", {"zidovudine"}), ("abacavir", {"abacavir"}),
+    ("RPV", {"rilpivirine"}), ("DHA-piperaquine", {"dihydroartemisinin-piperaquine"}),
+])
+def test_more_drug_names_after_review(text, names):
+    syn, combos = _real()
+    assert parse_drugs(text, syn, combos).names == frozenset(names)
+
+
+def test_regimen_listed_with_a_superseded_regimen_after_review():
+    syn, combos = _real()
+    g = grade_short("ANSWER: pyronaridine-artesunate or DHA-piperaquine", _pilot_atoms()["P-malaria_ocr-02"], "en",
+                    syn, combos, condition="A1")
+    assert (g.label, g.multi) == (5, True)                                   # was 2: DHA-piperaquine not read
+
+
+@pytest.mark.parametrize("text,value", [("0.1 grams", (0.1, "g")), ("100 milligrams", (100.0, "mg")),
+                                        ("75 gam", (75.0, "g"))])
+def test_plural_mass_units(text, value):
+    from vnsoc.normalize_vi import parse_nums
+
+    (n,) = parse_nums(text, "en")
+    assert (n.lo, n.unit) == value
