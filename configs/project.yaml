@@ -41,6 +41,8 @@ rq3:
   split_unit: atom
   split_fractions: {ref: 0.2, cal: 0.4, test: 0.4}   # đề xuất; chốt trong bản OSF (T2.10)
   split_seed: 20261001
+qgen:
+  mcq_order_seed: 20260926           # seeded shuffle for MCQ order 0; order 1 = reverse (vnsoc.qgen.mcq)
 decision_rules_file: docs/02_KE_HOACH_TRIEN_KHAI.md  # DR1–DR10
 cut_order: [A5_A6, A4, frontier_to_1, cheap_api_to_1, open_models_to_3]
 journals: [JMIR Medical Informatics, International Journal of Medical Informatics]
