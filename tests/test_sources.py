@@ -51,3 +51,14 @@ def test_pdf_pages_marked(proj, monkeypatch):
     f = sources.fetch("https://example.org/malaria.pdf", root=proj)
     hits = sources.grep(f.text, "first trimester")
     assert hits and hits[0][0] == 2
+
+
+def test_block_page_detection_and_cached_text(proj, monkeypatch):
+    requests = pytest.importorskip("requests")
+    interstitial = b"<html><body>Checking your browser...</body></html>"
+    monkeypatch.setattr(requests, "get", lambda url, **kw: FakeResp(interstitial, "text/html"))
+    a = sources.fetch("https://repo.example.org/a.pdf", root=proj)
+    sources.fetch("https://repo.example.org/b.pdf", root=proj)
+    assert sources.block_hashes(proj) == {a.sha256}
+    assert "Checking your browser" in sources.cached_text(a.sha256, proj)
+    assert sources.cached_text("0" * 64, proj) is None

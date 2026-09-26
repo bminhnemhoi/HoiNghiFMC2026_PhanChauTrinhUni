@@ -28,6 +28,42 @@ def load_topics(d: Path) -> list[dict]:
     return atoms
 
 
+def source_warnings(atom: dict, blocks: set[str], root=None) -> list[str]:
+    """Code-level evidence check of foreign values: hash must not be an anti-bot page; the recorded numbers / drug
+    names should occur in the cached source text (a warning, not a rejection: a value may be derived, e.g. mg/kg
+    times the weight in context)."""
+    from vnsoc.match.sources import cached_text, fold
+
+    warns = []
+    for f in atom.get("foreign") or []:
+        sha = f.get("page_sha256")
+        if not sha:
+            warns.append(f"{f['source']}: không có page_sha256 (cần người mở kiểm)")
+            continue
+        if sha in blocks:
+            warns.append(f"{f['source']}: page_sha256 là trang chặn/trung gian, không phải tài liệu")
+            continue
+        text = cached_text(sha, root)
+        if text is None:
+            warns.append(f"{f['source']}: không có bản đệm với sha {sha[:12]}")
+            continue
+        t = fold(text)
+        for it in f["values"]:
+            toks = []
+            if it.get("lo") is not None:
+                toks += [f"{it['lo']:g}", f"{it['hi']:g}"]
+            if it.get("sys") is not None:
+                toks += [f"{it['sys']:g}/{it['dia']:g}"]
+            if it.get("seq"):
+                toks += [str(s) for s in it["seq"]]
+            if it.get("key_drugs"):
+                toks += [p for d in it["key_drugs"] for p in d.replace("+", "-").split("-") if len(p) > 3]
+            missing = [x for x in dict.fromkeys(toks) if fold(x) not in t and fold(x).replace(".", ",") not in t]
+            if missing:
+                warns.append(f"{f['source']}: không thấy {missing} trong nguồn đã băm")
+    return warns
+
+
 def check(atom: dict, syn, combos, root=None) -> list[str]:
     probs = []
     try:
@@ -52,7 +88,7 @@ def _vals(items: list[dict]) -> str:
     return "; ".join(str(it.get("text") or {k: v for k, v in it.items() if v is not None}) for it in items) or "—"
 
 
-def checklist(atoms: list[dict]) -> str:
+def checklist(atoms: list[dict], warns: dict[str, list[str]] | None = None) -> str:
     out = ["# HG1.2 — Kiểm tay trích dẫn các mẩu thí điểm", "",
            "Với từng mẩu: mở PDF ở đúng **trang PDF** (số trang trong trình xem PDF, đếm từ 1) và xác nhận:",
            "(a) đoạn trích đúng nguyên văn; (b) giá trị và đơn vị đúng; (c) quần thể/bối cảnh đúng (người lớn/trẻ em, "
@@ -75,13 +111,18 @@ def checklist(atoms: list[dict]) -> str:
             out.append(f"- Bản cũ {s['guideline']} (trang PDF {s.get('page')}, mục {s.get('section')}): **{_vals(s['values'])}**")
         if a.get("decoy"):
             out.append(f"- Giá trị mồi (quy tắc {(a.get('extraction') or {}).get('decoy_rule', '—')}): {_vals(a['decoy'])}")
+        for w in (warns or {}).get(a["atom_id"], []):
+            out.append(f"- ⚠ Kiểm bằng mã: {w}")
         out += ["- [ ] (a) nguyên văn  - [ ] (b) giá trị/đơn vị  - [ ] (c) quần thể  - [ ] (d) nguồn nước ngoài", ""]
     return "\n".join(out) + "\n"
 
 
 def main(argv=None) -> int:
     P = paths()
+    from vnsoc.match.sources import block_hashes
+
     syn, combos = drug_tables()
+    blocks = block_hashes()
     atoms = [finalize(a) for a in load_topics(P.root / "data" / "interim" / "pilot")]
     seen, keep, bad = set(), [], []
     for a in atoms:
@@ -93,7 +134,8 @@ def main(argv=None) -> int:
     out = P.root / "data" / "interim" / "pilot_atoms.jsonl"
     out.write_text("".join(json.dumps(a, ensure_ascii=False) + "\n" for a, _ in keep), encoding="utf-8")
     (P.state / "gates").mkdir(parents=True, exist_ok=True)
-    (P.state / "gates" / "HG1.2_checklist.md").write_text(checklist([a for a, _ in keep]), encoding="utf-8")
+    warns = {a["atom_id"]: source_warnings(a, blocks) for a, _ in keep}
+    (P.state / "gates" / "HG1.2_checklist.md").write_text(checklist([a for a, _ in keep], warns), encoding="utf-8")
     rej = P.root / "data" / "interim" / "pilot_merge_rejects.jsonl"
     rej.write_text("".join(json.dumps({"atom_id": a.get("atom_id"), "problems": p}, ensure_ascii=False) + "\n"
                            for a, p in bad), encoding="utf-8")
@@ -103,6 +145,9 @@ def main(argv=None) -> int:
     print(f"giữ {len(keep)} mẩu {by}; loại {len(bad)} (xem {rej.name})")
     for a, p in bad:
         print(f"  LOẠI {a.get('atom_id')}: {'; '.join(p)}")
+    for aid, w in warns.items():
+        for x in w:
+            print(f"  CẢNH BÁO {aid}: {x}")
     return 0
 
 

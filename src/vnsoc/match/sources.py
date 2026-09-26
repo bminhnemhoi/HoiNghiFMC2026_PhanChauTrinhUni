@@ -129,6 +129,26 @@ def fetch(url: str, refresh: bool = False, timeout: int = 60, root=None) -> Fetc
     return Fetched(url, cache_dir(root) / name, sha, fetched_at, ctype, _to_text(data, ctype))
 
 
+def block_hashes(root=None) -> set[str]:
+    """SHA-256 of HTML pages served for >= 2 different requested URLs: interstitial / anti-bot / consent pages
+    (e.g. a repository returning the same HTML for several PDF links). Such a hash is not evidence of a value."""
+    _, idx = _index(root)
+    by: dict[str, set[str]] = {}
+    for url, meta in idx.items():
+        if "html" in (meta.get("content_type") or "") or meta["file"].endswith(".html"):
+            by.setdefault(meta["sha256"], set()).add(url)
+    return {sha for sha, urls in by.items() if len(urls) >= 2}
+
+
+def cached_text(sha256: str, root=None) -> str | None:
+    """Plain text of a cached source by its SHA-256 (None if not in the cache)."""
+    _, idx = _index(root)
+    for meta in idx.values():
+        if meta["sha256"] == sha256 and (cache_dir(root) / meta["file"]).exists():
+            return _to_text((cache_dir(root) / meta["file"]).read_bytes(), meta.get("content_type") or "")
+    return None
+
+
 def fold(s: str) -> str:
     """Case/dash/whitespace-insensitive form for matching value strings against source text."""
     s = unicodedata.normalize("NFKC", s or "").translate(DASHES).replace(" ", " ").lower()
