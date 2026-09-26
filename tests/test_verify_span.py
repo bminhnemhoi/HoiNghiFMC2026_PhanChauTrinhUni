@@ -126,3 +126,22 @@ def test_ocr_used_when_only_a_watermark_line(proj):
     (d / "p001.txt").write_text(body, encoding="utf-8")
     (d / "meta.json").write_text(json.dumps({"pdf_sha256": hashlib.sha256(p.read_bytes()).hexdigest()}), encoding="utf-8")
     assert ocr_pages(p) == {1} and "clindamycin" in page_text(p, 1)
+
+
+def test_dr8_secondary_sources_verified_on_their_own_pages(proj):
+    fitz = pytest.importorskip("pymupdf")
+    for key, text in (("6000/2099", "Adult shock: Ringer lactate 15 ml/kg/h in the first hour."),
+                      ("6001/2099", "Other current guideline: crystalloid 10 ml/kg/h for adults in shock.")):
+        doc = fitz.open()
+        doc.new_page().insert_text((72, 72), text)
+        p = pdf_path(key, proj)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        doc.save(p)
+    a = atom(guideline="6000/2099", page=1, span="Ringer lactate 15 ml/kg/h in the first hour",
+             vn=[{"lo": 15, "hi": 15}, {"lo": 10, "hi": 10}])
+    assert verify_atom(a, proj, {}, {})["missing_vn"] == [1]
+    a["extraction"] = {"dr8_sources": [{"guideline": "6001/2099", "page": 1, "span_nguyen_van": "crystalloid 10 ml/kg/h for adults"}]}
+    assert verify_atom(a, proj, {}, {})["ok"]
+    a["extraction"]["dr8_sources"][0]["page"] = 2
+    r = verify_atom(a, proj, {}, {})
+    assert not r["ok"] and "DR8" in r["reason"]

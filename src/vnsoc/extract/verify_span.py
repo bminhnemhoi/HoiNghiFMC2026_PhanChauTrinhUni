@@ -127,12 +127,25 @@ def drug_tables(root=None) -> tuple[dict, dict]:
     return cfg.get("drugs") or {}, cfg.get("combos") or {}
 
 
+def dr8_spans(atom: dict) -> list[dict]:
+    """Secondary current-MoH sources merged into the value set under DR8 (proposal §1.2): extraction.dr8_sources =
+    [{guideline, page, span (or span_nguyen_van), ...}]."""
+    out = []
+    for s in (atom.get("extraction") or {}).get("dr8_sources") or []:
+        span = s.get("span") or s.get("span_nguyen_van") or ""
+        if s.get("guideline") and s.get("page") and span:
+            out.append({"guideline": s["guideline"], "page": int(s["page"]), "span": span})
+    return out
+
+
 def missing_vn_values(atom: dict, lang: str = "vi", synonyms=None, combos=None) -> list[int]:
-    """Indices of `vn` items that cannot be parsed back from the span (empty list = all present)."""
+    """Indices of `vn` items that cannot be parsed back from the span or from a DR8 source span (empty = all present)."""
     from vnsoc.grade import matches, parse_values
 
     a = dict(atom, tolerance=0.0)
-    vals = [v for _, v in parse_values(atom.get("span") or "", a, lang, synonyms, combos)]
+    vals = []
+    for s in [atom.get("span") or ""] + [d["span"] for d in dr8_spans(atom)]:
+        vals += [v for _, v in parse_values(s, a, lang, synonyms, combos)]
     return [i for i, item in enumerate(atom.get("vn") or []) if not any(matches(v, item, a)[0] for v in vals)]
 
 
@@ -154,6 +167,12 @@ def verify_atom(atom: dict, root=None, synonyms=None, combos=None) -> dict:
         out["reason"] = f"span không có ở trang {atom['page']}" + (f" (có ở trang {pages})" if pages else "")
         return out
     out["ocr"] = int(atom["page"]) in ocr_pages(pdf)
+    for d in dr8_spans(atom):                       # every DR8 span must itself be verbatim on its page
+        p2 = pdf_path(d["guideline"], root)
+        if not p2.exists() or not span_on_page(p2, d["page"], d["span"]):
+            out["reason"] = f"span DR8 của {d['guideline']} không có ở trang {d['page']}"
+            return out
+        out["ocr"] = out["ocr"] or d["page"] in ocr_pages(p2)
     out["missing_vn"] = missing_vn_values(atom, "vi", synonyms, combos)
     if out["missing_vn"]:
         out["reason"] = f"không đọc lại được giá trị vn {out['missing_vn']} từ span"
