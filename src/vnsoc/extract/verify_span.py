@@ -30,9 +30,12 @@ _WS = re.compile(r"\s+")
 _INVISIBLE = dict.fromkeys(map(ord, "­​‌‍﻿"), None)   # soft hyphen, zero-width chars
 
 
+_GLYPH = str.maketrans({"\u01a3": "\u01b0", "\u01a2": "\u01af"})   # "ƣ/Ƣ" glyphs some Vietnamese PDFs emit for "ư/Ư"
+
+
 def norm(s: str | None) -> str:
-    """NFC + NBSP->space + drop invisible characters + collapse whitespace."""
-    s = unicodedata.normalize("NFC", s or "").replace(" ", " ").translate(_INVISIBLE)
+    """NFC + NBSP->space + drop invisible characters + common glyph fixes + collapse whitespace."""
+    s = unicodedata.normalize("NFC", s or "").replace("\u00a0", " ").translate(_INVISIBLE).translate(_GLYPH)
     return _WS.sub(" ", s).strip()
 
 
