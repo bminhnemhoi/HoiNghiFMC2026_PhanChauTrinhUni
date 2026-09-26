@@ -73,3 +73,19 @@ def test_blocks_adds_dependency(proj):
     st = state.init(P)                                    # re-init keeps extra dependency + dynamic task
     assert st["tasks"]["T0.5"]["extra_depends"] == ["R1.1"]
     assert "T0.5" in [t["id"] for t in state.eligible_claude(st)]
+
+
+def test_waive_needs_the_users_own_ack(proj):
+    """A user re-plan ('solo, laptop only') waives tasks only on the user's own XONG acknowledgement."""
+    P = paths(proj)
+    state.init(P)
+    with pytest.raises(SystemExit):
+        state.waive(P, "T0.3", "HG0.2", "không có xác nhận")          # no ack -> refused
+    P.human_ack.mkdir(exist_ok=True)
+    (P.human_ack / "HG0.2").write_text("XONG HG0.2 không dùng khóa API, chạy trên laptop")
+    state.waive(P, "T0.3", "HG0.2", "chạy cục bộ")
+    st = state.load(P)
+    assert st["tasks"]["T0.3"]["status"] == "skipped"
+    assert "không dùng khóa API" in P.decisions.read_text(encoding="utf-8")
+    with pytest.raises(SystemExit):
+        state.waive(P, "T0.3", "HG0.2", "lần hai")                    # already skipped

@@ -14,29 +14,42 @@ def md(box="Tóm tắt ngắn.", body="nội dung ngắn gọn", kw_vi="a; b; c"
     out += ["## EN", ""]
     for s in SECT_EN:
         out += [f"### {s}", "", title if s == "TITLE" else kw_en if s == "KEYWORDS" else body, ""]
-    return "\n".join(out + ["## GHI CHÚ", "", "Chưa đăng.", ""])
+    return "\n".join(out + ["## GHI CHÚ", "", "Chưa đăng.", "", "## NOTE", "", "Not published.", "",
+                           "## ABSTRACT BOX", "", "Short abstract.", ""])
 
 
 def test_parse_and_ok():
     d = fmc.parse(md())
     assert d["box"] == "Tóm tắt ngắn." and list(d["vi"])[0] == "TIÊU ĐỀ" and d["note"] == "Chưa đăng."
-    assert fmc.checks(d) == []
+    assert d["box_en"] == "Short abstract." and d["note_en"] == "Not published."
+    assert fmc.checks(d) == [] and fmc.warnings(d) == []
 
 
 @pytest.mark.parametrize("kw,problem", [
-    (dict(box="x" * 501), "ký tự"), (dict(body=" ".join(["từ"] * 60)), "từ >"), (dict(kw_vi="a; b"), "từ khóa"),
+    (dict(box="x" * 501), "ký tự"), (dict(body=" ".join(["từ"] * 110)), "từ >"), (dict(kw_vi="a; b"), "từ khóa"),
     (dict(kw_en="X; y; z"), "từ khóa"), (dict(title="t" * 151), "tiêu đề"), (dict(body="có {{design.x}}"), "placeholder"),
 ])
 def test_limits(kw, problem):
     assert any(problem in p for p in fmc.checks(fmc.parse(md(**kw))))
 
 
-def test_docx(tmp_path):
+def test_recommended_length_is_a_warning_only():
+    d = fmc.parse(md(body=" ".join(["từ"] * 60)))            # 5 sections x 60 = 300 words: > 250, <= 500
+    assert fmc.checks(d) == [] and any("khuyến khích" in w for w in fmc.warnings(d))
+
+
+def test_docx_one_language_per_file(tmp_path):
     pytest.importorskip("docx")
-    out = tmp_path / "a.docx"
-    fmc.build_docx(fmc.parse(md()), out, [{"name": "Bình Minh", "affiliation": "Khoa CNTT, TDTU, Việt Nam"}])
     import docx
 
-    text = "\n".join(p.text for p in docx.Document(out).paragraphs)
-    assert "TÊN ĐỀ TÀI" in text and "Bình Minh¹" in text and "ĐẶT VẤN ĐỀ: nội dung" in text and "KEYWORDS: x; y; z" in text
-    assert 0 < out.stat().st_size < 1_000_000
+    au = [{"name": "Bình Minh", "affiliation": "Khoa CNTT, TDTU, Việt Nam"}]
+    d = fmc.parse(md())
+    for lang in ("vi", "en"):
+        out = tmp_path / f"a_{lang}.docx"
+        fmc.build_docx(d, out, au, lang)
+        text = "\n".join(p.text for p in docx.Document(out).paragraphs)
+        assert "TÊN ĐỀ TÀI" in text and "Bình Minh¹" in text and 0 < out.stat().st_size < 1_000_000
+        if lang == "vi":
+            assert "ĐẶT VẤN ĐỀ: nội dung" in text and "KEYWORDS" not in text and "Chưa đăng." in text
+        else:
+            assert "KEYWORDS: x; y; z" in text and "ĐẶT VẤN ĐỀ" not in text and "Not published." in text

@@ -1,12 +1,14 @@
 """FMC 2026 abstract: check the conference limits and build the DOCX in the official template's format (T1.6/T1.7).
 
 Source = the RENDERED markdown (manuscript/build/fmc/<name>.md, numbers already filled), structured as
-"## Ô TÓM TẮT" (web-form box), "## VI" and "## EN" (each with "### <SECTION>" blocks, the first being the title)
-and "## GHI CHÚ". Limits (conference form + FMC2026_Huong-dan-viet-Abstract.docx, checked 2026-09-26): box
-≤ 500 characters (maxlength=500), title ≤ 150 characters, ≤ 250 words per language, 3–5 lower-case keywords
-separated by ";". Format: Times New Roman, title upper-case 13 pt, body 12 pt, line spacing 1.5.
+"## Ô TÓM TẮT" (Vietnamese web-form box), "## ABSTRACT BOX" (English box), "## VI" and "## EN" (each with
+"### <SECTION>" blocks, the first being the title), "## GHI CHÚ" (Vietnamese note) and "## NOTE" (English note).
+Limits: web-form box ≤ 500 characters (the form's maxlength=500); title ≤ 150 characters; abstract ≤ 500 words
+per language — the organisers' answer to HG1.0 (26/9/2026): 500 words is the limit, 250 only recommended (warning);
+3–5 lower-case keywords separated by ";". ONE LANGUAGE PER FILE (organisers' answer): a Vietnamese and an English
+DOCX are built separately. Format: Times New Roman, title upper-case 13 pt, body 12 pt, line spacing 1.5.
 
-  $PY -m vnsoc.fmc manuscript/build/fmc/abstract_fmc_design.md      # -> .docx + _box.txt next to it
+  $PY -m vnsoc.fmc manuscript/build/fmc/abstract_fmc.md   # -> _vi.docx, _en.docx, _box_vi.txt, _box_en.txt
 """
 from __future__ import annotations
 
@@ -19,16 +21,18 @@ import yaml
 
 from vnsoc.paths import paths
 
-BOX_MAX, TITLE_MAX, WORDS_MAX = 500, 150, 250
+BOX_MAX, TITLE_MAX, WORDS_MAX, WORDS_REC = 500, 150, 500, 250
 
 
 def parse(md: str) -> dict:
-    doc, lang, sec = {"box": "", "vi": {}, "en": {}, "note": ""}, None, None
+    doc, lang, sec = {"box": "", "box_en": "", "vi": {}, "en": {}, "note": "", "note_en": ""}, None, None
     for line in md.splitlines():
         if line.startswith("## "):
             head = line[3:].strip()
             lang = {"VI": "vi", "EN": "en"}.get(head, "box" if head.startswith("Ô TÓM TẮT") else
-                                                 "note" if head.startswith("GHI CHÚ") else None)
+                                                 "box_en" if head.upper().startswith("ABSTRACT BOX") else
+                                                 "note" if head.startswith("GHI CHÚ") else
+                                                 "note_en" if head.upper().startswith("NOTE") else None)
             sec = None
             continue
         if line.startswith("### ") and lang in ("vi", "en"):
@@ -39,7 +43,7 @@ def parse(md: str) -> dict:
             continue
         if lang in ("vi", "en") and sec:
             doc[lang][sec] = (doc[lang][sec] + " " + line.strip()).strip()
-        elif lang in ("box", "note"):
+        elif lang in ("box", "box_en", "note", "note_en"):
             doc[lang] = (doc[lang] + " " + line.strip()).strip()
     return doc
 
@@ -48,11 +52,24 @@ def words(s: str) -> int:
     return len(re.findall(r"\S+", s))
 
 
+def warnings(doc: dict) -> list[str]:
+    """Over the recommended 250 words (allowed up to 500)."""
+    out = []
+    for lang in ("vi", "en"):
+        n = sum(words(t) for _, t in list(doc[lang].items())[1:-1])
+        if n > WORDS_REC:
+            out.append(f"{lang}: {n} từ > {WORDS_REC} (khuyến khích; giới hạn {WORDS_MAX})")
+    return out
+
+
 def checks(doc: dict) -> list[str]:
     probs = []
-    box = unicodedata.normalize("NFC", doc["box"])
-    if not box or len(box) > BOX_MAX:
-        probs.append(f"ô tóm tắt {len(box)} ký tự (tối đa {BOX_MAX})")
+    for key, name in (("box", "ô tóm tắt"), ("box_en", "ô tóm tắt tiếng Anh")):
+        box = unicodedata.normalize("NFC", doc.get(key) or "")
+        if key == "box_en" and not box:
+            continue
+        if not box or len(box) > BOX_MAX:
+            probs.append(f"{name} {len(box)} ký tự (tối đa {BOX_MAX})")
     for lang in ("vi", "en"):
         secs = list(doc[lang].items())
         if len(secs) < 7:
@@ -72,9 +89,10 @@ def checks(doc: dict) -> list[str]:
     return probs
 
 
-def build_docx(doc: dict, out: Path, authors: list[dict]) -> None:
+def build_docx(doc: dict, out: Path, authors: list[dict], lang: str = "vi") -> None:
+    """One-language DOCX (the organisers accept one language per file)."""
     from docx import Document
-    from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
     from docx.oxml.ns import qn
     from docx.shared import Cm, Pt
 
@@ -103,20 +121,18 @@ def build_docx(doc: dict, out: Path, authors: list[dict]) -> None:
     for a in authors:
         if a["affiliation"] not in aff:
             aff.append(a["affiliation"])
-    for i, lang in enumerate(("vi", "en")):
-        secs = list(doc[lang].items())
-        para(secs[0][1].upper(), bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER)
-        para(", ".join(f"{a['name']}{'¹²³⁴⁵'[aff.index(a['affiliation'])]}" for a in authors),
-             align=WD_ALIGN_PARAGRAPH.CENTER)
-        for k, af in enumerate(aff):
-            para(f"{'¹²³⁴⁵'[k]}{af}", italic=True, align=WD_ALIGN_PARAGRAPH.CENTER)
-        for name, text in secs[1:]:
-            para(text, label=name.upper(), align=WD_ALIGN_PARAGRAPH.JUSTIFY)
-        if i == 0:
-            d.add_paragraph().add_run().add_break(WD_BREAK.PAGE)
-    if doc["note"]:
+    secs = list(doc[lang].items())
+    para(secs[0][1].upper(), bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER)
+    para(", ".join(f"{a['name']}{'¹²³⁴⁵'[aff.index(a['affiliation'])]}" for a in authors),
+         align=WD_ALIGN_PARAGRAPH.CENTER)
+    for k, af in enumerate(aff):
+        para(f"{'¹²³⁴⁵'[k]}{af}", italic=True, align=WD_ALIGN_PARAGRAPH.CENTER)
+    for name, text in secs[1:]:
+        para(text, label=name.upper(), align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+    note = doc["note"] if lang == "vi" else (doc.get("note_en") or "")
+    if note:
         para("")
-        para(doc["note"], italic=True)
+        para(note, italic=True)
     out.parent.mkdir(parents=True, exist_ok=True)
     d.save(out)
 
@@ -128,13 +144,23 @@ def main(argv=None) -> int:
     probs = checks(doc)
     for p in probs:
         print("LỖI", p)
+    for w in warnings(doc):
+        print("CẢNH BÁO", w)
     cfg = yaml.safe_load((paths().configs / "project.yaml").read_text(encoding="utf-8"))
-    build_docx(doc, src.with_suffix(".docx"), cfg["authors"])
-    src.with_name(src.stem + "_box.txt").write_text(unicodedata.normalize("NFC", doc["box"]) + "\n", encoding="utf-8")
+    sizes = {}
+    for lang in ("vi", "en"):
+        out = src.with_name(f"{src.stem}_{lang}.docx")
+        build_docx(doc, out, cfg["authors"], lang)
+        sizes[lang] = out.stat().st_size
+        box = doc["box"] if lang == "vi" else (doc.get("box_en") or "")
+        if box:
+            src.with_name(f"{src.stem}_box_{lang}.txt").write_text(unicodedata.normalize("NFC", box) + "\n",
+                                                                  encoding="utf-8")
     vi = sum(words(t) for _, t in list(doc["vi"].items())[1:-1])
     en = sum(words(t) for _, t in list(doc["en"].items())[1:-1])
-    print(f"ô tóm tắt {len(unicodedata.normalize('NFC', doc['box']))} ký tự; VI {vi} từ; EN {en} từ; "
-          f"DOCX {src.with_suffix('.docx').stat().st_size} bytes")
+    print(f"ô tóm tắt VI {len(unicodedata.normalize('NFC', doc['box']))} ký tự, EN "
+          f"{len(unicodedata.normalize('NFC', doc.get('box_en') or ''))} ký tự; VI {vi} từ; EN {en} từ; "
+          f"DOCX VI {sizes['vi']} bytes, EN {sizes['en']} bytes")
     return 1 if probs else 0
 
 

@@ -364,6 +364,26 @@ def skip(P, tid: str, reason: str) -> None:
     append_log(P, f"{tid} bỏ qua · {reason}")
 
 
+def waive(P, tid: str, by: str, reason: str) -> None:
+    """Mark a task no longer needed because of a USER decision (e.g. 'solo, laptop only, no API keys'): the user's
+    own acknowledgement state/.human_ack/<by> (written only by the hook when the USER types 'XONG <by> ...') is the
+    authority; Claude cannot create it. The task becomes 'skipped' (dependants may proceed) and the decision is
+    logged with the user's words. Unlike `skip`, it applies to any task, because the user has re-planned."""
+    st = load(P)
+    t = _get(st, tid)
+    ack = P.human_ack / by
+    if not ack.exists():
+        raise SystemExit(f"TỪ CHỐI: chưa có xác nhận của người dùng '{by}'. Người dùng phải tự gõ trong chat: XONG {by} ...")
+    if t["status"] in ("done", "skipped"):
+        raise SystemExit(f"{tid} đã {t['status']}")
+    words = ack.read_text(encoding="utf-8").strip()[:300]
+    t["status"] = "skipped"
+    _event(t, "waive", f"theo quyết định người dùng ({by}: «{words}») — {reason}")
+    save(P, st)
+    append_decision(P, f"Bỏ {tid} ({t['title']}) theo quyết định của người dùng ({by}: «{words}»): {reason}")
+    append_log(P, f"{tid} bỏ theo quyết định người dùng ({by}) · {reason}")
+
+
 def human_done(P, tid: str, note: str = "") -> int:
     st = load(P)
     t = _get(st, tid)
@@ -499,6 +519,8 @@ def main(argv: list[str] | None = None) -> int:
     s = sub.add_parser("block"); s.add_argument("id"); s.add_argument("--reason", required=True)
     s = sub.add_parser("skip"); s.add_argument("id"); s.add_argument("--reason", required=True)
     s = sub.add_parser("human-done"); s.add_argument("id"); s.add_argument("--note", default="")
+    s = sub.add_parser("waive"); s.add_argument("id"); s.add_argument("--by", required=True)
+    s.add_argument("--reason", required=True)
     s = sub.add_parser("add")
     s.add_argument("--id", required=True); s.add_argument("--title", required=True)
     s.add_argument("--owner", default="claude", choices=OWNERS); s.add_argument("--phase", default="dynamic")
@@ -537,6 +559,8 @@ def main(argv: list[str] | None = None) -> int:
         skip(P, a.id, a.reason)
     elif a.cmd == "human-done":
         return human_done(P, a.id, a.note)
+    elif a.cmd == "waive":
+        waive(P, a.id, a.by, a.reason)
     elif a.cmd == "add":
         add(P, a.id, a.title, a.owner, a.phase, a.depends, a.acceptance, a.outputs, a.check, a.instructions,
             a.blocks)

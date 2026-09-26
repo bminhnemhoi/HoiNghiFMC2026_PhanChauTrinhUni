@@ -68,4 +68,12 @@ large language models; clinical practice guidelines; ministry of health; model e
 
 ## GHI CHÚ
 
-Bài chưa được đăng trên tạp chí khoa học trong nước hoặc quốc tế. This work has not been published in any national or international journal. Hình thức báo cáo: Oral.
+Bài chưa được đăng trên tạp chí khoa học trong nước hoặc quốc tế. Hình thức báo cáo: Oral.
+
+## NOTE
+
+This work has not been published in any national or international journal. Presentation format: Oral.
+
+## ABSTRACT BOX
+
+LLMs may answer with the values of foreign or superseded guidelines instead of the current guidelines of the Vietnamese Ministry of Health (MoH). We built a set of checkable recommendations (MoH values quoted verbatim from official PDFs, versioned WHO/US/European values, superseded values and decoy values) and grade LLM answers in Vietnamese and English with value-comparison rules. So far {{design.pdf_conflicts}} conflict recommendations from {{design.pdf_guidelines}} guidelines have been checked against the source documents.
