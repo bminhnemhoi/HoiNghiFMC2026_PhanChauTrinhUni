@@ -26,6 +26,15 @@ from vnsoc.paths import paths
 FILL = re.compile(r"FILL_AT_|\[\s\]|\[n\]|\[k\]|\[a\]|\[b\]|\[c\]|\[d\]|\[e\]|\[f\]|TODO|TBD|XXX")
 
 
+def record_files(d) -> list[Path]:
+    """RunRecord files under a run directory: *.jsonl / *.jsonl.gz, skipping the request files and raw backend
+    outputs (requests/, raw/) and side files such as *.jsonl.stats.json."""
+    root = Path(d)
+    return [f for f in sorted(root.rglob("*")) if f.is_file() and (f.name.endswith(".jsonl") or f.name.endswith(".jsonl.gz"))
+            and not {"requests", "raw"} & set(f.relative_to(root).parts[:-1])
+            and f.name not in ("requests.jsonl", "index.jsonl")]
+
+
 def _rows(path: str):
     op = gzip.open if path.endswith(".gz") else open
     with op(path, "rt", encoding="utf-8") as f:
@@ -134,7 +143,7 @@ def main(argv=None) -> int:
             a.models = (a.models or []) + [m["key"] for m in cfg.get(a.models_from) or []]
         got: dict[str, int] = {}
         n = errors = invalid = 0
-        for f in sorted(Path(a.dir).rglob("*.jsonl*")):
+        for f in record_files(a.dir):
             for r in _rows(str(f)):
                 n += 1
                 try:

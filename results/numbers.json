@@ -145,5 +145,1655 @@
   "note": "bộ hạt giống §3.3 (agent rà soát vòng 2, chưa có người kiểm)",
   "source": "src/vnsoc/analysis/design_counts.py",
   "value": 3
+ },
+ "pilot.a0_en_concordant_abstain": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_en_concordant_correct": {
+  "display": "10",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 10
+ },
+ "pilot.a0_en_concordant_correct_ci": {
+  "display": "25,7%–70,2%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.2571306264064075,
+   0.7021931612163559
+  ]
+ },
+ "pilot.a0_en_concordant_correct_pct": {
+  "display": "47,6%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.47619047619047616
+ },
+ "pilot.a0_en_concordant_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_en_concordant_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_en_concordant_n": {
+  "display": "21",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 21
+ },
+ "pilot.a0_en_concordant_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_en_concordant_unattributed": {
+  "display": "11",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 11
+ },
+ "pilot.a0_en_concordant_unattributed_ci": {
+  "display": "29,8%–74,3%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.29780683878364417,
+   0.7428693735935925
+  ]
+ },
+ "pilot.a0_en_concordant_unattributed_pct": {
+  "display": "52,4%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.5238095238095238
+ },
+ "pilot.a0_en_conflict_abstain": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a0_en_conflict_correct": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a0_en_conflict_correct_ci": {
+  "display": "3,2%–37,9%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.032070937185463715,
+   0.37892682654531396
+  ]
+ },
+ "pilot.a0_en_conflict_correct_pct": {
+  "display": "15,0%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.15
+ },
+ "pilot.a0_en_conflict_decoy": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a0_en_conflict_foreign": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a0_en_conflict_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a0_en_conflict_stale": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a0_en_conflict_unattributed": {
+  "display": "11",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 11
+ },
+ "pilot.a0_en_conflict_unattributed_ci": {
+  "display": "31,5%–76,9%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.3152781330405486,
+   0.7694221032240758
+  ]
+ },
+ "pilot.a0_en_conflict_unattributed_pct": {
+  "display": "55,0%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.55
+ },
+ "pilot.a0_en_drift_abstain": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a0_en_drift_correct": {
+  "display": "5",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 5
+ },
+ "pilot.a0_en_drift_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_en_drift_foreign": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a0_en_drift_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a0_en_drift_stale": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a0_en_drift_unattributed": {
+  "display": "8",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 8
+ },
+ "pilot.a0_en_foreign": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a0_vi_concordant_abstain": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a0_vi_concordant_correct": {
+  "display": "11",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 11
+ },
+ "pilot.a0_vi_concordant_correct_ci": {
+  "display": "29,8%–74,3%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.29780683878364417,
+   0.7428693735935925
+  ]
+ },
+ "pilot.a0_vi_concordant_correct_pct": {
+  "display": "52,4%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.5238095238095238
+ },
+ "pilot.a0_vi_concordant_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_vi_concordant_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_vi_concordant_n": {
+  "display": "21",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 21
+ },
+ "pilot.a0_vi_concordant_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_vi_concordant_unattributed": {
+  "display": "9",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 9
+ },
+ "pilot.a0_vi_concordant_unattributed_ci": {
+  "display": "21,8%–66,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.21819685688513024,
+   0.6597936907197254
+  ]
+ },
+ "pilot.a0_vi_concordant_unattributed_pct": {
+  "display": "42,9%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.42857142857142855
+ },
+ "pilot.a0_vi_conflict_abstain": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a0_vi_conflict_correct": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a0_vi_conflict_correct_ci": {
+  "display": "1,2%–31,7%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.012348527170294813,
+   0.31698271401908235
+  ]
+ },
+ "pilot.a0_vi_conflict_correct_pct": {
+  "display": "10,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.1
+ },
+ "pilot.a0_vi_conflict_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_vi_conflict_foreign": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a0_vi_conflict_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a0_vi_conflict_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_vi_conflict_unattributed": {
+  "display": "10",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 10
+ },
+ "pilot.a0_vi_conflict_unattributed_ci": {
+  "display": "27,2%–72,8%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.2719578495607919,
+   0.7280421504392081
+  ]
+ },
+ "pilot.a0_vi_conflict_unattributed_pct": {
+  "display": "50,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.5
+ },
+ "pilot.a0_vi_drift_abstain": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a0_vi_drift_correct": {
+  "display": "8",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 8
+ },
+ "pilot.a0_vi_drift_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a0_vi_drift_foreign": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a0_vi_drift_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a0_vi_drift_stale": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a0_vi_drift_unattributed": {
+  "display": "7",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 7
+ },
+ "pilot.a0_vi_foreign": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a1_en_concordant_abstain": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a1_en_concordant_correct": {
+  "display": "10",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 10
+ },
+ "pilot.a1_en_concordant_correct_ci": {
+  "display": "25,7%–70,2%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.2571306264064075,
+   0.7021931612163559
+  ]
+ },
+ "pilot.a1_en_concordant_correct_pct": {
+  "display": "47,6%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.47619047619047616
+ },
+ "pilot.a1_en_concordant_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_concordant_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_concordant_n": {
+  "display": "21",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 21
+ },
+ "pilot.a1_en_concordant_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_concordant_unattributed": {
+  "display": "10",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 10
+ },
+ "pilot.a1_en_concordant_unattributed_ci": {
+  "display": "25,7%–70,2%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.2571306264064075,
+   0.7021931612163559
+  ]
+ },
+ "pilot.a1_en_concordant_unattributed_pct": {
+  "display": "47,6%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.47619047619047616
+ },
+ "pilot.a1_en_conflict_abstain": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a1_en_conflict_correct": {
+  "display": "5",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 5
+ },
+ "pilot.a1_en_conflict_correct_ci": {
+  "display": "8,7%–49,1%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.08657146910143462,
+   0.49104587170795744
+  ]
+ },
+ "pilot.a1_en_conflict_correct_pct": {
+  "display": "25,0%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.25
+ },
+ "pilot.a1_en_conflict_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_conflict_foreign": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a1_en_conflict_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a1_en_conflict_stale": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a1_en_conflict_unattributed": {
+  "display": "8",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 8
+ },
+ "pilot.a1_en_conflict_unattributed_ci": {
+  "display": "19,1%–63,9%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.19119006072530725,
+   0.6394574126925103
+  ]
+ },
+ "pilot.a1_en_conflict_unattributed_pct": {
+  "display": "40,0%",
+  "generated": "2026-09-26T22:41:17+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.4
+ },
+ "pilot.a1_en_correct": {
+  "display": "5",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 5
+ },
+ "pilot.a1_en_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_decoy_ci": {
+  "display": "0,0%–16,8%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0,
+   0.16843347098308528
+  ]
+ },
+ "pilot.a1_en_decoy_pct": {
+  "display": "0,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.0
+ },
+ "pilot.a1_en_decoy_scaled": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_drift_abstain": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a1_en_drift_correct": {
+  "display": "6",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 6
+ },
+ "pilot.a1_en_drift_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_drift_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_en_drift_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a1_en_drift_stale": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a1_en_drift_unattributed": {
+  "display": "8",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 8
+ },
+ "pilot.a1_en_foreign": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a1_en_foreign_ci": {
+  "display": "0,1%–24,9%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0012650894979498047,
+   0.24873276277202777
+  ]
+ },
+ "pilot.a1_en_foreign_pct": {
+  "display": "5,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.05
+ },
+ "pilot.a1_en_h1_foreign": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a1_en_h1_foreign_ci": {
+  "display": "0,2%–31,9%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0016864302413527028,
+   0.3194845665783034
+  ]
+ },
+ "pilot.a1_en_h1_foreign_pct": {
+  "display": "6,7%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.06666666666666667
+ },
+ "pilot.a1_en_h1_n": {
+  "display": "15",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 15
+ },
+ "pilot.a1_en_stale": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a1_vi_concordant_abstain": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a1_vi_concordant_correct": {
+  "display": "9",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 9
+ },
+ "pilot.a1_vi_concordant_correct_ci": {
+  "display": "21,8%–66,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.21819685688513024,
+   0.6597936907197254
+  ]
+ },
+ "pilot.a1_vi_concordant_correct_pct": {
+  "display": "42,9%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.42857142857142855
+ },
+ "pilot.a1_vi_concordant_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_concordant_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_concordant_n": {
+  "display": "21",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 21
+ },
+ "pilot.a1_vi_concordant_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_concordant_unattributed": {
+  "display": "11",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 11
+ },
+ "pilot.a1_vi_concordant_unattributed_ci": {
+  "display": "29,8%–74,3%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.29780683878364417,
+   0.7428693735935925
+  ]
+ },
+ "pilot.a1_vi_concordant_unattributed_pct": {
+  "display": "52,4%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.5238095238095238
+ },
+ "pilot.a1_vi_conflict_abstain": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a1_vi_conflict_correct": {
+  "display": "7",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 7
+ },
+ "pilot.a1_vi_conflict_correct_ci": {
+  "display": "15,4%–59,2%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.1539092047845412,
+   0.5921885345328282
+  ]
+ },
+ "pilot.a1_vi_conflict_correct_pct": {
+  "display": "35,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.35
+ },
+ "pilot.a1_vi_conflict_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_conflict_foreign": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a1_vi_conflict_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a1_vi_conflict_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_conflict_unattributed": {
+  "display": "7",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 7
+ },
+ "pilot.a1_vi_conflict_unattributed_ci": {
+  "display": "15,4%–59,2%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.1539092047845412,
+   0.5921885345328282
+  ]
+ },
+ "pilot.a1_vi_conflict_unattributed_pct": {
+  "display": "35,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.35
+ },
+ "pilot.a1_vi_correct": {
+  "display": "7",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 7
+ },
+ "pilot.a1_vi_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_decoy_ci": {
+  "display": "0,0%–16,8%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0,
+   0.16843347098308528
+  ]
+ },
+ "pilot.a1_vi_decoy_pct": {
+  "display": "0,0%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.0
+ },
+ "pilot.a1_vi_decoy_scaled": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_drift_abstain": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a1_vi_drift_correct": {
+  "display": "9",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 9
+ },
+ "pilot.a1_vi_drift_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a1_vi_drift_foreign": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a1_vi_drift_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a1_vi_drift_stale": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a1_vi_drift_unattributed": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a1_vi_foreign": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a1_vi_foreign_ci": {
+  "display": "1,2%–31,7%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.012348527170294813,
+   0.31698271401908235
+  ]
+ },
+ "pilot.a1_vi_foreign_pct": {
+  "display": "10,0%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.1
+ },
+ "pilot.a1_vi_h1_foreign": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a1_vi_h1_foreign_ci": {
+  "display": "1,7%–40,5%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.016575913440083627,
+   0.40460269660337206
+  ]
+ },
+ "pilot.a1_vi_h1_foreign_pct": {
+  "display": "13,3%",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.13333333333333333
+ },
+ "pilot.a1_vi_h1_n": {
+  "display": "15",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 15
+ },
+ "pilot.a1_vi_stale": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a3_en_concordant_abstain": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_en_concordant_correct": {
+  "display": "19",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 19
+ },
+ "pilot.a3_en_concordant_correct_ci": {
+  "display": "69,6%–98,8%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.6962255930860758,
+   0.9882506821155542
+  ]
+ },
+ "pilot.a3_en_concordant_correct_pct": {
+  "display": "90,5%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.9047619047619048
+ },
+ "pilot.a3_en_concordant_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_en_concordant_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_en_concordant_n": {
+  "display": "21",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 21
+ },
+ "pilot.a3_en_concordant_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_en_concordant_unattributed": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_en_concordant_unattributed_ci": {
+  "display": "0,1%–23,8%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0012048834483635135,
+   0.23815990993682112
+  ]
+ },
+ "pilot.a3_en_concordant_unattributed_pct": {
+  "display": "4,8%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.047619047619047616
+ },
+ "pilot.a3_en_conflict_abstain": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a3_en_conflict_correct": {
+  "display": "13",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 13
+ },
+ "pilot.a3_en_conflict_correct_ci": {
+  "display": "40,8%–84,6%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.4078114654671719,
+   0.8460907952154588
+  ]
+ },
+ "pilot.a3_en_conflict_correct_pct": {
+  "display": "65,0%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.65
+ },
+ "pilot.a3_en_conflict_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_en_conflict_foreign": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_en_conflict_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a3_en_conflict_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_en_conflict_unattributed": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a3_en_conflict_unattributed_ci": {
+  "display": "3,2%–37,9%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.032070937185463715,
+   0.37892682654531396
+  ]
+ },
+ "pilot.a3_en_conflict_unattributed_pct": {
+  "display": "15,0%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.15
+ },
+ "pilot.a3_en_drift_abstain": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a3_en_drift_correct": {
+  "display": "15",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 15
+ },
+ "pilot.a3_en_drift_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_en_drift_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_en_drift_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a3_en_drift_stale": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_en_drift_unattributed": {
+  "display": "2",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 2
+ },
+ "pilot.a3_en_foreign_or_stale": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_en_foreign_or_stale_ci": {
+  "display": "0,1%–24,9%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0012650894979498047,
+   0.24873276277202777
+  ]
+ },
+ "pilot.a3_en_foreign_or_stale_pct": {
+  "display": "5,0%",
+  "generated": "2026-09-26T22:41:18+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.05
+ },
+ "pilot.a3_vi_concordant_abstain": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_vi_concordant_correct": {
+  "display": "19",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 19
+ },
+ "pilot.a3_vi_concordant_correct_ci": {
+  "display": "69,6%–98,8%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.6962255930860758,
+   0.9882506821155542
+  ]
+ },
+ "pilot.a3_vi_concordant_correct_pct": {
+  "display": "90,5%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.9047619047619048
+ },
+ "pilot.a3_vi_concordant_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_concordant_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_concordant_n": {
+  "display": "21",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 21
+ },
+ "pilot.a3_vi_concordant_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_concordant_unattributed": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_vi_concordant_unattributed_ci": {
+  "display": "0,1%–23,8%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0012048834483635135,
+   0.23815990993682112
+  ]
+ },
+ "pilot.a3_vi_concordant_unattributed_pct": {
+  "display": "4,8%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.047619047619047616
+ },
+ "pilot.a3_vi_conflict_abstain": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.a3_vi_conflict_correct": {
+  "display": "13",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 13
+ },
+ "pilot.a3_vi_conflict_correct_ci": {
+  "display": "40,8%–84,6%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.4078114654671719,
+   0.8460907952154588
+  ]
+ },
+ "pilot.a3_vi_conflict_correct_pct": {
+  "display": "65,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.65
+ },
+ "pilot.a3_vi_conflict_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_conflict_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_conflict_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a3_vi_conflict_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_conflict_unattributed": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:14+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.a3_vi_conflict_unattributed_ci": {
+  "display": "5,7%–43,7%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.05733399705003278,
+   0.4366140029966683
+  ]
+ },
+ "pilot.a3_vi_conflict_unattributed_pct": {
+  "display": "20,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.2
+ },
+ "pilot.a3_vi_drift_abstain": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_vi_drift_correct": {
+  "display": "18",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 18
+ },
+ "pilot.a3_vi_drift_decoy": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_drift_foreign": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_drift_n": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.a3_vi_drift_stale": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
+ },
+ "pilot.a3_vi_drift_unattributed": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:15+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_foreign_or_stale": {
+  "display": "0",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0
+ },
+ "pilot.a3_vi_foreign_or_stale_ci": {
+  "display": "0,0%–16,8%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "Clopper–Pearson 95%, mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": [
+   0.0,
+   0.16843347098308528
+  ]
+ },
+ "pilot.a3_vi_foreign_or_stale_pct": {
+  "display": "0,0%",
+  "generated": "2026-09-26T22:41:16+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 0.0
+ },
+ "pilot.mcq_a1_en_decoy": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.mcq_a1_en_foreign": {
+  "display": "3",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 3
+ },
+ "pilot.mcq_a1_en_n": {
+  "display": "26",
+  "generated": "2026-09-26T22:41:13+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 26
+ },
+ "pilot.mcq_a1_vi_decoy": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.mcq_a1_vi_foreign": {
+  "display": "5",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 5
+ },
+ "pilot.mcq_a1_vi_n": {
+  "display": "26",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 26
+ },
+ "pilot.n_atoms": {
+  "display": "65",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 65
+ },
+ "pilot.n_concordant_atoms": {
+  "display": "21",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 21
+ },
+ "pilot.n_conflict_atoms": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.n_conflict_h1_atoms": {
+  "display": "15",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 15
+ },
+ "pilot.n_descriptive_atoms": {
+  "display": "4",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 4
+ },
+ "pilot.n_drift_atoms": {
+  "display": "20",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 20
+ },
+ "pilot.n_guidelines": {
+  "display": "13",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 13
+ },
+ "pilot.n_models": {
+  "display": "1",
+  "generated": "2026-09-26T22:41:12+07:00",
+  "note": "mẫu chọn tay, chưa có bác sĩ duyệt",
+  "source": "src/vnsoc/analysis/pilot.py",
+  "value": 1
  }
 }

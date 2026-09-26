@@ -89,3 +89,15 @@ def test_pilot_exclusions_and_h1_subset(tmp_path):
     kept = apply_exclusions(rows, load_exclusions(f))
     assert {r["group"] for r in kept if r["atom_id"] == "P-t-01"} == {"descriptive"}
     assert load_exclusions(tmp_path / "missing.yaml") == {"atoms": {}, "mcq": {}, "descriptive": {}}
+
+
+def test_grading_validation_kappa_and_summary():
+    from vnsoc.analysis.grading_validation import kappa, summary
+
+    assert kappa([1, 2, 3, 4], [1, 2, 3, 4]) == 1.0
+    assert kappa([2, 2, 5, 5], [2, 5, 2, 5]) == 0.0              # agreement at chance
+    rows = [{"rule": 2, "final": 2, "A": 2, "B": 2, "cause": "agree"},
+            {"rule": 5, "final": 2, "A": 2, "B": 2, "cause": "grader_error"},
+            {"rule": 6, "final": 6, "A": 6, "B": 5, "cause": "adjudicator_error"}]
+    s = summary(rows)
+    assert s["n"] == 3 and s["agree"] == 2 and s["causes"] == {"grader_error": 1} and s["ab_agree"] == 2

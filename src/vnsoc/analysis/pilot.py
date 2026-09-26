@@ -164,6 +164,14 @@ def register(grades: list[dict], atoms: dict[str, dict]) -> dict:
         reg[f"mcq_a1_{lang}_n"] = m["n"]
         reg[f"mcq_a1_{lang}_foreign"] = m["foreign_any"]
         reg[f"mcq_a1_{lang}_decoy"] = m["decoy"]
+    for cond in ("A0", "A1", "A3"):                    # every short-answer cell: <cond>_<lang>_<group>_<metric>
+        for lang in ("vi", "en"):
+            for group in ("conflict", "concordant", "drift"):
+                c = pool(cond, lang, "short", group)
+                for m in ("n", "correct", "foreign", "stale", "decoy"):
+                    reg[f"{cond.lower()}_{lang}_{group}_{m}"] = c[m]
+                reg[f"{cond.lower()}_{lang}_{group}_unattributed"] = c["L5"]
+                reg[f"{cond.lower()}_{lang}_{group}_abstain"] = c["L6"]
     return reg
 
 
@@ -179,8 +187,9 @@ def main(argv=None) -> int:
     P = paths()
     gcfg = yaml.safe_load((P.configs / "grading.yaml").read_text(encoding="utf-8"))
     load = lambda p: [json.loads(x) for x in Path(p).read_text(encoding="utf-8").splitlines() if x.strip()]  # noqa: E731
-    runs = [r for f in sorted(Path(a.runs).rglob("*.jsonl")) if f.name not in ("requests.jsonl", "index.jsonl")
-            for r in load(f)]
+    from vnsoc.check import record_files
+
+    runs = [r for f in record_files(a.runs) for r in load(f)]
     questions = {q["question_id"]: q for q in load(a.questions)}
     atoms = {x["atom_id"]: x for x in load(a.atoms)}
     grades = grade_all(runs, questions, atoms, gcfg.get("drugs") or {}, gcfg.get("combos") or {}, gcfg["grader_version"])
@@ -207,6 +216,16 @@ def main(argv=None) -> int:
                 lo, hi = cp(k, n)
                 put(f"pilot.a1_{lang}_{num}_pct", k / n, pct(k / n), HAND)
                 put(f"pilot.a1_{lang}_{num}_ci", [lo, hi], f"{pct(lo)}–{pct(hi)}", "Clopper–Pearson 95%, " + HAND)
+        for cond in ("a0", "a1", "a3"):
+            for group in ("conflict", "concordant"):
+                n = reg[f"{cond}_{lang}_{group}_n"]
+                for m in ("correct", "unattributed"):
+                    k = reg[f"{cond}_{lang}_{group}_{m}"]
+                    if n:
+                        lo, hi = cp(k, n)
+                        put(f"pilot.{cond}_{lang}_{group}_{m}_pct", k / n, pct(k / n), HAND)
+                        put(f"pilot.{cond}_{lang}_{group}_{m}_ci", [lo, hi], f"{pct(lo)}–{pct(hi)}",
+                            "Clopper–Pearson 95%, " + HAND)
         k, n = reg[f"a3_{lang}_foreign_or_stale"], reg[f"a3_{lang}_conflict_n"]
         if n:
             lo, hi = cp(k, n)

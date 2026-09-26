@@ -75,7 +75,16 @@ def put(key: str, value, display: str, note: str = "", root=None) -> None:
     P.numbers.parent.mkdir(parents=True, exist_ok=True)
     tmp = P.numbers.with_suffix(".tmp")
     tmp.write_text(json.dumps(reg, ensure_ascii=False, indent=1, sort_keys=True), encoding="utf-8")
-    os.replace(tmp, P.numbers)
+    for attempt in range(20):             # Windows: a reader (editor, another process) can lock the target briefly
+        try:
+            os.replace(tmp, P.numbers)
+            break
+        except PermissionError:
+            if attempt == 19:
+                raise
+            import time
+
+            time.sleep(0.25)
 
 
 def _prose_lines(text: str):
