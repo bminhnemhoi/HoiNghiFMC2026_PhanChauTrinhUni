@@ -201,3 +201,36 @@ def test_tolerance_ignores_derived_items():
     a = {"value_kind": "num", "unit": "mg", "vn": [{"lo": 10, "hi": 10}],
          "foreign": [{"system": "US", "values": [{"lo": 4, "hi": 4}, {"lo": 11, "hi": 11, "derived": True}]}]}
     assert math.isclose(compute_tolerance(a), 3.0) and conflict_status(a) == "conflict"
+
+
+def test_decoy_distance_ratio_and_noise_free_distinguishability():
+    # review 2026-09-26: report how far the decoy is relative to the foreign value; 2·tol boundary without float noise
+    assert af.decoy_distance_ratio(DENGUE1) == 1.0
+    assert af.decoy_distance_ratio(dict(DENGUE1, decoy=[])) is None
+    far = atom(value_kind="num", unit="ml/kg/h", vn=[{"lo": 15, "hi": 15}], decoy=[{"lo": 25, "hi": 30}],
+               foreign=[{"system": "WHO_global", "values": [{"lo": 5, "hi": 10}]}])
+    assert af.decoy_distance_ratio(far) == 2.0 and af.atom_covariates(far)["decoy_distance_ratio"] == 2.0
+    # MoH 0.2, WHO 0.4 (tol 0.1), US 0.6: gap(US, WHO) = 2·tol exactly, but 0.19999999999999996 < 0.2 in floats
+    a = atom(value_kind="num", unit="mg/kg", vn=[{"lo": 0.2, "hi": 0.2}],
+             foreign=[{"system": "US", "values": [{"lo": 0.6, "hi": 0.6}]},
+                      {"system": "WHO_global", "values": [{"lo": 0.4, "hi": 0.4}]}])
+    assert a["foreign"][0]["values"][0]["lo"] - a["foreign"][1]["values"][0]["lo"] < 2 * compute_tolerance(a)
+    assert af._distinguishable(a["foreign"][0]["values"][0], a["foreign"][1]["values"][0], a, compute_tolerance(a))
+    assert af.us_unique(a)
+
+
+def test_freeze_report_counts_decoy_roundings():
+    ok = dict(DENGUE1, valid_from="2023-07-04", conflict_family=af.family_id(DENGUE1), context_checked="pass",
+              decoy_rule="mirror_arith", roundness_ok=True, decoy_plausible=True,
+              extraction={"decoy_rounding": "none"})
+    _, rep = af.freeze_problems([ok, dict(ok, atom_id="b", extraction={"decoy_rounding": "raw"})])
+    assert rep["decoy_rules"] == {"mirror_arith": 2} and rep["decoy_roundings"] == {"none": 1, "raw": 1}
+
+
+def test_roundness_helpers_have_one_definition():
+    # the decoy rule (vnsoc.match.decoys) and the regeneration rule here round on the same grid
+    from vnsoc.match import decoys
+
+    assert af.roundness is decoys.roundness and af._round_to is decoys.round_to
+    assert decoys.round_to(0.25, 0.1) == 0.3 and decoys.round_to(383.3333333333333, 50) == 400.0
+    assert decoys.round_to(0.1 * 3, 0.1) == 0.3                     # no binary noise (0.30000000000000004)

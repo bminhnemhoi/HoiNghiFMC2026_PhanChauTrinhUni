@@ -141,14 +141,15 @@ def dr8_spans(atom: dict) -> list[dict]:
 
 
 def missing_vn_values(atom: dict, lang: str = "vi", synonyms=None, combos=None) -> list[int]:
-    """Indices of `vn` items that cannot be parsed back from the span or from a DR8 source span (empty = all present)."""
-    from vnsoc.grade import matches, parse_values
+    """Indices of `vn` items that cannot be parsed back from the span or from a DR8 source span (empty = all present).
+    Drug classes named without their form ('tenofovir') do not count: the span must name the drug itself."""
+    from vnsoc.grade import _named, matches, parse_values
 
     a = dict(atom, tolerance=0.0)
     vals = []
     for s in [atom.get("span") or ""] + [d["span"] for d in dr8_spans(atom)]:
         vals += [v for _, v in parse_values(s, a, lang, synonyms, combos)]
-    return [i for i, item in enumerate(atom.get("vn") or []) if not any(matches(v, item, a)[0] for v in vals)]
+    return [i for i, item in enumerate(atom.get("vn") or []) if not any(matches(_named(v), item, a)[0] for v in vals)]
 
 
 def verify_atom(atom: dict, root=None, synonyms=None, combos=None) -> dict:

@@ -132,11 +132,19 @@ def test_grading_config_aliases_unambiguous():
     from vnsoc.paths import paths
 
     cfg = yaml.safe_load((paths().configs / "grading.yaml").read_text(encoding="utf-8"))
-    seen = {}
+    seen, chain = {}, {}
     for inn, aliases in cfg["drugs"].items():
         for a in [inn, *aliases]:
+            if a.startswith("~"):                # TB chain code (1–2 letters), read only inside a regimen chain
+                assert a[1:].isalpha() and len(a[1:]) <= 2 and "+" not in inn and "|" not in inn, a
+                assert chain.setdefault(a[1:].lower(), inn) == inn, f"{a} trỏ tới {chain[a[1:].lower()]} và {inn}"
+                continue
             k = _norm_drug_text(a)
             assert len(k) >= 3, f"bí danh quá ngắn: {a}"
             assert seen.setdefault(k, inn) == inn or k == _norm_drug_text(inn), f"{a} trỏ tới {seen[k]} và {inn}"
     for combo, parts in cfg["combos"].items():
         assert all(p in cfg["drugs"] for p in parts), combo
+    for key in cfg["drugs"]:                     # named regimens 'a+b' and classes 'a|b' are made of known INNs
+        members = key.split("+") if "+" in key else key.split("|") if "|" in key else []
+        assert all(m in cfg["drugs"] and "+" not in m and "|" not in m for m in members), key
+        assert "+" not in key or "|" not in key, key

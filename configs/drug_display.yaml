@@ -1,0 +1,62 @@
+# Tên thuốc HIỂN THỊ trong phương án trắc nghiệm (vnsoc.qgen.render.drug_name). Chỉ để hiển thị — KHÔNG dùng để chấm
+# (bí danh chấm nằm ở configs/grading.yaml). Mọi INN đơn trong grading.yaml `drugs` phải có mặt ở đây (tests/test_qgen.py).
+# vi: cách viết chiếm đa số cho chính thuốc đó trong văn bản Bộ Y tế của kho thí điểm (đếm trên lớp chữ PDF và span
+#     của mẩu, 26/9/2026): nhóm sốt rét (3377/2023) phần lớn Việt hóa (chloroquin, primaquin, artesunat...), nhóm
+#     lao/HIV/viêm gan B (162/2024, 5968/2021, 1740/2026) phần lớn theo INN tiếng Anh (bedaquiline, cycloserine,
+#     lamivudine...). Thuốc chưa gặp trong kho: theo kiểu của nhóm. Không dùng dạng tiếng Pháp (clindamycine) hay chữ
+#     viết tắt (tdf, dlm).
+# en: INN (tiếng Anh).
+artemether-lumefantrine: {vi: artemether-lumefantrin, en: artemether-lumefantrine}
+artemether: {vi: artemether, en: artemether}
+lumefantrine: {vi: lumefantrin, en: lumefantrine}
+pyronaridine-artesunate: {vi: pyronaridin-artesunat, en: pyronaridine-artesunate}
+pyronaridine: {vi: pyronaridin, en: pyronaridine}
+artesunate: {vi: artesunat, en: artesunate}
+dihydroartemisinin-piperaquine: {vi: dihydroartemisinin-piperaquin, en: dihydroartemisinin-piperaquine}
+primaquine: {vi: primaquin, en: primaquine}
+artesunate-amodiaquine: {vi: artesunat-amodiaquin, en: artesunate-amodiaquine}
+amodiaquine: {vi: amodiaquin, en: amodiaquine}
+artesunate-mefloquine: {vi: artesunat-mefloquin, en: artesunate-mefloquine}
+sulfadoxine-pyrimethamine: {vi: sulfadoxin-pyrimethamin, en: sulfadoxine-pyrimethamine}
+tafenoquine: {vi: tafenoquine, en: tafenoquine}
+quinine: {vi: quinin, en: quinine}
+clindamycin: {vi: clindamycin, en: clindamycin}
+chloroquine: {vi: chloroquin, en: chloroquine}
+mefloquine: {vi: mefloquin, en: mefloquine}
+atovaquone-proguanil: {vi: atovaquon-proguanil, en: atovaquone-proguanil}
+atovaquone: {vi: atovaquon, en: atovaquone}
+proguanil: {vi: proguanil, en: proguanil}
+doxycycline: {vi: doxycyclin, en: doxycycline}
+adrenaline: {vi: adrenalin, en: epinephrine (adrenaline)}
+bedaquiline: {vi: bedaquiline, en: bedaquiline}
+pretomanid: {vi: pretomanid, en: pretomanid}
+linezolid: {vi: linezolid, en: linezolid}
+moxifloxacin: {vi: moxifloxacin, en: moxifloxacin}
+levofloxacin: {vi: levofloxacin, en: levofloxacin}
+isoniazid: {vi: isoniazid, en: isoniazid}
+rifampicin: {vi: rifampicin, en: rifampicin}
+pyrazinamide: {vi: pyrazinamide, en: pyrazinamide}
+ethambutol: {vi: ethambutol, en: ethambutol}
+rifapentine: {vi: rifapentine, en: rifapentine}
+clofazimine: {vi: clofazimine, en: clofazimine}
+cycloserine: {vi: cycloserine, en: cycloserine}
+delamanid: {vi: delamanid, en: delamanid}
+amikacin: {vi: amikacin, en: amikacin}
+prothionamide: {vi: prothionamide, en: prothionamide}
+ethionamide: {vi: ethionamide, en: ethionamide}
+tenofovir-disoproxil: {vi: tenofovir disoproxil, en: tenofovir disoproxil}
+tenofovir-alafenamide: {vi: tenofovir alafenamide, en: tenofovir alafenamide}
+entecavir: {vi: entecavir, en: entecavir}
+dolutegravir: {vi: dolutegravir, en: dolutegravir}
+lamivudine: {vi: lamivudine, en: lamivudine}
+emtricitabine: {vi: emtricitabine, en: emtricitabine}
+efavirenz: {vi: efavirenz, en: efavirenz}
+bictegravir: {vi: bictegravir, en: bictegravir}
+nevirapine: {vi: nevirapine, en: nevirapine}
+alteplase: {vi: alteplase, en: alteplase}
+tenecteplase: {vi: tenecteplase, en: tenecteplase}
+ceftazidime: {vi: ceftazidime, en: ceftazidime}
+meropenem: {vi: meropenem, en: meropenem}
+co-trimoxazole: {vi: co-trimoxazole, en: co-trimoxazole}
+azithromycin: {vi: azithromycin, en: azithromycin}
+chloramphenicol: {vi: chloramphenicol, en: chloramphenicol}

@@ -1,10 +1,48 @@
 # Quy tắc chấm (đăng ký trước). grader_version tăng khi đổi bất kỳ thứ gì dưới đây → chấm lại toàn bộ.
-grader_version: "1.0.0"
+# 1.1.0 (26/9/2026, TRƯỚC đóng băng; theo phản biện bộ câu hỏi thí điểm T1.3, ghi DECISIONS):
+#   - normalize_vi: đơn vị ml/kg (qua mg_per_ml → mg/kg → weight_kg), "amp"; phân số dạng bào chế "1⁄3 ống",
+#     khoảng phân số "1/5-1/3 ống"; không có context tương ứng thì không quy đổi (không đoán).
+#   - normalize_vi: HA viết tách ("tâm thu ≥ 140 … tâm trương ≥ 90", "HATT/HATTr", "SBP/DBP", "systolic/diastolic")
+#     đọc thành MỘT giá trị HA; tuổi/thời gian ghép "3 tuổi 4 tháng", "3 years (and) 4 months" = MỘT giá trị (40 tháng).
+#   - thuốc: bí danh/INN mới (lao, HIV, ACT của WHO trong P-malaria_ocr-02); phác đồ có tên (khóa nối "+", nở ra
+#     thành INN thành phần); lớp thuốc (khóa nối "|", "tenofovir" thỏa MỘT mục cần một thành viên); combos gộp theo
+#     cỡ lớn trước (BPaLM trước BPaL); bí danh đầu = tên hiển thị tiếng Việt (không để viết tắt đứng đầu).
+#   - grade_short: phép "danh sách thuốc chứa cả phác đồ Bộ Y tế và phác đồ nước ngoài xung đột" xét theo TỪNG giá
+#     trị nước ngoài (trước đây theo tên hệ thống: bản ghi WHO 2019 xung đột phủ quyết bản ghi WHO 2026 trùng Bộ Y tế);
+#     khớp giá trị nước ngoài xung đột CHỈ nhờ tên lớp ("tenofovir" ~ TAF) là chưa rõ dạng, không phải phác đồ thứ hai.
+#   - grade_mcq: vai trò nhiều token nối "|" ("superseded:3310/2019|foreign:US"), thứ tự ưu tiên như grade_short.
+#   Sau phản biện độc lập bộ chấm (cùng ngày, vẫn 1.1.0 vì chưa chấm đầu ra nào bằng bản trung gian):
+#   - _distinct: cùng giá trị nhắc lại có/không dấu so sánh ("130/80 … tâm thu ≥ 130 hoặc tâm trương ≥ 80",
+#     "35 tuổi (từ 35 tuổi trở lên)") hoặc ở đơn vị khác ("0,15 mg (150 µg)") = MỘT giá trị (trước: 2 giá trị → nhãn 5).
+#   - lớp thuốc TRUNG LẬP: chấm lại với từng thành viên; mọi cách thay cùng nhãn → nhãn đó; khác nhau (Bộ Y tế vs
+#     nước ngoài) → nhãn 5, cờ underspecified (trước: ưu tiên Bộ Y tế). {1,2} lẫn nhau → 2.
+#   - bí danh: "tenofovir alafenamid(e) fumarat(e)", "tenofovir disoproxil fumarat"; khoảng trắng = gạch nối trong bí
+#     danh; phác đồ mồi BPaMZ (quy ước: thêm viết tắt cho nguồn nước ngoài thì thêm cả cho mồi/bản cũ); mã lao 1–2
+#     chữ ("~cs", "~am", "~e", "~z", "~h", "~hh") chỉ đọc trong chuỗi phác đồ có ≥ 3 thuốc khác đã nhận.
+#   - normalize_vi: "mg per kg", "mg cho mỗi kg", "mg/1 kg", "ml / kg", "micrograms per kilogram" = X/kg; "mL/kg per
+#     hour" = ml/kg/h; "mg/kg mỗi ngày", "mg/kg cân nặng/ngày" = mg/kg/day; bộ chấm bỏ nồng độ chế phẩm ("1:1000",
+#     "1‰", "1 mg/ml"); "nửa ống", "half an ampoule", "1 1/2 ống", "1/5 to 1/3 of an ampoule"; tuổi "3 years, 4
+#     months", "3 yrs 4 mos", "3 tuổi rưỡi", khoảng "3 tuổi 4 tháng – 5 tuổi"; HA tách: thứ tự ngược, "HATTh",
+#     "≥ 140 mmHg (tâm thu)"; cạnh đổi đơn vị ngày = 24 giờ (chính xác); repr Drugs/Cat sắp xếp (tái lập theo byte).
+#   - grade_mcq: token vai trò lạ/sai hình thức → ValueError (trước: im lặng nhãn 5).
+grader_version: "1.1.0"
 tolerance_rule: "half the minimum gap between the MoH value set and any other source value (foreign, superseded, decoy)"
 partial_overlap: wrong_in_primary_reported_separately
 multi_value_without_vn_designation: wrong_reported_separately
 llm_extraction_fallback: {used_only_when: "no ĐÁP ÁN/ANSWER line and >1 candidate values", manual_check_n: 500}
-drugs:            # INN chuẩn -> bí danh (không dấu, chữ thường sau chuẩn hóa). Mở rộng khi gặp thuốc mới + thêm test.
+# drugs: khóa chuẩn -> bí danh (so khớp không dấu, chữ thường sau chuẩn hóa). Mở rộng khi gặp thuốc mới + thêm test.
+#   - Khóa là một INN: bí danh đầu tiên là tên hiển thị tiếng Việt (qgen.render), nên để cách viết tiếng Việt/INN
+#     trước viết tắt. Không dùng viết tắt 1–2 chữ (H, R, Z, E, Pa, Am, Cs) — quá mơ hồ; viết tắt ≥ 3 chữ.
+#   - Khóa "a+b+c" (INN nối "+"): phác đồ có tên; bí danh (BPaL, TLD, Biktarvy…) nở ra thành các INN thành phần,
+#     sau đó `combos` có thể gộp lại (BPaL). Không gộp TLD/TLE/Biktarvy/BDLC để giá trị mẩu ghi theo INN
+#     ([tenofovir-disoproxil, dolutegravir], [bictegravir], [delamanid, clofazimine]) vẫn khớp.
+#   - Khóa "a|b" (INN nối "|"): lớp thuốc (drug class); câu trả lời chỉ nêu lớp thỏa MỘT mục cần một thành viên;
+#     grade_short chấm lại với từng thành viên (trung lập, xem grade.py). Mọi nơi đọc `drugs` như danh sách INN phải
+#     bỏ khóa có "+" hoặc "|".
+#   - Bí danh bắt đầu "~" (mã lao 1–2 chữ: Cs, Am, E, Z, H, Hh): chỉ đọc trong chuỗi phác đồ có ≥ 3 thuốc khác đã
+#     nhận ("Bdq Lzd Cfz Cs", "4-6 Am-Lfx-Pto-Cfz-Z-H"); không bao giờ đọc đứng riêng.
+#   - Quy ước đối xứng: thêm viết tắt phác đồ cho một nguồn nước ngoài thì thêm viết tắt tương ứng của mồi/bản cũ.
+drugs:
   artemether-lumefantrine: [artemether-lumefantrin, coartem, riamet]
   artemether: []
   lumefantrine: [lumefantrin]
@@ -18,27 +56,29 @@ drugs:            # INN chuẩn -> bí danh (không dấu, chữ thường sau c
   clindamycin: [clindamycine]
   chloroquine: [cloroquin, chloroquin]
   adrenaline: [adrenalin, epinephrine, epinephrin]
-  bedaquiline: [bedaquilin]
+  bedaquiline: [bedaquilin, bdq]
   pretomanid: []
-  linezolid: []
-  moxifloxacin: [moxifloxacine]
-  tenofovir-disoproxil: [tdf, tenofovir disoproxil fumarate]
-  tenofovir-alafenamide: [taf]
-  entecavir: [etv]
-  dolutegravir: [dtg]
-  lamivudine: [3tc, lamivudin]
+  linezolid: [lzd]
+  moxifloxacin: [moxifloxacine, mfx]
+  tenofovir-disoproxil: [tenofovir disoproxil, tenofovir disoproxil fumarate, tenofovir disoproxil fumarat, tenofovir df,
+                         tdf]
+  tenofovir-alafenamide: [tenofovir alafenamide, tenofovir alafenamid, tenofovir alafenamide fumarate,
+                          tenofovir alafenamid fumarat, taf]
+  entecavir: [entecavir, etv]
+  dolutegravir: [dolutegravir, dtg]
+  lamivudine: [lamivudin, 3tc]
   # added 26/9/2026 (pre-freeze) from pilot-agent reports; no 1–2 letter abbreviations (H, R, Z, E) — too ambiguous
-  emtricitabine: [ftc, emtricitabin]
-  efavirenz: [efv]
-  isoniazid: [izoniazid, inh]
+  emtricitabine: [emtricitabin, ftc]
+  efavirenz: [efavirenz, efv]
+  isoniazid: [izoniazid, inh, ~h, ~hh]
   rifampicin: [rifampin, rifampicine]
-  pyrazinamide: [pyrazinamid, pza]
-  ethambutol: [emb]
+  pyrazinamide: [pyrazinamid, pza, ~z]
+  ethambutol: [emb, ~e]
   rifapentine: [rifapentin, rpt]
   levofloxacin: [levofloxacine, lfx]
   clofazimine: [clofazimin, cfz]
-  cycloserine: [cycloserin]
-  delamanid: [dlm]
+  cycloserine: [cycloserin, ~cs]
+  delamanid: [delamanid, dlm]
   mefloquine: [mefloquin]
   atovaquone-proguanil: [atovaquon-proguanil, malarone]
   atovaquone: [atovaquon]
@@ -51,10 +91,34 @@ drugs:            # INN chuẩn -> bí danh (không dấu, chữ thường sau c
   co-trimoxazole: [cotrimoxazol, co-trimoxazol, trimethoprim-sulfamethoxazole, tmp-smx, bactrim]
   azithromycin: [azithromycine, azithromycin]
   chloramphenicol: [cloramphenicol]
-combos:
+  # added 26/9/2026 (grader 1.1.0) from tbhiv_review.md / hbv_review.md
+  amikacin: [~am]
+  prothionamide: [prothionamid, pto]
+  ethionamide: [ethionamid, eto]
+  bictegravir: [bic]
+  nevirapine: [nevirapin, nvp]
+  # WHO ACTs named in P-malaria_ocr-02 (key_drugs had no entry here, so these foreign values were never matched)
+  artesunate-amodiaquine: [artesunat-amodiaquin, as-aq, asaq]
+  amodiaquine: [amodiaquin]
+  artesunate-mefloquine: [artesunat-mefloquin, as-mq, asmq]
+  sulfadoxine-pyrimethamine: [sulfadoxin-pyrimethamin, fansidar]
+  # named regimens (expand to member INNs; `combos` may collapse them again)
+  bedaquiline+pretomanid+linezolid: [bpal]
+  bedaquiline+pretomanid+linezolid+moxifloxacin: [bpalm]
+  bedaquiline+delamanid+linezolid+clofazimine: [bdlc]
+  bedaquiline+pretomanid+moxifloxacin+pyrazinamide: [bpamz]        # decoy of P-tbhiv-01 (symmetry with BDLC)
+  tenofovir-disoproxil+lamivudine+dolutegravir: [tld]
+  tenofovir-disoproxil+lamivudine+efavirenz: [tle]
+  bictegravir+emtricitabine+tenofovir-alafenamide: [biktarvy]
+  # drug classes (a class name satisfies ONE item that needs one member)
+  tenofovir-disoproxil|tenofovir-alafenamide: [tenofovir]
+combos:           # tổ hợp -> INN thành phần; gộp khi có đủ thành phần (tổ hợp lớn gộp trước)
   artemether-lumefantrine: [artemether, lumefantrine]
   pyronaridine-artesunate: [pyronaridine, artesunate]
   quinine+clindamycin: [quinine, clindamycin]
   BPaLM: [bedaquiline, pretomanid, linezolid, moxifloxacin]
   BPaL: [bedaquiline, pretomanid, linezolid]
   atovaquone-proguanil: [atovaquone, proguanil]
+  artesunate-amodiaquine: [artesunate, amodiaquine]
+  artesunate-mefloquine: [artesunate, mefloquine]
+  artesunate+sulfadoxine-pyrimethamine: [artesunate, sulfadoxine-pyrimethamine]

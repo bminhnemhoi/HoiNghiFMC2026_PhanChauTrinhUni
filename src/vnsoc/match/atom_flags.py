@@ -5,6 +5,7 @@ of the atom (and, where stated, of the MoH issue date or a frozen atom pool), so
   atom_covariates(atom)      the per-atom columns the confirmatory code needs (k_foreign, has_decoy, us_unique, ...)
   family_key / family_id     mechanical conflict-family rule (the H1–H3 cluster unit)
   roundness / roundness_ok   decoy 'roundness' check (sensitivity S3)
+  decoy_distance_ratio       distance of the decoy from the MoH set / that of the nearest conflicting foreign value
   answer_side                side of the MoH value an unattributed numeric answer falls on (sensitivity S1)
   neighbour_overlap          conflicting foreign value within 2·tolerance of an MoH value of a neighbouring context
   strict_tolerance           'exact match' tolerance (sensitivity B.18)
@@ -30,7 +31,9 @@ from decimal import Decimal
 from pathlib import Path
 
 from vnsoc.grade import _gap, compute_tolerance, conflict_status
-from vnsoc.match.decoys import check_decoy, in_atom_unit
+# roundness(x) and round_to(x, step): one definition in vnsoc.match.decoys, shared with the decoy rule
+from vnsoc.match.decoys import below, check_decoy, in_atom_unit, num_item, roundness
+from vnsoc.match.decoys import round_to as _round_to
 
 FREEZE_DATE = "2026-10-15"                    # configs/project.yaml dates.corpus_freeze
 # Slot convention for foreign_direction (registered, prereg §4.2): True = a higher value is more aggressive.
@@ -78,8 +81,10 @@ def k_foreign(atom: dict) -> int:
 
 
 def _distinguishable(a: dict, b: dict, atom: dict, tol: float) -> bool:
+    """gap >= 2·tol (num/bp, tol > 0; binary noise at the boundary does not count, as in decoys.check_decoy),
+    else gap > 0."""
     g = _gap(a, b, atom)
-    return g >= 2 * tol if atom["value_kind"] in ("num", "bp") and tol > 0 else g > 0
+    return not below(g, 2 * tol) if atom["value_kind"] in ("num", "bp") and tol > 0 else g > 0
 
 
 def us_unique(atom: dict) -> bool:
@@ -131,19 +136,6 @@ def family_id(atom: dict) -> str | None:
 
 
 # ------------------------------------------------------------------ decoy audit
-def roundness(x: float) -> float:
-    """Largest step s = m·10^j (m in {1, 2, 5}, -6 <= j <= 6) such that x is an integer multiple of s; 0 if none."""
-    d = abs(Decimal(str(float(x))))
-    if d == 0:
-        return math.inf
-    for j in range(6, -7, -1):
-        for m in (5, 2, 1):
-            s = Decimal(m) * (Decimal(10) ** j)
-            if d % s == 0:
-                return float(s)
-    return 0.0
-
-
 def item_roundness(it: dict, atom: dict) -> float | None:
     kind = atom["value_kind"]
     if kind == "num":
@@ -164,6 +156,20 @@ def roundness_ok(atom: dict) -> bool | None:
         return None
     rd, rf = item_roundness(dec[0], atom), item_roundness(conf[0][1], atom)
     return None if rd is None or rf is None else bool(rd >= rf)
+
+
+def decoy_distance_ratio(atom: dict) -> float | None:
+    """Distance of the decoy from the MoH set divided by that of the nearest conflicting foreign item (num/bp; 1.0 for
+    an unrounded mirror_arith decoy, within decoys.BAND of it when rounded, 2.0 for mirror_far). Reported per atom so
+    that a decoy farther from (or closer to) the MoH value than the foreign value is visible (review of the decoy
+    rounding, 2026-09-26). None without a decoy or a conflicting item."""
+    dec = list(atom.get("decoy") or [])
+    conf = conflicting_items(atom)
+    if atom["value_kind"] not in ("num", "bp") or not dec or not conf:
+        return None
+    gf = min(_gap(v, conf[0][1], atom) for v in atom["vn"])
+    gd = min(_gap(v, dec[0], atom) for v in atom["vn"])
+    return None if not (0 < gf < math.inf) or not math.isfinite(gd) else round(gd / gf, 6)
 
 
 def _anchor(atom: dict):
@@ -321,11 +327,6 @@ def acuity_suggestion(atom: dict) -> str:
 
 
 # ------------------------------------------------------------------ decoy regeneration (implausible decoys)
-def _round_to(x: float, step: float) -> float:
-    return float((Decimal(str(x)) / Decimal(str(step))).quantize(Decimal(1), rounding="ROUND_HALF_UP")
-                 * Decimal(str(step)))
-
-
 def _dist_from_moh(it: dict, atom: dict) -> float:
     return min(_gap(v, it, atom) for v in atom["vn"])
 
@@ -354,9 +355,7 @@ def regenerate_decoy(atom: dict, pool: list[dict] | None = None) -> tuple[dict |
                 ok, cand = False, {}
             elif kind == "num":
                 lo, hi = _round_to(n.lo, g), _round_to(n.hi, g)
-                cand = {"lo": lo, "hi": hi, "unit": atom.get("unit"),
-                        "text": (f"{lo:g}" if lo == hi else f"{lo:g}–{hi:g}") + f" {atom.get('unit') or ''}".rstrip()}
-                ok = lo > 0
+                cand, ok = num_item(lo, hi, atom.get("unit")), lo > 0
             else:
                 s, di = _round_to(d0["sys"], g), _round_to(d0["dia"], g)
                 cand, ok = {"sys": s, "dia": di, "text": f"{s:g}/{di:g} mmHg"}, s > 0 and di > 0
@@ -395,6 +394,7 @@ def atom_covariates(atom: dict, moh_issued: str | None = None) -> dict:
         "conflict_family": atom.get("conflict_family"), "k_foreign": k_foreign(atom),
         "has_decoy": bool(atom.get("decoy")), "us_unique": us_unique(atom), "value_kind": atom["value_kind"],
         "slot_type": atom.get("slot_type"), "decoy_rule": atom.get("decoy_rule"), "roundness_ok": roundness_ok(atom),
+        "decoy_distance_ratio": decoy_distance_ratio(atom),
         "moh_neighbour_overlap": neighbour_overlap(atom), "distinct": st == "conflict" or distinct_version(atom),
         "has_superseded": bool(_items(atom.get("superseded"))), "pilot": bool(atom.get("pilot")),
         "seed_row": atom.get("seed_row"), "moh_older_than_counterpart": moh_older_than_counterpart(atom, moh_issued),
@@ -410,6 +410,7 @@ def freeze_problems(atoms: list[dict], freeze_date: str = FREEZE_DATE) -> tuple[
     probs: list[str] = []
     fk = _date_key(freeze_date)
     rules: dict[str, int] = {}
+    roundings: dict[str, int] = {}
     fam_gl: dict[str, set] = {}
     n_no_decoy = n_derived = n_neigh = n_plaus = n_conf = 0
     for a in atoms:
@@ -435,6 +436,8 @@ def freeze_problems(atoms: list[dict], freeze_date: str = FREEZE_DATE) -> tuple[
             probs.append(f"{aid}: chưa qua kiểm ngữ cảnh (context_checked = {a.get('context_checked')})")
         if a.get("decoy"):
             rules[str(a.get("decoy_rule"))] = rules.get(str(a.get("decoy_rule")), 0) + 1
+            rd = str((a.get("extraction") or {}).get("decoy_rounding"))
+            roundings[rd] = roundings.get(rd, 0) + 1
             if not a.get("decoy_rule"):
                 probs.append(f"{aid}: có mồi nhưng thiếu decoy_rule")
             if a["value_kind"] in ("num", "bp") and a.get("roundness_ok") != roundness_ok(a):
@@ -448,7 +451,8 @@ def freeze_problems(atoms: list[dict], freeze_date: str = FREEZE_DATE) -> tuple[
         if a["value_kind"] in ("drugs", "cat") and a.get("moh_scope") is None:
             probs.append(f"{aid}: thiếu moh_scope (mẩu thuốc/phân loại)")
         n_neigh += neighbour_overlap(a)
-    report = {"n_atoms": len(atoms), "n_conflict": n_conf, "decoy_rules": rules, "n_conflict_without_decoy": n_no_decoy,
+    report = {"n_atoms": len(atoms), "n_conflict": n_conf, "decoy_rules": rules, "decoy_roundings": roundings,
+              "n_conflict_without_decoy": n_no_decoy,
               "n_derived_values": n_derived, "n_neighbour_overlap": n_neigh, "n_decoy_plausible": n_plaus,
               "n_families": len(fam_gl), "n_families_multi_guideline": sum(len(v) > 1 for v in fam_gl.values()),
               "family_x_guideline": {k: sorted(map(str, v)) for k, v in sorted(fam_gl.items(), key=lambda x: str(x[0]))}}
