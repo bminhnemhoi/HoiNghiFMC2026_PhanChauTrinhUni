@@ -1,0 +1,26 @@
+row,topic,seed_status,outcome,detail,evidence
+1,"Dengue, sốc ở người lớn: tốc độ dịch đầu",confirmed,confirmed_conflict,,P-dengue-01; P-dengue-02
+2,Dengue: truyền tiểu cầu,confirmed_complex,not_checked,,
+3,Tay chân miệng: phân độ và thuốc,no_counterpart,not_checked,,
+4,"Dại: phác đồ sau phơi nhiễm, tiêm bắp",confirmed,not_clean,not_a_recommendation,data/interim/pilot/rabies_report.md §4 mục 1 — N0-3-7-14-28 chỉ là tiêu đề cột biểu mẫu phụ lục; khuyến cáo giao lịch cho nhà sản xuất; PDF chính thức không truy cập được (.doc vncdc)
+5,"Dại: phác đồ sau phơi nhiễm, trong da",confirmed,not_clean,not_a_recommendation,data/interim/pilot/rabies_report.md §4 mục 3 — như dòng 4; nguồn chính thức khác ghi 0-3-7-28-90
+6,Tăng huyết áp: ngưỡng chẩn đoán đo tại phòng khám,confirmed_us_only,confirmed_conflict,,P-htn-01
+7,Tăng huyết áp: mục tiêu ở người ≥ 65 tuổi,confirmed,not_clean,not_clean,data/interim/pilot/htn_report.md §3 mục 8 — P-htn-02 bị loại sau kiểm toán: 5904/2019 tr.12 'có thể thấp hơn nếu dung nạp được' → ESC 120–129 không nằm ngoài tập VN; dấu '<' của Mỹ
+8,ĐTĐ: tuổi bắt đầu sàng lọc tất cả,confirmed_low_stakes,confirmed_conflict,,P-dm-03
+9,ĐTĐ: mục tiêu huyết áp,confirmed,not_clean,concordant_dr8,data/interim/pilot/dm_report.md §4 mục 1 — 5904/2019 đặt mục tiêu < 130/80 cho người THA + ĐTĐ (DR8: hợp với 5481/2020) → trùng ADA
+10,ĐTĐ có bệnh tim mạch xơ vữa: mục tiêu LDL-C,fixed,not_clean,concordant_dr8,"data/interim/pilot/dm_report.md §4 mục 2 — 5481/2020 mục 6.2.2 tr.36: LDL-C < 1,4 mmol/L (55 mg/dL) ở nguy cơ rất cao → trùng ADA"
+11,ĐTĐ: ngưỡng bắt đầu insulin sớm,confirmed,confirmed_conflict,,P-dm-01
+12,ĐTĐ: vị trí GLP-1 RA/SGLT2i,removed,not_checked,,
+13,Béo phì: ngưỡng BMI,fixed_relabelled,confirmed_conflict,,P-controls-09
+14,Phản vệ: adrenalin tiêm bắp người lớn,removed,not_clean,,P-anaphylaxis_ocr-03=concordant
+15,Phản vệ: liều adrenalin trẻ khoảng 10 kg,confirmed,confirmed_conflict,,P-anaphylaxis_ocr-01
+16,Sốt rét P. falciparum: thuốc đầu tay,confirmed_us_only,not_clean,,P-malaria_ocr-02=indistinguishable
+17,"Sốt rét P. falciparum, 3 tháng đầu thai kỳ",confirmed,confirmed_conflict,,P-malaria_ocr-01
+18,"Primaquin liều đơn cho P. falciparum, ≥ 15 tuổi",fixed,confirmed_conflict,,P-malaria_ocr-03
+19,P. vivax: điều trị tiệt căn (G6PD bình thường),confirmed,confirmed_conflict,,P-malaria_ocr-04
+20,Viêm gan B: chỉ định điều trị,confirmed,not_clean,,P-hbv-01=indistinguishable; P-hbv-02=indistinguishable; P-hbv-03=indistinguishable; P-hbv-04=indistinguishable; P-hbv-05=concordant; P-hbv-08=indistinguishable
+21,Viêm gan B: dự phòng lây mẹ sang con,unverified,not_checked,,
+22,Lao đa kháng: phác đồ,version_drift,confirmed_conflict,,P-tbhiv-01
+23,Vắc-xin sởi: mũi đầu,confirmed_us_only_not_rechecked,confirmed_conflict,,P-immunization-01
+24,DTP: lịch cơ bản,confirmed_low_stakes_not_rechecked,not_clean,wrong_value,"data/interim/pilot/immunization_report.md §4 mục 1 — TT 10/2024 và TT 52/2025 chỉ ghi mũi 1 lúc 2 tháng, các mũi sau cách ≥ 1 tháng; không có lịch cố định 2-3-4 tháng"
+25,Sàng lọc ĐTĐ thai kỳ,confirmed_low_stakes_not_rechecked,not_clean,,P-dm-05=concordant

@@ -58,7 +58,15 @@ def source_warnings(atom: dict, blocks: set[str], root=None) -> list[str]:
                 toks += [str(s) for s in it["seq"]]
             if it.get("key_drugs"):
                 toks += [p for d in it["key_drugs"] for p in d.replace("+", "-").split("-") if len(p) > 3]
-            missing = [x for x in dict.fromkeys(toks) if fold(x) not in t and fold(x).replace(".", ",") not in t]
+            def variants(x: str) -> set[str]:
+                v = {fold(x), fold(x).replace(".", ",")}
+                if x.isdigit() and len(x) >= 4:               # 20000 -> 20,000 / 20.000 / 20 000
+                    g = f"{int(x):,}"
+                    v |= {g, g.replace(",", "."), g.replace(",", " ")}
+                if "/" in x:                                    # 140/90 -> 140 / 90
+                    v.add(fold(x.replace("/", " / ")))
+                return v
+            missing = [x for x in dict.fromkeys(toks) if not any(s in t for s in variants(x))]
             if missing:
                 warns.append(f"{f['source']}: không thấy {missing} trong nguồn đã băm")
     return warns

@@ -1,0 +1,10 @@
+# Kết quả đối chiếu các dòng hạt giống KHÔNG sinh mẩu xung đột trong thí điểm T1.1 (26/9/2026).
+# Mỗi mục có bằng chứng (báo cáo agent + mục). Dòng có mẩu thì trạng thái lấy từ mẩu (mã tính), không từ đây.
+# outcome: not_a_recommendation | concordant_dr8 | wrong_value | not_clean | no_official_text | blocked
+rows:
+  - {row: 4, outcome: not_a_recommendation, evidence: "data/interim/pilot/rabies_report.md §4 mục 1 — N0-3-7-14-28 chỉ là tiêu đề cột biểu mẫu phụ lục; khuyến cáo giao lịch cho nhà sản xuất; PDF chính thức không truy cập được (.doc vncdc)"}
+  - {row: 5, outcome: not_a_recommendation, evidence: "data/interim/pilot/rabies_report.md §4 mục 3 — như dòng 4; nguồn chính thức khác ghi 0-3-7-28-90"}
+  - {row: 7, outcome: not_clean, evidence: "data/interim/pilot/htn_report.md §3 mục 8 — P-htn-02 bị loại sau kiểm toán: 5904/2019 tr.12 'có thể thấp hơn nếu dung nạp được' → ESC 120–129 không nằm ngoài tập VN; dấu '<' của Mỹ"}
+  - {row: 9, outcome: concordant_dr8, evidence: "data/interim/pilot/dm_report.md §4 mục 1 — 5904/2019 đặt mục tiêu < 130/80 cho người THA + ĐTĐ (DR8: hợp với 5481/2020) → trùng ADA"}
+  - {row: 10, outcome: concordant_dr8, evidence: "data/interim/pilot/dm_report.md §4 mục 2 — 5481/2020 mục 6.2.2 tr.36: LDL-C < 1,4 mmol/L (55 mg/dL) ở nguy cơ rất cao → trùng ADA"}
+  - {row: 24, outcome: wrong_value, evidence: "data/interim/pilot/immunization_report.md §4 mục 1 — TT 10/2024 và TT 52/2025 chỉ ghi mũi 1 lúc 2 tháng, các mũi sau cách ≥ 1 tháng; không có lịch cố định 2-3-4 tháng"}

@@ -22,11 +22,11 @@ Sinh viên y khoa dùng mô hình ngôn ngữ lớn (LLM) để tra cứu, nhưn
 
 ### PHƯƠNG PHÁP NGHIÊN CỨU
 
-Trích khuyến cáo có giá trị cụ thể từ {{=25}}–{{=35}} hướng dẫn hiện hành (PDF chính thức, khớp nguyên văn); gắn giá trị WHO, Mỹ, châu Âu, giá trị bản cũ và giá trị mồi sinh theo quy tắc. Hỏi LLM bằng tiếng Việt và tiếng Anh, có/không nêu "theo Bộ Y tế", có/không kèm đoạn hướng dẫn; chấm bằng quy tắc so giá trị thành {{design.n_labels}} nhãn. Giả thuyết chính (đăng ký trước): khi hỏi "theo Bộ Y tế", tỉ lệ trùng giá trị nước ngoài cao hơn tỉ lệ trùng giá trị mồi.
+Trích khuyến cáo có giá trị từ {{=25}}–{{=35}} hướng dẫn hiện hành (PDF chính thức, khớp nguyên văn), gắn giá trị WHO, Mỹ, châu Âu, bản cũ và giá trị mồi. Hỏi LLM bằng tiếng Việt và tiếng Anh, có/không nêu "theo Bộ Y tế", có/không kèm đoạn hướng dẫn; chấm bằng quy tắc so giá trị thành {{design.n_labels}} nhãn. Giả thuyết chính (đăng ký trước): khi hỏi "theo Bộ Y tế", tỉ lệ trùng giá trị nước ngoài cao hơn trùng giá trị mồi.
 
 ### KẾT QUẢ
 
-Bộ hạt giống có {{design.seed_conflict_rows}} khác biệt ứng viên từ {{design.seed_guidelines}} hướng dẫn; {{design.pdf_conflicts}} khuyến cáo xung đột ({{design.pdf_conflict_families}} nhóm, {{design.pdf_guidelines}} hướng dẫn) đã khớp nguyên văn PDF chính thức; người và bác sĩ đang kiểm ngữ cảnh.
+Đối chiếu PDF chính thức: {{design.seed_rows_confirmed}}/{{design.seed_rows_checked}} khác biệt hạt giống được xác nhận là xung đột; số còn lại không sạch (trùng văn bản hiện hành khác, trùng bản cũ, hoặc không phải khuyến cáo). Hiện có {{design.pdf_conflicts}} khuyến cáo xung đột ({{design.pdf_conflict_families}} nhóm, {{design.pdf_guidelines}} hướng dẫn) khớp nguyên văn; chưa có người và bác sĩ kiểm ngữ cảnh.
 
 ### KẾT LUẬN
 
@@ -56,7 +56,7 @@ We extract value-bearing recommendations from {{=25}}–{{=35}} current guidelin
 
 ### RESULTS
 
-The seed set contains {{design.seed_conflict_rows}} candidate differences from {{design.seed_guidelines}} guidelines. So far {{design.pdf_conflicts}} conflict recommendations, in {{design.pdf_conflict_families}} families from {{design.pdf_guidelines}} guidelines, have been verbatim-matched to official PDFs; human and clinician context review is ongoing. Pilot and main results will be reported as counts with exact confidence intervals.
+Checking the seed set against official PDFs confirmed {{design.seed_rows_confirmed}} of {{design.seed_rows_checked}} candidate differences as conflicts; the rest were not clean (matching another current MoH document or a superseded version, or not a recommendation). So far {{design.pdf_conflicts}} conflict recommendations in {{design.pdf_conflict_families}} families from {{design.pdf_guidelines}} guidelines are verbatim-matched; human and clinician context review is still pending.
 
 ### CONCLUSION
 
