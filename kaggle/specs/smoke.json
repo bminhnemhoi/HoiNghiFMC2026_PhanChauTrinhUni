@@ -1,0 +1,9 @@
+{
+  "_comment": "T0.4: Qwen3-8B-AWQ on 2xT4, one vLLM process per GPU; requests = data/kaggle_requests/smoke.jsonl (20 general Vietnamese questions, not study items). Fill 'pip' with the vLLM version that works on T4 (try newest first; record in configs/models.yaml).",
+  "shards": [
+    {"model_key": "qwen3_8b", "model": "Qwen/Qwen3-8B-AWQ", "quantization": "awq", "dtype": "half", "max_model_len": 8192,
+     "chat_template_kwargs": {"enable_thinking": false}, "requests": "/kaggle/input/vnsoc-requests/smoke.jsonl",
+     "out": "/kaggle/working/smoke_qwen.jsonl", "gpus": "0"}
+  ],
+  "pip": ["vllm"]
+}
