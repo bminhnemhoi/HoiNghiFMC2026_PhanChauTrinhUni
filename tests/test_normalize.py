@@ -52,6 +52,21 @@ def test_schedules():
     assert parse_schedules("QĐ 1622/QĐ-BYT 2014: N0-3-7-14-28")[0].seq == (0, 3, 7, 14, 28)
 
 
+@pytest.mark.parametrize("text,seq,unit", [
+    # unit is decided next to each sequence, not by any "tháng" elsewhere (found by the rabies pilot agent, 26/9/2026)
+    ("Tiêm bắp các ngày 0, 3, 7, 14 và 28; theo dõi 3 tháng", (0, 3, 7, 14, 28), "day"),
+    ("ĐÁP ÁN: ngày 0, 3, 7, 14 (trong vòng 1 tháng)", (0, 3, 7, 14), "day"),
+    ("Ngày 0 Ngày 3 Ngày 7 Ngày 14 Ngày 28", (0, 3, 7, 14, 28), "day"),          # appendix-form style, space-separated
+    ("DPT: tiêm lúc 2, 3, 4 tháng tuổi", (2, 3, 4), "month"),
+    ("ANSWER: at 2, 4 and 6 months of age", (2, 4, 6), "month"),
+    ("vaccinate on days 0, 3, 7 and 14", (0, 3, 7, 14), "day"),
+    ("tháng thứ 2, 3, 4 sau sinh", (2, 3, 4), "month"),
+])
+def test_schedule_unit_is_local(text, seq, unit):
+    s = parse_schedules(text)[0]
+    assert (s.seq, s.unit) == (seq, unit)
+
+
 SYN = {"artemether-lumefantrine": ["artemether-lumefantrin", "coartem"], "artemether": [], "lumefantrine": ["lumefantrin"],
        "pyronaridine-artesunate": ["pyronaridin-artesunat"], "artesunate": ["artesunat"], "primaquine": ["primaquin"],
        "quinine": ["quinin"], "clindamycin": []}

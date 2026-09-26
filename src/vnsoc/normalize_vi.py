@@ -73,7 +73,7 @@ UNIT_ALIASES = {
     "mg/kg": "mg/kg", "µg/kg": "ug/kg", "mcg/kg": "ug/kg", "ug/kg": "ug/kg", "microgram/kg": "ug/kg",
     "g/kg": "g/kg",
     "mg/dl": "mg/dL", "mmol/l": "mmol/L", "mmhg": "mmHg", "mm hg": "mmHg",
-    "iu/ml": "IU/mL", "ui/ml": "IU/mL", "u/l": "U/L", "iu/l": "U/L", "ui/l": "U/L", "kpa": "kPa",
+    "iu/ml": "IU/mL", "ui/ml": "IU/mL", "iu/kg": "IU/kg", "ui/kg": "IU/kg", "đơn vị/kg": "IU/kg", "u/l": "U/L", "iu/l": "U/L", "ui/l": "U/L", "kpa": "kPa",
     "kg/m2": "kg/m2", "/mm3": "/uL", "/µl": "/uL", "/ul": "/uL", "/microlit": "/uL",
     "x10^9/l": "10^9/L", "×10^9/l": "10^9/L", "x 10^9/l": "10^9/L", "× 10^9/l": "10^9/L",
     "x109/l": "10^9/L", "g/l tiểu cầu": "10^9/L",
@@ -268,14 +268,26 @@ SCHED_SEP = r"\s*(?:-|,|;|/|và|and|&|\+)\s*"
 
 
 def parse_schedules(text: str, min_len: int = 3) -> list[Schedule]:
+    """Sequences like "N0-3-7-14-28", "ngày 0, 3, 7, 14", "Ngày 0 Ngày 3 Ngày 7", "2, 3, 4 tháng".
+    The unit is decided locally for each sequence: a day marker (N, D, ngày, day) on its numbers -> day;
+    otherwise a unit word right after it (or right before it) -> month/day; default day."""
     t = strip_citations(text).lower()
-    t = re.sub(r"\b(?:n|d|ngày|day|days)\s*(?=\d)", "", t)
-    unit = "month" if re.search(r"tháng|month", t) else "day"
+    t = re.sub(r"\b(?:n|d|ngày|day|days)\s*(?=\d)", "§", t)        # § marks a day-prefixed number
     out = []
-    for m in re.finditer(rf"\d{{1,3}}(?:{SCHED_SEP}\d{{1,3}})+", t):
+    for m in re.finditer(rf"§?\d{{1,3}}(?:(?:{SCHED_SEP}|\s+(?=§))§?\d{{1,3}})+", t):
         seq = tuple(int(x) for x in re.findall(r"\d{1,3}", m.group(0)))
-        if len(seq) >= min_len and list(seq) == sorted(seq) and len(set(seq)) == len(seq):
-            out.append(Schedule(seq, unit))
+        if not (len(seq) >= min_len and list(seq) == sorted(seq) and len(set(seq)) == len(seq)):
+            continue
+        after, before = t[m.end():m.end() + 16], t[max(0, m.start() - 16):m.start()]
+        if "§" in m.group(0):
+            unit = "day"
+        elif re.match(r"\s*(?:tháng|months?)\b", after):
+            unit = "month"
+        elif re.match(r"\s*(?:ngày|days?)\b", after):
+            unit = "day"
+        else:
+            unit = "month" if re.search(r"(?:tháng|months?)\W*(?:thứ)?\s*$", before) else "day"
+        out.append(Schedule(seq, unit))
     return out
 
 
