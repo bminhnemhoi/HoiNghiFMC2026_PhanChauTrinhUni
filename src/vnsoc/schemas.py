@@ -199,7 +199,7 @@ class RunRecord(Strict):
     tokens_in: int | None = None
     tokens_out: int | None = None
     logprob_answer: float | None = None
-    backend: Literal["vllm", "hf", "openai_batch", "gemini_batch", "api_sync"]
+    backend: Literal["vllm", "hf", "openai_batch", "gemini_batch", "api_sync", "ollama"]
     error: str | None = None
 
 

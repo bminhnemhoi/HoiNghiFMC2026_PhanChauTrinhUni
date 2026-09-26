@@ -70,3 +70,12 @@ api_frontier:
     max_tokens: 128
     reasoning_allowance: 512
     extra_generation: {}
+local_pilot:                           # DECISIONS 2026-09-26: thí điểm cục bộ (người dùng duyệt), KHÔNG dùng cho nghiên cứu chính
+  - key: qwen3_8b_local
+    ollama_tag: "qwen3:8b"
+    base_hf_id: Qwen/Qwen3-8B
+    license: Apache-2.0
+    quantization: "GGUF Q4_K_M (llama.cpp qua Ollama)"
+    think: false                       # tương đương enable_thinking=False
+    max_model_len: 8192
+    backend: ollama

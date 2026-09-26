@@ -47,7 +47,7 @@ def main(argv=None) -> int:
     ap.add_argument("--index", required=True)
     ap.add_argument("--raw", nargs="+", required=True)
     ap.add_argument("--model-version", required=True)
-    ap.add_argument("--backend", required=True, choices=["vllm", "hf", "openai_batch", "gemini_batch", "api_sync"])
+    ap.add_argument("--backend", required=True, choices=["vllm", "hf", "openai_batch", "gemini_batch", "api_sync", "ollama"])
     ap.add_argument("--date", required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args(argv)
