@@ -32,6 +32,7 @@ from vnsoc.numbers import put
 from vnsoc.paths import paths
 
 HAND = "mẫu chọn tay, chưa có bác sĩ duyệt"
+PILOT_GRADER = "1.2.0"          # grader version of the reported pilot (FMC abstract); later versions are for the main study
 
 
 def cp(k: int, n: int, level: float = 0.95) -> tuple[float, float]:
@@ -206,9 +207,15 @@ def main(argv=None) -> int:
     ap.add_argument("--out-grades", default="data/processed/pilot_grades.parquet")
     ap.add_argument("--out-summary", default="results/pilot/pilot_summary.md")
     ap.add_argument("--exclusions", default="data/interim/pilot_analysis_exclusions.yaml")
+    ap.add_argument("--allow-regrade", action="store_true",
+                    help="cho phép chấm lại bằng bộ chấm khác 1.2.0 (số thí điểm trong abstract FMC là của 1.2.0)")
     a = ap.parse_args(argv)
     P = paths()
     gcfg = yaml.safe_load((P.configs / "grading.yaml").read_text(encoding="utf-8"))
+    if str(gcfg["grader_version"]) != PILOT_GRADER and not a.allow_regrade:
+        raise SystemExit(f"Thí điểm đã báo cáo bằng bộ chấm {PILOT_GRADER} (results/pilot/pilot_grades_grader-"
+                         f"{PILOT_GRADER}.parquet); bộ chấm hiện là {gcfg['grader_version']}. Chấm lại sẽ đổi số trong "
+                         "abstract FMC — chỉ làm với --allow-regrade và ghi DECISIONS.")
     load = lambda p: [json.loads(x) for x in Path(p).read_text(encoding="utf-8").splitlines() if x.strip()]  # noqa: E731
     from vnsoc.check import record_files
 
