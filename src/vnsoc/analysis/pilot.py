@@ -135,6 +135,9 @@ def register(grades: list[dict], atoms: dict[str, dict]) -> dict:
     reg["n_conflict_atoms"] = sum(1 for i in used if groups[i] == "conflict")
     reg["n_conflict_h1_atoms"] = sum(1 for i in used if groups[i] == "conflict" and atoms[i].get("decoy"))
     reg["n_descriptive_atoms"] = sum(1 for i in used if groups[i] == "descriptive")
+    analysed = [i for i in used if groups[i] != "descriptive"]
+    reg["n_atoms_analysed"] = len(analysed)
+    reg["n_guidelines_analysed"] = len({atoms[i]["guideline"] for i in analysed})
     reg["n_concordant_atoms"] = sum(1 for i in used if groups[i] == "concordant")
     reg["n_drift_atoms"] = sum(1 for i in used if groups[i] == "drift")
     reg["n_models"] = len({g["model"] for g in grades})
@@ -172,7 +175,27 @@ def register(grades: list[dict], atoms: dict[str, dict]) -> dict:
                     reg[f"{cond.lower()}_{lang}_{group}_{m}"] = c[m]
                 reg[f"{cond.lower()}_{lang}_{group}_unattributed"] = c["L5"]
                 reg[f"{cond.lower()}_{lang}_{group}_abstain"] = c["L6"]
+    for lang in ("vi", "en"):                          # paired A1 -> A3 on the same conflict atoms (exact McNemar)
+        up, down, p = paired_change(grades, lang, "A1", "A3", "conflict")
+        reg[f"a1a3_{lang}_conflict_improved"] = up
+        reg[f"a1a3_{lang}_conflict_worsened"] = down
+        reg[f"a1a3_{lang}_conflict_p"] = p
     return reg
+
+
+def paired_change(grades: list[dict], lang: str, c0: str, c1: str, group: str) -> tuple[int, int, float]:
+    """(wrong->correct, correct->wrong, exact two-sided McNemar p) for short answers of the same atoms."""
+    from scipy.stats import binomtest
+
+    def correct(cond):
+        return {g["atom_id"]: g.get("label") in (1, 2) for g in grades if g["format"] == "short" and
+                g["language"] == lang and g["condition"] == cond and g["group"] == group and g.get("label") is not None}
+    a, b = correct(c0), correct(c1)
+    both = set(a) & set(b)
+    up = sum(1 for i in both if not a[i] and b[i])
+    down = sum(1 for i in both if a[i] and not b[i])
+    p = float(binomtest(up, up + down, 0.5).pvalue) if up + down else 1.0
+    return up, down, p
 
 
 def main(argv=None) -> int:
@@ -204,6 +227,9 @@ def main(argv=None) -> int:
     for k, v in reg.items():
         put(f"pilot.{k}", v, str(v), HAND)
     put("pilot.ci_level", 0.95, "95%", "mức tin cậy của mọi khoảng Clopper–Pearson thí điểm")
+    for lang in ("vi", "en"):
+        pv = reg[f"a1a3_{lang}_conflict_p"]
+        put(f"pilot.a1a3_{lang}_conflict_p", pv, f"{pv:.2f}".replace(".", ","), "McNemar chính xác hai phía, " + HAND)
     for lang in ("vi", "en"):
         k, n = reg[f"a1_{lang}_h1_foreign"], reg[f"a1_{lang}_h1_n"]
         if n:

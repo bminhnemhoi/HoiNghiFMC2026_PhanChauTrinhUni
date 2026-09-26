@@ -20,7 +20,13 @@ from pathlib import Path
 
 from vnsoc.paths import paths
 
-PH = re.compile(r"\{\{\s*([A-Za-z0-9_.\-=:/%,–]+)\s*\}\}")
+PH = re.compile(r"\{\{\s*([A-Za-z0-9_.\-=:/%,–|]+)\s*\}\}")
+EN = "|en"          # {{key|en}}: the registry display in English number format (decimal point, thousands comma)
+
+
+def en_format(display: str) -> str:
+    """'91,5%' -> '91.5%', '15,4%–59,2%' -> '15.4%–59.2%', '1.000' -> '1,000' (Vietnamese -> English separators)."""
+    return re.sub(r"(?<=\d)[.,](?=\d)", lambda m: "." if m.group(0) == "," else ",", display)
 ALLOW = [
     r"\b(?:19|20)\d{2}[a-z]?\b",                   # years
     r"\b(?:H[1-5]|RQ[1-4]|A[0-6]|DR\d{1,2}|S\d{1,2}|T\d|M[1-4])\b",  # design labels
@@ -123,7 +129,7 @@ def verify(root=None, files: list[str] | None = None) -> int:
                 bad = [x for x in re.findall(r"\d+(?:[.,]\d+)?", key) if _num(x) not in cfg_nums]
                 if bad:
                     problems.append(f"{f.name}: hằng số {{{{{key}}}}} có số {bad} không có trong configs/*.yaml")
-            elif key not in reg:
+            elif key.removesuffix(EN) not in reg:
                 problems.append(f"{f.name}: placeholder chưa có số: {{{{{key}}}}}")
         for i, line in _prose_lines(text):
             nums = bare_numbers(line)
@@ -146,10 +152,12 @@ def render(root=None) -> int:
         k = m.group(1)
         if k.startswith("="):
             return k[1:]
-        if k not in reg:
+        base = k.removesuffix(EN)
+        if base not in reg:
             missing.add(k)
             return m.group(0)
-        return str(reg[k]["display"])
+        d = str(reg[base]["display"])
+        return en_format(d) if k.endswith(EN) else d
 
     for f in _targets(P):
         dst = out / f.relative_to(P.manuscript)

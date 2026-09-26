@@ -748,7 +748,7 @@ The analyses are implemented in `src/vnsoc/analysis/confirmatory.py` (Python; nu
 
 <!-- HASHES:BEGIN (scripts/prereg_snapshot.py; do not edit by hand) -->
 
-Snapshot 2026-09-26T19:42:53+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
+Snapshot 2026-09-26T23:17:53+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
 
 | File | SHA-256 |
 | --- | --- |
@@ -768,7 +768,7 @@ Snapshot 2026-09-26T19:42:53+07:00. SHA-256 of the registered analysis package (
 | `src/vnsoc/extract/corpus_priority.py` | `b1212886ede6c451ad352c0433b5f07cc98f4375cd3a079e2b58e60f7e739520` |
 | `src/vnsoc/analysis/extractor_check.py` | `537314307496dfa243d4d65b7ca7065c6a19e07af3558eabbf387d609a6d75e4` |
 | `src/vnsoc/schemas.py` | `0625ba19b2010f5638641e29716e09b8e9dc811e33e4f3326983756fb3053528` |
-| `configs/project.yaml` | `28bf9e240f1a24a4b651670659f1e12ef3e3f6ba961768141b43e44d5ddf33b5` |
+| `configs/project.yaml` | `46b1f82526e3e1bc3352489144edc01a46558f254d0a8489e2f4427e5a42d909` |
 | `configs/conditions.yaml` | `9636da8651f0f0f57d99474ce4e72e3853a6d321f24d77c8f3543f3d88da0597` |
 | `configs/grading.yaml` | `68cbfbdb06955f92cd8b2508f1f9b4e0a3e4596ce105954d77160bc8753d4e9d` |
 | `configs/models.yaml` | `629a58cf41f83ff80a14bbb98281a48da394782e71a0c39a9c46deac0eda3024` |
@@ -778,7 +778,7 @@ Snapshot 2026-09-26T19:42:53+07:00. SHA-256 of the registered analysis package (
 | `prereg/analysis_plan/simulate_operating_characteristics.py` | `7ca31d6febb334a14ea352fd53c8dc8f3f45a2c9f6318a6cfad1a7da8d08e93d` |
 | `prereg/analysis_plan/operating_characteristics.json` | `aca7eb16791bbbe0748703f24e38b2a744b4fa4bde41c666ce99d45dc01400bd` |
 | `prereg/analysis_plan/README.md` | `75bb30435bf6849185ec4cb4b3276881c481e7bfbfafac9e4b61688c7cbc4fad` |
-| `results/tables/corpus_triage.csv` | `0e2c2cad6635450dfc5525b5525aaf2441fd4243586f33ea2de753e5dbfd4742` |
+| `results/tables/corpus_triage.csv` | `f83fc60c69adf4260de2bf82354dd9b964fc1ed543b133a07037bff6ae9a82e6` |
 | `data/seed/seed_conflicts.yaml` | `455db5474853f34105148f810d76af0c95b33c4f0e2709a4a2add2e0355b70cc` |
 
 <!-- HASHES:END -->

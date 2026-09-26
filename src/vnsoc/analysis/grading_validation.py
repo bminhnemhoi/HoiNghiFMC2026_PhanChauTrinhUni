@@ -61,11 +61,30 @@ def main(argv=None) -> int:
     for k in ("kappa_rule_final", "kappa_ab"):
         if s[k] is not None:
             put(f"pilot.grader_{k}", s[k], f"{s[k]:.2f}".replace(".", ","), NOTE)
+    short = short_rows(load())
+    ss = summary(short)
+    if ss["n"]:
+        lo, hi = cp(ss["agree"], ss["n"])
+        put("pilot.grader_short_n", ss["n"], str(ss["n"]), NOTE)
+        put("pilot.grader_short_agree", ss["agree"], str(ss["agree"]), NOTE)
+        put("pilot.grader_short_agree_pct", ss["agree"] / ss["n"], pct(ss["agree"] / ss["n"]), NOTE)
+        put("pilot.grader_short_agree_ci", [lo, hi], f"{pct(lo)}–{pct(hi)}", "Clopper–Pearson 95%, " + NOTE)
+        if ss["kappa_rule_final"] is not None:
+            put("pilot.grader_short_kappa", ss["kappa_rule_final"], f"{ss['kappa_rule_final']:.2f}".replace(".", ","), NOTE)
     adj = adjudicated_cells(load())
     for k, v in adj.items():                   # sensitivity: key pilot cells with the resolved reference labels
         put(f"pilot.adj_{k}", v, str(v), "nhãn tham chiếu sau trọng tài (độ nhạy); " + NOTE)
     print(json.dumps({**s, "adjudicated": adj}, ensure_ascii=False))
     return 0
+
+
+def short_rows(rows: list[dict], root=None) -> list[dict]:
+    """Only the short-answer rows (format from the graded table)."""
+    import pandas as pd
+
+    g = pd.read_parquet(paths(root).root / "data" / "processed" / "pilot_grades.parquet")
+    fmt = dict(zip(g["run_id"], g["format"]))
+    return [r for r in rows if fmt.get(r["row"]) == "short"]
 
 
 def adjudicated_cells(rows: list[dict], root=None) -> dict:

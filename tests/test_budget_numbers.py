@@ -40,3 +40,11 @@ def test_numbers(proj):
 def test_put_only_from_analysis_code(proj):
     with pytest.raises(ValueError):
         numbers.put("x", 1, "1", root=proj)
+
+
+def test_en_number_format():
+    from vnsoc.numbers import PH, en_format
+
+    assert en_format("91,5%") == "91.5%" and en_format("15,4%–59,2%") == "15.4%–59.2%"
+    assert en_format("0,87") == "0.87" and en_format("1.000") == "1,000" and en_format("7") == "7"
+    assert PH.findall("a {{pilot.x_pct|en}} b") == ["pilot.x_pct|en"]
