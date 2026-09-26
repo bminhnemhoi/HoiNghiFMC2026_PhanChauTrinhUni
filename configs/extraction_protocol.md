@@ -1,9 +1,9 @@
 # Giao thức trích mẩu khuyến cáo — nghiên cứu chính (agent AI thay LLM trả phí)
 
-Phiên bản 1.0, ngày 27/9/2026. Tài liệu này dành cho các agent trích mẩu. Nó bám theo đề cương §3.4 và §4.1, skill
+Phiên bản 1.1, ngày 27/9/2026 (1.0 → 1.1 sau đợt trích thử 4 văn bản và kiểm toán độc lập: review/extraction_calibration/). Tài liệu này dành cho các agent trích mẩu. Nó bám theo đề cương §3.4 và §4.1, skill
 `atomization-protocol` và prereg §3.1. Ở thí điểm, người dùng làm một mình trên laptop, không dùng API trả phí, nên việc
 trích giao cho agent AI; mọi mẩu được kiểm bằng mã rồi kiểm toán AI kép (docs/DECISIONS.md 2026-09-26T20:40). Băm tệp
-này được ghi ở `extraction.protocol` của mỗi mẩu.
+này được ghi ở `extraction.protocol_sha256` của mỗi mẩu (và `extraction.protocol` = "extraction_protocol 1.1").
 
 ## 1. Đơn vị: một mẩu = một khuyến cáo có GIÁ TRỊ cho MỘT quần thể/bối cảnh
 
@@ -45,7 +45,7 @@ Nhiều giá trị cùng đúng cho CÙNG quần thể trong CÙNG văn bản th
 | `valid_from`, `partially_amended_by` | theo manifest |
 | `foreign`, `superseded`, `decoy` | ĐỂ TRỐNG ở bước trích; bước ghép đối chiếu điền sau |
 | `pilot` | `false` |
-| `extraction` | `{"agent": "atom-extractor", "protocol": "extraction_protocol 1.0", "date": "2026-09-27", "notes": ...}` |
+| `extraction` | `{"agent": "atom-extractor", "protocol": "extraction_protocol 1.1", "protocol_sha256": "<sha256 của tệp này>", "date": ..., "notes": ...}` |
 
 Không bao giờ đặt `moh_lags_evidence`, `clinical_harm`, `clinician_confirmed`, `decoy_plausible`.
 
@@ -63,3 +63,47 @@ trị hay quần thể từ trí nhớ.
 Đọc HẾT phần chuyên môn của văn bản hoặc của khoảng trang được giao, lần lượt từng trang. Lấy MỌI mẩu thỏa mục 1, không
 chọn theo khả năng có xung đột với nước ngoài. Việc chọn theo xung đột sẽ làm lệch nhóm đối chứng; trạng thái xung đột do
 mã tính ở bước sau. Ghi các trang đã đọc vào `data/interim/atoms_parts/<số_năm>_coverage.md`.
+
+## 5. Quy tắc bổ sung (1.1, từ đợt trích thử)
+
+1. **Không gộp khác quần thể.** Mỗi dòng bảng, mỗi quần thể và mỗi bối cảnh (điều trị hay dự phòng, người lớn hay trẻ em, từng mức cân nặng) là một mẩu riêng, KỂ CẢ khi giá trị giống mẩu khác. Bỏ các dòng này để "tránh trùng" sẽ làm lệch nhóm đối chứng.
+2. **Khuyến cáo phân loại không có số cũng là mẩu (value_kind cat).** Gồm:
+   - chỉ định và chống chỉ định;
+   - "không khuyến cáo / không dùng X" cho một quần thể;
+   - nơi điều trị, nhập viện, chuyển tuyến;
+   - phương thức hỗ trợ.
+
+   Quy ước chọn slot:
+   - thuốc hoặc phương án lựa chọn → `first_line`;
+   - câu Có/Không về chỉ định, chống chỉ định hoặc an toàn → `procedure`, với nhãn `indicated` / `not_indicated` / `contraindicated`;
+   - kỹ thuật chẩn đoán → `procedure`.
+
+   Đối xứng: đã lấy "không dùng X" ở quần thể A thì cũng lấy câu tương ứng ở quần thể B.
+3. **Tần suất** ("2 lần/ngày") → `slot_type: schedule`, `value_kind: num`, đơn vị tần suất của bộ đọc số. **Khoảng cách giữa hai lần dùng** → `duration`. Ngưỡng hai chiều ("< 40 hoặc > 130") → tách hai mẩu, chiều ghi trong `required_terms`.
+4. **Câu thuật lại quy định nước ngoài** (FDA, EMA, WHO "phê duyệt", "khuyến cáo của …") KHÔNG phải khuyến cáo của Bộ Y tế: không lấy; ghi vào tệp bỏ qua (mục 6) với lý do `attributed_to_foreign`.
+5. **`required_terms` bắt buộc cho mọi thuộc tính phân biệt đáp án:**
+   - dạng bào chế hoặc muối (metoprolol succinate);
+   - đường dùng;
+   - pha liều (khởi đầu, đích, tối đa, liều thấp);
+   - chiều ngưỡng;
+   - cấp hay mạn;
+   - nhánh lưu đồ hoặc pha bệnh;
+   - tuổi viết bằng chữ ("sơ sinh");
+   - dân tộc hoặc khu vực, khi ngưỡng quốc tế của slot khác nhau theo dân tộc (BMI, vòng bụng).
+
+   Khi hai mẩu trở lên cùng condition + intervention, mọi thuộc tính khác nhau giữa chúng phải nằm trong `required_terms`.
+6. **Không thay đơn vị hay thuốc để qua kiểm.** Ví dụ cấm: 'l' thay L/min, 'cm' thay cmH2O, 'g' thay g/L, cat thay drugs chỉ vì thiếu bí danh. Nếu bộ đọc số hoặc bảng thuốc chưa hỗ trợ thì KHÔNG tạo mẩu. Ghi vào `data/interim/atoms_parts/<số_năm>_skipped.jsonl`, mỗi dòng `{"page", "span_excerpt" (≤ 200 ký tự), "reason", "proposed"}`. Giá trị `reason`:
+   - `drug_table_gap` (kèm INN đề xuất);
+   - `unit_gap`;
+   - `image_only` (giá trị chỉ có trong hình hoặc lưu đồ dạng ảnh);
+   - `span_across_pages`;
+   - `combination_dose` ("49/51 mg");
+   - `attributed_to_foreign`;
+   - `ambiguous_scope`;
+   - `other`.
+
+   Người điều phối bổ sung bộ đọc rồi cho trích lại các dòng này.
+7. **Phạm vi mơ hồ** (điều kiện "nếu …" áp cho phần nào, phạm vi của "hoặc"): chọn quần thể hẹp nhất mà mọi cách hiểu đều đúng; ghi `extraction.ambiguity` để bước kiểm ngữ cảnh xem.
+8. **Văn bản tự mâu thuẫn** (hai giá trị không khớp cho cùng quần thể trong cùng văn bản, hoặc lỗi soạn thảo): vẫn lấy nguyên văn và ghi `extraction.internal_conflict` = {"pages", "note"}. Bước câu hỏi loại mẩu này khỏi tập xác nhận.
+9. **Văn bản sửa đổi:** mẩu từ đoạn đã bị sửa (ví dụ 5481/2020 tr.39 điểm b, sửa bởi 1353/2021) phải dùng văn bản ĐÃ SỬA. Ghi nguồn sửa đổi ở `extraction.dr8_sources`.
+10. **Chồng lấn giữa các văn bản Bộ Y tế** (5642/2015 ch.8 cúm với 1840/2025; ch.5 sốt rét với 3377/2023; 5904/2019 với 3192/2010, 5481/2020, 2131/2026; 678/2025 với 1740/2026, 5968/2021): trích bình thường từ mỗi văn bản. Hợp tập DR8 làm ở bước sau theo họ bệnh.
