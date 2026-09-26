@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 from vnsoc.extract.verify_span import drug_tables, pdf_path, verify_atom
-from vnsoc.match.decoys import check_decoy, finalize, mirror_decoy
+from vnsoc.match.decoys import check_decoy, choose_decoy, finalize
 from vnsoc.paths import paths
 from vnsoc.schemas import Atom
 
@@ -113,7 +113,7 @@ def enforce_decoy_rule(atom: dict) -> dict:
     a stored decoy that differs is replaced and the change noted in extraction.decoy_rule."""
     if atom.get("value_kind") not in ("num", "bp"):
         return atom
-    d, rule = mirror_decoy(atom)
+    d, rule = choose_decoy(atom)
     if d is None:
         return atom
     a = dict(atom)

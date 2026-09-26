@@ -160,32 +160,60 @@ def _acceleration(jack: np.ndarray) -> float:
     return float(np.sum(dev ** 3) / den) if den > 0 else 0.0
 
 
-def _bca_limit(boot: np.ndarray, z0: float, a: float, q: float) -> float:
-    zq = stats.norm.ppf(q)
+def _zq(q: float, C: int | None) -> float:
+    """Normal quantile, or the small-sample 'expanded' quantile sqrt(C/(C-1)) * t_{C-1}(q) when C is given."""
+    return float(stats.norm.ppf(q)) if C is None else math.sqrt(C / (C - 1)) * float(stats.t.ppf(q, C - 1))
+
+
+def _bca_limit(boot: np.ndarray, z0: float, a: float, q: float, C: int | None = None) -> float:
+    zq = _zq(q, C)
     denom = 1 - a * (z0 + zq)
     level = stats.norm.cdf(z0 + (z0 + zq) / denom) if denom > 0 else (1.0 if q > 0.5 else 0.0)
     return float(np.quantile(boot, np.clip(level, 0.0, 1.0), method="inverted_cdf"))
 
 
-def _bca_pvalue(boot: np.ndarray, z0: float, a: float, null: float) -> float:
-    """One-sided p for H0: theta <= null, by inverting the BCa lower limit (a = z0 = 0 -> share of boot <= null)."""
+def _bca_pvalue(boot: np.ndarray, z0: float, a: float, null: float, C: int | None = None) -> float:
+    """One-sided p for H0: theta <= null, by inverting the BCa lower limit (a = z0 = 0 -> share of boot <= null).
+    With C (expanded variant) the returned p inverts the expanded quantile: p = T_{C-1}(z_alpha * sqrt((C-1)/C))."""
     B = len(boot)
     G = (np.sum(boot < null) + 0.5 * np.sum(boot == null)) / B
     G = float(np.clip(G, 0.5 / B, 1 - 0.5 / B))
     w = stats.norm.ppf(G) - z0
     if 1 + a * w <= 0:
         return G
-    return float(stats.norm.cdf(w / (1 + a * w) - z0))
+    z_alpha = w / (1 + a * w) - z0
+    if C is None:
+        return float(stats.norm.cdf(z_alpha))
+    return float(stats.t.cdf(z_alpha * math.sqrt((C - 1) / C), C - 1))
+
+
+def _jackknife_t(est: float, jack: np.ndarray, C: int, null: float, a2: float) -> dict:
+    """estimate +/- t_{C-1} * delete-one-cluster jackknife SE; one-sided p from t_{C-1}."""
+    j = _finite(jack)
+    se = math.sqrt((len(j) - 1) / len(j) * float(np.sum((j - j.mean()) ** 2))) if len(j) >= 2 else float("nan")
+    tq = float(stats.t.ppf(1 - a2, C - 1))
+    if not np.isfinite(se):
+        p = float("nan")
+    elif se > 0:
+        p = float(stats.t.sf((est - null) / se, C - 1))
+    else:                                              # every leave-one-cluster-out estimate identical
+        p = 0.0 if est > null else 1.0
+    return {"lo": est - tq * se, "hi": est + tq * se, "p_one_sided": p, "se_jackknife": se}
 
 
 def cluster_interval(M: np.ndarray, stat: Callable[[np.ndarray], np.ndarray], *, null: float = 0.0,
                      n_boot: int = N_BOOT, seed: int = BOOT_SEED, level: float = CI_LEVEL,
-                     min_clusters: int = MIN_CLUSTERS_BCA) -> dict:
+                     min_clusters: int = MIN_CLUSTERS_BCA, primary: str = "bca") -> dict:
     """CI and one-sided p (H0: theta <= null) for a statistic of per-cluster sums (proposal §5.3).
 
-    M: (C, k) per-cluster sums; stat maps (..., k) totals to (...) values (vectorised). C >= min_clusters: BCa on a
-    cluster bootstrap (whole clusters resampled with replacement; acceleration from the delete-one-cluster
-    jackknife). Otherwise: estimate +/- t_{C-1} * jackknife SE (small-sample t).
+    M: (C, k) per-cluster sums; stat maps (..., k) totals to (...) values (vectorised).
+    C >= min_clusters: cluster bootstrap (whole clusters resampled with replacement) with
+      'bca'           textbook BCa (Efron 1987); acceleration from the delete-one-cluster jackknife — the
+                      proposal's rule and the default `primary`;
+      'bca_expanded'  same resamples, normal quantiles replaced by sqrt(C/(C-1)) * t_{C-1} (small-sample expansion);
+      'jackknife_t'   estimate +/- t_{C-1} * cluster-jackknife SE.
+    All three are always returned under `variants`; `primary` picks lo / hi / p_one_sided / method.
+    C < min_clusters: 'jackknife_t' only, reported as method 't_small' (proposal: "< 20 clusters -> small-sample t").
     """
     M = np.asarray(M, dtype=float)
     C = M.shape[0]
@@ -196,28 +224,28 @@ def cluster_interval(M: np.ndarray, stat: Callable[[np.ndarray], np.ndarray], *,
     a2 = (1 - level) / 2
     out = {"estimate": est, "n_clusters": C, "n_boot": 0, "seed": None}
     if C < 2 or not np.isfinite(est):
-        return {**out, "lo": float("nan"), "hi": float("nan"), "p_one_sided": float("nan"), "method": "none"}
+        return {**out, "lo": float("nan"), "hi": float("nan"), "p_one_sided": float("nan"), "method": "none",
+                "variants": {}}
+    jt = _jackknife_t(est, jack, C, null, a2)
     if C < min_clusters:
-        j = _finite(jack)
-        se = math.sqrt((len(j) - 1) / len(j) * float(np.sum((j - j.mean()) ** 2))) if len(j) >= 2 else float("nan")
-        tq = float(stats.t.ppf(1 - a2, C - 1))
-        if not np.isfinite(se):
-            p = float("nan")
-        elif se > 0:
-            p = float(stats.t.sf((est - null) / se, C - 1))
-        else:                                          # every leave-one-cluster-out estimate identical
-            p = 0.0 if est > null else 1.0
-        return {**out, "lo": est - tq * se, "hi": est + tq * se, "p_one_sided": p, "method": "t_small",
-                "se_jackknife": se}
+        return {**out, **jt, "method": "t_small", "variants": {"jackknife_t": jt}}
     rng = np.random.default_rng(seed)
     W = rng.multinomial(C, np.full(C, 1.0 / C), size=n_boot).astype(float)
     with np.errstate(divide="ignore", invalid="ignore"):
         boot = np.asarray(stat(W @ M), dtype=float)
     boot = boot[~np.isnan(boot)]
     z0, acc = _z0(boot, est), _acceleration(jack)
-    return {**out, "n_boot": int(n_boot), "seed": int(seed), "method": "bca", "z0": z0, "acceleration": acc,
-            "lo": _bca_limit(boot, z0, acc, a2), "hi": _bca_limit(boot, z0, acc, 1 - a2),
-            "p_one_sided": _bca_pvalue(boot, z0, acc, null)}
+    var = {
+        "bca": {"lo": _bca_limit(boot, z0, acc, a2), "hi": _bca_limit(boot, z0, acc, 1 - a2),
+                "p_one_sided": _bca_pvalue(boot, z0, acc, null)},
+        "bca_expanded": {"lo": _bca_limit(boot, z0, acc, a2, C), "hi": _bca_limit(boot, z0, acc, 1 - a2, C),
+                         "p_one_sided": _bca_pvalue(boot, z0, acc, null, C)},
+        "jackknife_t": jt,
+    }
+    if primary not in var:
+        raise ValueError(f"primary phải thuộc {sorted(var)}")
+    return {**out, **var[primary], "method": primary, "n_boot": int(n_boot), "seed": int(seed), "z0": z0,
+            "acceleration": acc, "variants": var}
 
 
 # ------------------------------------------------------------------ H1

@@ -41,8 +41,10 @@ def _conflicting(atom: dict) -> list[dict]:
     return [it for f in atom.get("foreign") or [] for it in f["values"] if all(_gap(v, it, atom) > 0 for v in vn)]
 
 
-def mirror_decoy(atom: dict) -> tuple[dict | None, str]:
-    """(decoy ValueItem dict, rule) or (None, reason) for num/bp atoms."""
+def mirror_decoy(atom: dict, rule: str = "auto") -> tuple[dict | None, str]:
+    """(decoy ValueItem dict, rule) or (None, reason) for num/bp atoms.
+    rule "auto" = mirror_arith, or mirror_geom when the arithmetic reflection is not positive; "mirror_geom" and
+    "mirror_far" (twice the foreign distance, other side) are the pre-specified fallbacks used by choose_decoy."""
     kind = atom["value_kind"]
     conf = _conflicting(atom)
     if not conf:
@@ -50,8 +52,9 @@ def mirror_decoy(atom: dict) -> tuple[dict | None, str]:
     vn = atom["vn"]
     f, v = min(((f, v) for f in conf for v in vn), key=lambda p: _gap(p[1], p[0], atom))
     if kind == "bp":
-        return {"sys": 2 * v["sys"] - f["sys"], "dia": 2 * v["dia"] - f["dia"],
-                "text": f"{2 * v['sys'] - f['sys']:g}/{2 * v['dia'] - f['dia']:g} mmHg"}, "mirror_arith"
+        k = 3 if rule == "mirror_far" else 2          # far: v + 2(v - f)
+        s, d = k * v["sys"] - (k - 1) * f["sys"], k * v["dia"] - (k - 1) * f["dia"]
+        return {"sys": s, "dia": d, "text": f"{s:g}/{d:g} mmHg"}, ("mirror_far" if k == 3 else "mirror_arith")
     if kind != "num":
         return None, f"value_kind={kind}: mồi do người/agent đề xuất rồi check_decoy"
     unit = atom.get("unit")
@@ -60,17 +63,39 @@ def mirror_decoy(atom: dict) -> tuple[dict | None, str]:
         return None, "không quy đổi được về đơn vị của mẩu"
     cv, cf, w = (vv.lo + vv.hi) / 2, (ff.lo + ff.hi) / 2, ff.hi - ff.lo
     nd = _decimals(vv.lo, vv.hi, ff.lo, ff.hi)
-    c, rule = 2 * cv - cf, "mirror_arith"
-    if c - w / 2 <= 0:
+    arith, used = 2 * cv - cf, "mirror_arith"
+    if rule == "mirror_far":
+        c, used = 3 * cv - 2 * cf, "mirror_far"
+    elif rule == "mirror_geom" or arith - w / 2 <= 0:
         if cf <= 0:
             return None, "không phản chiếu được (giá trị nước ngoài ≤ 0)"
-        c, rule = cv * cv / cf, "mirror_geom"
+        c, used = cv * cv / cf, "mirror_geom"
         nd = max(nd, 1 if c < 10 else 0)
+    else:
+        c = arith
+    if c - w / 2 <= 0:
+        return None, f"{used} cho giá trị ≤ 0"
     lo, hi = round(c - w / 2, nd), round(c + w / 2, nd)
     if lo <= 0:
         return None, "phản chiếu cho giá trị ≤ 0"
     text = f"{lo:g}" if lo == hi else f"{lo:g}–{hi:g}"
-    return {"lo": lo, "hi": hi, "unit": unit, "text": f"{text} {unit}".strip()}, rule
+    return {"lo": lo, "hi": hi, "unit": unit, "text": f"{text} {unit}".strip()}, used
+
+
+def choose_decoy(atom: dict) -> tuple[dict | None, str]:
+    """Pre-specified order: auto (arith, or geom if not positive) -> mirror_geom -> mirror_far; the first decoy that
+    passes check_decoy (not equal to the MoH set or ANY recorded source, incl. older foreign versions, and not
+    making the atom indistinguishable). Record older foreign versions (e.g. JNC8) in `foreign` so they count."""
+    reasons = []
+    for r in ("auto", "mirror_geom", "mirror_far"):
+        d, used = mirror_decoy(atom, r)
+        if d is None:
+            reasons.append(used)
+            continue
+        if not check_decoy(dict(atom, decoy=[d])):
+            return d, used
+        reasons.append(f"{used}: trùng nguồn/không phân biệt")
+    return None, "; ".join(reasons)
 
 
 def check_decoy(atom: dict) -> list[str]:

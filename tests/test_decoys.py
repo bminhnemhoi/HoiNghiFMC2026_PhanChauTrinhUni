@@ -47,3 +47,21 @@ def test_mirror_converts_units_first():
          "vn": [{"lo": 250, "hi": 250}], "foreign": [{"system": "OTHER", "values": [{"lo": 0.01, "hi": 0.01, "unit": "mg/kg"}]}]}
     d, rule = mirror_decoy(a)
     assert rule == "mirror_arith" and (d["lo"], d["hi"]) == (400, 400) and d["unit"] == "ug"   # 250 + (250 - 100)
+
+
+def test_choose_decoy_skips_values_of_older_foreign_versions():
+    from vnsoc.match.decoys import choose_decoy
+
+    # target SBP >= 65 y: MoH 130-139; ACC/AHA < 130 (as 120-129); JNC8 2014 < 150 recorded as an older US version
+    a = {"value_kind": "num", "unit": "mmHg", "vn": [{"lo": 130, "hi": 139}],
+         "foreign": [{"system": "US", "values": [{"lo": 120, "hi": 129}]},
+                     {"system": "US", "values": [{"lo": 140, "hi": 149}]}]}
+    d, rule = mirror_decoy(a)
+    assert (d["lo"], d["hi"]) == (140, 149) and check_decoy(dict(a, decoy=[d]))      # arith lands on JNC8-like value
+    d2, rule2 = choose_decoy(a)
+    assert rule2 in ("mirror_geom", "mirror_far") and check_decoy(dict(a, decoy=[d2])) == []
+
+
+def test_bp_far_rule():
+    a = {"value_kind": "bp", "vn": [{"sys": 140, "dia": 90}], "foreign": [{"system": "US", "values": [{"sys": 130, "dia": 80}]}]}
+    assert mirror_decoy(a, "mirror_far")[0]["sys"] == 160
