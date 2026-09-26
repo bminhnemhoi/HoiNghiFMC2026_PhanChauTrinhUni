@@ -41,6 +41,8 @@ rq3:
   split_unit: atom
   split_fractions: {ref: 0.2, cal: 0.4, test: 0.4}   # đề xuất; chốt trong bản OSF (T2.10)
   split_seed: 20261001
+authors:                             # FMC/journal byline; người dùng sửa họ tên đầy đủ + thêm đồng tác giả (HG1.9, HG7.10)
+  - {name: "Bình Minh", affiliation: "Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, Việt Nam"}
 qgen:
   mcq_order_seed: 20260926           # seeded shuffle for MCQ order 0; order 1 = reverse (vnsoc.qgen.mcq)
 decision_rules_file: docs/02_KE_HOACH_TRIEN_KHAI.md  # DR1–DR10
