@@ -1,4 +1,4 @@
-# prereg snapshot 2026-09-27T02:50:27+07:00
+# prereg snapshot 2026-09-27T03:26:11+07:00
 143b878523885d301dede96e837b74b5d6d7e8e36a079cbe03944fa9c0d45b32  src/vnsoc/analysis/confirmatory.py
 53ba2d23021ad1c13f043881a94da806414711770eabb4437eefb880dadee38c  src/vnsoc/ltt.py
 498331b8763b404b15bf2038c04ba0172241df74fda1e1264ced041ea83b981e  src/vnsoc/grade.py
@@ -27,4 +27,4 @@ aca7eb16791bbbe0748703f24e38b2a744b4fa4bde41c666ce99d45dc01400bd  prereg/analysi
 75bb30435bf6849185ec4cb4b3276881c481e7bfbfafac9e4b61688c7cbc4fad  prereg/analysis_plan/README.md
 f83fc60c69adf4260de2bf82354dd9b964fc1ed543b133a07037bff6ae9a82e6  results/tables/corpus_triage.csv
 455db5474853f34105148f810d76af0c95b33c4f0e2709a4a2add2e0355b70cc  data/seed/seed_conflicts.yaml
-385b6e37ef047d88bb975b8995c9fef6db4503e3d080e453d6ccb90dab07748d  prereg/osf_preregistration.md
+d399bb6e6e99acb3d8a6420acc74b1d855cd3e63e46e27dd6a3d83d4aa7788be  prereg/osf_preregistration.md

@@ -2,7 +2,7 @@
 
 **Full title.** Whose Standard of Care? Jurisdictional Defaults, Guideline Staleness and Certified Abstention of LLMs on Vietnamese Ministry of Health Guidelines
 
-> **About this file (instructions; not pasted into OSF).** This is the text the first author enters on osf.io at human gate HG2.9 (deadline 7 October 2026, before the corpus freeze on 15 October 2026). It was prepared with AI assistance (Section 6.10) and revised on 26 September 2026 after an internal review. It was revised again on 27 September 2026 for the single-author, laptop-only design and after the pilot outputs had been opened; Addendum 1 (`prereg/addenda/2026-09-27_addendum_1.md`, uploaded with this text) lists every change since then. The author is responsible for it. **No part of this document is a result.** It is in English because the registration and the paper are public in English.
+> **About this file (instructions; not pasted into OSF).** This is the text the first author enters on osf.io at human gate HG2.9 (deadline 7 October 2026, before the corpus freeze on 15 October 2026). It was prepared with AI assistance (Section 6.10) and revised on 26 September 2026 after an internal review. It was revised again on 27 September 2026 for the laptop-only design (then single-author; two student co-authors were added later that day) and after the pilot outputs had been opened; Addendum 1 (`prereg/addenda/2026-09-27_addendum_1.md`, uploaded with this text) lists every change since then. The author is responsible for it. **No part of this document is a result.** It is in English because the registration and the paper are public in English.
 >
 > **Sources of truth.** The scientific protocol is v3 of 25 September 2026 (`docs/01_DE_CUONG.md`, in Vietnamese; cited as "protocol §x"). The execution plan and decision rules are in `docs/02_KE_HOACH_TRIEN_KHAI.md`. The pre-registered constants are in `configs/project.yaml`, `configs/conditions.yaml` and `configs/grading.yaml`. Every number below comes from one of these files, from a generated file named in the text, or is labelled **Operationalisation** (a choice made where the protocol was silent or ambiguous). Where the text and the code disagree, **the text governs**.
 >
@@ -41,7 +41,7 @@
 
 **Title.** Whose Standard of Care? Jurisdictional Defaults, Guideline Staleness and Certified Abstention of LLMs on Vietnamese Ministry of Health Guidelines
 
-**Authors.** Binh Minh (Faculty of Information Technology, Ton Duc Thang University, Vietnam), sole author. The study has no supervisor, co-author or clinician (`docs/DECISIONS.md`, 2026-09-26T20:40). The author enters the full name on OSF. Authorship follows CRediT.
+**Authors.** Binh Minh Ngo (Faculty of Information Technology, Ton Duc Thang University, Ho Chi Minh City, Vietnam; corresponding author), Binh Thong Ngo (Faculty of Medicine, Phan Chau Trinh University, Da Nang City, Vietnam) and Tran Doan Mai Huong (Faculty of Odonto-Stomatology, Phan Chau Trinh University, Da Nang City, Vietnam). The two co-authors are students of medicine and dentistry, not physicians; the study has no supervisor and no clinician (`docs/DECISIONS.md`, 2026-09-26T20:40 and 2026-09-27T10:30). Planned co-author roles: sample-based human checks of conflict atoms, vignettes and grader labels, reported as agreement with the AI audit; they are never described as clinical review. Authorship follows ICMJE criteria and CRediT. [pending author confirmation, see review/prereg/response.md D27]
 
 **Description.**
 Students and clinicians in Vietnam increasingly consult large language models (LLMs). Even when explicitly asked to follow Vietnam's Ministry of Health (MoH), an LLM may answer with a value from a foreign guideline (WHO, US, European or UK) or from a superseded MoH version. We will audit open-weight LLMs of 7–9 billion parameters, run locally with 4-bit weights on one laptop GPU, against the MoH diagnosis and treatment guidance in force on the corpus freeze date (15 October 2026). Commercial models are not evaluated. [pending author confirmation, see review/prereg/response.md D21]
@@ -862,7 +862,7 @@ The analyses are implemented in `src/vnsoc/analysis/confirmatory.py` (Python; nu
 
 <!-- HASHES:BEGIN (scripts/prereg_snapshot.py; do not edit by hand) -->
 
-Snapshot 2026-09-27T02:50:27+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
+Snapshot 2026-09-27T03:26:11+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
 
 | File | SHA-256 |
 | --- | --- |
@@ -1131,7 +1131,7 @@ No confirmatory decision depends on the GLMMs.
 
 #### 5.1.9 Decision rules DR0–DR13 (copied from the execution plan, §5)
 
-"Pipeline" in the "Applied by" column is the automated analysis pipeline run by the first author; it applies only these pre-set rules and notifies the first author. DR6, DR10, DR11 and DR12 are adapted to the single-author, laptop-only design (Addendum 1). The execution plan itself is not edited, and this registration governs where the two differ. [pending author confirmation, see review/prereg/response.md D26]
+"Pipeline" in the "Applied by" column is the automated analysis pipeline run by the first author; it applies only these pre-set rules and notifies the first author. DR6, DR10, DR11 and DR12 are adapted to the laptop-only design without a supervisor or clinician (Addendum 1). The execution plan itself is not edited, and this registration governs where the two differ. [pending author confirmation, see review/prereg/response.md D26]
 
 | Rule | When | Action | Applied by |
 | --- | --- | --- | --- |
