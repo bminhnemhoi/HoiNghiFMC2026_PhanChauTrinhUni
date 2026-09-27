@@ -30,6 +30,7 @@ def test_unique_keys_and_schema():
         assert not any(h in (r.get("source_url") or "") for h in FORBIDDEN)
 
 
+@pytest.mark.raw_data   # needs the official PDFs in data/raw (not redistributed)
 @pytest.mark.parametrize("row", [r for r in ROWS if r.get("source_url") and r.get("sha256")], ids=lambda r: r["doc_key"])
 def test_downloaded_file_matches_sha(row):
     default = pdf_path(row["doc_key"])

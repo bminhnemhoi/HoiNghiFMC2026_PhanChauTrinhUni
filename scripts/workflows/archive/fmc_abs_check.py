@@ -4,7 +4,8 @@ body totals (5 sections, title and keywords excluded), box/title characters, fmc
 
   cd "D:/phan chau trinh _ y khoa" && PYTHONUTF8=1 .venv/Scripts/python.exe <this file> <draft.md>
 """
-import re, sys, unicodedata
+import sys
+import unicodedata
 from pathlib import Path
 sys.path.insert(0, "src")
 from vnsoc import fmc

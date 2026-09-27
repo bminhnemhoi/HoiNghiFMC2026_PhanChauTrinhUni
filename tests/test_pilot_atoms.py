@@ -21,6 +21,7 @@ def test_file_present_and_sized():
     assert len({a["atom_id"] for a in ATOMS}) == len(ATOMS)
 
 
+@pytest.mark.raw_data   # needs the official PDFs in data/raw (not redistributed)
 @pytest.mark.parametrize("atom", ATOMS, ids=[a["atom_id"] for a in ATOMS])
 def test_atom(atom):
     Atom.model_validate(atom)

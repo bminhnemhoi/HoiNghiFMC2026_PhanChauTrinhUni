@@ -179,7 +179,7 @@ def write_guide_pdf(rows, main: dict, backup: dict, dest: Path) -> None:
                 row.cells[i].width = Cm(w)
         return t
 
-    vi, en = main["doc"]["vi"], main["doc"]["en"]
+    vi = main["doc"]["vi"]
     para("HỘI NGHỊ KHOA HỌC FMC 2026", bold=True, size=16, color=BLUE, align=WD_ALIGN_PARAGRAPH.CENTER)
     para("Trường Đại học Phan Châu Trinh — conference.pctu.edu.vn", size=11, color=BLUE, align=WD_ALIGN_PARAGRAPH.CENTER)
     para("HƯỚNG DẪN NỘP TÓM TẮT BÁO CÁO", bold=True, size=13, color=BLUE, align=WD_ALIGN_PARAGRAPH.CENTER)
@@ -218,8 +218,8 @@ def write_guide_pdf(rows, main: dict, backup: dict, dest: Path) -> None:
     wv, we = fmc.body_words(main["doc"], "vi"), fmc.body_words(main["doc"], "en")
     bv, be = fmc.body_words(backup["doc"], "vi"), fmc.body_words(backup["doc"], "en")
     checks = [
-        f"Điền trực tiếp vào file mẫu chính thức của hội nghị: logo, tiêu đề, màu, phông Times New Roman, tiêu đề in hoa cỡ 13, nội dung cỡ 12, giãn dòng 1,5.",
-        f"Đủ các mục của mẫu: Đặt vấn đề, Mục tiêu, Phương pháp nghiên cứu, Kết quả, Kết luận, Từ khóa (5 từ khóa, viết thường, cách nhau bằng dấu chấm phẩy); cuối bài ghi hình thức báo cáo, lĩnh vực, tình trạng công bố.",
+        "Điền trực tiếp vào file mẫu chính thức của hội nghị: logo, tiêu đề, màu, phông Times New Roman, tiêu đề in hoa cỡ 13, nội dung cỡ 12, giãn dòng 1,5.",
+        "Đủ các mục của mẫu: Đặt vấn đề, Mục tiêu, Phương pháp nghiên cứu, Kết quả, Kết luận, Từ khóa (5 từ khóa, viết thường, cách nhau bằng dấu chấm phẩy); cuối bài ghi hình thức báo cáo, lĩnh vực, tình trạng công bố.",
         f"Độ dài (năm mục, đếm cả tên mục): bản chính {wv} từ (tiếng Việt), {we} từ (tiếng Anh) — trong giới hạn 500 từ; bản dự phòng {bv}/{be} từ.",
         "Mỗi file một ngôn ngữ, theo yêu cầu của Ban tổ chức; file < 1 MB, định dạng DOCX/PDF được chấp nhận.",
         "Mọi con số lấy tự động từ kho số liệu do mã phân tích ghi (không gõ tay); kiểm toán độc lập đã tính lại các số từ dữ liệu gốc và chạy lại bộ chấm (482/482 nhãn khớp).",

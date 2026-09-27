@@ -4,6 +4,10 @@ Cập nhật: 28/9/2026, 01:15 (+07). Phiên trước dừng theo yêu cầu ng�
 triển khai tiếp"). Autopilot đang **tạm dừng** (`state/PAUSE`). Tài liệu này là điểm vào của phiên sau; số liệu đo
 bằng mã lúc bàn giao, không ước lượng.
 
+## Kho mã trên GitHub
+
+Repo công khai: https://github.com/bminhnemhoi/HoiNghiFMC2026_PhanChauTrinhUni (nhánh `main`). README tiếng Anh + `README.vi.md`; CI (`.github/workflows/tests.yml`, Windows): ruff, `pytest -m "not raw_data"` (PDF gốc không phát hành lại), kiểm kho số liệu của abstract. Sau mỗi task: commit rồi `git push` (chỉ khi người dùng muốn cập nhật GitHub). Không đẩy `data/raw`, `data/runs`, `data/cache`, `.env` (đã trong .gitignore).
+
 ## 0. Phiên sau bắt đầu thế nào
 
 1. Đọc `CLAUDE.md` và tài liệu này. `scripts/vs list` và `/status` để xem task.
