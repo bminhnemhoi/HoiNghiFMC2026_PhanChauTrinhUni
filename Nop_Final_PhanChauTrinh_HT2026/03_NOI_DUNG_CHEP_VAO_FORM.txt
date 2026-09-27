@@ -1,14 +1,14 @@
-NỘI DUNG CHÉP-DÁN VÀO FORM ĐĂNG KÝ (mỗi mục chép nguyên dòng/đoạn, không thêm bớt)
+NỘI DUNG CHÉP-DÁN VÀO FORM ĐĂNG KÝ (chép nguyên dòng/đoạn, không thêm bớt)
 =====================================================================================
 
-CHỦ ĐỀ
-AI và chuyển đổi số trong Y tế và Giáo dục Y khoa
+LĨNH VỰC / CHỦ ĐỀ
+AI và Chuyển đổi số trong Y tế và Giáo dục Y khoa
 
-TÊN ĐỀ TÀI (TIẾNG VIỆT) — 131 ký tự
-Chuẩn điều trị của ai? Sai lệch theo chuẩn nước ngoài và theo phiên bản cũ của LLM so với hướng dẫn chuyên môn của Bộ Y tế Việt Nam
+TÊN ĐỀ TÀI (TIẾNG VIỆT) — 126 ký tự (ô tối đa 150)
+Chuẩn điều trị của ai? Sai lệch của LLM theo chuẩn nước ngoài và phiên bản cũ so với hướng dẫn chuyên môn của Bộ Y tế Việt Nam
 
-TÓM TẮT NGẮN (TIẾNG VIỆT) — 392 ký tự (giới hạn ô: 500)
-LLM có thể trả lời theo hướng dẫn nước ngoài hoặc bản cũ thay vì hướng dẫn hiện hành của Bộ Y tế. Thí điểm (mẫu chọn tay, kiểm bằng AI, chưa có bác sĩ duyệt) trên 61 khuyến cáo: hỏi "theo Bộ Y tế" bằng tiếng Việt, Qwen3-8B đúng 7/20 khuyến cáo khác chuẩn nước ngoài, trùng giá trị nước ngoài 2 lần (không vượt mức trùng mồi); phần lớn lỗi không khớp nguồn nào. Kèm đoạn hướng dẫn: đúng 13/20.
+TÓM TẮT NGẮN (TIẾNG VIỆT) — 456 ký tự (ô tối đa 500 ký tự)
+Mô hình ngôn ngữ lớn có thể nêu liều, ngưỡng theo hướng dẫn nước ngoài hoặc bản cũ thay vì hướng dẫn hiện hành của Bộ Y tế. Thí điểm trên 61 khuyến cáo (chọn chủ đích, chỉ AI kiểm, chưa có bác sĩ duyệt): hỏi bằng tiếng Việt, nêu rõ Bộ Y tế, Qwen3-8B đúng 7/20 khuyến cáo khác ít nhất một chuẩn nước ngoài; phần lớn câu sai không khớp nguồn đã ghi nhận; trùng chuẩn nước ngoài chưa rõ vượt mức trùng giá trị mồi. Kèm đoạn hướng dẫn: đúng 13/20, vẫn còn sai.
 
 TÁC GIẢ (theo thứ tự)
 1. Ngô Bình Minh — Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, TP. Hồ Chí Minh, Việt Nam
@@ -19,20 +19,20 @@ TÁC GIẢ (theo thứ tự)
    Email: huong.tdm.24rhm1@pctu.edu.vn
 
 TỪ KHÓA
-mô hình ngôn ngữ lớn; hướng dẫn điều trị; bộ y tế; đánh giá mô hình; giáo dục y khoa
+mô hình ngôn ngữ lớn; hướng dẫn chẩn đoán và điều trị; bộ y tế; trí tuệ nhân tạo; đánh giá mô hình
 
-HÌNH THỨC BÁO CÁO (đang ghi trong file): Oral
+HÌNH THỨC BÁO CÁO: Oral
 
 
 -------------------------------------------------------------------------------------
-BẢN TIẾNG ANH (chỉ dùng khi form/ban tổ chức yêu cầu tiếng Anh)
+BẢN TIẾNG ANH (chỉ dùng khi form/Ban tổ chức yêu cầu tiếng Anh)
 -------------------------------------------------------------------------------------
 
-TITLE (EN)
+TITLE (EN) — 127 characters
 Whose Standard of Care? Foreign-Guideline and Outdated-Version Deviations of LLMs from Vietnamese Ministry of Health Guidelines
 
-SHORT ABSTRACT (EN) — 452 characters (limit 500)
-LLMs may answer with foreign or outdated guideline values instead of current Vietnamese Ministry of Health (MoH) guidelines. Pilot (hand-picked, AI-checked, no clinician review) on 61 recommendations: asked "according to the MoH" in Vietnamese, Qwen3-8B was correct on 7/20 recommendations that differ from foreign guidelines and matched a foreign value 2 times (not above decoy level); most errors matched no source. With the guideline passage: 13/20.
+SHORT ABSTRACT (EN) — 489 characters (limit 500)
+LLMs may give doses or thresholds from foreign or outdated guidelines instead of current Vietnamese Ministry of Health (MoH) guidelines. Pilot on 61 purposively selected recommendations (AI-checked only, no clinician review): asked in Vietnamese with an MoH cue, Qwen3-8B was correct on 7/20 recommendations differing from a named foreign guideline; most errors matched no recorded source; foreign matches were not shown to exceed chance (decoy) level. With the MoH passage: 13/20 correct.
 
 AUTHORS
 1. Binh Minh Ngo — Faculty of Information Technology, Ton Duc Thang University, Ho Chi Minh City, Vietnam
@@ -43,4 +43,4 @@ AUTHORS
    huong.tdm.24rhm1@pctu.edu.vn
 
 KEYWORDS
-large language models; clinical practice guidelines; ministry of health; model evaluation; medical education
+large language models; clinical practice guidelines; ministry of health; artificial intelligence; model evaluation

@@ -1,31 +1,32 @@
-HƯỚNG DẪN NỘP ABSTRACT — HỘI THẢO FMC 2026, TRƯỜNG ĐẠI HỌC PHAN CHÂU TRINH (conference.pctu.edu.vn)
+HƯỚNG DẪN NỘP ABSTRACT — HỘI NGHỊ KHOA HỌC FMC 2026, TRƯỜNG ĐẠI HỌC PHAN CHÂU TRINH (conference.pctu.edu.vn)
 HẠN NỘP: hết ngày 30/9/2026 (Ban tổ chức xác nhận nộp trong ngày 30/9 vẫn được nhận)
+Bản này thay cho mọi bản trước (27/9/2026, 23:30). Chỉ dùng file trong thư mục này.
 =====================================================================================
 
 TRONG THƯ MỤC NÀY
-  01_Abstract_TiengViet.docx   <- file đính kèm chính (chỉ tiếng Việt, đúng yêu cầu "mỗi file một ngôn ngữ")
-  01_Abstract_TiengViet.pdf    <- bản PDF dự phòng (nếu trang nộp chỉ nhận PDF)
-  02_Abstract_TiengAnh.docx    <- bản tiếng Anh (chỉ tiếng Anh), dùng khi được đính kèm thêm hoặc khi nộp bản EN
-  02_Abstract_TiengAnh.pdf     <- bản PDF dự phòng
-  03_NOI_DUNG_CHEP_VAO_FORM.txt <- tên đề tài, tóm tắt ngắn (≤ 500 ký tự), tác giả, từ khóa: chép-dán vào form
-  04_KIEM_TRA_TRUOC_KHI_NOP.txt <- những gì đã kiểm, độ dài, mã băm file
+  01_Abstract_TiengViet.docx   <- FILE ĐÍNH KÈM CHÍNH: điền đúng file mẫu của hội nghị (logo, tiêu đề, định dạng), chỉ tiếng Việt
+  01_Abstract_TiengViet.pdf    <- bản PDF của đúng file trên (dùng nếu form chỉ nhận PDF)
+  02_Abstract_TiengAnh.docx    <- bản tiếng Anh, cùng mẫu, chỉ tiếng Anh (khi form cho đính kèm thêm hoặc BTC yêu cầu tiếng Anh)
+  02_Abstract_TiengAnh.pdf     <- PDF của bản tiếng Anh
+  03_NOI_DUNG_CHEP_VAO_FORM.txt <- tên đề tài, tóm tắt ngắn cho ô 500 ký tự, tác giả, từ khóa: chép-dán vào form
+  04_KIEM_TRA_TRUOC_KHI_NOP.txt <- đối chiếu với mẫu, độ dài, số liệu, mã băm file
 
 CÁC BƯỚC (bạn tự làm — Claude không nộp thay)
-  1. Mở trình duyệt, vào conference.pctu.edu.vn  ->  mục "Đăng kí đề tài".
-  2. Chủ đề: chọn "AI và chuyển đổi số trong Y tế và Giáo dục Y khoa".
-  3. Ô "Tên đề tài": chép dòng TÊN ĐỀ TÀI (TIẾNG VIỆT) trong file 03.
-  4. Ô "Tóm tắt đề tài / Abstract" (tối đa 500 ký tự): chép đoạn TÓM TẮT NGẮN (TIẾNG VIỆT) trong file 03 (392 ký tự).
+  1. Mở conference.pctu.edu.vn  ->  mục "Đăng kí đề tài".
+  2. Lĩnh vực/Chủ đề: chọn "AI và Chuyển đổi số trong Y tế và Giáo dục Y khoa".
+  3. Ô "Tên đề tài": chép TÊN ĐỀ TÀI (TIẾNG VIỆT) trong file 03 (126 ký tự; ô cho tối đa 150).
+  4. Ô "Tóm tắt đề tài / Abstract": chép TÓM TẮT NGẮN (TIẾNG VIỆT) trong file 03 (456 ký tự; ô chặn ở 500 ký tự).
+     Ô này KHÔNG phải abstract đầy đủ — abstract đầy đủ là file đính kèm.
   5. Thông tin tác giả: chép mục TÁC GIẢ trong file 03 (Ngô Bình Minh là tác giả liên hệ).
   6. Ô "File đính kèm": chọn 01_Abstract_TiengViet.docx
-       - nếu form chỉ nhận PDF: chọn 01_Abstract_TiengViet.pdf
-       - nếu form cho đính kèm nhiều file: thêm 02_Abstract_TiengAnh.docx
-  7. Bấm Gửi. Chụp màn hình trang xác nhận / lưu email xác nhận (nếu có mã hồ sơ thì ghi lại).
+       - form chỉ nhận PDF: chọn 01_Abstract_TiengViet.pdf
+       - form cho nhiều file: thêm 02_Abstract_TiengAnh.docx
+  7. Bấm Gửi. Chụp màn hình trang xác nhận / lưu email xác nhận (ghi lại mã hồ sơ nếu có).
   8. Quay lại chat với Claude, gõ một dòng bắt đầu bằng:
        XONG HG1.9 đã nộp lúc <giờ, ngày>; mã/xác nhận: <nếu có>
 
-LƯU Ý TRƯỚC KHI BẤM GỬI
-  - Cuối file abstract có dòng "Hình thức báo cáo: Oral". Nếu bạn muốn báo cáo Poster, báo Claude để sửa trước khi nộp.
-  - Tên hai đồng tác giả và email đã theo thông tin bạn gửi ngày 27/9. Nên báo cho Thống và Hương biết tên họ có trong
-    abstract trước khi nộp (họ là đồng tác giả, cần đồng ý).
-  - Abstract ghi rõ: kết quả thí điểm, mẫu chọn tay, kiểm bằng AI, CHƯA có bác sĩ duyệt. Không sửa câu này.
-  - Nếu Ban tổ chức muốn bản tiếng Anh: dùng TÊN ĐỀ TÀI (EN) và TÓM TẮT NGẮN (EN) trong file 03 + file 02.
+TRƯỚC KHI BẤM GỬI
+  - Cuối abstract ghi "HÌNH THỨC BÁO CÁO: Oral". Muốn Poster thì báo Claude sửa (1 phút).
+  - Báo cho Ngô Bình Thống và Trần Đoàn Mai Hương biết tên họ có trong abstract (đồng tác giả cần đồng ý).
+  - Abstract ghi rõ: thí điểm, mẫu chọn chủ đích, chỉ AI kiểm lại, chưa có bác sĩ duyệt. Đừng xóa các cụm này.
+  - KHÔNG dùng thư mục cũ NOP_FMC (bản cũ 453 từ, lỗi thời) hay bất kỳ bản nào trước 27/9 23:30.

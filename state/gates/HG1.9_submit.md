@@ -3,9 +3,9 @@
 **Hạn:** Ban tổ chức đã trả lời (26/9): nộp **trong ngày 30/9/2026 vẫn được nhận**; giới hạn 500 từ (250 từ là khuyến khích); **mỗi file chỉ một ngôn ngữ** → có hai bản riêng tiếng Việt và tiếng Anh.
 **Vì sao bạn phải làm:** nộp bài cần tài khoản/danh tính của bạn; Claude không nộp thay.
 
-## Thư mục nộp cuối cùng (27/9, 21:30)
+## Thư mục nộp duy nhất (cập nhật 27/9, 23:30)
 
-**Dùng `Nop_Final_PhanChauTrinh_HT2026/`** — đọc `00_DOC_TRUOC_HUONG_DAN_NOP.txt`; file đính kèm `01_Abstract_TiengViet.docx` (PDF dự phòng kèm theo), nội dung chép vào form ở `03_NOI_DUNG_CHEP_VAO_FORM.txt`, kiểm tra và mã băm ở `04_KIEM_TRA_TRUOC_KHI_NOP.txt`. T1.7 đã xong nên dùng bản có kết quả thí điểm.
+**Chỉ dùng `Nop_Final_PhanChauTrinh_HT2026/`.** Đọc `00_DOC_TRUOC_HUONG_DAN_NOP.txt`. File đính kèm: `01_Abstract_TiengViet.docx` (điền đúng file mẫu của hội nghị, 250 từ; PDF kèm theo); bản tiếng Anh `02_Abstract_TiengAnh.docx`. Nội dung chép vào form: `03_NOI_DUNG_CHEP_VAO_FORM.txt`; đối chiếu mẫu, số liệu, mã băm: `04_KIEM_TRA_TRUOC_KHI_NOP.txt`. Thư mục cũ `NOP_FMC/` và các bản 440–453 từ là bản lỗi thời (có lỗi diễn đạt nhãn 6 là 'không trả lời') — không dùng. Các mục bên dưới là hướng dẫn cũ, chỉ để tham khảo.
 
 ## Chọn bản nào
 

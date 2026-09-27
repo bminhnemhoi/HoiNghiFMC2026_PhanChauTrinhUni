@@ -222,3 +222,9 @@ Pilot khóa mới    tính được ngay (mục 1) — nên làm trước để 
 - Bảng nhãn L1–L6 ở Methods chưa đánh số (JMIR: đặt thành Textbox khi dàn trang); Bảng 1–4 và Hình 1–5 đã được trích theo thứ tự.
 - Tài liệu tham khảo: pandoc + CSL AMA (JMIR) từ references.yaml khi dựng bản nộp (T8.1).
 ```
+
+## 6. Từ kiểm toán abstract FMC (27/9)
+
+- Mồi của P-tbhiv-05 (TDF+3TC+EFV) đã bị loại là mồi không hợp lệ nhưng chỉ bỏ ở trắc nghiệm; tập H1 trả lời ngắn còn 14 mồi hợp lệ — nêu hoặc sửa trong bài.
+- Mẫu số lệch phiên bản (nhóm drift) gồm ít nhất 5 mẩu có giá trị cũ = giá trị hiện hành (P-controls-01/02/04, P-dengue-08, P-hbv-06): không phân biệt được trùng bản cũ; tính lại theo định nghĩa đăng ký trước (giá trị cũ ngoài tập Bộ Y tế).
+- Nêu cả trắc nghiệm (bỏ khỏi abstract FMC vì giới hạn 250 từ) và cấu hình mô hình (Q4_K_M, Ollama, tắt thinking).

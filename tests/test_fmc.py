@@ -58,3 +58,43 @@ def test_docx_one_language_per_file(tmp_path):
             assert "KEYWORDS: x; y; z" in text and "ĐẶT VẤN ĐỀ" not in text and "Not published." in text
             assert "²Faculty of Medicine, PCTU, Vietnam" in text and "Corresponding author: Binh Minh Ngo" in text
             assert "Khoa" not in text
+
+
+def test_docx_from_conference_template(tmp_path):
+    pytest.importorskip("docx")
+    import docx
+
+    from vnsoc.paths import paths
+
+    tpl = paths().root / fmc.TEMPLATE
+    if not tpl.exists():
+        pytest.skip("mẫu hội nghị không có trong repo")
+    au = [{"name": "Binh Minh Ngo", "name_vi": "Ngô Bình Minh", "affiliation": "Khoa CNTT, TDTU, Việt Nam",
+           "affiliation_en": "FIT, TDTU, Vietnam", "email": "a@b.vn", "corresponding": True},
+          {"name": "B", "affiliation": "Khoa Y, PCTU, Việt Nam", "affiliation_en": "Faculty of Medicine, PCTU, Vietnam"},
+          {"name": "C", "affiliation": "Khoa RHM, PCTU, Việt Nam", "affiliation_en": "Faculty of Dentistry, PCTU, Vietnam"}]
+    d = fmc.parse(md().replace("Chưa đăng.", "HÌNH THỨC BÁO CÁO: Oral\nGHI CHÚ: Chưa đăng.")
+                  .replace("Not published.", "PRESENTATION FORMAT: Oral\nNOTE: Not published."))
+    assert d["note"] == "HÌNH THỨC BÁO CÁO: Oral\nGHI CHÚ: Chưa đăng."
+    for lang in ("vi", "en"):
+        out = tmp_path / f"t_{lang}.docx"
+        fmc.build_docx_template(d, out, au, lang, tpl)
+        doc = docx.Document(out)
+        text = "\n".join(p.text for p in doc.paragraphs)
+        for gone in ("MẪU", "Điền nội dung", "[Tiêu đề", "[Tên của", "HẠN NỘP", "Tên đầy đủ tác giả", "Khoa/ Bộ môn",
+                     "Công nghệ Gen"):
+            assert gone not in text
+        assert "TÊN ĐỀ TÀI" in text and len(doc.sections[0].header._element.xpath(".//a:blip")) == 2   # logos kept
+        au_p = next(p for p in doc.paragraphs if p.text.startswith(("Ngô Bình Minh", "Binh Minh Ngo")))
+        assert [r.text for r in au_p.runs if r.font.superscript] == ["1", "2", "3"]
+        if lang == "vi":
+            assert "Ngô Bình Minh1, B2, C3" in text and "ĐẶT VẤN ĐỀ: nội dung ngắn gọn" in text
+            assert "3Khoa RHM, PCTU, Việt Nam" in text and "HÌNH THỨC BÁO CÁO: Oral" in text and "KEYWORDS" not in text
+        else:
+            assert "Binh Minh Ngo1" in text and "BACKGROUND: nội dung" in text and "KEYWORDS: x; y; z" in text
+            assert "ĐẶT VẤN ĐỀ" not in text and "Khoa" not in text and "HỘI NGHỊ" not in text
+            assert "PRESENTATION FORMAT: Oral" in text and "Corresponding author: Binh Minh Ngo, a@b.vn" in text
+
+
+def test_nbsp_keeps_units_together():
+    assert fmc.nbsp("của Bộ Y tế (p = 0,15)") == "của Bộ\u00a0Y\u00a0tế (p\u00a0=\u00a00,15)"
