@@ -31,7 +31,7 @@ AUDIT_COLUMNS = ["atom_id", "guideline", "pdf", "page", "section", "span", "moh_
 
 
 def load_parts(d: Path, only: str | None = None) -> list[dict]:
-    files = [d / f"{only}.jsonl"] if only else sorted(d.glob("*.jsonl"))
+    files = [d / f"{only}.jsonl"] if only else sorted(f for f in d.glob("*.jsonl") if not f.stem.endswith("_skipped"))
     atoms = []
     for f in files:
         if not f.exists():
