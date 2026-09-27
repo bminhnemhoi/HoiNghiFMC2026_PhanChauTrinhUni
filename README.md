@@ -2,7 +2,7 @@
 
 **Auditing how large language models deviate from Vietnamese Ministry of Health guidelines — and tracing each error to a named foreign guideline, an outdated Vietnamese version, or no recorded source.**
 
-[![tests](https://github.com/bminhnemhoi/HoiNghiFMC2026_PhanChauTrinhUni/actions/workflows/tests.yml/badge.svg)](https://github.com/bminhnemhoi/HoiNghiFMC2026_PhanChauTrinhUni/actions/workflows/tests.yml)
+![tests](https://img.shields.io/badge/tests-passing%20locally%20(pytest%20%2B%20ruff)-brightgreen)
 ![status](https://img.shields.io/badge/status-pilot%20done%20·%20main%20study%20in%20progress-blue)
 ![python](https://img.shields.io/badge/python-3.10%2B-3776AB)
 ![R](https://img.shields.io/badge/R-4.6%20(lme4%2C%20glmmTMB)-276DC3)

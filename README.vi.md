@@ -2,7 +2,7 @@
 
 **Đo sai lệch của mô hình ngôn ngữ lớn (LLM) so với hướng dẫn chẩn đoán và điều trị hiện hành của Bộ Y tế Việt Nam, và truy nguồn từng lỗi: theo một hướng dẫn nước ngoài có tên, theo phiên bản Bộ Y tế cũ, hay không khớp nguồn nào đã ghi nhận.**
 
-[![tests](https://github.com/bminhnemhoi/HoiNghiFMC2026_PhanChauTrinhUni/actions/workflows/tests.yml/badge.svg)](https://github.com/bminhnemhoi/HoiNghiFMC2026_PhanChauTrinhUni/actions/workflows/tests.yml)
+![tests](https://img.shields.io/badge/test-qua%20cục%20bộ%20(pytest%20%2B%20ruff)-brightgreen)
 ![status](https://img.shields.io/badge/trạng%20thái-xong%20thí%20điểm%20·%20đang%20làm%20nghiên%20cứu%20chính-blue)
 
 🇬🇧 [English version](README.md)

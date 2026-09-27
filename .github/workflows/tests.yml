@@ -1,9 +1,9 @@
 name: tests
 
+# Manual trigger for now: GitHub Actions is unavailable on this account until a billing issue is resolved.
+# When it is, restore:  push: {branches: [main]}  and  pull_request:  (and the README badge).
 on:
-  push:
-    branches: [main]
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
