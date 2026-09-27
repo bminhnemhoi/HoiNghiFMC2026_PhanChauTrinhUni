@@ -1,0 +1,2 @@
+HG0.3 — người dùng: không dùng khóa API trả phí, không dùng Kaggle; mọi mô hình chạy trên laptop (27/9/2026).
+Phần mềm: Tesseract đã cài (26/9); R sẽ cài (người dùng đồng ý 27/9); Ollama chuyển nơi lưu mô hình sang ổ D (người dùng đồng ý 27/9).

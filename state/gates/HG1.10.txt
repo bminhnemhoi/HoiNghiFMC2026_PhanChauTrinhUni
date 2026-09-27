@@ -1,0 +1,3 @@
+HG1.10 — người dùng: làm một mình, không có giảng viên hướng dẫn (27/9/2026).
+Pháp lý: theo quy tắc CLAUDE.md (chỉ nguồn chính thức; hướng dẫn nước ngoài chỉ lưu giá trị + trích dẫn + vị trí; không phát hành lại toàn văn).
+Đạo đức: không có người tham gia nghiên cứu, chỉ dùng văn bản công khai và mô hình AI → không cần hội đồng đạo đức; ghi rõ trong bài.

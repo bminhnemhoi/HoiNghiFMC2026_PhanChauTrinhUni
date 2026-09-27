@@ -58,15 +58,18 @@ rq3:
   split_seed: 20261001
 authors:                             # FMC/journal byline — do người dùng cung cấp 27/9/2026 (tên giữ đúng như người dùng gõ)
   - name: "Binh Minh Ngo"
+    name_vi: "Ngô Bình Minh"                # người dùng xác nhận 27/9
     affiliation: "Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, TP. Hồ Chí Minh, Việt Nam"
     affiliation_en: "Faculty of Information Technology, Ton Duc Thang University, Ho Chi Minh City, Vietnam"
     email: "ngobinhminh.st@tdtu.edu.vn"
     corresponding: true
   - name: "Binh Thong Ngo"
+    name_vi: "Ngô Bình Thống"               # người dùng xác nhận 27/9
     affiliation: "Khoa Y, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam"
     affiliation_en: "Faculty of Medicine, Phan Chau Trinh University, Da Nang City, Vietnam"
-    email: "thong.nb.22yk1@pctu.edu.com"   # như người dùng gõ; tên miền trường là pctu.edu.vn — chờ xác nhận
+    email: "thong.nb.22yk1@pctu.edu.com"   # người dùng xác nhận đúng 27/9
   - name: "Tran Doan Mai Huong"
+    name_vi: "Trần Đoàn Mai Hương"          # người dùng xác nhận 27/9
     affiliation: "Khoa Răng Hàm Mặt, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam"
     affiliation_en: "Faculty of Odonto-Stomatology, Phan Chau Trinh University, Da Nang City, Vietnam"
     email: "huong.tdm.24rhm1@pctu.edu.vn"

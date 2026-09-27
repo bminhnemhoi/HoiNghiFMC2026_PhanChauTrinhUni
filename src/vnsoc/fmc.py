@@ -117,6 +117,9 @@ def build_docx(doc: dict, out: Path, authors: list[dict], lang: str = "vi") -> N
         r.bold, r.italic, r.font.size = bold, italic, Pt(size)
         return p
 
+    def nm(a):                                      # Vietnamese file: Vietnamese name with diacritics when given
+        return a.get("name_vi") or a["name"] if lang == "vi" else a["name"]
+
     def affil(a):                                   # one language per file: English affiliation in the EN file
         return a.get("affiliation_en") or a["affiliation"] if lang == "en" else a["affiliation"]
 
@@ -126,13 +129,13 @@ def build_docx(doc: dict, out: Path, authors: list[dict], lang: str = "vi") -> N
             aff.append(affil(a))
     secs = list(doc[lang].items())
     para(secs[0][1].upper(), bold=True, size=13, align=WD_ALIGN_PARAGRAPH.CENTER)
-    para(", ".join(f"{a['name']}{'¹²³⁴⁵'[aff.index(affil(a))]}" for a in authors),
+    para(", ".join(f"{nm(a)}{'¹²³⁴⁵'[aff.index(affil(a))]}" for a in authors),
          align=WD_ALIGN_PARAGRAPH.CENTER)
     for k, af in enumerate(aff):
         para(f"{'¹²³⁴⁵'[k]}{af}", italic=True, align=WD_ALIGN_PARAGRAPH.CENTER)
     corr = [a for a in authors if a.get("corresponding") and a.get("email")]
     for a in corr:                                  # corresponding author line (name + e-mail), language of the file
-        para(f"{'Tác giả liên hệ' if lang == 'vi' else 'Corresponding author'}: {a['name']}, {a['email']}",
+        para(f"{'Tác giả liên hệ' if lang == 'vi' else 'Corresponding author'}: {nm(a)}, {a['email']}",
              align=WD_ALIGN_PARAGRAPH.CENTER, size=11)
     for name, text in secs[1:]:
         para(text, label=name.upper(), align=WD_ALIGN_PARAGRAPH.JUSTIFY)
@@ -159,6 +162,10 @@ def main(argv=None) -> int:
         out = src.with_name(f"{src.stem}_{lang}.docx")
         build_docx(doc, out, cfg["authors"], lang)
         sizes[lang] = out.stat().st_size
+        if lang == "vi":                            # <stem>.docx = the Vietnamese file (plan checks this name)
+            import shutil
+
+            shutil.copyfile(out, src.with_suffix(".docx"))
         box = doc["box"] if lang == "vi" else (doc.get("box_en") or "")
         if box:
             src.with_name(f"{src.stem}_box_{lang}.txt").write_text(unicodedata.normalize("NFC", box) + "\n",

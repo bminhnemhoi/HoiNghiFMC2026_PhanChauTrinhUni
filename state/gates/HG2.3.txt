@@ -1,0 +1,3 @@
+HG2.3 — người dùng giao Claude tìm văn bản từ nguồn chính thức (27/9/2026).
+Kết quả: agent corpus-librarian tìm thêm 23 văn bản chính thức (review/supersession_check.md, results/tables/supersession.csv); kiểm độc lập ở review/supersession_audit.md.
+Còn thiếu: 1622/2014 (.doc trên vncdc, chứng chỉ TLS hết hạn), 5456/2019 (vaac, lỗi TLS), 1003/2012 (chỉ có trên trang luật tư nhân — không dùng).

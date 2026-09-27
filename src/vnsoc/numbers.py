@@ -141,12 +141,16 @@ def verify(root=None, files: list[str] | None = None) -> int:
     return 0 if not problems else 1
 
 
-def render(root=None) -> int:
+def render(root=None, strict: bool = False) -> int:
+    """Fill every placeholder from the registry into manuscript/build/. Placeholders without a value are left as they
+    are and listed per file; the exit code is 1 only with strict=True (drafts such as manuscript/main.md legitimately
+    wait for main-study keys; `verify` is the gate for a finished document)."""
     P = paths(root)
     reg = _load(P)
     out = P.manuscript / "build"
     out.mkdir(parents=True, exist_ok=True)
-    missing = set()
+    missing: dict[str, set] = {}
+    current = [""]
 
     def sub(m):
         k = m.group(1)
@@ -154,18 +158,21 @@ def render(root=None) -> int:
             return k[1:]
         base = k.removesuffix(EN)
         if base not in reg:
-            missing.add(k)
+            missing.setdefault(current[0], set()).add(k)
             return m.group(0)
         d = str(reg[base]["display"])
         return en_format(d) if k.endswith(EN) else d
 
     for f in _targets(P):
         dst = out / f.relative_to(P.manuscript)
+        current[0] = str(f.relative_to(P.manuscript))
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(PH.sub(sub, f.read_text(encoding="utf-8")), encoding="utf-8")
     if missing:
-        print("THIẾU:", sorted(missing))
-        return 1
+        for f, ks in sorted(missing.items()):
+            print(f"THIẾU trong {f}: {len(ks)} khóa (ví dụ {sorted(ks)[:5]})")
+        if strict:
+            return 1
     print(f"OK: render {out}")
     return 0
 
@@ -176,7 +183,7 @@ def main(argv=None) -> int:
     if cmd == "verify":
         return verify(files=argv[1:] or None)
     if cmd == "render":
-        return render()
+        return render(strict="--strict" in argv[1:])
     if cmd == "list":
         for k, v in sorted(_load(paths()).items()):
             print(f"{k:40s} {v['display']:>14s}  ← {v['source']}")

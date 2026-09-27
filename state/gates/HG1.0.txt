@@ -1,0 +1,5 @@
+HG1.0 — trả lời của Ban tổ chức FMC 2026 (người dùng chuyển lại trong chat 26/9/2026):
+1. Giới hạn 500 từ; 250 từ chỉ là khuyến khích, không phải giới hạn.
+2. (Người dùng yêu cầu Claude cố gắng hoàn thành bản có kết quả thí điểm.)
+3. Mỗi file chỉ một ngôn ngữ (tiếng Anh HOẶC tiếng Việt) → làm hai bản riêng.
+4. Hạn nộp: đến hết ngày 30/9/2026 vẫn được nhận.
