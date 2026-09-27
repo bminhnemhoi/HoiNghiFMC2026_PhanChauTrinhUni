@@ -298,6 +298,8 @@ None of the confirmatory analyses of Section 5 has been run on any data.
 
 **Items.** Items are atoms drawn from 25–35 current MoH guidelines, selected by the mechanical order of Section 3.1. Superseded versions supply version values only and are not counted in the 25–35.
 
+**Run set (compute-driven, outcome-blind sampling; decided 27 September 2026 before any main-study atom was frozen or any main-study output existed).** Extraction yields more atoms than a laptop can query (about 3.6 atoms per page in the calibration). Every model is therefore run on: (i) all atoms whose conflict status is *conflict* or *indistinguishable*; (ii) all atoms with a superseded value outside the MoH set (version drift); and (iii) a simple random sample, stratified by guideline in proportion to its share, of the remaining *concordant* and *no-counterpart* atoms, of size max(300, number of conflict atoms), drawn by `numpy.random.default_rng(20261015)` from the frozen atom list sorted by `atom_id`. H1–H3 use conflict atoms only and are unaffected. Descriptive rates over all atoms (RQ1) are weighted by the inverse sampling fraction of each stratum. RQ3 splits are made within the run set. The sampled list and fractions are recorded in the atom-freeze addendum. [pending author confirmation, see review/prereg/response.md D30 — the author approved sampling on 27 September 2026]
+
 - Target: at least 400 conflict atoms in at least 25 conflict families (DR2 applies otherwise).
 - Expected total: 2,000–3,500 atoms, all statuses.
 - Atoms are nested in guidelines. Conflict atoms are also nested in conflict families, which can span guidelines.
@@ -862,7 +864,7 @@ The analyses are implemented in `src/vnsoc/analysis/confirmatory.py` (Python; nu
 
 <!-- HASHES:BEGIN (scripts/prereg_snapshot.py; do not edit by hand) -->
 
-Snapshot 2026-09-27T05:51:08+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
+Snapshot 2026-09-27T10:46:19+07:00. SHA-256 of the registered analysis package (the text governs; these files implement it):
 
 | File | SHA-256 |
 | --- | --- |
@@ -882,7 +884,7 @@ Snapshot 2026-09-27T05:51:08+07:00. SHA-256 of the registered analysis package (
 | `src/vnsoc/extract/corpus_priority.py` | `f72e8f01821b0e75a52570940d5493f578abd329e00704ad2d7974a8e47d1159` |
 | `src/vnsoc/analysis/extractor_check.py` | `537314307496dfa243d4d65b7ca7065c6a19e07af3558eabbf387d609a6d75e4` |
 | `src/vnsoc/schemas.py` | `b967e50e4660a0d7a24a68fa0cd13e6588a0be6a80d080f03d4b40f2bf3e2630` |
-| `configs/project.yaml` | `46ed6af49ba87cc6ae63599e4a448ba747de94a5becb915dbee745f9767f3343` |
+| `configs/project.yaml` | `3df7f295eac02c03abf5d834d5d0c024caac27d599b562f5478b9592590560df` |
 | `configs/conditions.yaml` | `9636da8651f0f0f57d99474ce4e72e3853a6d321f24d77c8f3543f3d88da0597` |
 | `configs/grading.yaml` | `aa59318957850281afb34654e6e40165865603fe6f2870934d4e749fbc0f34cb` |
 | `configs/models.yaml` | `a6df01228f85880a8138aea37746708a7aebd1029e3f5d7160b2fd446e88182b` |

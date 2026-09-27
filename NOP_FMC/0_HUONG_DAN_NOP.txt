@@ -1,0 +1,26 @@
+﻿HƯỚNG DẪN NỘP ABSTRACT FMC 2026 — hạn: hết ngày 30/9/2026
+=====================================================
+
+1. Mở trình duyệt, vào: conference.pctu.edu.vn  →  mục "Đăng kí đề tài"
+2. Chủ đề: chọn "AI và chuyển đổi số trong Y tế và Giáo dục Y khoa"
+3. Ô "Tên đề tài": chép dòng dưới (tiếng Việt, 131 ký tự):
+
+Chuẩn điều trị của ai? Sai lệch theo chuẩn nước ngoài và theo phiên bản cũ của LLM so với hướng dẫn chuyên môn của Bộ Y tế Việt Nam
+
+4. Ô "Tóm tắt đề tài / Abstract" (tối đa 500 ký tự): chép đoạn dưới (392 ký tự):
+
+LLM có thể trả lời theo hướng dẫn nước ngoài hoặc bản cũ thay vì hướng dẫn hiện hành của Bộ Y tế. Thí điểm (mẫu chọn tay, kiểm bằng AI, chưa có bác sĩ duyệt) trên 61 khuyến cáo: hỏi "theo Bộ Y tế" bằng tiếng Việt, Qwen3-8B đúng 7/20 khuyến cáo khác chuẩn nước ngoài, trùng giá trị nước ngoài 2 lần (không vượt mức trùng mồi); phần lớn lỗi không khớp nguồn nào. Kèm đoạn hướng dẫn: đúng 13/20.
+
+5. Tác giả: Ngô Bình Minh (tác giả liên hệ, ngobinhminh.st@tdtu.edu.vn) — Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng
+   Đồng tác giả: Ngô Bình Thống — Khoa Y, Trường Đại học Phan Châu Trinh
+                 Trần Đoàn Mai Hương — Khoa Răng Hàm Mặt, Trường Đại học Phan Châu Trinh
+6. Ô "File đính kèm": chọn file  1_Abstract_TiengViet.docx  (trong thư mục này)
+   (Nếu biểu mẫu cho đính kèm thêm, đính kèm cả 2_Abstract_TiengAnh.docx)
+7. Bấm Gửi, chụp màn hình trang xác nhận.
+8. Quay lại chat, gõ:  XONG HG1.9 đã nộp lúc <giờ>
+
+-----------------------------------------------------
+Nếu muốn nộp bản TIẾNG ANH thay vì tiếng Việt:
+Tên đề tài (EN): Whose Standard of Care? Foreign-Guideline and Outdated-Version Deviations of LLMs from Vietnamese Ministry of Health Guidelines
+Tóm tắt (EN, 452 ký tự): LLMs may answer with foreign or outdated guideline values instead of current Vietnamese Ministry of Health (MoH) guidelines. Pilot (hand-picked, AI-checked, no clinician review) on 61 recommendations: asked "according to the MoH" in Vietnamese, Qwen3-8B was correct on 7/20 recommendations that differ from foreign guidelines and matched a foreign value 2 times (not above decoy level); most errors matched no source. With the guideline passage: 13/20.
+File: 2_Abstract_TiengAnh.docx

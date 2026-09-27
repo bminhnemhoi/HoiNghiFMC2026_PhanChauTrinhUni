@@ -15,7 +15,11 @@ import sys
 import time
 from pathlib import Path
 
-URL = "http://localhost:11434"
+# Project server (scripts/ollama_d.ps1: models on D:, port 11435; the machine's default Ollama on 11434 is left
+# untouched). Override with VNSOC_OLLAMA_URL. The pilot ran on the default server with the same qwen3:8b digest.
+import os
+
+URL = os.environ.get("VNSOC_OLLAMA_URL", "http://127.0.0.1:11435")
 
 
 def _post(path: str, body: dict, timeout: int = 600) -> dict:
