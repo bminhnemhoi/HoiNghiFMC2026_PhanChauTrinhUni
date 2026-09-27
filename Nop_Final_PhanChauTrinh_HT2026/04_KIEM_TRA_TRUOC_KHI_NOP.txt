@@ -1,0 +1,33 @@
+KIỂM TRA ĐÃ LÀM TRƯỚC KHI NỘP (27/9/2026)
+==========================================
+
+ĐỘ DÀI (đếm bằng mã)
+  Bản tiếng Việt: thân bài (Đặt vấn đề → Kết luận) 453 từ; tính cả từ khóa 475 từ. Giới hạn 500 từ (khuyến khích 250).
+  Bản tiếng Anh:  thân bài (Background → Conclusion) 401 từ; tính cả từ khóa 415 từ.
+  Tên đề tài: VI 131 ký tự, EN 127 ký tự.
+  Tóm tắt ngắn cho ô form: VI 392 ký tự, EN 452 ký tự (ô giới hạn 500).
+  Mỗi file chỉ một ngôn ngữ (theo trả lời của Ban tổ chức, HG1.0).
+
+SỐ LIỆU
+  Mọi con số trong abstract lấy từ registry results/numbers.json, do mã phân tích thí điểm ghi
+  (bộ chấm 1.2.0, khóa cho thí điểm). Kiểm registry: abstract không còn placeholder nào, 0 lỗi.
+  Kết quả là thí điểm: 65 khuyến cáo chọn tay (61 được phân tích), một mô hình (Qwen3-8B chạy trên laptop).
+
+GIỚI HẠN ĐÃ GHI RÕ TRONG ABSTRACT
+  Mẫu chọn tay; kiểm tra bằng AI (Claude), không phải người; chưa có bác sĩ duyệt.
+  Kết luận chỉ nói "chưa thấy khuynh hướng theo chuẩn nước ngoài vượt mức trùng ngẫu nhiên" ở mô hình nhỏ này.
+
+TÁC GIẢ
+  Tên, đơn vị, email theo thông tin bạn gửi 27/9/2026 (bạn đã xác nhận: tên Ngô Bình Thống; email đúng).
+  Email của Thống có đuôi ".edu.com" (khác ".edu.vn" của Hương) — bạn đã xác nhận là đúng; nếu thực ra là
+  ".edu.vn" thì báo Claude sửa trước khi nộp.
+
+MÃ BĂM SHA-256 (để đối chiếu đúng file đã nộp)
+  01_Abstract_TiengViet.docx  4dfb1f3d994bfeac1258a06ffba00e6fda2d7284a2f4c4669547c848a4ad9b32
+  01_Abstract_TiengViet.pdf   6b4b6f4f7ff1098985c2cf687ac034371d5839f1672736d2b2dcad487a4696df
+  02_Abstract_TiengAnh.docx   e21d0071ce0b265920d6cd19e39168d6508af5718d904b169a1c4232fd3cc308
+  02_Abstract_TiengAnh.pdf    380bbcb0539359616d5c8b83467821bc306cb4fa2f1ad545bcd0a2142e3a727f
+
+NGUỒN
+  Bản gốc có placeholder: manuscript/fmc/abstract_fmc.md; dựng bằng src/vnsoc/fmc.py -> manuscript/build/fmc/.
+  PDF xuất từ chính file .docx bằng Microsoft Word.

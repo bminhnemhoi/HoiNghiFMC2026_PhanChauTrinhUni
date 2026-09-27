@@ -3,6 +3,10 @@
 **Hạn:** Ban tổ chức đã trả lời (26/9): nộp **trong ngày 30/9/2026 vẫn được nhận**; giới hạn 500 từ (250 từ là khuyến khích); **mỗi file chỉ một ngôn ngữ** → có hai bản riêng tiếng Việt và tiếng Anh.
 **Vì sao bạn phải làm:** nộp bài cần tài khoản/danh tính của bạn; Claude không nộp thay.
 
+## Thư mục nộp cuối cùng (27/9, 21:30)
+
+**Dùng `Nop_Final_PhanChauTrinh_HT2026/`** — đọc `00_DOC_TRUOC_HUONG_DAN_NOP.txt`; file đính kèm `01_Abstract_TiengViet.docx` (PDF dự phòng kèm theo), nội dung chép vào form ở `03_NOI_DUNG_CHEP_VAO_FORM.txt`, kiểm tra và mã băm ở `04_KIEM_TRA_TRUOC_KHI_NOP.txt`. T1.7 đã xong nên dùng bản có kết quả thí điểm.
+
 ## Chọn bản nào
 
 - Nếu Claude báo **T1.7 xong** (có kết quả thí điểm): dùng `manuscript/build/fmc/abstract_fmc_vi.docx` (tiếng Việt) hoặc `abstract_fmc_en.docx` (tiếng Anh), kèm ô tóm tắt `abstract_fmc_box_vi.txt` / `abstract_fmc_box_en.txt`.

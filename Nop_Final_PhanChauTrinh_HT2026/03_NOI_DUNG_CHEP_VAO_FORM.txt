@@ -1,0 +1,46 @@
+NỘI DUNG CHÉP-DÁN VÀO FORM ĐĂNG KÝ (mỗi mục chép nguyên dòng/đoạn, không thêm bớt)
+=====================================================================================
+
+CHỦ ĐỀ
+AI và chuyển đổi số trong Y tế và Giáo dục Y khoa
+
+TÊN ĐỀ TÀI (TIẾNG VIỆT) — 131 ký tự
+Chuẩn điều trị của ai? Sai lệch theo chuẩn nước ngoài và theo phiên bản cũ của LLM so với hướng dẫn chuyên môn của Bộ Y tế Việt Nam
+
+TÓM TẮT NGẮN (TIẾNG VIỆT) — 392 ký tự (giới hạn ô: 500)
+LLM có thể trả lời theo hướng dẫn nước ngoài hoặc bản cũ thay vì hướng dẫn hiện hành của Bộ Y tế. Thí điểm (mẫu chọn tay, kiểm bằng AI, chưa có bác sĩ duyệt) trên 61 khuyến cáo: hỏi "theo Bộ Y tế" bằng tiếng Việt, Qwen3-8B đúng 7/20 khuyến cáo khác chuẩn nước ngoài, trùng giá trị nước ngoài 2 lần (không vượt mức trùng mồi); phần lớn lỗi không khớp nguồn nào. Kèm đoạn hướng dẫn: đúng 13/20.
+
+TÁC GIẢ (theo thứ tự)
+1. Ngô Bình Minh — Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, TP. Hồ Chí Minh, Việt Nam
+   Email: ngobinhminh.st@tdtu.edu.vn — TÁC GIẢ LIÊN HỆ
+2. Ngô Bình Thống — Khoa Y, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam
+   Email: thong.nb.22yk1@pctu.edu.com
+3. Trần Đoàn Mai Hương — Khoa Răng Hàm Mặt, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam
+   Email: huong.tdm.24rhm1@pctu.edu.vn
+
+TỪ KHÓA
+mô hình ngôn ngữ lớn; hướng dẫn điều trị; bộ y tế; đánh giá mô hình; giáo dục y khoa
+
+HÌNH THỨC BÁO CÁO (đang ghi trong file): Oral
+
+
+-------------------------------------------------------------------------------------
+BẢN TIẾNG ANH (chỉ dùng khi form/ban tổ chức yêu cầu tiếng Anh)
+-------------------------------------------------------------------------------------
+
+TITLE (EN)
+Whose Standard of Care? Foreign-Guideline and Outdated-Version Deviations of LLMs from Vietnamese Ministry of Health Guidelines
+
+SHORT ABSTRACT (EN) — 452 characters (limit 500)
+LLMs may answer with foreign or outdated guideline values instead of current Vietnamese Ministry of Health (MoH) guidelines. Pilot (hand-picked, AI-checked, no clinician review) on 61 recommendations: asked "according to the MoH" in Vietnamese, Qwen3-8B was correct on 7/20 recommendations that differ from foreign guidelines and matched a foreign value 2 times (not above decoy level); most errors matched no source. With the guideline passage: 13/20.
+
+AUTHORS
+1. Binh Minh Ngo — Faculty of Information Technology, Ton Duc Thang University, Ho Chi Minh City, Vietnam
+   ngobinhminh.st@tdtu.edu.vn — corresponding author
+2. Binh Thong Ngo — Faculty of Medicine, Phan Chau Trinh University, Da Nang City, Vietnam
+   thong.nb.22yk1@pctu.edu.com
+3. Tran Doan Mai Huong — Faculty of Odonto-Stomatology, Phan Chau Trinh University, Da Nang City, Vietnam
+   huong.tdm.24rhm1@pctu.edu.vn
+
+KEYWORDS
+large language models; clinical practice guidelines; ministry of health; model evaluation; medical education
