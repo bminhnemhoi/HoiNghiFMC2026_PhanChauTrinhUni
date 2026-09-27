@@ -1,17 +1,23 @@
 # Việc cần BẠN làm (tự sinh — đừng sửa tay)
 
-Cập nhật: 2026-09-26T10:23:13+07:00. Làm xong việc nào thì gửi trong Claude Code một tin nhắn có dòng BẮT ĐẦU bằng `XONG <mã>` (ví dụ `XONG HG0.3 Llama: đang chờ`) kèm thông tin được yêu cầu.
+Cập nhật: 2026-09-27T10:48:54+07:00. Làm xong việc nào thì gửi trong Claude Code một tin nhắn có dòng BẮT ĐẦU bằng `XONG <mã>` (ví dụ `XONG HG0.3 Llama: đang chờ`) kèm thông tin được yêu cầu.
 
-## HG0.3 — Tạo tài khoản, khóa API, giới hạn chi tiêu, cài phần mềm hệ thống (HẠN 2026-09-26)
+## HG1.9 — Nộp abstract FMC (HẠN 2026-09-30)
 
-Làm theo thứ tự (khoảng 1–2 giờ; Llama có thể được duyệt sau vài giờ–vài ngày):
-1. Kaggle: kaggle.com → Settings → xác minh số điện thoại (bắt buộc để dùng GPU và Internet). Settings → API → Create New Token → lưu file vào ~/.kaggle/kaggle.json rồi chạy chmod 600 ~/.kaggle/kaggle.json (hoặc đặt KAGGLE_API_TOKEN trong .env). Điền KAGGLE_USERNAME trong .env.
-2. Hugging Face: tạo tài khoản; Settings → Access Tokens → tạo token loại Read → HF_TOKEN trong .env. Mở trang meta-llama/Llama-3.1-8B-Instruct và Viet-Mistral/Vistral-7B-Chat, bấm đồng ý điều khoản.
-3. Kaggle Secrets: Settings của Kaggle (hoặc trong một notebook: Add-ons → Secrets) → thêm secret tên HF_TOKEN với giá trị token ở bước 2.
-4. API trả phí: tạo khóa Gemini (Google AI Studio) và/hoặc OpenAI. Đặt giới hạn chi tiêu ở trang quản trị sao cho TỔNG ≤ 40 USD (ví dụ Gemini 25 USD + OpenAI 15 USD). Điền GEMINI_API_KEY, OPENAI_API_KEY trong .env.
-5. Phần mềm (WSL2 Ubuntu/Linux): sudo apt update && sudo apt install -y poppler-utils tesseract-ocr tesseract-ocr-vie r-base jq pandoc git. macOS: brew install poppler tesseract tesseract-lang r jq pandoc git.
-6. Trong thư mục dự án: cp .env.example .env rồi điền các khóa. KHÔNG dán khóa vào chat.
-Gõ: XONG HG0.3 Llama: <đã duyệt/đang chờ>, Vistral: <đã/chưa>, giới hạn: Gemini <x> USD, OpenAI <y> USD.
+1. Mở biểu mẫu nộp bài trên trang hội nghị (conference.pctu.edu.vn, Thông báo số 1), chọn Chủ đề 1 “AI và chuyển đổi số trong Y tế và Giáo dục Y khoa”.
+2. Chờ Claude báo bản cuối (dự kiến tối 29/9). Nếu T1.7 xong: dùng manuscript/build/fmc/abstract_fmc.md và .docx; nếu không: manuscript/build/fmc/abstract_fmc_design.md và .docx. Tới trưa 30/9 chưa có báo thì nộp bản thiết kế. Luôn dùng bản trong manuscript/build/ (đã điền số), không dùng bản còn {{…}}.
+Tên: dán dòng tên 131 ký tự. Tóm tắt: dán bản ngắn. Đính kèm file DOCX (≤ 1 MB).
+3. Kiểm lại tác giả, đơn vị (TDTU), email liên hệ trước khi bấm gửi.
+Gõ: XONG HG1.9 đã nộp lúc <giờ>, mã/email xác nhận: <...>.
 
-Xong khi: check_env nhóm core, kaggle, api đều OK
+Xong khi: Đã nộp trước hạn
+
+## HG2.9 — Nộp đăng ký trước trên OSF (HẠN 2026-10-07)
+
+1. osf.io → tạo project “Whose Standard of Care?” → Registrations → New registration → mẫu “OSF Preregistration”.
+2. Chép từng phần từ prereg/osf_preregistration.md; đính kèm thư mục prereg/analysis_plan (nén zip).
+3. Có thể chọn embargo (vẫn có dấu thời gian, công khai sau). Bấm Submit.
+Gõ: XONG HG2.9 <link OSF hoặc DOI 10.17605/...>.
+
+Xong khi: Có link/DOI đăng ký
 

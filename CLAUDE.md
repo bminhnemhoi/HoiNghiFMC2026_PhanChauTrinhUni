@@ -9,6 +9,7 @@ Dự án: **“Chuẩn điều trị của ai?”** — đo và truy nguồn sai
 Đừng nạp nguyên văn các file này vào ngữ cảnh; tìm đúng mục bằng Grep (ví dụ mã task `T3.2`, `DR4`, `§4.5`).
 
 ## Vòng làm việc
+0. Phiên mới hoặc sau tạm dừng: đọc `docs/HANDOFF.md` (việc đã xong, việc dở kèm số đo, cách chạy tiếp workflow agent ở `scripts/workflows/`).
 1. Trạng thái nằm ở `state/progress.json`, **chỉ thay đổi qua `scripts/vs`** (init/next/start/done/block/skip/add/human-done). Không sửa tay.
 2. Mỗi lượt: `/next` → một task trọn vẹn: start → đọc task + mục liên quan → nạp skill/agent ghi trong task → viết mã + test → chạy → `scripts/vs done <ID>` (lệnh kiểm tra phải qua) → commit git → báo ngắn.
 3. `scripts/vs done` thất bại: sửa và thử lại (tối đa 3 lần), sau đó `scripts/vs block <ID> --reason "..."` với lý do cụ thể và điều người dùng cần làm.

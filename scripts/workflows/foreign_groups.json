@@ -1,0 +1,14 @@
+[
+ {"id": "dengue_hfmd", "desc": "Sốt xuất huyết Dengue; tay chân miệng", "docs": ["2760/2023", "292/2024"]},
+ {"id": "tb", "desc": "Lao, kể cả lao kháng thuốc, lao/HIV", "docs": ["162/2024"]},
+ {"id": "malaria_whitmore", "desc": "Sốt rét; bệnh Whitmore (melioidosis)", "docs": ["3377/2023", "6101/2019"]},
+ {"id": "hepatitis", "desc": "Viêm gan vi rút B; viêm gan vi rút C", "docs": ["1740/2026", "2855/2024"]},
+ {"id": "hiv_pmtct", "desc": "HIV/AIDS (điều trị ARV, dự phòng); dự phòng lây truyền mẹ–con HIV, giang mai, viêm gan B", "docs": ["5968/2021", "678/2025"]},
+ {"id": "resp_infection", "desc": "Viêm phổi mắc phải cộng đồng người lớn; cúm mùa; sởi", "docs": ["2147/2026", "1840/2025", "1019/2025"]},
+ {"id": "copd", "desc": "Bệnh phổi tắc nghẽn mạn tính (GOLD là tham chiếu quốc tế chính)", "docs": ["2131/2026"]},
+ {"id": "diabetes_obesity", "desc": "Đái tháo đường típ 2; đái tháo đường thai kỳ; béo phì", "docs": ["5481/2020", "1470/2024", "2892/2022"]},
+ {"id": "hypertension", "desc": "Tăng huyết áp; tăng huyết áp thai kỳ/tiền sản giật; bệnh không lây nhiễm tại trạm y tế xã", "docs": ["3192/2010", "1154/2024", "5904/2019"]},
+ {"id": "cardio_stroke", "desc": "Suy tim cấp và mạn; đột quỵ não", "docs": ["1857/2022", "3312/2024"]},
+ {"id": "ckd", "desc": "Bệnh thận mạn và một số bệnh lý thận (KDIGO là tham chiếu quốc tế chính)", "docs": ["2388/2024"]},
+ {"id": "acute_infect_tox", "desc": "Phản vệ; một số bệnh truyền nhiễm (uốn ván, thương hàn, sốt mò, nhiễm khuẩn huyết...); ngộ độc và rắn độc cắn", "docs": ["TT51/2017", "5642/2015", "3610/2015"]}
+]

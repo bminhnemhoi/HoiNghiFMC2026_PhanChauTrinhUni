@@ -1,7 +1,7 @@
 {
  "plan_sha256": "a62c451abcebfb0aff1d9af6a4988b96fb1bc1969468e863c5dc8f512604acbc",
  "created": "2026-09-26T03:13:15+07:00",
- "updated": "2026-09-26T10:23:13+07:00",
+ "updated": "2026-09-27T10:48:54+07:00",
  "order": [
   "T0.1",
   "T0.2",
@@ -90,7 +90,17 @@
   "T7.11",
   "T8.1",
   "HG8.2",
-  "T8.3"
+  "T8.3",
+  "R1.1",
+  "R1.2",
+  "R1.3",
+  "R1.4",
+  "R1.5",
+  "R1.6",
+  "R1.7",
+  "R1.2b",
+  "C2.5",
+  "C4.8"
  ],
  "tasks": {
   "T0.1": {
@@ -199,8 +209,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T10:38:07+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T11:34:42+07:00",
+     "event": "done",
+     "note": "5 tài liệu cổng (email FMC, ghi nhớ giảng viên, đơn miễn đạo đức, thư mời bác sĩ, trang tóm tắt) + kiểm độc lập review/T0.6_check.md (2 lỗi TB + 11 nhỏ đã sửa); phát hiện hạn FMC 'trước 30/9' → nộp muộn nhất 29/9"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -227,8 +248,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:44+07:00",
+     "event": "human_done",
+     "note": "người dùng xác nhận trong chat 27/9/2026"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -255,8 +282,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "skipped",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:57+07:00",
+     "event": "waive",
+     "note": "theo quyết định người dùng (HG0.3: «2026-09-27T10:30:32+07:00\nkiểm tra xem có thật sự đang chạy không\n\n<pasted_content id=\"f2c0\">\nXONG HG1.0 BTC trả lời: giới hạn 500 từ, mỗi file một ngôn ngữ, nộp ngày 30/9 vẫn được\nXONG HG1.2 giao Claude kiểm tự động bằng AI\nXONG HG0.3 không dùng khóa API/Kaggle, chạy mô hình trên laptop\nXONG HG2.3 ») — không dùng khóa API/Kaggle; mô hình chạy trên laptop"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -283,8 +316,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "skipped",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:57+07:00",
+     "event": "waive",
+     "note": "theo quyết định người dùng (HG0.3: «2026-09-27T10:30:32+07:00\nkiểm tra xem có thật sự đang chạy không\n\n<pasted_content id=\"f2c0\">\nXONG HG1.0 BTC trả lời: giới hạn 500 từ, mỗi file một ngôn ngữ, nộp ngày 30/9 vẫn được\nXONG HG1.2 giao Claude kiểm tự động bằng AI\nXONG HG0.3 không dùng khóa API/Kaggle, chạy mô hình trên laptop\nXONG HG2.3 ») — chạy thử Kaggle không cần: mô hình chạy trên laptop (Ollama); đã chạy thử cục bộ results/smoke/local_smoke.json"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -311,8 +350,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "skipped",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:57+07:00",
+     "event": "waive",
+     "note": "theo quyết định người dùng (HG0.3: «2026-09-27T10:30:32+07:00\nkiểm tra xem có thật sự đang chạy không\n\n<pasted_content id=\"f2c0\">\nXONG HG1.0 BTC trả lời: giới hạn 500 từ, mỗi file một ngôn ngữ, nộp ngày 30/9 vẫn được\nXONG HG1.2 giao Claude kiểm tự động bằng AI\nXONG HG0.3 không dùng khóa API/Kaggle, chạy mô hình trên laptop\nXONG HG2.3 ») — không dùng API trả phí"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -341,8 +386,19 @@
    "skippable": true,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T10:38:08+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T13:26:09+07:00",
+     "event": "done",
+     "note": "65 mẩu thí điểm span_verified từ 13 hướng dẫn (24 xung đột/20 nhóm, 31 đối chứng, 9 không phân biệt được); 10 chủ đề × trích→kiểm toán→sửa + 2 chủ đề OCR; checklist HG1.2; 11/20 dòng hạt giống xác nhận, 9 không sạch"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -369,8 +425,14 @@
    "skippable": true,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:44+07:00",
+     "event": "human_done",
+     "note": "người dùng xác nhận trong chat 27/9/2026"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -397,8 +459,19 @@
    "skippable": true,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T13:27:34+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T17:24:25+07:00",
+     "event": "done",
+     "note": "222 câu (130 ngắn VI/EN, 92 trắc nghiệm của 23 mẩu × 2 thứ tự × VI/EN), 65 đoạn A3 (16 trang OCR, cần kiểm tay), 0 mục QC không đạt; 42 mẩu bỏ trắc nghiệm có chủ đích (không mồi/tập Bộ Y tế nhiều mục/không giá trị ngoài tập). Sau 2 vòng phản biện: sửa mã qgen, bộ chấm 1.1.0, quy tắc mồi (DECISIONS 15:55); prereg đồng bộ, D13–D16 chờ người dùng"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -429,8 +502,19 @@
    "skippable": true,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:33:51+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T10:33:52+07:00",
+     "event": "done",
+     "note": "làm 26–27/9 (chạy cục bộ Qwen3-8B; chấm grader 1.2.0; abstract VI/EN; hội đồng M1)"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -458,8 +542,19 @@
    "skippable": true,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:33:52+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T10:33:52+07:00",
+     "event": "done",
+     "note": "làm 26–27/9 (chạy cục bộ Qwen3-8B; chấm grader 1.2.0; abstract VI/EN; hội đồng M1)"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -488,8 +583,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T11:34:59+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T13:26:10+07:00",
+     "event": "done",
+     "note": "abstract thiết kế theo mẫu FMC (song ngữ, VI 248/EN 229 từ, ô 424 ký tự), DOCX 39 KB; số từ registry design.*"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -518,8 +624,19 @@
    "skippable": true,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:33:53+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T10:33:53+07:00",
+     "event": "done",
+     "note": "làm 26–27/9 (chạy cục bộ Qwen3-8B; chấm grader 1.2.0; abstract VI/EN; hội đồng M1)"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -546,8 +663,24 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:33:54+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T10:33:54+07:00",
+     "event": "done",
+     "note": "làm 26–27/9 (chạy cục bộ Qwen3-8B; chấm grader 1.2.0; abstract VI/EN; hội đồng M1)"
+    },
+    {
+     "t": "2026-09-27T10:34:05+07:00",
+     "event": "done",
+     "note": "hội đồng M1: review/M1/summary.md"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -602,8 +735,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:45+07:00",
+     "event": "human_done",
+     "note": "người dùng xác nhận trong chat 27/9/2026"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -630,8 +769,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:45+07:00",
+     "event": "human_done",
+     "note": "người dùng xác nhận trong chat 27/9/2026"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -660,8 +805,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T13:27:07+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T13:27:17+07:00",
+     "event": "done",
+     "note": "OSF prereg (mẫu v4) + confirmatory.py; 3 phản biện, 34/34 yêu cầu xử lý; OC mô phỏng B=10000 đạt cỡ; 10 quyết định D1–D10 chờ người dùng trước HG2.9"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -746,8 +902,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T10:38:08+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T11:56:11+07:00",
+     "event": "done",
+     "note": "75 văn bản (52 hiện hành) từ 5 cụm; PDF chính thức 58, lớp chữ 43, thiếu 17; chuỗi thay thế đọc từ văn bản; corpus_triage.csv"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -775,8 +942,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T11:56:11+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T11:56:12+07:00",
+     "event": "done",
+     "note": "58 PDF chính thức khớp sha256 (tests/test_manifest.py); hỗ trợ gói .rar/.zip; HG2.3_missing.md: 17 văn bản + 5 việc bổ sung"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -803,8 +981,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:45+07:00",
+     "event": "human_done",
+     "note": "người dùng xác nhận trong chat 27/9/2026"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -833,8 +1017,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T12:04:22+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T13:27:06+07:00",
+     "event": "done",
+     "note": "57 văn bản → data/interim/text (khối có vị trí + đường dẫn đề mục, bảng pdfplumber); OCR Tesseract vie cho 10 văn bản quét (3377/2023, TT51/2017, TT13/2026, 1327/2014, 1470/2024, 292/2024, 6101/2019, 4121/2009, 3310/2019, 3705/2019); số từ OCR được so ảnh trang ở cấp mẩu (extraction.ocr, HG1.2/HG3.5)"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -863,8 +1058,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:47:09+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T10:47:09+07:00",
+     "event": "done",
+     "note": "C2.5 + kiểm độc lập (review/supersession_audit.md) + sửa L1–L3; 25 văn bản in_corpus (D28), OCR 9/10"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -892,8 +1098,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "in_progress",
+   "history": [
+    {
+     "t": "2026-09-27T10:48:54+07:00",
+     "event": "start",
+     "note": ""
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -950,8 +1162,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T13:27:07+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T13:27:07+07:00",
+     "event": "done",
+     "note": "110 bài mới (5 trùng cao, 20 trung bình), không DR13; 11 sai sót ở §2 đề cương; references.yaml 74 mục"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -1427,10 +1650,18 @@
    "timeout_s": null,
    "gate": null,
    "status": "pending",
-   "history": [],
+   "history": [
+    {
+     "t": "2026-09-27T01:13:58+07:00",
+     "event": "wait_for",
+     "note": "R1.2b"
+    }
+   ],
    "note": "",
    "source": "plan",
-   "extra_depends": []
+   "extra_depends": [
+    "R1.2b"
+   ]
   },
   "T4.4": {
    "id": "T4.4",
@@ -1597,8 +1828,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "skipped",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:58+07:00",
+     "event": "waive",
+     "note": "theo quyết định người dùng (HG5.0: «2026-09-27T10:30:32+07:00\nkiểm tra xem có thật sự đang chạy không\n\n<pasted_content id=\"f2c0\">\nXONG HG1.0 BTC trả lời: giới hạn 500 từ, mỗi file một ngôn ngữ, nộp ngày 30/9 vẫn được\nXONG HG1.2 giao Claude kiểm tự động bằng AI\nXONG HG0.3 không dùng khóa API/Kaggle, chạy mô hình trên laptop\nXONG HG2.3 ») — không dùng Kaggle"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -1625,8 +1862,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "skipped",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:58+07:00",
+     "event": "waive",
+     "note": "theo quyết định người dùng (HG5.0: «2026-09-27T10:30:32+07:00\nkiểm tra xem có thật sự đang chạy không\n\n<pasted_content id=\"f2c0\">\nXONG HG1.0 BTC trả lời: giới hạn 500 từ, mỗi file một ngôn ngữ, nộp ngày 30/9 vẫn được\nXONG HG1.2 giao Claude kiểm tự động bằng AI\nXONG HG0.3 không dùng khóa API/Kaggle, chạy mô hình trên laptop\nXONG HG2.3 ») — không dùng Kaggle"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -1653,8 +1896,14 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:46+07:00",
+     "event": "human_done",
+     "note": "người dùng xác nhận trong chat 27/9/2026"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -1682,8 +1931,14 @@
    "skippable": true,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "skipped",
+   "history": [
+    {
+     "t": "2026-09-27T10:32:58+07:00",
+     "event": "skip",
+     "note": "RQ4 bỏ theo quyết định người dùng (HG4.6)"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -2002,8 +2257,19 @@
    "skippable": null,
    "timeout_s": null,
    "gate": null,
-   "status": "pending",
-   "history": [],
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T10:45:31+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T10:45:35+07:00",
+     "event": "done",
+     "note": "R 4.6.1 (winget, người dùng đồng ý 27/9); lme4, glmmTMB, sandwich, boot, jsonlite, arrow vào thư viện người dùng"
+    }
+   ],
    "note": "",
    "source": "plan",
    "extra_depends": []
@@ -2675,6 +2941,391 @@
    "history": [],
    "note": "",
    "source": "plan",
+   "extra_depends": []
+  },
+  "R1.1": {
+   "id": "R1.1",
+   "title": "Kiểm chéo khác họ mô hình (mô hình mở cục bộ) cho chuẩn tham chiếu và nhãn chấm",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [],
+   "acceptance": "review/M1/response.md mục R1.1",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T23:17:19+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T23:19:24+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T23:22:12+07:00",
+     "event": "done",
+     "note": "kiểm bằng mã không dùng LLM: span 65/65, giá trị 65/65, nguồn nước ngoài 147/152 (5 cảnh báo đã được kiểm toán AI xem ảnh/nguồn); tiêu chí quần thể chỉ AI"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "R1.2": {
+   "id": "R1.2",
+   "title": "Sửa bộ chấm theo lỗi thí điểm + kiểm trên tập giữ riêng trước khi đóng băng",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [],
+   "acceptance": "review/M1/response.md mục R1.2",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T23:17:19+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T01:13:58+07:00",
+     "event": "done",
+     "note": "bộ chấm 1.3.0: E1–E6 sửa, phản biện 4 CHẶN đã sửa, 1397 test; kiểm tập giữ riêng chuyển sang R1.2b (chặn T4.3)"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "R1.3": {
+   "id": "R1.3",
+   "title": "Ngân sách tính toán laptop: đo thông lượng, dự báo giờ máy, DR6; ghi seed/num_ctx/done_reason; ràng buộc trắc nghiệm",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [],
+   "acceptance": "review/M1/response.md mục R1.3",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T23:17:20+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-26T23:37:04+07:00",
+     "event": "done",
+     "note": "4,85 s/yêu cầu (num_ctx 4096); 53/92 trắc nghiệm bị cắt ở 128 token → đề xuất 384; finish_reason/options ghi vào RunRecord; review/M1/R1.3_compute.md"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "R1.4": {
+   "id": "R1.4",
+   "title": "Ngày xuất hiện giá trị nước ngoài vs ngày cắt dữ liệu mô hình; tầng xung đột; nhãn phụ của nhãn 5",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [],
+   "acceptance": "review/M1/response.md mục R1.4",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T23:17:20+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T00:26:53+07:00",
+     "event": "done",
+     "note": "xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "R1.5": {
+   "id": "R1.5",
+   "title": "Addendum đăng ký trước: thí điểm mở trước khi tải OSF, liệt kê sửa theo thí điểm",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [],
+   "acceptance": "review/M1/response.md mục R1.5",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T23:17:20+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T00:26:53+07:00",
+     "event": "done",
+     "note": "xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "R1.6": {
+   "id": "R1.6",
+   "title": "Phạm vi 'mô hình mở chạy tại chỗ'; kết cục chính tỉ lệ lỗi quy được nguồn; diễn giải khi âm tính",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [],
+   "acceptance": "review/M1/response.md mục R1.6",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T23:17:20+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T00:26:53+07:00",
+     "event": "done",
+     "note": "xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "R1.7": {
+   "id": "R1.7",
+   "title": "Lấy lại đoạn A3 controls từ QĐ 2131/2026; chấm độ hợp lý mồi bằng kiểm toán AI kép",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T1.1"
+   ],
+   "outputs": [],
+   "acceptance": "review/M1/response.md mục R1.7",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-26T23:17:21+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T00:26:54+07:00",
+     "event": "done",
+     "note": "xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "R1.2b": {
+   "id": "R1.2b",
+   "title": "Kiểm bộ chấm 1.3.0 trên tập giữ riêng (mẩu ngoài thí điểm) theo ngưỡng đăng ký trước",
+   "phase": "review",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T3.3"
+   ],
+   "outputs": [],
+   "acceptance": "độ chính xác trả lời ngắn ≥ 0,90, cận dưới Clopper–Pearson ≥ 0,85 (D19); báo theo nhóm; mẩu thí điểm không dùng",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "pending",
+   "history": [
+    {
+     "t": "2026-09-27T01:13:58+07:00",
+     "event": "add",
+     "note": ""
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "C2.5": {
+   "id": "C2.5",
+   "title": "Kho chính: Claude tìm văn bản chính thức (thay HG2.3, người dùng giao 26/9), dựng chuỗi thay thế, đề xuất 25–35 văn bản",
+   "phase": "P2",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T2.4"
+   ],
+   "outputs": [
+    "review/supersession_check.md",
+    "results/tables/supersession.csv"
+   ],
+   "acceptance": "manifest_parts/c6_main_corpus.jsonl + review/supersession_check.md + results/tables/supersession.csv; mọi quan hệ thay thế có trang bằng chứng; đề xuất in_corpus theo corpus_priority; không file từ trang luật tư nhân",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T02:51:00+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T02:51:00+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T03:50:31+07:00",
+     "event": "done",
+     "note": "85 văn bản trong danh mục (54 hiện hành); 26 in_corpus theo phạm vi §3.1 (D28); chuỗi thay thế chờ kiểm độc lập"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
+   "extra_depends": []
+  },
+  "C4.8": {
+   "id": "C4.8",
+   "title": "Khung bản thảo tạp chí (Intro, Related work, Methods theo thiết kế hiện hành; Results/Discussion là khung {{khóa}})",
+   "phase": "P4",
+   "owner": "claude",
+   "week": null,
+   "depends_on": [
+    "T2.10"
+   ],
+   "outputs": [
+    "manuscript/main.md"
+   ],
+   "acceptance": "manuscript/main.md đủ đề mục JMIR; mọi trích dẫn chỉ từ references.yaml; không số viết tay; numbers verify qua (trừ khóa chưa có ghi rõ)",
+   "check": null,
+   "skill": null,
+   "agent": null,
+   "instructions": null,
+   "not_before": null,
+   "deadline": null,
+   "skippable": null,
+   "timeout_s": null,
+   "gate": null,
+   "status": "done",
+   "history": [
+    {
+     "t": "2026-09-27T02:51:45+07:00",
+     "event": "add",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T02:51:45+07:00",
+     "event": "start",
+     "note": ""
+    },
+    {
+     "t": "2026-09-27T03:26:11+07:00",
+     "event": "done",
+     "note": "manuscript/main.md (~11.600 từ khung), TODO_manuscript.md (240 khóa mới, 16 TODO-CITE)"
+    }
+   ],
+   "note": "",
+   "source": "dynamic",
    "extra_depends": []
   }
  }

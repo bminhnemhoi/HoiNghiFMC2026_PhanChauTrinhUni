@@ -23,3 +23,53 @@
 - 2026-09-26T13:27:34+07:00 · T1.3 bắt đầu · Sinh câu hỏi thí điểm (VI/EN; A0, A1, A3; trắc nghiệm 2 thứ tự)
 - 2026-09-26T14:04:59+07:00 · nén ngữ cảnh (auto); đang làm: T1.3
 - 2026-09-26T17:24:25+07:00 · T1.3 XONG · Sinh câu hỏi thí điểm (VI/EN; A0, A1, A3; trắc nghiệm 2 thứ tự) · 222 câu (130 ngắn VI/EN, 92 trắc nghiệm của 23 mẩu × 2 thứ tự × VI/EN), 65 đoạn A3 (16 trang OCR, cần kiểm tay), 0 mục QC không đạt; 42 mẩu bỏ trắc nghiệm có chủ đích (không mồi/tập Bộ Y tế nhiều mục/không giá trị ngoài tập). Sau 2 vòng phản biện: sửa mã qgen, bộ chấm 1.1.0, quy tắc mồi (DECISIONS 15:55); prereg đồng bộ, D13–D16 chờ người dùng
+- 2026-09-26T23:17:19+07:00 · thêm task R1.1 · Kiểm chéo khác họ mô hình (mô hình mở cục bộ) cho chuẩn tham chiếu và nhãn chấm
+- 2026-09-26T23:17:19+07:00 · thêm task R1.2 · Sửa bộ chấm theo lỗi thí điểm + kiểm trên tập giữ riêng trước khi đóng băng
+- 2026-09-26T23:17:20+07:00 · thêm task R1.3 · Ngân sách tính toán laptop: đo thông lượng, dự báo giờ máy, DR6; ghi seed/num_ctx/done_reason; ràng buộc trắc nghiệm
+- 2026-09-26T23:17:20+07:00 · thêm task R1.4 · Ngày xuất hiện giá trị nước ngoài vs ngày cắt dữ liệu mô hình; tầng xung đột; nhãn phụ của nhãn 5
+- 2026-09-26T23:17:20+07:00 · thêm task R1.5 · Addendum đăng ký trước: thí điểm mở trước khi tải OSF, liệt kê sửa theo thí điểm
+- 2026-09-26T23:17:20+07:00 · thêm task R1.6 · Phạm vi 'mô hình mở chạy tại chỗ'; kết cục chính tỉ lệ lỗi quy được nguồn; diễn giải khi âm tính
+- 2026-09-26T23:17:21+07:00 · thêm task R1.7 · Lấy lại đoạn A3 controls từ QĐ 2131/2026; chấm độ hợp lý mồi bằng kiểm toán AI kép
+- 2026-09-26T23:19:24+07:00 · R1.1 bắt đầu · Kiểm chéo khác họ mô hình (mô hình mở cục bộ) cho chuẩn tham chiếu và nhãn chấm
+- 2026-09-26T23:22:12+07:00 · R1.1 XONG · Kiểm chéo khác họ mô hình (mô hình mở cục bộ) cho chuẩn tham chiếu và nhãn chấm · kiểm bằng mã không dùng LLM: span 65/65, giá trị 65/65, nguồn nước ngoài 147/152 (5 cảnh báo đã được kiểm toán AI xem ảnh/nguồn); tiêu chí quần thể chỉ AI
+- 2026-09-26T23:37:04+07:00 · R1.3 XONG · Ngân sách tính toán laptop: đo thông lượng, dự báo giờ máy, DR6; ghi seed/num_ctx/done_reason; ràng buộc trắc nghiệm · 4,85 s/yêu cầu (num_ctx 4096); 53/92 trắc nghiệm bị cắt ở 128 token → đề xuất 384; finish_reason/options ghi vào RunRecord; review/M1/R1.3_compute.md
+- 2026-09-27T00:26:53+07:00 · R1.4 XONG · Ngày xuất hiện giá trị nước ngoài vs ngày cắt dữ liệu mô hình; tầng xung đột; nhãn phụ của nhãn 5 · xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md
+- 2026-09-27T00:26:53+07:00 · R1.5 XONG · Addendum đăng ký trước: thí điểm mở trước khi tải OSF, liệt kê sửa theo thí điểm · xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md
+- 2026-09-27T00:26:53+07:00 · R1.6 XONG · Phạm vi 'mô hình mở chạy tại chỗ'; kết cục chính tỉ lệ lỗi quy được nguồn; diễn giải khi âm tính · xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md
+- 2026-09-27T00:26:54+07:00 · R1.7 XONG · Lấy lại đoạn A3 controls từ QĐ 2131/2026; chấm độ hợp lý mồi bằng kiểm toán AI kép · xem review/M1/response.md, R1.4_cutoffs.md, prereg/addenda/2026-09-27_addendum_1.md, review/decoy_plausibility/pilot_final.md
+- 2026-09-27T01:13:58+07:00 · thêm task R1.2b · Kiểm bộ chấm 1.3.0 trên tập giữ riêng (mẩu ngoài thí điểm) theo ngưỡng đăng ký trước
+- 2026-09-27T01:13:58+07:00 · R1.2 XONG · Sửa bộ chấm theo lỗi thí điểm + kiểm trên tập giữ riêng trước khi đóng băng · bộ chấm 1.3.0: E1–E6 sửa, phản biện 4 CHẶN đã sửa, 1397 test; kiểm tập giữ riêng chuyển sang R1.2b (chặn T4.3)
+- 2026-09-27T02:51:00+07:00 · thêm task C2.5 · Kho chính: Claude tìm văn bản chính thức (thay HG2.3, người dùng giao 26/9), dựng chuỗi thay thế, đề xuất 25–35 văn bản
+- 2026-09-27T02:51:00+07:00 · C2.5 bắt đầu · Kho chính: Claude tìm văn bản chính thức (thay HG2.3, người dùng giao 26/9), dựng chuỗi thay thế, đề xuất 25–35 văn bản
+- 2026-09-27T02:51:45+07:00 · thêm task C4.8 · Khung bản thảo tạp chí (Intro, Related work, Methods theo thiết kế hiện hành; Results/Discussion là khung {{khóa}})
+- 2026-09-27T02:51:45+07:00 · C4.8 bắt đầu · Khung bản thảo tạp chí (Intro, Related work, Methods theo thiết kế hiện hành; Results/Discussion là khung {{khóa}})
+- 2026-09-27T03:26:11+07:00 · C4.8 XONG · Khung bản thảo tạp chí (Intro, Related work, Methods theo thiết kế hiện hành; Results/Discussion là khung {{khóa}}) · manuscript/main.md (~11.600 từ khung), TODO_manuscript.md (240 khóa mới, 16 TODO-CITE)
+- 2026-09-27T03:50:31+07:00 · C2.5 XONG · Kho chính: Claude tìm văn bản chính thức (thay HG2.3, người dùng giao 26/9), dựng chuỗi thay thế, đề xuất 25–35 văn bản · 85 văn bản trong danh mục (54 hiện hành); 26 in_corpus theo phạm vi §3.1 (D28); chuỗi thay thế chờ kiểm độc lập
+- 2026-09-27T10:32:44+07:00 · HG1.0 (người dùng) XONG · người dùng xác nhận trong chat 27/9/2026
+- 2026-09-27T10:32:44+07:00 · HG1.2 (người dùng) XONG · người dùng xác nhận trong chat 27/9/2026
+- 2026-09-27T10:32:45+07:00 · HG2.3 (người dùng) XONG · người dùng xác nhận trong chat 27/9/2026
+- 2026-09-27T10:32:45+07:00 · HG1.10 (người dùng) XONG · người dùng xác nhận trong chat 27/9/2026
+- 2026-09-27T10:32:45+07:00 · HG1.11 (người dùng) XONG · người dùng xác nhận trong chat 27/9/2026
+- 2026-09-27T10:32:46+07:00 · HG4.6 (người dùng) XONG · người dùng xác nhận trong chat 27/9/2026
+- 2026-09-27T10:32:57+07:00 · HG0.3 bỏ theo quyết định người dùng (HG0.3) · không dùng khóa API/Kaggle; mô hình chạy trên laptop
+- 2026-09-27T10:32:57+07:00 · T0.4 bỏ theo quyết định người dùng (HG0.3) · chạy thử Kaggle không cần: mô hình chạy trên laptop (Ollama); đã chạy thử cục bộ results/smoke/local_smoke.json
+- 2026-09-27T10:32:57+07:00 · T0.5 bỏ theo quyết định người dùng (HG0.3) · không dùng API trả phí
+- 2026-09-27T10:32:58+07:00 · T4.9 bỏ theo quyết định người dùng (HG5.0) · không dùng Kaggle
+- 2026-09-27T10:32:58+07:00 · HG5.0 bỏ theo quyết định người dùng (HG5.0) · không dùng Kaggle
+- 2026-09-27T10:32:58+07:00 · T4.10 bỏ qua · RQ4 bỏ theo quyết định người dùng (HG4.6)
+- 2026-09-27T10:33:51+07:00 · T1.4 bắt đầu · Chạy thí điểm — Qwen3-8B-AWQ (2 GPU) + 1 API rẻ
+- 2026-09-27T10:33:52+07:00 · T1.4 XONG · Chạy thí điểm — Qwen3-8B-AWQ (2 GPU) + 1 API rẻ · làm 26–27/9 (chạy cục bộ Qwen3-8B; chấm grader 1.2.0; abstract VI/EN; hội đồng M1)
+- 2026-09-27T10:33:52+07:00 · T1.5 bắt đầu · Chấm và phân tích thí điểm (số đếm + Clopper–Pearson; trùng nước ngoài vs trùng mồi)
+- 2026-09-27T10:33:52+07:00 · T1.5 XONG · Chấm và phân tích thí điểm (số đếm + Clopper–Pearson; trùng nước ngoài vs trùng mồi) · làm 26–27/9 (chạy cục bộ Qwen3-8B; chấm grader 1.2.0; abstract VI/EN; hội đồng M1)
+- 2026-09-27T10:33:53+07:00 · T1.7 bắt đầu · Viết abstract FMC có kết quả thí điểm + DOCX
+- 2026-09-27T10:33:53+07:00 · T1.7 XONG · Viết abstract FMC có kết quả thí điểm + DOCX · làm 26–27/9 (chạy cục bộ Qwen3-8B; chấm grader 1.2.0; abstract VI/EN; hội đồng M1)
+- 2026-09-27T10:33:54+07:00 · T1.8 bắt đầu · Hội đồng agent mốc M1 (thí điểm + abstract), một vòng
+- 2026-09-27T10:34:05+07:00 · T1.8 XONG · Hội đồng agent mốc M1 (thí điểm + abstract), một vòng · hội đồng M1: review/M1/summary.md
+- 2026-09-27T10:45:31+07:00 · T6.0 bắt đầu · Cài gói R (lme4, glmmTMB, sandwich, boot, jsonlite, arrow) vào thư viện người dùng
+- 2026-09-27T10:45:35+07:00 · T6.0 XONG · Cài gói R (lme4, glmmTMB, sandwich, boot, jsonlite, arrow) vào thư viện người dùng · R 4.6.1 (winget, người dùng đồng ý 27/9); lme4, glmmTMB, sandwich, boot, jsonlite, arrow vào thư viện người dùng
+- 2026-09-27T10:47:09+07:00 · T2.5 bắt đầu · Dựng chuỗi thay thế và chọn kho 25–35 hướng dẫn hiện hành
+- 2026-09-27T10:47:09+07:00 · T2.5 XONG · Dựng chuỗi thay thế và chọn kho 25–35 hướng dẫn hiện hành · C2.5 + kiểm độc lập (review/supersession_audit.md) + sửa L1–L3; 25 văn bản in_corpus (D28), OCR 9/10
+- 2026-09-27T10:48:54+07:00 · T2.6 bắt đầu · Kho đối chiếu nước ngoài có phiên bản (chỉ giá trị + nguồn + vị trí)
+- 2026-09-27T21:28:17+07:00 · nén ngữ cảnh (auto); đang làm: T2.6
+- 2026-09-27T21:35:45+07:00 · TẠM DỪNG (state/PAUSE)
+- 2026-09-27T23:55:00+07:00 · BÀN GIAO (người dùng tạm nghỉ; autopilot tạm dừng) · abstract FMC 250 từ theo mẫu → Nop_Final_PhanChauTrinh_HT2026/ (chờ HG1.9, hạn 30/9); trích mẩu 45/62 phần, 10.903 mẩu thô, chưa kiểm toán; kho nước ngoài 10/12 nhóm, chưa kiểm; workflow chạy tiếp được lưu ở scripts/workflows/ (resume_args.py); xem docs/HANDOFF.md
