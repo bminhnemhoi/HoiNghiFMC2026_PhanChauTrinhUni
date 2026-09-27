@@ -1,0 +1,15 @@
+# Nhóm bệnh của kho đối chiếu nước ngoài (T2.6; data/interim/foreign_parts/<nhóm>.jsonl) → văn bản Bộ Y tế trong kho.
+# Dùng bởi vnsoc.match.candidates để chỉ ghép mẩu với bản ghi nước ngoài cùng nhóm bệnh.
+groups:
+  dengue_hfmd: ["2760/2023", "292/2024"]
+  tb: ["162/2024"]
+  malaria_whitmore: ["3377/2023", "6101/2019"]
+  hepatitis: ["1740/2026", "2855/2024"]
+  hiv_pmtct: ["5968/2021", "678/2025"]
+  resp_infection: ["2147/2026", "1840/2025", "1019/2025"]
+  copd: ["2131/2026"]
+  diabetes_obesity: ["5481/2020", "1470/2024", "2892/2022"]
+  hypertension: ["3192/2010", "1154/2024", "5904/2019"]
+  cardio_stroke: ["1857/2022", "3312/2024"]
+  ckd: ["2388/2024"]
+  acute_infect_tox: ["TT51/2017", "5642/2015", "3610/2015"]
