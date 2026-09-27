@@ -1,0 +1,34 @@
+NỘI DUNG ĐIỀN VÀO BIỂU MẪU NỘP ĐỀ TÀI — HỘI NGHỊ KHOA HỌC FMC 2026
+Biểu mẫu: conference.pctu.edu.vn → Đăng kí → Hướng dẫn đăng kí đề tài (biểu mẫu nộp đề tài)
+Chép NGUYÊN VĂN từng khối vào đúng ô (không thêm bớt). Giới hạn ký tự là giới hạn thật của biểu mẫu (27/9/2026).
+====================================================================================================
+
+[Chọn Chủ đề]
+Tích ô: 1. AI và chuyển đổi số trong Y tế và Giáo dục Y khoa
+
+[Tên đề tài]  —  126/150 ký tự
+Chuẩn điều trị của ai? Sai lệch của LLM theo chuẩn nước ngoài và phiên bản cũ so với hướng dẫn chuyên môn của Bộ Y tế Việt Nam
+
+[Đơn vị]  —  230/400 ký tự
+(1) Khoa Công nghệ thông tin, Trường Đại học Tôn Đức Thắng, TP. Hồ Chí Minh, Việt Nam; (2) Khoa Y, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam; (3) Khoa Răng Hàm Mặt, Trường Đại học Phan Châu Trinh, TP. Đà Nẵng, Việt Nam
+
+[Tác giả / Đồng tác giả / Tác giả liên hệ]  —  80/400 ký tự
+Ngô Bình Minh (1) – tác giả liên hệ; Ngô Bình Thống (2); Trần Đoàn Mai Hương (3)
+
+[Tóm tắt đề tài / Abstract]  —  462/500 ký tự
+Mô hình ngôn ngữ lớn có thể nêu liều, ngưỡng theo hướng dẫn nước ngoài hoặc bản cũ thay vì hướng dẫn hiện hành của Bộ Y tế. Thí điểm trên 61 khuyến cáo (chọn chủ đích, chỉ AI kiểm, chưa có bác sĩ duyệt): hỏi bằng tiếng Việt, nêu rõ Bộ Y tế, Qwen3-8B đúng 7/20 khuyến cáo khác ít nhất một chuẩn nước ngoài; phần lớn câu sai không khớp nguồn đã ghi nhận; chưa cho thấy trùng chuẩn nước ngoài vượt mức trùng giá trị mồi. Kèm đoạn hướng dẫn: đúng 13/20, vẫn còn sai.
+
+[Email liên hệ]
+ngobinhminh.st@tdtu.edu.vn
+
+[File đính kèm]
+01_Abstract_TiengViet.docx (hoặc .pdf)
+
+----------------------------------------------------------------------------------------------------
+BẢN TIẾNG ANH (chỉ dùng nếu Ban tổ chức yêu cầu tiếng Anh; khi đó đính kèm 02_Abstract_TiengAnh.docx)
+
+[Title]  —  127/150
+Whose Standard of Care? Foreign-Guideline and Outdated-Version Deviations of LLMs from Vietnamese Ministry of Health Guidelines
+
+[Abstract field]  —  489/500
+LLMs may give doses or thresholds from foreign or outdated guidelines instead of current Vietnamese Ministry of Health (MoH) guidelines. Pilot on 61 purposively selected recommendations (AI-checked only, no clinician review): asked in Vietnamese with an MoH cue, Qwen3-8B was correct on 7/20 recommendations differing from a named foreign guideline; most errors matched no recorded source; foreign matches were not shown to exceed chance (decoy) level. With the MoH passage: 13/20 correct.

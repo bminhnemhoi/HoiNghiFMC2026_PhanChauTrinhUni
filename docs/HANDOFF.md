@@ -1,6 +1,6 @@
 # BÀN GIAO — trạng thái dự án và cách làm tiếp
 
-Cập nhật: 27/9/2026, 23:50 (+07). Phiên trước dừng theo yêu cầu người dùng ("đang có việc; lưu đầy đủ để phiên sau
+Cập nhật: 28/9/2026, 01:15 (+07). Phiên trước dừng theo yêu cầu người dùng ("đang có việc; lưu đầy đủ để phiên sau
 triển khai tiếp"). Autopilot đang **tạm dừng** (`state/PAUSE`). Tài liệu này là điểm vào của phiên sau; số liệu đo
 bằng mã lúc bàn giao, không ước lượng.
 
@@ -17,7 +17,7 @@ bằng mã lúc bàn giao, không ước lượng.
 | Hạng mục | Kết quả | Ở đâu |
 |---|---|---|
 | Thí điểm (T1.x) | 65 mẩu chọn tay, 61 phân tích, Qwen3-8B cục bộ; bộ chấm 1.2.0 khóa; hội đồng M1 + sửa R1.1–R1.7 | `results/pilot/`, `results/numbers.json` (pilot.*), `review/M1/` |
-| Abstract FMC 2026 | Viết lại theo mẫu hội nghị, VI 250 / EN 246 từ; dựng từ chính file mẫu; kiểm toán độc lập tính lại mọi số (482/482 nhãn khớp) | `Nop_Final_PhanChauTrinh_HT2026/` (thư mục nộp duy nhất), nguồn `manuscript/fmc/abstract_fmc.md`, `src/vnsoc/fmc.py` |
+| Abstract FMC 2026 | Bản đầy đủ theo mẫu hội nghị trong giới hạn 500 từ (VI 493 / EN 479 từ), bản dự phòng 250 từ; dựng từ chính file mẫu; ô web ≤ 500 ký tự; kiểm toán độc lập | `Nop_Final_PhanChauTrinh_HT2026/` (thư mục nộp duy nhất; dựng lại: `$PY scripts/build_fmc_package.py`), nguồn `manuscript/fmc/abstract_fmc.md` và `abstract_fmc_250.md`, `src/vnsoc/fmc.py` |
 | Kho hướng dẫn (T2.1–T2.5) | 25 văn bản in_corpus (D28), chuỗi thay thế, OCR 9/10 | `data/interim/manifest.jsonl`, `review/supersession_check.md`, `results/tables/supersession.csv` |
 | Đăng ký trước (bản nháp) | Đồng bộ 1.2.0/1.3.x, D1–D30 (D13–D30 mặc định chờ tác giả xác nhận), addendum 1 | `prereg/osf_preregistration.md`, `prereg/addenda/`, `review/prereg/response.md` |
 | Bộ đọc/chấm 1.3.1 | 418 INN, 970 bí danh, 412 cách viết đơn vị; CHƯA đóng băng (cần R1.2b) | `configs/grading.yaml`, `src/vnsoc/grade.py`, `src/vnsoc/normalize_vi.py` |
@@ -27,7 +27,7 @@ bằng mã lúc bàn giao, không ước lượng.
 
 ## 2. Việc CHỈ người dùng làm (cổng đang chờ)
 
-- **HG1.9 — nộp abstract FMC, hạn hết 30/9/2026.** Hướng dẫn: `Nop_Final_PhanChauTrinh_HT2026/00_DOC_TRUOC_HUONG_DAN_NOP.txt`.
+- **HG1.9 — nộp abstract FMC, hạn hết 30/9/2026.** Hướng dẫn: `Nop_Final_PhanChauTrinh_HT2026/00_HUONG_DAN_NOP.pdf`.
   Khi người dùng gõ `XONG HG1.9 …`: ghi bằng chứng vào `state/gates/`, `scripts/vs human-done HG1.9 --note "…"`.
   Thư mục cũ `NOP_FMC/` là bản lỗi thời — hook chặn Claude xóa; người dùng tự xóa nếu muốn.
 - **HG2.9 — nộp đăng ký trước trên OSF, hạn 7/10/2026.** Trước đó người dùng nên xác nhận (hoặc để mặc định) D13–D30

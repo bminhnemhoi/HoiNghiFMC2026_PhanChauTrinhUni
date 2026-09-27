@@ -3,9 +3,9 @@
 **Hạn:** Ban tổ chức đã trả lời (26/9): nộp **trong ngày 30/9/2026 vẫn được nhận**; giới hạn 500 từ (250 từ là khuyến khích); **mỗi file chỉ một ngôn ngữ** → có hai bản riêng tiếng Việt và tiếng Anh.
 **Vì sao bạn phải làm:** nộp bài cần tài khoản/danh tính của bạn; Claude không nộp thay.
 
-## Thư mục nộp duy nhất (cập nhật 27/9, 23:30)
+## Thư mục nộp duy nhất (cập nhật 28/9, 01:15)
 
-**Chỉ dùng `Nop_Final_PhanChauTrinh_HT2026/`.** Đọc `00_DOC_TRUOC_HUONG_DAN_NOP.txt`. File đính kèm: `01_Abstract_TiengViet.docx` (điền đúng file mẫu của hội nghị, 250 từ; PDF kèm theo); bản tiếng Anh `02_Abstract_TiengAnh.docx`. Nội dung chép vào form: `03_NOI_DUNG_CHEP_VAO_FORM.txt`; đối chiếu mẫu, số liệu, mã băm: `04_KIEM_TRA_TRUOC_KHI_NOP.txt`. Thư mục cũ `NOP_FMC/` và các bản 440–453 từ là bản lỗi thời (có lỗi diễn đạt nhãn 6 là 'không trả lời') — không dùng. Các mục bên dưới là hướng dẫn cũ, chỉ để tham khảo.
+**Chỉ dùng `Nop_Final_PhanChauTrinh_HT2026/`** (dựng lại bằng `$PY scripts/build_fmc_package.py`). Mở `00_HUONG_DAN_NOP.pdf` (các bước, nội dung từng ô của biểu mẫu với giới hạn thật, kiểm tra chất lượng, SHA-256). File đính kèm: `01_Abstract_TiengViet.docx` (bản đầy đủ theo mẫu hội nghị, 493 từ, trong giới hạn 500 từ; PDF kèm theo); bản tiếng Anh `02_Abstract_TiengAnh.docx`. Chữ để chép vào từng ô: `03_NOI_DUNG_DIEN_FORM.txt` (ô Tóm tắt trên web chặn ở 500 KÝ TỰ nên dùng bản ngắn). Bản 250 từ: `Du_phong_ban_250_tu/`. Thư mục cũ `NOP_FMC/` là bản lỗi thời — không dùng. Các mục bên dưới là hướng dẫn cũ, chỉ để tham khảo.
 
 ## Chọn bản nào
 
