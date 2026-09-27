@@ -81,6 +81,8 @@ class ForeignValue(Strict):
     page_sha256: str | None = None            # hash of the fetched page/PDF (proves it was actually read)
     values: list[ValueItem]
     verified_by: Literal["auto", "student", "clinician"] | None = None
+    first_version_date: str | None = None     # earliest edition of this source containing the value (R1.4), if known
+    record_id: str | None = None              # row of data/interim/foreign_values.jsonl the value came from
 
 
 class ForeignRecord(Strict):
@@ -96,6 +98,8 @@ class ForeignRecord(Strict):
     fetched_at: str                           # required here: proves the page/PDF was opened
     page_sha256: str
     values: list[ValueItem] = Field(min_length=1)
+    first_version_date: str | None = None     # earliest edition containing the value, when verified (R1.4)
+    population_match: Literal["full", "partial"] = "full"   # partial: setting/population differs (note says how)
     note: str = ""
 
 
