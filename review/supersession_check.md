@@ -177,3 +177,28 @@ Tầng 1 = có dòng hạt giống/mẩu thí điểm; tầng 2 = lớp chữ, b
 - Không sửa `data/interim/pdf_choice.json`. Đề xuất thêm `"3126/2018": "3126_2018__46f795ca.pdf"` (thân HD đầy đủ; văn bản không thuộc kho và không có mẩu thí điểm). Không đổi lựa chọn của TT13/2026 (bản thứ hai là lớp OCR của bên thứ ba).
 - Tệp mới trong data/raw (không commit): 1019_2025, 1840_2025, 2855_2024, 3312_2024, 2892_2022, 678_2025 (+__3241fdd5), 2065_2021, 1911_2021 (+__27810c20), 3126_2018__46f795ca, 2671_2023, 2341_2024 (+__e7639ce8), 1832_2022 (+__5a1f1b1a), 465_2024, TT13_2026__f1b47afd, 3510_2025, 2323_2025, 3651_2024, 2959_2023, 2248_2023, 1005_2023, 2187_2019, 4815_2020, 4845_2016, 458_2011, 250_2022; và `manual/1003_2012.doc` (bị loại, cần xóa).
 - Kiểm tra: `vnsoc.schemas manifest` OK (85 dòng); `vnsoc.check count … --min 25 --where in_corpus=true status=current` → 35; pytest `tests/test_manifest.py tests/test_manifest_merge.py tests/test_fetch_pdf.py` (và test_prereg_support, test_freeze, test_pilot_atoms): 161 passed.
+
+
+## 7. Chốt sau kiểm toán độc lập (27/9/2026, cập nhật cuối)
+
+Kiểm toán độc lập: review/supersession_audit.md. Kết quả: 39 quan hệ, 36 xác nhận, 0 sai, 3 không kiểm được. Không có văn bản nào trong kho đã bị thay. Ba lỗi chặn đã được xử lý:
+- **L1 — 6101/2019:** đã OCR lại bằng `--override-text-layer` (tessdata_best). `verify_span --find` nay tìm được chữ.
+- **L2 — 162/2024:** ký tự Cyrillic giả chữ Việt (U+04DF → ớ, U+04AF → ẫ) và các ký tự Symbol-font được ánh xạ trong `verify_span._GLYPH`, có test. Số trang tìm được "với" tăng từ 20 lên 157. Các mẩu thí điểm vẫn qua kiểm.
+- **L3 — `supersession.csv`:** cột `in_corpus` đã đồng bộ với manifest.
+
+Quyết định phạm vi D28: chỉ các họ bệnh của đề cương §3.1 (`configs/corpus_scope.yaml`). Hai văn bản trong phạm vi bị loại khỏi kho:
+- TT13/2026: không có lịch tiêm;
+- 1353/2021: là quyết định sửa đổi một trang của 5481/2020, không phải hướng dẫn. Nội dung sửa đổi được áp vào mẩu của 5481/2020.
+
+**Kho chốt: 25 văn bản hiện hành.** 1019/2025, 1154/2024, 1470/2024, 162/2024, 1740/2026, 1840/2025, 1857/2022, 2131/2026, 2147/2026, 2388/2024, 2760/2023, 2855/2024, 2892/2022, 292/2024, 3192/2010, 3312/2024, 3377/2023, 3610/2015, 5481/2020, 5642/2015, 5904/2019, 5968/2021, 6101/2019, 678/2025, TT51/2017.
+
+**OCR:** 6 văn bản hiện hành (1470/2024, 2855/2024, 292/2024, 3377/2023, 6101/2019, TT51/2017) và 3 bản cũ (1327/2014, 3310/2019, 3705/2019), tổng 9/10.
+
+**Còn thiếu:**
+- 1622/2014 (dại): bản chính thức duy nhất là tệp .doc trên trang có chứng chỉ TLS hết hạn; Internet Archive không có bản lưu.
+- 5456/2019: vaac.gov.vn lỗi TLS.
+
+**Mục của kiểm toán ghi nhận nhưng chưa sửa, không chặn việc chọn kho:**
+- trang bằng chứng của 3610/2015 (trang PDF 2) và 5642/2015 (trang PDF 3);
+- ghi chú cũ trong manifest;
+- chồng lấn DR8: 5642 ch.5 và ch.8, 5904/2019, 678/2025. Phần này xử lý ở bước hợp tập DR8 theo họ bệnh.
